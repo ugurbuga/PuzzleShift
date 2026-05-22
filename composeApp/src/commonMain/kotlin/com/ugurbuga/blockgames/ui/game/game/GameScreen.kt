@@ -46,6 +46,8 @@ import com.ugurbuga.blockgames.settings.OnboardingStage
 import com.ugurbuga.blockgames.settings.AppSettings
 import com.ugurbuga.blockgames.settings.StackShiftGameOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.StackShiftOnboardingStage
+import com.ugurbuga.blockgames.settings.WordShiftOnboardingStage
+import com.ugurbuga.blockgames.settings.WordShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.telemetry.AppTelemetry
 import com.ugurbuga.blockgames.telemetry.LogScreen
 import com.ugurbuga.blockgames.telemetry.NoOpAppTelemetry
@@ -85,6 +87,7 @@ fun BlockGamesGameApp(
             GameplayStyle.MergeShift -> MergeShiftOnboardingStateFactory.stages
             GameplayStyle.BoomBlocks -> BoomBlocksOnboardingStateFactory.stages
             GameplayStyle.BlockSort -> BlockSortOnboardingStateFactory.stages
+            GameplayStyle.WordShift -> WordShiftOnboardingStateFactory.stages
             else -> StackShiftGameOnboardingStateFactory.stages
         }
     }
@@ -192,12 +195,19 @@ fun BlockGamesGameApp(
         } else null
     }
 
+    val wordShiftOnboardingScene = remember(interactiveOnboardingEnabled, onboardingStage) {
+        if (interactiveOnboardingEnabled && onboardingStage is WordShiftOnboardingStage) {
+            WordShiftOnboardingStateFactory.scene(onboardingStage as WordShiftOnboardingStage)
+        } else null
+    }
+
     val onboardingSceneGameState = stackShiftOnboardingScene?.gameState
         ?: blockWiseOnboardingScene?.gameState
         ?: chainShiftOnboardingScene?.gameState
         ?: mergeShiftOnboardingScene?.gameState
         ?: boomBlocksOnboardingScene?.gameState
         ?: blockSortOnboardingScene?.gameState
+        ?: wordShiftOnboardingScene?.gameState
 
     val displayGameState by remember(
         uiState.gameState,
@@ -257,6 +267,7 @@ fun BlockGamesGameApp(
                 GameplayStyle.MergeShift -> MergeShiftOnboardingStateFactory.cleanGameState()
                 GameplayStyle.BoomBlocks -> BoomBlocksOnboardingStateFactory.cleanGameState()
                 GameplayStyle.BlockSort -> BlockSortOnboardingStateFactory.cleanGameState()
+                GameplayStyle.WordShift -> WordShiftOnboardingStateFactory.cleanGameState()
                 else -> StackShiftGameOnboardingStateFactory.cleanGameState()
             }
             showOnboardingCompletionDialog = true
@@ -440,6 +451,72 @@ fun BlockGamesGameApp(
                 .takeIf { it >= 0 }?.plus(1) ?: 0,
             interactiveOnboardingTotalSteps = onboardingStages.size,
             interactiveOnboardingCompletionDialogVisible = showOnboardingCompletionDialog,
+            onInteractiveOnboardingStartGame = {
+                pendingOnboardingCompletionState?.let(onInteractiveOnboardingFinished)
+            },
+            onInteractiveOnboardingReturnHome = {
+                pendingOnboardingCompletionState?.let(onInteractiveOnboardingReturnHome)
+            },
+        )
+
+        GameplayStyle.WordShift -> WordShiftGameScreen(
+            modifier = modifier,
+            gameState = displayGameState,
+            highestScore = highestScore,
+            showNewHighScoreMessage = newHighScoreReached,
+            adController = adController,
+            interactiveOnboardingScene = wordShiftOnboardingScene,
+            interactiveOnboardingCurrentStep = onboardingStages.indexOf(onboardingStage)
+                .takeIf { it >= 0 }?.plus(1) ?: 0,
+            interactiveOnboardingTotalSteps = onboardingStages.size,
+            interactiveOnboardingCompletionDialogVisible = showOnboardingCompletionDialog,
+            onAppendToken = { token ->
+                dispatchFeedback(
+                    viewModel.dispatchResult(GameIntent.AppendWordToken(token)).feedback,
+                    soundPlayer,
+                    haptics,
+                )
+            },
+            onDeleteToken = {
+                dispatchFeedback(
+                    viewModel.dispatchResult(GameIntent.DeleteWordToken).feedback,
+                    soundPlayer,
+                    haptics,
+                )
+            },
+            onSubmitGuess = {
+                val result = viewModel.dispatchResult(GameIntent.SubmitWordGuess)
+                dispatchFeedback(result.feedback, soundPlayer, haptics)
+                if (interactiveOnboardingEnabled && wordShiftOnboardingScene != null) {
+                    if (GameEvent.PlacementAccepted in result.events) {
+                        onboardingAdvanceRequest = InteractiveOnboardingAdvanceRequest(
+                            completedStage = wordShiftOnboardingScene.stage,
+                            nextStage = nextInteractiveOnboardingStage(
+                                wordShiftOnboardingScene.stage,
+                                onboardingStages,
+                            ),
+                        )
+                    }
+                }
+            },
+            onAdvanceRound = {
+                dispatchFeedback(viewModel.advanceWordRound(), soundPlayer, haptics)
+            },
+            onRestart = {
+                telemetry.logUserAction(TelemetryActionNames.RestartGame)
+                dispatchFeedback(
+                    viewModel.restart(
+                        config = restartConfigForStyle(uiState.gameState, GameplayStyle.WordShift),
+                    ),
+                    soundPlayer,
+                    haptics,
+                )
+            },
+            onRewardedRevive = {
+                telemetry.logUserAction(RewardedReviveTelemetryAction)
+                dispatchFeedback(viewModel.reviveFromReward(), soundPlayer, haptics)
+            },
+            onBack = onBack,
             onInteractiveOnboardingStartGame = {
                 pendingOnboardingCompletionState?.let(onInteractiveOnboardingFinished)
             },

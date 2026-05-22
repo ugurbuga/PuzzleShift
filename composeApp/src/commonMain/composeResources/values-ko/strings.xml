@@ -408,5 +408,34 @@
     <string name="interactive_onboarding_chainshift_chain_body">이 설정은 더 영리한 샷에 보상을 줍니다. 첫 번째 매치를 제거하고 체인이 가장자리로 후퇴하는 것을 지켜본 뒤, 두 번째 매치가 저절로 터지게 하세요.</string>
     <string name="interactive_onboarding_chainshift_tap_hint">조준하고 손을 떼서 하이라이트된 블록을 쏘세요.</string>
     <string name="game_message_ad_reward_chainshift">Active block refreshed for Chain Shift!</string>
+    <string name="selection_wordshift_desc">Wordle-style word puzzles with language-specific vocabularies.</string>
+    <string name="tutorial_wordshift_intro_title">Find the hidden word</string>
+    <string name="tutorial_wordshift_intro_body">Build a five-token word and submit it. Every guess reveals which tokens are correct, present, or absent.</string>
+    <string name="tutorial_wordshift_hints_title">Read the colors</string>
+    <string name="tutorial_wordshift_hints_body">Green means the token is correct, gold means it belongs somewhere else, and muted means it is not in the answer.</string>
+    <string name="tutorial_wordshift_strategy_title">Use the keyboard hints</string>
+    <string name="tutorial_wordshift_strategy_body">Each submitted guess upgrades the keyboard. Reuse green tokens, relocate gold ones, and avoid muted tokens to solve faster.</string>
+    <string name="tutorial_wordshift_ready_title">Ready to shift words?</string>
+    <string name="tutorial_wordshift_ready_body">Classic mode keeps the streak going until you miss a word. Time Attack adds pressure, so solve quickly to bank score and bonus time.</string>
+    <string name="interactive_onboarding_wordshift_type_hint">Type the suggested word to learn the board.</string>
+    <string name="interactive_onboarding_wordshift_submit_hint">Submit another valid word and watch the keyboard update.</string>
+    <string name="interactive_onboarding_wordshift_solve_hint">Use the clues and solve the hidden word.</string>
+    <string name="wordshift_enter">Enter</string>
+    <string name="wordshift_delete">Delete</string>
+    <string name="wordshift_guess_label">Guess %1$d</string>
+    <string name="wordshift_solved_words">Solved</string>
+    <string name="wordshift_attempts_left">Attempts</string>
+    <string name="wordshift_current_language">Language</string>
+    <string name="game_message_wordshift_enter_word">Build a word and submit your guess.</string>
+    <string name="game_message_wordshift_not_enough_letters">Not enough letters yet.</string>
+    <string name="game_message_wordshift_not_in_dictionary">That word is not in this language pack.</string>
+    <string name="game_message_wordshift_keep_trying">Good clue. Refine the next guess.</string>
+    <string name="game_message_wordshift_solved">Solved: %1$s</string>
+    <string name="game_message_wordshift_failed">Round over. The word was %1$s.</string>
+    <string name="game_message_wordshift_revived">Extra life used. Try the word again.</string>
+    <string name="game_message_ad_reward_wordshift">Word refreshed. Keep guessing!</string>
+    <string name="challenge_task_solve_words">Solve %1$d words</string>
+    <string name="challenge_info_solve_words_title">Solve words</string>
+    <string name="challenge_info_solve_words">Complete full WordShift rounds by finding the hidden word before you run out of guesses.</string>
 </resources>
 

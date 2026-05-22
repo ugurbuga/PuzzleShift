@@ -110,6 +110,13 @@ import blockgames.composeapp.generated.resources.game_message_special_lines
 import blockgames.composeapp.generated.resources.game_message_special_triggered
 import blockgames.composeapp.generated.resources.game_message_tempo_critical
 import blockgames.composeapp.generated.resources.game_message_tempo_up
+import blockgames.composeapp.generated.resources.game_message_wordshift_enter_word
+import blockgames.composeapp.generated.resources.game_message_wordshift_failed
+import blockgames.composeapp.generated.resources.game_message_wordshift_keep_trying
+import blockgames.composeapp.generated.resources.game_message_wordshift_not_enough_letters
+import blockgames.composeapp.generated.resources.game_message_wordshift_not_in_dictionary
+import blockgames.composeapp.generated.resources.game_message_wordshift_revived
+import blockgames.composeapp.generated.resources.game_message_wordshift_solved
 import blockgames.composeapp.generated.resources.game_over_extra_life
 import blockgames.composeapp.generated.resources.game_over_extra_life_loading
 import blockgames.composeapp.generated.resources.game_over_new_high_score
@@ -1110,6 +1117,13 @@ internal fun GameTextKey.stringResourceId(): StringResource {
         GameTextKey.FeedbackAdRewardBlockWise -> Res.string.feedback_ad_reward_blockwise
         GameTextKey.FeedbackAdRewardMergeShift -> Res.string.feedback_ad_reward_mergeshift
         GameTextKey.FeedbackAdRewardBoomBlocks -> Res.string.feedback_ad_reward_boomblocks
+        GameTextKey.GameMessageWordShiftEnterWord -> Res.string.game_message_wordshift_enter_word
+        GameTextKey.GameMessageWordShiftNotEnoughLetters -> Res.string.game_message_wordshift_not_enough_letters
+        GameTextKey.GameMessageWordShiftNotInDictionary -> Res.string.game_message_wordshift_not_in_dictionary
+        GameTextKey.GameMessageWordShiftKeepTrying -> Res.string.game_message_wordshift_keep_trying
+        GameTextKey.GameMessageWordShiftSolved -> Res.string.game_message_wordshift_solved
+        GameTextKey.GameMessageWordShiftFailed -> Res.string.game_message_wordshift_failed
+        GameTextKey.GameMessageWordShiftRevived -> Res.string.game_message_wordshift_revived
     }
 }
 

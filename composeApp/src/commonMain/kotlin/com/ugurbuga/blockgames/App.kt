@@ -33,6 +33,7 @@ import blockgames.composeapp.generated.resources.game_message_ad_reward_blockwis
 import blockgames.composeapp.generated.resources.game_message_ad_reward_boomblocks
 import blockgames.composeapp.generated.resources.game_message_ad_reward_chainshift
 import blockgames.composeapp.generated.resources.game_message_ad_reward_mergeshift
+import blockgames.composeapp.generated.resources.game_message_ad_reward_wordshift
 import blockgames.composeapp.generated.resources.leave_session_confirm
 import blockgames.composeapp.generated.resources.leave_session_confirm_body
 import blockgames.composeapp.generated.resources.leave_session_confirm_title
@@ -68,6 +69,7 @@ import com.ugurbuga.blockgames.settings.HighScoreStorage
 import com.ugurbuga.blockgames.settings.MergeShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.RewardedTokenAdReward
 import com.ugurbuga.blockgames.settings.StackShiftGameOnboardingStateFactory
+import com.ugurbuga.blockgames.settings.WordShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.awardBonusTokens
 import com.ugurbuga.blockgames.settings.awardCompletedChallenge
 import com.ugurbuga.blockgames.settings.awardScoreTokens
@@ -117,6 +119,8 @@ internal fun isUsableSavedSession(
 ): Boolean {
     if (state.gameplayStyle == GameplayStyle.BlockSort) {
         if (state.config.columns <= 0 || state.config.rows <= 0) return false
+    } else if (state.gameplayStyle == GameplayStyle.WordShift) {
+        if (state.config.columns !in 4..7 || state.config.rows != 6) return false
     } else {
         val defaultConfig = GameConfig.default(state.gameplayStyle)
         if (state.config.columns != defaultConfig.columns || state.config.rows != defaultConfig.rows) return false
@@ -136,6 +140,7 @@ internal fun isUsableSavedSession(
         GameplayStyle.MergeShift -> state.activePiece != null
         GameplayStyle.BoomBlocks -> true
         GameplayStyle.BlockSort -> state.board.occupiedCount > 0
+        GameplayStyle.WordShift -> state.wordShiftSolution.isNotEmpty()
     }
 }
 
@@ -234,6 +239,11 @@ internal fun rewardedDockFeedbackSpec(
 
         GameplayStyle.BlockSort -> RewardFeedbackSpec(
             messageRes = Res.string.game_message_ad_reward_blocksort,
+            icon = Icons.Filled.Refresh,
+        )
+
+        GameplayStyle.WordShift -> RewardFeedbackSpec(
+            messageRes = Res.string.game_message_ad_reward_wordshift,
             icon = Icons.Filled.Refresh,
         )
     }
@@ -613,6 +623,7 @@ fun BlockGamesAppHost(
             GameplayStyle.MergeShift -> MergeShiftOnboardingStateFactory.initialState()
             GameplayStyle.BoomBlocks -> BoomBlocksOnboardingStateFactory.initialState()
             GameplayStyle.BlockSort -> BlockSortOnboardingStateFactory.initialState()
+            GameplayStyle.WordShift -> WordShiftOnboardingStateFactory.initialState()
             else -> StackShiftGameOnboardingStateFactory.initialState()
         }
         gameViewModel = createGameViewModel(initialState)

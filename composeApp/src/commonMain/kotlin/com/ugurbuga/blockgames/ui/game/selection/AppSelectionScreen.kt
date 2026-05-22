@@ -77,6 +77,7 @@ import blockgames.composeapp.generated.resources.app_title_blockwise
 import blockgames.composeapp.generated.resources.app_title_boomblocks
 import blockgames.composeapp.generated.resources.app_title_mergeshift
 import blockgames.composeapp.generated.resources.app_title_stackshift
+import blockgames.composeapp.generated.resources.app_title_wordshift
 import blockgames.composeapp.generated.resources.home_play_cta
 import blockgames.composeapp.generated.resources.selection_active_game_badge
 import blockgames.composeapp.generated.resources.selection_chainshift_desc
@@ -85,6 +86,7 @@ import blockgames.composeapp.generated.resources.selection_blockwise_desc
 import blockgames.composeapp.generated.resources.selection_boomblocks_desc
 import blockgames.composeapp.generated.resources.selection_mergeshift_desc
 import blockgames.composeapp.generated.resources.selection_stackshift_desc
+import blockgames.composeapp.generated.resources.selection_wordshift_desc
 import blockgames.composeapp.generated.resources.selection_title
 import com.ugurbuga.blockgames.BlockGamesTheme
 import com.ugurbuga.blockgames.ads.AppFooterBannerHeight
@@ -110,6 +112,8 @@ import com.ugurbuga.blockgames.settings.MergeShiftOnboardingStage
 import com.ugurbuga.blockgames.settings.MergeShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.StackShiftGameOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.StackShiftOnboardingStage
+import com.ugurbuga.blockgames.settings.WordShiftOnboardingStage
+import com.ugurbuga.blockgames.settings.WordShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.telemetry.AppTelemetry
 import com.ugurbuga.blockgames.telemetry.LogScreen
 import com.ugurbuga.blockgames.telemetry.NoOpAppTelemetry
@@ -123,6 +127,7 @@ import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
 import com.ugurbuga.blockgames.ui.theme.appBackgroundBrush
 import com.ugurbuga.blockgames.ui.theme.blockGamesSurfaceShadow
+import com.ugurbuga.blockgames.ui.game.game.WordShiftBoard
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.StringResource
@@ -204,6 +209,7 @@ fun AppSelectionScreen(
             SelectionGameSpec(GameplayStyle.BlockSort, Res.string.app_title_blocksort, Res.string.selection_blocksort_desc),
             SelectionGameSpec(GameplayStyle.MergeShift, Res.string.app_title_mergeshift, Res.string.selection_mergeshift_desc),
             SelectionGameSpec(GameplayStyle.BoomBlocks, Res.string.app_title_boomblocks, Res.string.selection_boomblocks_desc),
+            SelectionGameSpec(GameplayStyle.WordShift, Res.string.app_title_wordshift, Res.string.selection_wordshift_desc),
         )
     }
 
@@ -471,6 +477,11 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
             ChainShiftOnboardingStateFactory.scene(ChainShiftOnboardingStage.CreateMatch)
         } else null
     }
+    val wordShiftScenes = remember(style) {
+        if (style == GameplayStyle.WordShift) {
+            WordShiftOnboardingStateFactory.stages.map(WordShiftOnboardingStateFactory::scene)
+        } else emptyList()
+    }
     val logic = remember(style, stackShiftScenario?.seed) {
         com.ugurbuga.blockgames.game.logic.GameLogic.create(
             random = Random(stackShiftScenario?.seed ?: (style.ordinal + 17)),
@@ -488,6 +499,8 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
                 ?: BlockSortOnboardingStateFactory.scene(BlockSortOnboardingStage.PickSource).gameState
             GameplayStyle.MergeShift -> MergeShiftOnboardingStateFactory.scene(MergeShiftOnboardingStage.VerticalMerge).gameState
             GameplayStyle.BoomBlocks -> BoomBlocksOnboardingStateFactory.scene(BoomBlocksOnboardingStage.BasicExplosion).gameState
+            GameplayStyle.WordShift -> wordShiftScenes.firstOrNull()?.gameState
+                ?: WordShiftOnboardingStateFactory.scene(WordShiftOnboardingStage.FirstGuess).gameState
         }
     }
     val boomBlocksScenario = remember(style) {
@@ -737,6 +750,15 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
                         delay(1400)
                     }
                 }
+
+                GameplayStyle.WordShift -> {
+                    if (wordShiftScenes.isNotEmpty()) {
+                        wordShiftScenes.forEach { scene ->
+                            gameState = scene.gameState
+                            delay(1500)
+                        }
+                    }
+                }
             }
             delay(2000)
         }
@@ -788,6 +810,13 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
                     palette = settings.blockColorPalette,
                     boardStylePulse = stylePulse,
                     boardStyle = boardStyle,
+                    modifier = Modifier
+                        .offset(x = boardOffsetX)
+                        .size(actualBoardWidth, actualBoardHeight),
+                )
+            } else if (style == GameplayStyle.WordShift) {
+                WordShiftBoard(
+                    gameState = gameState,
                     modifier = Modifier
                         .offset(x = boardOffsetX)
                         .size(actualBoardWidth, actualBoardHeight),
@@ -870,6 +899,7 @@ internal fun GameplayStyle.selectionTone(): CellTone = when (this) {
     GameplayStyle.BlockSort -> CellTone.Emerald
     GameplayStyle.MergeShift -> CellTone.Violet
     GameplayStyle.BoomBlocks -> CellTone.Coral
+    GameplayStyle.WordShift -> CellTone.Gold
 }
 
 private fun com.ugurbuga.blockgames.ui.theme.BlockGamesUiColors.selectionAccentFor(style: GameplayStyle): Color = when (style) {
@@ -879,6 +909,7 @@ private fun com.ugurbuga.blockgames.ui.theme.BlockGamesUiColors.selectionAccentF
     GameplayStyle.BlockSort -> success
     GameplayStyle.MergeShift -> selectionMergeShift
     GameplayStyle.BoomBlocks -> danger
+    GameplayStyle.WordShift -> warning
 }
 
 internal fun initialExpandedSelectionStyle(currentStyle: GameplayStyle?): GameplayStyle? =

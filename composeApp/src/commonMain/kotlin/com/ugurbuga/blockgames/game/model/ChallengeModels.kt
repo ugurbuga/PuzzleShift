@@ -47,6 +47,10 @@ enum class ChallengeTaskType(
     ClearBothDirections(
         stableId = "clear_both_directions",
         supportedStyles = setOf(GameplayStyle.BlockWise),
+    ),
+    SolveWords(
+        stableId = "solve_words",
+        supportedStyles = setOf(GameplayStyle.WordShift),
     );
 
     companion object {
@@ -97,6 +101,11 @@ enum class ChallengeTaskType(
                 PlacePieces,
                 ClearColumns,
                 ClearRounds,
+            ).getOrNull(ordinal)
+
+            GameplayStyle.WordShift -> listOf(
+                ReachScore,
+                SolveWords,
             ).getOrNull(ordinal)
         }
     }

@@ -28,6 +28,10 @@ interface GameLogic {
     fun replaceActivePiece(state: GameState, specialType: SpecialBlockType): GameMoveResult
     fun commitSoftLock(state: GameState): GameMoveResult
     fun reviveFromReward(state: GameState): GameMoveResult
+    fun appendWordToken(state: GameState, token: String): GameMoveResult = GameMoveResult(state)
+    fun deleteWordToken(state: GameState): GameMoveResult = GameMoveResult(state)
+    fun submitWordGuess(state: GameState): GameMoveResult = GameMoveResult(state)
+    fun advanceWordRound(state: GameState): GameMoveResult = GameMoveResult(state)
     fun tick(state: GameState): GameState
 
     companion object {
@@ -56,6 +60,7 @@ private class AdaptiveGameLogic(
         GameplayStyle.MergeShift -> MergeShiftGameLogic(random, scoreCalculator)
         GameplayStyle.BoomBlocks -> BoomBlocksGameLogic(random, scoreCalculator)
         GameplayStyle.BlockSort -> BlockSortGameLogic(random, scoreCalculator)
+        GameplayStyle.WordShift -> com.ugurbuga.blockgames.game.logic.WordShiftGameLogic(random, scoreCalculator)
     }
 
     override fun restoreGame(state: GameState) = gameLogic(state.gameplayStyle).restoreGame(state)
@@ -92,6 +97,15 @@ private class AdaptiveGameLogic(
     override fun commitSoftLock(state: GameState) = gameLogic(state.gameplayStyle).commitSoftLock(state)
 
     override fun reviveFromReward(state: GameState) = gameLogic(state.gameplayStyle).reviveFromReward(state)
+
+    override fun appendWordToken(state: GameState, token: String) =
+        gameLogic(state.gameplayStyle).appendWordToken(state, token)
+
+    override fun deleteWordToken(state: GameState) = gameLogic(state.gameplayStyle).deleteWordToken(state)
+
+    override fun submitWordGuess(state: GameState) = gameLogic(state.gameplayStyle).submitWordGuess(state)
+
+    override fun advanceWordRound(state: GameState) = gameLogic(state.gameplayStyle).advanceWordRound(state)
 
     override fun tick(state: GameState) = gameLogic(state.gameplayStyle).tick(state)
 }
