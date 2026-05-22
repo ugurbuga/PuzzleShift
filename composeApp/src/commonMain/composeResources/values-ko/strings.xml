@@ -387,5 +387,26 @@
     <string name="selection_boomblocks_desc">3개 이상 연결된 블록 그룹을 탭해 폭파합니다.</string>
     <string name="selection_switch_game">게임 전환</string>
     <string name="selection_active_game_badge">플레이 중</string>
+
+    <string name="app_title_chainshift">Chain Shift</string>
+    <string name="selection_chainshift_desc">Shoot from the center, slip blocks into a spiral chain, and pop 3+ color matches.</string>
+    <string name="app_title_banner_chainshift_top">CHAIN</string>
+    <string name="app_title_banner_chainshift_bottom">SHIFT</string>
+    <string name="tutorial_chainshift_intro_title">Meet Chain Shift</string>
+    <string name="tutorial_chainshift_intro_body">Blocks enter from the edge, wrap around the board, and crawl toward the center. Your shooter stays in the middle, so every shot must cut into the moving chain before it reaches you.</string>
+    <string name="tutorial_chainshift_path_title">조준하고 발사</string>
+    <string name="tutorial_chainshift_path_body">중앙에서 조준하고 손을 떼서 발사하세요. 블록이 체인에 닿는 지점에 삽입되며 다음 블록들을 앞으로 밀어냅니다.</string>
+    <string name="tutorial_chainshift_combo_title">후퇴와 콤보 만들기</string>
+    <string name="tutorial_chainshift_combo_body">체인을 따라 같은 색상의 연결된 블록을 3개 이상 맞춰 터뜨리세요. 간격이 좁아지면 체인이 가장자리로 후퇴하며 연쇄 반응이 일어날 수 있습니다.</string>
+    <string name="tutorial_chainshift_ready_title">Hold the center</string>
+    <string name="tutorial_chainshift_ready_body">Stay calm, keep the spiral short, and use your shots to break dangerous runs before they lock the center. The deeper the chain goes, the less room you have to recover.</string>
+    <string name="interactive_onboarding_chainshift_intro_title">가이드된 블록 쏘기</string>
+    <string name="interactive_onboarding_chainshift_intro_body">나선의 하이라이트된 부분을 향해 발사하며 시작하세요. 블록이 중앙에서 발사되어 충돌 지점에서 체인에 삽입됩니다.</string>
+    <string name="interactive_onboarding_chainshift_match_title">Make a 3-block match</string>
+    <string name="interactive_onboarding_chainshift_match_body">Now use the guided shot to line up 3 blocks of the same color. Matching segments burst immediately and open breathing room near the center.</string>
+    <string name="interactive_onboarding_chainshift_chain_title">연쇄 반응 유도</string>
+    <string name="interactive_onboarding_chainshift_chain_body">이 설정은 더 영리한 샷에 보상을 줍니다. 첫 번째 매치를 제거하고 체인이 가장자리로 후퇴하는 것을 지켜본 뒤, 두 번째 매치가 저절로 터지게 하세요.</string>
+    <string name="interactive_onboarding_chainshift_tap_hint">조준하고 손을 떼서 하이라이트된 블록을 쏘세요.</string>
+    <string name="game_message_ad_reward_chainshift">Active block refreshed for Chain Shift!</string>
 </resources>
 

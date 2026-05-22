@@ -102,6 +102,7 @@ import blockgames.composeapp.generated.resources.interactive_onboarding_blocksor
 import blockgames.composeapp.generated.resources.interactive_onboarding_blocksort_match_hint
 import blockgames.composeapp.generated.resources.interactive_onboarding_blocksort_pick_hint
 import blockgames.composeapp.generated.resources.interactive_onboarding_boomblocks_tap_hint
+import blockgames.composeapp.generated.resources.interactive_onboarding_chainshift_tap_hint
 import blockgames.composeapp.generated.resources.launch_drag_hint
 import blockgames.composeapp.generated.resources.launch_drag_hint_blockwise
 import blockgames.composeapp.generated.resources.launch_soft_lock_message
@@ -127,6 +128,14 @@ import blockgames.composeapp.generated.resources.tutorial_boomblocks_intro_body
 import blockgames.composeapp.generated.resources.tutorial_boomblocks_intro_title
 import blockgames.composeapp.generated.resources.tutorial_boomblocks_ready_body
 import blockgames.composeapp.generated.resources.tutorial_boomblocks_ready_title
+import blockgames.composeapp.generated.resources.tutorial_chainshift_combo_body
+import blockgames.composeapp.generated.resources.tutorial_chainshift_combo_title
+import blockgames.composeapp.generated.resources.tutorial_chainshift_intro_body
+import blockgames.composeapp.generated.resources.tutorial_chainshift_intro_title
+import blockgames.composeapp.generated.resources.tutorial_chainshift_path_body
+import blockgames.composeapp.generated.resources.tutorial_chainshift_path_title
+import blockgames.composeapp.generated.resources.tutorial_chainshift_ready_body
+import blockgames.composeapp.generated.resources.tutorial_chainshift_ready_title
 import blockgames.composeapp.generated.resources.tutorial_finish
 import blockgames.composeapp.generated.resources.tutorial_intro_body
 import blockgames.composeapp.generated.resources.tutorial_intro_title
@@ -178,6 +187,9 @@ import com.ugurbuga.blockgames.game.model.gameText
 import com.ugurbuga.blockgames.localization.LocalAppSettings
 import com.ugurbuga.blockgames.platform.GlobalPlatformConfig
 import com.ugurbuga.blockgames.settings.AppSettings
+import com.ugurbuga.blockgames.settings.ChainShiftOnboardingScene
+import com.ugurbuga.blockgames.settings.ChainShiftOnboardingStage
+import com.ugurbuga.blockgames.settings.ChainShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.BlockSortOnboardingScene
 import com.ugurbuga.blockgames.settings.BlockSortOnboardingStage
 import com.ugurbuga.blockgames.settings.BlockSortOnboardingStateFactory
@@ -301,6 +313,10 @@ private enum class TutorialPage {
     BlockWiseSystems,
     BlockWiseSpecials,
     BlockWiseReady,
+    ChainShiftIntro,
+    ChainShiftPath,
+    ChainShiftCombo,
+    ChainShiftReady,
     MergeShiftIntro,
     MergeShiftSystems,
     MergeShiftSpecials,
@@ -601,6 +617,13 @@ fun GameTutorialScreen(
                 TutorialPage.BlockWiseReady,
             )
 
+            GameplayStyle.ChainShift -> listOf(
+                TutorialPage.ChainShiftIntro,
+                TutorialPage.ChainShiftPath,
+                TutorialPage.ChainShiftCombo,
+                TutorialPage.ChainShiftReady,
+            )
+
             GameplayStyle.MergeShift -> listOf(
                 TutorialPage.MergeShiftIntro,
                 TutorialPage.MergeShiftSystems,
@@ -724,6 +747,10 @@ fun GameTutorialScreen(
                                 TutorialPage.BlockWiseSystems -> TutorialBlockWiseSystemsStep()
                                 TutorialPage.BlockWiseSpecials -> TutorialBlockWiseSpecialsStep()
                                 TutorialPage.BlockWiseReady -> TutorialBlockWiseReadyStep()
+                                TutorialPage.ChainShiftIntro -> TutorialChainShiftIntroStep()
+                                TutorialPage.ChainShiftPath -> TutorialChainShiftPathStep()
+                                TutorialPage.ChainShiftCombo -> TutorialChainShiftComboStep()
+                                TutorialPage.ChainShiftReady -> TutorialChainShiftReadyStep()
                                 TutorialPage.MergeShiftIntro -> TutorialMergeShiftIntroStep()
                                 TutorialPage.MergeShiftSystems -> TutorialMergeShiftSystemsStep()
                                 TutorialPage.MergeShiftSpecials -> TutorialMergeShiftSpecialsStep()
@@ -1114,6 +1141,72 @@ private fun TutorialBlockWiseReadyStep() {
     ) {
         TutorialHintCard(text = stringResource(Res.string.tutorial_ready_tutorial_hint))
         TutorialHintCard(text = stringResource(Res.string.tutorial_ready_settings_hint))
+    }
+}
+
+@Composable
+private fun TutorialChainShiftIntroStep() {
+    val scene = remember { ChainShiftOnboardingStateFactory.scene(ChainShiftOnboardingStage.FirstInsert) }
+    TutorialSection(
+        title = stringResource(Res.string.tutorial_chainshift_intro_title),
+        body = stringResource(Res.string.tutorial_chainshift_intro_body),
+    ) {
+        TutorialChainShiftBoardDemo(scene = scene)
+    }
+}
+
+@Composable
+private fun TutorialChainShiftPathStep() {
+    val scene = remember { ChainShiftOnboardingStateFactory.scene(ChainShiftOnboardingStage.FirstInsert) }
+    TutorialSection(
+        title = stringResource(Res.string.tutorial_chainshift_path_title),
+        body = stringResource(Res.string.tutorial_chainshift_path_body),
+    ) {
+        TutorialChainShiftBoardDemo(scene = scene)
+        TutorialHintCard(text = stringResource(Res.string.interactive_onboarding_chainshift_tap_hint))
+    }
+}
+
+@Composable
+private fun TutorialChainShiftComboStep() {
+    val scene = remember { ChainShiftOnboardingStateFactory.scene(ChainShiftOnboardingStage.TriggerChain) }
+    TutorialSection(
+        title = stringResource(Res.string.tutorial_chainshift_combo_title),
+        body = stringResource(Res.string.tutorial_chainshift_combo_body),
+    ) {
+        TutorialChainShiftBoardDemo(scene = scene)
+        TutorialHintCard(text = stringResource(Res.string.interactive_onboarding_chainshift_tap_hint))
+    }
+}
+
+@Composable
+private fun TutorialChainShiftReadyStep() {
+    TutorialSection(
+        title = stringResource(Res.string.tutorial_chainshift_ready_title),
+        body = stringResource(Res.string.tutorial_chainshift_ready_body),
+    ) {
+        TutorialHintCard(text = stringResource(Res.string.tutorial_ready_settings_hint))
+    }
+}
+
+@Composable
+private fun TutorialChainShiftBoardDemo(
+    scene: ChainShiftOnboardingScene,
+    modifier: Modifier = Modifier,
+) {
+    TutorialMiniBoardShell(modifier = modifier) {
+        BoardGrid(
+            modifier = Modifier
+                .fillMaxWidth()
+                .aspectRatio(scene.gameState.config.columns.toFloat() / scene.gameState.config.rows.toFloat()),
+            gameState = scene.gameState,
+            preview = null,
+            impactedPreviewCells = setOf(scene.guidePoint),
+            activeColumn = null,
+            activePiece = null,
+            isDragging = false,
+            stylePulse = 0f,
+        )
     }
 }
 

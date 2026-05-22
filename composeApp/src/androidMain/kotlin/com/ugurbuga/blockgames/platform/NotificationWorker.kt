@@ -25,6 +25,7 @@ import blockgames.composeapp.generated.resources.Res
 import blockgames.composeapp.generated.resources.app_title_blocksort
 import blockgames.composeapp.generated.resources.app_title_blockwise
 import blockgames.composeapp.generated.resources.app_title_boomblocks
+import blockgames.composeapp.generated.resources.app_title_chainshift
 import blockgames.composeapp.generated.resources.app_title_mergeshift
 import blockgames.composeapp.generated.resources.app_title_stackshift
 import blockgames.composeapp.generated.resources.notification_daily_challenge_body
@@ -161,6 +162,7 @@ class NotificationWorker(
 private fun GameplayStyle.appTitleResource(): StringResource = when (this) {
     GameplayStyle.BlockSort -> Res.string.app_title_blocksort
     GameplayStyle.BlockWise -> Res.string.app_title_blockwise
+    GameplayStyle.ChainShift -> Res.string.app_title_chainshift
     GameplayStyle.MergeShift -> Res.string.app_title_mergeshift
     GameplayStyle.BoomBlocks -> Res.string.app_title_boomblocks
     GameplayStyle.StackShift -> Res.string.app_title_stackshift

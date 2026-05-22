@@ -379,4 +379,30 @@
     <string name="blocksort_select_source_hint">点击一个非空的混合列以拿起顶部颜色堆叠。</string>
     <string name="blocksort_selected_hint">现在点击一个空列，或点击一个顶部颜色相同的列来移动堆叠。</string>
     <string name="selection_blocksort_desc">整理混色堆叠，直到每个已填充列都只剩一种颜色。</string>
+
+    <string name="app_title_chainshift">Chain Shift</string>
+    <string name="selection_chainshift_desc">Shoot from the center, slip blocks into a spiral chain, and pop 3+ color matches.</string>
+    <string name="app_title_banner_chainshift_top">CHAIN</string>
+    <string name="app_title_banner_chainshift_bottom">SHIFT</string>
+    <string name="tutorial_chainshift_intro_title">Meet Chain Shift</string>
+    <string name="tutorial_chainshift_intro_body">Blocks enter from the edge, wrap around the board, and crawl toward the center. Your shooter stays in the middle, so every shot must cut into the moving chain before it reaches you.</string>
+    <string name="tutorial_chainshift_path_title">瞄准与射击</string>
+    <string name="tutorial_chainshift_path_body">从中心瞄准并释放以进行射击。您的方块会在击中链条的地方插入，并将后续方块推向前。</string>
+    <string name="tutorial_chainshift_combo_title">创造后退与连击</string>
+    <string name="tutorial_chainshift_combo_body">沿链条匹配3个或更多相同颜色的连接方块以消除它们。当间隙关闭时，链条会向边缘后退，可能会触发连锁反应。</string>
+    <string name="tutorial_chainshift_ready_title">Hold the center</string>
+    <string name="tutorial_chainshift_ready_body">Stay calm, keep the spiral short, and use your shots to break dangerous runs before they lock the center. The deeper the chain goes, the less room you have to recover.</string>
+    <string name="interactive_onboarding_chainshift_intro_title">射击引导方块</string>
+    <string name="interactive_onboarding_chainshift_intro_body">首先向螺旋线的突出部分开火。您的方块从中心发射，并在撞击点插入链条。</string>
+    <string name="interactive_onboarding_chainshift_match_title">Make a 3-block match</string>
+    <string name="interactive_onboarding_chainshift_match_body">Now use the guided shot to line up 3 blocks of the same color. Matching segments burst immediately and open breathing room near the center.</string>
+    <string name="interactive_onboarding_chainshift_chain_title">触发连锁反应</string>
+    <string name="interactive_onboarding_chainshift_chain_body">这种设置奖励更聪明的射击。清除第一组匹配，观察链条向边缘后退，让第二组匹配自行消除。</string>
+    <string name="interactive_onboarding_chainshift_tap_hint">瞄准并释放以射击突出的方块。</string>
+    <string name="game_message_ad_reward_chainshift">Active block refreshed for Chain Shift!</string>
+
+    <string name="block_style_lava">Lava</string>
+    <string name="block_style_light_burst">Light Burst</string>
+    <string name="block_style_matte_soft">Matte Soft</string>
+    <string name="block_style_stone_texture">Stone Texture</string>
 </resources>

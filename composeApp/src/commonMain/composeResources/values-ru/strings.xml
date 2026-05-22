@@ -373,4 +373,27 @@
     <string name="blocksort_select_source_hint">Нажмите на непустой смешанный столбец, чтобы взять его верхнюю цветную стопку.</string>
     <string name="blocksort_selected_hint">Теперь нажмите на пустой столбец или на столбец с таким же верхним цветом, чтобы переместить стопку.</string>
     <string name="selection_blocksort_desc">Сортируйте смешанные цветные стопки, пока каждый заполненный столбец не станет одноцветным.</string>
+
+    <string name="app_title_chainshift">Chain Shift</string>
+    <string name="selection_chainshift_desc">Shoot from the center, slip blocks into a spiral chain, and pop 3+ color matches.</string>
+    <string name="app_title_banner_chainshift_top">CHAIN</string>
+    <string name="app_title_banner_chainshift_bottom">SHIFT</string>
+    <string name="tutorial_chainshift_intro_title">Meet Chain Shift</string>
+    <string name="tutorial_chainshift_intro_body">Blocks enter from the edge, wrap around the board, and crawl toward the center. Your shooter stays in the middle, so every shot must cut into the moving chain before it reaches you.</string>
+    <string name="tutorial_chainshift_path_title">Целься и стреляй</string>
+    <string name="tutorial_chainshift_path_body">Цельтесь из центра и отпускайте, чтобы выстрелить. Ваш блок вставляется там, где он ударяется о цепочку, толкая последующие блоки вперед.</string>
+    <string name="tutorial_chainshift_combo_title">Создавайте отступления и комбо</string>
+    <string name="tutorial_chainshift_combo_body">Совместите 3 или более соединенных блока одного цвета в цепочке, чтобы они лопнули. Когда разрыв закрывается, цепочка отступает к краю, потенциально вызывая цепные реакции.</string>
+    <string name="tutorial_chainshift_ready_title">Hold the center</string>
+    <string name="tutorial_chainshift_ready_body">Stay calm, keep the spiral short, and use your shots to break dangerous runs before they lock the center. The deeper the chain goes, the less room you have to recover.</string>
+    <string name="interactive_onboarding_chainshift_intro_title">Стреляйте в подсвеченный блок</string>
+    <string name="interactive_onboarding_chainshift_intro_body">Начните с выстрела в выделенную часть спирали. Ваш блок запускается из центра и вставляется в цепочку в точке удара.</string>
+    <string name="interactive_onboarding_chainshift_match_title">Make a 3-block match</string>
+    <string name="interactive_onboarding_chainshift_match_body">Now use the guided shot to line up 3 blocks of the same color. Matching segments burst immediately and open breathing room near the center.</string>
+    <string name="interactive_onboarding_chainshift_chain_title">Запустите цепную реакцию</string>
+    <string name="interactive_onboarding_chainshift_chain_body">Эта настройка вознаграждает за более точный выстрел. Очистите первое совпадение, наблюдайте, как цепочка отступает к краю, и позвольте второму совпадению лопнуть самому по себе.</string>
+    <string name="interactive_onboarding_chainshift_tap_hint">Прицельтесь и отпустите, чтобы выстрелить в выделенный блок.</string>
+    <string name="game_message_ad_reward_chainshift">Active block refreshed for Chain Shift!</string>
+
+    <string name="block_style_lava">Lava</string>
 </resources>

@@ -35,6 +35,8 @@ import com.ugurbuga.blockgames.settings.BlockWiseOnboardingStage
 import com.ugurbuga.blockgames.settings.BlockWiseOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.BoomBlocksOnboardingStage
 import com.ugurbuga.blockgames.settings.BoomBlocksOnboardingStateFactory
+import com.ugurbuga.blockgames.settings.ChainShiftOnboardingStage
+import com.ugurbuga.blockgames.settings.ChainShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.HighScoreStorage
 import com.ugurbuga.blockgames.settings.BlockSortOnboardingStage
 import com.ugurbuga.blockgames.settings.BlockSortOnboardingStateFactory
@@ -79,6 +81,7 @@ fun BlockGamesGameApp(
     val onboardingStages: List<OnboardingStage> = remember(gameplayStyle) {
         when (gameplayStyle) {
             GameplayStyle.BlockWise -> BlockWiseOnboardingStateFactory.stages
+            GameplayStyle.ChainShift -> ChainShiftOnboardingStateFactory.stages
             GameplayStyle.MergeShift -> MergeShiftOnboardingStateFactory.stages
             GameplayStyle.BoomBlocks -> BoomBlocksOnboardingStateFactory.stages
             GameplayStyle.BlockSort -> BlockSortOnboardingStateFactory.stages
@@ -171,6 +174,12 @@ fun BlockGamesGameApp(
         } else null
     }
 
+    val chainShiftOnboardingScene = remember(interactiveOnboardingEnabled, onboardingStage) {
+        if (interactiveOnboardingEnabled && onboardingStage is ChainShiftOnboardingStage) {
+            ChainShiftOnboardingStateFactory.scene(onboardingStage as ChainShiftOnboardingStage)
+        } else null
+    }
+
     val boomBlocksOnboardingScene = remember(interactiveOnboardingEnabled, onboardingStage) {
         if (interactiveOnboardingEnabled && onboardingStage is BoomBlocksOnboardingStage) {
             BoomBlocksOnboardingStateFactory.scene(onboardingStage as BoomBlocksOnboardingStage)
@@ -185,6 +194,7 @@ fun BlockGamesGameApp(
 
     val onboardingSceneGameState = stackShiftOnboardingScene?.gameState
         ?: blockWiseOnboardingScene?.gameState
+        ?: chainShiftOnboardingScene?.gameState
         ?: mergeShiftOnboardingScene?.gameState
         ?: boomBlocksOnboardingScene?.gameState
         ?: blockSortOnboardingScene?.gameState
@@ -243,6 +253,7 @@ fun BlockGamesGameApp(
         } else {
             pendingOnboardingCompletionState = when (gameplayStyle) {
                 GameplayStyle.BlockWise -> BlockWiseOnboardingStateFactory.cleanGameState()
+                GameplayStyle.ChainShift -> ChainShiftOnboardingStateFactory.cleanGameState()
                 GameplayStyle.MergeShift -> MergeShiftOnboardingStateFactory.cleanGameState()
                 GameplayStyle.BoomBlocks -> BoomBlocksOnboardingStateFactory.cleanGameState()
                 GameplayStyle.BlockSort -> BlockSortOnboardingStateFactory.cleanGameState()
@@ -480,6 +491,66 @@ fun BlockGamesGameApp(
             adController = adController,
             telemetry = telemetry,
             interactiveOnboardingScene = blockWiseOnboardingScene,
+            interactiveOnboardingCurrentStep = onboardingStages.indexOf(onboardingStage)
+                .takeIf { it >= 0 }?.plus(1) ?: 0,
+            interactiveOnboardingTotalSteps = onboardingStages.size,
+            interactiveOnboardingAwaitingCommit = onboardingAwaitingCommit,
+            interactiveOnboardingCompletionDialogVisible = showOnboardingCompletionDialog,
+            onInteractiveOnboardingStartGame = {
+                pendingOnboardingCompletionState?.let(onInteractiveOnboardingFinished)
+            },
+            onInteractiveOnboardingReturnHome = {
+                pendingOnboardingCompletionState?.let(onInteractiveOnboardingReturnHome)
+            },
+        )
+
+        GameplayStyle.ChainShift -> ChainShiftGameScreen(
+            modifier = modifier,
+            gameState = displayGameState,
+            onRequestPreview = { pieceId, origin -> viewModel.previewPlacement(pieceId, origin) },
+            onShootTarget = { origin ->
+                telemetry.logUserAction("place_piece_chainshift")
+                val pieceId = uiState.gameState.activePiece?.id
+                if (pieceId != null) {
+                    val result = viewModel.placePieceResult(pieceId, origin)
+                    if (interactiveOnboardingEnabled && chainShiftOnboardingScene != null) {
+                        if (GameEvent.PlacementAccepted in result.events) {
+                            onboardingAdvanceRequest = InteractiveOnboardingAdvanceRequest(
+                                completedStage = chainShiftOnboardingScene.stage,
+                                nextStage = nextInteractiveOnboardingStage(
+                                    chainShiftOnboardingScene.stage,
+                                    onboardingStages,
+                                ),
+                            )
+                        }
+                    }
+
+                    result
+                } else {
+                    GameDispatchResult()
+                }
+            },
+            soundPlayer = soundPlayer,
+            haptics = haptics,
+            onRestart = {
+                telemetry.logUserAction(TelemetryActionNames.RestartGame)
+                dispatchFeedback(
+                    viewModel.restart(
+                        config = restartConfigForStyle(uiState.gameState, GameplayStyle.ChainShift),
+                    ),
+                    soundPlayer,
+                    haptics,
+                )
+            },
+            onRewardedRevive = {
+                telemetry.logUserAction(RewardedReviveTelemetryAction)
+                dispatchFeedback(viewModel.reviveFromReward(), soundPlayer, haptics)
+            },
+            onBack = onBack,
+            highestScore = highestScore,
+            showNewHighScoreMessage = newHighScoreReached,
+            adController = adController,
+            interactiveOnboardingScene = chainShiftOnboardingScene,
             interactiveOnboardingCurrentStep = onboardingStages.indexOf(onboardingStage)
                 .takeIf { it >= 0 }?.plus(1) ?: 0,
             interactiveOnboardingTotalSteps = onboardingStages.size,

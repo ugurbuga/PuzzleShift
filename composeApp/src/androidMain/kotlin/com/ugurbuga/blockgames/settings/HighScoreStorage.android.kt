@@ -34,6 +34,11 @@ actual object HighScoreStorage {
                 GameMode.TimeAttack -> "highScoreTimeAttackBlockWise"
             }
 
+            GameplayStyle.ChainShift -> when (mode) {
+                GameMode.Classic -> "highScoreClassicChainShift"
+                GameMode.TimeAttack -> "highScoreTimeAttackChainShift"
+            }
+
             GameplayStyle.MergeShift -> when (mode) {
                 GameMode.Classic -> "highScoreClassicMergeShift"
                 GameMode.TimeAttack -> "highScoreTimeAttackMergeShift"

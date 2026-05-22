@@ -387,5 +387,26 @@
     <string name="selection_boomblocks_desc">Tik op groepen van 3 of meer blokken om ze te laten ontploffen.</string>
     <string name="selection_switch_game">Wissel van spel</string>
     <string name="selection_active_game_badge">ACTIEF</string>
+
+    <string name="app_title_chainshift">Chain Shift</string>
+    <string name="selection_chainshift_desc">Shoot from the center, slip blocks into a spiral chain, and pop 3+ color matches.</string>
+    <string name="app_title_banner_chainshift_top">CHAIN</string>
+    <string name="app_title_banner_chainshift_bottom">SHIFT</string>
+    <string name="tutorial_chainshift_intro_title">Meet Chain Shift</string>
+    <string name="tutorial_chainshift_intro_body">Blocks enter from the edge, wrap around the board, and crawl toward the center. Your shooter stays in the middle, so every shot must cut into the moving chain before it reaches you.</string>
+    <string name="tutorial_chainshift_path_title">Mikken en schieten</string>
+    <string name="tutorial_chainshift_path_body">Mik vanuit het midden en laat los om te schieten. Je blok wordt geplaatst waar het de ketting raakt en duwt de volgende blokken vooruit.</string>
+    <string name="tutorial_chainshift_combo_title">Creëer terugtrekkingen en combo\'s</string>
+    <string name="tutorial_chainshift_combo_body">Combineer 3 of meer verbonden blokken van dezelfde kleur langs de ketting om ze te laten knappen. Wanneer de opening sluit, trekt de ketting zich terug naar de rand, wat mogelijk kettingreacties veroorzaakt.</string>
+    <string name="tutorial_chainshift_ready_title">Hold the center</string>
+    <string name="tutorial_chainshift_ready_body">Stay calm, keep the spiral short, and use your shots to break dangerous runs before they lock the center. The deeper the chain goes, the less room you have to recover.</string>
+    <string name="interactive_onboarding_chainshift_intro_title">Schiet op het geleide blok</string>
+    <string name="interactive_onboarding_chainshift_intro_body">Begin door op het gemarkeerde deel van de spiraal te vuren. Je blok wordt vanuit het midden gelanceerd en voegt zich bij de ketting op het punt van impact.</string>
+    <string name="interactive_onboarding_chainshift_match_title">Make a 3-block match</string>
+    <string name="interactive_onboarding_chainshift_match_body">Now use the guided shot to line up 3 blocks of the same color. Matching segments burst immediately and open breathing room near the center.</string>
+    <string name="interactive_onboarding_chainshift_chain_title">Een kettingreactie veroorzaken</string>
+    <string name="interactive_onboarding_chainshift_chain_body">Deze opstelling beloont een slimmer schot. Wis de eerste match, zie de ketting zich terugtrekken naar de rand en laat de tweede match vanzelf knappen.</string>
+    <string name="interactive_onboarding_chainshift_tap_hint">Richt en laat los om op het gemarkeerde blok te schieten.</string>
+    <string name="game_message_ad_reward_chainshift">Active block refreshed for Chain Shift!</string>
 </resources>
 

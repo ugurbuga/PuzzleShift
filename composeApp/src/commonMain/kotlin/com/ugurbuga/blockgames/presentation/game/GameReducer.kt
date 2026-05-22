@@ -26,6 +26,7 @@ internal class GameReducer(
             )
             val effects = when (state.gameplayStyle) {
                 GameplayStyle.BlockWise,
+                GameplayStyle.ChainShift,
                 GameplayStyle.BoomBlocks,
                 GameplayStyle.BlockSort -> emptyList()
                 GameplayStyle.StackShift,

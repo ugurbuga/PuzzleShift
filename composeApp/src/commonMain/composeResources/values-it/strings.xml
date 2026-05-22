@@ -383,5 +383,31 @@
     <string name="selection_boomblocks_desc">Tocca gruppi di 3 o più blocchi per farli esplodere.</string>
     <string name="selection_switch_game">Cambia gioco</string>
     <string name="selection_active_game_badge">ATTIVO</string>
+
+    <string name="app_title_chainshift">Chain Shift</string>
+    <string name="selection_chainshift_desc">Shoot from the center, slip blocks into a spiral chain, and pop 3+ color matches.</string>
+    <string name="app_title_banner_chainshift_top">CHAIN</string>
+    <string name="app_title_banner_chainshift_bottom">SHIFT</string>
+    <string name="tutorial_chainshift_intro_title">Meet Chain Shift</string>
+    <string name="tutorial_chainshift_intro_body">Blocks enter from the edge, wrap around the board, and crawl toward the center. Your shooter stays in the middle, so every shot must cut into the moving chain before it reaches you.</string>
+    <string name="tutorial_chainshift_path_title">Mira e spara</string>
+    <string name="tutorial_chainshift_path_body">Mira dal centro e rilascia per sparare. Il tuo blocco si inserisce dove colpisce la catena, spingendo in avanti i blocchi successivi.</string>
+    <string name="tutorial_chainshift_combo_title">Crea ritirate e combo</string>
+    <string name="tutorial_chainshift_combo_body">Abbina 3 o più blocchi collegati dello stesso colore lungo la catena per farli scoppiare. Quando lo spazio si chiude, la catena si ritira verso il bordo, scatenando potenzialmente reazioni a catena.</string>
+    <string name="tutorial_chainshift_ready_title">Hold the center</string>
+    <string name="tutorial_chainshift_ready_body">Stay calm, keep the spiral short, and use your shots to break dangerous runs before they lock the center. The deeper the chain goes, the less room you have to recover.</string>
+    <string name="interactive_onboarding_chainshift_intro_title">Spara al blocco guidato</string>
+    <string name="interactive_onboarding_chainshift_intro_body">Inizia sparando alla parte evidenziata della spirale. Il tuo blocco parte dal centro e si inserisce nella catena nel punto di impatto.</string>
+    <string name="interactive_onboarding_chainshift_match_title">Make a 3-block match</string>
+    <string name="interactive_onboarding_chainshift_match_body">Now use the guided shot to line up 3 blocks of the same color. Matching segments burst immediately and open breathing room near the center.</string>
+    <string name="interactive_onboarding_chainshift_chain_title">Scatena una reazione a catena</string>
+    <string name="interactive_onboarding_chainshift_chain_body">Questa configurazione premia un tiro più intelligente. Cancella il primo abbinamento, guarda la catena ritirarsi verso il bordo e lascia che il secondo abbinamento scoppi da solo.</string>
+    <string name="interactive_onboarding_chainshift_tap_hint">Mira e rilascia per sparare al blocco evidenziato.</string>
+    <string name="game_message_ad_reward_chainshift">Active block refreshed for Chain Shift!</string>
+
+    <string name="block_style_lava">Lava</string>
+    <string name="block_style_light_burst">Light Burst</string>
+    <string name="block_style_matte_soft">Matte Soft</string>
+    <string name="block_style_stone_texture">Stone Texture</string>
 </resources>
 

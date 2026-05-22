@@ -383,5 +383,31 @@
     <string name="selection_boomblocks_desc">3個以上つながったブロックグループをタップして爆破します。</string>
     <string name="selection_switch_game">ゲーム切替</string>
     <string name="selection_active_game_badge">プレイ中</string>
+
+    <string name="app_title_chainshift">Chain Shift</string>
+    <string name="selection_chainshift_desc">Shoot from the center, slip blocks into a spiral chain, and pop 3+ color matches.</string>
+    <string name="app_title_banner_chainshift_top">CHAIN</string>
+    <string name="app_title_banner_chainshift_bottom">SHIFT</string>
+    <string name="tutorial_chainshift_intro_title">Meet Chain Shift</string>
+    <string name="tutorial_chainshift_intro_body">Blocks enter from the edge, wrap around the board, and crawl toward the center. Your shooter stays in the middle, so every shot must cut into the moving chain before it reaches you.</string>
+    <string name="tutorial_chainshift_path_title">狙って撃つ</string>
+    <string name="tutorial_chainshift_path_body">中心から狙いを定め、離して発射します。ブロックは連鎖に当たった場所に挿入され、後続のブロックを前方に押し出します。</string>
+    <string name="tutorial_chainshift_combo_title">後退とコンボを作る</string>
+    <string name="tutorial_chainshift_combo_body">連鎖に沿って同じ色のつながったブロックを3つ以上揃えて消します。隙間が閉じると、連鎖は端に向かって後退し、連鎖反応が起こる可能性があります。</string>
+    <string name="tutorial_chainshift_ready_title">Hold the center</string>
+    <string name="tutorial_chainshift_ready_body">Stay calm, keep the spiral short, and use your shots to break dangerous runs before they lock the center. The deeper the chain goes, the less room you have to recover.</string>
+    <string name="interactive_onboarding_chainshift_intro_title">ガイドされたブロックを撃つ</string>
+    <string name="interactive_onboarding_chainshift_intro_body">螺旋のハイライトされた部分に向かって発射することから始めます。ブロックは中心から発射され、衝突した場所で連鎖に挿入されます。</string>
+    <string name="interactive_onboarding_chainshift_match_title">Make a 3-block match</string>
+    <string name="interactive_onboarding_chainshift_match_body">Now use the guided shot to line up 3 blocks of the same color. Matching segments burst immediately and open breathing room near the center.</string>
+    <string name="interactive_onboarding_chainshift_chain_title">連鎖反応を起こす</string>
+    <string name="interactive_onboarding_chainshift_chain_body">このセットアップでは、より賢いショットが報われます。最初のマッチを消し、連鎖が端に向かって後退するのを見守り、2番目のマッチが自然に消えるようにします。</string>
+    <string name="interactive_onboarding_chainshift_tap_hint">狙いを定めて離し、ハイライトされたブロックを撃ちます。</string>
+    <string name="game_message_ad_reward_chainshift">Active block refreshed for Chain Shift!</string>
+
+    <string name="block_style_lava">Lava</string>
+    <string name="block_style_light_burst">Light Burst</string>
+    <string name="block_style_matte_soft">Matte Soft</string>
+    <string name="block_style_stone_texture">Stone Texture</string>
 </resources>
 

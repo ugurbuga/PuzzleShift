@@ -379,4 +379,30 @@
     <string name="blocksort_select_source_hint">Ketuk kolom campuran yang tidak kosong untuk mengambil tumpukan warna teratasnya.</string>
     <string name="blocksort_selected_hint">Sekarang ketuk kolom kosong atau kolom dengan warna atas yang sama untuk memindahkan tumpukan ke sana.</string>
     <string name="selection_blocksort_desc">Urutkan tumpukan warna campuran sampai setiap kolom terisi menjadi satu warna.</string>
+
+    <string name="app_title_chainshift">Chain Shift</string>
+    <string name="selection_chainshift_desc">Shoot from the center, slip blocks into a spiral chain, and pop 3+ color matches.</string>
+    <string name="app_title_banner_chainshift_top">CHAIN</string>
+    <string name="app_title_banner_chainshift_bottom">SHIFT</string>
+    <string name="tutorial_chainshift_intro_title">Meet Chain Shift</string>
+    <string name="tutorial_chainshift_intro_body">Blocks enter from the edge, wrap around the board, and crawl toward the center. Your shooter stays in the middle, so every shot must cut into the moving chain before it reaches you.</string>
+    <string name="tutorial_chainshift_path_title">Bidik dan Tembak</string>
+    <string name="tutorial_chainshift_path_body">Bidik dari tengah dan lepaskan untuk menembak. Balok Anda masuk di tempat ia mengenai rantai, mendorong balok-balok berikutnya ke depan.</string>
+    <string name="tutorial_chainshift_combo_title">Buat mundur dan kombo</string>
+    <string name="tutorial_chainshift_combo_body">Cocokkan 3 atau lebih balok terhubung dengan warna yang sama di sepanjang rantai untuk meledakkannya. Saat celah tertutup, rantai mundur ke arah tepi, yang berpotensi memicu reaksi berantai.</string>
+    <string name="tutorial_chainshift_ready_title">Hold the center</string>
+    <string name="tutorial_chainshift_ready_body">Stay calm, keep the spiral short, and use your shots to break dangerous runs before they lock the center. The deeper the chain goes, the less room you have to recover.</string>
+    <string name="interactive_onboarding_chainshift_intro_title">Tembak balok panduan</string>
+    <string name="interactive_onboarding_chainshift_intro_body">Mulailah dengan menembak ke bagian spiral yang disorot. Balok Anda meluncur dari tengah dan masuk ke dalam rantai pada titik tumbukan.</string>
+    <string name="interactive_onboarding_chainshift_match_title">Make a 3-block match</string>
+    <string name="interactive_onboarding_chainshift_match_body">Now use the guided shot to line up 3 blocks of the same color. Matching segments burst immediately and open breathing room near the center.</string>
+    <string name="interactive_onboarding_chainshift_chain_title">Picu reaksi berantai</string>
+    <string name="interactive_onboarding_chainshift_chain_body">Pengaturan ini menghargai tembakan yang lebih cerdas. Bersihkan kecocokan pertama, saksikan rantai mundur ke arah tepi, dan biarkan kecocokan kedua meledak dengan sendirinya.</string>
+    <string name="interactive_onboarding_chainshift_tap_hint">Bidik dan lepaskan untuk menembak balok yang disorot.</string>
+    <string name="game_message_ad_reward_chainshift">Active block refreshed for Chain Shift!</string>
+
+    <string name="block_style_lava">Lava</string>
+    <string name="block_style_light_burst">Light Burst</string>
+    <string name="block_style_matte_soft">Matte Soft</string>
+    <string name="block_style_stone_texture">Stone Texture</string>
 </resources>

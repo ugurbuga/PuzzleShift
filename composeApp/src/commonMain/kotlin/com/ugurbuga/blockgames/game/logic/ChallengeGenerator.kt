@@ -29,11 +29,13 @@ object ChallengeGenerator {
             val target = when (type) {
                 ChallengeTaskType.ClearBlocks -> when (gameplayStyle) {
                     GameplayStyle.BoomBlocks -> (random.nextInt(30, 80) * 10)
+                    GameplayStyle.ChainShift -> (random.nextInt(8, 18) * 10)
                     else -> (random.nextInt(10, 25) * 10)
                 }
                 ChallengeTaskType.ReachScore -> when (gameplayStyle) {
                     GameplayStyle.StackShift -> (random.nextInt(5, 20) * 1000)
                     GameplayStyle.BlockWise -> random.nextInt(2, 8) * 1000
+                    GameplayStyle.ChainShift -> random.nextInt(4, 12) * 1000
                     GameplayStyle.MergeShift -> (random.nextInt(5, 15) * 1000)
                     GameplayStyle.BoomBlocks -> random.nextInt(15, 40) * 1000
                     GameplayStyle.BlockSort -> random.nextInt(3, 10) * 1000
@@ -48,6 +50,7 @@ object ChallengeGenerator {
                 }
                 ChallengeTaskType.PlacePieces -> when (gameplayStyle) {
                     GameplayStyle.BoomBlocks -> random.nextInt(40, 100)
+                    GameplayStyle.ChainShift -> random.nextInt(10, 24)
                     GameplayStyle.BlockSort -> random.nextInt(10, 24)
                     else -> random.nextInt(12, 28)
                 }

@@ -93,7 +93,7 @@
     <string name="launch_label">Fırlatma</string>
     <string name="launch_bar">Fırlatma çubuğu</string>
     <string name="launch_boost_active">Hız aktif • %1$s tur</string>
-    <string name="launch_special_chance">Özel blok şansı +%%1$s</string>
+    <string name="launch_special_chance">Özel blok şansı +%1$s%</string>
     <string name="launch_soft_lock_message">Hedefi önizle, sonra bırakıp yerleştir</string>
     <string name="launch_chain_message">Satır + Sütun • +%2$s</string>
     <string name="launch_paused">Duraklatıldı</string>
@@ -372,4 +372,30 @@
     <string name="blocksort_select_source_hint">Üstteki renk grubunu almak için dolu bir karışık sütuna dokun.</string>
     <string name="blocksort_selected_hint">Şimdi boş bir sütuna ya da üst rengi aynı olan bir sütuna dokunarak grubu taşı.</string>
     <string name="selection_blocksort_desc">Karışık renk yığınlarını taşı ve her dolu sütunu tek renge dönüştür.</string>
+
+    <string name="app_title_chainshift">Chain Shift</string>
+    <string name="selection_chainshift_desc">Ortadan ateş et, blokları spiral zincire sok ve aynı renkten 3+ eşleşmeyi patlat.</string>
+    <string name="app_title_banner_chainshift_top">CHAIN</string>
+    <string name="app_title_banner_chainshift_bottom">SHIFT</string>
+    <string name="tutorial_chainshift_intro_title">Chain Shift ile tanış</string>
+    <string name="tutorial_chainshift_intro_body">Bloklar bir kenardan girer, tahtanın etrafında dolanır ve merkeze doğru ilerler. Atıcı ortada sabit durur; bu yüzden her atışın, zincir sana ulaşmadan doğru araya girmesi gerekir.</string>
+    <string name="tutorial_chainshift_path_title">Nişan Al ve Ateş Et</string>
+    <string name="tutorial_chainshift_path_body">Merkezden nişan al ve ateş etmek için parmağını bırak. Bloğun zincire çarptığı noktada araya girer ve zincirin devamını ileri iter.</string>
+    <string name="tutorial_chainshift_combo_title">Geri çekilmeler ve kombolar</string>
+    <string name="tutorial_chainshift_combo_body">Zincir üzerinde aynı renkten bitişik 3 veya daha fazla bloğu eşleştirerek patlat. Boşluk kapandığında zincir dışa doğru geri çekilir ve bu sayede zincirleme reaksiyonlar başlayabilir.</string>
+    <string name="tutorial_chainshift_ready_title">Merkezi koru</string>
+    <string name="tutorial_chainshift_ready_body">Sakin kal, spirali kısa tut ve tehlikeli dizilimleri merkeze kilitlenmeden önce parçala. Zincir ne kadar içeri ilerlerse toparlama alanın o kadar azalır.</string>
+    <string name="interactive_onboarding_chainshift_intro_title">Vurgulanan bloğa ateş et</string>
+    <string name="interactive_onboarding_chainshift_intro_body">Önce spiral üzerindeki vurgulanan bölüme ateş et. Blok merkezden fırlar ve zincire çarptığı noktada tam araya yerleşir.</string>
+    <string name="interactive_onboarding_chainshift_match_title">3’lü eşleşme oluştur</string>
+    <string name="interactive_onboarding_chainshift_match_body">Şimdi yönlendirilen atışla aynı renkten 3 bloğu hizala. Eşleşen segmentler hemen patlar ve merkezin çevresinde alan açar.</string>
+    <string name="interactive_onboarding_chainshift_chain_title">Zincir reaksiyon başlat</string>
+    <string name="interactive_onboarding_chainshift_chain_body">Bu kurulum daha akıllı bir atış ister. İlk eşleşmeyi temizle, zincirin dışa doğru geri çekilmesini izle ve ikinci eşleşmenin kendiliğinden patlamasını bekle.</string>
+    <string name="interactive_onboarding_chainshift_tap_hint">Nişan al ve vurgulanan bloğu vurmak için parmağını bırak.</string>
+    <string name="game_message_ad_reward_chainshift">Chain Shift için aktif blok yenilendi!</string>
+
+    <string name="block_style_lava">Lava</string>
+    <string name="block_style_light_burst">Light Burst</string>
+    <string name="block_style_matte_soft">Matte Soft</string>
+    <string name="block_style_stone_texture">Stone Texture</string>
 </resources>

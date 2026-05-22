@@ -379,4 +379,30 @@
     <string name="blocksort_select_source_hint">किसी भरे हुए मिश्रित कॉलम पर टैप करके उसकी ऊपरी रंग-स्टैक उठाएँ।</string>
     <string name="blocksort_selected_hint">अब किसी खाली कॉलम या उसी ऊपर वाले रंग वाले कॉलम पर टैप करके स्टैक को वहाँ ले जाएँ।</string>
     <string name="selection_blocksort_desc">मिश्रित रंग-स्टैक्स को तब तक सजाएँ जब तक हर भरा कॉलम एक ही रंग का न हो जाए।</string>
+
+    <string name="app_title_chainshift">Chain Shift</string>
+    <string name="selection_chainshift_desc">Shoot from the center, slip blocks into a spiral chain, and pop 3+ color matches.</string>
+    <string name="app_title_banner_chainshift_top">CHAIN</string>
+    <string name="app_title_banner_chainshift_bottom">SHIFT</string>
+    <string name="tutorial_chainshift_intro_title">Meet Chain Shift</string>
+    <string name="tutorial_chainshift_intro_body">Blocks enter from the edge, wrap around the board, and crawl toward the center. Your shooter stays in the middle, so every shot must cut into the moving chain before it reaches you.</string>
+    <string name="tutorial_chainshift_path_title">निशाना लगाएं और शूट करें</string>
+    <string name="tutorial_chainshift_path_body">केंद्र से निशाना लगाएं और शूट करने के लिए छोड़ें। आपका ब्लॉक वहां जुड़ जाता है जहां वह चेन से टकराता है, जिससे बाद के ब्लॉक आगे बढ़ जाते हैं।</string>
+    <string name="tutorial_chainshift_combo_title">रिट्रीट और कॉम्बो बनाएं</string>
+    <string name="tutorial_chainshift_combo_body">चेन के साथ एक ही रंग के 3 या अधिक जुड़े हुए ब्लॉकों का मिलान करें ताकि वे फूट जाएं। जब गैप बंद हो जाता है, तो चेन किनारे की ओर पीछे हट जाती है, जिससे संभावित रूप से चेन रिएक्शन शुरू हो जाते हैं।</string>
+    <string name="tutorial_chainshift_ready_title">Hold the center</string>
+    <string name="tutorial_chainshift_ready_body">Stay calm, keep the spiral short, and use your shots to break dangerous runs before they lock the center. The deeper the chain goes, the less room you have to recover.</string>
+    <string name="interactive_onboarding_chainshift_intro_title">गाइडेड ब्लॉक पर शूट करें</string>
+    <string name="interactive_onboarding_chainshift_intro_body">सर्पिल के हाइलाइट किए गए हिस्से पर फायरिंग करके शुरू करें। आपका ब्लॉक केंद्र से लॉन्च होता है और प्रभाव के बिंदु पर चेन में जुड़ जाता।</string>
+    <string name="interactive_onboarding_chainshift_match_title">Make a 3-block match</string>
+    <string name="interactive_onboarding_chainshift_match_body">Now use the guided shot to line up 3 blocks of the same color. Matching segments burst immediately and open breathing room near the center.</string>
+    <string name="interactive_onboarding_chainshift_chain_title">चेन रिएक्शन शुरू करें</string>
+    <string name="interactive_onboarding_chainshift_chain_body">यह सेटअप एक स्मार्ट शॉट को पुरस्कृत करता है। पहले मिलान को साफ करें, चेन को किनारे की ओर पीछे हटते हुए देखें, और दूसरे मिलान को अपने आप फूटने दें।</string>
+    <string name="interactive_onboarding_chainshift_tap_hint">निशाना लगाएं और हाइलाइट किए गए ब्लॉक को शूट करने के लिए छोड़ें।</string>
+    <string name="game_message_ad_reward_chainshift">Active block refreshed for Chain Shift!</string>
+
+    <string name="block_style_lava">Lava</string>
+    <string name="block_style_light_burst">Light Burst</string>
+    <string name="block_style_matte_soft">Matte Soft</string>
+    <string name="block_style_stone_texture">Stone Texture</string>
 </resources>

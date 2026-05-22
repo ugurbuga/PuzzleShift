@@ -31,6 +31,7 @@ class AppSelectionScreenCommonTest {
     fun selectionTone_mapsEachGameplayStyleToItsAccentTone() {
         assertEquals(CellTone.Cyan, GameplayStyle.StackShift.selectionTone())
         assertEquals(CellTone.Amber, GameplayStyle.BlockWise.selectionTone())
+        assertEquals(CellTone.Blue, GameplayStyle.ChainShift.selectionTone())
         assertEquals(CellTone.Violet, GameplayStyle.MergeShift.selectionTone())
         assertEquals(CellTone.Coral, GameplayStyle.BoomBlocks.selectionTone())
     }

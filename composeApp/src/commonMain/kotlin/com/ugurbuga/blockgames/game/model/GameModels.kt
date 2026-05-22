@@ -253,6 +253,7 @@ data class GameConfig(
         fun default(gameplayStyle: GameplayStyle = GlobalPlatformConfig.gameplayStyle): GameConfig = when (gameplayStyle) {
             GameplayStyle.BlockWise -> GameConfig(columns = 8, rows = 10)
             GameplayStyle.StackShift -> GameConfig(columns = 10, rows = 12)
+            GameplayStyle.ChainShift -> GameConfig(columns = 9, rows = 15, difficultyIntervalSeconds = 16, linesPerLevel = 9)
             GameplayStyle.MergeShift -> GameConfig(columns = 3, rows = 5)
             GameplayStyle.BoomBlocks -> GameConfig(columns = 6, rows = 8)
             GameplayStyle.BlockSort -> GameConfig(columns = 6, rows = 4, difficultyIntervalSeconds = 9_999, linesPerLevel = 9_999)
@@ -268,6 +269,7 @@ enum class GameMode {
 enum class GameplayStyle {
     StackShift,
     BlockWise,
+    ChainShift,
     MergeShift,
     BoomBlocks,
     BlockSort,

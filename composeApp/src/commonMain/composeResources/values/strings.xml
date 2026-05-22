@@ -377,5 +377,37 @@
     <string name="selection_boomblocks_desc">Tap groups of 3 or more blocks to explode them.</string>
     <string name="selection_switch_game">Switch Game</string>
     <string name="selection_active_game_badge">ACTIVE</string>
+
+    <string name="app_title_chainshift">Chain Shift</string>
+    <string name="selection_chainshift_desc">Shoot from the center, slip blocks into a spiral chain, and pop 3+ color matches.</string>
+    <string name="app_title_banner_chainshift_top">CHAIN</string>
+    <string name="app_title_banner_chainshift_bottom">SHIFT</string>
+    <string name="tutorial_chainshift_intro_title">Meet Chain Shift</string>
+    <string name="tutorial_chainshift_intro_body">Blocks enter from the edge, wrap around the board, and crawl toward the center. Your shooter stays in the middle, so every shot must cut into the moving chain before it reaches you.</string>
+    <string name="tutorial_chainshift_path_title">Aim and Shoot</string>
+    <string name="tutorial_chainshift_path_body">Aim from the center and release to shoot. Your block inserts where it hits the chain, pushing subsequent blocks forward.</string>
+    <string name="tutorial_chainshift_combo_title">Create retreats and combos</string>
+    <string name="tutorial_chainshift_combo_body">Match 3 or more connected blocks of the same color along the chain to pop them. When the gap closes, the chain retreats toward the edge, potentially triggering chain reactions.</string>
+    <string name="tutorial_chainshift_ready_title">Hold the center</string>
+    <string name="tutorial_chainshift_ready_body">Stay calm, keep the spiral short, and use your shots to break dangerous runs before they lock the center. The deeper the chain goes, the less room you have to recover.</string>
+    <string name="interactive_onboarding_chainshift_intro_title">Shoot the guided block</string>
+    <string name="interactive_onboarding_chainshift_intro_body">Start by firing at the highlighted part of the spiral. Your block launches from the center and inserts into the chain at the point of impact.</string>
+    <string name="interactive_onboarding_chainshift_match_title">Make a 3-block match</string>
+    <string name="interactive_onboarding_chainshift_match_body">Now use the guided shot to line up 3 blocks of the same color. Matching segments burst immediately and open breathing room near the center.</string>
+    <string name="interactive_onboarding_chainshift_chain_title">Trigger a chain reaction</string>
+    <string name="interactive_onboarding_chainshift_chain_body">This setup rewards a smarter shot. Clear the first match, watch the chain retreat toward the edge, and let the second match pop on its own.</string>
+    <string name="interactive_onboarding_chainshift_tap_hint">Aim and release to shoot the highlighted block.</string>
+    <string name="game_message_ad_reward_chainshift">Active block refreshed for Chain Shift!</string>
+
+    <string name="settings_sound">Sound</string>
+    <string name="settings_sound_on">On</string>
+    <string name="settings_sound_off">Off</string>
+    <string name="settings_board_block_style">Board block style</string>
+    <string name="board_block_style_always_flat">Always flat</string>
+    <string name="board_block_style_match_selected">Match selected style</string>
+    <string name="block_style_lava">Lava</string>
+    <string name="block_style_light_burst">Light Burst</string>
+    <string name="block_style_matte_soft">Matte Soft</string>
+    <string name="block_style_stone_texture">Stone Texture</string>
 </resources>
 

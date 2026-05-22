@@ -69,6 +69,8 @@ import blockgames.composeapp.generated.resources.app_title_banner_blockwise_bott
 import blockgames.composeapp.generated.resources.app_title_banner_blockwise_top
 import blockgames.composeapp.generated.resources.app_title_banner_boomblocks_bottom
 import blockgames.composeapp.generated.resources.app_title_banner_boomblocks_top
+import blockgames.composeapp.generated.resources.app_title_banner_chainshift_bottom
+import blockgames.composeapp.generated.resources.app_title_banner_chainshift_top
 import blockgames.composeapp.generated.resources.app_title_banner_stackshift_bottom
 import blockgames.composeapp.generated.resources.app_title_banner_stackshift_top
 import blockgames.composeapp.generated.resources.high_score
@@ -304,9 +306,65 @@ private fun HomeTitleBanner(
     when (GlobalPlatformConfig.gameplayStyle) {
         GameplayStyle.StackShift -> StackShiftHomeTitleBanner(settings, pulse, modifier)
         GameplayStyle.BlockWise -> BlockWiseHomeTitleBanner(settings, pulse, modifier)
+        GameplayStyle.ChainShift -> ChainShiftHomeTitleBanner(settings, pulse, modifier)
         GameplayStyle.MergeShift -> MergeShiftHomeTitleBanner(settings, pulse, modifier)
         GameplayStyle.BoomBlocks -> BoomBlocksHomeTitleBanner(settings, pulse, modifier)
         GameplayStyle.BlockSort -> BlockSortHomeTitleBanner(settings, pulse, modifier)
+    }
+}
+
+@Composable
+private fun ChainShiftHomeTitleBanner(
+    settings: AppSettings,
+    pulse: Float,
+    modifier: Modifier = Modifier,
+) {
+    val uiColors = BlockGamesThemeTokens.uiColors
+    val topWord = stringResource(Res.string.app_title_banner_chainshift_top)
+    val bottomWord = stringResource(Res.string.app_title_banner_chainshift_bottom)
+    val accent = uiColors.selectionMergeShift
+    Card(
+        modifier = modifier
+            .fillMaxWidth()
+            .blockGamesSurfaceShadow(
+                shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
+                elevation = 10.dp,
+            ),
+        shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
+        colors = CardDefaults.cardColors(containerColor = uiColors.gameSurface.copy(alpha = 0.92f)),
+        border = BorderStroke(1.dp, accent.copy(alpha = 0.40f)),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(
+                    Brush.verticalGradient(
+                        colors = listOf(
+                            accent.copy(alpha = 0.18f + (pulse * 0.08f)),
+                            Color.Transparent,
+                        ),
+                    ),
+                )
+                .padding(horizontal = 24.dp, vertical = 22.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(4.dp),
+        ) {
+            Text(
+                text = topWord,
+                style = MaterialTheme.typography.headlineMedium,
+                fontWeight = FontWeight.Black,
+                color = MaterialTheme.colorScheme.onSurface,
+                textAlign = TextAlign.Center,
+            )
+            Text(
+                text = bottomWord,
+                style = MaterialTheme.typography.headlineMedium,
+                fontWeight = FontWeight.Black,
+                color = accent,
+                textAlign = TextAlign.Center,
+            )
+        }
     }
 }
 

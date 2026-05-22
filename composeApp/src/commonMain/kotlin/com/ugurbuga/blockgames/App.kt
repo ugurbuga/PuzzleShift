@@ -31,6 +31,7 @@ import blockgames.composeapp.generated.resources.cancel
 import blockgames.composeapp.generated.resources.game_message_ad_reward_blocksort
 import blockgames.composeapp.generated.resources.game_message_ad_reward_blockwise
 import blockgames.composeapp.generated.resources.game_message_ad_reward_boomblocks
+import blockgames.composeapp.generated.resources.game_message_ad_reward_chainshift
 import blockgames.composeapp.generated.resources.game_message_ad_reward_mergeshift
 import blockgames.composeapp.generated.resources.leave_session_confirm
 import blockgames.composeapp.generated.resources.leave_session_confirm_body
@@ -60,6 +61,7 @@ import com.ugurbuga.blockgames.settings.AppSettingsStorage
 import com.ugurbuga.blockgames.settings.BlockSortOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.BlockWiseOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.BoomBlocksOnboardingStateFactory
+import com.ugurbuga.blockgames.settings.ChainShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.GameSessionSlot
 import com.ugurbuga.blockgames.settings.GameSessionStorage
 import com.ugurbuga.blockgames.settings.HighScoreStorage
@@ -130,30 +132,31 @@ internal fun isUsableSavedSession(
     return when (state.gameplayStyle) {
         GameplayStyle.BlockWise -> state.trayPieces.isNotEmpty()
         GameplayStyle.StackShift -> state.activePiece != null
+        GameplayStyle.ChainShift -> state.activePiece != null
         GameplayStyle.MergeShift -> state.activePiece != null
         GameplayStyle.BoomBlocks -> true
         GameplayStyle.BlockSort -> state.board.occupiedCount > 0
     }
 }
 
-private fun resolveStartupRoute(
+internal fun resolveStartupRoute(
     loadedSettings: AppSettings,
-    startupGameplayStyleOverride: GameplayStyle?,
+    startupGameplayStyleOverride: GameplayStyle? = null,
 ): AppRoute = when {
     startupGameplayStyleOverride != null -> AppRoute.Home
     loadedSettings.selectedGameplayStyle == null -> AppRoute.Selection
     else -> AppRoute.Home
 }
 
-private fun resolveStartupGameplayStyle(
+internal fun resolveStartupGameplayStyle(
     loadedSettings: AppSettings,
-    startupGameplayStyleOverride: GameplayStyle?,
+    startupGameplayStyleOverride: GameplayStyle? = null,
 ): GameplayStyle =
     startupGameplayStyleOverride ?: loadedSettings.selectedGameplayStyle ?: GameplayStyle.StackShift
 
-private fun resolvePersistedStartupGameplayStyle(
+internal fun resolvePersistedStartupGameplayStyle(
     loadedSettings: AppSettings,
-    startupGameplayStyleOverride: GameplayStyle?,
+    startupGameplayStyleOverride: GameplayStyle? = null,
 ): GameplayStyle? =
     startupGameplayStyleOverride?.takeIf { it != loadedSettings.selectedGameplayStyle }
 
@@ -211,6 +214,11 @@ internal fun rewardedDockFeedbackSpec(
 
         GameplayStyle.BlockWise -> RewardFeedbackSpec(
             messageRes = Res.string.game_message_ad_reward_blockwise,
+            icon = Icons.Filled.Refresh,
+        )
+
+        GameplayStyle.ChainShift -> RewardFeedbackSpec(
+            messageRes = Res.string.game_message_ad_reward_chainshift,
             icon = Icons.Filled.Refresh,
         )
 
@@ -601,6 +609,7 @@ fun BlockGamesAppHost(
         pendingSessionState = null
         val initialState = when (GlobalPlatformConfig.gameplayStyle) {
             GameplayStyle.BlockWise -> BlockWiseOnboardingStateFactory.initialState()
+            GameplayStyle.ChainShift -> ChainShiftOnboardingStateFactory.initialState()
             GameplayStyle.MergeShift -> MergeShiftOnboardingStateFactory.initialState()
             GameplayStyle.BoomBlocks -> BoomBlocksOnboardingStateFactory.initialState()
             GameplayStyle.BlockSort -> BlockSortOnboardingStateFactory.initialState()

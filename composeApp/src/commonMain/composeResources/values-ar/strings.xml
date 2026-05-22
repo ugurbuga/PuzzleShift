@@ -379,4 +379,30 @@
     <string name="blocksort_select_source_hint">اضغط على عمود مختلط غير فارغ لالتقاط كومة اللون العليا منه.</string>
     <string name="blocksort_selected_hint">الآن اضغط على عمود فارغ أو عمود يملك اللون العلوي نفسه لنقل الكومة إليه.</string>
     <string name="selection_blocksort_desc">رتّب أكوام الألوان المختلطة حتى يصبح كل عمود ممتلئ بلون واحد.</string>
+
+    <string name="app_title_chainshift">Chain Shift</string>
+    <string name="selection_chainshift_desc">Shoot from the center, slip blocks into a spiral chain, and pop 3+ color matches.</string>
+    <string name="app_title_banner_chainshift_top">CHAIN</string>
+    <string name="app_title_banner_chainshift_bottom">SHIFT</string>
+    <string name="tutorial_chainshift_intro_title">Meet Chain Shift</string>
+    <string name="tutorial_chainshift_intro_body">Blocks enter from the edge, wrap around the board, and crawl toward the center. Your shooter stays in the middle, so every shot must cut into the moving chain before it reaches you.</string>
+    <string name="tutorial_chainshift_path_title">صوّب وأطلق</string>
+    <string name="tutorial_chainshift_path_body">صوّب من المركز وحرّر للإطلاق. يتم إدخال كتلتك حيث تضرب السلسلة، مما يدفع الكتل اللاحقة للأمام.</string>
+    <string name="tutorial_chainshift_combo_title">أنشئ تراجعات وكومبو</string>
+    <string name="tutorial_chainshift_combo_body">طابق 3 كتل متصلة أو أكثر من نفس اللون على طول السلسلة لتفجيرها. عندما تُغلق الفجوة، تتراجع السلسلة نحو الحافة، مما قد يؤدي إلى تفاعلات متسلسلة.</string>
+    <string name="tutorial_chainshift_ready_title">Hold the center</string>
+    <string name="tutorial_chainshift_ready_body">Stay calm, keep the spiral short, and use your shots to break dangerous runs before they lock the center. The deeper the chain goes, the less room you have to recover.</string>
+    <string name="interactive_onboarding_chainshift_intro_title">أطلق على الكتلة الموجهة</string>
+    <string name="interactive_onboarding_chainshift_intro_body">ابدأ بإطلاق النار على الجزء المميز من الحلزون. تنطلق كتلتك من المركز وتدخل في السلسلة عند نقطة الاصطدام.</string>
+    <string name="interactive_onboarding_chainshift_match_title">Make a 3-block match</string>
+    <string name="interactive_onboarding_chainshift_match_body">Now use the guided shot to line up 3 blocks of the same color. Matching segments burst immediately and open breathing room near the center.</string>
+    <string name="interactive_onboarding_chainshift_chain_title">أطلق تفاعلاً متسلسلاً</string>
+    <string name="interactive_onboarding_chainshift_chain_body">يكافئ هذا الإعداد اللقطة الأكثر ذكاءً. امسح التطابق الأول، وشاهد السلسلة تتراجع نحو الحافة، واترك التطابق الثاني ينفجر تلقائياً.</string>
+    <string name="interactive_onboarding_chainshift_tap_hint">صوّب وحرّر لإطلاق النار على الكتلة المظللة.</string>
+    <string name="game_message_ad_reward_chainshift">Active block refreshed for Chain Shift!</string>
+
+    <string name="block_style_lava">Lava</string>
+    <string name="block_style_light_burst">Light Burst</string>
+    <string name="block_style_matte_soft">Matte Soft</string>
+    <string name="block_style_stone_texture">Stone Texture</string>
 </resources>

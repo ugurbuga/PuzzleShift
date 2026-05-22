@@ -370,5 +370,31 @@
     <string name="blocksort_select_source_hint">Toca una columna mixta no vacía para recoger su pila superior de color.</string>
     <string name="blocksort_selected_hint">Ahora toca una columna vacía o una columna con el mismo color superior para mover la pila.</string>
     <string name="selection_blocksort_desc">Ordena pilas de colores mezcladas hasta que cada columna llena tenga un solo color.</string>
+
+    <string name="app_title_chainshift">Chain Shift</string>
+    <string name="selection_chainshift_desc">Shoot from the center, slip blocks into a spiral chain, and pop 3+ color matches.</string>
+    <string name="app_title_banner_chainshift_top">CHAIN</string>
+    <string name="app_title_banner_chainshift_bottom">SHIFT</string>
+    <string name="tutorial_chainshift_intro_title">Meet Chain Shift</string>
+    <string name="tutorial_chainshift_intro_body">Blocks enter from the edge, wrap around the board, and crawl toward the center. Your shooter stays in the middle, so every shot must cut into the moving chain before it reaches you.</string>
+    <string name="tutorial_chainshift_path_title">Apunta y dispara</string>
+    <string name="tutorial_chainshift_path_body">Apunta desde el centro y suelta para disparar. Tu bloque se inserta donde golpea la cadena, empujando los bloques posteriores hacia adelante.</string>
+    <string name="tutorial_chainshift_combo_title">Crea retiradas y combos</string>
+    <string name="tutorial_chainshift_combo_body">Combina 3 o más bloques conectados del mismo color a lo largo de la cadena para hacerlos explotar. Cuando el espacio se cierra, la cadena se retira hacia el borde, lo que puede desencadenar reacciones en cadena.</string>
+    <string name="tutorial_chainshift_ready_title">Hold the center</string>
+    <string name="tutorial_chainshift_ready_body">Stay calm, keep the spiral short, and use your shots to break dangerous runs before they lock the center. The deeper the chain goes, the less room you have to recover.</string>
+    <string name="interactive_onboarding_chainshift_intro_title">Dispara al bloque guiado</string>
+    <string name="interactive_onboarding_chainshift_intro_body">Comienza disparando a la parte resaltada de la espiral. Tu bloque se lanza desde el centro se inserta en la cadena en el punto de impacto.</string>
+    <string name="interactive_onboarding_chainshift_match_title">Make a 3-block match</string>
+    <string name="interactive_onboarding_chainshift_match_body">Now use the guided shot to line up 3 blocks of the same color. Matching segments burst immediately and open breathing room near the center.</string>
+    <string name="interactive_onboarding_chainshift_chain_title">Desencadena una reacción en cadena</string>
+    <string name="interactive_onboarding_chainshift_chain_body">Esta configuración recompensa un disparo más inteligente. Despeja la primera combinación, observa cómo la cadena se retira hacia el borde y deja que la segunda combinación explote por sí sola.</string>
+    <string name="interactive_onboarding_chainshift_tap_hint">Apunta y suelta para disparar al bloque resaltado.</string>
+    <string name="game_message_ad_reward_chainshift">Active block refreshed for Chain Shift!</string>
+
+    <string name="block_style_lava">Lava</string>
+    <string name="block_style_light_burst">Light Burst</string>
+    <string name="block_style_matte_soft">Matte Soft</string>
+    <string name="block_style_stone_texture">Stone Texture</string>
 </resources>
 
