@@ -77,7 +77,7 @@ import blockgames.composeapp.generated.resources.app_title_blockwise
 import blockgames.composeapp.generated.resources.app_title_boomblocks
 import blockgames.composeapp.generated.resources.app_title_mergeshift
 import blockgames.composeapp.generated.resources.app_title_stackshift
-import blockgames.composeapp.generated.resources.app_title_wordshift
+import blockgames.composeapp.generated.resources.app_title_digitshift
 import blockgames.composeapp.generated.resources.home_play_cta
 import blockgames.composeapp.generated.resources.selection_active_game_badge
 import blockgames.composeapp.generated.resources.selection_chainshift_desc
@@ -86,7 +86,7 @@ import blockgames.composeapp.generated.resources.selection_blockwise_desc
 import blockgames.composeapp.generated.resources.selection_boomblocks_desc
 import blockgames.composeapp.generated.resources.selection_mergeshift_desc
 import blockgames.composeapp.generated.resources.selection_stackshift_desc
-import blockgames.composeapp.generated.resources.selection_wordshift_desc
+import blockgames.composeapp.generated.resources.selection_digitshift_desc
 import blockgames.composeapp.generated.resources.selection_title
 import com.ugurbuga.blockgames.BlockGamesTheme
 import com.ugurbuga.blockgames.ads.AppFooterBannerHeight
@@ -112,8 +112,8 @@ import com.ugurbuga.blockgames.settings.MergeShiftOnboardingStage
 import com.ugurbuga.blockgames.settings.MergeShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.StackShiftGameOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.StackShiftOnboardingStage
-import com.ugurbuga.blockgames.settings.WordShiftOnboardingStage
-import com.ugurbuga.blockgames.settings.WordShiftOnboardingStateFactory
+import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStage
+import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.telemetry.AppTelemetry
 import com.ugurbuga.blockgames.telemetry.LogScreen
 import com.ugurbuga.blockgames.telemetry.NoOpAppTelemetry
@@ -127,7 +127,7 @@ import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
 import com.ugurbuga.blockgames.ui.theme.appBackgroundBrush
 import com.ugurbuga.blockgames.ui.theme.blockGamesSurfaceShadow
-import com.ugurbuga.blockgames.ui.game.game.WordShiftBoard
+import com.ugurbuga.blockgames.ui.game.game.DigitShiftBoard
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.StringResource
@@ -209,7 +209,7 @@ fun AppSelectionScreen(
             SelectionGameSpec(GameplayStyle.BlockSort, Res.string.app_title_blocksort, Res.string.selection_blocksort_desc),
             SelectionGameSpec(GameplayStyle.MergeShift, Res.string.app_title_mergeshift, Res.string.selection_mergeshift_desc),
             SelectionGameSpec(GameplayStyle.BoomBlocks, Res.string.app_title_boomblocks, Res.string.selection_boomblocks_desc),
-            SelectionGameSpec(GameplayStyle.WordShift, Res.string.app_title_wordshift, Res.string.selection_wordshift_desc),
+            SelectionGameSpec(GameplayStyle.DigitShift, Res.string.app_title_digitshift, Res.string.selection_digitshift_desc),
         )
     }
 
@@ -477,9 +477,9 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
             ChainShiftOnboardingStateFactory.scene(ChainShiftOnboardingStage.CreateMatch)
         } else null
     }
-    val wordShiftScenes = remember(style) {
-        if (style == GameplayStyle.WordShift) {
-            WordShiftOnboardingStateFactory.stages.map(WordShiftOnboardingStateFactory::scene)
+    val digitShiftScenes = remember(style) {
+        if (style == GameplayStyle.DigitShift) {
+            DigitShiftOnboardingStateFactory.stages.map(DigitShiftOnboardingStateFactory::scene)
         } else emptyList()
     }
     val logic = remember(style, stackShiftScenario?.seed) {
@@ -499,8 +499,8 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
                 ?: BlockSortOnboardingStateFactory.scene(BlockSortOnboardingStage.PickSource).gameState
             GameplayStyle.MergeShift -> MergeShiftOnboardingStateFactory.scene(MergeShiftOnboardingStage.VerticalMerge).gameState
             GameplayStyle.BoomBlocks -> BoomBlocksOnboardingStateFactory.scene(BoomBlocksOnboardingStage.BasicExplosion).gameState
-            GameplayStyle.WordShift -> wordShiftScenes.firstOrNull()?.gameState
-                ?: WordShiftOnboardingStateFactory.scene(WordShiftOnboardingStage.FirstGuess).gameState
+            GameplayStyle.DigitShift -> digitShiftScenes.firstOrNull()?.gameState
+                ?: DigitShiftOnboardingStateFactory.scene(DigitShiftOnboardingStage.FirstGuess).gameState
         }
     }
     val boomBlocksScenario = remember(style) {
@@ -751,9 +751,9 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
                     }
                 }
 
-                GameplayStyle.WordShift -> {
-                    if (wordShiftScenes.isNotEmpty()) {
-                        wordShiftScenes.forEach { scene ->
+                GameplayStyle.DigitShift -> {
+                    if (digitShiftScenes.isNotEmpty()) {
+                        digitShiftScenes.forEach { scene ->
                             gameState = scene.gameState
                             delay(1500)
                         }
@@ -814,8 +814,8 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
                         .offset(x = boardOffsetX)
                         .size(actualBoardWidth, actualBoardHeight),
                 )
-            } else if (style == GameplayStyle.WordShift) {
-                WordShiftBoard(
+            } else if (style == GameplayStyle.DigitShift) {
+                DigitShiftBoard(
                     gameState = gameState,
                     modifier = Modifier
                         .offset(x = boardOffsetX)
@@ -899,7 +899,7 @@ internal fun GameplayStyle.selectionTone(): CellTone = when (this) {
     GameplayStyle.BlockSort -> CellTone.Emerald
     GameplayStyle.MergeShift -> CellTone.Violet
     GameplayStyle.BoomBlocks -> CellTone.Coral
-    GameplayStyle.WordShift -> CellTone.Gold
+    GameplayStyle.DigitShift -> CellTone.Gold
 }
 
 private fun com.ugurbuga.blockgames.ui.theme.BlockGamesUiColors.selectionAccentFor(style: GameplayStyle): Color = when (style) {
@@ -909,7 +909,7 @@ private fun com.ugurbuga.blockgames.ui.theme.BlockGamesUiColors.selectionAccentF
     GameplayStyle.BlockSort -> success
     GameplayStyle.MergeShift -> selectionMergeShift
     GameplayStyle.BoomBlocks -> danger
-    GameplayStyle.WordShift -> warning
+    GameplayStyle.DigitShift -> warning
 }
 
 internal fun initialExpandedSelectionStyle(currentStyle: GameplayStyle?): GameplayStyle? =

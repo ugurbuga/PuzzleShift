@@ -1,13 +1,8 @@
 
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.gradle.api.DefaultTask
-import org.gradle.api.file.DirectoryProperty
-import org.gradle.api.tasks.InputDirectory
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.gradle.api.tasks.JavaExec
-import org.gradle.api.tasks.OutputDirectory
-import org.gradle.api.tasks.TaskAction
 
 private fun findDesktopJdkHome(): File? {
     val candidateHomes = buildList {
@@ -30,48 +25,6 @@ private fun findDesktopJdkHome(): File? {
     return candidateHomes.firstOrNull { it.resolve("bin/jpackage").canExecute() }
 }
 
-abstract class GenerateWordShiftWordListsTask : DefaultTask() {
-    @get:InputDirectory
-    abstract val sourceDir: DirectoryProperty
-
-    @get:OutputDirectory
-    abstract val outputDir: DirectoryProperty
-
-    @TaskAction
-    fun generate() {
-        val outputFile = outputDir.file("com/ugurbuga/blockgames/game/logic/GeneratedWordShiftWordLists.kt").get().asFile
-        outputFile.parentFile.mkdirs()
-
-        val csvEntries = sourceDir.asFileTree
-            .matching { include("*.txt") }
-            .files
-            .sortedBy { it.name }
-            .joinToString(separator = ",\n") { file ->
-                val localeTag = file.nameWithoutExtension
-                val content = file.readText().trim().replace("\"\"\"", "\\\"\\\"\\\"")
-                "        \"$localeTag\" to \"\"\"$content\"\"\""
-            }
-
-        outputFile.writeText(
-            """
-            package com.ugurbuga.blockgames.game.logic
-
-            import com.ugurbuga.blockgames.game.model.AppLanguage
-
-            internal object GeneratedWordShiftWordLists {
-                private val csvByLocaleTag: Map<String, String> = mapOf(
-            $csvEntries
-                )
-
-                fun csvFor(language: AppLanguage): String =
-                    csvByLocaleTag[language.localeTag]
-                        ?: csvByLocaleTag.getValue(AppLanguage.English.localeTag)
-            }
-            """.trimIndent(),
-        )
-    }
-}
-
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidMultiplatformLibrary)
@@ -81,15 +34,6 @@ plugins {
 }
 
 val desktopJdkHome = findDesktopJdkHome()
-val wordShiftTxtDir = layout.projectDirectory.dir("src/commonMain/composeResources/files/wordshift")
-val generatedWordShiftDir = layout.buildDirectory.dir("generated/wordshift/kotlin/commonMain")
-
-val generateWordShiftWordLists by tasks.registering(GenerateWordShiftWordListsTask::class) {
-    group = "code generation"
-    description = "Generates shared WordShift word list sources from txt resources."
-    sourceDir.set(wordShiftTxtDir)
-    outputDir.set(generatedWordShiftDir)
-}
 
 kotlin {
     android {
@@ -133,10 +77,6 @@ kotlin {
     }
     
     sourceSets {
-        commonMain {
-            kotlin.srcDir(generatedWordShiftDir)
-        }
-
         androidMain.dependencies {
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.androidx.activity.compose)
@@ -175,10 +115,6 @@ kotlin {
     }
 }
 
-tasks.matching { it.name.contains("compile", ignoreCase = true) && it.name.contains("Kotlin", ignoreCase = true) }
-    .configureEach {
-        dependsOn(generateWordShiftWordLists)
-    }
 
 dependencies {
     androidRuntimeClasspath(libs.compose.uiTooling)

@@ -13,7 +13,13 @@ actual object HighScoreStorage {
         AppContextHolder.context.getSharedPreferences(Namespace, Context.MODE_PRIVATE)
     }
 
-    actual fun load(mode: GameMode): Int = prefs.getInt(keyFor(mode), DefaultHighScore)
+    actual fun load(mode: GameMode): Int {
+        val key = keyFor(mode)
+        if (prefs.contains(key)) return prefs.getInt(key, DefaultHighScore)
+        return legacyKeyFor(mode)?.let { legacyKey ->
+            prefs.getInt(legacyKey, DefaultHighScore)
+        } ?: DefaultHighScore
+    }
 
     actual fun save(highScore: Int, mode: GameMode) {
         prefs.edit()
@@ -29,11 +35,19 @@ actual object HighScoreStorage {
             GameplayStyle.MergeShift -> "MergeShift"
             GameplayStyle.BoomBlocks -> "BoomBlocks"
             GameplayStyle.BlockSort -> "BlockSort"
-            GameplayStyle.WordShift -> "WordShift"
+            GameplayStyle.DigitShift -> "DigitShift"
         }
         return when (mode) {
             GameMode.Classic -> "highScoreClassic$suffix"
             GameMode.TimeAttack -> "highScoreTimeAttack$suffix"
         }
+    }
+
+    private fun legacyKeyFor(mode: GameMode): String? = when (GlobalPlatformConfig.gameplayStyle) {
+        GameplayStyle.DigitShift -> when (mode) {
+            GameMode.Classic -> "highScoreClassicWordShift"
+            GameMode.TimeAttack -> "highScoreTimeAttackWordShift"
+        }
+        else -> null
     }
 }

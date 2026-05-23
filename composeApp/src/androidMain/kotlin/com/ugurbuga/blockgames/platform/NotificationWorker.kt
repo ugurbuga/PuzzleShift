@@ -28,7 +28,7 @@ import blockgames.composeapp.generated.resources.app_title_boomblocks
 import blockgames.composeapp.generated.resources.app_title_chainshift
 import blockgames.composeapp.generated.resources.app_title_mergeshift
 import blockgames.composeapp.generated.resources.app_title_stackshift
-import blockgames.composeapp.generated.resources.app_title_wordshift
+import blockgames.composeapp.generated.resources.app_title_digitshift
 import blockgames.composeapp.generated.resources.notification_daily_challenge_body
 import blockgames.composeapp.generated.resources.notification_daily_challenge_title
 import blockgames.composeapp.generated.resources.notification_miss_you_body
@@ -167,7 +167,7 @@ private fun GameplayStyle.appTitleResource(): StringResource = when (this) {
     GameplayStyle.MergeShift -> Res.string.app_title_mergeshift
     GameplayStyle.BoomBlocks -> Res.string.app_title_boomblocks
     GameplayStyle.StackShift -> Res.string.app_title_stackshift
-    GameplayStyle.WordShift -> Res.string.app_title_wordshift
+    GameplayStyle.DigitShift -> Res.string.app_title_digitshift
 }
 
 private fun Drawable.toBitmap(): Bitmap {

@@ -1,10 +1,9 @@
 package com.ugurbuga.blockgames.settings
 
 import androidx.compose.runtime.Immutable
-import com.ugurbuga.blockgames.game.logic.WordShiftLanguagePack
-import com.ugurbuga.blockgames.game.logic.WordShiftDefaultWordLength
-import com.ugurbuga.blockgames.game.logic.WordShiftLexicon
-import com.ugurbuga.blockgames.game.logic.WordShiftMaxAttempts
+import com.ugurbuga.blockgames.game.logic.DigitShiftLanguagePack
+import com.ugurbuga.blockgames.game.logic.DigitShiftLexicon
+import com.ugurbuga.blockgames.game.logic.digitShiftAttemptsForLength
 import com.ugurbuga.blockgames.game.model.BoardMatrix
 import com.ugurbuga.blockgames.game.model.GameConfig
 import com.ugurbuga.blockgames.game.model.GameState
@@ -12,81 +11,80 @@ import com.ugurbuga.blockgames.game.model.GameStatus
 import com.ugurbuga.blockgames.game.model.GameText
 import com.ugurbuga.blockgames.game.model.GameTextKey
 import com.ugurbuga.blockgames.game.model.GameplayStyle
-import com.ugurbuga.blockgames.game.model.WordShiftGuess
-import com.ugurbuga.blockgames.game.model.WordShiftLetterState
+import com.ugurbuga.blockgames.game.model.DigitShiftGuess
+import com.ugurbuga.blockgames.game.model.DigitShiftLetterState
 import com.ugurbuga.blockgames.game.model.gameText
 
 @Immutable
-enum class WordShiftOnboardingStage : OnboardingStage {
+enum class DigitShiftOnboardingStage : OnboardingStage {
     FirstGuess,
     ReadHints,
     SolveWord,
 }
 
 @Immutable
-data class WordShiftOnboardingScene(
-    val stage: WordShiftOnboardingStage,
+data class DigitShiftOnboardingScene(
+    val stage: DigitShiftOnboardingStage,
     val gameState: GameState,
     val suggestedGuess: List<String>,
 )
 
-object WordShiftOnboardingStateFactory {
-    val stages: List<WordShiftOnboardingStage> = listOf(
-        WordShiftOnboardingStage.FirstGuess,
-        WordShiftOnboardingStage.ReadHints,
-        WordShiftOnboardingStage.SolveWord,
+object DigitShiftOnboardingStateFactory {
+    val stages: List<DigitShiftOnboardingStage> = listOf(
+        DigitShiftOnboardingStage.FirstGuess,
+        DigitShiftOnboardingStage.ReadHints,
+        DigitShiftOnboardingStage.SolveWord,
     )
 
     fun initialState(): GameState = scene(stages.first()).gameState
 
     fun cleanGameState(): GameState =
-        com.ugurbuga.blockgames.game.logic.WordShiftGameLogic().newGame(
-            config = GameConfig.default(GameplayStyle.WordShift),
+        com.ugurbuga.blockgames.game.logic.DigitShiftGameLogic().newGame(
+            config = GameConfig.default(GameplayStyle.DigitShift),
         )
 
-    fun scene(stage: WordShiftOnboardingStage): WordShiftOnboardingScene {
-        val pack = WordShiftLexicon.packFor(AppSettingsStorage.load().language.localeTag)
+    fun scene(stage: DigitShiftOnboardingStage): DigitShiftOnboardingScene {
+        val pack = DigitShiftLexicon.packFor(AppSettingsStorage.load().language.localeTag)
         return buildScene(pack, stage)
     }
 
     private fun buildScene(
-        pack: WordShiftLanguagePack,
-        stage: WordShiftOnboardingStage,
-    ): WordShiftOnboardingScene {
-        val tutorialWords = pack.words(WordShiftDefaultWordLength)
-        val guessA = tutorialWords[0]
-        val solution = tutorialWords[1]
-        val guessB = tutorialWords[2]
+        pack: DigitShiftLanguagePack,
+        stage: DigitShiftOnboardingStage,
+    ): DigitShiftOnboardingScene {
+        val solution = listOf("1", "2", "3", "4", "5")
+        val guessA = listOf("1", "5", "6", "7", "8")
+        val guessB = listOf("1", "2", "8", "4", "0")
         return when (stage) {
-            WordShiftOnboardingStage.FirstGuess -> WordShiftOnboardingScene(
+            DigitShiftOnboardingStage.FirstGuess -> DigitShiftOnboardingScene(
                 stage = stage,
                 gameState = scriptedState(
                     localeTag = pack.language.localeTag,
                     solution = solution,
                     guesses = emptyList(),
-                    message = gameText(GameTextKey.GameMessageWordShiftEnterWord),
+                    message = gameText(GameTextKey.GameMessageDigitShiftEnterWord),
                 ),
                 suggestedGuess = guessA,
             )
 
-            WordShiftOnboardingStage.ReadHints -> WordShiftOnboardingScene(
+            DigitShiftOnboardingStage.ReadHints -> DigitShiftOnboardingScene(
                 stage = stage,
                 gameState = scriptedState(
                     localeTag = pack.language.localeTag,
                     solution = solution,
                     guesses = listOf(guessA),
-                    message = gameText(GameTextKey.GameMessageWordShiftKeepTrying),
+                    message = gameText(GameTextKey.GameMessageDigitShiftKeepTrying),
                 ),
                 suggestedGuess = guessB,
             )
 
-            WordShiftOnboardingStage.SolveWord -> WordShiftOnboardingScene(
+            DigitShiftOnboardingStage.SolveWord -> DigitShiftOnboardingScene(
                 stage = stage,
                 gameState = scriptedState(
                     localeTag = pack.language.localeTag,
                     solution = solution,
                     guesses = listOf(guessA, guessB),
-                    message = gameText(GameTextKey.GameMessageWordShiftKeepTrying),
+                    message = gameText(GameTextKey.GameMessageDigitShiftKeepTrying),
                 ),
                 suggestedGuess = solution,
             )
@@ -101,17 +99,17 @@ object WordShiftOnboardingStateFactory {
     ): GameState {
         val config = GameConfig(
             columns = solution.size,
-            rows = WordShiftMaxAttempts,
+            rows = digitShiftAttemptsForLength(solution.size),
             difficultyIntervalSeconds = 9_999,
             linesPerLevel = 9_999,
         )
         val evaluatedGuesses = guesses.map { guess ->
-            WordShiftGuess(tokens = guess, states = evaluate(solution, guess))
+            DigitShiftGuess(tokens = guess, states = evaluate(solution, guess))
         }
-        val keyboardHints = buildMap<String, WordShiftLetterState> {
+        val keyboardHints = buildMap<String, DigitShiftLetterState> {
             evaluatedGuesses.forEach { guess ->
                 guess.tokens.zip(guess.states).forEach { (token, state) ->
-                    val previous = get(token) ?: WordShiftLetterState.Unknown
+                    val previous = get(token) ?: DigitShiftLetterState.Unknown
                     if (state.priority >= previous.priority) {
                         put(token, state)
                     }
@@ -120,7 +118,7 @@ object WordShiftOnboardingStateFactory {
         }
         return GameState(
             config = config,
-            gameplayStyle = GameplayStyle.WordShift,
+            gameplayStyle = GameplayStyle.DigitShift,
             board = BoardMatrix.empty(columns = config.columns, rows = config.rows),
             activePiece = null,
             nextQueue = emptyList(),
@@ -133,31 +131,31 @@ object WordShiftOnboardingStateFactory {
             secondsUntilDifficultyIncrease = 9_999,
             status = GameStatus.Running,
             message = message,
-            wordShiftLocaleTag = localeTag,
-            wordShiftSolution = solution,
-            wordShiftGuesses = evaluatedGuesses,
-            wordShiftCurrentGuess = emptyList(),
-            wordShiftKeyboardHints = keyboardHints,
+            digitShiftLocaleTag = localeTag,
+            digitShiftSolution = solution,
+            digitShiftGuesses = evaluatedGuesses,
+            digitShiftCurrentGuess = emptyList(),
+            digitShiftKeyboardHints = keyboardHints,
         )
     }
 
     private fun evaluate(
         solution: List<String>,
         guess: List<String>,
-    ): List<WordShiftLetterState> {
-        val result = MutableList(solution.size) { WordShiftLetterState.Absent }
+    ): List<DigitShiftLetterState> {
+        val result = MutableList(solution.size) { DigitShiftLetterState.Absent }
         val remaining = solution.groupingBy { it }.eachCount().toMutableMap()
         guess.indices.forEach { index ->
             if (guess[index] == solution[index]) {
-                result[index] = WordShiftLetterState.Correct
+                result[index] = DigitShiftLetterState.Correct
                 remaining[guess[index]] = (remaining[guess[index]] ?: 0) - 1
             }
         }
         guess.indices.forEach { index ->
-            if (result[index] == WordShiftLetterState.Correct) return@forEach
+            if (result[index] == DigitShiftLetterState.Correct) return@forEach
             val token = guess[index]
             if ((remaining[token] ?: 0) > 0) {
-                result[index] = WordShiftLetterState.Present
+                result[index] = DigitShiftLetterState.Present
                 remaining[token] = (remaining[token] ?: 0) - 1
             }
         }
@@ -165,11 +163,11 @@ object WordShiftOnboardingStateFactory {
     }
 }
 
-private val WordShiftLetterState.priority: Int
+private val DigitShiftLetterState.priority: Int
     get() = when (this) {
-        WordShiftLetterState.Unknown -> 0
-        WordShiftLetterState.Absent -> 1
-        WordShiftLetterState.Present -> 2
-        WordShiftLetterState.Correct -> 3
+        DigitShiftLetterState.Unknown -> 0
+        DigitShiftLetterState.Absent -> 1
+        DigitShiftLetterState.Present -> 2
+        DigitShiftLetterState.Correct -> 3
     }
 

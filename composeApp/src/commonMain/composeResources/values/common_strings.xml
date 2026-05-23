@@ -35,8 +35,8 @@
     <string name="app_language_dutch" translatable="false">Nederlands</string>
 
     <string name="notification_miss_you_title" translatable="false">Puzzle Shift</string>
-    <string name="app_title_wordshift" translatable="false">WordShift</string>
-    <string name="app_title_banner_wordshift_top" translatable="false">WORD</string>
-    <string name="app_title_banner_wordshift_bottom" translatable="false">SHIFT</string>
+    <string name="app_title_digitshift" translatable="false">DigitShift</string>
+    <string name="app_title_banner_digitshift_top" translatable="false">DIGIT</string>
+    <string name="app_title_banner_digitshift_bottom" translatable="false">SHIFT</string>
 </resources>
 

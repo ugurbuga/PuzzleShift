@@ -8,8 +8,14 @@ import platform.Foundation.NSUserDefaults
 actual object HighScoreStorage {
     private val defaults = NSUserDefaults.standardUserDefaults
 
-    actual fun load(mode: GameMode): Int =
-        defaults.integerForKey(keyFor(mode)).toIntOrDefault(DefaultHighScore)
+    actual fun load(mode: GameMode): Int {
+        val key = keyFor(mode)
+        if (defaults.objectForKey(key) != null) {
+            return defaults.integerForKey(key).toIntOrDefault(DefaultHighScore)
+        }
+        val legacyKey = legacyKeyFor(mode) ?: return DefaultHighScore
+        return defaults.integerForKey(legacyKey).toIntOrDefault(DefaultHighScore)
+    }
 
     actual fun save(highScore: Int, mode: GameMode) {
         defaults.setInteger(
@@ -28,12 +34,20 @@ actual object HighScoreStorage {
             GameplayStyle.MergeShift -> "MergeShift"
             GameplayStyle.BoomBlocks -> "BoomBlocks"
             GameplayStyle.BlockSort -> "BlockSort"
-            GameplayStyle.WordShift -> "WordShift"
+            GameplayStyle.DigitShift -> "DigitShift"
         }
         return when (mode) {
             GameMode.Classic -> "highScoreClassic$suffix"
             GameMode.TimeAttack -> "highScoreTimeAttack$suffix"
         }
+    }
+
+    private fun legacyKeyFor(mode: GameMode): String? = when (GlobalPlatformConfig.gameplayStyle) {
+        GameplayStyle.DigitShift -> when (mode) {
+            GameMode.Classic -> "highScoreClassicWordShift"
+            GameMode.TimeAttack -> "highScoreTimeAttackWordShift"
+        }
+        else -> null
     }
 }
 

@@ -7,6 +7,8 @@ import com.ugurbuga.blockgames.game.model.ChallengeTaskType
 import com.ugurbuga.blockgames.game.model.ColumnPressure
 import com.ugurbuga.blockgames.game.model.ComboState
 import com.ugurbuga.blockgames.game.model.DailyChallenge
+import com.ugurbuga.blockgames.game.model.DigitShiftGuess
+import com.ugurbuga.blockgames.game.model.DigitShiftLetterState
 import com.ugurbuga.blockgames.game.model.GameConfig
 import com.ugurbuga.blockgames.game.model.GameMode
 import com.ugurbuga.blockgames.game.model.GameState
@@ -22,8 +24,6 @@ import com.ugurbuga.blockgames.game.model.PlacementPreview
 import com.ugurbuga.blockgames.game.model.PressureLevel
 import com.ugurbuga.blockgames.game.model.SoftLockState
 import com.ugurbuga.blockgames.game.model.SpecialBlockType
-import com.ugurbuga.blockgames.game.model.WordShiftGuess
-import com.ugurbuga.blockgames.game.model.WordShiftLetterState
 import com.ugurbuga.blockgames.game.model.gameplayStyleFromPersistedValue
 import com.ugurbuga.blockgames.platform.GlobalPlatformConfig
 
@@ -112,11 +112,11 @@ internal object GameSessionCodec {
     private const val PointSeparator = ':'
     private const val CellSeparator = '.'
     private const val EmptyToken = "-"
-    private const val WordShiftTokenSeparator = '^'
-    private const val WordShiftGuessSeparator = '!'
-    private const val WordShiftGuessPartSeparator = '*'
-    private const val WordShiftHintSeparator = '&'
-    private const val WordShiftHintPartSeparator = '%'
+    private const val DigitShiftTokenSeparator = '^'
+    private const val DigitShiftGuessSeparator = '!'
+    private const val DigitShiftGuessPartSeparator = '*'
+    private const val DigitShiftHintSeparator = '&'
+    private const val DigitShiftHintPartSeparator = '%'
 
     fun encode(state: GameState): String = listOf(
         Version.toString(),
@@ -139,7 +139,7 @@ internal object GameSessionCodec {
         encodeGameText(state.message),
         encodeActivityState(state),
         encodeChallenge(state.activeChallenge),
-        encodeWordShiftState(state),
+        encodeDigitShiftState(state),
     ).joinToString(separator = SectionSeparator.toString())
 
     fun decode(value: String): GameState? {
@@ -181,7 +181,7 @@ internal object GameSessionCodec {
             ActivityState(gameplayStyle = inferredGameplayStyle)
         }
         val activeChallenge = if (version >= 3) decodeChallenge(parts[19]) else null
-        val wordShiftState = if (version >= 8) decodeWordShiftState(parts[20]) ?: return null else WordShiftState()
+        val digitShiftState = if (version >= 8) decodeDigitShiftState(parts[20]) ?: return null else DigitShiftState()
 
         return GameState(
             config = config,
@@ -223,12 +223,12 @@ internal object GameSessionCodec {
             activeChallenge = activeChallenge,
             blockSortBonusEmptyColumnUsed = activity.blockSortBonusEmptyColumnUsed,
             blockSortScoredMoveSignatures = activity.blockSortScoredMoveSignatures,
-            wordShiftLocaleTag = wordShiftState.localeTag,
-            wordShiftSolution = wordShiftState.solution,
-            wordShiftGuesses = wordShiftState.guesses,
-            wordShiftCurrentGuess = wordShiftState.currentGuess,
-            wordShiftKeyboardHints = wordShiftState.keyboardHints,
-            wordShiftAwaitingNextRound = wordShiftState.awaitingNextRound,
+            digitShiftLocaleTag = digitShiftState.localeTag,
+            digitShiftSolution = digitShiftState.solution,
+            digitShiftGuesses = digitShiftState.guesses,
+            digitShiftCurrentGuess = digitShiftState.currentGuess,
+            digitShiftKeyboardHints = digitShiftState.keyboardHints,
+            digitShiftAwaitingNextRound = digitShiftState.awaitingNextRound,
         )
     }
 
@@ -701,91 +701,91 @@ internal object GameSessionCodec {
         return GameText(key = key, args = parts.drop(1))
     }
 
-    private data class WordShiftState(
+    private data class DigitShiftState(
         val localeTag: String = "",
         val solution: List<String> = emptyList(),
         val currentGuess: List<String> = emptyList(),
-        val guesses: List<WordShiftGuess> = emptyList(),
-        val keyboardHints: Map<String, WordShiftLetterState> = emptyMap(),
+        val guesses: List<DigitShiftGuess> = emptyList(),
+        val keyboardHints: Map<String, DigitShiftLetterState> = emptyMap(),
         val awaitingNextRound: Boolean = false,
     )
 
-    private fun encodeWordShiftState(state: GameState): String = listOf(
-        state.wordShiftLocaleTag.ifBlank { EmptyToken },
-        encodeWordShiftTokens(state.wordShiftSolution),
-        encodeWordShiftTokens(state.wordShiftCurrentGuess),
-        encodeWordShiftGuesses(state.wordShiftGuesses),
-        encodeWordShiftHints(state.wordShiftKeyboardHints),
-        if (state.wordShiftAwaitingNextRound) "1" else "0",
+    private fun encodeDigitShiftState(state: GameState): String = listOf(
+        state.digitShiftLocaleTag.ifBlank { EmptyToken },
+        encodeDigitShiftTokens(state.digitShiftSolution),
+        encodeDigitShiftTokens(state.digitShiftCurrentGuess),
+        encodeDigitShiftGuesses(state.digitShiftGuesses),
+        encodeDigitShiftHints(state.digitShiftKeyboardHints),
+        if (state.digitShiftAwaitingNextRound) "1" else "0",
     ).joinToString(separator = FieldSeparator.toString())
 
-    private fun decodeWordShiftState(value: String): WordShiftState? {
+    private fun decodeDigitShiftState(value: String): DigitShiftState? {
         val parts = value.split(FieldSeparator, limit = 6)
         if (parts.size !in 5..6) return null
-        return WordShiftState(
+        return DigitShiftState(
             localeTag = parts[0].takeUnless { it == EmptyToken }.orEmpty(),
-            solution = decodeWordShiftTokens(parts[1]) ?: return null,
-            currentGuess = decodeWordShiftTokens(parts[2]) ?: return null,
-            guesses = decodeWordShiftGuesses(parts[3]) ?: return null,
-            keyboardHints = decodeWordShiftHints(parts[4]) ?: return null,
+            solution = decodeDigitShiftTokens(parts[1]) ?: return null,
+            currentGuess = decodeDigitShiftTokens(parts[2]) ?: return null,
+            guesses = decodeDigitShiftGuesses(parts[3]) ?: return null,
+            keyboardHints = decodeDigitShiftHints(parts[4]) ?: return null,
             awaitingNextRound = parts.getOrNull(5) == "1",
         )
     }
 
-    private fun encodeWordShiftTokens(tokens: List<String>): String =
-        if (tokens.isEmpty()) EmptyToken else tokens.joinToString(separator = WordShiftTokenSeparator.toString())
+    private fun encodeDigitShiftTokens(tokens: List<String>): String =
+        if (tokens.isEmpty()) EmptyToken else tokens.joinToString(separator = DigitShiftTokenSeparator.toString())
 
-    private fun decodeWordShiftTokens(value: String): List<String>? = when {
+    private fun decodeDigitShiftTokens(value: String): List<String>? = when {
         value == EmptyToken || value.isBlank() -> emptyList()
-        else -> value.split(WordShiftTokenSeparator).filter(String::isNotBlank)
+        else -> value.split(DigitShiftTokenSeparator).filter(String::isNotBlank)
     }
 
-    private fun encodeWordShiftGuesses(guesses: List<WordShiftGuess>): String =
+    private fun encodeDigitShiftGuesses(guesses: List<DigitShiftGuess>): String =
         if (guesses.isEmpty()) {
             EmptyToken
         } else {
-            guesses.joinToString(separator = WordShiftGuessSeparator.toString()) { guess ->
+            guesses.joinToString(separator = DigitShiftGuessSeparator.toString()) { guess ->
                 listOf(
-                    encodeWordShiftTokens(guess.tokens),
-                    guess.states.joinToString(separator = WordShiftTokenSeparator.toString()) { it.ordinal.toString() },
-                ).joinToString(separator = WordShiftGuessPartSeparator.toString())
+                    encodeDigitShiftTokens(guess.tokens),
+                    guess.states.joinToString(separator = DigitShiftTokenSeparator.toString()) { it.ordinal.toString() },
+                ).joinToString(separator = DigitShiftGuessPartSeparator.toString())
             }
         }
 
-    private fun decodeWordShiftGuesses(value: String): List<WordShiftGuess>? {
+    private fun decodeDigitShiftGuesses(value: String): List<DigitShiftGuess>? {
         if (value == EmptyToken || value.isBlank()) return emptyList()
-        return value.split(WordShiftGuessSeparator).map { token ->
-            val parts = token.split(WordShiftGuessPartSeparator, limit = 2)
+        return value.split(DigitShiftGuessSeparator).map { token ->
+            val parts = token.split(DigitShiftGuessPartSeparator, limit = 2)
             if (parts.size != 2) return null
-            WordShiftGuess(
-                tokens = decodeWordShiftTokens(parts[0]) ?: return null,
+            DigitShiftGuess(
+                tokens = decodeDigitShiftTokens(parts[0]) ?: return null,
                 states = if (parts[1].isBlank()) {
                     emptyList()
                 } else {
-                    parts[1].split(WordShiftTokenSeparator).map { stateToken ->
-                        WordShiftLetterState.entries.getOrNull(stateToken.toIntOrNull() ?: return null) ?: return null
+                    parts[1].split(DigitShiftTokenSeparator).map { stateToken ->
+                        DigitShiftLetterState.entries.getOrNull(stateToken.toIntOrNull() ?: return null) ?: return null
                     }
                 },
             )
         }
     }
 
-    private fun encodeWordShiftHints(hints: Map<String, WordShiftLetterState>): String =
+    private fun encodeDigitShiftHints(hints: Map<String, DigitShiftLetterState>): String =
         if (hints.isEmpty()) {
             EmptyToken
         } else {
-            hints.entries.sortedBy { it.key }.joinToString(separator = WordShiftHintSeparator.toString()) { entry ->
-                "${entry.key}$WordShiftHintPartSeparator${entry.value.ordinal}"
+            hints.entries.sortedBy { it.key }.joinToString(separator = DigitShiftHintSeparator.toString()) { entry ->
+                "${entry.key}$DigitShiftHintPartSeparator${entry.value.ordinal}"
             }
         }
 
-    private fun decodeWordShiftHints(value: String): Map<String, WordShiftLetterState>? {
+    private fun decodeDigitShiftHints(value: String): Map<String, DigitShiftLetterState>? {
         if (value == EmptyToken || value.isBlank()) return emptyMap()
         return buildMap {
-            value.split(WordShiftHintSeparator).forEach { token ->
-                val parts = token.split(WordShiftHintPartSeparator, limit = 2)
+            value.split(DigitShiftHintSeparator).forEach { token ->
+                val parts = token.split(DigitShiftHintPartSeparator, limit = 2)
                 if (parts.size != 2) return null
-                val state = WordShiftLetterState.entries.getOrNull(parts[1].toIntOrNull() ?: return null) ?: return null
+                val state = DigitShiftLetterState.entries.getOrNull(parts[1].toIntOrNull() ?: return null) ?: return null
                 put(parts[0], state)
             }
         }

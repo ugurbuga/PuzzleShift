@@ -50,7 +50,7 @@ enum class ChallengeTaskType(
     ),
     SolveWords(
         stableId = "solve_words",
-        supportedStyles = setOf(GameplayStyle.WordShift),
+        supportedStyles = setOf(GameplayStyle.DigitShift),
     );
 
     companion object {
@@ -103,7 +103,7 @@ enum class ChallengeTaskType(
                 ClearRounds,
             ).getOrNull(ordinal)
 
-            GameplayStyle.WordShift -> listOf(
+            GameplayStyle.DigitShift -> listOf(
                 ReachScore,
                 SolveWords,
             ).getOrNull(ordinal)

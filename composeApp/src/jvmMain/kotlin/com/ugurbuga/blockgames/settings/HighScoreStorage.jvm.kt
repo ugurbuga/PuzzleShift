@@ -8,7 +8,13 @@ import java.util.prefs.Preferences
 actual object HighScoreStorage {
     private val prefs = Preferences.userRoot().node(Namespace)
 
-    actual fun load(mode: GameMode): Int = prefs.getInt(keyFor(mode), DefaultHighScore)
+    actual fun load(mode: GameMode): Int {
+        val key = keyFor(mode)
+        if (prefs.get(key, null) != null) return prefs.getInt(key, DefaultHighScore)
+        return legacyKeyFor(mode)?.let { legacyKey ->
+            prefs.getInt(legacyKey, DefaultHighScore)
+        } ?: DefaultHighScore
+    }
 
     actual fun save(highScore: Int, mode: GameMode) {
         prefs.putInt(keyFor(mode), highScore.coerceAtLeast(DefaultHighScore))
@@ -25,11 +31,19 @@ actual object HighScoreStorage {
             GameplayStyle.MergeShift -> "MergeShift"
             GameplayStyle.BoomBlocks -> "BoomBlocks"
             GameplayStyle.BlockSort -> "BlockSort"
-            GameplayStyle.WordShift -> "WordShift"
+            GameplayStyle.DigitShift -> "DigitShift"
         }
         return when (mode) {
             GameMode.Classic -> "highScoreClassic$suffix"
             GameMode.TimeAttack -> "highScoreTimeAttack$suffix"
         }
+    }
+
+    private fun legacyKeyFor(mode: GameMode): String? = when (GlobalPlatformConfig.gameplayStyle) {
+        GameplayStyle.DigitShift -> when (mode) {
+            GameMode.Classic -> "highScoreClassicWordShift"
+            GameMode.TimeAttack -> "highScoreTimeAttackWordShift"
+        }
+        else -> null
     }
 }

@@ -73,8 +73,8 @@ import blockgames.composeapp.generated.resources.app_title_banner_chainshift_bot
 import blockgames.composeapp.generated.resources.app_title_banner_chainshift_top
 import blockgames.composeapp.generated.resources.app_title_banner_stackshift_bottom
 import blockgames.composeapp.generated.resources.app_title_banner_stackshift_top
-import blockgames.composeapp.generated.resources.app_title_banner_wordshift_bottom
-import blockgames.composeapp.generated.resources.app_title_banner_wordshift_top
+import blockgames.composeapp.generated.resources.app_title_banner_digitshift_bottom
+import blockgames.composeapp.generated.resources.app_title_banner_digitshift_top
 import blockgames.composeapp.generated.resources.high_score
 import blockgames.composeapp.generated.resources.home_classic_cta
 import blockgames.composeapp.generated.resources.home_time_attack_cta
@@ -312,19 +312,19 @@ private fun HomeTitleBanner(
         GameplayStyle.MergeShift -> MergeShiftHomeTitleBanner(settings, pulse, modifier)
         GameplayStyle.BoomBlocks -> BoomBlocksHomeTitleBanner(settings, pulse, modifier)
         GameplayStyle.BlockSort -> BlockSortHomeTitleBanner(settings, pulse, modifier)
-        GameplayStyle.WordShift -> WordShiftHomeTitleBanner(settings, pulse, modifier)
+        GameplayStyle.DigitShift -> DigitShiftHomeTitleBanner(settings, pulse, modifier)
     }
 }
 
 @Composable
-private fun WordShiftHomeTitleBanner(
+private fun DigitShiftHomeTitleBanner(
     settings: AppSettings,
     pulse: Float,
     modifier: Modifier = Modifier,
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
-    val topWord = stringResource(Res.string.app_title_banner_wordshift_top)
-    val bottomWord = stringResource(Res.string.app_title_banner_wordshift_bottom)
+    val topWord = stringResource(Res.string.app_title_banner_digitshift_top)
+    val bottomWord = stringResource(Res.string.app_title_banner_digitshift_bottom)
     val accent = uiColors.warning
     Card(
         modifier = modifier

@@ -167,15 +167,14 @@ import blockgames.composeapp.generated.resources.tutorial_stackshift_systems_tit
 import blockgames.composeapp.generated.resources.tutorial_step_counter
 import blockgames.composeapp.generated.resources.tutorial_systems_body
 import blockgames.composeapp.generated.resources.tutorial_systems_title
-import blockgames.composeapp.generated.resources.tutorial_wordshift_hints_body
-import blockgames.composeapp.generated.resources.tutorial_wordshift_hints_title
-import blockgames.composeapp.generated.resources.tutorial_wordshift_intro_body
-import blockgames.composeapp.generated.resources.tutorial_wordshift_intro_title
-import blockgames.composeapp.generated.resources.tutorial_wordshift_ready_body
-import blockgames.composeapp.generated.resources.tutorial_wordshift_ready_title
-import blockgames.composeapp.generated.resources.tutorial_wordshift_strategy_body
-import blockgames.composeapp.generated.resources.tutorial_wordshift_strategy_title
-import blockgames.composeapp.generated.resources.wordshift_current_language
+import blockgames.composeapp.generated.resources.tutorial_digitshift_hints_body
+import blockgames.composeapp.generated.resources.tutorial_digitshift_hints_title
+import blockgames.composeapp.generated.resources.tutorial_digitshift_intro_body
+import blockgames.composeapp.generated.resources.tutorial_digitshift_intro_title
+import blockgames.composeapp.generated.resources.tutorial_digitshift_ready_body
+import blockgames.composeapp.generated.resources.tutorial_digitshift_ready_title
+import blockgames.composeapp.generated.resources.tutorial_digitshift_strategy_body
+import blockgames.composeapp.generated.resources.tutorial_digitshift_strategy_title
 import com.ugurbuga.blockgames.BlockGamesTheme
 import com.ugurbuga.blockgames.ads.GameAdController
 import com.ugurbuga.blockgames.ads.NoOpGameAdController
@@ -196,15 +195,15 @@ import com.ugurbuga.blockgames.game.model.gameText
 import com.ugurbuga.blockgames.localization.LocalAppSettings
 import com.ugurbuga.blockgames.platform.GlobalPlatformConfig
 import com.ugurbuga.blockgames.settings.AppSettings
-import com.ugurbuga.blockgames.settings.ChainShiftOnboardingScene
-import com.ugurbuga.blockgames.settings.ChainShiftOnboardingStage
-import com.ugurbuga.blockgames.settings.ChainShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.BlockSortOnboardingScene
 import com.ugurbuga.blockgames.settings.BlockSortOnboardingStage
 import com.ugurbuga.blockgames.settings.BlockSortOnboardingStateFactory
-import com.ugurbuga.blockgames.settings.WordShiftOnboardingScene
-import com.ugurbuga.blockgames.settings.WordShiftOnboardingStage
-import com.ugurbuga.blockgames.settings.WordShiftOnboardingStateFactory
+import com.ugurbuga.blockgames.settings.ChainShiftOnboardingScene
+import com.ugurbuga.blockgames.settings.ChainShiftOnboardingStage
+import com.ugurbuga.blockgames.settings.ChainShiftOnboardingStateFactory
+import com.ugurbuga.blockgames.settings.DigitShiftOnboardingScene
+import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStage
+import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.telemetry.AppTelemetry
 import com.ugurbuga.blockgames.telemetry.LogScreen
 import com.ugurbuga.blockgames.telemetry.NoOpAppTelemetry
@@ -221,7 +220,7 @@ import com.ugurbuga.blockgames.ui.game.boardFrameCornerRadiusDp
 import com.ugurbuga.blockgames.ui.game.game.BlockSortBoard
 import com.ugurbuga.blockgames.ui.game.game.GameGrid
 import com.ugurbuga.blockgames.ui.game.game.LaunchGuideLineOverlay
-import com.ugurbuga.blockgames.ui.game.game.WordShiftBoard
+import com.ugurbuga.blockgames.ui.game.game.DigitShiftBoard
 import com.ugurbuga.blockgames.ui.game.game.columnToLeft
 import com.ugurbuga.blockgames.ui.game.game.pieceSpawnTopLeft
 import com.ugurbuga.blockgames.ui.game.game.resolveSelectedColumn
@@ -341,10 +340,10 @@ private enum class TutorialPage {
     BlockSortRules,
     BlockSortFinish,
     BlockSortReady,
-    WordShiftIntro,
-    WordShiftHints,
-    WordShiftStrategy,
-    WordShiftReady,
+    DigitShiftIntro,
+    DigitShiftHints,
+    DigitShiftStrategy,
+    DigitShiftReady,
 }
 
 internal fun tutorialBoomBlocksIntroScene(): TutorialDemoScene {
@@ -662,11 +661,11 @@ fun GameTutorialScreen(
                 TutorialPage.BlockSortReady,
             )
 
-            GameplayStyle.WordShift -> listOf(
-                TutorialPage.WordShiftIntro,
-                TutorialPage.WordShiftHints,
-                TutorialPage.WordShiftStrategy,
-                TutorialPage.WordShiftReady,
+            GameplayStyle.DigitShift -> listOf(
+                TutorialPage.DigitShiftIntro,
+                TutorialPage.DigitShiftHints,
+                TutorialPage.DigitShiftStrategy,
+                TutorialPage.DigitShiftReady,
             )
         }
     }
@@ -786,10 +785,10 @@ fun GameTutorialScreen(
                                 TutorialPage.BlockSortRules -> TutorialBlockSortRulesStep()
                                 TutorialPage.BlockSortFinish -> TutorialBlockSortFinishStep()
                                 TutorialPage.BlockSortReady -> TutorialBlockSortReadyStep()
-                                TutorialPage.WordShiftIntro -> TutorialWordShiftIntroStep()
-                                TutorialPage.WordShiftHints -> TutorialWordShiftHintsStep()
-                                TutorialPage.WordShiftStrategy -> TutorialWordShiftStrategyStep()
-                                TutorialPage.WordShiftReady -> TutorialWordShiftReadyStep()
+                                TutorialPage.DigitShiftIntro -> TutorialDigitShiftIntroStep()
+                                TutorialPage.DigitShiftHints -> TutorialDigitShiftHintsStep()
+                                TutorialPage.DigitShiftStrategy -> TutorialDigitShiftStrategyStep()
+                                TutorialPage.DigitShiftReady -> TutorialDigitShiftReadyStep()
                             }
                         }
                     }
@@ -1360,57 +1359,57 @@ private fun TutorialBlockSortReadyStep() {
 }
 
 @Composable
-private fun TutorialWordShiftIntroStep() {
-    val scene = remember { WordShiftOnboardingStateFactory.scene(WordShiftOnboardingStage.FirstGuess) }
+private fun TutorialDigitShiftIntroStep() {
+    val scene = remember { DigitShiftOnboardingStateFactory.scene(DigitShiftOnboardingStage.FirstGuess) }
     TutorialSection(
-        title = stringResource(Res.string.tutorial_wordshift_intro_title),
-        body = stringResource(Res.string.tutorial_wordshift_intro_body),
+        title = stringResource(Res.string.tutorial_digitshift_intro_title),
+        body = stringResource(Res.string.tutorial_digitshift_intro_body),
     ) {
-        TutorialWordShiftBoardDemo(scene = scene)
-        TutorialHintCard(text = scene.suggestedGuess.joinToString(" "))
+        TutorialDigitShiftBoardDemo(scene = scene)
+        TutorialHintCard(text = scene.suggestedGuess.joinToString(separator = ""))
     }
 }
 
 @Composable
-private fun TutorialWordShiftHintsStep() {
-    val scene = remember { WordShiftOnboardingStateFactory.scene(WordShiftOnboardingStage.ReadHints) }
+private fun TutorialDigitShiftHintsStep() {
+    val scene = remember { DigitShiftOnboardingStateFactory.scene(DigitShiftOnboardingStage.ReadHints) }
     TutorialSection(
-        title = stringResource(Res.string.tutorial_wordshift_hints_title),
-        body = stringResource(Res.string.tutorial_wordshift_hints_body),
+        title = stringResource(Res.string.tutorial_digitshift_hints_title),
+        body = stringResource(Res.string.tutorial_digitshift_hints_body),
     ) {
-        TutorialWordShiftBoardDemo(scene = scene)
-        TutorialHintCard(text = scene.suggestedGuess.joinToString(" "))
+        TutorialDigitShiftBoardDemo(scene = scene)
+        TutorialHintCard(text = scene.suggestedGuess.joinToString(separator = ""))
     }
 }
 
 @Composable
-private fun TutorialWordShiftStrategyStep() {
-    val scene = remember { WordShiftOnboardingStateFactory.scene(WordShiftOnboardingStage.SolveWord) }
+private fun TutorialDigitShiftStrategyStep() {
+    val scene = remember { DigitShiftOnboardingStateFactory.scene(DigitShiftOnboardingStage.SolveWord) }
     TutorialSection(
-        title = stringResource(Res.string.tutorial_wordshift_strategy_title),
-        body = stringResource(Res.string.tutorial_wordshift_strategy_body),
+        title = stringResource(Res.string.tutorial_digitshift_strategy_title),
+        body = stringResource(Res.string.tutorial_digitshift_strategy_body),
     ) {
-        TutorialWordShiftBoardDemo(scene = scene)
+        TutorialDigitShiftBoardDemo(scene = scene)
     }
 }
 
 @Composable
-private fun TutorialWordShiftReadyStep() {
+private fun TutorialDigitShiftReadyStep() {
     TutorialSection(
-        title = stringResource(Res.string.tutorial_wordshift_ready_title),
-        body = stringResource(Res.string.tutorial_wordshift_ready_body),
+        title = stringResource(Res.string.tutorial_digitshift_ready_title),
+        body = stringResource(Res.string.tutorial_digitshift_ready_body),
     ) {
         TutorialHintCard(text = stringResource(Res.string.tutorial_ready_settings_hint))
     }
 }
 
 @Composable
-private fun TutorialWordShiftBoardDemo(
-    scene: WordShiftOnboardingScene,
+private fun TutorialDigitShiftBoardDemo(
+    scene: DigitShiftOnboardingScene,
     modifier: Modifier = Modifier,
 ) {
     TutorialMiniBoardShell(modifier = modifier) {
-        WordShiftBoard(
+        DigitShiftBoard(
             gameState = scene.gameState,
             modifier = Modifier.fillMaxWidth(),
         )

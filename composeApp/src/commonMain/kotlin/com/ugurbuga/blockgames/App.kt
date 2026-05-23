@@ -32,8 +32,8 @@ import blockgames.composeapp.generated.resources.game_message_ad_reward_blocksor
 import blockgames.composeapp.generated.resources.game_message_ad_reward_blockwise
 import blockgames.composeapp.generated.resources.game_message_ad_reward_boomblocks
 import blockgames.composeapp.generated.resources.game_message_ad_reward_chainshift
+import blockgames.composeapp.generated.resources.game_message_ad_reward_digitshift
 import blockgames.composeapp.generated.resources.game_message_ad_reward_mergeshift
-import blockgames.composeapp.generated.resources.game_message_ad_reward_wordshift
 import blockgames.composeapp.generated.resources.leave_session_confirm
 import blockgames.composeapp.generated.resources.leave_session_confirm_body
 import blockgames.composeapp.generated.resources.leave_session_confirm_title
@@ -42,6 +42,7 @@ import blockgames.composeapp.generated.resources.reward_piece_column_message
 import blockgames.composeapp.generated.resources.reward_piece_row_message
 import com.ugurbuga.blockgames.ads.AppFooterAdSlot
 import com.ugurbuga.blockgames.ads.rememberPlatformGameAdController
+import com.ugurbuga.blockgames.game.logic.digitShiftAttemptsForLength
 import com.ugurbuga.blockgames.game.model.DailyChallenge
 import com.ugurbuga.blockgames.game.model.GameConfig
 import com.ugurbuga.blockgames.game.model.GameMode
@@ -63,13 +64,13 @@ import com.ugurbuga.blockgames.settings.BlockSortOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.BlockWiseOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.BoomBlocksOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.ChainShiftOnboardingStateFactory
+import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.GameSessionSlot
 import com.ugurbuga.blockgames.settings.GameSessionStorage
 import com.ugurbuga.blockgames.settings.HighScoreStorage
 import com.ugurbuga.blockgames.settings.MergeShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.RewardedTokenAdReward
 import com.ugurbuga.blockgames.settings.StackShiftGameOnboardingStateFactory
-import com.ugurbuga.blockgames.settings.WordShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.awardBonusTokens
 import com.ugurbuga.blockgames.settings.awardCompletedChallenge
 import com.ugurbuga.blockgames.settings.awardScoreTokens
@@ -119,8 +120,9 @@ internal fun isUsableSavedSession(
 ): Boolean {
     if (state.gameplayStyle == GameplayStyle.BlockSort) {
         if (state.config.columns <= 0 || state.config.rows <= 0) return false
-    } else if (state.gameplayStyle == GameplayStyle.WordShift) {
-        if (state.config.columns !in 4..7 || state.config.rows != 6) return false
+    } else if (state.gameplayStyle == GameplayStyle.DigitShift) {
+        if (state.config.columns !in setOf(5, 6)) return false
+        if (state.config.rows != digitShiftAttemptsForLength(state.config.columns)) return false
     } else {
         val defaultConfig = GameConfig.default(state.gameplayStyle)
         if (state.config.columns != defaultConfig.columns || state.config.rows != defaultConfig.rows) return false
@@ -140,7 +142,7 @@ internal fun isUsableSavedSession(
         GameplayStyle.MergeShift -> state.activePiece != null
         GameplayStyle.BoomBlocks -> true
         GameplayStyle.BlockSort -> state.board.occupiedCount > 0
-        GameplayStyle.WordShift -> state.wordShiftSolution.isNotEmpty()
+        GameplayStyle.DigitShift -> state.digitShiftSolution.isNotEmpty()
     }
 }
 
@@ -242,8 +244,8 @@ internal fun rewardedDockFeedbackSpec(
             icon = Icons.Filled.Refresh,
         )
 
-        GameplayStyle.WordShift -> RewardFeedbackSpec(
-            messageRes = Res.string.game_message_ad_reward_wordshift,
+        GameplayStyle.DigitShift -> RewardFeedbackSpec(
+            messageRes = Res.string.game_message_ad_reward_digitshift,
             icon = Icons.Filled.Refresh,
         )
     }
@@ -623,7 +625,7 @@ fun BlockGamesAppHost(
             GameplayStyle.MergeShift -> MergeShiftOnboardingStateFactory.initialState()
             GameplayStyle.BoomBlocks -> BoomBlocksOnboardingStateFactory.initialState()
             GameplayStyle.BlockSort -> BlockSortOnboardingStateFactory.initialState()
-            GameplayStyle.WordShift -> WordShiftOnboardingStateFactory.initialState()
+            GameplayStyle.DigitShift -> DigitShiftOnboardingStateFactory.initialState()
             else -> StackShiftGameOnboardingStateFactory.initialState()
         }
         gameViewModel = createGameViewModel(initialState)

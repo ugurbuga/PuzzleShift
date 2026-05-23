@@ -60,7 +60,7 @@ private class AdaptiveGameLogic(
         GameplayStyle.MergeShift -> MergeShiftGameLogic(random, scoreCalculator)
         GameplayStyle.BoomBlocks -> BoomBlocksGameLogic(random, scoreCalculator)
         GameplayStyle.BlockSort -> BlockSortGameLogic(random, scoreCalculator)
-        GameplayStyle.WordShift -> com.ugurbuga.blockgames.game.logic.WordShiftGameLogic(random, scoreCalculator)
+        GameplayStyle.DigitShift -> com.ugurbuga.blockgames.game.logic.DigitShiftGameLogic(random, scoreCalculator)
     }
 
     override fun restoreGame(state: GameState) = gameLogic(state.gameplayStyle).restoreGame(state)

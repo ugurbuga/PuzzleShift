@@ -1,12 +1,16 @@
 package com.ugurbuga.blockgames.ui.game.game
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
@@ -15,14 +19,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredHeight
+import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.animation.animateColorAsState
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Backspace
 import androidx.compose.material.icons.filled.Check
@@ -42,6 +43,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.platform.LocalDensity
@@ -51,28 +53,28 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import blockgames.composeapp.generated.resources.Res
-import blockgames.composeapp.generated.resources.game_message_wordshift_enter_word
-import blockgames.composeapp.generated.resources.interactive_onboarding_wordshift_solve_hint
-import blockgames.composeapp.generated.resources.interactive_onboarding_wordshift_submit_hint
-import blockgames.composeapp.generated.resources.interactive_onboarding_wordshift_type_hint
+import blockgames.composeapp.generated.resources.game_message_digitshift_enter_word
+import blockgames.composeapp.generated.resources.interactive_onboarding_digitshift_solve_hint
+import blockgames.composeapp.generated.resources.interactive_onboarding_digitshift_submit_hint
+import blockgames.composeapp.generated.resources.interactive_onboarding_digitshift_type_hint
 import blockgames.composeapp.generated.resources.restart_cancel
 import blockgames.composeapp.generated.resources.restart_confirm
 import blockgames.composeapp.generated.resources.restart_confirm_body
 import blockgames.composeapp.generated.resources.restart_confirm_title
 import blockgames.composeapp.generated.resources.time_remaining
-import blockgames.composeapp.generated.resources.wordshift_delete
-import blockgames.composeapp.generated.resources.wordshift_enter
-import blockgames.composeapp.generated.resources.wordshift_guess_label
+import blockgames.composeapp.generated.resources.digitshift_delete
+import blockgames.composeapp.generated.resources.digitshift_enter
+import blockgames.composeapp.generated.resources.digitshift_guess_label
 import com.ugurbuga.blockgames.ads.GameAdController
 import com.ugurbuga.blockgames.ads.NoOpGameAdController
-import com.ugurbuga.blockgames.game.logic.WordShiftLexicon
+import com.ugurbuga.blockgames.game.logic.DigitShiftLexicon
 import com.ugurbuga.blockgames.game.model.GameState
 import com.ugurbuga.blockgames.game.model.GameStatus
 import com.ugurbuga.blockgames.game.model.GameTextKey
-import com.ugurbuga.blockgames.game.model.WordShiftGuess
-import com.ugurbuga.blockgames.game.model.WordShiftLetterState
-import com.ugurbuga.blockgames.settings.WordShiftOnboardingScene
-import com.ugurbuga.blockgames.settings.WordShiftOnboardingStage
+import com.ugurbuga.blockgames.game.model.DigitShiftGuess
+import com.ugurbuga.blockgames.game.model.DigitShiftLetterState
+import com.ugurbuga.blockgames.settings.DigitShiftOnboardingScene
+import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStage
 import com.ugurbuga.blockgames.ui.game.GameOverDialog
 import com.ugurbuga.blockgames.ui.game.InteractiveOnboardingCompletionDialog
 import com.ugurbuga.blockgames.ui.game.MinimalTopBar
@@ -81,32 +83,31 @@ import com.ugurbuga.blockgames.ui.game.resolveGameText
 import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
 import com.ugurbuga.blockgames.ui.theme.blockGamesSurfaceShadow
-import org.jetbrains.compose.resources.stringResource
 import kotlinx.coroutines.delay
+import org.jetbrains.compose.resources.stringResource
 
-private const val WordShiftRevealStepDelayMillis = 170L
-private const val WordShiftSolvedPauseMillis = 420L
-private const val WordShiftFlipAnimationMillis = 260
-private const val WordShiftKeyboardKeyHeightDp = 44
-private const val WordShiftKeyboardGapDp = 4
-private const val WordShiftKeyboardSecondRowIndent = 0.55f
-private const val WordShiftKeyboardControlKeyWeight = 1.15f
-private const val WordShiftKeyboardDeleteKeyWeight = 1.15f
+private const val DigitShiftRevealStepDelayMillis = 210L
+private const val DigitShiftSolvedPauseMillis = 420L
+private const val DigitShiftFlipAnimationMillis = 380
+private const val DigitShiftKeyboardKeyHeightDp = 48
+private const val DigitShiftKeyboardGapDp = 4
+private const val DigitShiftKeyboardControlKeyWeight = 1f
+private const val DigitShiftKeyboardDeleteKeyWeight = 1f
 
-private data class WordShiftFeedbackPalette(
+private data class DigitShiftFeedbackPalette(
     val container: Color,
     val border: Color,
     val content: Color,
 )
 
 @Composable
-internal fun WordShiftGameScreen(
+internal fun DigitShiftGameScreen(
     modifier: Modifier = Modifier,
     gameState: GameState,
     highestScore: Int,
     showNewHighScoreMessage: Boolean,
     adController: GameAdController = NoOpGameAdController,
-    interactiveOnboardingScene: WordShiftOnboardingScene? = null,
+    interactiveOnboardingScene: DigitShiftOnboardingScene? = null,
     interactiveOnboardingCurrentStep: Int = 0,
     interactiveOnboardingTotalSteps: Int = 0,
     interactiveOnboardingCompletionDialogVisible: Boolean = false,
@@ -121,67 +122,67 @@ internal fun WordShiftGameScreen(
     onInteractiveOnboardingReturnHome: () -> Unit = {},
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
-    val pack = remember(gameState.wordShiftLocaleTag) { WordShiftLexicon.packFor(gameState.wordShiftLocaleTag) }
-    val latestGuess = gameState.wordShiftGuesses.lastOrNull()
+    val pack = remember(gameState.digitShiftLocaleTag) { DigitShiftLexicon.packFor(gameState.digitShiftLocaleTag) }
+    val latestGuess = gameState.digitShiftGuesses.lastOrNull()
     val latestGuessFingerprint = remember(latestGuess) { latestGuess?.fingerprint() }
-    val solutionFingerprint = remember(gameState.wordShiftSolution) { WordShiftLexicon.keyOf(gameState.wordShiftSolution) }
+    val solutionFingerprint = remember(gameState.digitShiftSolution) { DigitShiftLexicon.keyOf(gameState.digitShiftSolution) }
     var showRestartDialog by remember { mutableStateOf(false) }
     var revealAnimationInitialized by remember { mutableStateOf(false) }
     var lastSolutionFingerprint by remember { mutableStateOf(solutionFingerprint) }
     var lastAnimatedGuessFingerprint by remember { mutableStateOf<String?>(latestGuessFingerprint) }
     var animatingGuessIndex by remember { mutableStateOf<Int?>(null) }
     var revealedCellCount by remember { mutableStateOf(Int.MAX_VALUE) }
-    var displayedKeyboardHints by remember { mutableStateOf(gameState.wordShiftKeyboardHints) }
+    var displayedKeyboardHints by remember { mutableStateOf(gameState.digitShiftKeyboardHints) }
 
-    LaunchedEffect(solutionFingerprint, latestGuessFingerprint, gameState.wordShiftGuesses.size, gameState.wordShiftKeyboardHints, gameState.wordShiftAwaitingNextRound) {
+    LaunchedEffect(solutionFingerprint, latestGuessFingerprint, gameState.digitShiftGuesses.size, gameState.digitShiftKeyboardHints, gameState.digitShiftAwaitingNextRound) {
         if (!revealAnimationInitialized) {
             revealAnimationInitialized = true
             lastSolutionFingerprint = solutionFingerprint
             lastAnimatedGuessFingerprint = latestGuessFingerprint
-            displayedKeyboardHints = gameState.wordShiftKeyboardHints
+            displayedKeyboardHints = gameState.digitShiftKeyboardHints
             animatingGuessIndex = null
             revealedCellCount = Int.MAX_VALUE
             return@LaunchedEffect
         }
 
-        if (solutionFingerprint != lastSolutionFingerprint || gameState.wordShiftGuesses.isEmpty()) {
+        if (solutionFingerprint != lastSolutionFingerprint || gameState.digitShiftGuesses.isEmpty()) {
             lastSolutionFingerprint = solutionFingerprint
             lastAnimatedGuessFingerprint = latestGuessFingerprint
-            displayedKeyboardHints = gameState.wordShiftKeyboardHints
+            displayedKeyboardHints = gameState.digitShiftKeyboardHints
             animatingGuessIndex = null
             revealedCellCount = Int.MAX_VALUE
             return@LaunchedEffect
         }
 
         if (latestGuess == null || latestGuessFingerprint == null || latestGuessFingerprint == lastAnimatedGuessFingerprint) {
-            displayedKeyboardHints = gameState.wordShiftKeyboardHints
+            displayedKeyboardHints = gameState.digitShiftKeyboardHints
             animatingGuessIndex = null
             revealedCellCount = Int.MAX_VALUE
             return@LaunchedEffect
         }
 
         lastAnimatedGuessFingerprint = latestGuessFingerprint
-        animatingGuessIndex = gameState.wordShiftGuesses.lastIndex
+        animatingGuessIndex = gameState.digitShiftGuesses.lastIndex
         revealedCellCount = 0
-        displayedKeyboardHints = buildKeyboardHints(gameState.wordShiftGuesses.dropLast(1))
+        displayedKeyboardHints = buildKeyboardHints(gameState.digitShiftGuesses.dropLast(1))
 
         latestGuess.tokens.zip(latestGuess.states).forEachIndexed { index, (token, state) ->
-            delay(WordShiftRevealStepDelayMillis)
+            delay(DigitShiftRevealStepDelayMillis)
             revealedCellCount = index + 1
             displayedKeyboardHints = mergeKeyboardHint(displayedKeyboardHints, token, state)
         }
 
         animatingGuessIndex = null
         revealedCellCount = Int.MAX_VALUE
-        displayedKeyboardHints = gameState.wordShiftKeyboardHints
+        displayedKeyboardHints = gameState.digitShiftKeyboardHints
 
-        if (gameState.wordShiftAwaitingNextRound && latestGuess.states.all { it == WordShiftLetterState.Correct }) {
-            delay(WordShiftSolvedPauseMillis)
+        if (gameState.digitShiftAwaitingNextRound && latestGuess.states.all { it == DigitShiftLetterState.Correct }) {
+            delay(DigitShiftSolvedPauseMillis)
             onAdvanceRound()
         }
     }
 
-    val inputEnabled = gameState.status == GameStatus.Running && !gameState.wordShiftAwaitingNextRound && animatingGuessIndex == null
+    val inputEnabled = gameState.status == GameStatus.Running && !gameState.digitShiftAwaitingNextRound && animatingGuessIndex == null
 
     if (showRestartDialog) {
         RestartConfirmDialog(
@@ -222,6 +223,8 @@ internal fun WordShiftGameScreen(
         modifier = modifier
             .fillMaxSize()
             .background(uiColors.panel.copy(alpha = 0.18f))
+            .statusBarsPadding()
+            .navigationBarsPadding()
             .padding(12.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
@@ -235,49 +238,42 @@ internal fun WordShiftGameScreen(
             stylePulse = 0f,
         )
 
-        Column(
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxWidth()
-                .verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
-        ) {
-
-            interactiveOnboardingScene?.let { scene ->
-                WordShiftOnboardingHintCard(
-                    scene = scene,
-                    currentStep = interactiveOnboardingCurrentStep,
-                    totalSteps = interactiveOnboardingTotalSteps,
-                )
-            }
-
-            WordShiftBoard(
-                gameState = gameState,
-                animatedGuessIndex = animatingGuessIndex,
-                revealedCellCount = revealedCellCount,
-                modifier = Modifier.fillMaxWidth(),
-            )
-
-            if (gameState.message.key != GameTextKey.GameMessageWordShiftSolved) {
-                WordShiftMessageCard(
-                    message = resolveGameText(gameState.message),
-                )
-            }
-
-            WordShiftKeyboard(
-                keyboardRows = pack.keyboardRows(gameState.config.columns),
-                keyboardHints = displayedKeyboardHints,
-                enabled = inputEnabled,
-                onAppendToken = onAppendToken,
-                onDeleteToken = onDeleteToken,
-                onSubmitGuess = onSubmitGuess,
+        interactiveOnboardingScene?.let { scene ->
+            DigitShiftOnboardingHintCard(
+                scene = scene,
+                currentStep = interactiveOnboardingCurrentStep,
+                totalSteps = interactiveOnboardingTotalSteps,
             )
         }
+
+        if (gameState.message.key != GameTextKey.GameMessageDigitShiftSolved) {
+            DigitShiftMessageCard(
+                message = resolveGameText(gameState.message),
+            )
+        }
+
+        DigitShiftBoard(
+            gameState = gameState,
+            animatedGuessIndex = animatingGuessIndex,
+            revealedCellCount = revealedCellCount,
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxWidth(),
+        )
+
+        DigitShiftKeyboard(
+            keyboardRows = pack.keyboardRows(gameState.config.columns),
+            keyboardHints = displayedKeyboardHints,
+            enabled = inputEnabled,
+            onAppendToken = onAppendToken,
+            onDeleteToken = onDeleteToken,
+            onSubmitGuess = onSubmitGuess,
+        )
     }
 }
 
 @Composable
-internal fun WordShiftBoard(
+internal fun DigitShiftBoard(
     gameState: GameState,
     animatedGuessIndex: Int? = null,
     revealedCellCount: Int = Int.MAX_VALUE,
@@ -293,32 +289,52 @@ internal fun WordShiftBoard(
         border = BorderStroke(1.dp, BlockGamesThemeTokens.uiColors.panelStroke.copy(alpha = 0.7f)),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
     ) {
-        Column(
+        BoxWithConstraints(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxSize()
                 .padding(14.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            repeat(gameState.config.rows) { rowIndex ->
-                val rowGuess = gameState.wordShiftGuesses.getOrNull(rowIndex)
-                val currentRow = if (rowIndex == gameState.wordShiftGuesses.size && gameState.status == GameStatus.Running) {
-                    gameState.wordShiftCurrentGuess
-                } else {
-                    emptyList()
-                }
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                ) {
-                    repeat(gameState.config.columns) { columnIndex ->
-                        val state = rowGuess?.states?.getOrNull(columnIndex)?.takeIf {
-                            rowIndex != animatedGuessIndex || columnIndex < revealedCellCount
+            val spacing = if (maxWidth < 360.dp || maxHeight < 420.dp) 6.dp else 8.dp
+            val widthBasedCellSize =
+                (maxWidth - (spacing * (gameState.config.columns - 1))) / gameState.config.columns
+            val heightBasedCellSize =
+                (maxHeight - (spacing * (gameState.config.rows - 1))) / gameState.config.rows
+            val cellSize = if (widthBasedCellSize < heightBasedCellSize) widthBasedCellSize else heightBasedCellSize
+            val density = LocalDensity.current
+            val boardWidth = with(density) {
+                ((cellSize.toPx() * gameState.config.columns) + (spacing.toPx() * (gameState.config.columns - 1))).toDp()
+            }
+            val boardHeight = with(density) {
+                ((cellSize.toPx() * gameState.config.rows) + (spacing.toPx() * (gameState.config.rows - 1))).toDp()
+            }
+            Column(
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .requiredWidth(boardWidth)
+                    .requiredHeight(boardHeight),
+                verticalArrangement = Arrangement.spacedBy(spacing),
+            ) {
+                repeat(gameState.config.rows) { rowIndex ->
+                    val rowGuess = gameState.digitShiftGuesses.getOrNull(rowIndex)
+                    val currentRow = if (rowIndex == gameState.digitShiftGuesses.size && gameState.status == GameStatus.Running) {
+                        gameState.digitShiftCurrentGuess
+                    } else {
+                        emptyList()
+                    }
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(spacing),
+                    ) {
+                        repeat(gameState.config.columns) { columnIndex ->
+                            val state = rowGuess?.states?.getOrNull(columnIndex)?.takeIf {
+                                rowIndex != animatedGuessIndex || columnIndex < revealedCellCount
+                            }
+                            DigitShiftCell(
+                                token = rowGuess?.tokens?.getOrNull(columnIndex) ?: currentRow.getOrNull(columnIndex).orEmpty(),
+                                state = state,
+                                modifier = Modifier.size(cellSize),
+                            )
                         }
-                        WordShiftCell(
-                            token = rowGuess?.tokens?.getOrNull(columnIndex) ?: currentRow.getOrNull(columnIndex).orEmpty(),
-                            state = state,
-                            modifier = Modifier.weight(1f),
-                        )
                     }
                 }
             }
@@ -327,26 +343,26 @@ internal fun WordShiftBoard(
 }
 
 @Composable
-private fun WordShiftCell(
+private fun DigitShiftCell(
     token: String,
-    state: WordShiftLetterState?,
+    state: DigitShiftLetterState?,
     modifier: Modifier = Modifier,
 ) {
-    val palette = wordShiftPaletteFor(state)
+    val palette = digitShiftPaletteFor(state)
     val animatedBackground by animateColorAsState(
         targetValue = palette.container,
-        animationSpec = tween(durationMillis = WordShiftFlipAnimationMillis),
-        label = "wordShiftCellBackground",
+        animationSpec = tween(durationMillis = DigitShiftFlipAnimationMillis),
+        label = "digitShiftCellBackground",
     )
     val animatedBorder by animateColorAsState(
         targetValue = palette.border,
-        animationSpec = tween(durationMillis = WordShiftFlipAnimationMillis),
-        label = "wordShiftCellBorder",
+        animationSpec = tween(durationMillis = DigitShiftFlipAnimationMillis),
+        label = "digitShiftCellBorder",
     )
     val animatedContentColor by animateColorAsState(
         targetValue = palette.content,
-        animationSpec = tween(durationMillis = WordShiftFlipAnimationMillis),
-        label = "wordShiftCellContent",
+        animationSpec = tween(durationMillis = DigitShiftFlipAnimationMillis),
+        label = "digitShiftCellContent",
     )
     var flipped by remember(token, state) { mutableStateOf(state == null || token.isBlank()) }
     LaunchedEffect(token, state) {
@@ -360,18 +376,20 @@ private fun WordShiftCell(
     }
     val flipProgress by animateFloatAsState(
         targetValue = if (flipped) 1f else 0f,
-        animationSpec = tween(durationMillis = WordShiftFlipAnimationMillis),
-        label = "wordShiftCellFlip",
+        animationSpec = tween(durationMillis = DigitShiftFlipAnimationMillis),
+        label = "digitShiftCellFlip",
     )
     val density = LocalDensity.current
     Card(
         modifier = modifier
             .aspectRatio(1f)
             .graphicsLayer {
-                rotationX = (1f - flipProgress) * 88f
-                scaleX = 0.96f + (flipProgress * 0.04f)
-                scaleY = 0.90f + (flipProgress * 0.10f)
-                cameraDistance = with(density) { 18.dp.toPx() }
+                rotationX = -180f * (1f - flipProgress)
+                scaleX = 0.88f + (flipProgress * 0.12f)
+                scaleY = 0.72f + (flipProgress * 0.28f)
+                alpha = 0.76f + (flipProgress * 0.24f)
+                transformOrigin = TransformOrigin(0.5f, 1f)
+                cameraDistance = with(density) { 12.dp.toPx() }
             },
         shape = RoundedCornerShape(14.dp),
         colors = CardDefaults.cardColors(containerColor = animatedBackground),
@@ -395,9 +413,9 @@ private fun WordShiftCell(
 }
 
 @Composable
-internal fun WordShiftKeyboard(
+internal fun DigitShiftKeyboard(
     keyboardRows: List<List<String>>,
-    keyboardHints: Map<String, WordShiftLetterState>,
+    keyboardHints: Map<String, DigitShiftLetterState>,
     enabled: Boolean,
     onAppendToken: (String) -> Unit,
     onDeleteToken: () -> Unit,
@@ -406,120 +424,113 @@ internal fun WordShiftKeyboard(
 ) {
     val resolvedRows = remember(keyboardRows) {
         when {
-            keyboardRows.size >= 3 -> keyboardRows.take(3)
-            keyboardRows.isEmpty() -> listOf(emptyList(), emptyList(), emptyList())
-            else -> keyboardRows + List(3 - keyboardRows.size) { emptyList() }
+            keyboardRows.size >= 2 -> keyboardRows.take(2)
+            keyboardRows.isEmpty() -> listOf(emptyList(), emptyList())
+            else -> keyboardRows + List(2 - keyboardRows.size) { emptyList() }
         }
     }
     Column(
         modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(WordShiftKeyboardGapDp.dp),
+        verticalArrangement = Arrangement.spacedBy(DigitShiftKeyboardGapDp.dp),
     ) {
-        WordShiftKeyboardLetterRow(
+        DigitShiftKeyboardLetterRow(
             tokens = resolvedRows[0],
             keyboardHints = keyboardHints,
             enabled = enabled,
             onAppendToken = onAppendToken,
+            trailingControl = {
+                DigitShiftKeyboardButton(
+                    label = stringResource(Res.string.digitshift_delete),
+                    state = DigitShiftLetterState.Absent,
+                    enabled = enabled,
+                    onClick = onDeleteToken,
+                    modifier = Modifier.weight(DigitShiftKeyboardDeleteKeyWeight),
+                    icon = Icons.AutoMirrored.Filled.Backspace,
+                    showLabel = false,
+                )
+            },
         )
-        WordShiftKeyboardLetterRow(
-            tokens = resolvedRows[1],
+        DigitShiftKeyboardLetterRow(
+            tokens = resolvedRows.getOrElse(1) { emptyList() },
             keyboardHints = keyboardHints,
             enabled = enabled,
             onAppendToken = onAppendToken,
-            leadingSpacerWeight = WordShiftKeyboardSecondRowIndent,
-            trailingSpacerWeight = WordShiftKeyboardSecondRowIndent,
-        )
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(WordShiftKeyboardGapDp.dp),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            WordShiftKeyboardButton(
-                label = stringResource(Res.string.wordshift_enter),
-                state = WordShiftLetterState.Correct,
-                enabled = enabled,
-                onClick = onSubmitGuess,
-                modifier = Modifier.weight(WordShiftKeyboardControlKeyWeight),
-                icon = Icons.Filled.Check,
-                showLabel = false,
-            )
-            resolvedRows[2].forEach { token ->
-                WordShiftKeyboardButton(
-                    label = token,
-                    state = keyboardHints[token] ?: WordShiftLetterState.Unknown,
+            trailingControl = {
+                DigitShiftKeyboardButton(
+                    label = stringResource(Res.string.digitshift_enter),
+                    state = DigitShiftLetterState.Correct,
                     enabled = enabled,
-                    onClick = { onAppendToken(token) },
-                    modifier = Modifier.weight(wordShiftKeyWeight(token)),
+                    onClick = onSubmitGuess,
+                    modifier = Modifier.weight(DigitShiftKeyboardControlKeyWeight),
+                    icon = Icons.Filled.Check,
+                    showLabel = false,
                 )
-            }
-            WordShiftKeyboardButton(
-                label = stringResource(Res.string.wordshift_delete),
-                state = WordShiftLetterState.Absent,
-                enabled = enabled,
-                onClick = onDeleteToken,
-                modifier = Modifier.weight(WordShiftKeyboardDeleteKeyWeight),
-                icon = Icons.AutoMirrored.Filled.Backspace,
-                showLabel = false,
-            )
-        }
+            },
+        )
     }
 }
 
 @Composable
-private fun WordShiftKeyboardLetterRow(
+private fun DigitShiftKeyboardLetterRow(
     tokens: List<String>,
-    keyboardHints: Map<String, WordShiftLetterState>,
+    keyboardHints: Map<String, DigitShiftLetterState>,
     enabled: Boolean,
     onAppendToken: (String) -> Unit,
-    leadingSpacerWeight: Float = 0f,
-    trailingSpacerWeight: Float = 0f,
+    trailingControl: @Composable (RowScope.() -> Unit)? = null,
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(WordShiftKeyboardGapDp.dp),
+        horizontalArrangement = Arrangement.spacedBy(DigitShiftKeyboardGapDp.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        if (leadingSpacerWeight > 0f) {
-            Spacer(modifier = Modifier.weight(leadingSpacerWeight))
-        }
         tokens.forEach { token ->
-            WordShiftKeyboardButton(
+            DigitShiftKeyboardButton(
                 label = token,
-                state = keyboardHints[token] ?: WordShiftLetterState.Unknown,
+                state = keyboardHints[token] ?: DigitShiftLetterState.Unknown,
                 enabled = enabled,
                 onClick = { onAppendToken(token) },
-                modifier = Modifier.weight(wordShiftKeyWeight(token)),
+                modifier = Modifier.weight(digitShiftKeyWeight(token)),
             )
         }
-        if (trailingSpacerWeight > 0f) {
-            Spacer(modifier = Modifier.weight(trailingSpacerWeight))
-        }
+        trailingControl?.invoke(this)
     }
 }
 
 @Composable
-private fun RowScope.WordShiftKeyboardButton(
+private fun RowScope.DigitShiftKeyboardButton(
     label: String,
-    state: WordShiftLetterState,
+    state: DigitShiftLetterState,
     enabled: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     icon: androidx.compose.ui.graphics.vector.ImageVector? = null,
     showLabel: Boolean = true,
 ) {
-    val palette = wordShiftPaletteFor(
+    val palette = digitShiftPaletteFor(
         state = state,
         enabled = enabled,
         isKeyboardKey = true,
     )
-    val animatedBackground by animateColorAsState(palette.container, tween(180), label = "wordShiftKeyBackground")
-    val animatedBorder by animateColorAsState(palette.border, tween(180), label = "wordShiftKeyBorder")
-    val animatedContent by animateColorAsState(palette.content, tween(180), label = "wordShiftKeyContent")
+    val animatedBackground by animateColorAsState(
+        palette.container,
+        tween(DigitShiftFlipAnimationMillis),
+        label = "digitShiftKeyBackground",
+    )
+    val animatedBorder by animateColorAsState(
+        palette.border,
+        tween(DigitShiftFlipAnimationMillis),
+        label = "digitShiftKeyBorder",
+    )
+    val animatedContent by animateColorAsState(
+        palette.content,
+        tween(DigitShiftFlipAnimationMillis),
+        label = "digitShiftKeyContent",
+    )
     val shape = RoundedCornerShape(12.dp)
 
     Card(
         modifier = modifier
-            .height(WordShiftKeyboardKeyHeightDp.dp)
+            .height(DigitShiftKeyboardKeyHeightDp.dp)
             .clip(shape)
             .clickable(enabled = enabled, onClick = onClick)
             .graphicsLayer { alpha = if (enabled) 1f else 0.72f },
@@ -538,8 +549,8 @@ private fun RowScope.WordShiftKeyboardButton(
                 maxWidth < 18.dp -> MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp)
                 maxWidth < 22.dp -> MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp)
                 maxWidth < 28.dp || label.length >= 4 -> MaterialTheme.typography.labelSmall.copy(fontSize = 11.sp)
-                maxWidth < 34.dp || label.length >= 2 -> MaterialTheme.typography.labelMedium.copy(fontSize = 12.sp)
-                else -> MaterialTheme.typography.titleSmall.copy(fontSize = 14.sp)
+                maxWidth < 34.dp || label.length >= 2 -> MaterialTheme.typography.labelLarge.copy(fontSize = 13.sp)
+                else -> MaterialTheme.typography.titleMedium.copy(fontSize = 18.sp)
             }
 
             Row(
@@ -552,7 +563,7 @@ private fun RowScope.WordShiftKeyboardButton(
                         imageVector = icon,
                         contentDescription = label,
                         tint = animatedContent,
-                        modifier = Modifier.size(18.dp),
+                        modifier = Modifier.size(20.dp),
                     )
                 } else {
                     Text(
@@ -571,19 +582,19 @@ private fun RowScope.WordShiftKeyboardButton(
     }
 }
 
-private fun WordShiftGuess.fingerprint(): String = buildString {
-    append(WordShiftLexicon.keyOf(tokens))
+private fun DigitShiftGuess.fingerprint(): String = buildString {
+    append(DigitShiftLexicon.keyOf(tokens))
     append('#')
     append(states.joinToString(separator = ",") { it.ordinal.toString() })
 }
 
-private fun buildKeyboardHints(guesses: List<WordShiftGuess>): Map<String, WordShiftLetterState> =
+private fun buildKeyboardHints(guesses: List<DigitShiftGuess>): Map<String, DigitShiftLetterState> =
     guesses.fold(emptyMap(), ::mergeKeyboardHints)
 
 private fun mergeKeyboardHints(
-    existing: Map<String, WordShiftLetterState>,
-    guess: WordShiftGuess,
-): Map<String, WordShiftLetterState> {
+    existing: Map<String, DigitShiftLetterState>,
+    guess: DigitShiftGuess,
+): Map<String, DigitShiftLetterState> {
     var updated = existing
     guess.tokens.zip(guess.states).forEach { (token, state) ->
         updated = mergeKeyboardHint(updated, token, state)
@@ -592,45 +603,45 @@ private fun mergeKeyboardHints(
 }
 
 private fun mergeKeyboardHint(
-    existing: Map<String, WordShiftLetterState>,
+    existing: Map<String, DigitShiftLetterState>,
     token: String,
-    state: WordShiftLetterState,
-): Map<String, WordShiftLetterState> {
-    val previous = existing[token] ?: WordShiftLetterState.Unknown
+    state: DigitShiftLetterState,
+): Map<String, DigitShiftLetterState> {
+    val previous = existing[token] ?: DigitShiftLetterState.Unknown
     if (state.ordinal < previous.ordinal) return existing
     return existing + (token to state)
 }
 
 @Composable
-private fun wordShiftPaletteFor(
-    state: WordShiftLetterState?,
+private fun digitShiftPaletteFor(
+    state: DigitShiftLetterState?,
     enabled: Boolean = true,
     isKeyboardKey: Boolean = false,
-): WordShiftFeedbackPalette {
+): DigitShiftFeedbackPalette {
     val uiColors = BlockGamesThemeTokens.uiColors
     val colorScheme = MaterialTheme.colorScheme
     val base = when (state) {
-        WordShiftLetterState.Correct -> WordShiftFeedbackPalette(
+        DigitShiftLetterState.Correct -> DigitShiftFeedbackPalette(
             container = lerp(uiColors.success, uiColors.actionSuccess, 0.28f).copy(alpha = if (isKeyboardKey) 0.98f else 0.94f),
             border = lerp(uiColors.success, Color.White, 0.18f),
             content = Color.White,
         )
 
-        WordShiftLetterState.Present -> WordShiftFeedbackPalette(
+        DigitShiftLetterState.Present -> DigitShiftFeedbackPalette(
             container = lerp(uiColors.warning, uiColors.actionWarning, 0.18f).copy(alpha = if (isKeyboardKey) 0.98f else 0.94f),
             border = lerp(uiColors.warning, Color.White, 0.14f),
             content = Color.White,
         )
 
-        WordShiftLetterState.Absent -> WordShiftFeedbackPalette(
-            container = lerp(uiColors.panelMuted, colorScheme.surfaceVariant, 0.38f).copy(alpha = if (isKeyboardKey) 0.98f else 0.92f),
-            border = lerp(uiColors.panelStroke, colorScheme.onSurfaceVariant, 0.22f),
-            content = lerp(colorScheme.onSurface, Color.White, 0.10f),
+        DigitShiftLetterState.Absent -> DigitShiftFeedbackPalette(
+            container = Color(0xFF24262B).copy(alpha = if (isKeyboardKey) 0.99f else 0.95f),
+            border = Color(0xFF0F1115),
+            content = Color(0xFFF2F4F7),
         )
 
-        WordShiftLetterState.Unknown,
+        DigitShiftLetterState.Unknown,
         null,
-        -> WordShiftFeedbackPalette(
+        -> DigitShiftFeedbackPalette(
             container = if (isKeyboardKey) {
                 lerp(uiColors.metricCard, uiColors.panelHighlight, 0.10f).copy(alpha = 0.96f)
             } else {
@@ -647,7 +658,7 @@ private fun wordShiftPaletteFor(
     )
 }
 
-private fun wordShiftKeyWeight(token: String): Float = when {
+private fun digitShiftKeyWeight(token: String): Float = when {
     token.length >= 3 -> 1.35f
     token.length == 2 -> 1.15f
     else -> 1f
@@ -655,7 +666,7 @@ private fun wordShiftKeyWeight(token: String): Float = when {
 
 
 @Composable
-private fun WordShiftMessageCard(
+private fun DigitShiftMessageCard(
     message: String,
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
@@ -666,7 +677,7 @@ private fun WordShiftMessageCard(
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
     ) {
         Text(
-            text = message.ifBlank { stringResource(Res.string.game_message_wordshift_enter_word) },
+            text = message.ifBlank { stringResource(Res.string.game_message_digitshift_enter_word) },
             modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurface,
@@ -676,8 +687,8 @@ private fun WordShiftMessageCard(
 }
 
 @Composable
-private fun WordShiftOnboardingHintCard(
-    scene: WordShiftOnboardingScene,
+private fun DigitShiftOnboardingHintCard(
+    scene: DigitShiftOnboardingScene,
     currentStep: Int,
     totalSteps: Int,
 ) {
@@ -702,7 +713,7 @@ private fun WordShiftOnboardingHintCard(
                     tint = uiColors.guideAccent,
                 )
                 Text(
-                    text = if (totalSteps > 0) stringResource(Res.string.wordshift_guess_label, currentStep.coerceAtLeast(1)) else "",
+                    text = if (totalSteps > 0) stringResource(Res.string.digitshift_guess_label, currentStep.coerceAtLeast(1)) else "",
                     style = MaterialTheme.typography.labelLarge,
                     color = uiColors.guideAccent,
                     fontWeight = FontWeight.Bold,
@@ -718,15 +729,15 @@ private fun WordShiftOnboardingHintCard(
             }
             Text(
                 text = when (scene.stage) {
-                    WordShiftOnboardingStage.FirstGuess -> stringResource(Res.string.interactive_onboarding_wordshift_type_hint)
-                    WordShiftOnboardingStage.ReadHints -> stringResource(Res.string.interactive_onboarding_wordshift_submit_hint)
-                    WordShiftOnboardingStage.SolveWord -> stringResource(Res.string.interactive_onboarding_wordshift_solve_hint)
+                    DigitShiftOnboardingStage.FirstGuess -> stringResource(Res.string.interactive_onboarding_digitshift_type_hint)
+                    DigitShiftOnboardingStage.ReadHints -> stringResource(Res.string.interactive_onboarding_digitshift_submit_hint)
+                    DigitShiftOnboardingStage.SolveWord -> stringResource(Res.string.interactive_onboarding_digitshift_solve_hint)
                 },
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface,
             )
             Text(
-                text = scene.suggestedGuess.joinToString(" "),
+                text = scene.suggestedGuess.joinToString(separator = ""),
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.ExtraBold,
                 color = uiColors.guideAccent,
