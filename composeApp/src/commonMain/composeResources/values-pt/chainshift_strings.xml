@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_chainshift_desc">Atire do centro, encaixe blocos em uma corrente espiral e estoure combinações de 3 ou mais da mesma cor.</string>
+
+    <!-- ChainShiftGameScreen -->
+    <string name="game_message_ad_reward_chainshift">Bloco ativo renovado para Chain Shift!</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_chainshift_intro_title">Conheça Chain Shift</string>
+    <string name="tutorial_chainshift_intro_body">Os blocos entram pela borda, contornam o tabuleiro e avançam em direção ao centro. Seu lançador fica no meio, então cada tiro precisa cortar a corrente em movimento antes que ela chegue até você.</string>
+    <string name="tutorial_chainshift_path_title">Mirar e atirar</string>
+    <string name="tutorial_chainshift_path_body">Mire a partir do centro e solte para atirar. Seu bloco se insere onde atinge a corrente, empurrando os blocos subsequentes para a frente.</string>
+    <string name="tutorial_chainshift_combo_title">Criar recuos e combos</string>
+    <string name="tutorial_chainshift_combo_body">Combine 3 ou mais blocos conectados da mesma cor ao longo da corrente para estourá-los. Quando o espaço se fecha, a corrente recua em direção à borda, potencialmente desencadeando reações em cadeia.</string>
+    <string name="tutorial_chainshift_ready_title">Segure o centro</string>
+    <string name="tutorial_chainshift_ready_body">Mantenha a calma, deixe a espiral curta e use seus tiros para quebrar sequências perigosas antes que travem o centro. Quanto mais fundo a corrente avança, menos espaço você terá para se recuperar.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_chainshift_intro_title">Atire no bloco guiado</string>
+    <string name="interactive_onboarding_chainshift_intro_body">Comece atirando na parte destacada da espiral. Seu bloco é lançado do centro e se insere na corrente no ponto de impacto.</string>
+    <string name="interactive_onboarding_chainshift_match_title">Faça uma combinação de 3 blocos</string>
+    <string name="interactive_onboarding_chainshift_match_body">Agora use o tiro guiado para alinhar 3 blocos da mesma cor. Os segmentos correspondentes estouram imediatamente e abrem espaço perto do centro.</string>
+    <string name="interactive_onboarding_chainshift_chain_title">Desencadear uma reação em cadeia</string>
+    <string name="interactive_onboarding_chainshift_chain_body">Esta configuração recompensa um tiro mais inteligente. Limpe a primeira combinação, observe a corrente recuar para a borda e deixe a segunda combinação estourar por conta própria.</string>
+    <string name="interactive_onboarding_chainshift_tap_hint">Mire e solte para atirar no bloco destacado.</string>
+
+</resources>

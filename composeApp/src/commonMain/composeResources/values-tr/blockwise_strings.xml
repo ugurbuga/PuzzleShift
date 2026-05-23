@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blockwise_desc">Parçaları tahtanın herhangi bir yerine sürükleyip bırakın.</string>
+
+    <!-- BlockWiseGameScreen -->
+    <string name="ad_reward_blockwise_refresh">Tepsiyi Yenile</string>
+    <string name="feedback_ad_reward_blockwise">Parça havuzu yenilendi</string>
+    <string name="launch_drag_hint_blockwise">Tahtada istediğin yere sürükle → bırakınca yerleşir</string>
+    <string name="game_message_select_column">Üç parçadan birini sürükleyip uygun boş alana bırak.</string>
+    <string name="game_message_ad_reward_blockwise">Parça havuzu yenilendi! Yeni şekiller hazır.</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rows_title">Satırlar</string>
+    <string name="challenge_info_clear_rows">Tam dolu satırlar tahtadan temizlenir.</string>
+    <string name="challenge_info_clear_both_directions_title">Satır + Sütun</string>
+    <string name="challenge_info_clear_both_directions">Tek bir yerleşim aynı anda en az bir satır ve bir sütun temizleyebilir.</string>
+    <string name="challenge_task_clear_rows">%1$d satır temizle</string>
+    <string name="challenge_task_clear_both_directions">%1$d kez satır + sütun temizle</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_intro_title">Üç parçadan istediğini tahtaya sürükle</string>
+    <string name="tutorial_intro_body">Parça havuzunda üç şekil bekler. İstediğini seç, tahtadaki boş hücrelerin üstüne sürükle ve tam sığdığı yerde bırak.</string>
+    <string name="tutorial_systems_title">Sadece bu hamleyi değil tüm parça havuzunu düşün</string>
+    <string name="tutorial_systems_body">Bir parçayı kullandıktan sonra diğerleri havuzda kalır. Üçü de bittiğinde yeni bir üçlü gelir. Kalan şekiller için yeterli alan bırakmaya çalış.</string>
+    <string name="tutorial_specials_title">Tam satır ve tam sütun temizlenir</string>
+    <string name="tutorial_specials_body">Bu modda özel parça yok. Bunun yerine tam bir satır veya tam bir sütun doldurulduğunda temizlenir. İkisi aynı anda dolarsa birlikte patlar.</string>
+    <string name="tutorial_ready_title">Yeni blok bulmaca akışına hazırsın</string>
+    <string name="tutorial_ready_body">Havuzu sürekli tara, satır ve sütun temizlikleri kur ve büyük şekilleri sıkıştırma. Üç parçadan hiçbiri sığmadığında oyun biter.</string>
+    <string name="tutorial_ready_block_properties_hint">Serbest yerleştirme ve eşzamanlı satır/sütun temizliğini hatırlamak istediğinde rehberi yeniden aç.</string>
+    <string name="tutorial_ready_tutorial_hint">Serbest yerleştirme ve eşzamanlı satır/sütun temizliğini hatırlamak istediğinde rehberi yeniden aç.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_drag_title">Havuzdaki parçayı tahtaya sürükle</string>
+    <string name="interactive_onboarding_drag_body">Üç şekilden birine dokun, tahtanın üstüne taşı ve vurgulanan hücrelerle hizala.</string>
+    <string name="interactive_onboarding_drag_to_board">Vurgulanan parçayı havuzdan alıp parlayan hedef hücrelere sürükle.</string>
+    <string name="interactive_onboarding_drag_ready">Harika — şimdi bırak. Şekil vurgulanan hücrelere oturunca bir sonraki adım başlayacak.</string>
+    <string name="interactive_onboarding_aim_hint">Devam etmek için parçayı vurgulanan hücrelerin içine bırak.</string>
+    <string name="interactive_onboarding_target_locked">Harika — burada tut ve devam etmek için bırak.</string>
+    <string name="interactive_onboarding_waiting">Yerleşim kabul edildi. Sıradaki yönlendirme hazırlanıyor…</string>
+    <string name="interactive_onboarding_line_clear_title">Bir satırı tamamla ve temizle</string>
+    <string name="interactive_onboarding_line_clear_body">Bu şekli yönlendirilen yere bırak; satır tamamlansın, parlasın ve kaybolsun.</string>
+    <string name="interactive_onboarding_column_clearer_title">Bir sütunu tamamla ve temizle</string>
+    <string name="interactive_onboarding_column_clearer_body">Şimdi vurgulanan yerleşimi kullanarak tam bir sütunu bitir ve dikey alan aç.</string>
+    <string name="interactive_onboarding_row_clearer_title">Satırlar yatay alan açar</string>
+    <string name="interactive_onboarding_row_clearer_body">Tam dolu satır anında temizlenir. Vurgulanan hücreleri hedefle ve tahtanın enine nasıl açıldığını izle.</string>
+    <string name="interactive_onboarding_ghost_title">Sadece hamleyi değil tüm parça havuzunu düşün</string>
+    <string name="interactive_onboarding_ghost_body">Bir şekli bırakmadan önce diğer iki parçaya da bak. İyi skorlar yalnızca bu hamleden değil, tüm parça havuzuna yer bırakmaktan gelir.</string>
+    <string name="interactive_onboarding_heavy_title">İki yönü aynı anda temizle</string>
+    <string name="interactive_onboarding_heavy_body">Bazı yerleşimler aynı anda bir satır ve bir sütunu bitirir. Daha büyük bir çift temizlik için yönlendirilen hedefi kullan.</string>
+
+</resources>

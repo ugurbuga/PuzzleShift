@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blocksort_desc">Ordena pilas de colores mezcladas hasta que cada columna llena tenga un solo color.</string>
+
+    <!-- BlockSortGameScreen -->
+    <string name="game_message_ad_reward_blocksort">¡Tablero reorganizado! Nuevas rutas abiertas.</string>
+    <string name="blocksort_completed_label">Ordenado</string>
+    <string name="blocksort_goal_hint">Objetivo: termina la ronda con cada columna llena de un solo color. Las rondas pueden usar 3, 4, 5 o 6 casillas del mismo tamaño por columna, y el tablero puede dividirse en dos filas.</string>
+    <string name="blocksort_no_moves_hint">No quedan transferencias válidas en esta disposición mixta. Prueba a mezclar de nuevo o empieza una ronda nueva.</string>
+    <string name="blocksort_round_congrats_title">¡Felicidades!</string>
+    <string name="blocksort_round_complete_hint">¡Ronda superada! Bono +%1$d y ha llegado una nueva disposición mixta.</string>
+    <string name="blocksort_round_label">Ronda</string>
+    <string name="blocksort_select_source_hint">Toca una columna mixta no vacía para recoger su pila superior de color.</string>
+    <string name="blocksort_selected_hint">Ahora toca una columna vacía o una columna con el mismo color superior para mover la pila.</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rounds_title">Rondas</string>
+    <string name="challenge_info_clear_rounds">Completa rondas enteras de BlockSort convirtiendo cada columna llena en un solo color.</string>
+    <string name="challenge_task_complete_columns">Completa %1$d columnas</string>
+    <string name="challenge_task_clear_rounds">Completa %1$d rondas</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_blocksort_intro_title">Mueve pilas superiores del mismo tamaño entre columnas</string>
+    <string name="tutorial_blocksort_intro_body">Cada ronda usa un tamaño de casilla compartido para todas las columnas. Toca una columna mixta no vacía para tomar su pila superior de color y muévela a una columna vacía o a una columna cuya parte superior tenga el mismo color.</string>
+    <string name="tutorial_blocksort_rules_title">Solo los colores iguales pueden apilarse juntos</string>
+    <string name="tutorial_blocksort_rules_body">Solo puedes transferir a un espacio vacío o al mismo color superior. A medida que el puzle crece, el tablero puede dividirse en una fila superior y otra inferior, así que ten en cuenta tanto el espacio auxiliar como la visibilidad.</string>
+    <string name="tutorial_blocksort_finish_title">Completa cada columna con un solo color</string>
+    <string name="tutorial_blocksort_finish_body">Una columna está completa cuando cada casilla de esa ronda tiene el mismo color. Las distintas rondas pueden usar 3, 4, 5 o 6 casillas del mismo tamaño, y llega una nueva disposición mixta cuando las completas todas.</string>
+    <string name="tutorial_blocksort_ready_title">Ya estás listo para BlockSort</string>
+    <string name="tutorial_blocksort_ready_body">Piensa dos o tres movimientos por adelantado, protege tus columnas auxiliares y adáptate rápido cuando cada ronda cambie el número de casillas y el tablero pueda dividirse en dos filas.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_blocksort_pick_title">Elige una columna de origen</string>
+    <string name="interactive_onboarding_blocksort_pick_body">Empieza tocando la columna mixta resaltada. Primero moverás su pila superior de color, y cada casilla de esta ronda tiene el mismo tamaño.</string>
+    <string name="interactive_onboarding_blocksort_pick_hint">Toca primero la columna de origen resaltada en la disposición mixta.</string>
+    <string name="interactive_onboarding_blocksort_match_title">Haz coincidir el color superior</string>
+    <string name="interactive_onboarding_blocksort_match_body">Ahora mueve esa pila a una columna cuyo color superior ya coincida. Las columnas coincidentes te permiten agrupar colores con seguridad incluso cuando el tablero se divide en dos filas.</string>
+    <string name="interactive_onboarding_blocksort_match_hint">Mueve la pila a la columna resaltada con el mismo color.</string>
+    <string name="interactive_onboarding_blocksort_finish_title">Completa una columna limpia</string>
+    <string name="interactive_onboarding_blocksort_finish_body">Genial. Un movimiento más completará cada casilla de una columna de un solo color en esta ronda. Termínala para ver el objetivo principal de BlockSort.</string>
+    <string name="interactive_onboarding_blocksort_finish_hint">Completa la columna resaltada para que cada casilla muestre el mismo color.</string>
+
+</resources>

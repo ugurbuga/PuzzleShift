@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_boomblocks_desc">Tik op groepen van 3 of meer blokken om ze te laten ontploffen.</string>
+
+    <!-- BoomBlocksGameScreen -->
+    <string name="game_message_ad_reward_boomblocks">Kleur gewist! Het bord is opnieuw gevormd.</string>
+    <string name="ad_reward_boomblocks_clear">Kleur wissen</string>
+    <string name="feedback_ad_reward_boomblocks">%1$s gewist</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_task_explode_groups">Laat %1$d blokgroepen ontploffen</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_boomblocks_intro_title">Laat gelijke groepen ontploffen</string>
+    <string name="tutorial_boomblocks_intro_body">In BoomBlocks lanceer of sleep je geen stukken. Zoek in plaats daarvan naar drie of meer aangrenzende blokken van dezelfde kleur en tik op een ervan om de hele groep te wissen.</string>
+    <string name="tutorial_boomblocks_gravity_title">Dynamische bordbeweging</string>
+    <string name="tutorial_boomblocks_gravity_body">Wanneer een groep ontploft, ontstaat er een vacuüm dat omliggende blokken aantrekt. Nieuwe blokken vullen daarna het bord vanaf de dichtstbijzijnde rand, waardoor de actie dynamisch blijft.</string>
+    <string name="tutorial_boomblocks_ready_title">Je bent klaar voor BoomBlocks</string>
+    <string name="tutorial_boomblocks_ready_body">Richt je op grote groepen voor maximale score en kijk hoe elke explosie het bord verandert. Veel succes!</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_boomblocks_basic_title">Tik om te laten ontploffen</string>
+    <string name="interactive_onboarding_boomblocks_basic_body">Zoek een groep van drie of meer blokken van dezelfde kleur en tik erop om ze van het bord te verwijderen.</string>
+    <string name="interactive_onboarding_boomblocks_large_title">Grotere groepen, meer punten</string>
+    <string name="interactive_onboarding_boomblocks_large_body">Grotere groepen geven meer punten en maken meer ruimte vrij. Tik op de gemarkeerde grote groep!</string>
+    <string name="interactive_onboarding_boomblocks_gravity_title">Zwaartekracht verschuift</string>
+    <string name="interactive_onboarding_boomblocks_gravity_body">Wanneer je blokken laat ontploffen, vallen nieuwe blokken binnen vanaf de tegenoverliggende kant van de explosie. Kijk hoe het bord verschuift!</string>
+    <string name="interactive_onboarding_boomblocks_strategic_title">Strategisch bijvullen</string>
+    <string name="interactive_onboarding_boomblocks_strategic_body">Nieuwe blokken vullen het bord op basis van het explosiecentrum. Gebruik dat om nog grotere groepen klaar te zetten!</string>
+    <string name="interactive_onboarding_boomblocks_tap_hint">Tik op de gemarkeerde groep om door te gaan.</string>
+
+</resources>

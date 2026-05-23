@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_boomblocks_desc">3개 이상 연결된 블록 그룹을 탭해 폭파합니다.</string>
+
+    <!-- BoomBlocksGameScreen -->
+    <string name="game_message_ad_reward_boomblocks">색상을 제거했습니다! 보드가 다시 구성됩니다.</string>
+    <string name="ad_reward_boomblocks_clear">색상 제거</string>
+    <string name="feedback_ad_reward_boomblocks">%1$s 제거</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_task_explode_groups">블록 그룹 %1$d개 폭파</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_boomblocks_intro_title">같은 색 그룹을 폭파하세요</string>
+    <string name="tutorial_boomblocks_intro_body">BoomBlocks에서는 피스를 발사하거나 드래그하지 않습니다. 대신 같은 색 블록이 3개 이상 맞닿은 그룹을 찾아 그중 하나를 탭해 전체 그룹을 지우세요.</string>
+    <string name="tutorial_boomblocks_gravity_title">역동적으로 움직이는 보드</string>
+    <string name="tutorial_boomblocks_gravity_body">그룹이 폭발하면 주변 블록이 빨려 들어갑니다. 이후 새 블록이 가장 가까운 가장자리에서 보충되어 보드가 계속 변합니다.</string>
+    <string name="tutorial_boomblocks_ready_title">이제 BoomBlocks를 시작할 준비가 되었습니다</string>
+    <string name="tutorial_boomblocks_ready_body">큰 그룹을 찾아 최대 점수를 노리고, 폭발할 때마다 보드가 어떻게 바뀌는지 살펴보세요. 행운을 빕니다!</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_boomblocks_basic_title">탭해서 폭파하세요</string>
+    <string name="interactive_onboarding_boomblocks_basic_body">같은 색 블록 3개 이상이 모인 그룹을 찾아 탭해 보드에서 제거하세요.</string>
+    <string name="interactive_onboarding_boomblocks_large_title">큰 그룹일수록 더 많은 점수</string>
+    <string name="interactive_onboarding_boomblocks_large_body">더 큰 그룹은 더 많은 점수와 더 넓은 공간을 제공합니다. 하이라이트된 큰 그룹을 탭하세요!</string>
+    <string name="interactive_onboarding_boomblocks_gravity_title">중력 이동</string>
+    <string name="interactive_onboarding_boomblocks_gravity_body">블록을 폭파하면 새 블록이 폭발 반대편에서 들어옵니다. 보드가 어떻게 이동하는지 보세요!</string>
+    <string name="interactive_onboarding_boomblocks_strategic_title">전략적인 보충</string>
+    <string name="interactive_onboarding_boomblocks_strategic_body">새 블록은 폭발 중심에 따라 보드를 채웁니다. 이를 이용해 더 큰 그룹을 준비하세요!</string>
+    <string name="interactive_onboarding_boomblocks_tap_hint">계속하려면 하이라이트된 그룹을 탭하세요.</string>
+
+</resources>

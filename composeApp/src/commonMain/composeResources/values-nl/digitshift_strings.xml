@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_digitshift_desc">Raad verborgen getallen van 5 of 6 cijfers met aanwijzingen per cijfer.</string>
+
+    <!-- DigitShiftGameScreen -->
+    <string name="digitshift_enter">Invoeren</string>
+    <string name="digitshift_delete">Verwijderen</string>
+    <string name="digitshift_guess_label">Poging %1$d</string>
+    <string name="digitshift_solved_words">Opgelost</string>
+    <string name="digitshift_attempts_left">Pogingen</string>
+    <string name="digitshift_current_language">Taal</string>
+    <string name="game_message_digitshift_enter_word">Maak een getal van 5 of 6 cijfers en verstuur je gok.</string>
+    <string name="game_message_digitshift_not_enough_letters">Nog niet genoeg cijfers.</string>
+    <string name="game_message_digitshift_not_in_dictionary">Alleen de cijfers 0–9 zijn toegestaan.</string>
+    <string name="game_message_digitshift_keep_trying">Goede aanwijzing. Verfijn het volgende getal.</string>
+    <string name="game_message_digitshift_solved">Opgelost: %1$s</string>
+    <string name="game_message_digitshift_failed">Ronde voorbij. Het getal was %1$s.</string>
+    <string name="game_message_digitshift_revived">Extra leven gebruikt. Probeer het getal opnieuw.</string>
+    <string name="game_message_ad_reward_digitshift">Getal vernieuwd. Blijf raden!</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_task_solve_words">Los %1$d getallen op</string>
+    <string name="challenge_info_solve_words_title">Getallen oplossen</string>
+    <string name="challenge_info_solve_words">Voltooi volledige DigitShift-rondes door het verborgen getal te vinden voordat je geen pogingen meer hebt.</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_digitshift_intro_title">Vind het verborgen getal</string>
+    <string name="tutorial_digitshift_intro_body">Maak een verborgen getal van 5 of 6 cijfers met de cijfers 0–9 en verstuur het. Elke gok laat zien welke cijfers correct, aanwezig of afwezig zijn.</string>
+    <string name="tutorial_digitshift_hints_title">Lees de kleuren</string>
+    <string name="tutorial_digitshift_hints_body">Groen betekent dat het cijfer correct is, oranje dat het ergens anders hoort en donkergrijs dat het niet in het antwoord zit.</string>
+    <string name="tutorial_digitshift_strategy_title">Gebruik de toetsenblokhints</string>
+    <string name="tutorial_digitshift_strategy_body">Elke verstuurde gok werkt het toetsenblok bij. Hergebruik groene cijfers, verplaats oranje cijfers en vermijd donkergrijze cijfers om sneller op te lossen.</string>
+    <string name="tutorial_digitshift_ready_title">Klaar om cijfers te kraken?</string>
+    <string name="tutorial_digitshift_ready_body">In de klassieke modus wisselen rondes van 5 en 6 cijfers elkaar af totdat je een getal mist. Tijdrit zet extra druk, dus los snel op om score en bonustijd te verdienen.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_digitshift_type_hint">Typ het voorgestelde getal om het bord te leren kennen.</string>
+    <string name="interactive_onboarding_digitshift_submit_hint">Verstuur nog een getal en kijk hoe het toetsenblok wordt bijgewerkt.</string>
+    <string name="interactive_onboarding_digitshift_solve_hint">Gebruik de aanwijzingen en los het verborgen getal op.</string>
+
+</resources>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_stackshift_desc">أطلق القطع من الأسفل لمسح الصفوف والأعمدة.</string>
+
+    <!-- StackShiftGameScreen -->
+    <string name="reward_piece_row_message">تم تجهيز قطعة ممسحة الصف الأفقي!</string>
+    <string name="reward_piece_column_message">تم تجهيز قطعة ممسحة العمود العمودي!</string>
+    <string name="launch_bar">شريط الإطلاق</string>
+    <string name="launch_boost_active">التعزيز نشط • %1$s دورات</string>
+    <string name="launch_special_chance">احتمال الكتلة الخاصة +%1$s%</string>
+    <string name="launch_soft_lock_message">القفل الناعم نشط • تمكين الضبط الدقيق</string>
+    <string name="launch_chain_message">صف + عمود • +%2$s</string>
+    <string name="launch_paused">متوقف مؤقتًا</string>
+    <string name="launch_game_over">أعد البدء لجولة جديدة</string>
+    <string name="launch_drag_hint">اسحب أفقيًا → حرّر</string>
+    <string name="queue_next_short">التالي</string>
+    <string name="game_message_soft_lock">نافذة ضبط قصيرة مفتوحة. اضبط العمود بدقة.</string>
+    <string name="game_message_overflow">فيضان العمود! لم تتمكن من مواكبة الأعمدة الحرجة.</string>
+    <string name="game_message_special_chain_board">سلسلة خاصة x%1$s! تم إعادة تشكيل اللوحة.</string>
+    <string name="game_message_pressure_game_over">وصل ضغط الأعمدة إلى الحد. ابدأ جولة جديدة.</string>
+    <string name="game_message_special_lines">سلسلة كتل خاصة! تم مسح %1$s من الخطوط.</string>
+    <string name="game_message_special_triggered">تم تفعيل الكتلة الخاصة. تم تفجير %1$d كتل!</string>
+    <string name="game_message_perfect_drop">إسقاط مثالي x%1$s! حافظ على السلسلة.</string>
+    <string name="game_message_chain_lines">إزالة مزدوجة! تم مسح %2$s من الخطوط.</string>
+    <string name="game_message_good_shot">إطلاق جيد. خطط للعمود التالي.</string>
+    <string name="game_message_hold_updated">تم تحديث الاحتفاظ. اختر عمودًا جديدًا.</string>
+    <string name="game_message_tempo_critical">زاد الإيقاع. أفرغ الأعمدة الحرجة.</string>
+    <string name="game_message_tempo_up">زاد الإيقاع. ستأتي قطع أصعب.</string>
+    <string name="game_message_resumed">تابع. اختر العمود وأطلق.</string>
+    <string name="feedback_perfect_lane">مسار مثالي x%1$s</string>
+    <string name="feedback_micro_adjust">ضبط دقيق</string>
+    <string name="feedback_soft_lock">قفل ناعم</string>
+    <string name="feedback_hold_armed">الاحتفاظ جاهز</string>
+    <string name="feedback_swap">تم التبديل</string>
+    <string name="feedback_special_chain">سلسلة خاصة +%1$s • %2$d كتل</string>
+    <string name="feedback_special">خاص +%1$s • %2$d كتل</string>
+    <string name="feedback_perfect">مثالي x%1$s +%2$s</string>
+    <string name="feedback_chain">سلسلة x%1$s +%2$s</string>
+    <string name="game_message_ad_reward_stackshift">تم تجهيز الكتلة الخاصة! جاهز للإطلاق.</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_stackshift_intro_title">أطلق القطع من الشريط السفلي</string>
+    <string name="tutorial_stackshift_intro_body">تنتظر قطعتك النشطة في الأسفل. اسحبها أفقياً لمطابقة العمود ثم أفلتها لإطلاقها نحو اللوحة. يتم عرض معاينة القطعة التالية بشكل أخف عمداً ليبقى تركيزك على القطعة النشطة.</string>
+    <string name="tutorial_stackshift_systems_title">استخدم كتل الإجراءات عندما تضيق اللوحة</string>
+    <string name="tutorial_stackshift_systems_body">يبدّل الاحتفاظ القطعة الحالية، ويجمّد الإيقاف المؤقت الجولة، وتشرح خصائص الكتلة الرموز، بينما تغيّر الإعدادات المظهر العام. كما أن هذه الأزرار تطابق نمط كتل اللوحة الذي اخترته.</string>
+    <string name="tutorial_stackshift_specials_title">قد تنقذ الكتل الخاصة الجولة</string>
+    <string name="tutorial_stackshift_specials_body">تحمل بعض القطع تأثيرات خاصة. تعلّم شاراتها واستخدمها لخفض الضغط أو فتح مساحة أو تجاوز التكدسات الصعبة.</string>
+    <string name="tutorial_stackshift_ready_title">أنت جاهز لمتابعة هذه الجولة</string>
+    <string name="tutorial_stackshift_ready_body">هذا كل شيء — خطط للعمود التالي، راقب شريط الإطلاق، واستخدم القدرات الخاصة في الوقت المناسب. يمكنك إعادة فتح هذا الدليل في أي وقت من الإعدادات.</string>
+    <string name="tutorial_stackshift_ready_tutorial_hint">افتح البرنامج التعليمي متى أردت مراجعة سريعة لعناصر التحكم والأيقونات الخاصة.</string>
+    <string name="tutorial_stackshift_ready_settings_hint">افتح الإعدادات لتغيير اللغة والمظهر والألوان ونمط الكتل قبل جولتك التالية.</string>
+
+</resources>

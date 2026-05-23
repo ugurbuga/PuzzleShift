@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blockwise_desc">Seret dan lepas piece di mana saja di papan.</string>
+
+    <!-- BlockWiseGameScreen -->
+    <string name="ad_reward_blockwise_refresh">Segarkan Tray</string>
+    <string name="feedback_ad_reward_blockwise">Baki terisi kembali</string>
+    <string name="launch_drag_hint_blockwise">Seret ke mana saja di papan → lepaskan untuk menempatkan</string>
+    <string name="game_message_select_column">Seret potongan secara horizontal, pilih kolom, lalu luncurkan ke atas.</string>
+    <string name="game_message_ad_reward_blockwise">Tray diperbarui! Bentuk baru telah siap.</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rows_title">Baris</string>
+    <string name="challenge_info_clear_rows">Lengkapi baris penuh untuk menghapusnya dari papan.</string>
+    <string name="challenge_info_clear_both_directions_title">Baris + Kolom</string>
+    <string name="challenge_info_clear_both_directions">Satu penempatan dapat menghapus setidaknya satu baris dan satu kolom secara bersamaan.</string>
+    <string name="challenge_task_clear_rows">Hapus %1$d baris</string>
+    <string name="challenge_task_clear_both_directions">Buat %1$d hapusan baris + kolom</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_intro_title">Seret salah satu dari tiga piece ke papan</string>
+    <string name="tutorial_intro_body">Tiga bentuk menunggu di tray. Pilih yang kamu inginkan, seret ke sel kosong mana pun, dan lepaskan untuk menempatkannya tepat di tempat yang pas.</string>
+    <string name="tutorial_systems_title">Pikirkan seluruh tray, bukan hanya satu langkah</string>
+    <string name="tutorial_systems_body">Setelah menempatkan satu piece, tray yang tersisa tetap di layar. Saat ketiganya habis, trio baru akan muncul. Coba sisakan ruang yang cukup untuk setiap bentuk yang masih kamu miliki.</string>
+    <string name="tutorial_specials_title">Baris dan kolom akan hilang saat terisi penuh</string>
+    <string name="tutorial_specials_body">Di sini tidak ada piece spesial. Sebagai gantinya, penuhi satu baris penuh atau satu kolom penuh untuk membersihkannya. Jika keduanya selesai bersamaan, keduanya akan hilang sekaligus.</string>
+    <string name="tutorial_ready_title">Kamu siap untuk alur puzzle blok yang baru</string>
+    <string name="tutorial_ready_body">Terus perhatikan tray, siapkan pembersihan baris dan kolom, dan jangan sampai bentuk besar terjebak. Saat tak ada lagi dari tiga piece yang muat, permainan berakhir.</string>
+    <string name="tutorial_ready_block_properties_hint">Buka Tutorial kapan saja jika kamu ingin meninjau kembali penempatan bebas dan pembersihan baris/kolom secara bersamaan.</string>
+    <string name="tutorial_ready_tutorial_hint">Buka Tutorial kapan saja jika kamu ingin meninjau kembali penempatan bebas dan pembersihan baris/kolom secara bersamaan.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_drag_title">Seret piece dari tray ke papan</string>
+    <string name="interactive_onboarding_drag_body">Sentuh salah satu dari tiga bentuk di tray, pindahkan ke atas papan, lalu sejajarkan dengan sel yang disorot.</string>
+    <string name="interactive_onboarding_drag_to_board">Seret piece yang disorot ke area target yang bercahaya.</string>
+    <string name="interactive_onboarding_drag_ready">Bagus — lepaskan sekarang. Saat piece menempel ke sel yang disorot, panduan berikutnya akan terbuka otomatis.</string>
+    <string name="interactive_onboarding_aim_hint">Lepaskan piece di dalam sel yang disorot untuk melanjutkan.</string>
+    <string name="interactive_onboarding_target_locked">Pas sekali — tahan di sana lalu lepaskan untuk melanjutkan.</string>
+    <string name="interactive_onboarding_waiting">Penempatan diterima. Momen terpandu berikutnya sedang disiapkan…</string>
+    <string name="interactive_onboarding_line_clear_title">Penuhi satu baris untuk menghapusnya</string>
+    <string name="interactive_onboarding_line_clear_body">Tempatkan bentuk ini di titik panduan agar barisnya penuh, menyala, lalu hilang.</string>
+    <string name="interactive_onboarding_column_clearer_title">Penuhi satu kolom untuk menghapusnya</string>
+    <string name="interactive_onboarding_column_clearer_body">Sekarang gunakan penempatan yang disorot untuk melengkapi satu kolom penuh dan membuka ruang vertikal.</string>
+    <string name="interactive_onboarding_row_clearer_title">Baris membuka ruang horizontal</string>
+    <string name="interactive_onboarding_row_clearer_body">Satu baris penuh akan langsung hilang. Arahkan ke sel yang disorot dan lihat bagaimana papan terbuka dari sisi ke sisi.</string>
+    <string name="interactive_onboarding_ghost_title">Tray sama pentingnya dengan papan</string>
+    <string name="interactive_onboarding_ghost_body">Sebelum menaruh satu bentuk, lihat juga dua piece lainnya. Permainan yang bagus datang dari menyisakan ruang untuk seluruh tray, bukan hanya langkah ini.</string>
+    <string name="interactive_onboarding_heavy_title">Bersihkan dua arah sekaligus</string>
+    <string name="interactive_onboarding_heavy_body">Beberapa penempatan bisa melengkapi satu baris dan satu kolom secara bersamaan. Gunakan titik panduan untuk memicu pembersihan ganda yang lebih besar.</string>
+
+</resources>

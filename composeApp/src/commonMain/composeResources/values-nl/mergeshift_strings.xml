@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_mergeshift_desc">Voeg stukken met dezelfde waarde samen om hogere scores te halen.</string>
+
+    <!-- MergeShiftGameScreen -->
+    <string name="game_message_ad_reward_mergeshift">Getallen gewijzigd! Blijf samenvoegen.</string>
+    <string name="ad_reward_mergeshift_swap">Getal wijzigen</string>
+    <string name="feedback_ad_reward_mergeshift">Getallen gewijzigd</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_mergeshift_intro_title">Lanceer stukken om gelijke waarden samen te voegen</string>
+    <string name="tutorial_mergeshift_intro_body">In MergeShift worden stukken vanuit het dok gelanceerd. Wanneer een blok landt op een ander blok met dezelfde waarde, versmelten ze tot een hogere waarde. Blijf samenvoegen om ruimte vrij te maken en hogere scores te halen.</string>
+    <string name="tutorial_mergeshift_systems_title">Plan je samenvoegingen om overflow te voorkomen</string>
+    <string name="tutorial_mergeshift_systems_body">Elk gelanceerd stuk verhoogt de kolomhoogte. Als een kolom de bovenkant bereikt, is het spel voorbij. Gebruik het voorbeeld om te zien waar je stuk zal landen, of open Instellingen om je ervaring aan te passen.</string>
+    <string name="tutorial_mergeshift_specials_title">Combineer meerdere merges voor grotere combo's</string>
+    <string name="tutorial_mergeshift_specials_body">Eén lancering kan een kettingreactie van merges veroorzaken. Deze combo's leveren meer punten op en maken meer ruimte vrij op het bord, waardoor je langer in het spel blijft.</string>
+    <string name="tutorial_mergeshift_ready_title">Je bent klaar voor MergeShift</string>
+    <string name="tutorial_mergeshift_ready_body">Richt je op lage kolommen en het voorbereiden van merges met hoge waarde. Succes met het bereiken van de hoogste getallen!</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_mergeshift_launch_title">Lanceer je eerste stuk</string>
+    <string name="interactive_onboarding_mergeshift_launch_body">Sleep het stuk horizontaal onder het bord om te richten en laat los om het in een kolom te lanceren.</string>
+    <string name="interactive_onboarding_mergeshift_merge_vertical_title">Voeg gelijke waarden verticaal samen</string>
+    <string name="interactive_onboarding_mergeshift_merge_vertical_body">Lanceer een stuk in een kolom waar al een blok met dezelfde waarde staat. Ze fuseren tot een hoger getal!</string>
+    <string name="interactive_onboarding_mergeshift_merge_horizontal_title">Voeg gelijke waarden horizontaal samen</string>
+    <string name="interactive_onboarding_mergeshift_merge_horizontal_body">Blokken kunnen ook samenvoegen met buren links of rechts. Mik op de gemarkeerde plek om een horizontale merge te activeren.</string>
+    <string name="interactive_onboarding_mergeshift_merge_multi_title">Activeer meerdere merges</string>
+    <string name="interactive_onboarding_mergeshift_merge_multi_body">Eén plaatsing kan merges in meerdere richtingen activeren (boven, links, rechts). Gebruik dit om meer ruimte vrij te maken en hoog te scoren!</string>
+
+</resources>

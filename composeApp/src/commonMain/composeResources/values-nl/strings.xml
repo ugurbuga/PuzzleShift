@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- SettingsScreen -->
     <string name="settings_title">Instellingen</string>
     <string name="settings_language">Taal</string>
     <string name="settings_sound">Geluid</string>
@@ -11,14 +13,9 @@
     <string name="settings_block_palette">Blokkleurpalet</string>
     <string name="settings_block_style">Blokstijl</string>
     <string name="settings_tokens_title">Munten</string>
-    <string name="settings_tokens_balance">Token: %1$d</string>
+    <string name="settings_tokens_balance">Munten: %1$d</string>
     <string name="settings_tokens_earn_challenge">• Beloning voor dagelijkse uitdaging: +%1$d tokens</string>
     <string name="settings_tokens_earn_score">• Spelbeloning: +1 token per %1$d score</string>
-    <string name="rewarded_tokens_button_bullet">• Bekijk een advertentie en verdien %1$d tokens</string>
-    <string name="rewarded_tokens_button">Bekijk een advertentie en verdien %1$d tokens</string>
-    <string name="reward_earned_message">Je hebt %1$d tokens verdiend!</string>
-    <string name="reward_piece_row_message">Horizontale rijwisser uitgerust!</string>
-    <string name="reward_piece_column_message">Verticale kolomwisser uitgerust!</string>
     <string name="unlock_dialog_watch_ad">Bekijk een advertentie om tokens te verdienen</string>
     <string name="token_label">Munt</string>
     <string name="settings_board_block_style">Bordblokstijl</string>
@@ -37,7 +34,7 @@
     <string name="theme_palette_minimal_monochrome">Minimaal monochroom</string>
     <string name="block_palette_classic">Klassiek</string>
     <string name="block_palette_candy">Snoep</string>
-    <string name="block_palette_neon">Neon</string>
+    <string name="block_palette_neon">Neonkleuren</string>
     <string name="block_palette_earth">Aarde</string>
     <string name="block_palette_monochrome">Monochroom</string>
     <string name="block_style_flat">Vlak</string>
@@ -50,9 +47,9 @@
     <string name="block_style_prism">Prisma</string>
     <string name="block_style_crystal">Kristal</string>
     <string name="block_style_dynamic_liquid">Dynamische vloeistof</string>
-    <string name="block_style_matte_soft">Mat zacht</string>
+    <string name="block_style_matte_soft">Zacht mat</string>
     <string name="block_style_neon_glow">Neongloed</string>
-    <string name="block_style_tornado">Tornado</string>
+    <string name="block_style_tornado">Wervelwind</string>
     <string name="block_style_brick">Baksteen</string>
     <string name="block_style_stone_texture">Steentextuur</string>
     <string name="block_style_honeycomb_texture">Honingraat</string>
@@ -67,11 +64,26 @@
     <string name="block_style_electric">Elektrisch</string>
     <string name="block_style_flame">Vlam</string>
     <string name="block_style_gears">Tandwielen</string>
-    <string name="block_style_pixel">Pixel</string>
-    <string name="block_style_cyberpunk">Cyberpunk</string>
-    <string name="block_style_lava">Lava</string>
+    <string name="block_style_pixel">Pixelstijl</string>
+    <string name="block_style_cyberpunk">Cyberstijl</string>
+    <string name="block_style_lava">Lavastroom</string>
     <string name="board_block_style_always_flat">Altijd vlak</string>
     <string name="board_block_style_match_selected">Volg geselecteerde blokstijl</string>
+    <string name="rewarded_tokens_button_bullet">• Bekijk een advertentie en verdien %1$d tokens</string>
+    <string name="rewarded_tokens_button">Bekijk een advertentie en verdien %1$d tokens</string>
+    <string name="unlock_dialog_title">%1$s ontgrendelen?</string>
+    <string name="unlock_dialog_insufficient_title">%1$s is vergrendeld</string>
+    <string name="unlock_dialog_message">%1$s kost %2$d tokens. Huidig saldo: %3$d.</string>
+    <string name="unlock_dialog_not_enough">Je hebt %1$d tokens nodig om dit item te ontgrendelen. Je huidige saldo is %2$d.</string>
+    <string name="unlock_dialog_confirm">Ontgrendelen</string>
+    <string name="unlock_dialog_locked_suffix">Vergrendeld</string>
+
+    <!-- HomeScreen -->
+    <string name="home_play_cta">Spelen</string>
+    <string name="home_classic_cta">Klassiek</string>
+    <string name="home_time_attack_cta">Tijdaanval</string>
+
+    <!-- GameDialogs -->
     <string name="hold">Vasthouden</string>
     <string name="pause">Pauze</string>
     <string name="resume">Hervatten</string>
@@ -86,68 +98,37 @@
     <string name="score">Punten</string>
     <string name="high_score">Beste</string>
     <string name="high_score_new_record">Nieuw record</string>
-    <string name="home_play_cta">Spelen</string>
-    <string name="home_classic_cta">Klassiek</string>
-    <string name="home_time_attack_cta">Tijdaanval</string>
     <string name="lines">Lijn</string>
     <string name="time_remaining">Tijd over</string>
     <string name="boost">Versnelling</string>
     <string name="danger">Gevaar</string>
     <string name="danger_none">-</string>
     <string name="launch_label">Lanceer</string>
-    <string name="launch_bar">Lanceerbalk</string>
-    <string name="launch_boost_active">Boost actief • %1$s beurten</string>
-    <string name="launch_special_chance">Kans op speciaal blok +%1$s%</string>
-    <string name="launch_soft_lock_message">Bekijk het doel en laat dan los om te plaatsen</string>
-    <string name="launch_chain_message">Rij + Kolom • +%2$s</string>
-    <string name="launch_paused">Gepauzeerd</string>
-    <string name="launch_game_over">Start opnieuw voor een nieuwe poging</string>
-    <string name="launch_drag_hint">Sleep horizontaal → laat los</string>
-    <string name="launch_drag_hint_blockwise">Sleep ergens op het bord → laat los om te plaatsen</string>
-    <string name="queue_hold">Vasthouden</string>
-    <string name="queue_next_short">Volgende</string>
-    <string name="queue_empty">—</string>
-    <string name="pause_title">Gepauzeerd</string>
     <string name="game_over_title">Spel voorbij</string>
     <string name="continue_label">Doorgaan</string>
     <string name="game_over_extra_life">Bekijk een advertentie voor een extra leven</string>
     <string name="game_over_extra_life_loading">Advertentie laden…</string>
     <string name="play_again">Opnieuw spelen</string>
     <string name="game_over_new_high_score">Nieuwe topscore!</string>
-    <string name="game_message_select_column">Sleep één van de drie stukken naar een willekeurige lege plek.</string>
     <string name="game_message_no_opening">Er is geen geldige zet meer over voor het huidige vak.</string>
-    <string name="game_message_soft_lock">Laat los om het stuk op de gemarkeerde cellen te plaatsen.</string>
-    <string name="game_message_overflow">Er is voor geen enkel stuk in het vak nog ruimte.</string>
-    <string name="game_message_special_chain_board">Rij en kolom tegelijk verwijderd! %1$s lijnen gewist.</string>
-    <string name="game_message_pressure_game_over">Er zijn geen plaatsingen meer mogelijk. Start een nieuwe poging.</string>
-    <string name="game_message_special_lines">Mooie combo! %1$s lijnen gewist.</string>
-    <string name="game_message_special_triggered">Een grote verwijdering heeft %1$d cellen weggehaald!</string>
-    <string name="game_message_perfect_drop">Perfecte plaatsing x%1$s!</string>
-    <string name="game_message_chain_lines">Dubbele clear! %2$s lijnen gewist.</string>
-    <string name="game_message_lines_cleared">%1$s lijnen gewist.</string>
-    <string name="game_message_good_shot">Goede zet. Bekijk de overgebleven stukken in het vak.</string>
-    <string name="game_message_ad_reward_blockwise">Vak vernieuwd! Nieuwe vormen staan klaar.</string>
-    <string name="game_message_ad_reward_mergeshift">Getallen gewijzigd! Blijf samenvoegen.</string>
-    <string name="game_message_ad_reward_boomblocks">Kleur gewist! Het bord is opnieuw gevormd.</string>
-    <string name="game_message_ad_reward_stackshift">Speciaal blok uitgerust! Klaar om te lanceren.</string>
-    <string name="game_message_ad_reward_blocksort">Een extra lege kolom is toegevoegd voor deze ronde.</string>
-    <string name="game_message_hold_updated">Vak vernieuwd. Blijf bouwen.</string>
-    <string name="game_message_tempo_critical">Zoek naar een rij- of kolomclear voordat het vak vastloopt.</string>
-    <string name="game_message_tempo_up">Een nieuw trio staat klaar. Bekijk het bord aandachtig.</string>
     <string name="game_message_paused">Het spel is gepauzeerd.</string>
-    <string name="game_message_resumed">Hervat. Kies de kolom en lanceer.</string>
     <string name="game_message_extra_life_used">Extra leven geactiveerd! %1$s rijen gewist.</string>
+    <string name="queue_hold">Vasthouden</string>
+    <string name="pause_title">Gepauzeerd</string>
+    <string name="game_message_lines_cleared">%1$s lijnen gewist.</string>
+
+    <!-- NotificationWorker -->
     <string name="notification_reminders_channel_name">Herinneringen</string>
     <string name="notification_miss_you_body">We misten je! Kom terug en speel nog wat verder.</string>
     <string name="notification_daily_challenge_title">Dagelijkse uitdaging</string>
     <string name="notification_daily_challenge_body">Heb je de taken van de dagelijkse uitdaging van vandaag al voltooid?</string>
     <string name="notification_test_body">Dit is een testmelding.</string>
+
+    <!-- DailyChallengeScreen -->
     <string name="challenge_tasks_title">Taken</string>
     <string name="challenge_info_title">Over de taken</string>
     <string name="challenge_info_clear_blocks_title">Blokken</string>
     <string name="challenge_info_clear_blocks">Verwijder gevulde cellen van het bord door lijnen te voltooien en kettingreacties te activeren.</string>
-    <string name="challenge_info_clear_rows_title">Rijen</string>
-    <string name="challenge_info_clear_rows">Voltooi volledige rijen om ze van het bord te verwijderen.</string>
     <string name="challenge_info_reach_score_title">Punten</string>
     <string name="challenge_info_reach_score">Verhoog je score door stukken te plaatsen en lijnen te wissen.</string>
     <string name="challenge_info_trigger_special_title">Speciale blokken</string>
@@ -158,29 +139,20 @@
     <string name="challenge_info_chain_reaction">Bereid vervolgclears voor zodat één zet extra clears erna activeert.</string>
     <string name="challenge_info_clear_columns_title">Kolommen</string>
     <string name="challenge_info_clear_columns">Voltooi volledige kolommen om ze van het bord te verwijderen.</string>
-    <string name="challenge_info_clear_rounds_title">Rondes</string>
-    <string name="challenge_info_clear_rounds">Voltooi volledige BlockSort-rondes door elke gevulde kolom in één kleur te veranderen.</string>
     <string name="challenge_info_place_pieces_title">Plaatsingen</string>
     <string name="challenge_info_place_pieces">Elke succesvolle plaatsing telt, ook als er geen lijn wordt gewist.</string>
-    <string name="challenge_info_clear_both_directions_title">Rij + Kolom</string>
-    <string name="challenge_info_clear_both_directions">Met één plaatsing kun je tegelijk minstens één rij en één kolom wissen.</string>
     <string name="challenge_completed">Uitdaging voltooid!</string>
     <string name="challenge_task_clear_blocks">Wis %1$d blokken</string>
-    <string name="challenge_task_clear_rows">Wis %1$d rijen</string>
     <string name="challenge_task_reach_score">Bereik %1$d score</string>
     <string name="challenge_task_trigger_special">Activeer %1$d speciale blokken</string>
     <string name="challenge_task_perfect_placement">Doe %1$d perfecte plaatsingen</string>
     <string name="challenge_task_chain_reaction">Maak %1$d kettingreacties</string>
     <string name="challenge_task_clear_columns">Wis %1$d kolommen</string>
-    <string name="challenge_task_complete_columns">Voltooi %1$d kolommen</string>
     <string name="challenge_task_place_pieces">Plaats %1$d stukken</string>
-    <string name="challenge_task_clear_rounds">Voltooi %1$d rondes</string>
-    <string name="ad_reward_blockwise_refresh">Vak vernieuwen</string>
-    <string name="ad_reward_mergeshift_swap">Getal wijzigen</string>
-    <string name="ad_reward_boomblocks_clear">Kleur wissen</string>
-    <string name="feedback_ad_reward_blockwise">Vak vernieuwd</string>
-    <string name="feedback_ad_reward_mergeshift">Getallen gewijzigd</string>
-    <string name="feedback_ad_reward_boomblocks">%1$s gewist</string>
+    <string name="challenge_progress_value">%1$d/%2$d</string>
+
+    <!-- RewardFeedback -->
+    <string name="reward_earned_message">Je hebt %1$d tokens verdiend!</string>
     <string name="color_cyan">Cyaan</string>
     <string name="color_gold">Goud</string>
     <string name="color_violet">Paars</string>
@@ -190,8 +162,12 @@
     <string name="color_rose">Roos</string>
     <string name="color_lime">Limoen</string>
     <string name="color_amber">Barnsteen</string>
-    <string name="challenge_task_explode_groups">Laat %1$d blokgroepen ontploffen</string>
-    <string name="challenge_task_clear_both_directions">Doe %1$d rij + kolom-clears</string>
+    <string name="feedback_overflow">Overvol</string>
+    <string name="feedback_clear">Wis +%1$s</string>
+    <string name="feedback_score_only">+%1$s</string>
+    <string name="feedback_extra_life">Extra leven! %1$s rijen</string>
+
+    <!-- Calendar -->
     <string name="month_january">Januari</string>
     <string name="month_february">Februari</string>
     <string name="month_march">Maart</string>
@@ -212,27 +188,15 @@
     <string name="day_friday_short">Vr</string>
     <string name="day_saturday_short">Za</string>
     <string name="day_sunday_short">Zo</string>
-    <string name="feedback_overflow">Overvol</string>
-    <string name="feedback_perfect_lane">Perfecte passing x%1$s</string>
-    <string name="feedback_micro_adjust">Herpositioneren</string>
-    <string name="feedback_soft_lock">Voorbeeld klaar</string>
-    <string name="feedback_hold_armed">Hold klaar</string>
-    <string name="feedback_swap">Gewisseld</string>
-    <string name="feedback_special_chain">Speciale ketting +%1$s • %2$d blokken</string>
-    <string name="feedback_special">Speciaal +%1$s • %2$d blokken</string>
-    <string name="feedback_perfect">Perfect geplaatst x%1$s +%2$s</string>
-    <string name="feedback_chain">Ketting x%1$s +%2$s</string>
-    <string name="feedback_clear">Wis +%1$s</string>
-    <string name="feedback_score_only">+%1$s</string>
-    <string name="feedback_extra_life">Extra leven! %1$s rijen</string>
-    <string name="challenge_progress_value">%1$d/%2$d</string>
     <string name="stat_label_value_format">%1$s: %2$s</string>
     <string name="time_minutes_seconds_format">%1$d:%2$s</string>
+
+    <!-- PiecePropertiesScreen -->
+    <string name="queue_empty">—</string>
     <string name="special_column_clearer">KOLOM</string>
     <string name="special_row_clearer">RIJ</string>
     <string name="special_ghost">SPOOK</string>
     <string name="special_heavy">ZWAAR</string>
-
     <string name="piece_properties_title">Eigenschappen van stuk</string>
     <string name="piece_properties_active">Actief stuk</string>
     <string name="piece_properties_kind">Soort</string>
@@ -241,201 +205,38 @@
     <string name="piece_properties_cells">Cel</string>
     <string name="piece_properties_unlock_level">Ontgrendelniveau</string>
     <string name="piece_properties_none">Geen</string>
-
     <string name="active_piece_summary">%1$s • %2$s • %3$s</string>
     <string name="piece_size_format">%1$dx%2$d</string>
 
+    <!-- BlockPropertiesScreen -->
     <string name="block_properties_title">Blokeigenschappen</string>
     <string name="block_properties_select_hint">Selecteer een bloktype</string>
-
     <string name="block_properties_normal_title">Normaal blok</string>
     <string name="block_properties_normal_desc">Standaard gevulde cel. Geen speciaal effect.</string>
-
     <string name="block_properties_column_clearer_title">Kolom wisser</string>
     <string name="block_properties_column_clearer_desc">Kolommen verdwijnen wanneer elke cel in die kolom gevuld is.</string>
-
     <string name="block_properties_row_clearer_title">Rij wisser</string>
     <string name="block_properties_row_clearer_desc">Rijen verdwijnen wanneer elke cel in die rij gevuld is.</string>
-
     <string name="block_properties_ghost_title">Vrije plaatsing</string>
     <string name="block_properties_ghost_desc">Je kunt elk vakstuk direct op elke lege plek zetten waar het past.</string>
-
     <string name="block_properties_heavy_title">Geen speciale blokken</string>
     <string name="block_properties_heavy_desc">Deze modus draait volledig om vormkeuze, lijnclears en ruimte vinden voor het hele vak.</string>
-
     <string name="block_properties_dot_desc">De kleine stip rechtsboven laat zien dat dit blok een speciaal effect heeft. De kleur van stip en rand geeft het effecttype aan.</string>
+
+    <!-- GameTutorialScreen -->
     <string name="tutorial_subtitle">Een korte uitleg vóór je eerste poging.</string>
     <string name="tutorial_step_counter">Stap %1$d / %2$d</string>
     <string name="tutorial_back">Terug</string>
     <string name="cancel">Annuleren</string>
-    <string name="unlock_dialog_title">%1$s ontgrendelen?</string>
-    <string name="unlock_dialog_insufficient_title">%1$s is vergrendeld</string>
-    <string name="unlock_dialog_message">%1$s kost %2$d tokens. Huidig saldo: %3$d.</string>
-    <string name="unlock_dialog_not_enough">Je hebt %1$d tokens nodig om dit item te ontgrendelen. Je huidige saldo is %2$d.</string>
-    <string name="unlock_dialog_confirm">Ontgrendelen</string>
-    <string name="unlock_dialog_locked_suffix">Vergrendeld</string>
     <string name="tutorial_next">Volgende</string>
     <string name="tutorial_finish">Start het spel</string>
     <string name="return_home">Terug naar Home</string>
-    <string name="tutorial_stackshift_intro_title">Sleep het actieve stuk en lijn je lancering uit</string>
-    <string name="tutorial_stackshift_intro_body">Het huidige stuk start in het lanceerdok. Sleep het links of rechts onder het bord, laat los wanneer het voorbeeld goed staat en het valt in de dichtstbijzijnde geldige baan.</string>
-    <string name="tutorial_stackshift_systems_title">Gebruik actieblokken wanneer het bord vol raakt</string>
-    <string name="tutorial_stackshift_systems_body">Hold wisselt het huidige stuk, Pauze bevriest de run, Blokeigenschappen legt symbolen uit en Instellingen verandert uiterlijk en taal. Deze knoppen volgen ook je gekozen bordblokstijl.</string>
-    <string name="tutorial_stackshift_specials_title">Speciale blokken kunnen benauwde borden redden</string>
-    <string name="tutorial_stackshift_specials_body">Sommige stukken hebben speciale effecten. Leer wat elk icoon doet zodat je een rij kunt wissen, een kolom kunt wissen, door gaten kunt glippen of gevaar kunt doorbreken wanneer het bord vol raakt.</string>
-    <string name="tutorial_stackshift_ready_title">Je bent klaar om te lanceren in StackShift</string>
-    <string name="tutorial_stackshift_ready_body">Houd je lanceringen strak, plan vooruit op de volgende wachtrij en gebruik specials voordat de druk te hoog wordt. Wanneer je wilt opfrissen, kom dan altijd terug naar deze gids.</string>
-    <string name="tutorial_stackshift_ready_tutorial_hint">Open Tutorial wanneer je lanceren, wachtrij-overzicht en effecten van speciale blokken wilt herhalen.</string>
-    <string name="tutorial_stackshift_ready_settings_hint">Open Instellingen om taal, thema, kleuren en blokstijl te wijzigen vóór je volgende poging.</string>
-    <string name="tutorial_intro_title">Sleep een van de drie stukken naar het bord</string>
-    <string name="tutorial_intro_body">Drie vormen wachten in het vak. Kies degene die je wilt, sleep hem naar lege cellen en laat los precies waar hij past.</string>
-    <string name="tutorial_systems_title">Denk aan het hele vak, niet aan één zet</string>
-    <string name="tutorial_systems_body">Na het plaatsen van één stuk blijft de rest van het vak zichtbaar. Zodra alle drie de stukken zijn gebruikt, verschijnt een nieuw trio. Probeer genoeg ruimte over te laten voor elke vorm die je nog hebt.</string>
-    <string name="tutorial_specials_title">Rijen en kolommen wissen bij volledige dekking</string>
-    <string name="tutorial_specials_body">Hier zijn geen speciale stukken. Vul in plaats daarvan een hele rij of een hele kolom om die te wissen. Als beide tegelijk worden voltooid, verdwijnen ze samen.</string>
-    <string name="tutorial_ready_title">Je bent klaar voor de nieuwe blokpuzzelstroom</string>
-    <string name="tutorial_ready_body">Blijf het vak scannen, bereid rij- en kolomclears voor en voorkom dat grote vormen vastlopen. Wanneer geen van de drie stukken nog past, eindigt de run.</string>
-    <string name="tutorial_ready_block_properties_hint">Open Tutorial wanneer je vrije plaatsing en gelijktijdige rij-/kolomclears wilt herhalen.</string>
-    <string name="tutorial_ready_tutorial_hint">Open Tutorial wanneer je vrije plaatsing en gelijktijdige rij-/kolomclears wilt herhalen.</string>
     <string name="tutorial_ready_settings_hint">Open Instellingen om taal, thema, kleuren en blokstijl te wijzigen vóór je volgende poging.</string>
-    <string name="tutorial_mergeshift_intro_title">Lanceer stukken om gelijke waarden samen te voegen</string>
-    <string name="tutorial_mergeshift_intro_body">In MergeShift worden stukken vanuit het dok gelanceerd. Wanneer een blok landt op een ander blok met dezelfde waarde, versmelten ze tot een hogere waarde. Blijf samenvoegen om ruimte vrij te maken en hogere scores te halen.</string>
-    <string name="tutorial_mergeshift_systems_title">Plan je samenvoegingen om overflow te voorkomen</string>
-    <string name="tutorial_mergeshift_systems_body">Elk gelanceerd stuk verhoogt de kolomhoogte. Als een kolom de bovenkant bereikt, is het spel voorbij. Gebruik het voorbeeld om te zien waar je stuk zal landen, of open Instellingen om je ervaring aan te passen.</string>
-    <string name="tutorial_mergeshift_specials_title">Combineer meerdere merges voor grotere combo's</string>
-    <string name="tutorial_mergeshift_specials_body">Eén lancering kan een kettingreactie van merges veroorzaken. Deze combo's leveren meer punten op en maken meer ruimte vrij op het bord, waardoor je langer in het spel blijft.</string>
-    <string name="tutorial_mergeshift_ready_title">Je bent klaar voor MergeShift</string>
-    <string name="tutorial_mergeshift_ready_body">Richt je op lage kolommen en het voorbereiden van merges met hoge waarde. Succes met het bereiken van de hoogste getallen!</string>
-
-    <string name="tutorial_boomblocks_intro_title">Laat gelijke groepen ontploffen</string>
-    <string name="tutorial_boomblocks_intro_body">In BoomBlocks lanceer of sleep je geen stukken. Zoek in plaats daarvan naar drie of meer aangrenzende blokken van dezelfde kleur en tik op een ervan om de hele groep te wissen.</string>
-    <string name="tutorial_boomblocks_gravity_title">Dynamische bordbeweging</string>
-    <string name="tutorial_boomblocks_gravity_body">Wanneer een groep ontploft, ontstaat er een vacuüm dat omliggende blokken aantrekt. Nieuwe blokken vullen daarna het bord vanaf de dichtstbijzijnde rand, waardoor de actie dynamisch blijft.</string>
-    <string name="tutorial_boomblocks_ready_title">Je bent klaar voor BoomBlocks</string>
-    <string name="tutorial_boomblocks_ready_body">Richt je op grote groepen voor maximale score en kijk hoe elke explosie het bord verandert. Veel succes!</string>
-    <string name="tutorial_blocksort_intro_title">Verplaats even grote bovenste stapels tussen kolommen</string>
-    <string name="tutorial_blocksort_intro_body">Elke ronde gebruikt één gedeelde slotgrootte voor elke kolom. Tik op een niet-lege gemengde kolom om de bovenste kleurstapel op te pakken en verplaats die daarna naar een lege kolom of een kolom met dezelfde bovenkleur.</string>
-    <string name="tutorial_blocksort_rules_title">Alleen gelijke kleuren mogen op elkaar</string>
-    <string name="tutorial_blocksort_rules_body">Je kunt alleen verplaatsen naar lege ruimte of naar dezelfde bovenkleur. Naarmate de puzzel groeit kan het bord zich opdelen in een bovenste en onderste rij, dus houd rekening met zowel hulpruimte als overzicht.</string>
-    <string name="tutorial_blocksort_finish_title">Voltooi elke kolom als één kleur</string>
-    <string name="tutorial_blocksort_finish_body">Een kolom is compleet wanneer elk slot in die ronde dezelfde kleur heeft. Verschillende rondes kunnen 3, 4, 5 of 6 gelijke slots gebruiken en een nieuwe gemengde layout verschijnt zodra je ze allemaal hebt voltooid.</string>
-    <string name="tutorial_blocksort_ready_title">Je bent klaar voor BlockSort</string>
-    <string name="tutorial_blocksort_ready_body">Plan twee of drie zetten vooruit, bescherm je hulpkolommen en pas je snel aan wanneer elke ronde het aantal slots verandert en het bord zich mogelijk in twee rijen splitst.</string>
-
     <string name="interactive_onboarding_step_counter">Gids %1$d / %2$d</string>
 
-    <string name="interactive_onboarding_drag_title">Sleep een stuk uit het vak naar het bord</string>
-    <string name="interactive_onboarding_drag_body">Raak een van de drie vormen in het vak aan, verplaats hem over het bord en lijn hem uit met de gemarkeerde cellen.</string>
-    <string name="interactive_onboarding_drag_to_board">Sleep het gemarkeerde vakstuk naar het gloeiende doelgebied.</string>
-    <string name="interactive_onboarding_drag_ready">Mooi — laat nu los. Zodra het in de gemarkeerde cellen vastklikt, opent de volgende gids automatisch.</string>
-    <string name="interactive_onboarding_aim_hint">Laat het stuk binnen de gemarkeerde cellen vallen om door te gaan.</string>
-    <string name="interactive_onboarding_target_locked">Perfect — houd het daar en laat los om door te gaan.</string>
-    <string name="interactive_onboarding_waiting">Plaatsing geaccepteerd. Volgend begeleid moment wordt voorbereid…</string>
-    <string name="interactive_onboarding_line_clear_title">Voltooi een rij om die te wissen</string>
-    <string name="interactive_onboarding_line_clear_body">Plaats deze vorm op de begeleide plek zodat de rij vol raakt, oplicht en verdwijnt.</string>
-    <string name="interactive_onboarding_column_clearer_title">Voltooi een kolom om die te wissen</string>
-    <string name="interactive_onboarding_column_clearer_body">Gebruik nu de gemarkeerde plaatsing om een volledige kolom af te maken en verticale ruimte te openen.</string>
-    <string name="interactive_onboarding_row_clearer_title">Rijen openen horizontale ruimte</string>
-    <string name="interactive_onboarding_row_clearer_body">Een volle rij wordt direct gewist. Richt op de gemarkeerde cellen en zie hoe het bord in de breedte opengaat.</string>
-    <string name="interactive_onboarding_ghost_title">Het vak is net zo belangrijk als het bord</string>
-    <string name="interactive_onboarding_ghost_body">Kijk voordat je een vorm plaatst ook naar de andere twee stukken. Goede runs ontstaan doordat je ruimte laat voor het hele vak, niet alleen voor de huidige zet.</string>
-    <string name="interactive_onboarding_heavy_title">Wis beide richtingen tegelijk</string>
-    <string name="interactive_onboarding_heavy_body">Sommige plaatsingen voltooien tegelijk een rij en een kolom. Gebruik de begeleide plek om een grotere dubbele clear te activeren.</string>
-
-    <string name="interactive_onboarding_mergeshift_launch_title">Lanceer je eerste stuk</string>
-    <string name="interactive_onboarding_mergeshift_launch_body">Sleep het stuk horizontaal onder het bord om te richten en laat los om het in een kolom te lanceren.</string>
-    <string name="interactive_onboarding_mergeshift_merge_vertical_title">Voeg gelijke waarden verticaal samen</string>
-    <string name="interactive_onboarding_mergeshift_merge_vertical_body">Lanceer een stuk in een kolom waar al een blok met dezelfde waarde staat. Ze fuseren tot een hoger getal!</string>
-    <string name="interactive_onboarding_mergeshift_merge_horizontal_title">Voeg gelijke waarden horizontaal samen</string>
-    <string name="interactive_onboarding_mergeshift_merge_horizontal_body">Blokken kunnen ook samenvoegen met buren links of rechts. Mik op de gemarkeerde plek om een horizontale merge te activeren.</string>
-    <string name="interactive_onboarding_mergeshift_merge_multi_title">Activeer meerdere merges</string>
-    <string name="interactive_onboarding_mergeshift_merge_multi_body">Eén plaatsing kan merges in meerdere richtingen activeren (boven, links, rechts). Gebruik dit om meer ruimte vrij te maken en hoog te scoren!</string>
-
-    <string name="interactive_onboarding_boomblocks_basic_title">Tik om te laten ontploffen</string>
-    <string name="interactive_onboarding_boomblocks_basic_body">Zoek een groep van drie of meer blokken van dezelfde kleur en tik erop om ze van het bord te verwijderen.</string>
-    <string name="interactive_onboarding_boomblocks_large_title">Grotere groepen, meer punten</string>
-    <string name="interactive_onboarding_boomblocks_large_body">Grotere groepen geven meer punten en maken meer ruimte vrij. Tik op de gemarkeerde grote groep!</string>
-    <string name="interactive_onboarding_boomblocks_gravity_title">Zwaartekracht verschuift</string>
-    <string name="interactive_onboarding_boomblocks_gravity_body">Wanneer je blokken laat ontploffen, vallen nieuwe blokken binnen vanaf de tegenoverliggende kant van de explosie. Kijk hoe het bord verschuift!</string>
-    <string name="interactive_onboarding_boomblocks_strategic_title">Strategisch bijvullen</string>
-    <string name="interactive_onboarding_boomblocks_strategic_body">Nieuwe blokken vullen het bord op basis van het explosiecentrum. Gebruik dat om nog grotere groepen klaar te zetten!</string>
-    <string name="interactive_onboarding_boomblocks_tap_hint">Tik op de gemarkeerde groep om door te gaan.</string>
-    <string name="interactive_onboarding_blocksort_pick_title">Kies een bronkolom</string>
-    <string name="interactive_onboarding_blocksort_pick_body">Begin door op de gemarkeerde gemengde kolom te tikken. Je verplaatst eerst de bovenste kleurstapel en elk slot in deze ronde heeft dezelfde grootte.</string>
-    <string name="interactive_onboarding_blocksort_pick_hint">Tik eerst op de gemarkeerde bronkolom in de gemengde layout.</string>
-    <string name="interactive_onboarding_blocksort_match_title">Match de bovenste kleur</string>
-    <string name="interactive_onboarding_blocksort_match_body">Verplaats die stapel nu naar een kolom waarvan de bovenste kleur al overeenkomt. Bijpassende kolommen laten je kleuren veilig groeperen, ook wanneer het bord zich in twee rijen splitst.</string>
-    <string name="interactive_onboarding_blocksort_match_hint">Verplaats de stapel naar de gemarkeerde kolom met dezelfde kleur.</string>
-    <string name="interactive_onboarding_blocksort_finish_title">Voltooi een nette kolom</string>
-    <string name="interactive_onboarding_blocksort_finish_body">Mooi. Nog één zet voltooit in deze ronde een kolom in één kleur. Maak die af om het kerndoel van BlockSort te zien.</string>
-    <string name="interactive_onboarding_blocksort_finish_hint">Voltooi de gemarkeerde kolom zodat elk slot dezelfde kleur toont.</string>
-    <string name="blocksort_completed_label">Gesorteerd</string>
-    <string name="blocksort_goal_hint">Doel: beëindig de ronde met elke gevulde kolom in één kleur. Rondes kunnen 3, 4, 5 of 6 even grote slots per kolom gebruiken en het bord kan zich in twee rijen splitsen.</string>
-    <string name="blocksort_no_moves_hint">Er zijn geen geldige verplaatsingen meer in deze gemengde layout. Probeer een herschikking of start een nieuwe ronde.</string>
-    <string name="blocksort_round_congrats_title">Gefeliciteerd!</string>
-    <string name="blocksort_round_complete_hint">Ronde voltooid! Bonus +%1$d en er is een nieuwe gemengde layout verschenen.</string>
-    <string name="blocksort_round_label">Ronde</string>
-    <string name="blocksort_select_source_hint">Tik op een niet-lege gemengde kolom om de bovenste kleurstapel op te pakken.</string>
-    <string name="blocksort_selected_hint">Tik nu op een lege kolom of een kolom met dezelfde bovenste kleur om de stapel te verplaatsen.</string>
-
+    <!-- AppSelectionScreen -->
     <string name="selection_title">Kies je spel</string>
-
-    <string name="selection_stackshift_desc">Lanceer stukken van onderen om rijen en kolommen te wissen.</string>
-    <string name="selection_blockwise_desc">Sleep en plaats stukken overal op het bord.</string>
-    <string name="selection_blocksort_desc">Sorteer gemengde kleurstapels totdat elke gevulde kolom uit één kleur bestaat.</string>
-    <string name="selection_mergeshift_desc">Voeg stukken met dezelfde waarde samen om hogere scores te halen.</string>
-    <string name="selection_boomblocks_desc">Tik op groepen van 3 of meer blokken om ze te laten ontploffen.</string>
     <string name="selection_switch_game">Wissel van spel</string>
     <string name="selection_active_game_badge">ACTIEF</string>
 
-    <string name="app_title_chainshift">Chain Shift</string>
-    <string name="selection_chainshift_desc">Shoot from the center, slip blocks into a spiral chain, and pop 3+ color matches.</string>
-    <string name="app_title_banner_chainshift_top">CHAIN</string>
-    <string name="app_title_banner_chainshift_bottom">SHIFT</string>
-    <string name="tutorial_chainshift_intro_title">Meet Chain Shift</string>
-    <string name="tutorial_chainshift_intro_body">Blocks enter from the edge, wrap around the board, and crawl toward the center. Your shooter stays in the middle, so every shot must cut into the moving chain before it reaches you.</string>
-    <string name="tutorial_chainshift_path_title">Mikken en schieten</string>
-    <string name="tutorial_chainshift_path_body">Mik vanuit het midden en laat los om te schieten. Je blok wordt geplaatst waar het de ketting raakt en duwt de volgende blokken vooruit.</string>
-    <string name="tutorial_chainshift_combo_title">Creëer terugtrekkingen en combo\'s</string>
-    <string name="tutorial_chainshift_combo_body">Combineer 3 of meer verbonden blokken van dezelfde kleur langs de ketting om ze te laten knappen. Wanneer de opening sluit, trekt de ketting zich terug naar de rand, wat mogelijk kettingreacties veroorzaakt.</string>
-    <string name="tutorial_chainshift_ready_title">Hold the center</string>
-    <string name="tutorial_chainshift_ready_body">Stay calm, keep the spiral short, and use your shots to break dangerous runs before they lock the center. The deeper the chain goes, the less room you have to recover.</string>
-    <string name="interactive_onboarding_chainshift_intro_title">Schiet op het geleide blok</string>
-    <string name="interactive_onboarding_chainshift_intro_body">Begin door op het gemarkeerde deel van de spiraal te vuren. Je blok wordt vanuit het midden gelanceerd en voegt zich bij de ketting op het punt van impact.</string>
-    <string name="interactive_onboarding_chainshift_match_title">Make a 3-block match</string>
-    <string name="interactive_onboarding_chainshift_match_body">Now use the guided shot to line up 3 blocks of the same color. Matching segments burst immediately and open breathing room near the center.</string>
-    <string name="interactive_onboarding_chainshift_chain_title">Een kettingreactie veroorzaken</string>
-    <string name="interactive_onboarding_chainshift_chain_body">Deze opstelling beloont een slimmer schot. Wis de eerste match, zie de ketting zich terugtrekken naar de rand en laat de tweede match vanzelf knappen.</string>
-    <string name="interactive_onboarding_chainshift_tap_hint">Richt en laat los om op het gemarkeerde blok te schieten.</string>
-    <string name="game_message_ad_reward_chainshift">Active block refreshed for Chain Shift!</string>
-    <string name="selection_digitshift_desc">Raad verborgen getallen van 5 of 6 cijfers met aanwijzingen per cijfer.</string>
-    <string name="tutorial_digitshift_intro_title">Vind het verborgen getal</string>
-    <string name="tutorial_digitshift_intro_body">Maak een verborgen getal van 5 of 6 cijfers met de cijfers 0–9 en verstuur het. Elke gok laat zien welke cijfers correct, aanwezig of afwezig zijn.</string>
-    <string name="tutorial_digitshift_hints_title">Lees de kleuren</string>
-    <string name="tutorial_digitshift_hints_body">Groen betekent dat het cijfer correct is, oranje dat het ergens anders hoort en donkergrijs dat het niet in het antwoord zit.</string>
-    <string name="tutorial_digitshift_strategy_title">Gebruik de toetsenblokhints</string>
-    <string name="tutorial_digitshift_strategy_body">Elke verstuurde gok werkt het toetsenblok bij. Hergebruik groene cijfers, verplaats oranje cijfers en vermijd donkergrijze cijfers om sneller op te lossen.</string>
-    <string name="tutorial_digitshift_ready_title">Klaar om cijfers te kraken?</string>
-    <string name="tutorial_digitshift_ready_body">In de klassieke modus wisselen rondes van 5 en 6 cijfers elkaar af totdat je een getal mist. Tijdrit zet extra druk, dus los snel op om score en bonustijd te verdienen.</string>
-    <string name="interactive_onboarding_digitshift_type_hint">Typ het voorgestelde getal om het bord te leren kennen.</string>
-    <string name="interactive_onboarding_digitshift_submit_hint">Verstuur nog een getal en kijk hoe het toetsenblok wordt bijgewerkt.</string>
-    <string name="interactive_onboarding_digitshift_solve_hint">Gebruik de aanwijzingen en los het verborgen getal op.</string>
-    <string name="digitshift_enter">Invoeren</string>
-    <string name="digitshift_delete">Verwijderen</string>
-    <string name="digitshift_guess_label">Poging %1$d</string>
-    <string name="digitshift_solved_words">Opgelost</string>
-    <string name="digitshift_attempts_left">Pogingen</string>
-    <string name="digitshift_current_language">Taal</string>
-    <string name="game_message_digitshift_enter_word">Maak een getal van 5 of 6 cijfers en verstuur je gok.</string>
-    <string name="game_message_digitshift_not_enough_letters">Nog niet genoeg cijfers.</string>
-    <string name="game_message_digitshift_not_in_dictionary">Alleen de cijfers 0–9 zijn toegestaan.</string>
-    <string name="game_message_digitshift_keep_trying">Goede aanwijzing. Verfijn het volgende getal.</string>
-    <string name="game_message_digitshift_solved">Opgelost: %1$s</string>
-    <string name="game_message_digitshift_failed">Ronde voorbij. Het getal was %1$s.</string>
-    <string name="game_message_digitshift_revived">Extra leven gebruikt. Probeer het getal opnieuw.</string>
-    <string name="game_message_ad_reward_digitshift">Getal vernieuwd. Blijf raden!</string>
-    <string name="challenge_task_solve_words">Los %1$d getallen op</string>
-    <string name="challenge_info_solve_words_title">Getallen oplossen</string>
-    <string name="challenge_info_solve_words">Voltooi volledige DigitShift-rondes door het verborgen getal te vinden voordat je geen pogingen meer hebt.</string>
 </resources>
-

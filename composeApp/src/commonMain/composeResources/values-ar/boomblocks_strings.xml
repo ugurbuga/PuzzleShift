@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_boomblocks_desc">المس مجموعات من 3 كتل أو أكثر لتفجيرها.</string>
+
+    <!-- BoomBlocksGameScreen -->
+    <string name="game_message_ad_reward_boomblocks">تم مسح اللون! تمت إعادة تشكيل اللوحة.</string>
+    <string name="ad_reward_boomblocks_clear">مسح اللون</string>
+    <string name="feedback_ad_reward_boomblocks">تم مسح %1$s</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_task_explode_groups">فجّر %1$d مجموعات من الكتل</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_boomblocks_intro_title">فجّر المجموعات المتطابقة</string>
+    <string name="tutorial_boomblocks_intro_body">في BoomBlocks لا تطلق القطع ولا تسحبها. بدلاً من ذلك، ابحث عن ثلاث كتل أو أكثر من اللون نفسه تكون متلامسة، ثم المس أي واحدة منها لمسح المجموعة كاملة.</string>
+    <string name="tutorial_boomblocks_gravity_title">حركة ديناميكية للوحة</string>
+    <string name="tutorial_boomblocks_gravity_body">عندما تنفجر مجموعة، فإنها تصنع فراغاً يجذب الكتل القريبة نحوها. بعد ذلك، تعيد كتل جديدة ملء اللوحة من أقرب حافة، مما يحافظ على حيوية الحركة.</string>
+    <string name="tutorial_boomblocks_ready_title">أنت جاهز لـ BoomBlocks</string>
+    <string name="tutorial_boomblocks_ready_body">ركز على العثور على مجموعات كبيرة لتحقيق أعلى نتيجة، وراقب كيف تعيد كل عملية انفجار تشكيل اللوحة. حظاً موفقاً!</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_boomblocks_basic_title">المس للتفجير</string>
+    <string name="interactive_onboarding_boomblocks_basic_body">ابحث عن مجموعة من ثلاث كتل أو أكثر من اللون نفسه ثم المسها لإزالتها من اللوحة.</string>
+    <string name="interactive_onboarding_boomblocks_large_title">مجموعات أكبر، نقاط أكثر</string>
+    <string name="interactive_onboarding_boomblocks_large_body">المجموعات الأكبر تمنح نقاطاً أكثر وتفتح مساحة أكبر. المس المجموعة الكبيرة المظللة!</string>
+    <string name="interactive_onboarding_boomblocks_gravity_title">تتغير جهة الجاذبية</string>
+    <string name="interactive_onboarding_boomblocks_gravity_body">عندما تفجّر الكتل، تدخل كتل جديدة من الجهة المقابلة لمركز الانفجار. راقب كيف تتحرك اللوحة!</string>
+    <string name="interactive_onboarding_boomblocks_strategic_title">إعادة تعبئة استراتيجية</string>
+    <string name="interactive_onboarding_boomblocks_strategic_body">تعتمد إعادة ملء اللوحة على مركز الانفجار. استخدم ذلك لإعداد مجموعات أكبر من قبل!</string>
+    <string name="interactive_onboarding_boomblocks_tap_hint">المس المجموعة المظللة للمتابعة.</string>
+
+</resources>

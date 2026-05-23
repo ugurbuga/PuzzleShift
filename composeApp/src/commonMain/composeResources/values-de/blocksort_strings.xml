@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blocksort_desc">Sortiere gemischte Farbstapel, bis jede gefüllte Spalte nur noch eine Farbe hat.</string>
+
+    <!-- BlockSortGameScreen -->
+    <string name="game_message_ad_reward_blocksort">Spielfeld neu gemischt! Neue Wege sind offen.</string>
+    <string name="blocksort_completed_label">Sortiert</string>
+    <string name="blocksort_goal_hint">Ziel: Beende die Runde so, dass jede gefüllte Spalte nur eine Farbe enthält. Runden können 3, 4, 5 oder 6 gleich große Slots pro Spalte verwenden, und das Spielfeld kann sich in zwei Reihen aufteilen.</string>
+    <string name="blocksort_no_moves_hint">In diesem gemischten Layout sind keine gültigen Züge mehr möglich. Versuche ein neues Mischen oder starte eine frische Runde.</string>
+    <string name="blocksort_round_congrats_title">Glückwunsch!</string>
+    <string name="blocksort_round_complete_hint">Runde geschafft! Bonus +%1$d und ein neues gemischtes Layout ist angekommen.</string>
+    <string name="blocksort_round_label">Runde</string>
+    <string name="blocksort_select_source_hint">Tippe auf eine nicht leere Mischspalte, um ihren obersten Farbstapel aufzunehmen.</string>
+    <string name="blocksort_selected_hint">Tippe nun auf eine leere Spalte oder eine Spalte mit derselben oberen Farbe, um den Stapel zu verschieben.</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rounds_title">Runden</string>
+    <string name="challenge_info_clear_rounds">Schließe vollständige BlockSort-Runden ab, indem du jede gefüllte Spalte in eine einzige Farbe verwandelst.</string>
+    <string name="challenge_task_complete_columns">Vervollständige %1$d Spalten</string>
+    <string name="challenge_task_clear_rounds">Schließe %1$d Runden ab</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_blocksort_intro_title">Gleich große obere Stapel zwischen Spalten bewegen</string>
+    <string name="tutorial_blocksort_intro_body">Jede Runde verwendet dieselbe Slot-Größe für alle Spalten. Tippe auf eine nicht leere Mischspalte, um ihren obersten Farbstapel aufzunehmen, und verschiebe ihn dann auf eine leere Spalte oder auf eine Spalte mit derselben oberen Farbe.</string>
+    <string name="tutorial_blocksort_rules_title">Nur gleiche Farben dürfen zusammen gestapelt werden</string>
+    <string name="tutorial_blocksort_rules_body">Du kannst nur auf leeren Platz oder auf dieselbe obere Farbe verschieben. Wenn das Puzzle wächst, kann sich das Spielfeld in eine obere und untere Reihe aufteilen. Behalte daher sowohl Hilfsplatz als auch Übersicht im Blick.</string>
+    <string name="tutorial_blocksort_finish_title">Vervollständige jede Spalte in einer einzigen Farbe</string>
+    <string name="tutorial_blocksort_finish_body">Eine Spalte ist abgeschlossen, wenn jeder Slot dieser Runde dieselbe Farbe enthält. Verschiedene Runden können 3, 4, 5 oder 6 gleich große Slots verwenden, und ein neues gemischtes Layout erscheint, sobald du sie alle abgeschlossen hast.</string>
+    <string name="tutorial_blocksort_ready_title">Du bist bereit für BlockSort</string>
+    <string name="tutorial_blocksort_ready_body">Plane zwei oder drei Züge voraus, schütze deine Hilfsspalten und passe dich schnell an, wenn sich pro Runde die Slot-Anzahl ändert und das Spielfeld sich in zwei Reihen aufteilen kann.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_blocksort_pick_title">Wähle eine Ausgangsspalte</string>
+    <string name="interactive_onboarding_blocksort_pick_body">Beginne, indem du auf die hervorgehobene Mischspalte tippst. Du bewegst zuerst ihren obersten Farbstapel, und jeder Slot in dieser Runde hat dieselbe Größe.</string>
+    <string name="interactive_onboarding_blocksort_pick_hint">Tippe zuerst auf die hervorgehobene Ausgangsspalte im gemischten Layout.</string>
+    <string name="interactive_onboarding_blocksort_match_title">Gleiche die obere Farbe ab</string>
+    <string name="interactive_onboarding_blocksort_match_body">Verschiebe diesen Stapel nun auf eine Spalte, deren obere Farbe bereits übereinstimmt. Passende Spalten helfen dir, Farben sicher zu gruppieren, selbst wenn das Spielfeld in zwei Reihen umbricht.</string>
+    <string name="interactive_onboarding_blocksort_match_hint">Bewege den Stapel auf die hervorgehobene Spalte mit passender Farbe.</string>
+    <string name="interactive_onboarding_blocksort_finish_title">Vervollständige eine saubere Spalte</string>
+    <string name="interactive_onboarding_blocksort_finish_body">Großartig. Mit nur einem weiteren Zug vervollständigst du in dieser Runde jeden Slot einer einfarbigen Spalte. Schließe sie ab, um das Kernziel von BlockSort zu sehen.</string>
+    <string name="interactive_onboarding_blocksort_finish_hint">Vervollständige die hervorgehobene Spalte, damit jeder Slot dieselbe Farbe zeigt.</string>
+
+</resources>

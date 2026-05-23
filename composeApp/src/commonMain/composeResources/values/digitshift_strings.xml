@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_digitshift_desc">Guess hidden 5- or 6-digit numbers using digit-by-digit clues.</string>
+
+    <!-- DigitShiftGameScreen -->
+    <string name="digitshift_enter">Enter</string>
+    <string name="digitshift_delete">Delete</string>
+    <string name="digitshift_guess_label">Guess %1$d</string>
+    <string name="digitshift_solved_words">Solved</string>
+    <string name="digitshift_attempts_left">Attempts</string>
+    <string name="digitshift_current_language">Locale</string>
+    <string name="game_message_digitshift_enter_word">Build a 5- or 6-digit number and submit your guess.</string>
+    <string name="game_message_digitshift_not_enough_letters">Not enough digits yet.</string>
+    <string name="game_message_digitshift_not_in_dictionary">Only digits 0–9 are allowed.</string>
+    <string name="game_message_digitshift_keep_trying">Good clue. Refine the next number.</string>
+    <string name="game_message_digitshift_solved">Solved: %1$s</string>
+    <string name="game_message_digitshift_failed">Round over. The number was %1$s.</string>
+    <string name="game_message_digitshift_revived">Extra life used. Try the number again.</string>
+    <string name="game_message_ad_reward_digitshift">Number refreshed. Keep guessing!</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_task_solve_words">Solve %1$d numbers</string>
+    <string name="challenge_info_solve_words_title">Solve numbers</string>
+    <string name="challenge_info_solve_words">Complete full DigitShift rounds by finding the hidden number before you run out of guesses.</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_digitshift_intro_title">Find the hidden number</string>
+    <string name="tutorial_digitshift_intro_body">Build a hidden 5- or 6-digit number with digits 0–9 and submit it. Every guess reveals which digits are correct, present, or absent.</string>
+    <string name="tutorial_digitshift_hints_title">Read the colors</string>
+    <string name="tutorial_digitshift_hints_body">Green means the digit is correct, orange means it belongs somewhere else, and dark gray means it is not in the answer.</string>
+    <string name="tutorial_digitshift_strategy_title">Use the keyboard hints</string>
+    <string name="tutorial_digitshift_strategy_body">Each submitted guess upgrades the keypad. Reuse green digits, relocate orange ones, and avoid dark gray digits to solve faster.</string>
+    <string name="tutorial_digitshift_ready_title">Ready to crack numbers?</string>
+    <string name="tutorial_digitshift_ready_body">Classic mode alternates between 5- and 6-digit rounds until you miss a number. Time Attack adds pressure, so solve quickly to bank score and bonus time.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_digitshift_type_hint">Type the suggested number to learn the board.</string>
+    <string name="interactive_onboarding_digitshift_submit_hint">Submit another number and watch the keypad update.</string>
+    <string name="interactive_onboarding_digitshift_solve_hint">Use the clues and solve the hidden number.</string>
+
+</resources>

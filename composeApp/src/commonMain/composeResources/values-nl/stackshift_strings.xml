@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_stackshift_desc">Lanceer stukken van onderen om rijen en kolommen te wissen.</string>
+
+    <!-- StackShiftGameScreen -->
+    <string name="reward_piece_row_message">Horizontale rijwisser uitgerust!</string>
+    <string name="reward_piece_column_message">Verticale kolomwisser uitgerust!</string>
+    <string name="launch_bar">Lanceerbalk</string>
+    <string name="launch_boost_active">Boost actief • %1$s beurten</string>
+    <string name="launch_special_chance">Kans op speciaal blok +%1$s%</string>
+    <string name="launch_soft_lock_message">Bekijk het doel en laat dan los om te plaatsen</string>
+    <string name="launch_chain_message">Rij + Kolom • +%2$s</string>
+    <string name="launch_paused">Gepauzeerd</string>
+    <string name="launch_game_over">Start opnieuw voor een nieuwe poging</string>
+    <string name="launch_drag_hint">Sleep horizontaal → laat los</string>
+    <string name="queue_next_short">Volgende</string>
+    <string name="game_message_soft_lock">Laat los om het stuk op de gemarkeerde cellen te plaatsen.</string>
+    <string name="game_message_overflow">Er is voor geen enkel stuk in het vak nog ruimte.</string>
+    <string name="game_message_special_chain_board">Rij en kolom tegelijk verwijderd! %1$s lijnen gewist.</string>
+    <string name="game_message_pressure_game_over">Er zijn geen plaatsingen meer mogelijk. Start een nieuwe poging.</string>
+    <string name="game_message_special_lines">Mooie combo! %1$s lijnen gewist.</string>
+    <string name="game_message_special_triggered">Een grote verwijdering heeft %1$d cellen weggehaald!</string>
+    <string name="game_message_perfect_drop">Perfecte plaatsing x%1$s!</string>
+    <string name="game_message_chain_lines">Dubbele clear! %2$s lijnen gewist.</string>
+    <string name="game_message_good_shot">Goede zet. Bekijk de overgebleven stukken in het vak.</string>
+    <string name="game_message_hold_updated">Vak vernieuwd. Blijf bouwen.</string>
+    <string name="game_message_tempo_critical">Zoek naar een rij- of kolomclear voordat het vak vastloopt.</string>
+    <string name="game_message_tempo_up">Een nieuw trio staat klaar. Bekijk het bord aandachtig.</string>
+    <string name="game_message_resumed">Hervat. Kies de kolom en lanceer.</string>
+    <string name="feedback_perfect_lane">Perfecte passing x%1$s</string>
+    <string name="feedback_micro_adjust">Herpositioneren</string>
+    <string name="feedback_soft_lock">Voorbeeld klaar</string>
+    <string name="feedback_hold_armed">Hold klaar</string>
+    <string name="feedback_swap">Gewisseld</string>
+    <string name="feedback_special_chain">Speciale ketting +%1$s • %2$d blokken</string>
+    <string name="feedback_special">Speciaal +%1$s • %2$d blokken</string>
+    <string name="feedback_perfect">Perfect geplaatst x%1$s +%2$s</string>
+    <string name="feedback_chain">Ketting x%1$s +%2$s</string>
+    <string name="game_message_ad_reward_stackshift">Speciaal blok uitgerust! Klaar om te lanceren.</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_stackshift_intro_title">Sleep het actieve stuk en lijn je lancering uit</string>
+    <string name="tutorial_stackshift_intro_body">Het huidige stuk start in het lanceerdok. Sleep het links of rechts onder het bord, laat los wanneer het voorbeeld goed staat en het valt in de dichtstbijzijnde geldige baan.</string>
+    <string name="tutorial_stackshift_systems_title">Gebruik actieblokken wanneer het bord vol raakt</string>
+    <string name="tutorial_stackshift_systems_body">Hold wisselt het huidige stuk, Pauze bevriest de run, Blokeigenschappen legt symbolen uit en Instellingen verandert uiterlijk en taal. Deze knoppen volgen ook je gekozen bordblokstijl.</string>
+    <string name="tutorial_stackshift_specials_title">Speciale blokken kunnen benauwde borden redden</string>
+    <string name="tutorial_stackshift_specials_body">Sommige stukken hebben speciale effecten. Leer wat elk icoon doet zodat je een rij kunt wissen, een kolom kunt wissen, door gaten kunt glippen of gevaar kunt doorbreken wanneer het bord vol raakt.</string>
+    <string name="tutorial_stackshift_ready_title">Je bent klaar om te lanceren in StackShift</string>
+    <string name="tutorial_stackshift_ready_body">Houd je lanceringen strak, plan vooruit op de volgende wachtrij en gebruik specials voordat de druk te hoog wordt. Wanneer je wilt opfrissen, kom dan altijd terug naar deze gids.</string>
+    <string name="tutorial_stackshift_ready_tutorial_hint">Open Tutorial wanneer je lanceren, wachtrij-overzicht en effecten van speciale blokken wilt herhalen.</string>
+    <string name="tutorial_stackshift_ready_settings_hint">Open Instellingen om taal, thema, kleuren en blokstijl te wijzigen vóór je volgende poging.</string>
+
+</resources>

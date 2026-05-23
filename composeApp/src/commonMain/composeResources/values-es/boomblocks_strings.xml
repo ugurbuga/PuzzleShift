@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_boomblocks_desc">Toca grupos de 3 o más bloques para hacerlos explotar.</string>
+
+    <!-- BoomBlocksGameScreen -->
+    <string name="game_message_ad_reward_boomblocks">¡Color eliminado! El tablero se ha reorganizado.</string>
+    <string name="ad_reward_boomblocks_clear">Limpiar color</string>
+    <string name="feedback_ad_reward_boomblocks">%1$s despejado</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_task_explode_groups">Explota %1$d grupos de bloques</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_boomblocks_intro_title">Explota grupos coincidentes</string>
+    <string name="tutorial_boomblocks_intro_body">En BoomBlocks no lanzas ni arrastras piezas. En su lugar, busca tres o más bloques del mismo color que se toquen y toca cualquiera de ellos para borrar todo el grupo.</string>
+    <string name="tutorial_boomblocks_gravity_title">Movimiento dinámico del tablero</string>
+    <string name="tutorial_boomblocks_gravity_body">Cuando un grupo explota, crea un vacío que atrae los bloques cercanos. Después, nuevos bloques rellenan el tablero desde el borde más próximo, manteniendo la acción dinámica.</string>
+    <string name="tutorial_boomblocks_ready_title">Ya estás listo para BoomBlocks</string>
+    <string name="tutorial_boomblocks_ready_body">Concéntrate en encontrar grupos grandes para conseguir la máxima puntuación y fíjate en cómo cada explosión remodela el tablero. ¡Buena suerte!</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_boomblocks_basic_title">Toca para explotar</string>
+    <string name="interactive_onboarding_boomblocks_basic_body">Busca un grupo de tres o más bloques del mismo color y tócalo para borrarlo del tablero.</string>
+    <string name="interactive_onboarding_boomblocks_large_title">Grupos más grandes, más puntos</string>
+    <string name="interactive_onboarding_boomblocks_large_body">Los grupos grandes dan más puntos y liberan más espacio. ¡Toca el grupo grande resaltado!</string>
+    <string name="interactive_onboarding_boomblocks_gravity_title">La gravedad se desplaza</string>
+    <string name="interactive_onboarding_boomblocks_gravity_body">Cuando haces explotar bloques, otros nuevos entran desde el lado opuesto de la explosión. ¡Observa cómo se desplaza el tablero!</string>
+    <string name="interactive_onboarding_boomblocks_strategic_title">Recargas estratégicas</string>
+    <string name="interactive_onboarding_boomblocks_strategic_body">Los nuevos bloques rellenan el tablero según el centro de la explosión. ¡Úsalo para preparar grupos aún más grandes!</string>
+    <string name="interactive_onboarding_boomblocks_tap_hint">Toca el grupo resaltado para continuar.</string>
+
+</resources>

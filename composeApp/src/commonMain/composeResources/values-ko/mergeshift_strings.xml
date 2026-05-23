@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_mergeshift_desc">같은 값을 가진 피스를 합쳐 더 높은 점수를 노립니다.</string>
+
+    <!-- MergeShiftGameScreen -->
+    <string name="game_message_ad_reward_mergeshift">숫자가 바뀌었습니다! 계속 합쳐 보세요.</string>
+    <string name="ad_reward_mergeshift_swap">숫자 변경</string>
+    <string name="feedback_ad_reward_mergeshift">숫자 변경</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_mergeshift_intro_title">피스를 발사해 같은 값을 합치세요</string>
+    <string name="tutorial_mergeshift_intro_body">MergeShift에서는 피스를 도크에서 발사합니다. 블록이 같은 값을 가진 다른 블록 위에 내려오면 더 높은 값으로 합쳐집니다. 계속 합쳐 공간을 만들고 높은 점수를 노리세요.</string>
+    <string name="tutorial_mergeshift_systems_title">넘침을 막기 위해 합치기를 계획하세요</string>
+    <string name="tutorial_mergeshift_systems_body">발사할 때마다 해당 열의 높이가 올라갑니다. 어느 열이든 맨 위에 닿으면 게임 오버입니다. 미리보기로 착지 위치를 확인하고, 필요하면 설정으로 환경을 조정하세요.</string>
+    <string name="tutorial_mergeshift_specials_title">여러 번 합쳐 더 큰 콤보를 만드세요</string>
+    <string name="tutorial_mergeshift_specials_body">한 번의 발사로 여러 번의 합치기가 연쇄적으로 일어날 수 있습니다. 이런 콤보는 더 많은 점수와 공간을 제공합니다.</string>
+    <string name="tutorial_mergeshift_ready_title">이제 MergeShift를 시작할 준비가 되었습니다</string>
+    <string name="tutorial_mergeshift_ready_body">열 높이를 낮게 유지하면서 고가치 합치기를 노리세요. 최고 숫자에 도달해 보세요!</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_mergeshift_launch_title">첫 피스를 발사하세요</string>
+    <string name="interactive_onboarding_mergeshift_launch_body">보드 아래에서 피스를 좌우로 드래그해 조준하고, 손을 떼어 열로 발사하세요.</string>
+    <string name="interactive_onboarding_mergeshift_merge_vertical_title">세로로 같은 값을 합치세요</string>
+    <string name="interactive_onboarding_mergeshift_merge_vertical_body">같은 값의 블록이 이미 있는 열에 피스를 발사하면 더 높은 숫자로 합쳐집니다!</string>
+    <string name="interactive_onboarding_mergeshift_merge_horizontal_title">가로로도 합쳐집니다</string>
+    <string name="interactive_onboarding_mergeshift_merge_horizontal_body">블록은 좌우 이웃과도 합쳐질 수 있습니다. 하이라이트 위치를 노려 가로 합치기를 일으켜 보세요.</string>
+    <string name="interactive_onboarding_mergeshift_merge_multi_title">여러 번 합치기를 발동하세요</string>
+    <string name="interactive_onboarding_mergeshift_merge_multi_body">한 번의 배치로 위, 왼쪽, 오른쪽 등 여러 방향의 합치기가 일어날 수 있습니다. 더 큰 점수와 공간을 노리세요!</string>
+
+</resources>

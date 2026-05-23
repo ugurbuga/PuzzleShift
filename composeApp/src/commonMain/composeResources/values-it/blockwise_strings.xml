@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blockwise_desc">Trascina e rilascia i pezzi ovunque sul tabellone.</string>
+
+    <!-- BlockWiseGameScreen -->
+    <string name="ad_reward_blockwise_refresh">Aggiorna vassoio</string>
+    <string name="feedback_ad_reward_blockwise">Vassoio aggiornato</string>
+    <string name="launch_drag_hint_blockwise">Trascina ovunque sul tabellone → rilascia per piazzare</string>
+    <string name="game_message_select_column">Trascina uno dei tre pezzi in uno spazio vuoto qualsiasi.</string>
+    <string name="game_message_ad_reward_blockwise">Vassoio aggiornato! Nuove forme sono pronte.</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rows_title">Righe</string>
+    <string name="challenge_info_clear_rows">Completa righe intere per eliminarle dal tabellone.</string>
+    <string name="challenge_info_clear_both_directions_title">Riga + Colonna</string>
+    <string name="challenge_info_clear_both_directions">Un singolo piazzamento può eliminare almeno una riga e una colonna nello stesso momento.</string>
+    <string name="challenge_task_clear_rows">Elimina %1$d righe</string>
+    <string name="challenge_task_clear_both_directions">Fai %1$d eliminazioni riga + colonna</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_intro_title">Trascina uno dei tre pezzi sul tabellone</string>
+    <string name="tutorial_intro_body">Tre forme attendono nel vassoio. Scegli quella che vuoi, trascinala su celle vuote e rilasciala esattamente dove entra.</string>
+    <string name="tutorial_systems_title">Pensa al vassoio intero, non a una sola mossa</string>
+    <string name="tutorial_systems_body">Dopo aver piazzato un pezzo, il resto del vassoio resta visibile. Quando usi tutti e tre i pezzi appare un nuovo trio. Cerca di lasciare abbastanza spazio per tutte le forme rimaste.</string>
+    <string name="tutorial_specials_title">Righe e colonne si eliminano coprendole del tutto</string>
+    <string name="tutorial_specials_body">Qui non ci sono pezzi speciali. Invece riempi un'intera riga o un'intera colonna per eliminarla. Se si completano insieme, si cancellano nello stesso momento.</string>
+    <string name="tutorial_ready_title">Sei pronto per il nuovo flusso puzzle dei blocchi</string>
+    <string name="tutorial_ready_body">Continua a leggere il vassoio, prepara eliminazioni di righe e colonne ed evita di bloccare le forme grandi. Quando nessuno dei tre pezzi entra più, la partita finisce.</string>
+    <string name="tutorial_ready_block_properties_hint">Apri il Tutorial ogni volta che vuoi ripassare il piazzamento libero e le eliminazioni simultanee di righe e colonne.</string>
+    <string name="tutorial_ready_tutorial_hint">Apri il Tutorial ogni volta che vuoi ripassare il piazzamento libero e le eliminazioni simultanee di righe e colonne.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_drag_title">Trascina un pezzo del vassoio sul tabellone</string>
+    <string name="interactive_onboarding_drag_body">Tocca una delle tre forme nel vassoio, spostala sul tabellone e allineala con le celle evidenziate.</string>
+    <string name="interactive_onboarding_drag_to_board">Trascina il pezzo evidenziato nell'area bersaglio luminosa.</string>
+    <string name="interactive_onboarding_drag_ready">Perfetto — rilascia ora. Quando si aggancerà alle celle evidenziate, si aprirà automaticamente la guida successiva.</string>
+    <string name="interactive_onboarding_aim_hint">Rilascia il pezzo nelle celle evidenziate per continuare.</string>
+    <string name="interactive_onboarding_target_locked">Perfetto — tienilo lì e rilascia per continuare.</string>
+    <string name="interactive_onboarding_waiting">Piazzamento accettato. Preparazione del prossimo momento guidato…</string>
+    <string name="interactive_onboarding_line_clear_title">Completa una riga per eliminarla</string>
+    <string name="interactive_onboarding_line_clear_body">Piazza questa forma nel punto guidato così la riga si riempie, lampeggia e scompare.</string>
+    <string name="interactive_onboarding_column_clearer_title">Completa una colonna per eliminarla</string>
+    <string name="interactive_onboarding_column_clearer_body">Ora usa il piazzamento evidenziato per completare una colonna intera e aprire spazio verticale.</string>
+    <string name="interactive_onboarding_row_clearer_title">Le righe aprono spazio orizzontale</string>
+    <string name="interactive_onboarding_row_clearer_body">Una riga piena si elimina all'istante. Mira alle celle evidenziate e guarda il tabellone aprirsi in larghezza.</string>
+    <string name="interactive_onboarding_ghost_title">Il vassoio conta quanto il tabellone</string>
+    <string name="interactive_onboarding_ghost_body">Prima di piazzare una forma, guarda anche gli altri due pezzi. Le buone partite nascono dal lasciare spazio per tutto il vassoio, non solo per la mossa corrente.</string>
+    <string name="interactive_onboarding_heavy_title">Elimina entrambe le direzioni insieme</string>
+    <string name="interactive_onboarding_heavy_body">Alcuni piazzamenti completano una riga e una colonna nello stesso momento. Usa il punto guidato per attivare una doppia eliminazione più grande.</string>
+
+</resources>

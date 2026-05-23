@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blocksort_desc">混色スタックを並べ替え、埋まった列をすべて単色にそろえましょう。</string>
+
+    <!-- BlockSortGameScreen -->
+    <string name="game_message_ad_reward_blocksort">このラウンドに空き列を1本追加しました。</string>
+    <string name="blocksort_completed_label">完了</string>
+    <string name="blocksort_goal_hint">目標: 埋まっている各列を単色にしてラウンドを終えましょう。ラウンドごとに列は 3、4、5、6 個の同サイズスロットを使い、盤面が2段に分かれることもあります。</string>
+    <string name="blocksort_no_moves_hint">この混色配置では有効な移動が残っていません。シャッフルするか、新しいラウンドを始めましょう。</string>
+    <string name="blocksort_round_congrats_title">おめでとう！</string>
+    <string name="blocksort_round_complete_hint">ラウンドクリア！ ボーナス +%1$d、そして新しい混色レイアウトが到着しました。</string>
+    <string name="blocksort_round_label">ラウンド</string>
+    <string name="blocksort_select_source_hint">空でない混色列をタップして、一番上の色スタックを持ち上げましょう。</string>
+    <string name="blocksort_selected_hint">次に、空の列か同じ色が一番上にある列をタップしてスタックを移動させましょう。</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rounds_title">ラウンド</string>
+    <string name="challenge_info_clear_rounds">埋まっている各列を単色にそろえて、BlockSort のラウンドを最後まで完了しましょう。</string>
+    <string name="challenge_task_complete_columns">%1$d 列を完成させる</string>
+    <string name="challenge_task_clear_rounds">%1$d ラウンドをクリア</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_blocksort_intro_title">同じサイズの上段スタックを列間で移動しよう</string>
+    <string name="tutorial_blocksort_intro_body">各ラウンドでは、すべての列が共通のスロットサイズを使います。空でない混色列をタップして上の色スタックを取り出し、空の列か同じ色が一番上にある列へ移動させましょう。</string>
+    <string name="tutorial_blocksort_rules_title">同じ色同士だけを重ねられる</string>
+    <string name="tutorial_blocksort_rules_body">移動先は空き列か、同じ色が一番上にある列だけです。パズルが進むと盤面が上下2段に分かれることがあるので、補助スペースと見通しを両方意識しましょう。</string>
+    <string name="tutorial_blocksort_finish_title">単色列を完成させよう</string>
+    <string name="tutorial_blocksort_finish_body">そのラウンドのすべてのスロットが同じ色になると列が完成です。ラウンドごとに 3、4、5、6 スロットがあり、全部終えると新しい混色レイアウトが届きます。</string>
+    <string name="tutorial_blocksort_ready_title">BlockSort の準備は完了です</string>
+    <string name="tutorial_blocksort_ready_body">2～3手先を読み、補助列を守り、ラウンドごとのスロット数変化や2段盤面への切り替わりに素早く対応しましょう。</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_blocksort_pick_title">元の列を選ぼう</string>
+    <string name="interactive_onboarding_blocksort_pick_body">まずハイライトされた混色列をタップします。最上段の色スタックを最初に動かします。このラウンドではすべてのスロットが同じサイズです。</string>
+    <string name="interactive_onboarding_blocksort_pick_hint">まずハイライトされた元の列をタップしてください。</string>
+    <string name="interactive_onboarding_blocksort_match_title">上の色を合わせよう</string>
+    <string name="interactive_onboarding_blocksort_match_body">次は、そのスタックを同じ色が一番上にある列へ移動します。盤面が2段になっても、色が一致する列なら安全にまとめられます。</string>
+    <string name="interactive_onboarding_blocksort_match_hint">スタックをハイライトされた一致色の列へ移動してください。</string>
+    <string name="interactive_onboarding_blocksort_finish_title">単色列を完成させよう</string>
+    <string name="interactive_onboarding_blocksort_finish_body">素晴らしいです。あと1手で、このラウンドの単色列が完成します。BlockSort の基本目標を確認してみましょう。</string>
+    <string name="interactive_onboarding_blocksort_finish_hint">ハイライトされた列を完成させて、すべてのスロットを同じ色にしてください。</string>
+
+</resources>

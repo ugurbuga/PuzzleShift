@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blockwise_desc">Arraste e solte peças em qualquer lugar do tabuleiro.</string>
+
+    <!-- BlockWiseGameScreen -->
+    <string name="ad_reward_blockwise_refresh">Atualizar bandeja</string>
+    <string name="feedback_ad_reward_blockwise">Bandeja atualizada</string>
+    <string name="launch_drag_hint_blockwise">Arraste para qualquer lugar no tabuleiro → solte para colocar</string>
+    <string name="game_message_select_column">Arraste a peça na horizontal, escolha a coluna e lance para cima.</string>
+    <string name="game_message_ad_reward_blockwise">Bandeja renovada! Novas formas estão prontas.</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rows_title">Linhas</string>
+    <string name="challenge_info_clear_rows">Complete linhas inteiras para limpá-las do tabuleiro.</string>
+    <string name="challenge_info_clear_both_directions_title">Linha + Coluna</string>
+    <string name="challenge_info_clear_both_directions">Uma única colocação pode limpar pelo menos uma linha e uma coluna ao mesmo tempo.</string>
+    <string name="challenge_task_clear_rows">Limpar %1$d linhas</string>
+    <string name="challenge_task_clear_both_directions">Fazer %1$d limpezas de linha + coluna</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_intro_title">Arraste qualquer uma das três peças para o tabuleiro</string>
+    <string name="tutorial_intro_body">Três formas esperam na bandeja. Escolha a que você deseja, arraste-a para qualquer célula vazia e solte para colocá-la exatamente onde ela se encaixa.</string>
+    <string name="tutorial_systems_title">Pense em toda a bandeja, não apenas em um movimento</string>
+    <string name="tutorial_systems_body">Depois de colocar uma peça, a bandeja restante permanece na tela. Quando todas as três são usadas, um novo trio aparece. Tente deixar espaço suficiente para cada forma que você ainda tem.</string>
+    <string name="tutorial_specials_title">Linhas e colunas limpam quando ficam completas</string>
+    <string name="tutorial_specials_body">Aqui não há peças especiais. Em vez disso, preencha uma linha inteira ou uma coluna inteira para limpá-la. Se ambas forem concluídas ao mesmo tempo, elas limpam juntas.</string>
+    <string name="tutorial_ready_title">Você está pronto para o novo fluxo de quebra-cabeça com blocos</string>
+    <string name="tutorial_ready_body">Continue observando a bandeja, prepare limpezas de linhas e colunas e evite prender formas grandes. Quando nenhuma das três peças couber mais, a rodada termina.</string>
+    <string name="tutorial_ready_block_properties_hint">Abra o Tutorial sempre que quiser rever a colocação livre e as limpezas simultâneas de linhas e colunas.</string>
+    <string name="tutorial_ready_tutorial_hint">Abra o Tutorial sempre que quiser rever a colocação livre e as limpezas simultâneas de linhas e colunas.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_drag_title">Arraste uma peça da bandeja para o tabuleiro</string>
+    <string name="interactive_onboarding_drag_body">Toque em uma das três formas da bandeja, mova-a sobre o tabuleiro e alinhe-a com as células destacadas.</string>
+    <string name="interactive_onboarding_drag_to_board">Arraste a peça destacada da bandeja até a área-alvo brilhante.</string>
+    <string name="interactive_onboarding_drag_ready">Ótimo — solte agora. Quando ela encaixar nas células destacadas, o próximo guia será aberto automaticamente.</string>
+    <string name="interactive_onboarding_aim_hint">Solte a peça dentro das células destacadas para continuar.</string>
+    <string name="interactive_onboarding_target_locked">Perfeito — mantenha-a aí e solte para continuar.</string>
+    <string name="interactive_onboarding_waiting">Posicionamento aceito. Preparando o próximo momento guiado…</string>
+    <string name="interactive_onboarding_line_clear_title">Complete uma linha para limpá-la</string>
+    <string name="interactive_onboarding_line_clear_body">Coloque esta forma no ponto guiado para que a linha fique completa, brilhe e desapareça.</string>
+    <string name="interactive_onboarding_column_clearer_title">Complete uma coluna para limpá-la</string>
+    <string name="interactive_onboarding_column_clearer_body">Agora use o posicionamento destacado para completar uma coluna inteira e abrir espaço vertical.</string>
+    <string name="interactive_onboarding_row_clearer_title">Linhas abrem espaço horizontal</string>
+    <string name="interactive_onboarding_row_clearer_body">Uma linha completa limpa instantaneamente. Mire nas células destacadas e veja o tabuleiro se abrir de ponta a ponta.</string>
+    <string name="interactive_onboarding_ghost_title">A bandeja importa tanto quanto o tabuleiro</string>
+    <string name="interactive_onboarding_ghost_body">Antes de colocar uma forma, olhe também para as outras duas peças. Boas partidas vêm de deixar espaço para a bandeja inteira, não apenas para este movimento.</string>
+    <string name="interactive_onboarding_heavy_title">Limpe as duas direções ao mesmo tempo</string>
+    <string name="interactive_onboarding_heavy_body">Alguns posicionamentos completam uma linha e uma coluna ao mesmo tempo. Use o ponto guiado para acionar uma limpeza dupla maior.</string>
+
+</resources>

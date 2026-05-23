@@ -6,6 +6,8 @@
     <string name="app_title_mergeshift" translatable="false">MergeShift</string>
     <string name="app_title_boomblocks" translatable="false">BoomBlocks</string>
     <string name="app_title_blocksort" translatable="false">BlockSort</string>
+    <string name="app_title_digitshift" translatable="false">DigitShift</string>
+    <string name="app_title_chainshift" translatable="false">Chain Shift</string>
 
     <string name="app_title_banner_stackshift_top" translatable="false">STACK</string>
     <string name="app_title_banner_stackshift_bottom" translatable="false">SHIFT</string>
@@ -17,6 +19,10 @@
     <string name="app_title_banner_boomblocks_bottom" translatable="false">BLOCKS</string>
     <string name="app_title_banner_blocksort_top" translatable="false">BLOCK</string>
     <string name="app_title_banner_blocksort_bottom" translatable="false">SORT</string>
+    <string name="app_title_banner_chainshift_top" translatable="false">CHAIN</string>
+    <string name="app_title_banner_chainshift_bottom" translatable="false">SHIFT</string>
+    <string name="app_title_banner_digitshift_top" translatable="false">DIGIT</string>
+    <string name="app_title_banner_digitshift_bottom" translatable="false">SHIFT</string>
 
     <string name="app_language_english" translatable="false">English</string>
     <string name="app_language_turkish" translatable="false">Türkçe</string>
@@ -35,8 +41,5 @@
     <string name="app_language_dutch" translatable="false">Nederlands</string>
 
     <string name="notification_miss_you_title" translatable="false">Puzzle Shift</string>
-    <string name="app_title_digitshift" translatable="false">DigitShift</string>
-    <string name="app_title_banner_digitshift_top" translatable="false">DIGIT</string>
-    <string name="app_title_banner_digitshift_bottom" translatable="false">SHIFT</string>
 </resources>
 

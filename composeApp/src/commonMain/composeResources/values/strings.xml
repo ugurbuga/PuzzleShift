@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- SettingsScreen -->
     <string name="settings_title">Settings</string>
     <string name="settings_language">Language</string>
     <string name="settings_theme">Theme</string>
@@ -11,11 +13,6 @@
     <string name="settings_tokens_balance">Token: %1$d</string>
     <string name="settings_tokens_earn_challenge">• Daily challenge reward: +%1$d tokens</string>
     <string name="settings_tokens_earn_score">• Game reward: +1 token for every %1$d score</string>
-    <string name="rewarded_tokens_button_bullet">• Watch an ad and earn %1$d tokens</string>
-    <string name="rewarded_tokens_button">Watch an ad and earn %1$d tokens</string>
-    <string name="reward_earned_message">You earned %1$d tokens!</string>
-    <string name="reward_piece_row_message">Horizontal Row Clearer piece equipped!</string>
-    <string name="reward_piece_column_message">Vertical Column Clearer piece equipped!</string>
     <string name="unlock_dialog_watch_ad">Watch ad to earn tokens</string>
     <string name="token_label">Token</string>
     <string name="settings_challenges">Challenges</string>
@@ -62,6 +59,31 @@
     <string name="block_style_pixel">Pixel</string>
     <string name="block_style_cyberpunk">Cyberpunk</string>
     <string name="block_style_electric">Electric</string>
+    <string name="settings_sound">Sound</string>
+    <string name="settings_sound_on">On</string>
+    <string name="settings_sound_off">Off</string>
+    <string name="settings_board_block_style">Board block style</string>
+    <string name="board_block_style_always_flat">Always flat</string>
+    <string name="board_block_style_match_selected">Match selected style</string>
+    <string name="block_style_lava">Lava</string>
+    <string name="block_style_light_burst">Light Burst</string>
+    <string name="block_style_matte_soft">Matte Soft</string>
+    <string name="block_style_stone_texture">Stone Texture</string>
+    <string name="rewarded_tokens_button_bullet">• Watch an ad and earn %1$d tokens</string>
+    <string name="rewarded_tokens_button">Watch an ad and earn %1$d tokens</string>
+    <string name="unlock_dialog_title">Unlock %1$s?</string>
+    <string name="unlock_dialog_insufficient_title">%1$s is locked</string>
+    <string name="unlock_dialog_message">%1$s costs %2$d tokens. Current balance: %3$d.</string>
+    <string name="unlock_dialog_not_enough">You need %1$d tokens to unlock this item. Your current balance is %2$d.</string>
+    <string name="unlock_dialog_confirm">Unlock</string>
+    <string name="unlock_dialog_locked_suffix">Locked</string>
+
+    <!-- HomeScreen -->
+    <string name="home_play_cta">Play</string>
+    <string name="home_classic_cta">Classic</string>
+    <string name="home_time_attack_cta">Time Attack</string>
+
+    <!-- GameDialogs -->
     <string name="hold">Hold</string>
     <string name="pause">Pause</string>
     <string name="resume">Resume</string>
@@ -76,68 +98,37 @@
     <string name="score">Score</string>
     <string name="high_score">Best</string>
     <string name="high_score_new_record">New Record</string>
-    <string name="home_play_cta">Play</string>
-    <string name="home_classic_cta">Classic</string>
-    <string name="home_time_attack_cta">Time Attack</string>
     <string name="lines">Line</string>
     <string name="time_remaining">Time Left</string>
     <string name="boost">Boost</string>
     <string name="danger">Danger</string>
     <string name="danger_none">-</string>
     <string name="launch_label">Launch</string>
-    <string name="launch_bar">Launch bar</string>
-    <string name="launch_boost_active">Boost active • %1$s turns</string>
-    <string name="launch_special_chance">Special block chance +%1$s%</string>
-    <string name="launch_soft_lock_message">Preview the target, then release to place</string>
-    <string name="launch_chain_message">Row + Column • +%2$s</string>
-    <string name="launch_paused">Paused</string>
-    <string name="launch_game_over">Restart for a new run</string>
-    <string name="launch_drag_hint">Drag horizontally → release</string>
-    <string name="launch_drag_hint_blockwise">Drag anywhere on the board → release to place</string>
-    <string name="queue_hold">Hold</string>
-    <string name="queue_next_short">Next</string>
-    <string name="queue_empty">—</string>
-    <string name="pause_title">Paused</string>
     <string name="game_over_title">Game Over</string>
     <string name="continue_label">Continue</string>
     <string name="game_over_extra_life">Watch an ad for an extra life</string>
     <string name="game_over_extra_life_loading">Loading ad…</string>
     <string name="play_again">Play again</string>
     <string name="game_over_new_high_score">New high score!</string>
-    <string name="game_message_select_column">Drag one of the three pieces onto any empty space.</string>
     <string name="game_message_no_opening">No valid move is left for the current tray.</string>
-    <string name="game_message_soft_lock">Release to place the piece on the highlighted cells.</string>
-    <string name="game_message_overflow">No space remains for any piece in the tray.</string>
-    <string name="game_message_special_chain_board">Row and column clear together! %1$s lines cleared.</string>
-    <string name="game_message_pressure_game_over">No more placements are possible. Start a new run.</string>
-    <string name="game_message_special_lines">Nice combo! %1$s lines cleared.</string>
-    <string name="game_message_special_triggered">A big clear removed %1$d cells!</string>
-    <string name="game_message_perfect_drop">Clean placement x%1$s!</string>
-    <string name="game_message_chain_lines">Double clear! %2$s lines cleared.</string>
-    <string name="game_message_lines_cleared">%1$s lines cleared.</string>
-    <string name="game_message_good_shot">Good move. Check the remaining tray pieces.</string>
-    <string name="game_message_ad_reward_blockwise">Tray refreshed! New shapes are ready.</string>
-    <string name="game_message_ad_reward_mergeshift">Numbers changed! Keep merging.</string>
-    <string name="game_message_ad_reward_boomblocks">Color cleared! The board is reshaped.</string>
-    <string name="game_message_ad_reward_stackshift">Special block equipped! Ready to launch.</string>
-    <string name="game_message_ad_reward_blocksort">Extra empty column added for this round.</string>
-    <string name="game_message_hold_updated">Tray refreshed. Keep building.</string>
-    <string name="game_message_tempo_critical">Look for a row or column clear before the tray locks up.</string>
-    <string name="game_message_tempo_up">A new trio is ready. Scan the board carefully.</string>
     <string name="game_message_paused">The game is paused.</string>
-    <string name="game_message_resumed">Resume. Choose the column and launch.</string>
     <string name="game_message_extra_life_used">Extra life activated! %1$s rows cleared.</string>
+    <string name="queue_hold">Hold</string>
+    <string name="pause_title">Paused</string>
+    <string name="game_message_lines_cleared">%1$s lines cleared.</string>
+
+    <!-- NotificationWorker -->
     <string name="notification_reminders_channel_name">Reminders</string>
     <string name="notification_miss_you_body">We missed you! Come back and play some more.</string>
     <string name="notification_daily_challenge_title">Daily Challenge</string>
     <string name="notification_daily_challenge_body">Have you completed today\'s daily challenge tasks yet?</string>
     <string name="notification_test_body">This is a test notification.</string>
+
+    <!-- DailyChallengeScreen -->
     <string name="challenge_tasks_title">Tasks</string>
     <string name="challenge_info_title">About Tasks</string>
     <string name="challenge_info_clear_blocks_title">Blocks</string>
     <string name="challenge_info_clear_blocks">Clear filled cells from the board by completing lines and triggering chain reactions.</string>
-    <string name="challenge_info_clear_rows_title">Rows</string>
-    <string name="challenge_info_clear_rows">Complete full rows to clear them from the board.</string>
     <string name="challenge_info_reach_score_title">Score</string>
     <string name="challenge_info_reach_score">Increase your score by placing pieces and clearing lines.</string>
     <string name="challenge_info_trigger_special_title">Special Blocks</string>
@@ -148,29 +139,20 @@
     <string name="challenge_info_chain_reaction">Set up follow-up clears so one move triggers extra clears afterward.</string>
     <string name="challenge_info_clear_columns_title">Columns</string>
     <string name="challenge_info_clear_columns">Complete full columns to clear them from the board.</string>
-    <string name="challenge_info_clear_rounds_title">Rounds</string>
-    <string name="challenge_info_clear_rounds">Finish full BlockSort rounds by turning every filled column into a single color.</string>
     <string name="challenge_info_place_pieces_title">Placements</string>
     <string name="challenge_info_place_pieces">Every successful drop counts, even if it does not clear a line.</string>
-    <string name="challenge_info_clear_both_directions_title">Row + Column</string>
-    <string name="challenge_info_clear_both_directions">A single placement can clear at least one row and one column at the same time.</string>
     <string name="challenge_completed">Challenge Completed!</string>
     <string name="challenge_task_clear_blocks">Clear %1$d blocks</string>
-    <string name="challenge_task_clear_rows">Clear %1$d rows</string>
     <string name="challenge_task_reach_score">Reach %1$d score</string>
     <string name="challenge_task_trigger_special">Trigger %1$d special blocks</string>
     <string name="challenge_task_perfect_placement">Make %1$d perfect placements</string>
     <string name="challenge_task_chain_reaction">Create %1$d chain reactions</string>
     <string name="challenge_task_clear_columns">Clear %1$d columns</string>
-    <string name="challenge_task_complete_columns">Complete %1$d columns</string>
     <string name="challenge_task_place_pieces">Place %1$d pieces</string>
-    <string name="challenge_task_clear_rounds">Clear %1$d rounds</string>
-    <string name="ad_reward_blockwise_refresh">Refresh Tray</string>
-    <string name="ad_reward_mergeshift_swap">Change Number</string>
-    <string name="ad_reward_boomblocks_clear">Clear Color</string>
-    <string name="feedback_ad_reward_blockwise">Tray refreshed</string>
-    <string name="feedback_ad_reward_mergeshift">Numbers changed</string>
-    <string name="feedback_ad_reward_boomblocks">%1$s cleared</string>
+    <string name="challenge_progress_value">%1$d/%2$d</string>
+
+    <!-- RewardFeedback -->
+    <string name="reward_earned_message">You earned %1$d tokens!</string>
     <string name="color_cyan">Cyan</string>
     <string name="color_gold">Gold</string>
     <string name="color_violet">Violet</string>
@@ -180,8 +162,12 @@
     <string name="color_rose">Rose</string>
     <string name="color_lime">Lime</string>
     <string name="color_amber">Amber</string>
-    <string name="challenge_task_explode_groups">Explode %1$d block groups</string>
-    <string name="challenge_task_clear_both_directions">Make %1$d row + column clears</string>
+    <string name="feedback_overflow">Overflow</string>
+    <string name="feedback_clear">Clear +%1$s</string>
+    <string name="feedback_score_only">+%1$s</string>
+    <string name="feedback_extra_life">Extra life! %1$s rows</string>
+
+    <!-- Calendar -->
     <string name="month_january">January</string>
     <string name="month_february">February</string>
     <string name="month_march">March</string>
@@ -202,27 +188,15 @@
     <string name="day_friday_short">Fr</string>
     <string name="day_saturday_short">Sa</string>
     <string name="day_sunday_short">Su</string>
-    <string name="feedback_overflow">Overflow</string>
-    <string name="feedback_perfect_lane">Clean fit x%1$s</string>
-    <string name="feedback_micro_adjust">Reposition</string>
-    <string name="feedback_soft_lock">Preview ready</string>
-    <string name="feedback_hold_armed">Hold ready</string>
-    <string name="feedback_swap">Swapped</string>
-    <string name="feedback_special_chain">Special chain +%1$s • %2$d blocks</string>
-    <string name="feedback_special">Special +%1$s • %2$d blocks</string>
-    <string name="feedback_perfect">Perfect x%1$s +%2$s</string>
-    <string name="feedback_chain">Chain x%1$s +%2$s</string>
-    <string name="feedback_clear">Clear +%1$s</string>
-    <string name="feedback_score_only">+%1$s</string>
-    <string name="feedback_extra_life">Extra life! %1$s rows</string>
-    <string name="challenge_progress_value">%1$d/%2$d</string>
     <string name="stat_label_value_format">%1$s: %2$s</string>
     <string name="time_minutes_seconds_format">%1$d:%2$s</string>
+
+    <!-- PiecePropertiesScreen -->
+    <string name="queue_empty">—</string>
     <string name="special_column_clearer">COLUMN</string>
     <string name="special_row_clearer">ROW</string>
     <string name="special_ghost">GHOST</string>
     <string name="special_heavy">HEAVY</string>
-
     <string name="piece_properties_title">Piece Properties</string>
     <string name="piece_properties_active">Active Piece</string>
     <string name="piece_properties_kind">Type</string>
@@ -231,212 +205,38 @@
     <string name="piece_properties_cells">Cell</string>
     <string name="piece_properties_unlock_level">Unlock Level</string>
     <string name="piece_properties_none">None</string>
-
     <string name="active_piece_summary">%1$s • %2$s • %3$s</string>
     <string name="piece_size_format">%1$dx%2$d</string>
 
+    <!-- BlockPropertiesScreen -->
     <string name="block_properties_title">Block Properties</string>
     <string name="block_properties_select_hint">Select a block type</string>
-
     <string name="block_properties_normal_title">Normal Block</string>
     <string name="block_properties_normal_desc">Standard filled cell. No special effect.</string>
-
     <string name="block_properties_column_clearer_title">Column Clear</string>
     <string name="block_properties_column_clearer_desc">Columns disappear when every cell in that column is filled.</string>
-
     <string name="block_properties_row_clearer_title">Row Clear</string>
     <string name="block_properties_row_clearer_desc">Rows disappear when every cell in that row is filled.</string>
-
     <string name="block_properties_ghost_title">Free Placement</string>
     <string name="block_properties_ghost_desc">You can place any tray piece directly onto any empty area where it fits.</string>
-
     <string name="block_properties_heavy_title">No Special Blocks</string>
     <string name="block_properties_heavy_desc">This mode is all about shape choice, line clears, and finding space for the full tray.</string>
-
     <string name="block_properties_dot_desc">The small dot in the top-right shows that this block has a special effect. The dot and border color indicate the effect type.</string>
+
+    <!-- GameTutorialScreen -->
     <string name="tutorial_subtitle">A quick walkthrough before your first run.</string>
     <string name="tutorial_step_counter">Step %1$d / %2$d</string>
     <string name="tutorial_back">Back</string>
     <string name="cancel">Cancel</string>
-    <string name="unlock_dialog_title">Unlock %1$s?</string>
-    <string name="unlock_dialog_insufficient_title">%1$s is locked</string>
-    <string name="unlock_dialog_message">%1$s costs %2$d tokens. Current balance: %3$d.</string>
-    <string name="unlock_dialog_not_enough">You need %1$d tokens to unlock this item. Your current balance is %2$d.</string>
-    <string name="unlock_dialog_confirm">Unlock</string>
-    <string name="unlock_dialog_locked_suffix">Locked</string>
     <string name="tutorial_next">Next</string>
     <string name="tutorial_finish">Start the game</string>
     <string name="return_home">Return to Home</string>
-    <string name="tutorial_stackshift_intro_title">Drag the active piece and line up your launch</string>
-    <string name="tutorial_stackshift_intro_body">The current piece starts in the launch dock. Drag it left or right under the board, release when the preview looks good, and it will drop into the nearest valid lane.</string>
-    <string name="tutorial_stackshift_systems_title">Use action blocks when the board gets crowded</string>
-    <string name="tutorial_stackshift_systems_body">Hold swaps the current piece, Pause freezes the run, Block Properties explains symbols, and Settings changes the look and language. These buttons also follow your chosen board block style.</string>
-    <string name="tutorial_stackshift_specials_title">Special blocks can save tight boards</string>
-    <string name="tutorial_stackshift_specials_body">Some pieces carry special effects. Learn what each icon does so you can clear a row, clear a column, slip through gaps, or punch through danger when the board gets crowded.</string>
-    <string name="tutorial_stackshift_ready_title">You are ready to launch in StackShift</string>
-    <string name="tutorial_stackshift_ready_body">Keep your launches clean, plan for the next queue, and use specials before pressure builds too high. When you want a refresher, come back to this guide anytime.</string>
-    <string name="tutorial_stackshift_ready_tutorial_hint">Open Tutorial anytime to review launching, queue awareness, and special block effects.</string>
-    <string name="tutorial_stackshift_ready_settings_hint">Open Settings to change the language, theme, colors, and block style before your next run.</string>
-    <string name="tutorial_intro_title">Drag any of the three pieces onto the board</string>
-    <string name="tutorial_intro_body">Three shapes wait in the tray. Pick the one you want, drag it onto any empty cells, and release to place it exactly where it fits.</string>
-    <string name="tutorial_systems_title">Think about the whole tray, not just one move</string>
-    <string name="tutorial_systems_body">After placing one piece, the remaining tray stays on screen. When all three are used, a fresh trio appears. Try to leave enough space for every shape you still have.</string>
-    <string name="tutorial_specials_title">Rows and columns clear with full coverage</string>
-    <string name="tutorial_specials_body">There are no special pieces here. Instead, fill an entire row or an entire column to clear it. If both complete together, they clear at the same time.</string>
-    <string name="tutorial_ready_title">You are ready for the new block puzzle flow</string>
-    <string name="tutorial_ready_body">Keep scanning the tray, set up row and column clears, and avoid trapping large shapes. When none of the three pieces fit anymore, the run ends.</string>
-    <string name="tutorial_ready_block_properties_hint">Open Tutorial whenever you want to revisit free placement and simultaneous row/column clears.</string>
-    <string name="tutorial_ready_tutorial_hint">Open Tutorial whenever you want to revisit free placement and simultaneous row/column clears.</string>
     <string name="tutorial_ready_settings_hint">Open Settings to change the language, theme, colors, and block style before your next run.</string>
-    <string name="tutorial_mergeshift_intro_title">Launch pieces to merge same-valued blocks</string>
-    <string name="tutorial_mergeshift_intro_body">In MergeShift, pieces are launched from the dock. When a block lands on another with the same value, they merge into a higher value. Keep merging to clear space and reach higher scores.</string>
-    <string name="tutorial_mergeshift_systems_title">Plan your mergers to prevent overflow</string>
-    <string name="tutorial_mergeshift_systems_body">Every piece you launch adds to the column height. If any column reaches the top, the game ends. Use the preview to see where your piece will land, or open Settings to customize your experience.</string>
-    <string name="tutorial_mergeshift_specials_title">Combine multiple merges for bigger combos</string>
-    <string name="tutorial_mergeshift_specials_body">A single launch can trigger a chain reaction of merges. These combos award more points and clear more space on the board, helping you stay in the game longer.</string>
-    <string name="tutorial_mergeshift_ready_title">You are ready for MergeShift</string>
-    <string name="tutorial_mergeshift_ready_body">Focus on keeping your columns low and setting up high-value merges. Good luck reaching the highest numbers!</string>
-
-    <string name="tutorial_boomblocks_intro_title">Explode matching groups</string>
-    <string name="tutorial_boomblocks_intro_body">In BoomBlocks, you don\'t launch or drag pieces. Instead, look for three or more touching blocks of the same color and tap any of them to clear the whole group.</string>
-    <string name="tutorial_boomblocks_gravity_title">Dynamic board movement</string>
-    <string name="tutorial_boomblocks_gravity_body">When a group explodes, it creates a vacuum that pulls surrounding blocks in. New blocks then refill the board from the nearest edge, keeping the action dynamic.</string>
-    <string name="tutorial_boomblocks_ready_title">You are ready for BoomBlocks</string>
-    <string name="tutorial_boomblocks_ready_body">Focus on finding large groups for maximum score and watch how each explosion reshapes the board. Good luck!</string>
-    <string name="tutorial_blocksort_intro_title">Move equal-size top stacks between columns</string>
-    <string name="tutorial_blocksort_intro_body">Each round uses one shared slot size for every column. Tap a non-empty mixed column to pick its top color stack, then move it onto an empty column or a column whose top color matches.</string>
-    <string name="tutorial_blocksort_rules_title">Only matching colors can stack together</string>
-    <string name="tutorial_blocksort_rules_body">You can only transfer onto empty space or the same top color. As the puzzle grows, the board may wrap into an upper and lower row, so keep both helper space and visibility in mind.</string>
-    <string name="tutorial_blocksort_finish_title">Complete every slot in a single-color column</string>
-    <string name="tutorial_blocksort_finish_body">A column is complete when every slot in that round holds the same color. Different rounds can use 3, 4, 5, or 6 equal-size slots, and a new mixed layout arrives after you finish them all.</string>
-    <string name="tutorial_blocksort_ready_title">You are ready for BlockSort</string>
-    <string name="tutorial_blocksort_ready_body">Plan two or three moves ahead, protect your helper columns, and adapt quickly as each round changes the slot count and may split the board into two rows.</string>
-
     <string name="interactive_onboarding_step_counter">Guide %1$d / %2$d</string>
 
-    <string name="interactive_onboarding_drag_title">Drag a tray piece onto the board</string>
-    <string name="interactive_onboarding_drag_body">Touch one of the three shapes in the tray, move it over the board, and line it up with the highlighted cells.</string>
-    <string name="interactive_onboarding_drag_to_board">Drag the highlighted tray piece into the glowing target area.</string>
-    <string name="interactive_onboarding_drag_ready">Nice — release now. Once it snaps into the highlighted cells, the next guide will open automatically.</string>
-    <string name="interactive_onboarding_aim_hint">Drop the piece inside the highlighted cells to continue.</string>
-    <string name="interactive_onboarding_target_locked">Perfect — keep it there and release to continue.</string>
-    <string name="interactive_onboarding_waiting">Placement accepted. Preparing the next guided moment…</string>
-    <string name="interactive_onboarding_line_clear_title">Complete a row to clear it</string>
-    <string name="interactive_onboarding_line_clear_body">Place this shape into the guided spot so the row becomes full, flashes, and disappears.</string>
-    <string name="interactive_onboarding_column_clearer_title">Complete a column to clear it</string>
-    <string name="interactive_onboarding_column_clearer_body">Now use the highlighted placement to finish a full column and open vertical space.</string>
-    <string name="interactive_onboarding_row_clearer_title">Rows open horizontal space</string>
-    <string name="interactive_onboarding_row_clearer_body">A full row clears instantly. Aim for the highlighted cells and watch the board open across the width.</string>
-    <string name="interactive_onboarding_ghost_title">The tray matters as much as the board</string>
-    <string name="interactive_onboarding_ghost_body">Before you place a shape, glance at the other two pieces. Good runs come from leaving room for the whole tray, not just the current move.</string>
-    <string name="interactive_onboarding_heavy_title">Clear both directions together</string>
-    <string name="interactive_onboarding_heavy_body">Some placements finish a row and a column at the same time. Use the guided spot to trigger a bigger double clear.</string>
-
-    <string name="interactive_onboarding_mergeshift_launch_title">Launch your first piece</string>
-    <string name="interactive_onboarding_mergeshift_launch_body">Drag the piece horizontally under the board to aim, then release to launch it into a column.</string>
-    <string name="interactive_onboarding_mergeshift_merge_vertical_title">Merge same values vertically</string>
-    <string name="interactive_onboarding_mergeshift_merge_vertical_body">Launch a piece into a column that already has a block with the same value. They will merge into a higher number!</string>
-    <string name="interactive_onboarding_mergeshift_merge_horizontal_title">Merge same values horizontally</string>
-    <string name="interactive_onboarding_mergeshift_merge_horizontal_body">Blocks can also merge with their neighbors to the left or right. Aim for the highlighted spot to trigger a horizontal merge.</string>
-    <string name="interactive_onboarding_mergeshift_merge_multi_title">Trigger multiple merges</string>
-    <string name="interactive_onboarding_mergeshift_merge_multi_body">A single placement can trigger merges in multiple directions (above, left, right). Use this to clear more space and score big!</string>
-
-    <string name="interactive_onboarding_boomblocks_basic_title">Tap to explode</string>
-    <string name="interactive_onboarding_boomblocks_basic_body">Find a group of three or more same-colored blocks and tap them to clear them from the board.</string>
-    <string name="interactive_onboarding_boomblocks_large_title">Bigger groups, more points</string>
-    <string name="interactive_onboarding_boomblocks_large_body">Larger groups give more points and clear more space. Tap the highlighted large group!</string>
-    <string name="interactive_onboarding_boomblocks_gravity_title">Gravity shifts</string>
-    <string name="interactive_onboarding_boomblocks_gravity_body">When you explode blocks, new ones fall in from the opposite side of the explosion. Watch how the board shifts!</string>
-    <string name="interactive_onboarding_boomblocks_strategic_title">Strategic refills</string>
-    <string name="interactive_onboarding_boomblocks_strategic_body">New blocks refill the board based on the explosion center. Use this to set up even bigger groups!</string>
-    <string name="interactive_onboarding_boomblocks_tap_hint">Tap the highlighted group to continue.</string>
-    <string name="interactive_onboarding_blocksort_pick_title">Pick a source column</string>
-    <string name="interactive_onboarding_blocksort_pick_body">Start by tapping the highlighted mixed column. You will move its top color stack first, and every slot in this round is the same size.</string>
-    <string name="interactive_onboarding_blocksort_pick_hint">Tap the highlighted source column in the mixed layout first.</string>
-    <string name="interactive_onboarding_blocksort_match_title">Match the top color</string>
-    <string name="interactive_onboarding_blocksort_match_body">Now send that stack onto a column whose top color already matches. Matching columns let you group colors safely even when the board wraps into two rows.</string>
-    <string name="interactive_onboarding_blocksort_match_hint">Move the stack onto the highlighted matching color column.</string>
-    <string name="interactive_onboarding_blocksort_finish_title">Finish a clean column</string>
-    <string name="interactive_onboarding_blocksort_finish_body">Great. One more move will complete every slot in a single-color column for this round. Finish it to see the core goal of BlockSort.</string>
-    <string name="interactive_onboarding_blocksort_finish_hint">Complete the highlighted column so every slot shows the same color.</string>
-    <string name="blocksort_completed_label">Sorted</string>
-    <string name="blocksort_goal_hint">Goal: finish the round with every filled column holding a single color. Rounds can use 3, 4, 5, or 6 equal-size slots per column, and the board may wrap into two rows.</string>
-    <string name="blocksort_no_moves_hint">No valid transfers remain in this mixed layout. Try a reshuffle or start a fresh round.</string>
-    <string name="blocksort_round_congrats_title">Congratulations!</string>
-    <string name="blocksort_round_complete_hint">Round cleared! Bonus +%1$d and a fresh mixed layout arrived.</string>
-    <string name="blocksort_round_label">Round</string>
-    <string name="blocksort_select_source_hint">Tap a non-empty mixed column to pick up its top color stack.</string>
-    <string name="blocksort_selected_hint">Now tap an empty column or a column with the same top color to move the stack across.</string>
-
+    <!-- AppSelectionScreen -->
     <string name="selection_title">Choose Your Game</string>
-
-    <string name="selection_stackshift_desc">Launch pieces from the bottom to clear rows and columns.</string>
-    <string name="selection_blockwise_desc">Drag and drop pieces anywhere on the board.</string>
-    <string name="selection_blocksort_desc">Sort mixed color stacks until every filled column becomes a single color.</string>
-    <string name="selection_mergeshift_desc">Merge pieces of the same value to reach higher scores.</string>
-    <string name="selection_boomblocks_desc">Tap groups of 3 or more blocks to explode them.</string>
     <string name="selection_switch_game">Switch Game</string>
     <string name="selection_active_game_badge">ACTIVE</string>
 
-    <string name="app_title_chainshift">Chain Shift</string>
-    <string name="selection_chainshift_desc">Shoot from the center, slip blocks into a spiral chain, and pop 3+ color matches.</string>
-    <string name="app_title_banner_chainshift_top">CHAIN</string>
-    <string name="app_title_banner_chainshift_bottom">SHIFT</string>
-    <string name="tutorial_chainshift_intro_title">Meet Chain Shift</string>
-    <string name="tutorial_chainshift_intro_body">Blocks enter from the edge, wrap around the board, and crawl toward the center. Your shooter stays in the middle, so every shot must cut into the moving chain before it reaches you.</string>
-    <string name="tutorial_chainshift_path_title">Aim and Shoot</string>
-    <string name="tutorial_chainshift_path_body">Aim from the center and release to shoot. Your block inserts where it hits the chain, pushing subsequent blocks forward.</string>
-    <string name="tutorial_chainshift_combo_title">Create retreats and combos</string>
-    <string name="tutorial_chainshift_combo_body">Match 3 or more connected blocks of the same color along the chain to pop them. When the gap closes, the chain retreats toward the edge, potentially triggering chain reactions.</string>
-    <string name="tutorial_chainshift_ready_title">Hold the center</string>
-    <string name="tutorial_chainshift_ready_body">Stay calm, keep the spiral short, and use your shots to break dangerous runs before they lock the center. The deeper the chain goes, the less room you have to recover.</string>
-    <string name="interactive_onboarding_chainshift_intro_title">Shoot the guided block</string>
-    <string name="interactive_onboarding_chainshift_intro_body">Start by firing at the highlighted part of the spiral. Your block launches from the center and inserts into the chain at the point of impact.</string>
-    <string name="interactive_onboarding_chainshift_match_title">Make a 3-block match</string>
-    <string name="interactive_onboarding_chainshift_match_body">Now use the guided shot to line up 3 blocks of the same color. Matching segments burst immediately and open breathing room near the center.</string>
-    <string name="interactive_onboarding_chainshift_chain_title">Trigger a chain reaction</string>
-    <string name="interactive_onboarding_chainshift_chain_body">This setup rewards a smarter shot. Clear the first match, watch the chain retreat toward the edge, and let the second match pop on its own.</string>
-    <string name="interactive_onboarding_chainshift_tap_hint">Aim and release to shoot the highlighted block.</string>
-    <string name="game_message_ad_reward_chainshift">Active block refreshed for Chain Shift!</string>
-
-    <string name="settings_sound">Sound</string>
-    <string name="settings_sound_on">On</string>
-    <string name="settings_sound_off">Off</string>
-    <string name="settings_board_block_style">Board block style</string>
-    <string name="board_block_style_always_flat">Always flat</string>
-    <string name="board_block_style_match_selected">Match selected style</string>
-    <string name="block_style_lava">Lava</string>
-    <string name="block_style_light_burst">Light Burst</string>
-    <string name="block_style_matte_soft">Matte Soft</string>
-    <string name="block_style_stone_texture">Stone Texture</string>
-    <string name="selection_digitshift_desc">Guess hidden 5- or 6-digit numbers using digit-by-digit clues.</string>
-    <string name="tutorial_digitshift_intro_title">Find the hidden number</string>
-    <string name="tutorial_digitshift_intro_body">Build a hidden 5- or 6-digit number with digits 0–9 and submit it. Every guess reveals which digits are correct, present, or absent.</string>
-    <string name="tutorial_digitshift_hints_title">Read the colors</string>
-    <string name="tutorial_digitshift_hints_body">Green means the digit is correct, orange means it belongs somewhere else, and dark gray means it is not in the answer.</string>
-    <string name="tutorial_digitshift_strategy_title">Use the keyboard hints</string>
-    <string name="tutorial_digitshift_strategy_body">Each submitted guess upgrades the keypad. Reuse green digits, relocate orange ones, and avoid dark gray digits to solve faster.</string>
-    <string name="tutorial_digitshift_ready_title">Ready to crack numbers?</string>
-    <string name="tutorial_digitshift_ready_body">Classic mode alternates between 5- and 6-digit rounds until you miss a number. Time Attack adds pressure, so solve quickly to bank score and bonus time.</string>
-    <string name="interactive_onboarding_digitshift_type_hint">Type the suggested number to learn the board.</string>
-    <string name="interactive_onboarding_digitshift_submit_hint">Submit another number and watch the keypad update.</string>
-    <string name="interactive_onboarding_digitshift_solve_hint">Use the clues and solve the hidden number.</string>
-    <string name="digitshift_enter">Enter</string>
-    <string name="digitshift_delete">Delete</string>
-    <string name="digitshift_guess_label">Guess %1$d</string>
-    <string name="digitshift_solved_words">Solved</string>
-    <string name="digitshift_attempts_left">Attempts</string>
-    <string name="digitshift_current_language">Locale</string>
-    <string name="game_message_digitshift_enter_word">Build a 5- or 6-digit number and submit your guess.</string>
-    <string name="game_message_digitshift_not_enough_letters">Not enough digits yet.</string>
-    <string name="game_message_digitshift_not_in_dictionary">Only digits 0–9 are allowed.</string>
-    <string name="game_message_digitshift_keep_trying">Good clue. Refine the next number.</string>
-    <string name="game_message_digitshift_solved">Solved: %1$s</string>
-    <string name="game_message_digitshift_failed">Round over. The number was %1$s.</string>
-    <string name="game_message_digitshift_revived">Extra life used. Try the number again.</string>
-    <string name="game_message_ad_reward_digitshift">Number refreshed. Keep guessing!</string>
-    <string name="challenge_task_solve_words">Solve %1$d numbers</string>
-    <string name="challenge_info_solve_words_title">Solve numbers</string>
-    <string name="challenge_info_solve_words">Complete full DigitShift rounds by finding the hidden number before you run out of guesses.</string>
 </resources>
-

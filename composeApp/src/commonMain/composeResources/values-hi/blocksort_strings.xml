@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blocksort_desc">मिश्रित रंग-स्टैक्स को तब तक सजाएँ जब तक हर भरा कॉलम एक ही रंग का न हो जाए।</string>
+
+    <!-- BlockSortGameScreen -->
+    <string name="game_message_ad_reward_blocksort">Board remixed! Fresh routes are open.</string>
+    <string name="blocksort_completed_label">सॉर्टेड</string>
+    <string name="blocksort_goal_hint">लक्ष्य: राउंड को इस तरह समाप्त करें कि हर भरा हुआ कॉलम एक ही रंग का हो। राउंड में प्रति कॉलम 3, 4, 5 या 6 समान आकार के स्लॉट हो सकते हैं, और बोर्ड दो पंक्तियों में बँट सकता है।</string>
+    <string name="blocksort_no_moves_hint">इस मिश्रित लेआउट में अब कोई वैध ट्रांसफर नहीं बचा। फिर से शफल करें या नया राउंड शुरू करें।</string>
+    <string name="blocksort_round_congrats_title">बधाई हो!</string>
+    <string name="blocksort_round_complete_hint">राउंड पूरा! बोनस +%1$d और नया मिश्रित लेआउट आ गया।</string>
+    <string name="blocksort_round_label">राउंड</string>
+    <string name="blocksort_select_source_hint">किसी भरे हुए मिश्रित कॉलम पर टैप करके उसकी ऊपरी रंग-स्टैक उठाएँ।</string>
+    <string name="blocksort_selected_hint">अब किसी खाली कॉलम या उसी ऊपर वाले रंग वाले कॉलम पर टैप करके स्टैक को वहाँ ले जाएँ।</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rounds_title">राउंड</string>
+    <string name="challenge_info_clear_rounds">हर भरे हुए कॉलम को एक ही रंग में बदलकर पूरे BlockSort राउंड पूरे करें।</string>
+    <string name="challenge_task_complete_columns">%1$d कॉलम पूरे करें</string>
+    <string name="challenge_task_clear_rounds">%1$d राउंड पूरे करें</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_blocksort_intro_title">समान आकार की ऊपरी स्टैक्स को कॉलमों के बीच ले जाएँ</string>
+    <string name="tutorial_blocksort_intro_body">हर राउंड में सभी कॉलम एक जैसी स्लॉट साइज का उपयोग करते हैं। किसी भरे हुए मिश्रित कॉलम पर टैप करके उसकी ऊपरी रंग-स्टैक उठाएँ, फिर उसे किसी खाली कॉलम या उसी ऊपर वाले रंग वाले कॉलम पर ले जाएँ।</string>
+    <string name="tutorial_blocksort_rules_title">सिर्फ समान रंग एक साथ स्टैक हो सकते हैं</string>
+    <string name="tutorial_blocksort_rules_body">आप केवल खाली जगह या उसी ऊपर वाले रंग पर ही ट्रांसफर कर सकते हैं। जैसे-जैसे पहेली बढ़ती है, बोर्ड ऊपर और नीचे दो पंक्तियों में बँट सकता है, इसलिए सहायक जगह और दृश्यता दोनों का ध्यान रखें।</string>
+    <string name="tutorial_blocksort_finish_title">हर कॉलम को एक ही रंग में पूरा करें</string>
+    <string name="tutorial_blocksort_finish_body">किसी राउंड में जब उस कॉलम का हर स्लॉट एक ही रंग का हो जाता है, तो वह कॉलम पूरा माना जाता है। अलग-अलग राउंड 3, 4, 5 या 6 समान आकार के स्लॉट इस्तेमाल कर सकते हैं, और सब पूरे होने पर नया मिश्रित लेआउट आता है।</string>
+    <string name="tutorial_blocksort_ready_title">अब आप BlockSort के लिए तैयार हैं</string>
+    <string name="tutorial_blocksort_ready_body">दो या तीन चाल आगे सोचें, अपनी सहायक कॉलमों को बचाएँ, और हर राउंड में स्लॉट संख्या बदलने व बोर्ड के दो पंक्तियों में बँटने पर जल्दी ढलें।</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_blocksort_pick_title">स्रोत कॉलम चुनें</string>
+    <string name="interactive_onboarding_blocksort_pick_body">हाइलाइट किए गए मिश्रित कॉलम पर टैप करके शुरू करें। आप पहले उसकी ऊपरी रंग-स्टैक को हिलाएँगे, और इस राउंड का हर स्लॉट एक ही आकार का है।</string>
+    <string name="interactive_onboarding_blocksort_pick_hint">पहले मिश्रित लेआउट में हाइलाइट किए गए स्रोत कॉलम पर टैप करें।</string>
+    <string name="interactive_onboarding_blocksort_match_title">ऊपरी रंग मिलाएँ</string>
+    <string name="interactive_onboarding_blocksort_match_body">अब उस स्टैक को ऐसे कॉलम पर भेजें जिसकी ऊपरी रंगत पहले से मेल खाती हो। मेल खाते कॉलम रंगों को सुरक्षित रूप से इकट्ठा करने देते हैं, भले ही बोर्ड दो पंक्तियों में बँट जाए।</string>
+    <string name="interactive_onboarding_blocksort_match_hint">स्टैक को हाइलाइट किए गए मेल खाते रंग वाले कॉलम पर ले जाएँ।</string>
+    <string name="interactive_onboarding_blocksort_finish_title">एक साफ कॉलम पूरा करें</string>
+    <string name="interactive_onboarding_blocksort_finish_body">बहुत बढ़िया। बस एक और चाल इस राउंड में एक एकरंगी कॉलम के हर स्लॉट को पूरा कर देगी। इसे पूरा करके BlockSort का मुख्य लक्ष्य देखें।</string>
+    <string name="interactive_onboarding_blocksort_finish_hint">हाइलाइट किए गए कॉलम को पूरा करें ताकि हर स्लॉट एक ही रंग दिखाए।</string>
+
+</resources>

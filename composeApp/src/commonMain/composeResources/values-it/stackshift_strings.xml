@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_stackshift_desc">Lancia pezzi dal basso per eliminare righe e colonne.</string>
+
+    <!-- StackShiftGameScreen -->
+    <string name="reward_piece_row_message">Pezzo eliminazione riga orizzontale equipaggiato!</string>
+    <string name="reward_piece_column_message">Pezzo eliminazione colonna verticale equipaggiato!</string>
+    <string name="launch_bar">Barra di lancio</string>
+    <string name="launch_boost_active">Boost attivo • %1$s turni</string>
+    <string name="launch_special_chance">Probabilità blocco speciale +%1$s%</string>
+    <string name="launch_soft_lock_message">Controlla il bersaglio, poi rilascia per piazzare</string>
+    <string name="launch_chain_message">Riga + Colonna • +%2$s</string>
+    <string name="launch_paused">In pausa</string>
+    <string name="launch_game_over">Riavvia per una nuova partita</string>
+    <string name="launch_drag_hint">Trascina in orizzontale → rilascia</string>
+    <string name="queue_next_short">Prossimo</string>
+    <string name="game_message_soft_lock">Rilascia per posizionare il pezzo sulle celle evidenziate.</string>
+    <string name="game_message_overflow">Non c'è più spazio per nessun pezzo nel vassoio.</string>
+    <string name="game_message_special_chain_board">Riga e colonna eliminate insieme! %1$s linee eliminate.</string>
+    <string name="game_message_pressure_game_over">Non sono più possibili piazzamenti. Inizia una nuova partita.</string>
+    <string name="game_message_special_lines">Bel combo! %1$s linee eliminate.</string>
+    <string name="game_message_special_triggered">Una grande eliminazione ha rimosso %1$d celle!</string>
+    <string name="game_message_perfect_drop">Piazzamento perfetto x%1$s!</string>
+    <string name="game_message_chain_lines">Doppia eliminazione! %2$s linee eliminate.</string>
+    <string name="game_message_good_shot">Buona mossa. Controlla i pezzi rimasti nel vassoio.</string>
+    <string name="game_message_hold_updated">Vassoio aggiornato. Continua a costruire.</string>
+    <string name="game_message_tempo_critical">Cerca un'eliminazione di riga o colonna prima che il vassoio si blocchi.</string>
+    <string name="game_message_tempo_up">È pronto un nuovo trio. Osserva bene il tabellone.</string>
+    <string name="game_message_resumed">Riprendi. Scegli la colonna e lancia.</string>
+    <string name="feedback_perfect_lane">Incastro perfetto x%1$s</string>
+    <string name="feedback_micro_adjust">Riposiziona</string>
+    <string name="feedback_soft_lock">Anteprima pronta</string>
+    <string name="feedback_hold_armed">Hold pronto</string>
+    <string name="feedback_swap">Scambiato</string>
+    <string name="feedback_special_chain">Catena speciale +%1$s • %2$d blocchi</string>
+    <string name="feedback_special">Speciale +%1$s • %2$d blocchi</string>
+    <string name="feedback_perfect">Perfetto x%1$s +%2$s</string>
+    <string name="feedback_chain">Catena x%1$s +%2$s</string>
+    <string name="game_message_ad_reward_stackshift">Blocco speciale equipaggiato! Pronto al lancio.</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_stackshift_intro_title">Trascina il pezzo attivo e allinea il lancio</string>
+    <string name="tutorial_stackshift_intro_body">Il pezzo attuale parte dal dock di lancio. Trascinalo a sinistra o destra sotto il tabellone, rilascialo quando l'anteprima ti convince e cadrà nella corsia valida più vicina.</string>
+    <string name="tutorial_stackshift_systems_title">Usa i blocchi azione quando il tabellone si riempie</string>
+    <string name="tutorial_stackshift_systems_body">Hold scambia il pezzo attuale, Pausa ferma la partita, Proprietà blocco spiega i simboli e Impostazioni cambia aspetto e lingua. Anche questi pulsanti seguono lo stile blocchi del tabellone scelto.</string>
+    <string name="tutorial_stackshift_specials_title">I blocchi speciali possono salvarti nei momenti difficili</string>
+    <string name="tutorial_stackshift_specials_body">Alcuni pezzi hanno effetti speciali. Impara cosa fa ogni icona così potrai pulire una riga, una colonna, attraversare i vuoti o superare il pericolo quando il tabellone si stringe.</string>
+    <string name="tutorial_stackshift_ready_title">Sei pronto a lanciare in StackShift</string>
+    <string name="tutorial_stackshift_ready_body">Mantieni i lanci puliti, pianifica la coda successiva e usa i blocchi speciali prima che la pressione salga troppo. Quando vuoi ripassare, torna qui in qualsiasi momento.</string>
+    <string name="tutorial_stackshift_ready_tutorial_hint">Apri il Tutorial in qualsiasi momento per ripassare il lancio, la lettura della coda e gli effetti dei blocchi speciali.</string>
+    <string name="tutorial_stackshift_ready_settings_hint">Apri Impostazioni per cambiare lingua, tema, colori e stile blocchi prima della prossima partita.</string>
+
+</resources>

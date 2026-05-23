@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_digitshift_desc">数字ごとのヒントを使って、5桁または6桁の隠された数字を当てましょう。</string>
+
+    <!-- DigitShiftGameScreen -->
+    <string name="digitshift_enter">決定</string>
+    <string name="digitshift_delete">削除</string>
+    <string name="digitshift_guess_label">予想 %1$d</string>
+    <string name="digitshift_solved_words">正解</string>
+    <string name="digitshift_attempts_left">残り回数</string>
+    <string name="digitshift_current_language">言語</string>
+    <string name="game_message_digitshift_enter_word">5桁または6桁の数字を作って予想を送信しましょう。</string>
+    <string name="game_message_digitshift_not_enough_letters">まだ数字が足りません。</string>
+    <string name="game_message_digitshift_not_in_dictionary">使えるのは0〜9の数字だけです。</string>
+    <string name="game_message_digitshift_keep_trying">いいヒントです。次の数字をさらに絞り込みましょう。</string>
+    <string name="game_message_digitshift_solved">正解: %1$s</string>
+    <string name="game_message_digitshift_failed">ラウンド終了。答えは %1$s でした。</string>
+    <string name="game_message_digitshift_revived">エクストラライフを使用しました。もう一度その数字に挑戦しましょう。</string>
+    <string name="game_message_ad_reward_digitshift">数字が更新されました。推理を続けましょう！</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_task_solve_words">%1$d 個の数字を解こう</string>
+    <string name="challenge_info_solve_words_title">数字を解く</string>
+    <string name="challenge_info_solve_words">予想回数が尽きる前に隠された数字を見つけて、DigitShift のラウンドを最後まで完了しましょう。</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_digitshift_intro_title">隠された数字を見つけよう</string>
+    <string name="tutorial_digitshift_intro_body">0〜9の数字で5桁または6桁の隠された数字を作って送信しましょう。予想するたびに、どの数字が正しいか、含まれているか、含まれていないかが分かります。</string>
+    <string name="tutorial_digitshift_hints_title">色を読み取ろう</string>
+    <string name="tutorial_digitshift_hints_body">緑は数字も位置も正しいこと、オレンジは数字はあるが位置が違うこと、濃いグレーは答えに含まれていないことを示します。</string>
+    <string name="tutorial_digitshift_strategy_title">キーボードのヒントを使おう</string>
+    <string name="tutorial_digitshift_strategy_body">予想を送信するたびにテンキーのヒントが更新されます。緑の数字を活かし、オレンジの数字は位置を変え、濃いグレーの数字は避けて早く解きましょう。</string>
+    <string name="tutorial_digitshift_ready_title">数字解読の準備はいい？</string>
+    <string name="tutorial_digitshift_ready_body">クラシックモードでは、5桁と6桁のラウンドが、数字を外すまで交互に続きます。タイムアタックはプレッシャーが増すので、素早く解いてスコアとボーナスタイムを稼ぎましょう。</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_digitshift_type_hint">盤面を覚えるために、案内された数字を入力しましょう。</string>
+    <string name="interactive_onboarding_digitshift_submit_hint">別の数字を送信して、テンキーの更新を確認しましょう。</string>
+    <string name="interactive_onboarding_digitshift_solve_hint">ヒントを使って隠された数字を解きましょう。</string>
+
+</resources>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_boomblocks_desc">Ketuk kelompok berisi 3 blok atau lebih untuk meledakkannya.</string>
+
+    <!-- BoomBlocksGameScreen -->
+    <string name="game_message_ad_reward_boomblocks">Warna dibersihkan! Papan telah dibentuk ulang.</string>
+    <string name="ad_reward_boomblocks_clear">Bersihkan Warna</string>
+    <string name="feedback_ad_reward_boomblocks">%1$s dibersihkan</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_task_explode_groups">Ledakkan %1$d kelompok blok</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_boomblocks_intro_title">Ledakkan kelompok yang cocok</string>
+    <string name="tutorial_boomblocks_intro_body">Di BoomBlocks, kamu tidak meluncurkan atau menyeret piece. Sebagai gantinya, cari tiga atau lebih blok dengan warna yang sama yang saling bersentuhan, lalu ketuk salah satunya untuk membersihkan seluruh kelompok.</string>
+    <string name="tutorial_boomblocks_gravity_title">Gerakan papan yang dinamis</string>
+    <string name="tutorial_boomblocks_gravity_body">Saat sebuah kelompok meledak, ledakan itu menciptakan ruang hampa yang menarik blok di sekitarnya. Setelah itu, blok baru mengisi kembali papan dari sisi terdekat agar aksinya tetap dinamis.</string>
+    <string name="tutorial_boomblocks_ready_title">Kamu siap untuk BoomBlocks</string>
+    <string name="tutorial_boomblocks_ready_body">Fokuslah mencari kelompok besar untuk skor maksimum dan perhatikan bagaimana setiap ledakan membentuk ulang papan. Semoga beruntung!</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_boomblocks_basic_title">Ketuk untuk meledak</string>
+    <string name="interactive_onboarding_boomblocks_basic_body">Cari kelompok berisi tiga atau lebih blok dengan warna yang sama, lalu ketuk untuk membersihkannya dari papan.</string>
+    <string name="interactive_onboarding_boomblocks_large_title">Kelompok lebih besar, poin lebih banyak</string>
+    <string name="interactive_onboarding_boomblocks_large_body">Kelompok yang lebih besar memberi lebih banyak poin dan membuka lebih banyak ruang. Ketuk kelompok besar yang disorot!</string>
+    <string name="interactive_onboarding_boomblocks_gravity_title">Gravitasi bergeser</string>
+    <string name="interactive_onboarding_boomblocks_gravity_body">Saat kamu meledakkan blok, blok baru masuk dari sisi berlawanan arah ledakan. Perhatikan bagaimana papan ikut bergeser!</string>
+    <string name="interactive_onboarding_boomblocks_strategic_title">Isi ulang strategis</string>
+    <string name="interactive_onboarding_boomblocks_strategic_body">Blok baru mengisi ulang papan berdasarkan pusat ledakan. Gunakan ini untuk menyiapkan kelompok yang lebih besar lagi!</string>
+    <string name="interactive_onboarding_boomblocks_tap_hint">Ketuk kelompok yang disorot untuk melanjutkan.</string>
+
+</resources>

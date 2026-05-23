@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blockwise_desc">Перетаскивайте фигуры в любое место на поле.</string>
+
+    <!-- BlockWiseGameScreen -->
+    <string name="ad_reward_blockwise_refresh">Обновить лоток</string>
+    <string name="feedback_ad_reward_blockwise">Поднос обновлен</string>
+    <string name="launch_drag_hint_blockwise">Перетащите в любое место на поле → отпустите, чтобы разместить</string>
+    <string name="game_message_select_column">Перетащите фигуру по горизонтали, выберите колонку и запустите вверх.</string>
+    <string name="game_message_ad_reward_blockwise">Лоток обновлен! Новые фигуры готовы.</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rows_title">Ряды</string>
+    <string name="challenge_info_clear_rows">Заполняйте целые ряды, чтобы очищать их с поля.</string>
+    <string name="challenge_info_clear_both_directions_title">Ряд + колонка</string>
+    <string name="challenge_info_clear_both_directions">Одним размещением можно одновременно очистить как минимум один ряд и одну колонку.</string>
+    <string name="challenge_task_clear_rows">Очистить %1$d рядов</string>
+    <string name="challenge_task_clear_both_directions">Сделать %1$d очисток ряд + колонка</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_intro_title">Перетащите любую из трех фигур на поле</string>
+    <string name="tutorial_intro_body">В лотке ждут три фигуры. Выберите нужную, перетащите ее на пустые клетки и отпустите, чтобы разместить ее там, где она подходит.</string>
+    <string name="tutorial_systems_title">Думайте обо всем лотке, а не только об одном ходе</string>
+    <string name="tutorial_systems_body">После размещения одной фигуры оставшийся лоток остается на экране. Когда все три будут использованы, появится новое трио. Постарайтесь оставить достаточно места для каждой фигуры, которая у вас еще есть.</string>
+    <string name="tutorial_specials_title">Ряды и колонки очищаются при полном заполнении</string>
+    <string name="tutorial_specials_body">Здесь нет специальных фигур. Вместо этого заполните целый ряд или целую колонку, чтобы очистить их. Если они завершаются одновременно, то очищаются вместе.</string>
+    <string name="tutorial_ready_title">Вы готовы к новому формату блочной головоломки</string>
+    <string name="tutorial_ready_body">Продолжайте следить за лотком, подготавливайте очистку рядов и колонок и не зажимайте крупные фигуры. Когда ни одна из трёх фигур больше не помещается, игра заканчивается.</string>
+    <string name="tutorial_ready_block_properties_hint">Открывайте обучение, когда захотите снова вспомнить свободное размещение и одновременную очистку рядов и колонок.</string>
+    <string name="tutorial_ready_tutorial_hint">Открывайте обучение, когда захотите снова вспомнить свободное размещение и одновременную очистку рядов и колонок.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_drag_title">Перетащите фигуру из лотка на поле</string>
+    <string name="interactive_onboarding_drag_body">Коснитесь одной из трёх фигур в лотке, переместите её по полю и совместите с подсвеченными клетками.</string>
+    <string name="interactive_onboarding_drag_to_board">Перетащите подсвеченную фигуру из лотка в светящуюся целевую область.</string>
+    <string name="interactive_onboarding_drag_ready">Отлично — теперь отпустите. Как только фигура встанет в подсвеченные клетки, автоматически откроется следующий шаг.</string>
+    <string name="interactive_onboarding_aim_hint">Чтобы продолжить, отпустите фигуру внутри подсвеченных клеток.</string>
+    <string name="interactive_onboarding_target_locked">Отлично — удерживайте её здесь и отпустите, чтобы продолжить.</string>
+    <string name="interactive_onboarding_waiting">Позиция принята. Готовится следующий шаг обучения…</string>
+    <string name="interactive_onboarding_line_clear_title">Заполните линию, чтобы очистить её</string>
+    <string name="interactive_onboarding_line_clear_body">Поставьте эту форму в указанное место, чтобы ряд заполнился, вспыхнул и исчез.</string>
+    <string name="interactive_onboarding_column_clearer_title">Заполните колонку, чтобы очистить её</string>
+    <string name="interactive_onboarding_column_clearer_body">Теперь используйте подсвеченное размещение, чтобы завершить целую колонку и открыть вертикальное пространство.</string>
+    <string name="interactive_onboarding_row_clearer_title">Ряды открывают горизонтальное пространство</string>
+    <string name="interactive_onboarding_row_clearer_body">Полный ряд очищается мгновенно. Наведитесь на подсвеченные клетки и посмотрите, как поле открывается по всей ширине.</string>
+    <string name="interactive_onboarding_ghost_title">Лоток так же важен, как и поле</string>
+    <string name="interactive_onboarding_ghost_body">Перед тем как поставить форму, посмотрите и на две другие фигуры. Хорошие забеги получаются тогда, когда вы оставляете место для всего лотка, а не только для текущего хода.</string>
+    <string name="interactive_onboarding_heavy_title">Очищайте оба направления сразу</string>
+    <string name="interactive_onboarding_heavy_body">Некоторые размещения одновременно завершают ряд и колонку. Используйте подсказанное место, чтобы вызвать более крупную двойную очистку.</string>
+
+</resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blockwise_desc">Arrastra y suelta piezas en cualquier lugar del tablero.</string>
+
+    <!-- BlockWiseGameScreen -->
+    <string name="ad_reward_blockwise_refresh">Refrescar bandeja</string>
+    <string name="feedback_ad_reward_blockwise">Bandeja actualizada</string>
+    <string name="launch_drag_hint_blockwise">Arrastra a cualquier parte del tablero → suelta para colocar</string>
+    <string name="game_message_select_column">Arrastra la pieza horizontalmente, elige la columna y lánzala hacia arriba.</string>
+    <string name="game_message_ad_reward_blockwise">¡Bandeja renovada! Nuevas formas listas.</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rows_title">Filas</string>
+    <string name="challenge_info_clear_rows">Completa filas enteras para borrarlas del tablero.</string>
+    <string name="challenge_info_clear_both_directions_title">Fila + Columna</string>
+    <string name="challenge_info_clear_both_directions">Una sola colocación puede limpiar al mismo tiempo al menos una fila y una columna.</string>
+    <string name="challenge_task_clear_rows">Borra %1$d filas</string>
+    <string name="challenge_task_clear_both_directions">Haz %1$d limpiezas de fila + columna</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_intro_title">Arrastra cualquiera de las tres piezas al tablero</string>
+    <string name="tutorial_intro_body">Tres formas esperan en la bandeja. Elige la que quieras, arrástrala a cualquier celda vacía y suéltala para colocarla exactamente donde encaje.</string>
+    <string name="tutorial_systems_title">Piensa en toda la bandeja, no solo en un movimiento</string>
+    <string name="tutorial_systems_body">Después de colocar una pieza, la bandeja restante permanece en pantalla. Cuando se usan las tres, aparece un nuevo trío. Intenta dejar suficiente espacio para cada forma que aún tengas.</string>
+    <string name="tutorial_specials_title">Las filas y columnas se limpian al completarse</string>
+    <string name="tutorial_specials_body">Aquí no hay piezas especiales. En su lugar, llena una fila completa o una columna completa para borrarla. Si ambas se completan al mismo tiempo, se limpian juntas.</string>
+    <string name="tutorial_ready_title">Ya estás listo para el nuevo flujo del rompecabezas de bloques</string>
+    <string name="tutorial_ready_body">Sigue revisando la bandeja, prepara limpiezas de filas y columnas y evita encerrar las piezas grandes. Cuando ninguna de las tres piezas vuelva a encajar, la partida termina.</string>
+    <string name="tutorial_ready_block_properties_hint">Abre el Tutorial siempre que quieras repasar la colocación libre y las limpiezas simultáneas de filas y columnas.</string>
+    <string name="tutorial_ready_tutorial_hint">Abre el Tutorial siempre que quieras repasar la colocación libre y las limpiezas simultáneas de filas y columnas.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_drag_title">Arrastra una pieza de la bandeja al tablero</string>
+    <string name="interactive_onboarding_drag_body">Toca una de las tres formas de la bandeja, muévela sobre el tablero y alinéala con las celdas resaltadas.</string>
+    <string name="interactive_onboarding_drag_to_board">Arrastra la pieza resaltada de la bandeja al área objetivo brillante.</string>
+    <string name="interactive_onboarding_drag_ready">Bien — suéltala ahora. Cuando encaje en las celdas resaltadas, la siguiente guía se abrirá automáticamente.</string>
+    <string name="interactive_onboarding_aim_hint">Suelta la pieza dentro de las celdas resaltadas para continuar.</string>
+    <string name="interactive_onboarding_target_locked">Perfecto — mantenla ahí y suéltala para continuar.</string>
+    <string name="interactive_onboarding_waiting">Colocación aceptada. Preparando el siguiente momento guiado…</string>
+    <string name="interactive_onboarding_line_clear_title">Completa una fila para borrarla</string>
+    <string name="interactive_onboarding_line_clear_body">Coloca esta forma en el lugar indicado para que la fila se complete, brille y desaparezca.</string>
+    <string name="interactive_onboarding_column_clearer_title">Completa una columna para borrarla</string>
+    <string name="interactive_onboarding_column_clearer_body">Ahora usa la colocación resaltada para completar una columna entera y abrir espacio vertical.</string>
+    <string name="interactive_onboarding_row_clearer_title">Las filas abren espacio horizontal</string>
+    <string name="interactive_onboarding_row_clearer_body">Una fila completa se limpia al instante. Apunta a las celdas resaltadas y mira cómo el tablero se abre de lado a lado.</string>
+    <string name="interactive_onboarding_ghost_title">La bandeja importa tanto como el tablero</string>
+    <string name="interactive_onboarding_ghost_body">Antes de colocar una forma, mira también las otras dos piezas. Las buenas partidas dependen de dejar espacio para toda la bandeja, no solo para este movimiento.</string>
+    <string name="interactive_onboarding_heavy_title">Limpia ambas direcciones a la vez</string>
+    <string name="interactive_onboarding_heavy_body">Algunas colocaciones completan una fila y una columna al mismo tiempo. Usa el lugar guiado para provocar una limpieza doble más grande.</string>
+
+</resources>

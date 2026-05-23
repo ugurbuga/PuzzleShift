@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blocksort_desc">Organiza pilhas de cores misturadas até que cada coluna preenchida fique com uma só cor.</string>
+
+    <!-- BlockSortGameScreen -->
+    <string name="game_message_ad_reward_blocksort">Board remixed! Fresh routes are open.</string>
+    <string name="blocksort_completed_label">Ordenado</string>
+    <string name="blocksort_goal_hint">Objetivo: termina a ronda com cada coluna preenchida numa só cor. As rondas podem usar 3, 4, 5 ou 6 slots do mesmo tamanho por coluna, e o tabuleiro pode dividir-se em duas filas.</string>
+    <string name="blocksort_no_moves_hint">Não restam transferências válidas neste layout misto. Tenta baralhar de novo ou começa uma nova ronda.</string>
+    <string name="blocksort_round_congrats_title">Parabéns!</string>
+    <string name="blocksort_round_complete_hint">Ronda concluída! Bónus +%1$d e chegou um novo layout misto.</string>
+    <string name="blocksort_round_label">Ronda</string>
+    <string name="blocksort_select_source_hint">Toca numa coluna mista não vazia para pegar na pilha de cor do topo.</string>
+    <string name="blocksort_selected_hint">Agora toca numa coluna vazia ou numa coluna com a mesma cor no topo para mover a pilha.</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rounds_title">Rondas</string>
+    <string name="challenge_info_clear_rounds">Conclui rondas completas de BlockSort ao transformar cada coluna preenchida numa única cor.</string>
+    <string name="challenge_task_complete_columns">Completa %1$d colunas</string>
+    <string name="challenge_task_clear_rounds">Completa %1$d rondas</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_blocksort_intro_title">Move pilhas superiores do mesmo tamanho entre colunas</string>
+    <string name="tutorial_blocksort_intro_body">Cada ronda usa um tamanho de slot partilhado por todas as colunas. Toca numa coluna mista não vazia para pegar na pilha de cor do topo e move-a para uma coluna vazia ou para uma coluna cuja cor do topo seja igual.</string>
+    <string name="tutorial_blocksort_rules_title">Só cores iguais podem ficar empilhadas juntas</string>
+    <string name="tutorial_blocksort_rules_body">Só podes transferir para um espaço vazio ou para a mesma cor no topo. À medida que o puzzle cresce, o tabuleiro pode dividir-se numa fila superior e inferior, por isso mantém em conta tanto o espaço de apoio como a visibilidade.</string>
+    <string name="tutorial_blocksort_finish_title">Completa cada coluna numa única cor</string>
+    <string name="tutorial_blocksort_finish_body">Uma coluna está completa quando cada slot dessa ronda tem a mesma cor. Rondas diferentes podem usar 3, 4, 5 ou 6 slots do mesmo tamanho, e um novo layout misto chega depois de os completares a todos.</string>
+    <string name="tutorial_blocksort_ready_title">Estás pronto para BlockSort</string>
+    <string name="tutorial_blocksort_ready_body">Planeia duas ou três jogadas à frente, protege as tuas colunas de apoio e adapta-te depressa quando cada ronda muda a contagem de slots e o tabuleiro pode dividir-se em duas filas.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_blocksort_pick_title">Escolhe uma coluna de origem</string>
+    <string name="interactive_onboarding_blocksort_pick_body">Começa por tocar na coluna mista destacada. Vais mover primeiro a pilha de cor do topo, e cada slot desta ronda tem o mesmo tamanho.</string>
+    <string name="interactive_onboarding_blocksort_pick_hint">Toca primeiro na coluna de origem destacada no layout misto.</string>
+    <string name="interactive_onboarding_blocksort_match_title">Combina a cor do topo</string>
+    <string name="interactive_onboarding_blocksort_match_body">Agora envia essa pilha para uma coluna cuja cor do topo já corresponda. Colunas compatíveis permitem agrupar cores com segurança, mesmo quando o tabuleiro se divide em duas filas.</string>
+    <string name="interactive_onboarding_blocksort_match_hint">Move a pilha para a coluna destacada com a cor correspondente.</string>
+    <string name="interactive_onboarding_blocksort_finish_title">Completa uma coluna limpa</string>
+    <string name="interactive_onboarding_blocksort_finish_body">Ótimo. Mais uma jogada vai completar todos os slots de uma coluna de cor única nesta ronda. Termina-a para veres o objetivo central de BlockSort.</string>
+    <string name="interactive_onboarding_blocksort_finish_hint">Completa a coluna destacada para que cada slot mostre a mesma cor.</string>
+
+</resources>

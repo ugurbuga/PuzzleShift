@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_stackshift_desc">पंक्तियों और स्तंभों को साफ़ करने के लिए नीचे से पीस लॉन्च करें।</string>
+
+    <!-- StackShiftGameScreen -->
+    <string name="reward_piece_row_message">क्षैतिज पंक्ति साफ़ करने वाला टुकड़ा सुसज्जित!</string>
+    <string name="reward_piece_column_message">ऊर्ध्वाधर स्तंभ साफ़ करने वाला टुकड़ा सुसज्जित!</string>
+    <string name="launch_bar">लॉन्च बार</string>
+    <string name="launch_boost_active">बूस्ट सक्रिय • %1$s टर्न</string>
+    <string name="launch_special_chance">विशेष ब्लॉक संभावना +%1$s%</string>
+    <string name="launch_soft_lock_message">सॉफ्ट लॉक सक्रिय • सूक्ष्म समायोजन सक्षम</string>
+    <string name="launch_chain_message">पंक्ति + कॉलम • +%2$s</string>
+    <string name="launch_paused">रुका हुआ</string>
+    <string name="launch_game_over">नई रन के लिए पुनः प्रारंभ करें</string>
+    <string name="launch_drag_hint">क्षैतिज रूप से खींचें → छोड़ें</string>
+    <string name="queue_next_short">अगला</string>
+    <string name="game_message_soft_lock">छोटी समायोजन विंडो खुली है। कॉलम को सूक्ष्म रूप से समायोजित करें।</string>
+    <string name="game_message_overflow">कॉलम ओवरफ्लो! आप महत्वपूर्ण कॉलमों को संभाल नहीं पाए।</string>
+    <string name="game_message_special_chain_board">विशेष चेन x%1$s! बोर्ड का आकार बदला गया।</string>
+    <string name="game_message_pressure_game_over">कॉलम दबाव सीमा तक पहुँच गया। नई रन शुरू करें।</string>
+    <string name="game_message_special_lines">विशेष ब्लॉक चेन! %1$s लाइनें साफ़ की गईं।</string>
+    <string name="game_message_special_triggered">विशेष ब्लॉक सक्रिय हुआ। %1$d ब्लॉक फूटे!</string>
+    <string name="game_message_perfect_drop">परफेक्ट ड्रॉप x%1$s! श्रृंखला जारी रखें।</string>
+    <string name="game_message_chain_lines">डबल क्लियर! %2$s लाइनें साफ़ हुईं।</string>
+    <string name="game_message_good_shot">अच्छा शॉट। अगला कॉलम योजनाबद्ध करें।</string>
+    <string name="game_message_hold_updated">संग्रह अपडेट हुआ। नया कॉलम चुनें।</string>
+    <string name="game_message_tempo_critical">गति बढ़ गई है। महत्वपूर्ण कॉलम साफ़ करें।</string>
+    <string name="game_message_tempo_up">गति बढ़ गई है। और कठिन पीस आने वाले हैं।</string>
+    <string name="game_message_resumed">जारी रखें। कॉलम चुनें और लॉन्च करें।</string>
+    <string name="feedback_perfect_lane">परफेक्ट लेन x%1$s</string>
+    <string name="feedback_micro_adjust">सूक्ष्म समायोजन</string>
+    <string name="feedback_soft_lock">सॉफ्ट लॉक</string>
+    <string name="feedback_hold_armed">संग्रह तैयार</string>
+    <string name="feedback_swap">स्वैप किया गया</string>
+    <string name="feedback_special_chain">विशेष चेन +%1$s • %2$d ब्लॉक</string>
+    <string name="feedback_special">विशेष +%1$s • %2$d ब्लॉक</string>
+    <string name="feedback_perfect">परफेक्ट x%1$s +%2$s</string>
+    <string name="feedback_chain">चेन x%1$s +%2$s</string>
+    <string name="game_message_ad_reward_stackshift">विशेष ब्लॉक सुसज्जित! लॉन्च के लिए तैयार।</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_stackshift_intro_title">नीचे के डॉक से पीस लॉन्च करें</string>
+    <string name="tutorial_stackshift_intro_body">आपका सक्रिय पीस नीचे इंतज़ार करता है। कॉलम मिलाने के लिए उसे क्षैतिज रूप से खींचें, फिर छोड़कर बोर्ड पर लॉन्च करें। अगले पीस की झलक जानबूझकर हल्की रखी गई है ताकि ध्यान सक्रिय पीस पर रहे।</string>
+    <string name="tutorial_stackshift_systems_title">जब बोर्ड भरने लगे तो एक्शन ब्लॉक्स का उपयोग करें</string>
+    <string name="tutorial_stackshift_systems_body">संग्रह वर्तमान पीस को बदलता है, विराम रन को रोक देता है, ब्लॉक गुण प्रतीकों को समझाता है, और सेटिंग्स रूप-रंग बदलती हैं। ये बटन आपके चुने हुए बोर्ड ब्लॉक स्टाइल से भी मेल खाते हैं।</string>
+    <string name="tutorial_stackshift_specials_title">स्पेशल ब्लॉक रन बचा सकते हैं</string>
+    <string name="tutorial_stackshift_specials_body">कुछ पीस विशेष प्रभाव लाते हैं। उनके बैज पहचानें और दबाव घटाने, जगह खोलने या कठिन स्टैक के बीच से निकलने के लिए सही समय पर उनका उपयोग करें।</string>
+    <string name="tutorial_stackshift_ready_title">अब आप इस रन को जारी रखने के लिए तैयार हैं</string>
+    <string name="tutorial_stackshift_ready_body">बस इतना ही — अगला कॉलम सोचें, लॉन्च बार पर नज़र रखें, और सही समय पर स्पेशल्स का उपयोग करें। आप इस ट्यूटोरियल को कभी भी Settings से फिर खोल सकते हैं।</string>
+    <string name="tutorial_stackshift_ready_tutorial_hint">कंट्रोल और विशेष आइकन जल्दी से दोहराने के लिए कभी भी ट्यूटोरियल खोलें।</string>
+    <string name="tutorial_stackshift_ready_settings_hint">अगली रन से पहले भाषा, थीम, रंग और ब्लॉक स्टाइल बदलने के लिए Settings खोलें।</string>
+
+</resources>

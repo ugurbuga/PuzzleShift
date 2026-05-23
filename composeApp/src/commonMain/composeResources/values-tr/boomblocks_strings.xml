@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_boomblocks_desc">Patlatmak için 3 veya daha fazla bloktan oluşan gruplara dokunun.</string>
+
+    <!-- BoomBlocksGameScreen -->
+    <string name="game_message_ad_reward_boomblocks">Renk temizlendi! Tahta yeniden şekillendi.</string>
+    <string name="ad_reward_boomblocks_clear">Rengi Temizle</string>
+    <string name="feedback_ad_reward_boomblocks">%1$s rengi temizlendi</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_task_explode_groups">%1$d blok grubu patlat</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_boomblocks_intro_title">Eşleşen grupları patlat</string>
+    <string name="tutorial_boomblocks_intro_body">BoomBlocks'ta parça fırlatmaz ya da sürüklemezsin. Bunun yerine, aynı renkten birbirine değen en az üç blokluk bir grup bul ve grubun tamamını temizlemek için herhangi birine dokun.</string>
+    <string name="tutorial_boomblocks_gravity_title">Dinamik tahta hareketi</string>
+    <string name="tutorial_boomblocks_gravity_body">Bir grup patladığında etrafındaki blokları içine çeken bir boşluk oluşturur. Ardından yeni bloklar en yakın kenardan tahtayı yeniden doldurur ve tempo sürekli canlı kalır.</string>
+    <string name="tutorial_boomblocks_ready_title">BoomBlocks için hazırsın</string>
+    <string name="tutorial_boomblocks_ready_body">En yüksek puan için büyük gruplar bulmaya odaklan ve her patlamanın tahtayı nasıl yeniden şekillendirdiğini izle. İyi şanslar!</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_boomblocks_basic_title">Dokun ve patlat</string>
+    <string name="interactive_onboarding_boomblocks_basic_body">Aynı renkten en az üç bloktan oluşan bir grup bul ve onları tahtadan temizlemek için gruba dokun.</string>
+    <string name="interactive_onboarding_boomblocks_large_title">Büyük gruplar daha çok puan getirir</string>
+    <string name="interactive_onboarding_boomblocks_large_body">Daha büyük gruplar daha fazla puan kazandırır ve daha çok alan açar. Vurgulanan büyük gruba dokun!</string>
+    <string name="interactive_onboarding_boomblocks_gravity_title">Yerçekimi yön değiştirir</string>
+    <string name="interactive_onboarding_boomblocks_gravity_body">Blokları patlattığında yenileri patlamanın ters yönünden içeri akar. Tahtanın nasıl kaydığını dikkatle izle!</string>
+    <string name="interactive_onboarding_boomblocks_strategic_title">Stratejik yeniden dolum</string>
+    <string name="interactive_onboarding_boomblocks_strategic_body">Yeni bloklar patlama merkezine göre tahtayı yeniden doldurur. Bunu daha da büyük gruplar hazırlamak için kullan!</string>
+    <string name="interactive_onboarding_boomblocks_tap_hint">Devam etmek için vurgulanan gruba dokun.</string>
+
+</resources>

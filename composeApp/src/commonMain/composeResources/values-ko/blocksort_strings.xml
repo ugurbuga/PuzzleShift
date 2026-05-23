@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blocksort_desc">섞인 색상 스택을 정리해 모든 채워진 열을 단색으로 맞추세요.</string>
+
+    <!-- BlockSortGameScreen -->
+    <string name="game_message_ad_reward_blocksort">이번 라운드에 빈 열이 하나 추가되었습니다.</string>
+    <string name="blocksort_completed_label">완료</string>
+    <string name="blocksort_goal_hint">목표: 채워진 각 열을 단색으로 만들어 라운드를 끝내세요. 라운드마다 열은 3, 4, 5, 6개의 동일한 슬롯을 사용할 수 있고, 보드가 두 줄로 나뉠 수도 있습니다.</string>
+    <string name="blocksort_no_moves_hint">이 혼합 배치에서는 더 이상 유효한 이동이 없습니다. 셔플을 시도하거나 새 라운드를 시작하세요.</string>
+    <string name="blocksort_round_congrats_title">축하합니다!</string>
+    <string name="blocksort_round_complete_hint">라운드 클리어! 보너스 +%1$d, 그리고 새로운 혼합 배치가 도착했습니다.</string>
+    <string name="blocksort_round_label">라운드</string>
+    <string name="blocksort_select_source_hint">비어 있지 않은 혼합 열을 탭해 맨 위 색상 스택을 집으세요.</string>
+    <string name="blocksort_selected_hint">이제 빈 열이나 같은 색이 맨 위에 있는 열을 탭해 스택을 옮기세요.</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rounds_title">라운드</string>
+    <string name="challenge_info_clear_rounds">채워진 각 열을 단색으로 만들어 BlockSort 라운드를 끝까지 완료하세요.</string>
+    <string name="challenge_task_complete_columns">열 %1$d개 완성</string>
+    <string name="challenge_task_clear_rounds">라운드 %1$d개 클리어</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_blocksort_intro_title">같은 크기의 상단 스택을 열 사이로 옮기세요</string>
+    <string name="tutorial_blocksort_intro_body">각 라운드에서는 모든 열이 같은 슬롯 크기를 사용합니다. 비어 있지 않은 혼합 색상 열을 탭해 맨 위 색상 스택을 집고, 빈 열이나 같은 색이 맨 위에 있는 열로 이동시키세요.</string>
+    <string name="tutorial_blocksort_rules_title">같은 색끼리만 쌓을 수 있습니다</string>
+    <string name="tutorial_blocksort_rules_body">빈 공간이나 같은 맨 위 색상 위에만 옮길 수 있습니다. 퍼즐이 커지면 보드가 위/아래 두 줄로 나뉠 수 있으니, 보조 공간과 가시성을 모두 고려하세요.</string>
+    <string name="tutorial_blocksort_finish_title">단색 열을 완성하세요</string>
+    <string name="tutorial_blocksort_finish_body">그 라운드의 모든 슬롯이 같은 색이 되면 열이 완성됩니다. 라운드마다 3, 4, 5, 6개의 동일한 슬롯을 사용할 수 있으며, 모두 끝내면 새로운 혼합 배치가 도착합니다.</string>
+    <string name="tutorial_blocksort_ready_title">이제 BlockSort를 시작할 준비가 되었습니다</string>
+    <string name="tutorial_blocksort_ready_body">두세 수 앞을 내다보고, 보조 열을 지키며, 라운드마다 바뀌는 슬롯 수와 2줄 보드에 빠르게 적응하세요.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_blocksort_pick_title">출발 열 선택</string>
+    <string name="interactive_onboarding_blocksort_pick_body">먼저 하이라이트된 혼합 색상 열을 탭하세요. 맨 위 색상 스택을 먼저 옮기며, 이 라운드의 모든 슬롯은 같은 크기입니다.</string>
+    <string name="interactive_onboarding_blocksort_pick_hint">먼저 하이라이트된 출발 열을 탭하세요.</string>
+    <string name="interactive_onboarding_blocksort_match_title">맨 위 색을 맞추세요</string>
+    <string name="interactive_onboarding_blocksort_match_body">이제 그 스택을 같은 색이 이미 맨 위에 있는 열로 보내세요. 색이 맞는 열은 보드가 두 줄로 감겨도 안전하게 색을 모을 수 있게 해 줍니다.</string>
+    <string name="interactive_onboarding_blocksort_match_hint">스택을 하이라이트된 같은 색 열로 옮기세요.</string>
+    <string name="interactive_onboarding_blocksort_finish_title">깔끔한 단색 열 완성</string>
+    <string name="interactive_onboarding_blocksort_finish_body">좋습니다. 한 번만 더 움직이면 이 라운드의 단색 열이 완성됩니다. BlockSort의 핵심 목표를 직접 확인해 보세요.</string>
+    <string name="interactive_onboarding_blocksort_finish_hint">하이라이트된 열의 모든 슬롯이 같은 색이 되도록 완성하세요.</string>
+
+</resources>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_digitshift_desc">خمّن أرقامًا سرية من 5 أو 6 خانات باستخدام تلميحات لكل رقم.</string>
+
+    <!-- DigitShiftGameScreen -->
+    <string name="digitshift_enter">إدخال</string>
+    <string name="digitshift_delete">حذف</string>
+    <string name="digitshift_guess_label">محاولة %1$d</string>
+    <string name="digitshift_solved_words">تم الحل</string>
+    <string name="digitshift_attempts_left">المحاولات</string>
+    <string name="digitshift_current_language">اللغة</string>
+    <string name="game_message_digitshift_enter_word">كوّن رقمًا من 5 أو 6 خانات وأرسل محاولتك.</string>
+    <string name="game_message_digitshift_not_enough_letters">لا توجد أرقام كافية بعد.</string>
+    <string name="game_message_digitshift_not_in_dictionary">يُسمح فقط بالأرقام من 0 إلى 9.</string>
+    <string name="game_message_digitshift_keep_trying">تلميح جيد. حسّن الرقم التالي.</string>
+    <string name="game_message_digitshift_solved">تم الحل: %1$s</string>
+    <string name="game_message_digitshift_failed">انتهت الجولة. كان الرقم %1$s.</string>
+    <string name="game_message_digitshift_revived">تم استخدام حياة إضافية. جرّب الرقم مرة أخرى.</string>
+    <string name="game_message_ad_reward_digitshift">تم تحديث الرقم. واصل التخمين!</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_task_solve_words">حل %1$d أرقام</string>
+    <string name="challenge_info_solve_words_title">حل الأرقام</string>
+    <string name="challenge_info_solve_words">أكمل جولات DigitShift الكاملة عبر العثور على الرقم السري قبل نفاد المحاولات.</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_digitshift_intro_title">اعثر على الرقم السري</string>
+    <string name="tutorial_digitshift_intro_body">كوّن رقمًا سريًا من 5 أو 6 خانات باستخدام الأرقام 0–9 ثم أرسله. كل محاولة تكشف الأرقام الصحيحة والموجودة وغير الموجودة.</string>
+    <string name="tutorial_digitshift_hints_title">اقرأ الألوان</string>
+    <string name="tutorial_digitshift_hints_body">يعني الأخضر أن الرقم صحيح، ويعني البرتقالي أنه موجود في مكان آخر، ويعني الرمادي الداكن أنه غير موجود في الإجابة.</string>
+    <string name="tutorial_digitshift_strategy_title">استخدم تلميحات لوحة المفاتيح</string>
+    <string name="tutorial_digitshift_strategy_body">كل محاولة تُحدّث لوحة الأرقام. أعد استخدام الأرقام الخضراء، وانقل البرتقالية إلى أماكن جديدة، وتجنب الأرقام الرمادية الداكنة لتحل اللغز أسرع.</string>
+    <string name="tutorial_digitshift_ready_title">هل أنت مستعد لكسر الأرقام؟</string>
+    <string name="tutorial_digitshift_ready_body">يتناوب الوضع الكلاسيكي بين جولات من 5 و6 خانات حتى تخطئ في رقم. يضيف وضع الهجوم الزمني مزيدًا من الضغط، لذا حل بسرعة لتحصيل النقاط والوقت الإضافي.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_digitshift_type_hint">اكتب الرقم المقترح لتتعرف على اللوحة.</string>
+    <string name="interactive_onboarding_digitshift_submit_hint">أرسل رقمًا آخر وشاهد كيف تتحدث لوحة الأرقام.</string>
+    <string name="interactive_onboarding_digitshift_solve_hint">استخدم التلميحات واعثر على الرقم السري.</string>
+
+</resources>

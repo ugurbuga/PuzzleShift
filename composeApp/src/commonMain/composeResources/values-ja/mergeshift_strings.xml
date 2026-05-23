@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_mergeshift_desc">同じ値のピースをマージして高得点を目指します。</string>
+
+    <!-- MergeShiftGameScreen -->
+    <string name="game_message_ad_reward_mergeshift">数字が変わりました！ そのままマージを続けましょう。</string>
+    <string name="ad_reward_mergeshift_swap">数字を変更</string>
+    <string name="feedback_ad_reward_mergeshift">数字を変更</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_mergeshift_intro_title">ピースを発射して同じ値をマージしよう</string>
+    <string name="tutorial_mergeshift_intro_body">MergeShift ではピースをドックから発射します。ブロックが同じ値の別ブロックに重なると、より高い値にマージされます。マージを重ねてスペースを作り、高スコアを目指しましょう。</string>
+    <string name="tutorial_mergeshift_systems_title">積み上がり過ぎを防ぐようにマージを計画しよう</string>
+    <string name="tutorial_mergeshift_systems_body">発射するたびに列の高さが増します。いずれかの列が天井まで届くとゲームオーバーです。プレビューで落下位置を確認し、必要なら設定で体験を調整しましょう。</string>
+    <string name="tutorial_mergeshift_specials_title">複数マージで大きなコンボを狙おう</string>
+    <string name="tutorial_mergeshift_specials_body">1回の発射で連続マージが起こることがあります。大きなコンボは得点も空きスペースも増やしてくれます。</string>
+    <string name="tutorial_mergeshift_ready_title">MergeShift の準備は完了です</string>
+    <string name="tutorial_mergeshift_ready_body">列を低く保ちつつ高い値のマージを狙いましょう。最高値を目指してがんばってください！</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_mergeshift_launch_title">最初のピースを発射しよう</string>
+    <string name="interactive_onboarding_mergeshift_launch_body">盤面下でピースを左右にドラッグして狙いを定め、離して列へ発射します。</string>
+    <string name="interactive_onboarding_mergeshift_merge_vertical_title">縦方向に同じ値をマージ</string>
+    <string name="interactive_onboarding_mergeshift_merge_vertical_body">同じ値のブロックがすでにある列へピースを発射すると、より高い数字にマージされます！</string>
+    <string name="interactive_onboarding_mergeshift_merge_horizontal_title">横方向にもマージできる</string>
+    <string name="interactive_onboarding_mergeshift_merge_horizontal_body">ブロックは左右の隣ともマージできます。ハイライト位置を狙って横方向マージを起こしましょう。</string>
+    <string name="interactive_onboarding_mergeshift_merge_multi_title">複数マージを発動しよう</string>
+    <string name="interactive_onboarding_mergeshift_merge_multi_body">1回の配置で上・左・右など複数方向のマージが起こることがあります。大きく得点して、より多くのスペースを作りましょう！</string>
+
+</resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blockwise_desc">Drag and drop pieces anywhere on the board.</string>
+
+    <!-- BlockWiseGameScreen -->
+    <string name="ad_reward_blockwise_refresh">Refresh Tray</string>
+    <string name="feedback_ad_reward_blockwise">Tray refreshed</string>
+    <string name="launch_drag_hint_blockwise">Drag anywhere on the board → release to place</string>
+    <string name="game_message_select_column">Drag one of the three pieces onto any empty space.</string>
+    <string name="game_message_ad_reward_blockwise">Tray refreshed! New shapes are ready.</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rows_title">Rows</string>
+    <string name="challenge_info_clear_rows">Complete full rows to clear them from the board.</string>
+    <string name="challenge_info_clear_both_directions_title">Row + Column</string>
+    <string name="challenge_info_clear_both_directions">A single placement can clear at least one row and one column at the same time.</string>
+    <string name="challenge_task_clear_rows">Clear %1$d rows</string>
+    <string name="challenge_task_clear_both_directions">Make %1$d row + column clears</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_intro_title">Drag any of the three pieces onto the board</string>
+    <string name="tutorial_intro_body">Three shapes wait in the tray. Pick the one you want, drag it onto any empty cells, and release to place it exactly where it fits.</string>
+    <string name="tutorial_systems_title">Think about the whole tray, not just one move</string>
+    <string name="tutorial_systems_body">After placing one piece, the remaining tray stays on screen. When all three are used, a fresh trio appears. Try to leave enough space for every shape you still have.</string>
+    <string name="tutorial_specials_title">Rows and columns clear with full coverage</string>
+    <string name="tutorial_specials_body">There are no special pieces here. Instead, fill an entire row or an entire column to clear it. If both complete together, they clear at the same time.</string>
+    <string name="tutorial_ready_title">You are ready for the new block puzzle flow</string>
+    <string name="tutorial_ready_body">Keep scanning the tray, set up row and column clears, and avoid trapping large shapes. When none of the three pieces fit anymore, the run ends.</string>
+    <string name="tutorial_ready_block_properties_hint">Open Tutorial whenever you want to revisit free placement and simultaneous row/column clears.</string>
+    <string name="tutorial_ready_tutorial_hint">Open Tutorial whenever you want to revisit free placement and simultaneous row/column clears.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_drag_title">Drag a tray piece onto the board</string>
+    <string name="interactive_onboarding_drag_body">Touch one of the three shapes in the tray, move it over the board, and line it up with the highlighted cells.</string>
+    <string name="interactive_onboarding_drag_to_board">Drag the highlighted tray piece into the glowing target area.</string>
+    <string name="interactive_onboarding_drag_ready">Nice — release now. Once it snaps into the highlighted cells, the next guide will open automatically.</string>
+    <string name="interactive_onboarding_aim_hint">Drop the piece inside the highlighted cells to continue.</string>
+    <string name="interactive_onboarding_target_locked">Perfect — keep it there and release to continue.</string>
+    <string name="interactive_onboarding_waiting">Placement accepted. Preparing the next guided moment…</string>
+    <string name="interactive_onboarding_line_clear_title">Complete a row to clear it</string>
+    <string name="interactive_onboarding_line_clear_body">Place this shape into the guided spot so the row becomes full, flashes, and disappears.</string>
+    <string name="interactive_onboarding_column_clearer_title">Complete a column to clear it</string>
+    <string name="interactive_onboarding_column_clearer_body">Now use the highlighted placement to finish a full column and open vertical space.</string>
+    <string name="interactive_onboarding_row_clearer_title">Rows open horizontal space</string>
+    <string name="interactive_onboarding_row_clearer_body">A full row clears instantly. Aim for the highlighted cells and watch the board open across the width.</string>
+    <string name="interactive_onboarding_ghost_title">The tray matters as much as the board</string>
+    <string name="interactive_onboarding_ghost_body">Before you place a shape, glance at the other two pieces. Good runs come from leaving room for the whole tray, not just the current move.</string>
+    <string name="interactive_onboarding_heavy_title">Clear both directions together</string>
+    <string name="interactive_onboarding_heavy_body">Some placements finish a row and a column at the same time. Use the guided spot to trigger a bigger double clear.</string>
+
+</resources>

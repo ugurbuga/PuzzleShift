@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_chainshift_desc">Tirez depuis le centre, glissez des blocs dans une chaîne en spirale et faites éclater des groupes de 3 couleurs identiques ou plus.</string>
+
+    <!-- ChainShiftGameScreen -->
+    <string name="game_message_ad_reward_chainshift">Bloc actif actualisé pour Chain Shift !</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_chainshift_intro_title">Découvrez Chain Shift</string>
+    <string name="tutorial_chainshift_intro_body">Les blocs arrivent depuis le bord, contournent le plateau et rampent vers le centre. Votre lanceur reste au milieu ; chaque tir doit donc couper la chaîne en mouvement avant qu’elle ne vous atteigne.</string>
+    <string name="tutorial_chainshift_path_title">Viser et tirer</string>
+    <string name="tutorial_chainshift_path_body">Visez depuis le centre et relâchez pour tirer. Votre bloc s'insère là où il frappe la chaîne, poussant les blocs suivants vers l'avant.</string>
+    <string name="tutorial_chainshift_combo_title">Créer des retraits et des combos</string>
+    <string name="tutorial_chainshift_combo_body">Associez 3 blocs connectés ou plus de la même couleur le long de la chaîne pour les faire éclater. Lorsque l'écart se réduit, la chaîne se retire vers le bord, déclenchant potentiellement des réactions en chaîne.</string>
+    <string name="tutorial_chainshift_ready_title">Tenez le centre</string>
+    <string name="tutorial_chainshift_ready_body">Restez calme, gardez la spirale courte et utilisez vos tirs pour briser les séquences dangereuses avant qu’elles ne verrouillent le centre. Plus la chaîne s’enfonce, moins vous aurez d’espace pour vous reprendre.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_chainshift_intro_title">Tirez sur le bloc guidé</string>
+    <string name="interactive_onboarding_chainshift_intro_body">Commencez par tirer sur la partie en surbrillance de la spirale. Votre bloc s'élance du centre et s'insère dans la chaîne au point d'impact.</string>
+    <string name="interactive_onboarding_chainshift_match_title">Créez un alignement de 3 blocs</string>
+    <string name="interactive_onboarding_chainshift_match_body">Utilisez maintenant le tir guidé pour aligner 3 blocs de la même couleur. Les segments correspondants éclatent immédiatement et dégagent de l’espace près du centre.</string>
+    <string name="interactive_onboarding_chainshift_chain_title">Déclencher une réaction en chaîne</string>
+    <string name="interactive_onboarding_chainshift_chain_body">Cette configuration récompense un tir plus intelligent. Effacez le premier match, regardez la chaîne se retirer vers le bord et laissez le deuxième match éclater de lui-même.</string>
+    <string name="interactive_onboarding_chainshift_tap_hint">Visez et relâchez pour tirer sur le bloc en surbrillance.</string>
+
+</resources>

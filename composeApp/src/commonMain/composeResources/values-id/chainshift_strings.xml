@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_chainshift_desc">Tembak dari tengah, selipkan blok ke rantai spiral, dan pecahkan kecocokan 3+ warna yang sama.</string>
+
+    <!-- ChainShiftGameScreen -->
+    <string name="game_message_ad_reward_chainshift">Blok aktif untuk Chain Shift disegarkan!</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_chainshift_intro_title">Kenali Chain Shift</string>
+    <string name="tutorial_chainshift_intro_body">Blok masuk dari tepi, melingkari papan, lalu merayap ke arah tengah. Penembakmu tetap di tengah, jadi setiap tembakan harus memotong rantai yang bergerak sebelum mencapaimu.</string>
+    <string name="tutorial_chainshift_path_title">Bidik dan Tembak</string>
+    <string name="tutorial_chainshift_path_body">Bidik dari tengah dan lepaskan untuk menembak. Balok Anda masuk di tempat ia mengenai rantai, mendorong balok-balok berikutnya ke depan.</string>
+    <string name="tutorial_chainshift_combo_title">Buat mundur dan kombo</string>
+    <string name="tutorial_chainshift_combo_body">Cocokkan 3 atau lebih balok terhubung dengan warna yang sama di sepanjang rantai untuk meledakkannya. Saat celah tertutup, rantai mundur ke arah tepi, yang berpotensi memicu reaksi berantai.</string>
+    <string name="tutorial_chainshift_ready_title">Jaga pusatnya</string>
+    <string name="tutorial_chainshift_ready_body">Tetap tenang, jaga spiral tetap pendek, dan gunakan tembakanmu untuk mematahkan rangkaian berbahaya sebelum mengunci pusat. Semakin dalam rantai masuk, semakin sedikit ruang untuk pulih.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_chainshift_intro_title">Tembak balok panduan</string>
+    <string name="interactive_onboarding_chainshift_intro_body">Mulailah dengan menembak ke bagian spiral yang disorot. Balok Anda meluncur dari tengah dan masuk ke dalam rantai pada titik tumbukan.</string>
+    <string name="interactive_onboarding_chainshift_match_title">Buat kecocokan 3 blok</string>
+    <string name="interactive_onboarding_chainshift_match_body">Sekarang gunakan tembakan terpandu untuk menyusun 3 blok dengan warna yang sama. Segmen yang cocok langsung meledak dan membuka ruang bernapas di dekat tengah.</string>
+    <string name="interactive_onboarding_chainshift_chain_title">Picu reaksi berantai</string>
+    <string name="interactive_onboarding_chainshift_chain_body">Pengaturan ini menghargai tembakan yang lebih cerdas. Bersihkan kecocokan pertama, saksikan rantai mundur ke arah tepi, dan biarkan kecocokan kedua meledak dengan sendirinya.</string>
+    <string name="interactive_onboarding_chainshift_tap_hint">Bidik dan lepaskan untuk menembak balok yang disorot.</string>
+
+</resources>

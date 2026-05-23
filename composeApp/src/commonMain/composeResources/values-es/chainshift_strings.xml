@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_chainshift_desc">Dispara desde el centro, inserta bloques en una cadena en espiral y haz estallar combinaciones de 3 o más del mismo color.</string>
+
+    <!-- ChainShiftGameScreen -->
+    <string name="game_message_ad_reward_chainshift">¡Bloque activo actualizado para Chain Shift!</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_chainshift_intro_title">Conoce Chain Shift</string>
+    <string name="tutorial_chainshift_intro_body">Los bloques entran desde el borde, rodean el tablero y avanzan hacia el centro. Tu lanzador permanece en medio, así que cada disparo debe cortar la cadena en movimiento antes de que te alcance.</string>
+    <string name="tutorial_chainshift_path_title">Apunta y dispara</string>
+    <string name="tutorial_chainshift_path_body">Apunta desde el centro y suelta para disparar. Tu bloque se inserta donde golpea la cadena, empujando los bloques posteriores hacia adelante.</string>
+    <string name="tutorial_chainshift_combo_title">Crea retiradas y combos</string>
+    <string name="tutorial_chainshift_combo_body">Combina 3 o más bloques conectados del mismo color a lo largo de la cadena para hacerlos explotar. Cuando el espacio se cierra, la cadena se retira hacia el borde, lo que puede desencadenar reacciones en cadena.</string>
+    <string name="tutorial_chainshift_ready_title">Defiende el centro</string>
+    <string name="tutorial_chainshift_ready_body">Mantén la calma, conserva la espiral corta y usa tus disparos para romper secuencias peligrosas antes de que bloqueen el centro. Cuanto más se adentre la cadena, menos margen tendrás para recuperarte.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_chainshift_intro_title">Dispara al bloque guiado</string>
+    <string name="interactive_onboarding_chainshift_intro_body">Comienza disparando a la parte resaltada de la espiral. Tu bloque se lanza desde el centro se inserta en la cadena en el punto de impacto.</string>
+    <string name="interactive_onboarding_chainshift_match_title">Crea una coincidencia de 3 bloques</string>
+    <string name="interactive_onboarding_chainshift_match_body">Ahora usa el disparo guiado para alinear 3 bloques del mismo color. Los segmentos coincidentes estallan al instante y abren espacio cerca del centro.</string>
+    <string name="interactive_onboarding_chainshift_chain_title">Desencadena una reacción en cadena</string>
+    <string name="interactive_onboarding_chainshift_chain_body">Esta configuración recompensa un disparo más inteligente. Despeja la primera combinación, observa cómo la cadena se retira hacia el borde y deja que la segunda combinación explote por sí sola.</string>
+    <string name="interactive_onboarding_chainshift_tap_hint">Apunta y suelta para disparar al bloque resaltado.</string>
+
+</resources>

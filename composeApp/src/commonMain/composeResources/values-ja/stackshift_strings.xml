@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_stackshift_desc">下からピースを発射して行と列を消去します。</string>
+
+    <!-- StackShiftGameScreen -->
+    <string name="reward_piece_row_message">横一列クリアピースを装備しました！</string>
+    <string name="reward_piece_column_message">縦一列クリアピースを装備しました！</string>
+    <string name="launch_bar">発射バー</string>
+    <string name="launch_boost_active">ブースト発動中 • 残り %1$s ターン</string>
+    <string name="launch_special_chance">特殊ブロック出現率 +%1$s%</string>
+    <string name="launch_soft_lock_message">目標位置を確認してから離してください</string>
+    <string name="launch_chain_message">行 + 列 • +%2$s</string>
+    <string name="launch_paused">一時停止中</string>
+    <string name="launch_game_over">新しいプレイを始めるにはリスタート</string>
+    <string name="launch_drag_hint">横にドラッグ → 離す</string>
+    <string name="queue_next_short">次</string>
+    <string name="game_message_soft_lock">ハイライトされたマスにピースを配置するには離してください。</string>
+    <string name="game_message_overflow">トレイ内のどのピースも置ける空きがありません。</string>
+    <string name="game_message_special_chain_board">行と列を同時に消去！ %1$s ライン消去。</string>
+    <string name="game_message_pressure_game_over">これ以上配置できません。新しいプレイを始めましょう。</string>
+    <string name="game_message_special_lines">ナイスコンボ！ %1$s ライン消去。</string>
+    <string name="game_message_special_triggered">大きな消去で %1$d マスを取り除きました！</string>
+    <string name="game_message_perfect_drop">きれいな配置 x%1$s！</string>
+    <string name="game_message_chain_lines">ダブル消去！ %2$s ライン消去。</string>
+    <string name="game_message_good_shot">いい手です。残りのトレイピースも確認しましょう。</string>
+    <string name="game_message_hold_updated">トレイを更新しました。組み立てを続けましょう。</string>
+    <string name="game_message_tempo_critical">トレイが詰まる前に行または列の消去を狙いましょう。</string>
+    <string name="game_message_tempo_up">新しい3ピースが到着しました。盤面をよく見てください。</string>
+    <string name="game_message_resumed">再開しました。列を選んで発射しましょう。</string>
+    <string name="feedback_perfect_lane">ぴったり配置 x%1$s</string>
+    <string name="feedback_micro_adjust">位置調整</string>
+    <string name="feedback_soft_lock">プレビュー準備完了</string>
+    <string name="feedback_hold_armed">ホールド準備完了</string>
+    <string name="feedback_swap">入れ替え</string>
+    <string name="feedback_special_chain">特殊連鎖 +%1$s • %2$d ブロック</string>
+    <string name="feedback_special">特殊 +%1$s • %2$d ブロック</string>
+    <string name="feedback_perfect">パーフェクト x%1$s +%2$s</string>
+    <string name="feedback_chain">連鎖 x%1$s +%2$s</string>
+    <string name="game_message_ad_reward_stackshift">特殊ブロックを装備しました！ 発射準備完了。</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_stackshift_intro_title">現在のピースをドラッグして発射位置を決めよう</string>
+    <string name="tutorial_stackshift_intro_body">現在のピースは発射ドックから始まります。盤面の下で左右にドラッグし、プレビューが良ければ離しましょう。最も近い有効レーンに落ちます。</string>
+    <string name="tutorial_stackshift_systems_title">盤面が混み合ったらアクションブロックを使おう</string>
+    <string name="tutorial_stackshift_systems_body">ホールドで現在のピースを入れ替え、一時停止でプレイを止め、ブロック情報で記号を確認し、設定で見た目や言語を変更できます。これらのボタンも選択中の盤面ブロックスタイルに合わせて表示されます。</string>
+    <string name="tutorial_stackshift_specials_title">特殊ブロックは窮地を救ってくれる</string>
+    <string name="tutorial_stackshift_specials_body">一部のピースには特殊効果があります。各アイコンの意味を覚えて、行消去、列消去、すり抜け、危険突破を使い分けましょう。</string>
+    <string name="tutorial_stackshift_ready_title">StackShift の発射準備は完了です</string>
+    <string name="tutorial_stackshift_ready_body">正確に発射し、次のキューを見据え、圧迫される前に特殊ブロックを使いましょう。復習したくなったらいつでもこのガイドに戻れます。</string>
+    <string name="tutorial_stackshift_ready_tutorial_hint">発射、キュー確認、特殊ブロック効果を復習したい時はいつでもチュートリアルを開いてください。</string>
+    <string name="tutorial_stackshift_ready_settings_hint">次のプレイ前に設定を開いて言語、テーマ、色、ブロックスタイルを変更できます。</string>
+
+</resources>

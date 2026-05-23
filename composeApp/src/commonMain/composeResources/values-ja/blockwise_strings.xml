@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blockwise_desc">盤面の好きな場所にピースをドラッグ＆ドロップします。</string>
+
+    <!-- BlockWiseGameScreen -->
+    <string name="ad_reward_blockwise_refresh">トレイを更新</string>
+    <string name="feedback_ad_reward_blockwise">トレイを更新</string>
+    <string name="launch_drag_hint_blockwise">盤面上のどこかへドラッグ → 離して配置</string>
+    <string name="game_message_select_column">3つのピースのうち1つを空いている場所へドラッグしてください。</string>
+    <string name="game_message_ad_reward_blockwise">トレイを更新しました！ 新しい形が準備できています。</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rows_title">行</string>
+    <string name="challenge_info_clear_rows">行をすべて埋めると盤面から消去されます。</string>
+    <string name="challenge_info_clear_both_directions_title">行 + 列</string>
+    <string name="challenge_info_clear_both_directions">1回の配置で少なくとも1行と1列を同時に消すことができます。</string>
+    <string name="challenge_task_clear_rows">%1$d 行を消す</string>
+    <string name="challenge_task_clear_both_directions">%1$d 回 行 + 列 を同時消去</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_intro_title">3つのピースのどれかを盤面にドラッグ</string>
+    <string name="tutorial_intro_body">トレイには3つの形があります。置きたいものを選び、空いているマスへドラッグして、ぴったり合う場所で離してください。</string>
+    <string name="tutorial_systems_title">1手だけでなくトレイ全体を考えよう</string>
+    <string name="tutorial_systems_body">1つ置いても残りのトレイはそのまま表示されます。3つすべて使うと新しい3個セットが出現します。残っている形すべてが置けるスペースを意識しましょう。</string>
+    <string name="tutorial_specials_title">行と列は全部埋まると消える</string>
+    <string name="tutorial_specials_body">このモードに特殊ピースはありません。その代わり、行または列を完全に埋めると消去されます。両方同時に完成すれば同時消去になります。</string>
+    <string name="tutorial_ready_title">新しいブロックパズルの流れに備えましょう</string>
+    <string name="tutorial_ready_body">トレイ全体を見渡し、行と列の消去を組み立て、大きな形を詰まらせないようにしましょう。3つのピースのどれも入らなくなったらプレイ終了です。</string>
+    <string name="tutorial_ready_block_properties_hint">自由配置や行・列同時消去を復習したい時はいつでもチュートリアルを開いてください。</string>
+    <string name="tutorial_ready_tutorial_hint">自由配置や行・列同時消去を復習したい時はいつでもチュートリアルを開いてください。</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_drag_title">トレイのピースを盤面へドラッグ</string>
+    <string name="interactive_onboarding_drag_body">トレイ内の3つの形のうち1つに触れ、盤面へ動かして、ハイライトされたマスに合わせましょう。</string>
+    <string name="interactive_onboarding_drag_to_board">ハイライトされたトレイピースを光っている目標エリアへドラッグしてください。</string>
+    <string name="interactive_onboarding_drag_ready">いい感じです — そのまま離してください。ハイライトされたマスに収まると次のガイドが自動で開きます。</string>
+    <string name="interactive_onboarding_aim_hint">続けるにはピースをハイライトされたマスの中に置いてください。</string>
+    <string name="interactive_onboarding_target_locked">完璧です — そのまま離して続けてください。</string>
+    <string name="interactive_onboarding_waiting">配置を受け付けました。次のガイドを準備しています…</string>
+    <string name="interactive_onboarding_line_clear_title">行を完成させて消そう</string>
+    <string name="interactive_onboarding_line_clear_body">この形をガイドされた位置に置いて、行を埋めて光らせ、消してみましょう。</string>
+    <string name="interactive_onboarding_column_clearer_title">列を完成させて消そう</string>
+    <string name="interactive_onboarding_column_clearer_body">今度はハイライト位置に置いて列全体を完成させ、縦方向のスペースを作りましょう。</string>
+    <string name="interactive_onboarding_row_clearer_title">行消去で横に広く空ける</string>
+    <string name="interactive_onboarding_row_clearer_body">行が埋まると即座に消えます。ハイライトされたマスを狙って、盤面が横に開く様子を見てみましょう。</string>
+    <string name="interactive_onboarding_ghost_title">盤面だけでなくトレイも重要</string>
+    <string name="interactive_onboarding_ghost_body">形を置く前に、残り2つのピースも確認しましょう。良いプレイは今の1手だけでなく、トレイ全体の置き場を残すことから生まれます。</string>
+    <string name="interactive_onboarding_heavy_title">行と列を同時に消そう</string>
+    <string name="interactive_onboarding_heavy_body">1回の配置で行と列を同時に完成させられることがあります。ガイドされた位置を使って大きなダブル消去を体験しましょう。</string>
+
+</resources>

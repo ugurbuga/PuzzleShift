@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blockwise_desc">बोर्ड पर कहीं भी पीस को ड्रैग और ड्रॉप करें।</string>
+
+    <!-- BlockWiseGameScreen -->
+    <string name="ad_reward_blockwise_refresh">ट्रे रीफ्रेश करें</string>
+    <string name="feedback_ad_reward_blockwise">ट्रे रिफ्रेश हो गई</string>
+    <string name="launch_drag_hint_blockwise">बोर्ड पर कहीं भी खींचें → रखने के लिए छोड़ें</string>
+    <string name="game_message_select_column">पीस को क्षैतिज रूप से खींचें, कॉलम चुनें और ऊपर लॉन्च करें।</string>
+    <string name="game_message_ad_reward_blockwise">ट्रे रिफ्रेश हो गई! नई आकृतियाँ तैयार हैं।</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rows_title">पंक्तियाँ</string>
+    <string name="challenge_info_clear_rows">पूरी भरी हुई पंक्तियों को पूरा करें और उन्हें बोर्ड से हटाएँ।</string>
+    <string name="challenge_info_clear_both_directions_title">पंक्ति + कॉलम</string>
+    <string name="challenge_info_clear_both_directions">एक ही प्लेसमेंट से कम से कम एक पंक्ति और एक कॉलम एक साथ साफ़ हो सकते हैं।</string>
+    <string name="challenge_task_clear_rows">%1$d पंक्तियाँ साफ करें</string>
+    <string name="challenge_task_clear_both_directions">%1$d बार पंक्ति + कॉलम साफ करें</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_intro_title">तीनों पीस में से किसी एक को बोर्ड पर खींचें</string>
+    <string name="tutorial_intro_body">ट्रे में तीन आकृतियाँ इंतज़ार करती हैं। अपनी पसंद की आकृति चुनें, उसे किसी भी खाली सेल पर खींचें, और जहाँ वह फिट हो वहाँ रखने के लिए छोड़ दें।</string>
+    <string name="tutorial_systems_title">केवल एक चाल नहीं, बल्कि पूरी ट्रे के बारे में सोचें</string>
+    <string name="tutorial_systems_body">एक पीस रखने के बाद, बाकी बची हुई ट्रे स्क्रीन पर ही रहती है। जब तीनों का उपयोग हो जाता है, तो एक नया तिकड़ी आ जाती है। आपके पास अभी भी जो आकृतियाँ हैं, उनके लिए पर्याप्त जगह छोड़ने की कोशिश करें।</string>
+    <string name="tutorial_specials_title">पूरी पंक्ति और स्तंभ भरने पर साफ़ होते हैं</string>
+    <string name="tutorial_specials_body">यहाँ कोई स्पेशल पीस नहीं हैं। इसकी जगह, एक पूरी पंक्ति या पूरा स्तंभ भरें ताकि वह साफ़ हो जाए। अगर दोनों एक साथ पूरे होते हैं, तो दोनों साथ में साफ़ होते हैं।</string>
+    <string name="tutorial_ready_title">अब आप नए ब्लॉक पज़ल फ़्लो के लिए तैयार हैं</string>
+    <string name="tutorial_ready_body">ट्रे पर नज़र बनाए रखें, पंक्ति और स्तंभ साफ़ करने की तैयारी करें, और बड़े आकारों को फँसने न दें। जब तीनों में से कोई भी पीस फिट न हो, तब रन समाप्त हो जाती है।</string>
+    <string name="tutorial_ready_block_properties_hint">अगर आप फ्री प्लेसमेंट और एक साथ पंक्ति/स्तंभ साफ़ करने की प्रक्रिया दोबारा देखना चाहते हैं, तो कभी भी ट्यूटोरियल खोलें।</string>
+    <string name="tutorial_ready_tutorial_hint">अगर आप फ्री प्लेसमेंट और एक साथ पंक्ति/स्तंभ साफ़ करने की प्रक्रिया दोबारा देखना चाहते हैं, तो कभी भी ट्यूटोरियल खोलें।</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_drag_title">ट्रे से एक पीस बोर्ड पर खींचें</string>
+    <string name="interactive_onboarding_drag_body">ट्रे में रखी तीन आकृतियों में से किसी एक को छुएँ, उसे बोर्ड पर ले जाएँ और हाइलाइट किए गए सेल्स के साथ मिलाएँ।</string>
+    <string name="interactive_onboarding_drag_to_board">हाइलाइट किए गए पीस को चमकते लक्ष्य क्षेत्र तक खींचें।</string>
+    <string name="interactive_onboarding_drag_ready">बहुत बढ़िया — अब छोड़ें। जैसे ही यह हाइलाइट किए गए सेल्स में फिट होगा, अगला गाइड अपने-आप खुल जाएगा।</string>
+    <string name="interactive_onboarding_aim_hint">आगे बढ़ने के लिए पीस को हाइलाइट किए गए सेल्स के अंदर छोड़ें।</string>
+    <string name="interactive_onboarding_target_locked">सही है — इसे यहीं रखें और आगे बढ़ने के लिए छोड़ें।</string>
+    <string name="interactive_onboarding_waiting">प्लेसमेंट स्वीकार हो गया। अगला निर्देशित चरण तैयार हो रहा है…</string>
+    <string name="interactive_onboarding_line_clear_title">एक पूरी पंक्ति भरकर साफ़ करें</string>
+    <string name="interactive_onboarding_line_clear_body">इस आकृति को गाइड किए गए स्थान पर रखें ताकि पंक्ति पूरी हो, चमके और गायब हो जाए।</string>
+    <string name="interactive_onboarding_column_clearer_title">एक पूरा स्तंभ भरकर साफ़ करें</string>
+    <string name="interactive_onboarding_column_clearer_body">अब हाइलाइट की गई जगह का उपयोग करके पूरा स्तंभ भरें और लंबवत जगह खोलें।</string>
+    <string name="interactive_onboarding_row_clearer_title">पंक्तियाँ क्षैतिज जगह खोलती हैं</string>
+    <string name="interactive_onboarding_row_clearer_body">पूरी पंक्ति तुरंत साफ़ हो जाती है। हाइलाइट किए गए सेल्स पर निशाना लगाएँ और देखें कि बोर्ड एक किनारे से दूसरे किनारे तक कैसे खुलता है।</string>
+    <string name="interactive_onboarding_ghost_title">ट्रे उतनी ही महत्वपूर्ण है जितना बोर्ड</string>
+    <string name="interactive_onboarding_ghost_body">किसी आकृति को रखने से पहले बाकी दो पीस भी देख लें। अच्छी रन केवल इस चाल से नहीं, बल्कि पूरी ट्रे के लिए जगह छोड़ने से बनती है।</string>
+    <string name="interactive_onboarding_heavy_title">दोनों दिशाएँ एक साथ साफ़ करें</string>
+    <string name="interactive_onboarding_heavy_body">कुछ प्लेसमेंट एक साथ एक पंक्ति और एक स्तंभ पूरा करते हैं। बड़े डबल क्लियर के लिए इस गाइड किए गए स्थान का उपयोग करें।</string>
+
+</resources>

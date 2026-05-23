@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- SettingsScreen -->
     <string name="settings_title">Impostazioni</string>
     <string name="settings_language">Lingua</string>
     <string name="settings_sound">Suono</string>
@@ -11,14 +13,9 @@
     <string name="settings_block_palette">Palette colori blocchi</string>
     <string name="settings_block_style">Stile blocchi</string>
     <string name="settings_tokens_title">Token</string>
-    <string name="settings_tokens_balance">Token: %1$d</string>
+    <string name="settings_tokens_balance">Gettoni: %1$d</string>
     <string name="settings_tokens_earn_challenge">• Ricompensa sfida giornaliera: +%1$d token</string>
     <string name="settings_tokens_earn_score">• Ricompensa partita: +1 token ogni %1$d punti</string>
-    <string name="rewarded_tokens_button_bullet">• Guarda un annuncio e ottieni %1$d token</string>
-    <string name="rewarded_tokens_button">Guarda un annuncio e ottieni %1$d token</string>
-    <string name="reward_earned_message">Hai ottenuto %1$d token!</string>
-    <string name="reward_piece_row_message">Pezzo eliminazione riga orizzontale equipaggiato!</string>
-    <string name="reward_piece_column_message">Pezzo eliminazione colonna verticale equipaggiato!</string>
     <string name="unlock_dialog_watch_ad">Guarda un annuncio per ottenere token</string>
     <string name="token_label">Gettone</string>
     <string name="settings_board_block_style">Stile blocchi del tabellone</string>
@@ -36,7 +33,7 @@
     <string name="theme_palette_soft_pastel">Pastello morbido</string>
     <string name="theme_palette_minimal_monochrome">Monocromatico minimale</string>
     <string name="block_palette_classic">Classica</string>
-    <string name="block_palette_candy">Candy</string>
+    <string name="block_palette_candy">Caramella</string>
     <string name="block_palette_neon">Neon</string>
     <string name="block_palette_earth">Terra</string>
     <string name="block_palette_monochrome">Monocromatica</string>
@@ -63,11 +60,30 @@
     <string name="block_style_cosmic">Cosmico</string>
     <string name="block_style_flame">Fiamma</string>
     <string name="block_style_gears">Ingranaggi</string>
-    <string name="block_style_pixel">Pixel</string>
+    <string name="block_style_pixel">Pixelato</string>
     <string name="block_style_cyberpunk">Cyberpunk</string>
     <string name="block_style_electric">Elettrico</string>
     <string name="board_block_style_always_flat">Sempre piatto</string>
     <string name="board_block_style_match_selected">Usa lo stile blocchi selezionato</string>
+    <string name="block_style_lava">Lava</string>
+    <string name="block_style_light_burst">Esplosione luminosa</string>
+    <string name="block_style_matte_soft">Opaco morbido</string>
+    <string name="block_style_stone_texture">Texture pietra</string>
+    <string name="rewarded_tokens_button_bullet">• Guarda un annuncio e ottieni %1$d token</string>
+    <string name="rewarded_tokens_button">Guarda un annuncio e ottieni %1$d token</string>
+    <string name="unlock_dialog_title">Sbloccare %1$s?</string>
+    <string name="unlock_dialog_insufficient_title">%1$s è bloccato</string>
+    <string name="unlock_dialog_message">%1$s costa %2$d token. Saldo attuale: %3$d.</string>
+    <string name="unlock_dialog_not_enough">Ti servono %1$d token per sbloccare questo oggetto. Il tuo saldo attuale è %2$d.</string>
+    <string name="unlock_dialog_confirm">Sblocca</string>
+    <string name="unlock_dialog_locked_suffix">Bloccato</string>
+
+    <!-- HomeScreen -->
+    <string name="home_play_cta">Gioca</string>
+    <string name="home_classic_cta">Classica</string>
+    <string name="home_time_attack_cta">Attacco a tempo</string>
+
+    <!-- GameDialogs -->
     <string name="hold">Tieni</string>
     <string name="pause">Pausa</string>
     <string name="resume">Riprendi</string>
@@ -82,68 +98,37 @@
     <string name="score">Punteggio</string>
     <string name="high_score">Migliore</string>
     <string name="high_score_new_record">Nuovo record</string>
-    <string name="home_play_cta">Gioca</string>
-    <string name="home_classic_cta">Classica</string>
-    <string name="home_time_attack_cta">Attacco a tempo</string>
     <string name="lines">Linea</string>
     <string name="time_remaining">Tempo rimasto</string>
     <string name="boost">Potenziamento</string>
     <string name="danger">Pericolo</string>
     <string name="danger_none">-</string>
     <string name="launch_label">Lancio</string>
-    <string name="launch_bar">Barra di lancio</string>
-    <string name="launch_boost_active">Boost attivo • %1$s turni</string>
-    <string name="launch_special_chance">Probabilità blocco speciale +%1$s%</string>
-    <string name="launch_soft_lock_message">Controlla il bersaglio, poi rilascia per piazzare</string>
-    <string name="launch_chain_message">Riga + Colonna • +%2$s</string>
-    <string name="launch_paused">In pausa</string>
-    <string name="launch_game_over">Riavvia per una nuova partita</string>
-    <string name="launch_drag_hint">Trascina in orizzontale → rilascia</string>
-    <string name="launch_drag_hint_blockwise">Trascina ovunque sul tabellone → rilascia per piazzare</string>
-    <string name="queue_hold">Tieni</string>
-    <string name="queue_next_short">Prossimo</string>
-    <string name="queue_empty">—</string>
-    <string name="pause_title">In pausa</string>
     <string name="game_over_title">Partita finita</string>
     <string name="continue_label">Continua</string>
     <string name="game_over_extra_life">Guarda un annuncio per una vita extra</string>
     <string name="game_over_extra_life_loading">Caricamento annuncio…</string>
     <string name="play_again">Gioca ancora</string>
     <string name="game_over_new_high_score">Nuovo record!</string>
-    <string name="game_message_select_column">Trascina uno dei tre pezzi in uno spazio vuoto qualsiasi.</string>
     <string name="game_message_no_opening">Non ci sono più mosse valide per il vassoio attuale.</string>
-    <string name="game_message_soft_lock">Rilascia per posizionare il pezzo sulle celle evidenziate.</string>
-    <string name="game_message_overflow">Non c'è più spazio per nessun pezzo nel vassoio.</string>
-    <string name="game_message_special_chain_board">Riga e colonna eliminate insieme! %1$s linee eliminate.</string>
-    <string name="game_message_pressure_game_over">Non sono più possibili piazzamenti. Inizia una nuova partita.</string>
-    <string name="game_message_special_lines">Bel combo! %1$s linee eliminate.</string>
-    <string name="game_message_special_triggered">Una grande eliminazione ha rimosso %1$d celle!</string>
-    <string name="game_message_perfect_drop">Piazzamento perfetto x%1$s!</string>
-    <string name="game_message_chain_lines">Doppia eliminazione! %2$s linee eliminate.</string>
-    <string name="game_message_lines_cleared">%1$s linee eliminate.</string>
-    <string name="game_message_good_shot">Buona mossa. Controlla i pezzi rimasti nel vassoio.</string>
-    <string name="game_message_ad_reward_blockwise">Vassoio aggiornato! Nuove forme sono pronte.</string>
-    <string name="game_message_ad_reward_mergeshift">Numeri cambiati! Continua a fondere.</string>
-    <string name="game_message_ad_reward_boomblocks">Colore eliminato! Il tabellone è stato rimodellato.</string>
-    <string name="game_message_ad_reward_stackshift">Blocco speciale equipaggiato! Pronto al lancio.</string>
-    <string name="game_message_ad_reward_blocksort">È stata aggiunta una colonna vuota extra per questo round.</string>
-    <string name="game_message_hold_updated">Vassoio aggiornato. Continua a costruire.</string>
-    <string name="game_message_tempo_critical">Cerca un'eliminazione di riga o colonna prima che il vassoio si blocchi.</string>
-    <string name="game_message_tempo_up">È pronto un nuovo trio. Osserva bene il tabellone.</string>
     <string name="game_message_paused">La partita è in pausa.</string>
-    <string name="game_message_resumed">Riprendi. Scegli la colonna e lancia.</string>
     <string name="game_message_extra_life_used">Vita extra attivata! %1$s righe eliminate.</string>
+    <string name="queue_hold">Tieni</string>
+    <string name="pause_title">In pausa</string>
+    <string name="game_message_lines_cleared">%1$s linee eliminate.</string>
+
+    <!-- NotificationWorker -->
     <string name="notification_reminders_channel_name">Promemoria</string>
     <string name="notification_miss_you_body">Ci sei mancato! Torna a giocare ancora un po'.</string>
     <string name="notification_daily_challenge_title">Sfida giornaliera</string>
     <string name="notification_daily_challenge_body">Hai già completato le attività della sfida giornaliera di oggi?</string>
     <string name="notification_test_body">Questa è una notifica di test.</string>
+
+    <!-- DailyChallengeScreen -->
     <string name="challenge_tasks_title">Attività</string>
     <string name="challenge_info_title">Informazioni sulle attività</string>
     <string name="challenge_info_clear_blocks_title">Blocchi</string>
     <string name="challenge_info_clear_blocks">Rimuovi le celle occupate dal tabellone completando linee e attivando reazioni a catena.</string>
-    <string name="challenge_info_clear_rows_title">Righe</string>
-    <string name="challenge_info_clear_rows">Completa righe intere per eliminarle dal tabellone.</string>
     <string name="challenge_info_reach_score_title">Punteggio</string>
     <string name="challenge_info_reach_score">Aumenta il punteggio piazzando pezzi e cancellando linee.</string>
     <string name="challenge_info_trigger_special_title">Blocchi speciali</string>
@@ -154,29 +139,20 @@
     <string name="challenge_info_chain_reaction">Prepara eliminazioni successive così che una mossa ne attivi altre automaticamente.</string>
     <string name="challenge_info_clear_columns_title">Colonne</string>
     <string name="challenge_info_clear_columns">Completa colonne intere per eliminarle dal tabellone.</string>
-    <string name="challenge_info_clear_rounds_title">Round</string>
-    <string name="challenge_info_clear_rounds">Completa interi round di BlockSort trasformando ogni colonna piena in un unico colore.</string>
     <string name="challenge_info_place_pieces_title">Piazzamenti</string>
     <string name="challenge_info_place_pieces">Ogni piazzamento riuscito conta, anche se non elimina alcuna linea.</string>
-    <string name="challenge_info_clear_both_directions_title">Riga + Colonna</string>
-    <string name="challenge_info_clear_both_directions">Un singolo piazzamento può eliminare almeno una riga e una colonna nello stesso momento.</string>
     <string name="challenge_completed">Sfida completata!</string>
     <string name="challenge_task_clear_blocks">Elimina %1$d blocchi</string>
-    <string name="challenge_task_clear_rows">Elimina %1$d righe</string>
     <string name="challenge_task_reach_score">Raggiungi %1$d punti</string>
     <string name="challenge_task_trigger_special">Attiva %1$d blocchi speciali</string>
     <string name="challenge_task_perfect_placement">Fai %1$d piazzamenti perfetti</string>
     <string name="challenge_task_chain_reaction">Crea %1$d reazioni a catena</string>
     <string name="challenge_task_clear_columns">Elimina %1$d colonne</string>
-    <string name="challenge_task_complete_columns">Completa %1$d colonne</string>
     <string name="challenge_task_place_pieces">Piazza %1$d pezzi</string>
-    <string name="challenge_task_clear_rounds">Completa %1$d round</string>
-    <string name="ad_reward_blockwise_refresh">Aggiorna vassoio</string>
-    <string name="ad_reward_mergeshift_swap">Cambia numero</string>
-    <string name="ad_reward_boomblocks_clear">Elimina colore</string>
-    <string name="feedback_ad_reward_blockwise">Vassoio aggiornato</string>
-    <string name="feedback_ad_reward_mergeshift">Numeri cambiati</string>
-    <string name="feedback_ad_reward_boomblocks">%1$s eliminato</string>
+    <string name="challenge_progress_value">%1$d/%2$d</string>
+
+    <!-- RewardFeedback -->
+    <string name="reward_earned_message">Hai ottenuto %1$d token!</string>
     <string name="color_cyan">Ciano</string>
     <string name="color_gold">Oro</string>
     <string name="color_violet">Viola</string>
@@ -186,8 +162,12 @@
     <string name="color_rose">Rosa</string>
     <string name="color_lime">Lime verde</string>
     <string name="color_amber">Ambra</string>
-    <string name="challenge_task_explode_groups">Fai esplodere %1$d gruppi di blocchi</string>
-    <string name="challenge_task_clear_both_directions">Fai %1$d eliminazioni riga + colonna</string>
+    <string name="feedback_overflow">Troppo pieno</string>
+    <string name="feedback_clear">Eliminazione +%1$s</string>
+    <string name="feedback_score_only">+%1$s</string>
+    <string name="feedback_extra_life">Vita extra! %1$s righe</string>
+
+    <!-- Calendar -->
     <string name="month_january">Gennaio</string>
     <string name="month_february">Febbraio</string>
     <string name="month_march">Marzo</string>
@@ -208,27 +188,15 @@
     <string name="day_friday_short">Ve</string>
     <string name="day_saturday_short">Sa</string>
     <string name="day_sunday_short">Do</string>
-    <string name="feedback_overflow">Troppo pieno</string>
-    <string name="feedback_perfect_lane">Incastro perfetto x%1$s</string>
-    <string name="feedback_micro_adjust">Riposiziona</string>
-    <string name="feedback_soft_lock">Anteprima pronta</string>
-    <string name="feedback_hold_armed">Hold pronto</string>
-    <string name="feedback_swap">Scambiato</string>
-    <string name="feedback_special_chain">Catena speciale +%1$s • %2$d blocchi</string>
-    <string name="feedback_special">Speciale +%1$s • %2$d blocchi</string>
-    <string name="feedback_perfect">Perfetto x%1$s +%2$s</string>
-    <string name="feedback_chain">Catena x%1$s +%2$s</string>
-    <string name="feedback_clear">Eliminazione +%1$s</string>
-    <string name="feedback_score_only">+%1$s</string>
-    <string name="feedback_extra_life">Vita extra! %1$s righe</string>
-    <string name="challenge_progress_value">%1$d/%2$d</string>
     <string name="stat_label_value_format">%1$s: %2$s</string>
     <string name="time_minutes_seconds_format">%1$d:%2$s</string>
+
+    <!-- PiecePropertiesScreen -->
+    <string name="queue_empty">—</string>
     <string name="special_column_clearer">COLONNA</string>
     <string name="special_row_clearer">RIGA</string>
     <string name="special_ghost">FANTASMA</string>
     <string name="special_heavy">PESANTE</string>
-
     <string name="piece_properties_title">Proprietà del pezzo</string>
     <string name="piece_properties_active">Pezzo attivo</string>
     <string name="piece_properties_kind">Tipo</string>
@@ -237,206 +205,38 @@
     <string name="piece_properties_cells">Cella</string>
     <string name="piece_properties_unlock_level">Livello di sblocco</string>
     <string name="piece_properties_none">Nessuno</string>
-
     <string name="active_piece_summary">%1$s • %2$s • %3$s</string>
     <string name="piece_size_format">%1$dx%2$d</string>
 
+    <!-- BlockPropertiesScreen -->
     <string name="block_properties_title">Proprietà del blocco</string>
     <string name="block_properties_select_hint">Seleziona un tipo di blocco</string>
-
     <string name="block_properties_normal_title">Blocco normale</string>
     <string name="block_properties_normal_desc">Cella standard piena. Nessun effetto speciale.</string>
-
     <string name="block_properties_column_clearer_title">Elimina colonna</string>
     <string name="block_properties_column_clearer_desc">Le colonne spariscono quando ogni cella di quella colonna è piena.</string>
-
     <string name="block_properties_row_clearer_title">Elimina riga</string>
     <string name="block_properties_row_clearer_desc">Le righe spariscono quando ogni cella di quella riga è piena.</string>
-
     <string name="block_properties_ghost_title">Piazzamento libero</string>
     <string name="block_properties_ghost_desc">Puoi posizionare qualsiasi pezzo del vassoio direttamente su qualsiasi area vuota in cui entra.</string>
-
     <string name="block_properties_heavy_title">Nessun blocco speciale</string>
     <string name="block_properties_heavy_desc">Questa modalità ruota tutta attorno alla scelta delle forme, alle eliminazioni di linee e al trovare spazio per l'intero vassoio.</string>
-
     <string name="block_properties_dot_desc">Il piccolo punto in alto a destra indica che questo blocco ha un effetto speciale. Il colore del punto e del bordo indica il tipo di effetto.</string>
+
+    <!-- GameTutorialScreen -->
     <string name="tutorial_subtitle">Una rapida guida prima della tua prima partita.</string>
     <string name="tutorial_step_counter">Passo %1$d / %2$d</string>
     <string name="tutorial_back">Indietro</string>
     <string name="cancel">Annulla</string>
-    <string name="unlock_dialog_title">Sbloccare %1$s?</string>
-    <string name="unlock_dialog_insufficient_title">%1$s è bloccato</string>
-    <string name="unlock_dialog_message">%1$s costa %2$d token. Saldo attuale: %3$d.</string>
-    <string name="unlock_dialog_not_enough">Ti servono %1$d token per sbloccare questo oggetto. Il tuo saldo attuale è %2$d.</string>
-    <string name="unlock_dialog_confirm">Sblocca</string>
-    <string name="unlock_dialog_locked_suffix">Bloccato</string>
     <string name="tutorial_next">Avanti</string>
     <string name="tutorial_finish">Inizia la partita</string>
     <string name="return_home">Torna alla Home</string>
-    <string name="tutorial_stackshift_intro_title">Trascina il pezzo attivo e allinea il lancio</string>
-    <string name="tutorial_stackshift_intro_body">Il pezzo attuale parte dal dock di lancio. Trascinalo a sinistra o destra sotto il tabellone, rilascialo quando l'anteprima ti convince e cadrà nella corsia valida più vicina.</string>
-    <string name="tutorial_stackshift_systems_title">Usa i blocchi azione quando il tabellone si riempie</string>
-    <string name="tutorial_stackshift_systems_body">Hold scambia il pezzo attuale, Pausa ferma la partita, Proprietà blocco spiega i simboli e Impostazioni cambia aspetto e lingua. Anche questi pulsanti seguono lo stile blocchi del tabellone scelto.</string>
-    <string name="tutorial_stackshift_specials_title">I blocchi speciali possono salvarti nei momenti difficili</string>
-    <string name="tutorial_stackshift_specials_body">Alcuni pezzi hanno effetti speciali. Impara cosa fa ogni icona così potrai pulire una riga, una colonna, attraversare i vuoti o superare il pericolo quando il tabellone si stringe.</string>
-    <string name="tutorial_stackshift_ready_title">Sei pronto a lanciare in StackShift</string>
-    <string name="tutorial_stackshift_ready_body">Mantieni i lanci puliti, pianifica la coda successiva e usa i blocchi speciali prima che la pressione salga troppo. Quando vuoi ripassare, torna qui in qualsiasi momento.</string>
-    <string name="tutorial_stackshift_ready_tutorial_hint">Apri il Tutorial in qualsiasi momento per ripassare il lancio, la lettura della coda e gli effetti dei blocchi speciali.</string>
-    <string name="tutorial_stackshift_ready_settings_hint">Apri Impostazioni per cambiare lingua, tema, colori e stile blocchi prima della prossima partita.</string>
-    <string name="tutorial_intro_title">Trascina uno dei tre pezzi sul tabellone</string>
-    <string name="tutorial_intro_body">Tre forme attendono nel vassoio. Scegli quella che vuoi, trascinala su celle vuote e rilasciala esattamente dove entra.</string>
-    <string name="tutorial_systems_title">Pensa al vassoio intero, non a una sola mossa</string>
-    <string name="tutorial_systems_body">Dopo aver piazzato un pezzo, il resto del vassoio resta visibile. Quando usi tutti e tre i pezzi appare un nuovo trio. Cerca di lasciare abbastanza spazio per tutte le forme rimaste.</string>
-    <string name="tutorial_specials_title">Righe e colonne si eliminano coprendole del tutto</string>
-    <string name="tutorial_specials_body">Qui non ci sono pezzi speciali. Invece riempi un'intera riga o un'intera colonna per eliminarla. Se si completano insieme, si cancellano nello stesso momento.</string>
-    <string name="tutorial_ready_title">Sei pronto per il nuovo flusso puzzle dei blocchi</string>
-    <string name="tutorial_ready_body">Continua a leggere il vassoio, prepara eliminazioni di righe e colonne ed evita di bloccare le forme grandi. Quando nessuno dei tre pezzi entra più, la partita finisce.</string>
-    <string name="tutorial_ready_block_properties_hint">Apri il Tutorial ogni volta che vuoi ripassare il piazzamento libero e le eliminazioni simultanee di righe e colonne.</string>
-    <string name="tutorial_ready_tutorial_hint">Apri il Tutorial ogni volta che vuoi ripassare il piazzamento libero e le eliminazioni simultanee di righe e colonne.</string>
     <string name="tutorial_ready_settings_hint">Apri Impostazioni per cambiare lingua, tema, colori e stile blocchi prima della prossima partita.</string>
-    <string name="tutorial_mergeshift_intro_title">Lancia pezzi per fondere blocchi dello stesso valore</string>
-    <string name="tutorial_mergeshift_intro_body">In MergeShift i pezzi vengono lanciati dal dock. Quando un blocco atterra su un altro con lo stesso valore, si fondono in un numero più alto. Continua a fondere per liberare spazio e raggiungere punteggi maggiori.</string>
-    <string name="tutorial_mergeshift_systems_title">Pianifica le fusioni per evitare l'overflow</string>
-    <string name="tutorial_mergeshift_systems_body">Ogni pezzo lanciato aumenta l'altezza della colonna. Se una colonna raggiunge il bordo superiore, la partita finisce. Usa l'anteprima per vedere dove cadrà il pezzo oppure apri Impostazioni per personalizzare l'esperienza.</string>
-    <string name="tutorial_mergeshift_specials_title">Combina più fusioni per combo maggiori</string>
-    <string name="tutorial_mergeshift_specials_body">Un singolo lancio può attivare una reazione a catena di fusioni. Queste combo danno più punti e liberano più spazio, aiutandoti a restare in partita più a lungo.</string>
-    <string name="tutorial_mergeshift_ready_title">Sei pronto per MergeShift</string>
-    <string name="tutorial_mergeshift_ready_body">Concentrati nel tenere basse le colonne e nel preparare fusioni di alto valore. Buona fortuna verso i numeri più alti!</string>
-
-    <string name="tutorial_boomblocks_intro_title">Fai esplodere gruppi uguali</string>
-    <string name="tutorial_boomblocks_intro_body">In BoomBlocks non lanci né trascini pezzi. Cerca invece gruppi di tre o più blocchi dello stesso colore che si toccano e toccane uno per eliminare l'intero gruppo.</string>
-    <string name="tutorial_boomblocks_gravity_title">Movimento dinamico del tabellone</string>
-    <string name="tutorial_boomblocks_gravity_body">Quando un gruppo esplode, crea un vuoto che attira i blocchi vicini. Nuovi blocchi poi riempiono il tabellone dal bordo più vicino, mantenendo l'azione dinamica.</string>
-    <string name="tutorial_boomblocks_ready_title">Sei pronto per BoomBlocks</string>
-    <string name="tutorial_boomblocks_ready_body">Concentrati sui gruppi grandi per il massimo punteggio e osserva come ogni esplosione rimodella il tabellone. Buona fortuna!</string>
-    <string name="tutorial_blocksort_intro_title">Sposta pile superiori della stessa dimensione tra colonne</string>
-    <string name="tutorial_blocksort_intro_body">Ogni round usa una dimensione condivisa degli slot per tutte le colonne. Tocca una colonna mista non vuota per prendere la pila del colore superiore, poi spostala su una colonna vuota o su una colonna con lo stesso colore in cima.</string>
-    <string name="tutorial_blocksort_rules_title">Solo i colori uguali possono stare insieme</string>
-    <string name="tutorial_blocksort_rules_body">Puoi trasferire solo in uno spazio vuoto o sopra lo stesso colore superiore. Quando il puzzle cresce, il tabellone può dividersi in una riga superiore e una inferiore, quindi considera sia lo spazio di supporto sia la visibilità.</string>
-    <string name="tutorial_blocksort_finish_title">Completa ogni slot in una colonna monocolore</string>
-    <string name="tutorial_blocksort_finish_body">Una colonna è completa quando ogni slot di quel round contiene lo stesso colore. I vari round possono usare 3, 4, 5 o 6 slot uguali e un nuovo layout misto arriva dopo averli completati tutti.</string>
-    <string name="tutorial_blocksort_ready_title">Sei pronto per BlockSort</string>
-    <string name="tutorial_blocksort_ready_body">Pianifica due o tre mosse avanti, proteggi le colonne di supporto e adattati in fretta quando ogni round cambia il numero di slot e può dividere il tabellone in due righe.</string>
-
     <string name="interactive_onboarding_step_counter">Guida %1$d / %2$d</string>
 
-    <string name="interactive_onboarding_drag_title">Trascina un pezzo del vassoio sul tabellone</string>
-    <string name="interactive_onboarding_drag_body">Tocca una delle tre forme nel vassoio, spostala sul tabellone e allineala con le celle evidenziate.</string>
-    <string name="interactive_onboarding_drag_to_board">Trascina il pezzo evidenziato nell'area bersaglio luminosa.</string>
-    <string name="interactive_onboarding_drag_ready">Perfetto — rilascia ora. Quando si aggancerà alle celle evidenziate, si aprirà automaticamente la guida successiva.</string>
-    <string name="interactive_onboarding_aim_hint">Rilascia il pezzo nelle celle evidenziate per continuare.</string>
-    <string name="interactive_onboarding_target_locked">Perfetto — tienilo lì e rilascia per continuare.</string>
-    <string name="interactive_onboarding_waiting">Piazzamento accettato. Preparazione del prossimo momento guidato…</string>
-    <string name="interactive_onboarding_line_clear_title">Completa una riga per eliminarla</string>
-    <string name="interactive_onboarding_line_clear_body">Piazza questa forma nel punto guidato così la riga si riempie, lampeggia e scompare.</string>
-    <string name="interactive_onboarding_column_clearer_title">Completa una colonna per eliminarla</string>
-    <string name="interactive_onboarding_column_clearer_body">Ora usa il piazzamento evidenziato per completare una colonna intera e aprire spazio verticale.</string>
-    <string name="interactive_onboarding_row_clearer_title">Le righe aprono spazio orizzontale</string>
-    <string name="interactive_onboarding_row_clearer_body">Una riga piena si elimina all'istante. Mira alle celle evidenziate e guarda il tabellone aprirsi in larghezza.</string>
-    <string name="interactive_onboarding_ghost_title">Il vassoio conta quanto il tabellone</string>
-    <string name="interactive_onboarding_ghost_body">Prima di piazzare una forma, guarda anche gli altri due pezzi. Le buone partite nascono dal lasciare spazio per tutto il vassoio, non solo per la mossa corrente.</string>
-    <string name="interactive_onboarding_heavy_title">Elimina entrambe le direzioni insieme</string>
-    <string name="interactive_onboarding_heavy_body">Alcuni piazzamenti completano una riga e una colonna nello stesso momento. Usa il punto guidato per attivare una doppia eliminazione più grande.</string>
-
-    <string name="interactive_onboarding_mergeshift_launch_title">Lancia il tuo primo pezzo</string>
-    <string name="interactive_onboarding_mergeshift_launch_body">Trascina il pezzo in orizzontale sotto il tabellone per mirare, poi rilascialo per lanciarlo in una colonna.</string>
-    <string name="interactive_onboarding_mergeshift_merge_vertical_title">Fondi valori uguali in verticale</string>
-    <string name="interactive_onboarding_mergeshift_merge_vertical_body">Lancia un pezzo in una colonna che ha già un blocco con lo stesso valore. Si fonderanno in un numero più alto!</string>
-    <string name="interactive_onboarding_mergeshift_merge_horizontal_title">Fondi valori uguali in orizzontale</string>
-    <string name="interactive_onboarding_mergeshift_merge_horizontal_body">I blocchi possono fondersi anche con i vicini a sinistra o destra. Mira al punto evidenziato per attivare una fusione orizzontale.</string>
-    <string name="interactive_onboarding_mergeshift_merge_multi_title">Attiva più fusioni</string>
-    <string name="interactive_onboarding_mergeshift_merge_multi_body">Un singolo piazzamento può attivare fusioni in più direzioni (sopra, sinistra, destra). Sfruttalo per liberare più spazio e fare tanti punti!</string>
-
-    <string name="interactive_onboarding_boomblocks_basic_title">Tocca per esplodere</string>
-    <string name="interactive_onboarding_boomblocks_basic_body">Trova un gruppo di tre o più blocchi dello stesso colore e toccalo per eliminarlo dal tabellone.</string>
-    <string name="interactive_onboarding_boomblocks_large_title">Gruppi più grandi, più punti</string>
-    <string name="interactive_onboarding_boomblocks_large_body">I gruppi più grandi danno più punti e liberano più spazio. Tocca il grande gruppo evidenziato!</string>
-    <string name="interactive_onboarding_boomblocks_gravity_title">La gravità cambia direzione</string>
-    <string name="interactive_onboarding_boomblocks_gravity_body">Quando fai esplodere blocchi, nuovi blocchi entrano dal lato opposto all'esplosione. Guarda come si sposta il tabellone!</string>
-    <string name="interactive_onboarding_boomblocks_strategic_title">Ricariche strategiche</string>
-    <string name="interactive_onboarding_boomblocks_strategic_body">Nuovi blocchi riempiono il tabellone in base al centro dell'esplosione. Usalo per creare gruppi ancora più grandi!</string>
-    <string name="interactive_onboarding_boomblocks_tap_hint">Tocca il gruppo evidenziato per continuare.</string>
-    <string name="interactive_onboarding_blocksort_pick_title">Scegli una colonna di partenza</string>
-    <string name="interactive_onboarding_blocksort_pick_body">Inizia toccando la colonna mista evidenziata. Sposterai per prima la sua pila di colore superiore e ogni slot di questo round ha la stessa dimensione.</string>
-    <string name="interactive_onboarding_blocksort_pick_hint">Tocca prima la colonna sorgente evidenziata nel layout misto.</string>
-    <string name="interactive_onboarding_blocksort_match_title">Abbina il colore superiore</string>
-    <string name="interactive_onboarding_blocksort_match_body">Ora manda quella pila su una colonna il cui colore superiore corrisponde già. Le colonne abbinate ti permettono di raggruppare i colori in sicurezza anche quando il tabellone si divide in due righe.</string>
-    <string name="interactive_onboarding_blocksort_match_hint">Sposta la pila sulla colonna evidenziata con lo stesso colore.</string>
-    <string name="interactive_onboarding_blocksort_finish_title">Completa una colonna pulita</string>
-    <string name="interactive_onboarding_blocksort_finish_body">Ottimo. Ancora una mossa completerà una colonna monocolore per questo round. Finiscila per vedere l'obiettivo principale di BlockSort.</string>
-    <string name="interactive_onboarding_blocksort_finish_hint">Completa la colonna evidenziata così che ogni slot mostri lo stesso colore.</string>
-    <string name="blocksort_completed_label">Ordinata</string>
-    <string name="blocksort_goal_hint">Obiettivo: concludi il round con ogni colonna piena composta da un solo colore. I round possono usare 3, 4, 5 o 6 slot uguali per colonna e il tabellone può dividersi in due righe.</string>
-    <string name="blocksort_no_moves_hint">Non restano trasferimenti validi in questo layout misto. Prova un rimescolamento oppure avvia un nuovo round.</string>
-    <string name="blocksort_round_congrats_title">Congratulazioni!</string>
-    <string name="blocksort_round_complete_hint">Round completato! Bonus +%1$d ed è arrivato un nuovo layout misto.</string>
-    <string name="blocksort_round_label">Turno</string>
-    <string name="blocksort_select_source_hint">Tocca una colonna mista non vuota per prendere la sua pila di colore superiore.</string>
-    <string name="blocksort_selected_hint">Ora tocca una colonna vuota o una colonna con lo stesso colore superiore per spostare la pila.</string>
-
+    <!-- AppSelectionScreen -->
     <string name="selection_title">Scegli il tuo gioco</string>
-
-    <string name="selection_stackshift_desc">Lancia pezzi dal basso per eliminare righe e colonne.</string>
-    <string name="selection_blockwise_desc">Trascina e rilascia i pezzi ovunque sul tabellone.</string>
-    <string name="selection_blocksort_desc">Riordina le pile di colori misti finché ogni colonna piena non diventa di un solo colore.</string>
-    <string name="selection_mergeshift_desc">Fondi pezzi dello stesso valore per raggiungere punteggi più alti.</string>
-    <string name="selection_boomblocks_desc">Tocca gruppi di 3 o più blocchi per farli esplodere.</string>
     <string name="selection_switch_game">Cambia gioco</string>
     <string name="selection_active_game_badge">ATTIVO</string>
 
-    <string name="app_title_chainshift">Chain Shift</string>
-    <string name="selection_chainshift_desc">Shoot from the center, slip blocks into a spiral chain, and pop 3+ color matches.</string>
-    <string name="app_title_banner_chainshift_top">CHAIN</string>
-    <string name="app_title_banner_chainshift_bottom">SHIFT</string>
-    <string name="tutorial_chainshift_intro_title">Meet Chain Shift</string>
-    <string name="tutorial_chainshift_intro_body">Blocks enter from the edge, wrap around the board, and crawl toward the center. Your shooter stays in the middle, so every shot must cut into the moving chain before it reaches you.</string>
-    <string name="tutorial_chainshift_path_title">Mira e spara</string>
-    <string name="tutorial_chainshift_path_body">Mira dal centro e rilascia per sparare. Il tuo blocco si inserisce dove colpisce la catena, spingendo in avanti i blocchi successivi.</string>
-    <string name="tutorial_chainshift_combo_title">Crea ritirate e combo</string>
-    <string name="tutorial_chainshift_combo_body">Abbina 3 o più blocchi collegati dello stesso colore lungo la catena per farli scoppiare. Quando lo spazio si chiude, la catena si ritira verso il bordo, scatenando potenzialmente reazioni a catena.</string>
-    <string name="tutorial_chainshift_ready_title">Hold the center</string>
-    <string name="tutorial_chainshift_ready_body">Stay calm, keep the spiral short, and use your shots to break dangerous runs before they lock the center. The deeper the chain goes, the less room you have to recover.</string>
-    <string name="interactive_onboarding_chainshift_intro_title">Spara al blocco guidato</string>
-    <string name="interactive_onboarding_chainshift_intro_body">Inizia sparando alla parte evidenziata della spirale. Il tuo blocco parte dal centro e si inserisce nella catena nel punto di impatto.</string>
-    <string name="interactive_onboarding_chainshift_match_title">Make a 3-block match</string>
-    <string name="interactive_onboarding_chainshift_match_body">Now use the guided shot to line up 3 blocks of the same color. Matching segments burst immediately and open breathing room near the center.</string>
-    <string name="interactive_onboarding_chainshift_chain_title">Scatena una reazione a catena</string>
-    <string name="interactive_onboarding_chainshift_chain_body">Questa configurazione premia un tiro più intelligente. Cancella il primo abbinamento, guarda la catena ritirarsi verso il bordo e lascia che il secondo abbinamento scoppi da solo.</string>
-    <string name="interactive_onboarding_chainshift_tap_hint">Mira e rilascia per sparare al blocco evidenziato.</string>
-    <string name="game_message_ad_reward_chainshift">Active block refreshed for Chain Shift!</string>
-
-    <string name="block_style_lava">Lava</string>
-    <string name="block_style_light_burst">Light Burst</string>
-    <string name="block_style_matte_soft">Matte Soft</string>
-    <string name="block_style_stone_texture">Stone Texture</string>
-    <string name="selection_digitshift_desc">Indovina numeri nascosti di 5 o 6 cifre usando indizi cifra per cifra.</string>
-    <string name="tutorial_digitshift_intro_title">Trova il numero nascosto</string>
-    <string name="tutorial_digitshift_intro_body">Crea un numero nascosto di 5 o 6 cifre con le cifre 0–9 e invialo. Ogni tentativo rivela quali cifre sono corrette, presenti o assenti.</string>
-    <string name="tutorial_digitshift_hints_title">Leggi i colori</string>
-    <string name="tutorial_digitshift_hints_body">Il verde indica che la cifra è corretta, l’arancione che appartiene a un’altra posizione e il grigio scuro che non è nella soluzione.</string>
-    <string name="tutorial_digitshift_strategy_title">Usa gli indizi della tastiera</string>
-    <string name="tutorial_digitshift_strategy_body">Ogni tentativo aggiorna il tastierino numerico. Riusa le cifre verdi, sposta quelle arancioni ed evita quelle grigio scuro per risolvere più in fretta.</string>
-    <string name="tutorial_digitshift_ready_title">Pronto a decifrare i numeri?</string>
-    <string name="tutorial_digitshift_ready_body">La modalità Classica alterna round da 5 e 6 cifre finché non sbagli un numero. Attacco a Tempo aumenta la pressione, quindi risolvi in fretta per accumulare punteggio e tempo bonus.</string>
-    <string name="interactive_onboarding_digitshift_type_hint">Digita il numero suggerito per imparare la griglia.</string>
-    <string name="interactive_onboarding_digitshift_submit_hint">Invia un altro numero e guarda come si aggiorna il tastierino numerico.</string>
-    <string name="interactive_onboarding_digitshift_solve_hint">Usa gli indizi e risolvi il numero nascosto.</string>
-    <string name="digitshift_enter">Invia</string>
-    <string name="digitshift_delete">Cancella</string>
-    <string name="digitshift_guess_label">Tentativo %1$d</string>
-    <string name="digitshift_solved_words">Risolti</string>
-    <string name="digitshift_attempts_left">Tentativi</string>
-    <string name="digitshift_current_language">Lingua</string>
-    <string name="game_message_digitshift_enter_word">Crea un numero di 5 o 6 cifre e invia il tuo tentativo.</string>
-    <string name="game_message_digitshift_not_enough_letters">Non ci sono ancora abbastanza cifre.</string>
-    <string name="game_message_digitshift_not_in_dictionary">Sono consentite solo le cifre da 0 a 9.</string>
-    <string name="game_message_digitshift_keep_trying">Buon indizio. Affina il numero successivo.</string>
-    <string name="game_message_digitshift_solved">Risolto: %1$s</string>
-    <string name="game_message_digitshift_failed">Round finito. Il numero era %1$s.</string>
-    <string name="game_message_digitshift_revived">Vita extra usata. Riprova il numero.</string>
-    <string name="game_message_ad_reward_digitshift">Numero aggiornato. Continua a indovinare!</string>
-    <string name="challenge_task_solve_words">Risolvi %1$d numeri</string>
-    <string name="challenge_info_solve_words_title">Risolvi numeri</string>
-    <string name="challenge_info_solve_words">Completa interi round di DigitShift trovando il numero nascosto prima di esaurire i tentativi.</string>
 </resources>
-

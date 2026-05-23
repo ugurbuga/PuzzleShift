@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blocksort_desc">Сортируйте смешанные цветные стопки, пока каждый заполненный столбец не станет одноцветным.</string>
+
+    <!-- BlockSortGameScreen -->
+    <string name="game_message_ad_reward_blocksort">Board remixed! Fresh routes are open.</string>
+    <string name="blocksort_completed_label">Отсортировано</string>
+    <string name="blocksort_goal_hint">Цель: завершите раунд так, чтобы каждый заполненный столбец содержал только один цвет. В раундах может быть 3, 4, 5 или 6 одинаковых ячеек в столбце, а поле может делиться на два ряда.</string>
+    <string name="blocksort_no_moves_hint">В этой смешанной раскладке больше не осталось допустимых переносов. Попробуйте перемешать заново или начните новый раунд.</string>
+    <string name="blocksort_round_congrats_title">Поздравляем!</string>
+    <string name="blocksort_round_complete_hint">Раунд завершён! Бонус +%1$d, и прибыла новая смешанная раскладка.</string>
+    <string name="blocksort_round_label">Раунд</string>
+    <string name="blocksort_select_source_hint">Нажмите на непустой смешанный столбец, чтобы взять его верхнюю цветную стопку.</string>
+    <string name="blocksort_selected_hint">Теперь нажмите на пустой столбец или на столбец с таким же верхним цветом, чтобы переместить стопку.</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rounds_title">Раунды</string>
+    <string name="challenge_info_clear_rounds">Проходите полные раунды BlockSort, превращая каждый заполненный столбец в один цвет.</string>
+    <string name="challenge_task_complete_columns">Заверши %1$d столбцов</string>
+    <string name="challenge_task_clear_rounds">Заверши %1$d раундов</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_blocksort_intro_title">Перемещайте верхние стопки одинакового размера между столбцами</string>
+    <string name="tutorial_blocksort_intro_body">В каждом раунде все столбцы используют одинаковый размер ячеек. Нажмите на непустой смешанный столбец, чтобы взять верхнюю цветную стопку, затем перенесите её в пустой столбец или в столбец с таким же верхним цветом.</string>
+    <string name="tutorial_blocksort_rules_title">Складывать вместе можно только одинаковые цвета</string>
+    <string name="tutorial_blocksort_rules_body">Перенос возможен только в пустое место или на такой же верхний цвет. По мере усложнения головоломки поле может делиться на верхний и нижний ряд, поэтому учитывайте и вспомогательное пространство, и обзор.</string>
+    <string name="tutorial_blocksort_finish_title">Соберите каждый столбец в один цвет</string>
+    <string name="tutorial_blocksort_finish_body">Столбец считается завершённым, когда каждая ячейка в этом раунде имеет один и тот же цвет. В разных раундах может быть 3, 4, 5 или 6 одинаковых ячеек, а после завершения всех появляется новая смешанная раскладка.</string>
+    <string name="tutorial_blocksort_ready_title">Вы готовы к BlockSort</string>
+    <string name="tutorial_blocksort_ready_body">Планируйте на два-три хода вперёд, берегите вспомогательные столбцы и быстро адаптируйтесь, когда в каждом раунде меняется число ячеек и поле может делиться на два ряда.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_blocksort_pick_title">Выберите исходный столбец</string>
+    <string name="interactive_onboarding_blocksort_pick_body">Начните с нажатия на выделенный смешанный столбец. Сначала вы переместите его верхнюю цветную стопку, и каждая ячейка в этом раунде имеет одинаковый размер.</string>
+    <string name="interactive_onboarding_blocksort_pick_hint">Сначала нажмите на выделенный исходный столбец в смешанной раскладке.</string>
+    <string name="interactive_onboarding_blocksort_match_title">Совместите верхний цвет</string>
+    <string name="interactive_onboarding_blocksort_match_body">Теперь отправьте эту стопку в столбец, где верхний цвет уже совпадает. Совпадающие столбцы позволяют безопасно группировать цвета, даже когда поле делится на два ряда.</string>
+    <string name="interactive_onboarding_blocksort_match_hint">Переместите стопку в выделенный столбец с подходящим цветом.</string>
+    <string name="interactive_onboarding_blocksort_finish_title">Завершите чистый столбец</string>
+    <string name="interactive_onboarding_blocksort_finish_body">Отлично. Ещё один ход завершит все ячейки одноцветного столбца в этом раунде. Сделайте это, чтобы увидеть главную цель BlockSort.</string>
+    <string name="interactive_onboarding_blocksort_finish_hint">Завершите выделенный столбец так, чтобы каждая ячейка показывала один и тот же цвет.</string>
+
+</resources>

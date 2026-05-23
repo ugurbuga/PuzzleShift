@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blockwise_desc">اسحب وأسقط القطع في أي مكان على اللوحة.</string>
+
+    <!-- BlockWiseGameScreen -->
+    <string name="ad_reward_blockwise_refresh">تحديث الحاوية</string>
+    <string name="feedback_ad_reward_blockwise">تم تحديث الدرج</string>
+    <string name="launch_drag_hint_blockwise">اسحب في أي مكان على اللوحة ← اتركه لوضعه</string>
+    <string name="game_message_select_column">اسحب القطعة أفقيًا، اختر العمود، ثم أطلقها للأعلى.</string>
+    <string name="game_message_ad_reward_blockwise">تم تحديث الحاوية! الأشكال الجديدة جاهزة.</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rows_title">الصفوف</string>
+    <string name="challenge_info_clear_rows">أكمل الصفوف الممتلئة بالكامل لمسحها من اللوحة.</string>
+    <string name="challenge_info_clear_both_directions_title">صف + عمود</string>
+    <string name="challenge_info_clear_both_directions">يمكن لوضع واحد أن يمسح صفاً واحداً وعموداً واحداً على الأقل في الوقت نفسه.</string>
+    <string name="challenge_task_clear_rows">امسح %1$d صفوف</string>
+    <string name="challenge_task_clear_both_directions">نفّذ %1$d عمليات مسح صف + عمود</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_intro_title">اسحب أيًا من القطع الثلاث إلى اللوحة</string>
+    <string name="tutorial_intro_body">تنتظر ثلاثة أشكال في الحاوية. اختر الشكل الذي تريده، واسحبه إلى أي خلايا فارغة، ثم أفلت لوضعه تمامًا حيث يناسب.</string>
+    <string name="tutorial_systems_title">فكر في الحاوية بالكامل، وليس فقط في حركة واحدة</string>
+    <string name="tutorial_systems_body">بعد وضع قطعة واحدة، تظل الحاوية المتبقية على الشاشة. عند استخدام الثلاثة جميعًا، تظهر مجموعة جديدة. حاول ترك مساحة كافية لكل شكل لا يزال لديك.</string>
+    <string name="tutorial_specials_title">تمتلئ الصفوف والأعمدة ثم تُمسح</string>
+    <string name="tutorial_specials_body">لا توجد هنا قطع خاصة. بدلاً من ذلك، املأ صفاً كاملاً أو عموداً كاملاً ليتم مسحه. وإذا اكتمل الاثنان معاً فسيتم مسحهما في اللحظة نفسها.</string>
+    <string name="tutorial_ready_title">أنت جاهز لتجربة أحجية الكتل الجديدة</string>
+    <string name="tutorial_ready_body">استمر في مراقبة الحاوية، وجهّز مسح الصفوف والأعمدة، وتجنّب حبس الأشكال الكبيرة. عندما لا تعود أي قطعة من القطع الثلاث مناسبة، تنتهي الجولة.</string>
+    <string name="tutorial_ready_block_properties_hint">افتح البرنامج التعليمي متى أردت مراجعة الوضع الحر ومسح الصفوف والأعمدة في الوقت نفسه.</string>
+    <string name="tutorial_ready_tutorial_hint">افتح البرنامج التعليمي متى أردت مراجعة الوضع الحر ومسح الصفوف والأعمدة في الوقت نفسه.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_drag_title">اسحب قطعة من الحاوية إلى اللوحة</string>
+    <string name="interactive_onboarding_drag_body">المس أحد الأشكال الثلاثة في الحاوية، ثم حرّكه فوق اللوحة وحاذه مع الخلايا المظللة.</string>
+    <string name="interactive_onboarding_drag_to_board">اسحب القطعة المظللة إلى منطقة الهدف المتوهجة.</string>
+    <string name="interactive_onboarding_drag_ready">رائع — أفلت الآن. ما إن تلتصق القطعة بالخلايا المظللة حتى يفتح الدليل التالي تلقائياً.</string>
+    <string name="interactive_onboarding_aim_hint">أفلت القطعة داخل الخلايا المظللة للمتابعة.</string>
+    <string name="interactive_onboarding_target_locked">ممتاز — أبقها هنا ثم أفلت للمتابعة.</string>
+    <string name="interactive_onboarding_waiting">تم قبول الوضعية. يتم تجهيز اللحظة الموجّهة التالية…</string>
+    <string name="interactive_onboarding_line_clear_title">املأ صفاً كاملاً ثم امسحه</string>
+    <string name="interactive_onboarding_line_clear_body">ضع هذا الشكل في الموضع الموجّه حتى يكتمل الصف ثم يلمع ويختفي.</string>
+    <string name="interactive_onboarding_column_clearer_title">أكمل عموداً كاملاً ثم امسحه</string>
+    <string name="interactive_onboarding_column_clearer_body">استخدم الآن الموضع المظلّل لإكمال عمود كامل وفتح مساحة عمودية.</string>
+    <string name="interactive_onboarding_row_clearer_title">الصفوف تفتح مساحة أفقية</string>
+    <string name="interactive_onboarding_row_clearer_body">يتم مسح الصف الكامل فوراً. صوب نحو الخلايا المظللة وشاهد كيف تنفتح اللوحة على امتداد العرض.</string>
+    <string name="interactive_onboarding_ghost_title">الحاوية لا تقل أهمية عن اللوحة</string>
+    <string name="interactive_onboarding_ghost_body">قبل أن تضع شكلاً، ألق نظرة على القطعتين الأخريين أيضاً. تأتي الجولات الجيدة من ترك مساحة للحاوية كلها، لا لهذه الحركة فقط.</string>
+    <string name="interactive_onboarding_heavy_title">امسح الاتجاهين معاً</string>
+    <string name="interactive_onboarding_heavy_body">تُكمل بعض الوضعيات صفاً وعموداً في الوقت نفسه. استخدم الموضع الموجّه لإطلاق مسح مزدوج أكبر.</string>
+
+</resources>

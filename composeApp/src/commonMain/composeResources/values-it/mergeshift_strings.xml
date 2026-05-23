@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_mergeshift_desc">Fondi pezzi dello stesso valore per raggiungere punteggi più alti.</string>
+
+    <!-- MergeShiftGameScreen -->
+    <string name="game_message_ad_reward_mergeshift">Numeri cambiati! Continua a fondere.</string>
+    <string name="ad_reward_mergeshift_swap">Cambia numero</string>
+    <string name="feedback_ad_reward_mergeshift">Numeri cambiati</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_mergeshift_intro_title">Lancia pezzi per fondere blocchi dello stesso valore</string>
+    <string name="tutorial_mergeshift_intro_body">In MergeShift i pezzi vengono lanciati dal dock. Quando un blocco atterra su un altro con lo stesso valore, si fondono in un numero più alto. Continua a fondere per liberare spazio e raggiungere punteggi maggiori.</string>
+    <string name="tutorial_mergeshift_systems_title">Pianifica le fusioni per evitare l'overflow</string>
+    <string name="tutorial_mergeshift_systems_body">Ogni pezzo lanciato aumenta l'altezza della colonna. Se una colonna raggiunge il bordo superiore, la partita finisce. Usa l'anteprima per vedere dove cadrà il pezzo oppure apri Impostazioni per personalizzare l'esperienza.</string>
+    <string name="tutorial_mergeshift_specials_title">Combina più fusioni per combo maggiori</string>
+    <string name="tutorial_mergeshift_specials_body">Un singolo lancio può attivare una reazione a catena di fusioni. Queste combo danno più punti e liberano più spazio, aiutandoti a restare in partita più a lungo.</string>
+    <string name="tutorial_mergeshift_ready_title">Sei pronto per MergeShift</string>
+    <string name="tutorial_mergeshift_ready_body">Concentrati nel tenere basse le colonne e nel preparare fusioni di alto valore. Buona fortuna verso i numeri più alti!</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_mergeshift_launch_title">Lancia il tuo primo pezzo</string>
+    <string name="interactive_onboarding_mergeshift_launch_body">Trascina il pezzo in orizzontale sotto il tabellone per mirare, poi rilascialo per lanciarlo in una colonna.</string>
+    <string name="interactive_onboarding_mergeshift_merge_vertical_title">Fondi valori uguali in verticale</string>
+    <string name="interactive_onboarding_mergeshift_merge_vertical_body">Lancia un pezzo in una colonna che ha già un blocco con lo stesso valore. Si fonderanno in un numero più alto!</string>
+    <string name="interactive_onboarding_mergeshift_merge_horizontal_title">Fondi valori uguali in orizzontale</string>
+    <string name="interactive_onboarding_mergeshift_merge_horizontal_body">I blocchi possono fondersi anche con i vicini a sinistra o destra. Mira al punto evidenziato per attivare una fusione orizzontale.</string>
+    <string name="interactive_onboarding_mergeshift_merge_multi_title">Attiva più fusioni</string>
+    <string name="interactive_onboarding_mergeshift_merge_multi_body">Un singolo piazzamento può attivare fusioni in più direzioni (sopra, sinistra, destra). Sfruttalo per liberare più spazio e fare tanti punti!</string>
+
+</resources>

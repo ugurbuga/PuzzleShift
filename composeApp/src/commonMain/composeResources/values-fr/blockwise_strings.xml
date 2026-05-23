@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blockwise_desc">Faites glisser et déposez des pièces n\'importe où sur le plateau.</string>
+
+    <!-- BlockWiseGameScreen -->
+    <string name="ad_reward_blockwise_refresh">Rafraîchir le plateau</string>
+    <string name="feedback_ad_reward_blockwise">Plateau rafraîchi</string>
+    <string name="launch_drag_hint_blockwise">Faites glisser n'importe où sur le plateau → relâchez pour placer</string>
+    <string name="game_message_select_column">Faites glisser la pièce horizontalement, choisissez une colonne et lancez vers le haut.</string>
+    <string name="game_message_ad_reward_blockwise">Plateau rafraîchi ! De nouvelles formes sont prêtes.</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rows_title">Lignes</string>
+    <string name="challenge_info_clear_rows">Complétez des lignes entières pour les effacer du plateau.</string>
+    <string name="challenge_info_clear_both_directions_title">Ligne + Colonne</string>
+    <string name="challenge_info_clear_both_directions">Une seule pose peut effacer au moins une ligne et une colonne en même temps.</string>
+    <string name="challenge_task_clear_rows">Effacer %1$d lignes</string>
+    <string name="challenge_task_clear_both_directions">Réaliser %1$d effacements ligne + colonne</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_intro_title">Faites glisser l\'une des trois pièces sur le plateau</string>
+    <string name="tutorial_intro_body">Trois formes attendent dans le plateau. Choisissez celle que vous voulez, faites-la glisser sur des cases vides et relâchez pour la placer exactement là où elle s\'adapte.</string>
+    <string name="tutorial_systems_title">Pensez à tout le plateau, pas seulement à un coup</string>
+    <string name="tutorial_systems_body">Après avoir placé une pièce, le plateau restant reste à l\'écran. Une fois les trois utilisées, un nouveau trio apparaît. Essayez de laisser assez d\'espace pour chaque forme que vous possédez encore.</string>
+    <string name="tutorial_specials_title">Les lignes et les colonnes s’effacent quand elles sont complètes</string>
+    <string name="tutorial_specials_body">Ici, il n’y a pas de pièces spéciales. À la place, remplissez une ligne entière ou une colonne entière pour l’effacer. Si les deux se complètent en même temps, elles s’effacent ensemble.</string>
+    <string name="tutorial_ready_title">Vous êtes prêt pour ce nouveau puzzle de blocs</string>
+    <string name="tutorial_ready_body">Continuez à surveiller le plateau, préparez des effacements de lignes et de colonnes et évitez de coincer les grandes formes. Quand aucune des trois pièces ne peut encore se placer, la partie se termine.</string>
+    <string name="tutorial_ready_block_properties_hint">Ouvrez le tutoriel quand vous voulez revoir le placement libre et les effacements simultanés de lignes et de colonnes.</string>
+    <string name="tutorial_ready_tutorial_hint">Ouvrez le tutoriel quand vous voulez revoir le placement libre et les effacements simultanés de lignes et de colonnes.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_drag_title">Faites glisser une pièce du plateau vers le board</string>
+    <string name="interactive_onboarding_drag_body">Touchez l’une des trois formes dans le plateau, déplacez-la sur le board et alignez-la avec les cases mises en évidence.</string>
+    <string name="interactive_onboarding_drag_to_board">Faites glisser la pièce mise en évidence vers la zone cible lumineuse.</string>
+    <string name="interactive_onboarding_drag_ready">Parfait — relâchez maintenant. Lorsqu’elle se placera dans les cases mises en évidence, le guide suivant s’ouvrira automatiquement.</string>
+    <string name="interactive_onboarding_aim_hint">Relâchez la pièce à l’intérieur des cases mises en évidence pour continuer.</string>
+    <string name="interactive_onboarding_target_locked">Parfait — gardez-la ici puis relâchez pour continuer.</string>
+    <string name="interactive_onboarding_waiting">Placement accepté. Préparation de la prochaine étape guidée…</string>
+    <string name="interactive_onboarding_line_clear_title">Complétez une ligne pour l’effacer</string>
+    <string name="interactive_onboarding_line_clear_body">Placez cette forme dans l’emplacement guidé pour que la ligne se complète, clignote et disparaisse.</string>
+    <string name="interactive_onboarding_column_clearer_title">Complétez une colonne pour l’effacer</string>
+    <string name="interactive_onboarding_column_clearer_body">Utilisez maintenant l’emplacement mis en évidence pour terminer une colonne entière et ouvrir de l’espace vertical.</string>
+    <string name="interactive_onboarding_row_clearer_title">Les lignes ouvrent de l’espace horizontal</string>
+    <string name="interactive_onboarding_row_clearer_body">Une ligne complète s’efface instantanément. Visez les cases mises en évidence et regardez le plateau s’ouvrir sur toute sa largeur.</string>
+    <string name="interactive_onboarding_ghost_title">Le plateau compte autant que le board</string>
+    <string name="interactive_onboarding_ghost_body">Avant de poser une forme, regardez aussi les deux autres pièces. Les bonnes parties viennent du fait de laisser de la place à tout le plateau, pas seulement au coup actuel.</string>
+    <string name="interactive_onboarding_heavy_title">Effacez les deux directions en même temps</string>
+    <string name="interactive_onboarding_heavy_body">Certaines poses terminent une ligne et une colonne en même temps. Utilisez l’emplacement guidé pour provoquer un effacement double plus important.</string>
+
+</resources>

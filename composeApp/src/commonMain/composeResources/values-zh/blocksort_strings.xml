@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blocksort_desc">整理混色堆叠，直到每个已填充列都只剩一种颜色。</string>
+
+    <!-- BlockSortGameScreen -->
+    <string name="game_message_ad_reward_blocksort">Board remixed! Fresh routes are open.</string>
+    <string name="blocksort_completed_label">已整理</string>
+    <string name="blocksort_goal_hint">目标：以每个已填充列都只包含一种颜色的状态完成本回合。每列可能使用 3、4、5 或 6 个相同大小的槽位，棋盘也可能分成两排。</string>
+    <string name="blocksort_no_moves_hint">这个混合布局中已没有有效转移。尝试重新洗牌，或开始新的回合。</string>
+    <string name="blocksort_round_congrats_title">恭喜！</string>
+    <string name="blocksort_round_complete_hint">回合完成！奖励 +%1$d，并已出现新的混合布局。</string>
+    <string name="blocksort_round_label">回合</string>
+    <string name="blocksort_select_source_hint">点击一个非空的混合列以拿起顶部颜色堆叠。</string>
+    <string name="blocksort_selected_hint">现在点击一个空列，或点击一个顶部颜色相同的列来移动堆叠。</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rounds_title">回合</string>
+    <string name="challenge_info_clear_rounds">将每个已填充的列整理为单一颜色，完成完整的 BlockSort 回合。</string>
+    <string name="challenge_task_complete_columns">完成 %1$d 列</string>
+    <string name="challenge_task_clear_rounds">完成 %1$d 回合</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_blocksort_intro_title">在列之间移动等大小的顶部堆叠</string>
+    <string name="tutorial_blocksort_intro_body">每个回合中，所有列都使用相同大小的槽位。点击一个非空的混合列以拿起顶部颜色堆叠，然后把它移动到空列，或移动到顶部颜色相同的列。</string>
+    <string name="tutorial_blocksort_rules_title">只有相同颜色才能叠在一起</string>
+    <string name="tutorial_blocksort_rules_body">你只能转移到空位，或转移到顶部颜色相同的位置。随着谜题变难，棋盘可能会分成上下两排，所以要同时考虑辅助空间和可视性。</string>
+    <string name="tutorial_blocksort_finish_title">把每一列整理成单一颜色</string>
+    <string name="tutorial_blocksort_finish_body">当该回合中一列的每个槽位都变成同一种颜色时，这一列就算完成。不同回合可能会使用 3、4、5 或 6 个相同大小的槽位，全部完成后会出现新的混合布局。</string>
+    <string name="tutorial_blocksort_ready_title">你已经准备好体验 BlockSort</string>
+    <string name="tutorial_blocksort_ready_body">提前规划两到三步，保护你的辅助列，并在每回合槽位数量变化、棋盘可能分成两排时迅速适应。</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_blocksort_pick_title">选择源列</string>
+    <string name="interactive_onboarding_blocksort_pick_body">先点击高亮显示的混合列。你会先移动它顶部的颜色堆叠，而这一回合中的每个槽位大小都相同。</string>
+    <string name="interactive_onboarding_blocksort_pick_hint">先点击混合布局中高亮显示的源列。</string>
+    <string name="interactive_onboarding_blocksort_match_title">匹配顶部颜色</string>
+    <string name="interactive_onboarding_blocksort_match_body">现在把这堆方块移到一个顶部颜色已经匹配的列。即使棋盘分成两排，匹配列也能让你安全地整理颜色。</string>
+    <string name="interactive_onboarding_blocksort_match_hint">把堆叠移动到高亮显示的同色列。</string>
+    <string name="interactive_onboarding_blocksort_finish_title">完成一列整洁的单色列</string>
+    <string name="interactive_onboarding_blocksort_finish_body">很好。再走一步，就能在本回合完成一整列单色槽位。完成它，看看 BlockSort 的核心目标。</string>
+    <string name="interactive_onboarding_blocksort_finish_hint">完成高亮列，让每个槽位都显示相同颜色。</string>
+
+</resources>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_stackshift_desc">Lance peças a partir de baixo para limpar linhas e colunas.</string>
+
+    <!-- StackShiftGameScreen -->
+    <string name="reward_piece_row_message">Peça de limpeza de linha horizontal equipada!</string>
+    <string name="reward_piece_column_message">Peça de limpeza de coluna vertical equipada!</string>
+    <string name="launch_bar">Barra de lançamento</string>
+    <string name="launch_boost_active">Impulso ativo • %1$s turnos</string>
+    <string name="launch_special_chance">Chance de bloco especial +%1$s%</string>
+    <string name="launch_soft_lock_message">Travamento suave ativo • microajuste ativado</string>
+    <string name="launch_chain_message">Linha + Coluna • +%2$s</string>
+    <string name="launch_paused">Pausado</string>
+    <string name="launch_game_over">Reinicie para uma nova partida</string>
+    <string name="launch_drag_hint">Arraste horizontalmente → solte</string>
+    <string name="queue_next_short">Próximo</string>
+    <string name="game_message_soft_lock">A janela curta de ajuste está aberta. Ajuste a coluna com precisão.</string>
+    <string name="game_message_overflow">Transbordamento de coluna! Você não conseguiu acompanhar as colunas críticas.</string>
+    <string name="game_message_special_chain_board">Combo especial x%1$s! O tabuleiro foi remodelado.</string>
+    <string name="game_message_pressure_game_over">A pressão das colunas atingiu o limite. Inicie uma nova partida.</string>
+    <string name="game_message_special_lines">Combo de bloco especial! %1$s linhas foram eliminadas.</string>
+    <string name="game_message_special_triggered">Bloco especial ativado. %1$d blocos explodidos!</string>
+    <string name="game_message_perfect_drop">Queda perfeita x%1$s! Mantenha a sequência.</string>
+    <string name="game_message_chain_lines">Limpeza dupla! %2$s linhas foram eliminadas.</string>
+    <string name="game_message_good_shot">Bom lançamento. Planeje a próxima coluna.</string>
+    <string name="game_message_hold_updated">Reserva atualizada. Selecione uma nova coluna.</string>
+    <string name="game_message_tempo_critical">O ritmo subiu. Limpe as colunas críticas.</string>
+    <string name="game_message_tempo_up">O ritmo subiu. Peças mais difíceis estão chegando.</string>
+    <string name="game_message_resumed">Continue. Escolha a coluna e lance.</string>
+    <string name="feedback_perfect_lane">Faixa perfeita x%1$s</string>
+    <string name="feedback_micro_adjust">Microajuste</string>
+    <string name="feedback_soft_lock">Travamento suave</string>
+    <string name="feedback_hold_armed">Reserva pronta</string>
+    <string name="feedback_swap">Trocado</string>
+    <string name="feedback_special_chain">Combo especial +%1$s • %2$d blocos</string>
+    <string name="feedback_special">Especial +%1$s • %2$d blocos</string>
+    <string name="feedback_perfect">Perfeito x%1$s +%2$s</string>
+    <string name="feedback_chain">Combo x%1$s +%2$s</string>
+    <string name="game_message_ad_reward_stackshift">Bloco especial equipado! Pronto para lançar.</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_stackshift_intro_title">Lance peças a partir do dock inferior</string>
+    <string name="tutorial_stackshift_intro_body">Sua peça ativa espera embaixo. Arraste-a horizontalmente para alinhar uma coluna e solte para lançá-la no tabuleiro. A prévia da próxima peça aparece mais suave de propósito para manter o foco na peça ativa.</string>
+    <string name="tutorial_stackshift_systems_title">Use os blocos de ação quando o tabuleiro apertar</string>
+    <string name="tutorial_stackshift_systems_body">Reserva troca a peça atual, Pausa congela a rodada, Propriedades do bloco explica os símbolos, e Configurações muda o visual. Esses botões também acompanham o estilo de bloco do tabuleiro que você escolheu.</string>
+    <string name="tutorial_stackshift_specials_title">Blocos especiais podem salvar uma partida</string>
+    <string name="tutorial_stackshift_specials_body">Algumas peças carregam efeitos especiais. Aprenda seus selos e use-os para aliviar a pressão, abrir espaço ou atravessar pilhas difíceis.</string>
+    <string name="tutorial_stackshift_ready_title">Você está pronto para continuar esta partida</string>
+    <string name="tutorial_stackshift_ready_body">É isso — planeje a próxima coluna, acompanhe a barra de lançamento e use os especiais na hora certa. Você pode abrir este tutorial novamente a qualquer momento em Configurações.</string>
+    <string name="tutorial_stackshift_ready_tutorial_hint">Abra o Tutorial sempre que quiser relembrar rapidamente os controles e os ícones especiais.</string>
+    <string name="tutorial_stackshift_ready_settings_hint">Abra Configurações para mudar idioma, tema, cores e estilo dos blocos antes da sua próxima partida.</string>
+
+</resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blocksort_desc">رتّب أكوام الألوان المختلطة حتى يصبح كل عمود ممتلئ بلون واحد.</string>
+
+    <!-- BlockSortGameScreen -->
+    <string name="game_message_ad_reward_blocksort">Board remixed! Fresh routes are open.</string>
+    <string name="blocksort_completed_label">تم الفرز</string>
+    <string name="blocksort_goal_hint">الهدف: أنهِ الجولة بحيث يحمل كل عمود ممتلئ لوناً واحداً فقط. قد تستخدم الجولات 3 أو 4 أو 5 أو 6 خانات متساوية الحجم لكل عمود، وقد تنقسم اللوحة إلى صفين.</string>
+    <string name="blocksort_no_moves_hint">لا توجد تحويلات صالحة متبقية في هذا التخطيط المختلط. جرّب إعادة الخلط أو ابدأ جولة جديدة.</string>
+    <string name="blocksort_round_congrats_title">تهانينا!</string>
+    <string name="blocksort_round_complete_hint">تم إنهاء الجولة! مكافأة +%1$d ووصل تخطيط مختلط جديد.</string>
+    <string name="blocksort_round_label">جولة</string>
+    <string name="blocksort_select_source_hint">اضغط على عمود مختلط غير فارغ لالتقاط كومة اللون العليا منه.</string>
+    <string name="blocksort_selected_hint">الآن اضغط على عمود فارغ أو عمود يملك اللون العلوي نفسه لنقل الكومة إليه.</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rounds_title">الجولات</string>
+    <string name="challenge_info_clear_rounds">أكمل جولات BlockSort كاملة عبر تحويل كل عمود ممتلئ إلى لون واحد.</string>
+    <string name="challenge_task_complete_columns">أكمل %1$d أعمدة</string>
+    <string name="challenge_task_clear_rounds">أكمل %1$d جولات</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_blocksort_intro_title">حرّك الأكوام العلوية المتساوية الحجم بين الأعمدة</string>
+    <string name="tutorial_blocksort_intro_body">تستخدم كل جولة حجم خانة موحداً لكل الأعمدة. اضغط على عمود مختلط غير فارغ لالتقاط كومة اللون العليا، ثم انقلها إلى عمود فارغ أو إلى عمود يطابق لونه العلوي نفس اللون.</string>
+    <string name="tutorial_blocksort_rules_title">فقط الألوان المتطابقة يمكن تكديسها معاً</string>
+    <string name="tutorial_blocksort_rules_body">يمكنك النقل فقط إلى مساحة فارغة أو فوق نفس اللون العلوي. ومع ازدياد صعوبة اللغز، قد تنقسم اللوحة إلى صف علوي وصف سفلي، لذا راعِ مساحة المساعدة والرؤية معاً.</string>
+    <string name="tutorial_blocksort_finish_title">أكمل كل عمود بلون واحد</string>
+    <string name="tutorial_blocksort_finish_body">يُعتبر العمود مكتملاً عندما يحمل كل خانة في تلك الجولة اللون نفسه. يمكن أن تستخدم الجولات المختلفة 3 أو 4 أو 5 أو 6 خانات متساوية الحجم، وتصل تشكيلة مختلطة جديدة بعد إنهائها كلها.</string>
+    <string name="tutorial_blocksort_ready_title">أنت الآن جاهز لـ BlockSort</string>
+    <string name="tutorial_blocksort_ready_body">خطط لحركتين أو ثلاث مقدماً، واحمِ أعمدة المساعدة لديك، وتأقلم بسرعة عندما يتغير عدد الخانات في كل جولة وقد تنقسم اللوحة إلى صفين.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_blocksort_pick_title">اختر العمود المصدر</string>
+    <string name="interactive_onboarding_blocksort_pick_body">ابدأ بالضغط على العمود المختلط المميز. ستنقل أولاً كومة اللون العليا منه، وكل خانة في هذه الجولة لها الحجم نفسه.</string>
+    <string name="interactive_onboarding_blocksort_pick_hint">اضغط أولاً على العمود المصدر المميز في التخطيط المختلط.</string>
+    <string name="interactive_onboarding_blocksort_match_title">طابق اللون العلوي</string>
+    <string name="interactive_onboarding_blocksort_match_body">الآن انقل هذه الكومة إلى عمود يطابق فيه اللون العلوي مسبقاً. تساعدك الأعمدة المتطابقة على تجميع الألوان بأمان حتى عندما تنقسم اللوحة إلى صفين.</string>
+    <string name="interactive_onboarding_blocksort_match_hint">انقل الكومة إلى العمود المميز ذي اللون المطابق.</string>
+    <string name="interactive_onboarding_blocksort_finish_title">أكمل عموداً نظيفاً</string>
+    <string name="interactive_onboarding_blocksort_finish_body">رائع. خطوة واحدة إضافية ستكمل كل خانات عمود بلون واحد في هذه الجولة. أكمله لترى الهدف الأساسي في BlockSort.</string>
+    <string name="interactive_onboarding_blocksort_finish_hint">أكمل العمود المميز بحيث تُظهر كل خانة اللون نفسه.</string>
+
+</resources>

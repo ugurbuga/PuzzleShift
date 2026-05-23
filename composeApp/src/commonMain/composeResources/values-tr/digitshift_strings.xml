@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_digitshift_desc">Rakam ipuçlarıyla gizli 5 veya 6 haneli sayıları tahmin et.</string>
+
+    <!-- DigitShiftGameScreen -->
+    <string name="digitshift_enter">Gönder</string>
+    <string name="digitshift_delete">Sil</string>
+    <string name="digitshift_guess_label">Tahmin %1$d</string>
+    <string name="digitshift_solved_words">Çözüldü</string>
+    <string name="digitshift_attempts_left">Hak</string>
+    <string name="digitshift_current_language">Dil</string>
+    <string name="game_message_digitshift_enter_word">5 veya 6 haneli bir sayı oluştur ve tahminini gönder.</string>
+    <string name="game_message_digitshift_not_enough_letters">Henüz yeterli rakam yok.</string>
+    <string name="game_message_digitshift_not_in_dictionary">Sadece 0–9 arasındaki rakamlar kullanılabilir.</string>
+    <string name="game_message_digitshift_keep_trying">Güzel ipucu. Sonraki sayıyı daha da daralt.</string>
+    <string name="game_message_digitshift_solved">Çözüldü: %1$s</string>
+    <string name="game_message_digitshift_failed">Tur bitti. Sayı %1$s idi.</string>
+    <string name="game_message_digitshift_revived">Ekstra can kullanıldı. Sayıyı tekrar dene.</string>
+    <string name="game_message_ad_reward_digitshift">Sayı yenilendi. Tahmine devam et!</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_task_solve_words">%1$d sayı çöz</string>
+    <string name="challenge_info_solve_words_title">Sayı çöz</string>
+    <string name="challenge_info_solve_words">Tahmin hakların bitmeden gizli sayıyı bularak DigitShift turlarını tamamla.</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_digitshift_intro_title">Gizli sayıyı bul</string>
+    <string name="tutorial_digitshift_intro_body">0–9 arasındaki rakamlarla gizli 5 veya 6 haneli bir sayı oluştur ve tahminini gönder. Her tahmin, rakamların doğru, mevcut ya da yanlış olduğunu gösterir.</string>
+    <string name="tutorial_digitshift_hints_title">Renkleri oku</string>
+    <string name="tutorial_digitshift_hints_body">Yeşil, rakamın doğru olduğunu; turuncu, sayıda olup başka bir yerde olduğunu; koyu gri ise cevapta olmadığını gösterir.</string>
+    <string name="tutorial_digitshift_strategy_title">Klavye ipuçlarını kullan</string>
+    <string name="tutorial_digitshift_strategy_body">Her tahmin tuş takımını günceller. Yeşil rakamları koru, turuncuları yeni yerlere taşı ve koyu gri rakamlardan kaçınarak daha hızlı çöz.</string>
+    <string name="tutorial_digitshift_ready_title">Sayı kırmaya hazır mısın?</string>
+    <string name="tutorial_digitshift_ready_body">Klasik mod, bir sayıyı kaçırana kadar 5 ve 6 haneli turlar arasında geçiş yapar. Zamana Karşı modu baskıyı artırır; bu yüzden puan ve bonus süre toplamak için hızlı çöz.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_digitshift_type_hint">Tahtayı öğrenmek için önerilen sayıyı yaz.</string>
+    <string name="interactive_onboarding_digitshift_submit_hint">Başka bir sayı gönder ve klavyenin nasıl güncellendiğini izle.</string>
+    <string name="interactive_onboarding_digitshift_solve_hint">İpuçlarını kullan ve gizli sayıyı çöz.</string>
+
+</resources>

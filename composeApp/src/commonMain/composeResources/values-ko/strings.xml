@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- SettingsScreen -->
     <string name="settings_title">설정</string>
     <string name="settings_language">언어</string>
     <string name="settings_sound">사운드</string>
@@ -11,14 +13,9 @@
     <string name="settings_block_palette">블록 색상 팔레트</string>
     <string name="settings_block_style">블록 스타일</string>
     <string name="settings_tokens_title">토큰</string>
-    <string name="settings_tokens_balance">Token: %1$d</string>
+    <string name="settings_tokens_balance">토큰: %1$d</string>
     <string name="settings_tokens_earn_challenge">• 일일 도전 보상: +%1$d 토큰</string>
     <string name="settings_tokens_earn_score">• 게임 보상: 점수 %1$d 마다 +1 토큰</string>
-    <string name="rewarded_tokens_button_bullet">• 광고를 보고 %1$d 토큰 받기</string>
-    <string name="rewarded_tokens_button">광고를 보고 %1$d 토큰 받기</string>
-    <string name="reward_earned_message">%1$d 토큰을 획득했습니다!</string>
-    <string name="reward_piece_row_message">가로 줄 제거 피스를 장착했습니다!</string>
-    <string name="reward_piece_column_message">세로 열 제거 피스를 장착했습니다!</string>
     <string name="unlock_dialog_watch_ad">광고를 보고 토큰 얻기</string>
     <string name="token_label">토큰</string>
     <string name="settings_board_block_style">보드 블록 스타일</string>
@@ -50,13 +47,13 @@
     <string name="block_style_prism">프리즘</string>
     <string name="block_style_crystal">크리스털</string>
     <string name="block_style_dynamic_liquid">다이내믹 리퀴드</string>
-    <string name="block_style_matte_soft">매트 소프트</string>
+    <string name="block_style_matte_soft">부드러운 매트</string>
     <string name="block_style_neon_glow">네온 글로우</string>
     <string name="block_style_tornado">토네이도</string>
     <string name="block_style_brick">브릭</string>
-    <string name="block_style_stone_texture">스톤 텍스처</string>
+    <string name="block_style_stone_texture">돌 질감</string>
     <string name="block_style_honeycomb_texture">허니콤</string>
-    <string name="block_style_light_burst">라이트 버스트</string>
+    <string name="block_style_light_burst">빛 폭발</string>
     <string name="block_style_liquid_marble">리퀴드 마블</string>
     <string name="block_style_holographic">홀로그래픽</string>
     <string name="block_style_glitch_tech">글리치 테크</string>
@@ -72,6 +69,21 @@
     <string name="block_style_lava">용암</string>
     <string name="board_block_style_always_flat">항상 플랫</string>
     <string name="board_block_style_match_selected">선택한 블록 스타일과 동일하게</string>
+    <string name="rewarded_tokens_button_bullet">• 광고를 보고 %1$d 토큰 받기</string>
+    <string name="rewarded_tokens_button">광고를 보고 %1$d 토큰 받기</string>
+    <string name="unlock_dialog_title">%1$s 해금할까요?</string>
+    <string name="unlock_dialog_insufficient_title">%1$s 잠금 상태</string>
+    <string name="unlock_dialog_message">%1$s 해금에는 토큰 %2$d개가 필요합니다. 현재 보유량: %3$d.</string>
+    <string name="unlock_dialog_not_enough">이 아이템을 해금하려면 토큰 %1$d개가 필요합니다. 현재 보유량은 %2$d입니다.</string>
+    <string name="unlock_dialog_confirm">해금</string>
+    <string name="unlock_dialog_locked_suffix">잠김</string>
+
+    <!-- HomeScreen -->
+    <string name="home_play_cta">플레이</string>
+    <string name="home_classic_cta">클래식</string>
+    <string name="home_time_attack_cta">타임 어택</string>
+
+    <!-- GameDialogs -->
     <string name="hold">홀드</string>
     <string name="pause">일시정지</string>
     <string name="resume">계속하기</string>
@@ -86,68 +98,37 @@
     <string name="score">점수</string>
     <string name="high_score">최고 점수</string>
     <string name="high_score_new_record">신기록</string>
-    <string name="home_play_cta">플레이</string>
-    <string name="home_classic_cta">클래식</string>
-    <string name="home_time_attack_cta">타임 어택</string>
     <string name="lines">라인</string>
     <string name="time_remaining">남은 시간</string>
     <string name="boost">부스트</string>
     <string name="danger">위험</string>
     <string name="danger_none">-</string>
     <string name="launch_label">발사</string>
-    <string name="launch_bar">발사 바</string>
-    <string name="launch_boost_active">부스트 활성화 • %1$s턴 남음</string>
-    <string name="launch_special_chance">특수 블록 확률 +%1$s%</string>
-    <string name="launch_soft_lock_message">목표를 확인한 뒤 놓아서 배치하세요</string>
-    <string name="launch_chain_message">행 + 열 • +%2$s</string>
-    <string name="launch_paused">일시정지됨</string>
-    <string name="launch_game_over">새 플레이를 시작하려면 다시 시작하세요</string>
-    <string name="launch_drag_hint">가로로 드래그 → 놓기</string>
-    <string name="launch_drag_hint_blockwise">보드 어디든 드래그 → 놓아 배치</string>
-    <string name="queue_hold">홀드</string>
-    <string name="queue_next_short">다음</string>
-    <string name="queue_empty">—</string>
-    <string name="pause_title">일시정지</string>
     <string name="game_over_title">게임 오버</string>
     <string name="continue_label">계속</string>
     <string name="game_over_extra_life">광고를 보고 추가 생명 받기</string>
     <string name="game_over_extra_life_loading">광고 불러오는 중…</string>
     <string name="play_again">다시 플레이</string>
     <string name="game_over_new_high_score">최고 점수 갱신!</string>
-    <string name="game_message_select_column">세 개의 피스 중 하나를 빈 공간으로 드래그하세요.</string>
     <string name="game_message_no_opening">현재 트레이에서는 더 이상 유효한 수가 없습니다.</string>
-    <string name="game_message_soft_lock">하이라이트된 칸에 배치하려면 손을 떼세요.</string>
-    <string name="game_message_overflow">트레이의 어떤 피스도 놓을 공간이 남아 있지 않습니다.</string>
-    <string name="game_message_special_chain_board">행과 열을 동시에 제거! %1$s라인 제거.</string>
-    <string name="game_message_pressure_game_over">더 이상 놓을 수 없습니다. 새 플레이를 시작하세요.</string>
-    <string name="game_message_special_lines">좋은 콤보! %1$s라인 제거.</string>
-    <string name="game_message_special_triggered">큰 제거로 %1$d칸을 없앴습니다!</string>
-    <string name="game_message_perfect_drop">깔끔한 배치 x%1$s!</string>
-    <string name="game_message_chain_lines">더블 클리어! %2$s라인 제거.</string>
-    <string name="game_message_lines_cleared">%1$s라인 제거.</string>
-    <string name="game_message_good_shot">좋은 수입니다. 남은 트레이 피스도 확인하세요.</string>
-    <string name="game_message_ad_reward_blockwise">트레이가 새로고침되었습니다! 새로운 도형이 준비됐습니다.</string>
-    <string name="game_message_ad_reward_mergeshift">숫자가 바뀌었습니다! 계속 합쳐 보세요.</string>
-    <string name="game_message_ad_reward_boomblocks">색상을 제거했습니다! 보드가 다시 구성됩니다.</string>
-    <string name="game_message_ad_reward_stackshift">특수 블록을 장착했습니다! 발사 준비 완료.</string>
-    <string name="game_message_ad_reward_blocksort">이번 라운드에 빈 열이 하나 추가되었습니다.</string>
-    <string name="game_message_hold_updated">트레이가 갱신되었습니다. 계속 이어 가세요.</string>
-    <string name="game_message_tempo_critical">트레이가 막히기 전에 행이나 열 제거를 노리세요.</string>
-    <string name="game_message_tempo_up">새로운 3피스가 준비되었습니다. 보드를 신중히 살펴보세요.</string>
     <string name="game_message_paused">게임이 일시정지되었습니다.</string>
-    <string name="game_message_resumed">재개되었습니다. 열을 골라 발사하세요.</string>
     <string name="game_message_extra_life_used">추가 생명 발동! %1$s행 제거.</string>
+    <string name="queue_hold">홀드</string>
+    <string name="pause_title">일시정지</string>
+    <string name="game_message_lines_cleared">%1$s라인 제거.</string>
+
+    <!-- NotificationWorker -->
     <string name="notification_reminders_channel_name">알림</string>
     <string name="notification_miss_you_body">오랜만이에요! 다시 돌아와 더 플레이해 보세요.</string>
     <string name="notification_daily_challenge_title">일일 도전</string>
     <string name="notification_daily_challenge_body">오늘의 일일 도전 과제를 이미 완료했나요?</string>
     <string name="notification_test_body">테스트 알림입니다.</string>
+
+    <!-- DailyChallengeScreen -->
     <string name="challenge_tasks_title">과제</string>
     <string name="challenge_info_title">과제 안내</string>
     <string name="challenge_info_clear_blocks_title">블록</string>
     <string name="challenge_info_clear_blocks">라인 완성과 연쇄 반응으로 채워진 칸을 보드에서 제거하세요.</string>
-    <string name="challenge_info_clear_rows_title">행</string>
-    <string name="challenge_info_clear_rows">가득 찬 행을 완성해 보드에서 제거하세요.</string>
     <string name="challenge_info_reach_score_title">점수</string>
     <string name="challenge_info_reach_score">피스를 배치하고 라인을 제거해 점수를 올리세요.</string>
     <string name="challenge_info_trigger_special_title">특수 블록</string>
@@ -158,29 +139,20 @@
     <string name="challenge_info_chain_reaction">한 번의 수가 추가 제거로 이어지도록 연쇄를 설계하세요.</string>
     <string name="challenge_info_clear_columns_title">열</string>
     <string name="challenge_info_clear_columns">가득 찬 열을 완성해 보드에서 제거하세요.</string>
-    <string name="challenge_info_clear_rounds_title">라운드</string>
-    <string name="challenge_info_clear_rounds">채워진 각 열을 단색으로 만들어 BlockSort 라운드를 끝까지 완료하세요.</string>
     <string name="challenge_info_place_pieces_title">배치</string>
     <string name="challenge_info_place_pieces">라인 제거가 없어도 성공적으로 놓은 피스는 모두 집계됩니다.</string>
-    <string name="challenge_info_clear_both_directions_title">행 + 열</string>
-    <string name="challenge_info_clear_both_directions">한 번의 배치로 최소 한 행과 한 열을 동시에 지울 수 있습니다.</string>
     <string name="challenge_completed">도전 완료!</string>
     <string name="challenge_task_clear_blocks">블록 %1$d개 제거</string>
-    <string name="challenge_task_clear_rows">행 %1$d개 제거</string>
     <string name="challenge_task_reach_score">점수 %1$d 달성</string>
     <string name="challenge_task_trigger_special">특수 블록 %1$d회 발동</string>
     <string name="challenge_task_perfect_placement">완벽 배치 %1$d회</string>
     <string name="challenge_task_chain_reaction">연쇄 반응 %1$d회 만들기</string>
     <string name="challenge_task_clear_columns">열 %1$d개 제거</string>
-    <string name="challenge_task_complete_columns">열 %1$d개 완성</string>
     <string name="challenge_task_place_pieces">피스 %1$d개 배치</string>
-    <string name="challenge_task_clear_rounds">라운드 %1$d개 클리어</string>
-    <string name="ad_reward_blockwise_refresh">트레이 새로고침</string>
-    <string name="ad_reward_mergeshift_swap">숫자 변경</string>
-    <string name="ad_reward_boomblocks_clear">색상 제거</string>
-    <string name="feedback_ad_reward_blockwise">트레이 새로고침</string>
-    <string name="feedback_ad_reward_mergeshift">숫자 변경</string>
-    <string name="feedback_ad_reward_boomblocks">%1$s 제거</string>
+    <string name="challenge_progress_value">%1$d/%2$d</string>
+
+    <!-- RewardFeedback -->
+    <string name="reward_earned_message">%1$d 토큰을 획득했습니다!</string>
     <string name="color_cyan">시안</string>
     <string name="color_gold">골드</string>
     <string name="color_violet">바이올렛</string>
@@ -190,8 +162,12 @@
     <string name="color_rose">로즈</string>
     <string name="color_lime">라임</string>
     <string name="color_amber">앰버</string>
-    <string name="challenge_task_explode_groups">블록 그룹 %1$d개 폭파</string>
-    <string name="challenge_task_clear_both_directions">행 + 열 동시 제거 %1$d회</string>
+    <string name="feedback_overflow">오버플로</string>
+    <string name="feedback_clear">제거 +%1$s</string>
+    <string name="feedback_score_only">+%1$s</string>
+    <string name="feedback_extra_life">추가 생명! %1$s행</string>
+
+    <!-- Calendar -->
     <string name="month_january">1월</string>
     <string name="month_february">2월</string>
     <string name="month_march">3월</string>
@@ -212,27 +188,15 @@
     <string name="day_friday_short">금</string>
     <string name="day_saturday_short">토</string>
     <string name="day_sunday_short">일</string>
-    <string name="feedback_overflow">오버플로</string>
-    <string name="feedback_perfect_lane">정확 배치 x%1$s</string>
-    <string name="feedback_micro_adjust">위치 조정</string>
-    <string name="feedback_soft_lock">미리보기 준비 완료</string>
-    <string name="feedback_hold_armed">홀드 준비 완료</string>
-    <string name="feedback_swap">교체됨</string>
-    <string name="feedback_special_chain">특수 연쇄 +%1$s • 블록 %2$d개</string>
-    <string name="feedback_special">특수 +%1$s • 블록 %2$d개</string>
-    <string name="feedback_perfect">완벽 x%1$s +%2$s</string>
-    <string name="feedback_chain">연쇄 x%1$s +%2$s</string>
-    <string name="feedback_clear">제거 +%1$s</string>
-    <string name="feedback_score_only">+%1$s</string>
-    <string name="feedback_extra_life">추가 생명! %1$s행</string>
-    <string name="challenge_progress_value">%1$d/%2$d</string>
     <string name="stat_label_value_format">%1$s: %2$s</string>
     <string name="time_minutes_seconds_format">%1$d:%2$s</string>
+
+    <!-- PiecePropertiesScreen -->
+    <string name="queue_empty">—</string>
     <string name="special_column_clearer">열</string>
     <string name="special_row_clearer">행</string>
     <string name="special_ghost">고스트</string>
     <string name="special_heavy">헤비</string>
-
     <string name="piece_properties_title">피스 정보</string>
     <string name="piece_properties_active">현재 피스</string>
     <string name="piece_properties_kind">종류</string>
@@ -241,201 +205,38 @@
     <string name="piece_properties_cells">칸</string>
     <string name="piece_properties_unlock_level">해금 레벨</string>
     <string name="piece_properties_none">없음</string>
-
     <string name="active_piece_summary">%1$s • %2$s • %3$s</string>
     <string name="piece_size_format">%1$dx%2$d</string>
 
+    <!-- BlockPropertiesScreen -->
     <string name="block_properties_title">블록 정보</string>
     <string name="block_properties_select_hint">블록 종류 선택</string>
-
     <string name="block_properties_normal_title">일반 블록</string>
     <string name="block_properties_normal_desc">기본으로 채워진 칸입니다. 특별한 효과는 없습니다.</string>
-
     <string name="block_properties_column_clearer_title">열 제거</string>
     <string name="block_properties_column_clearer_desc">해당 열의 모든 칸이 채워지면 열이 사라집니다.</string>
-
     <string name="block_properties_row_clearer_title">행 제거</string>
     <string name="block_properties_row_clearer_desc">해당 행의 모든 칸이 채워지면 행이 사라집니다.</string>
-
     <string name="block_properties_ghost_title">자유 배치</string>
     <string name="block_properties_ghost_desc">트레이 피스를 들어맞는 빈 공간이라면 어디에든 직접 배치할 수 있습니다.</string>
-
     <string name="block_properties_heavy_title">특수 블록 없음</string>
     <string name="block_properties_heavy_desc">이 모드는 도형 선택, 라인 제거, 전체 트레이를 놓을 공간 확보에 집중합니다.</string>
-
     <string name="block_properties_dot_desc">오른쪽 위의 작은 점은 이 블록에 특수 효과가 있음을 뜻합니다. 점과 테두리 색상으로 효과 종류를 알 수 있습니다.</string>
+
+    <!-- GameTutorialScreen -->
     <string name="tutorial_subtitle">첫 플레이 전에 짧은 안내를 확인하세요.</string>
     <string name="tutorial_step_counter">단계 %1$d / %2$d</string>
     <string name="tutorial_back">뒤로</string>
     <string name="cancel">취소</string>
-    <string name="unlock_dialog_title">%1$s 해금할까요?</string>
-    <string name="unlock_dialog_insufficient_title">%1$s 잠금 상태</string>
-    <string name="unlock_dialog_message">%1$s 해금에는 토큰 %2$d개가 필요합니다. 현재 보유량: %3$d.</string>
-    <string name="unlock_dialog_not_enough">이 아이템을 해금하려면 토큰 %1$d개가 필요합니다. 현재 보유량은 %2$d입니다.</string>
-    <string name="unlock_dialog_confirm">해금</string>
-    <string name="unlock_dialog_locked_suffix">잠김</string>
     <string name="tutorial_next">다음</string>
     <string name="tutorial_finish">게임 시작</string>
     <string name="return_home">홈으로 돌아가기</string>
-    <string name="tutorial_stackshift_intro_title">현재 피스를 드래그해 발사 위치를 맞추세요</string>
-    <string name="tutorial_stackshift_intro_body">현재 피스는 발사 도크에서 시작합니다. 보드 아래에서 좌우로 드래그하고, 미리보기가 괜찮으면 손을 떼세요. 가장 가까운 유효 레인에 떨어집니다.</string>
-    <string name="tutorial_stackshift_systems_title">보드가 복잡해지면 액션 블록을 활용하세요</string>
-    <string name="tutorial_stackshift_systems_body">홀드는 현재 피스를 교체하고, 일시정지는 진행을 멈추며, 블록 정보는 기호를 설명하고, 설정은 외형과 언어를 바꿉니다. 이 버튼들도 선택한 보드 블록 스타일을 따릅니다.</string>
-    <string name="tutorial_stackshift_specials_title">특수 블록은 위기 상황을 구해줍니다</string>
-    <string name="tutorial_stackshift_specials_body">일부 피스는 특수 효과를 지닙니다. 각 아이콘의 의미를 익혀 행 제거, 열 제거, 틈 통과, 위험 돌파에 활용하세요.</string>
-    <string name="tutorial_stackshift_ready_title">이제 StackShift를 발사할 준비가 되었습니다</string>
-    <string name="tutorial_stackshift_ready_body">정확하게 발사하고 다음 큐를 계획하며, 압박이 심해지기 전에 특수 블록을 사용하세요. 복습이 필요하면 언제든 이 가이드로 돌아오면 됩니다.</string>
-    <string name="tutorial_stackshift_ready_tutorial_hint">발사, 큐 확인, 특수 블록 효과를 복습하고 싶다면 언제든 튜토리얼을 여세요.</string>
-    <string name="tutorial_stackshift_ready_settings_hint">다음 플레이 전에 설정을 열어 언어, 테마, 색상, 블록 스타일을 바꿀 수 있습니다.</string>
-    <string name="tutorial_intro_title">세 개의 피스 중 하나를 보드로 드래그하세요</string>
-    <string name="tutorial_intro_body">트레이에는 세 가지 도형이 기다리고 있습니다. 원하는 피스를 골라 빈 칸으로 드래그하고, 딱 맞는 위치에서 놓으세요.</string>
-    <string name="tutorial_systems_title">한 수가 아니라 트레이 전체를 보세요</string>
-    <string name="tutorial_systems_body">피스를 하나 놓아도 나머지 트레이는 그대로 남아 있습니다. 세 개를 모두 사용하면 새로운 세트가 등장합니다. 남은 모든 도형을 놓을 공간을 확보하세요.</string>
-    <string name="tutorial_specials_title">행과 열은 모두 채우면 지워집니다</string>
-    <string name="tutorial_specials_body">이 모드에는 특수 피스가 없습니다. 대신 행이나 열 전체를 채우면 제거됩니다. 두 방향이 동시에 완성되면 함께 지워집니다.</string>
-    <string name="tutorial_ready_title">새로운 블록 퍼즐 흐름을 익힐 준비가 되었습니다</string>
-    <string name="tutorial_ready_body">트레이를 계속 살피고, 행/열 제거를 준비하며, 큰 도형이 갇히지 않도록 하세요. 세 개의 피스가 모두 더 이상 들어가지 않으면 플레이가 끝납니다.</string>
-    <string name="tutorial_ready_block_properties_hint">자유 배치와 행/열 동시 제거를 다시 보고 싶다면 언제든 튜토리얼을 여세요.</string>
-    <string name="tutorial_ready_tutorial_hint">자유 배치와 행/열 동시 제거를 다시 보고 싶다면 언제든 튜토리얼을 여세요.</string>
     <string name="tutorial_ready_settings_hint">다음 플레이 전에 설정을 열어 언어, 테마, 색상, 블록 스타일을 바꿀 수 있습니다.</string>
-    <string name="tutorial_mergeshift_intro_title">피스를 발사해 같은 값을 합치세요</string>
-    <string name="tutorial_mergeshift_intro_body">MergeShift에서는 피스를 도크에서 발사합니다. 블록이 같은 값을 가진 다른 블록 위에 내려오면 더 높은 값으로 합쳐집니다. 계속 합쳐 공간을 만들고 높은 점수를 노리세요.</string>
-    <string name="tutorial_mergeshift_systems_title">넘침을 막기 위해 합치기를 계획하세요</string>
-    <string name="tutorial_mergeshift_systems_body">발사할 때마다 해당 열의 높이가 올라갑니다. 어느 열이든 맨 위에 닿으면 게임 오버입니다. 미리보기로 착지 위치를 확인하고, 필요하면 설정으로 환경을 조정하세요.</string>
-    <string name="tutorial_mergeshift_specials_title">여러 번 합쳐 더 큰 콤보를 만드세요</string>
-    <string name="tutorial_mergeshift_specials_body">한 번의 발사로 여러 번의 합치기가 연쇄적으로 일어날 수 있습니다. 이런 콤보는 더 많은 점수와 공간을 제공합니다.</string>
-    <string name="tutorial_mergeshift_ready_title">이제 MergeShift를 시작할 준비가 되었습니다</string>
-    <string name="tutorial_mergeshift_ready_body">열 높이를 낮게 유지하면서 고가치 합치기를 노리세요. 최고 숫자에 도달해 보세요!</string>
-
-    <string name="tutorial_boomblocks_intro_title">같은 색 그룹을 폭파하세요</string>
-    <string name="tutorial_boomblocks_intro_body">BoomBlocks에서는 피스를 발사하거나 드래그하지 않습니다. 대신 같은 색 블록이 3개 이상 맞닿은 그룹을 찾아 그중 하나를 탭해 전체 그룹을 지우세요.</string>
-    <string name="tutorial_boomblocks_gravity_title">역동적으로 움직이는 보드</string>
-    <string name="tutorial_boomblocks_gravity_body">그룹이 폭발하면 주변 블록이 빨려 들어갑니다. 이후 새 블록이 가장 가까운 가장자리에서 보충되어 보드가 계속 변합니다.</string>
-    <string name="tutorial_boomblocks_ready_title">이제 BoomBlocks를 시작할 준비가 되었습니다</string>
-    <string name="tutorial_boomblocks_ready_body">큰 그룹을 찾아 최대 점수를 노리고, 폭발할 때마다 보드가 어떻게 바뀌는지 살펴보세요. 행운을 빕니다!</string>
-    <string name="tutorial_blocksort_intro_title">같은 크기의 상단 스택을 열 사이로 옮기세요</string>
-    <string name="tutorial_blocksort_intro_body">각 라운드에서는 모든 열이 같은 슬롯 크기를 사용합니다. 비어 있지 않은 혼합 색상 열을 탭해 맨 위 색상 스택을 집고, 빈 열이나 같은 색이 맨 위에 있는 열로 이동시키세요.</string>
-    <string name="tutorial_blocksort_rules_title">같은 색끼리만 쌓을 수 있습니다</string>
-    <string name="tutorial_blocksort_rules_body">빈 공간이나 같은 맨 위 색상 위에만 옮길 수 있습니다. 퍼즐이 커지면 보드가 위/아래 두 줄로 나뉠 수 있으니, 보조 공간과 가시성을 모두 고려하세요.</string>
-    <string name="tutorial_blocksort_finish_title">단색 열을 완성하세요</string>
-    <string name="tutorial_blocksort_finish_body">그 라운드의 모든 슬롯이 같은 색이 되면 열이 완성됩니다. 라운드마다 3, 4, 5, 6개의 동일한 슬롯을 사용할 수 있으며, 모두 끝내면 새로운 혼합 배치가 도착합니다.</string>
-    <string name="tutorial_blocksort_ready_title">이제 BlockSort를 시작할 준비가 되었습니다</string>
-    <string name="tutorial_blocksort_ready_body">두세 수 앞을 내다보고, 보조 열을 지키며, 라운드마다 바뀌는 슬롯 수와 2줄 보드에 빠르게 적응하세요.</string>
-
     <string name="interactive_onboarding_step_counter">가이드 %1$d / %2$d</string>
 
-    <string name="interactive_onboarding_drag_title">트레이 피스를 보드로 드래그하세요</string>
-    <string name="interactive_onboarding_drag_body">트레이의 세 도형 중 하나를 터치해 보드 위로 옮기고, 하이라이트된 칸에 맞추세요.</string>
-    <string name="interactive_onboarding_drag_to_board">하이라이트된 트레이 피스를 빛나는 목표 영역으로 드래그하세요.</string>
-    <string name="interactive_onboarding_drag_ready">좋습니다 — 이제 손을 떼세요. 하이라이트된 칸에 정확히 맞으면 다음 가이드가 자동으로 열립니다.</string>
-    <string name="interactive_onboarding_aim_hint">계속하려면 피스를 하이라이트된 칸 안에 놓으세요.</string>
-    <string name="interactive_onboarding_target_locked">완벽합니다 — 그대로 두고 손을 떼어 계속하세요.</string>
-    <string name="interactive_onboarding_waiting">배치를 확인했습니다. 다음 가이드 장면을 준비 중…</string>
-    <string name="interactive_onboarding_line_clear_title">행을 완성해 제거하세요</string>
-    <string name="interactive_onboarding_line_clear_body">이 도형을 안내된 위치에 놓아 행을 가득 채우고, 반짝인 뒤 사라지는 모습을 확인하세요.</string>
-    <string name="interactive_onboarding_column_clearer_title">열을 완성해 제거하세요</string>
-    <string name="interactive_onboarding_column_clearer_body">이제 하이라이트된 위치를 사용해 열 전체를 완성하고 세로 공간을 확보하세요.</string>
-    <string name="interactive_onboarding_row_clearer_title">행 제거로 가로 공간을 확보하세요</string>
-    <string name="interactive_onboarding_row_clearer_body">행이 가득 차면 즉시 지워집니다. 하이라이트된 칸을 노려 보드가 가로로 열리는 모습을 보세요.</string>
-    <string name="interactive_onboarding_ghost_title">보드만큼 트레이도 중요합니다</string>
-    <string name="interactive_onboarding_ghost_body">도형을 놓기 전에 다른 두 피스도 확인하세요. 좋은 플레이는 현재 수만이 아니라 전체 트레이를 놓을 공간을 남기는 데서 나옵니다.</string>
-    <string name="interactive_onboarding_heavy_title">두 방향을 동시에 지우세요</string>
-    <string name="interactive_onboarding_heavy_body">어떤 배치는 행과 열을 동시에 완성합니다. 가이드된 위치를 사용해 더 큰 더블 클리어를 만들어 보세요.</string>
-
-    <string name="interactive_onboarding_mergeshift_launch_title">첫 피스를 발사하세요</string>
-    <string name="interactive_onboarding_mergeshift_launch_body">보드 아래에서 피스를 좌우로 드래그해 조준하고, 손을 떼어 열로 발사하세요.</string>
-    <string name="interactive_onboarding_mergeshift_merge_vertical_title">세로로 같은 값을 합치세요</string>
-    <string name="interactive_onboarding_mergeshift_merge_vertical_body">같은 값의 블록이 이미 있는 열에 피스를 발사하면 더 높은 숫자로 합쳐집니다!</string>
-    <string name="interactive_onboarding_mergeshift_merge_horizontal_title">가로로도 합쳐집니다</string>
-    <string name="interactive_onboarding_mergeshift_merge_horizontal_body">블록은 좌우 이웃과도 합쳐질 수 있습니다. 하이라이트 위치를 노려 가로 합치기를 일으켜 보세요.</string>
-    <string name="interactive_onboarding_mergeshift_merge_multi_title">여러 번 합치기를 발동하세요</string>
-    <string name="interactive_onboarding_mergeshift_merge_multi_body">한 번의 배치로 위, 왼쪽, 오른쪽 등 여러 방향의 합치기가 일어날 수 있습니다. 더 큰 점수와 공간을 노리세요!</string>
-
-    <string name="interactive_onboarding_boomblocks_basic_title">탭해서 폭파하세요</string>
-    <string name="interactive_onboarding_boomblocks_basic_body">같은 색 블록 3개 이상이 모인 그룹을 찾아 탭해 보드에서 제거하세요.</string>
-    <string name="interactive_onboarding_boomblocks_large_title">큰 그룹일수록 더 많은 점수</string>
-    <string name="interactive_onboarding_boomblocks_large_body">더 큰 그룹은 더 많은 점수와 더 넓은 공간을 제공합니다. 하이라이트된 큰 그룹을 탭하세요!</string>
-    <string name="interactive_onboarding_boomblocks_gravity_title">중력 이동</string>
-    <string name="interactive_onboarding_boomblocks_gravity_body">블록을 폭파하면 새 블록이 폭발 반대편에서 들어옵니다. 보드가 어떻게 이동하는지 보세요!</string>
-    <string name="interactive_onboarding_boomblocks_strategic_title">전략적인 보충</string>
-    <string name="interactive_onboarding_boomblocks_strategic_body">새 블록은 폭발 중심에 따라 보드를 채웁니다. 이를 이용해 더 큰 그룹을 준비하세요!</string>
-    <string name="interactive_onboarding_boomblocks_tap_hint">계속하려면 하이라이트된 그룹을 탭하세요.</string>
-    <string name="interactive_onboarding_blocksort_pick_title">출발 열 선택</string>
-    <string name="interactive_onboarding_blocksort_pick_body">먼저 하이라이트된 혼합 색상 열을 탭하세요. 맨 위 색상 스택을 먼저 옮기며, 이 라운드의 모든 슬롯은 같은 크기입니다.</string>
-    <string name="interactive_onboarding_blocksort_pick_hint">먼저 하이라이트된 출발 열을 탭하세요.</string>
-    <string name="interactive_onboarding_blocksort_match_title">맨 위 색을 맞추세요</string>
-    <string name="interactive_onboarding_blocksort_match_body">이제 그 스택을 같은 색이 이미 맨 위에 있는 열로 보내세요. 색이 맞는 열은 보드가 두 줄로 감겨도 안전하게 색을 모을 수 있게 해 줍니다.</string>
-    <string name="interactive_onboarding_blocksort_match_hint">스택을 하이라이트된 같은 색 열로 옮기세요.</string>
-    <string name="interactive_onboarding_blocksort_finish_title">깔끔한 단색 열 완성</string>
-    <string name="interactive_onboarding_blocksort_finish_body">좋습니다. 한 번만 더 움직이면 이 라운드의 단색 열이 완성됩니다. BlockSort의 핵심 목표를 직접 확인해 보세요.</string>
-    <string name="interactive_onboarding_blocksort_finish_hint">하이라이트된 열의 모든 슬롯이 같은 색이 되도록 완성하세요.</string>
-    <string name="blocksort_completed_label">완료</string>
-    <string name="blocksort_goal_hint">목표: 채워진 각 열을 단색으로 만들어 라운드를 끝내세요. 라운드마다 열은 3, 4, 5, 6개의 동일한 슬롯을 사용할 수 있고, 보드가 두 줄로 나뉠 수도 있습니다.</string>
-    <string name="blocksort_no_moves_hint">이 혼합 배치에서는 더 이상 유효한 이동이 없습니다. 셔플을 시도하거나 새 라운드를 시작하세요.</string>
-    <string name="blocksort_round_congrats_title">축하합니다!</string>
-    <string name="blocksort_round_complete_hint">라운드 클리어! 보너스 +%1$d, 그리고 새로운 혼합 배치가 도착했습니다.</string>
-    <string name="blocksort_round_label">라운드</string>
-    <string name="blocksort_select_source_hint">비어 있지 않은 혼합 열을 탭해 맨 위 색상 스택을 집으세요.</string>
-    <string name="blocksort_selected_hint">이제 빈 열이나 같은 색이 맨 위에 있는 열을 탭해 스택을 옮기세요.</string>
-
+    <!-- AppSelectionScreen -->
     <string name="selection_title">게임 선택</string>
-
-    <string name="selection_stackshift_desc">아래에서 피스를 발사해 행과 열을 제거합니다.</string>
-    <string name="selection_blockwise_desc">보드 어디에나 피스를 드래그 앤 드롭합니다.</string>
-    <string name="selection_blocksort_desc">섞인 색상 스택을 정리해 모든 채워진 열을 단색으로 맞추세요.</string>
-    <string name="selection_mergeshift_desc">같은 값을 가진 피스를 합쳐 더 높은 점수를 노립니다.</string>
-    <string name="selection_boomblocks_desc">3개 이상 연결된 블록 그룹을 탭해 폭파합니다.</string>
     <string name="selection_switch_game">게임 전환</string>
     <string name="selection_active_game_badge">플레이 중</string>
 
-    <string name="app_title_chainshift">Chain Shift</string>
-    <string name="selection_chainshift_desc">Shoot from the center, slip blocks into a spiral chain, and pop 3+ color matches.</string>
-    <string name="app_title_banner_chainshift_top">CHAIN</string>
-    <string name="app_title_banner_chainshift_bottom">SHIFT</string>
-    <string name="tutorial_chainshift_intro_title">Meet Chain Shift</string>
-    <string name="tutorial_chainshift_intro_body">Blocks enter from the edge, wrap around the board, and crawl toward the center. Your shooter stays in the middle, so every shot must cut into the moving chain before it reaches you.</string>
-    <string name="tutorial_chainshift_path_title">조준하고 발사</string>
-    <string name="tutorial_chainshift_path_body">중앙에서 조준하고 손을 떼서 발사하세요. 블록이 체인에 닿는 지점에 삽입되며 다음 블록들을 앞으로 밀어냅니다.</string>
-    <string name="tutorial_chainshift_combo_title">후퇴와 콤보 만들기</string>
-    <string name="tutorial_chainshift_combo_body">체인을 따라 같은 색상의 연결된 블록을 3개 이상 맞춰 터뜨리세요. 간격이 좁아지면 체인이 가장자리로 후퇴하며 연쇄 반응이 일어날 수 있습니다.</string>
-    <string name="tutorial_chainshift_ready_title">Hold the center</string>
-    <string name="tutorial_chainshift_ready_body">Stay calm, keep the spiral short, and use your shots to break dangerous runs before they lock the center. The deeper the chain goes, the less room you have to recover.</string>
-    <string name="interactive_onboarding_chainshift_intro_title">가이드된 블록 쏘기</string>
-    <string name="interactive_onboarding_chainshift_intro_body">나선의 하이라이트된 부분을 향해 발사하며 시작하세요. 블록이 중앙에서 발사되어 충돌 지점에서 체인에 삽입됩니다.</string>
-    <string name="interactive_onboarding_chainshift_match_title">Make a 3-block match</string>
-    <string name="interactive_onboarding_chainshift_match_body">Now use the guided shot to line up 3 blocks of the same color. Matching segments burst immediately and open breathing room near the center.</string>
-    <string name="interactive_onboarding_chainshift_chain_title">연쇄 반응 유도</string>
-    <string name="interactive_onboarding_chainshift_chain_body">이 설정은 더 영리한 샷에 보상을 줍니다. 첫 번째 매치를 제거하고 체인이 가장자리로 후퇴하는 것을 지켜본 뒤, 두 번째 매치가 저절로 터지게 하세요.</string>
-    <string name="interactive_onboarding_chainshift_tap_hint">조준하고 손을 떼서 하이라이트된 블록을 쏘세요.</string>
-    <string name="game_message_ad_reward_chainshift">Active block refreshed for Chain Shift!</string>
-    <string name="selection_digitshift_desc">숫자별 힌트를 사용해 숨겨진 5자리 또는 6자리 숫자를 맞혀 보세요.</string>
-    <string name="tutorial_digitshift_intro_title">숨겨진 숫자 찾기</string>
-    <string name="tutorial_digitshift_intro_body">0–9 숫자로 5자리 또는 6자리의 숨겨진 숫자를 만들고 제출하세요. 각 추측은 어떤 숫자가 정확한지, 포함되어 있는지, 아예 없는지 알려 줍니다.</string>
-    <string name="tutorial_digitshift_hints_title">색을 읽어 보세요</string>
-    <string name="tutorial_digitshift_hints_body">초록색은 숫자와 위치가 모두 맞다는 뜻이고, 주황색은 숫자는 있지만 위치가 다르다는 뜻이며, 진한 회색은 정답에 없다는 뜻입니다.</string>
-    <string name="tutorial_digitshift_strategy_title">키패드 힌트를 활용하세요</string>
-    <string name="tutorial_digitshift_strategy_body">추측을 제출할 때마다 숫자 키패드 힌트가 업데이트됩니다. 초록 숫자는 유지하고, 주황 숫자는 위치를 바꾸며, 진한 회색 숫자는 피해서 더 빨리 해결하세요.</string>
-    <string name="tutorial_digitshift_ready_title">숫자를 풀 준비됐나요?</string>
-    <string name="tutorial_digitshift_ready_body">클래식 모드는 숫자를 놓칠 때까지 5자리와 6자리 라운드를 번갈아 진행합니다. 타임 어택은 압박을 더하므로 빠르게 풀어 점수와 보너스 시간을 쌓으세요.</string>
-    <string name="interactive_onboarding_digitshift_type_hint">보드를 익히려면 안내된 숫자를 입력하세요.</string>
-    <string name="interactive_onboarding_digitshift_submit_hint">다른 숫자를 제출하고 키패드가 어떻게 업데이트되는지 확인하세요.</string>
-    <string name="interactive_onboarding_digitshift_solve_hint">힌트를 사용해 숨겨진 숫자를 푸세요.</string>
-    <string name="digitshift_enter">입력</string>
-    <string name="digitshift_delete">삭제</string>
-    <string name="digitshift_guess_label">추측 %1$d</string>
-    <string name="digitshift_solved_words">해결</string>
-    <string name="digitshift_attempts_left">시도</string>
-    <string name="digitshift_current_language">언어</string>
-    <string name="game_message_digitshift_enter_word">5자리 또는 6자리 숫자를 만들고 추측을 제출하세요.</string>
-    <string name="game_message_digitshift_not_enough_letters">아직 숫자가 충분하지 않습니다.</string>
-    <string name="game_message_digitshift_not_in_dictionary">0–9 숫자만 사용할 수 있습니다.</string>
-    <string name="game_message_digitshift_keep_trying">좋은 힌트입니다. 다음 숫자를 더 다듬어 보세요.</string>
-    <string name="game_message_digitshift_solved">해결: %1$s</string>
-    <string name="game_message_digitshift_failed">라운드 종료. 정답은 %1$s였습니다.</string>
-    <string name="game_message_digitshift_revived">추가 생명을 사용했습니다. 그 숫자를 다시 시도하세요.</string>
-    <string name="game_message_ad_reward_digitshift">숫자가 새로고침되었습니다. 계속 추측하세요!</string>
-    <string name="challenge_task_solve_words">%1$d개의 숫자 풀기</string>
-    <string name="challenge_info_solve_words_title">숫자 풀기</string>
-    <string name="challenge_info_solve_words">시도 횟수가 다하기 전에 숨겨진 숫자를 찾아 DigitShift 라운드를 완료하세요.</string>
 </resources>
-
