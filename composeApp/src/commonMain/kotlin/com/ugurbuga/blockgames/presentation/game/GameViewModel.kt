@@ -83,6 +83,14 @@ class GameViewModel(
 
     fun reviveFromReward(): InteractionFeedback = dispatch(GameIntent.ReviveFromReward)
 
+    fun appendWordToken(token: String): InteractionFeedback = dispatch(GameIntent.AppendWordToken(token))
+
+    fun deleteWordToken(): InteractionFeedback = dispatch(GameIntent.DeleteWordToken)
+
+    fun submitWordGuess(): InteractionFeedback = dispatch(GameIntent.SubmitWordGuess)
+
+    fun advanceWordRound(): InteractionFeedback = dispatch(GameIntent.AdvanceWordRound)
+
     fun replaceActivePiece(specialType: SpecialBlockType): InteractionFeedback =
         dispatch(GameIntent.ReplaceActivePiece(specialType))
 

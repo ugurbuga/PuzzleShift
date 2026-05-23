@@ -257,6 +257,7 @@ data class GameConfig(
             GameplayStyle.MergeShift -> GameConfig(columns = 3, rows = 5)
             GameplayStyle.BoomBlocks -> GameConfig(columns = 6, rows = 8)
             GameplayStyle.BlockSort -> GameConfig(columns = 6, rows = 4, difficultyIntervalSeconds = 9_999, linesPerLevel = 9_999)
+            GameplayStyle.DigitShift -> GameConfig(columns = 5, rows = 6, difficultyIntervalSeconds = 9_999, linesPerLevel = 9_999)
         }
     }
 }
@@ -273,20 +274,25 @@ enum class GameplayStyle {
     MergeShift,
     BoomBlocks,
     BlockSort,
+    DigitShift,
 }
 
 fun GameplayStyle.storageKey(): String = when (this) {
     GameplayStyle.BlockSort -> "blocksort"
+    GameplayStyle.DigitShift -> "digitshift"
     else -> name.lowercase()
 }
 
-fun GameplayStyle.persistedKeys(): List<String> = listOf(storageKey())
+fun GameplayStyle.persistedKeys(): List<String> = when (this) {
+    GameplayStyle.DigitShift -> listOf(storageKey(), "wordshift")
+    else -> listOf(storageKey())
+}
 
 fun gameplayStyleFromPersistedValue(raw: String?): GameplayStyle? {
     val normalized = raw?.trim()?.takeIf(String::isNotBlank) ?: return null
     return GameplayStyle.entries.firstOrNull { style ->
         normalized.equals(style.name, ignoreCase = true) ||
-            normalized.equals(style.storageKey(), ignoreCase = true)
+            style.persistedKeys().any { key -> normalized.equals(key, ignoreCase = true) }
     }
 }
 
@@ -390,12 +396,33 @@ enum class GameTextKey {
     FeedbackAdRewardBlockWise,
     FeedbackAdRewardMergeShift,
     FeedbackAdRewardBoomBlocks,
+    GameMessageDigitShiftEnterWord,
+    GameMessageDigitShiftNotEnoughLetters,
+    GameMessageDigitShiftNotInDictionary,
+    GameMessageDigitShiftKeepTrying,
+    GameMessageDigitShiftSolved,
+    GameMessageDigitShiftFailed,
+    GameMessageDigitShiftRevived,
 }
 
 @Immutable
 data class GameText(
     val key: GameTextKey,
     val args: List<String> = emptyList(),
+)
+
+@Immutable
+enum class DigitShiftLetterState {
+    Unknown,
+    Absent,
+    Present,
+    Correct,
+}
+
+@Immutable
+data class DigitShiftGuess(
+    val tokens: List<String>,
+    val states: List<DigitShiftLetterState>,
 )
 
 enum class CellTone {
@@ -985,6 +1012,12 @@ data class GameState(
     val blockSortLastMovedCellValues: Set<Int> = emptySet(),
     val blockSortBonusEmptyColumnUsed: Boolean = false,
     val blockSortScoredMoveSignatures: Set<String> = emptySet(),
+    val digitShiftLocaleTag: String = "",
+    val digitShiftSolution: List<String> = emptyList(),
+    val digitShiftGuesses: List<DigitShiftGuess> = emptyList(),
+    val digitShiftCurrentGuess: List<String> = emptyList(),
+    val digitShiftKeyboardHints: Map<String, DigitShiftLetterState> = emptyMap(),
+    val digitShiftAwaitingNextRound: Boolean = false,
 ) {
     val nextPiece: Piece?
         get() = nextQueue.firstOrNull()
@@ -1003,6 +1036,9 @@ data class GameState(
 
     val isTimeAttack: Boolean
         get() = gameMode == GameMode.TimeAttack
+
+    val digitShiftAttemptsRemaining: Int
+        get() = (config.rows - digitShiftGuesses.size).coerceAtLeast(0)
 }
 
 fun gameText(

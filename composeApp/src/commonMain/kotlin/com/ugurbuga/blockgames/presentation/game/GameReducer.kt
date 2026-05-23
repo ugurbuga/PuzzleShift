@@ -28,7 +28,8 @@ internal class GameReducer(
                 GameplayStyle.BlockWise,
                 GameplayStyle.ChainShift,
                 GameplayStyle.BoomBlocks,
-                GameplayStyle.BlockSort -> emptyList()
+                GameplayStyle.BlockSort,
+                GameplayStyle.DigitShift -> emptyList()
                 GameplayStyle.StackShift,
                 GameplayStyle.MergeShift -> result.state.softLock?.let { softLock ->
                     listOf(
@@ -83,6 +84,42 @@ internal class GameReducer(
             )
         }
 
+        is GameAction.AppendWordToken -> {
+            val result = gameLogic.appendWordToken(state, action.token)
+            ReduceResult(
+                state = result.state,
+                events = result.events,
+                effects = emptyList(),
+            )
+        }
+
+        GameAction.DeleteWordToken -> {
+            val result = gameLogic.deleteWordToken(state)
+            ReduceResult(
+                state = result.state,
+                events = result.events,
+                effects = emptyList(),
+            )
+        }
+
+        GameAction.SubmitWordGuess -> {
+            val result = gameLogic.submitWordGuess(state)
+            ReduceResult(
+                state = result.state,
+                events = result.events,
+                effects = emptyList(),
+            )
+        }
+
+        GameAction.AdvanceWordRound -> {
+            val result = gameLogic.advanceWordRound(state)
+            ReduceResult(
+                state = result.state,
+                events = result.events,
+                effects = emptyList(),
+            )
+        }
+
         is GameAction.Restart -> ReduceResult(
             state = gameLogic.newGame(
                 config = action.config,
@@ -122,6 +159,10 @@ sealed interface GameIntent {
     data object CommitSoftLock : GameIntent
     data object HoldPiece : GameIntent
     data object ReviveFromReward : GameIntent
+    data class AppendWordToken(val token: String) : GameIntent
+    data object DeleteWordToken : GameIntent
+    data object SubmitWordGuess : GameIntent
+    data object AdvanceWordRound : GameIntent
     data class Restart(
         val config: GameConfig,
         val challenge: DailyChallenge? = null,
@@ -136,6 +177,10 @@ internal sealed interface GameAction {
     data object CommitSoftLock : GameAction
     data object HoldPiece : GameAction
     data object ReviveFromReward : GameAction
+    data class AppendWordToken(val token: String) : GameAction
+    data object DeleteWordToken : GameAction
+    data object SubmitWordGuess : GameAction
+    data object AdvanceWordRound : GameAction
     data class Restart(
         val config: GameConfig,
         val challenge: DailyChallenge? = null,
@@ -166,6 +211,10 @@ internal fun GameIntent.toAction(): GameAction = when (this) {
     GameIntent.CommitSoftLock -> GameAction.CommitSoftLock
     GameIntent.HoldPiece -> GameAction.HoldPiece
     GameIntent.ReviveFromReward -> GameAction.ReviveFromReward
+    is GameIntent.AppendWordToken -> GameAction.AppendWordToken(token)
+    GameIntent.DeleteWordToken -> GameAction.DeleteWordToken
+    GameIntent.SubmitWordGuess -> GameAction.SubmitWordGuess
+    GameIntent.AdvanceWordRound -> GameAction.AdvanceWordRound
     is GameIntent.Restart -> GameAction.Restart(config, challenge, mode)
     is GameIntent.ReplaceActivePiece -> GameAction.ReplaceActivePiece(specialType)
     GameIntent.TogglePause -> GameAction.TogglePause

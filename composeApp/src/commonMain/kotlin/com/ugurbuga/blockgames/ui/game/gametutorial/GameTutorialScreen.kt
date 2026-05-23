@@ -167,6 +167,14 @@ import blockgames.composeapp.generated.resources.tutorial_stackshift_systems_tit
 import blockgames.composeapp.generated.resources.tutorial_step_counter
 import blockgames.composeapp.generated.resources.tutorial_systems_body
 import blockgames.composeapp.generated.resources.tutorial_systems_title
+import blockgames.composeapp.generated.resources.tutorial_digitshift_hints_body
+import blockgames.composeapp.generated.resources.tutorial_digitshift_hints_title
+import blockgames.composeapp.generated.resources.tutorial_digitshift_intro_body
+import blockgames.composeapp.generated.resources.tutorial_digitshift_intro_title
+import blockgames.composeapp.generated.resources.tutorial_digitshift_ready_body
+import blockgames.composeapp.generated.resources.tutorial_digitshift_ready_title
+import blockgames.composeapp.generated.resources.tutorial_digitshift_strategy_body
+import blockgames.composeapp.generated.resources.tutorial_digitshift_strategy_title
 import com.ugurbuga.blockgames.BlockGamesTheme
 import com.ugurbuga.blockgames.ads.GameAdController
 import com.ugurbuga.blockgames.ads.NoOpGameAdController
@@ -187,12 +195,15 @@ import com.ugurbuga.blockgames.game.model.gameText
 import com.ugurbuga.blockgames.localization.LocalAppSettings
 import com.ugurbuga.blockgames.platform.GlobalPlatformConfig
 import com.ugurbuga.blockgames.settings.AppSettings
-import com.ugurbuga.blockgames.settings.ChainShiftOnboardingScene
-import com.ugurbuga.blockgames.settings.ChainShiftOnboardingStage
-import com.ugurbuga.blockgames.settings.ChainShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.BlockSortOnboardingScene
 import com.ugurbuga.blockgames.settings.BlockSortOnboardingStage
 import com.ugurbuga.blockgames.settings.BlockSortOnboardingStateFactory
+import com.ugurbuga.blockgames.settings.ChainShiftOnboardingScene
+import com.ugurbuga.blockgames.settings.ChainShiftOnboardingStage
+import com.ugurbuga.blockgames.settings.ChainShiftOnboardingStateFactory
+import com.ugurbuga.blockgames.settings.DigitShiftOnboardingScene
+import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStage
+import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.telemetry.AppTelemetry
 import com.ugurbuga.blockgames.telemetry.LogScreen
 import com.ugurbuga.blockgames.telemetry.NoOpAppTelemetry
@@ -209,6 +220,7 @@ import com.ugurbuga.blockgames.ui.game.boardFrameCornerRadiusDp
 import com.ugurbuga.blockgames.ui.game.game.BlockSortBoard
 import com.ugurbuga.blockgames.ui.game.game.GameGrid
 import com.ugurbuga.blockgames.ui.game.game.LaunchGuideLineOverlay
+import com.ugurbuga.blockgames.ui.game.game.DigitShiftBoard
 import com.ugurbuga.blockgames.ui.game.game.columnToLeft
 import com.ugurbuga.blockgames.ui.game.game.pieceSpawnTopLeft
 import com.ugurbuga.blockgames.ui.game.game.resolveSelectedColumn
@@ -328,6 +340,10 @@ private enum class TutorialPage {
     BlockSortRules,
     BlockSortFinish,
     BlockSortReady,
+    DigitShiftIntro,
+    DigitShiftHints,
+    DigitShiftStrategy,
+    DigitShiftReady,
 }
 
 internal fun tutorialBoomBlocksIntroScene(): TutorialDemoScene {
@@ -644,6 +660,13 @@ fun GameTutorialScreen(
                 TutorialPage.BlockSortFinish,
                 TutorialPage.BlockSortReady,
             )
+
+            GameplayStyle.DigitShift -> listOf(
+                TutorialPage.DigitShiftIntro,
+                TutorialPage.DigitShiftHints,
+                TutorialPage.DigitShiftStrategy,
+                TutorialPage.DigitShiftReady,
+            )
         }
     }
     val totalSteps = tutorialPages.size
@@ -762,6 +785,10 @@ fun GameTutorialScreen(
                                 TutorialPage.BlockSortRules -> TutorialBlockSortRulesStep()
                                 TutorialPage.BlockSortFinish -> TutorialBlockSortFinishStep()
                                 TutorialPage.BlockSortReady -> TutorialBlockSortReadyStep()
+                                TutorialPage.DigitShiftIntro -> TutorialDigitShiftIntroStep()
+                                TutorialPage.DigitShiftHints -> TutorialDigitShiftHintsStep()
+                                TutorialPage.DigitShiftStrategy -> TutorialDigitShiftStrategyStep()
+                                TutorialPage.DigitShiftReady -> TutorialDigitShiftReadyStep()
                             }
                         }
                     }
@@ -1328,6 +1355,64 @@ private fun TutorialBlockSortReadyStep() {
     ) {
         TutorialHintCard(text = stringResource(Res.string.blocksort_goal_hint))
         TutorialHintCard(text = stringResource(Res.string.blocksort_round_complete_hint, 1200))
+    }
+}
+
+@Composable
+private fun TutorialDigitShiftIntroStep() {
+    val scene = remember { DigitShiftOnboardingStateFactory.scene(DigitShiftOnboardingStage.FirstGuess) }
+    TutorialSection(
+        title = stringResource(Res.string.tutorial_digitshift_intro_title),
+        body = stringResource(Res.string.tutorial_digitshift_intro_body),
+    ) {
+        TutorialDigitShiftBoardDemo(scene = scene)
+        TutorialHintCard(text = scene.suggestedGuess.joinToString(separator = ""))
+    }
+}
+
+@Composable
+private fun TutorialDigitShiftHintsStep() {
+    val scene = remember { DigitShiftOnboardingStateFactory.scene(DigitShiftOnboardingStage.ReadHints) }
+    TutorialSection(
+        title = stringResource(Res.string.tutorial_digitshift_hints_title),
+        body = stringResource(Res.string.tutorial_digitshift_hints_body),
+    ) {
+        TutorialDigitShiftBoardDemo(scene = scene)
+        TutorialHintCard(text = scene.suggestedGuess.joinToString(separator = ""))
+    }
+}
+
+@Composable
+private fun TutorialDigitShiftStrategyStep() {
+    val scene = remember { DigitShiftOnboardingStateFactory.scene(DigitShiftOnboardingStage.SolveWord) }
+    TutorialSection(
+        title = stringResource(Res.string.tutorial_digitshift_strategy_title),
+        body = stringResource(Res.string.tutorial_digitshift_strategy_body),
+    ) {
+        TutorialDigitShiftBoardDemo(scene = scene)
+    }
+}
+
+@Composable
+private fun TutorialDigitShiftReadyStep() {
+    TutorialSection(
+        title = stringResource(Res.string.tutorial_digitshift_ready_title),
+        body = stringResource(Res.string.tutorial_digitshift_ready_body),
+    ) {
+        TutorialHintCard(text = stringResource(Res.string.tutorial_ready_settings_hint))
+    }
+}
+
+@Composable
+private fun TutorialDigitShiftBoardDemo(
+    scene: DigitShiftOnboardingScene,
+    modifier: Modifier = Modifier,
+) {
+    TutorialMiniBoardShell(modifier = modifier) {
+        DigitShiftBoard(
+            gameState = scene.gameState,
+            modifier = Modifier.fillMaxWidth(),
+        )
     }
 }
 

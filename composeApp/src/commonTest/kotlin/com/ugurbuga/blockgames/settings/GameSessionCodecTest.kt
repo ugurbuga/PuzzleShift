@@ -1,12 +1,16 @@
 package com.ugurbuga.blockgames.settings
 
 import com.ugurbuga.blockgames.game.logic.GameLogic
+import com.ugurbuga.blockgames.game.logic.ScoreCalculator
+import com.ugurbuga.blockgames.game.logic.DigitShiftGameLogic
 import com.ugurbuga.blockgames.game.model.ChallengeTask
 import com.ugurbuga.blockgames.game.model.ChallengeTaskType
 import com.ugurbuga.blockgames.game.model.DailyChallenge
 import com.ugurbuga.blockgames.game.model.GameConfig
 import com.ugurbuga.blockgames.game.model.GameMode
 import com.ugurbuga.blockgames.game.model.GameplayStyle
+import com.ugurbuga.blockgames.game.model.DigitShiftGuess
+import com.ugurbuga.blockgames.game.model.DigitShiftLetterState
 import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -91,6 +95,66 @@ class GameSessionCodecTest {
         assertEquals(GameplayStyle.BlockSort, decoded.gameplayStyle)
         assertTrue(decoded.blockSortBonusEmptyColumnUsed)
         assertEquals(state.blockSortScoredMoveSignatures, decoded.blockSortScoredMoveSignatures)
+    }
+
+    @Test
+    fun encodeDecode_preservesDigitShiftSessionDetails() {
+        val challenge = DailyChallenge(
+            year = 2026,
+            month = 5,
+            day = 22,
+            style = GameplayStyle.DigitShift,
+            tasks = listOf(
+                ChallengeTask(type = ChallengeTaskType.SolveWords, target = 3, current = 1),
+                ChallengeTask(type = ChallengeTaskType.ReachScore, target = 2_000, current = 1_350),
+            ),
+        )
+        val state = DigitShiftGameLogic(random = Random(13), scoreCalculator = ScoreCalculator()).newGame(
+            config = GameConfig.default(GameplayStyle.DigitShift),
+            challenge = challenge,
+            mode = GameMode.TimeAttack,
+        ).copy(
+            config = GameConfig(columns = 5, rows = 6, difficultyIntervalSeconds = 9_999, linesPerLevel = 9_999),
+            score = 1_350,
+            linesCleared = 1,
+            remainingTimeMillis = 33_000L,
+            activeChallenge = challenge,
+            digitShiftLocaleTag = "en",
+            digitShiftSolution = listOf("1", "2", "3", "4", "5"),
+            digitShiftGuesses = listOf(
+                DigitShiftGuess(
+                    tokens = listOf("1", "7", "0", "4", "8"),
+                    states = listOf(
+                        DigitShiftLetterState.Correct,
+                        DigitShiftLetterState.Absent,
+                        DigitShiftLetterState.Absent,
+                        DigitShiftLetterState.Correct,
+                        DigitShiftLetterState.Absent,
+                    ),
+                ),
+            ),
+            digitShiftCurrentGuess = listOf("8", "8", "8"),
+            digitShiftKeyboardHints = mapOf(
+                "1" to DigitShiftLetterState.Correct,
+                "2" to DigitShiftLetterState.Present,
+                "8" to DigitShiftLetterState.Absent,
+            ),
+            digitShiftAwaitingNextRound = true,
+        )
+
+        val decoded = GameSessionCodec.decode(GameSessionCodec.encode(state))
+
+        assertNotNull(decoded)
+        assertEquals(GameplayStyle.DigitShift, decoded.gameplayStyle)
+        assertEquals(5, decoded.config.columns)
+        assertEquals(33_000L, decoded.remainingTimeMillis)
+        assertEquals(state.digitShiftLocaleTag, decoded.digitShiftLocaleTag)
+        assertEquals(state.digitShiftSolution, decoded.digitShiftSolution)
+        assertEquals(state.digitShiftGuesses, decoded.digitShiftGuesses)
+        assertEquals(state.digitShiftCurrentGuess, decoded.digitShiftCurrentGuess)
+        assertEquals(state.digitShiftKeyboardHints, decoded.digitShiftKeyboardHints)
+        assertTrue(decoded.digitShiftAwaitingNextRound)
+        assertEquals(challenge.tasks, decoded.activeChallenge?.tasks)
     }
 }
 

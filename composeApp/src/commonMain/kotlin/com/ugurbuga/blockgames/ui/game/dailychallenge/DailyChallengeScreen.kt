@@ -82,6 +82,8 @@ import blockgames.composeapp.generated.resources.challenge_info_place_pieces
 import blockgames.composeapp.generated.resources.challenge_info_place_pieces_title
 import blockgames.composeapp.generated.resources.challenge_info_reach_score
 import blockgames.composeapp.generated.resources.challenge_info_reach_score_title
+import blockgames.composeapp.generated.resources.challenge_info_solve_words
+import blockgames.composeapp.generated.resources.challenge_info_solve_words_title
 import blockgames.composeapp.generated.resources.challenge_info_title
 import blockgames.composeapp.generated.resources.challenge_info_trigger_special
 import blockgames.composeapp.generated.resources.challenge_info_trigger_special_title
@@ -97,6 +99,7 @@ import blockgames.composeapp.generated.resources.challenge_task_explode_groups
 import blockgames.composeapp.generated.resources.challenge_task_perfect_placement
 import blockgames.composeapp.generated.resources.challenge_task_place_pieces
 import blockgames.composeapp.generated.resources.challenge_task_reach_score
+import blockgames.composeapp.generated.resources.challenge_task_solve_words
 import blockgames.composeapp.generated.resources.challenge_task_trigger_special
 import blockgames.composeapp.generated.resources.challenge_tasks_title
 import blockgames.composeapp.generated.resources.continue_label
@@ -739,6 +742,7 @@ fun taskDescription(task: ChallengeTask): String {
         }
         ChallengeTaskType.ClearRounds -> Res.string.challenge_task_clear_rounds
         ChallengeTaskType.ClearBothDirections -> Res.string.challenge_task_clear_both_directions
+        ChallengeTaskType.SolveWords -> Res.string.challenge_task_solve_words
     }
     return stringResource(res, task.target)
 }
@@ -802,6 +806,7 @@ internal fun challengeInfoTitleRes(taskType: ChallengeTaskType): StringResource 
         ChallengeTaskType.PlacePieces -> Res.string.challenge_info_place_pieces_title
         ChallengeTaskType.ClearRounds -> Res.string.challenge_info_clear_rounds_title
         ChallengeTaskType.ClearBothDirections -> Res.string.challenge_info_clear_both_directions_title
+        ChallengeTaskType.SolveWords -> Res.string.challenge_info_solve_words_title
     }
 
 @Composable
@@ -818,6 +823,7 @@ internal fun challengeInfoDescriptionRes(taskType: ChallengeTaskType): StringRes
         ChallengeTaskType.PlacePieces -> Res.string.challenge_info_place_pieces
         ChallengeTaskType.ClearRounds -> Res.string.challenge_info_clear_rounds
         ChallengeTaskType.ClearBothDirections -> Res.string.challenge_info_clear_both_directions
+        ChallengeTaskType.SolveWords -> Res.string.challenge_info_solve_words
     }
 
 @Composable

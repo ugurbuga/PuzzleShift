@@ -8,7 +8,13 @@ import java.util.prefs.Preferences
 actual object HighScoreStorage {
     private val prefs = Preferences.userRoot().node(Namespace)
 
-    actual fun load(mode: GameMode): Int = prefs.getInt(keyFor(mode), DefaultHighScore)
+    actual fun load(mode: GameMode): Int {
+        val key = keyFor(mode)
+        if (prefs.get(key, null) != null) return prefs.getInt(key, DefaultHighScore)
+        return legacyKeyFor(mode)?.let { legacyKey ->
+            prefs.getInt(legacyKey, DefaultHighScore)
+        } ?: DefaultHighScore
+    }
 
     actual fun save(highScore: Int, mode: GameMode) {
         prefs.putInt(keyFor(mode), highScore.coerceAtLeast(DefaultHighScore))
@@ -18,32 +24,26 @@ actual object HighScoreStorage {
     private const val DefaultHighScore = 0
 
     private fun keyFor(mode: GameMode): String {
-        val gameplayStyle = GlobalPlatformConfig.gameplayStyle
-        return when (gameplayStyle) {
-        GameplayStyle.StackShift -> when (mode) {
-            GameMode.Classic -> "highScoreClassic"
-            GameMode.TimeAttack -> "highScoreTimeAttack"
+        val suffix = when (GlobalPlatformConfig.gameplayStyle) {
+            GameplayStyle.StackShift -> ""
+            GameplayStyle.BlockWise -> "BlockWise"
+            GameplayStyle.ChainShift -> "ChainShift"
+            GameplayStyle.MergeShift -> "MergeShift"
+            GameplayStyle.BoomBlocks -> "BoomBlocks"
+            GameplayStyle.BlockSort -> "BlockSort"
+            GameplayStyle.DigitShift -> "DigitShift"
         }
-        GameplayStyle.BlockWise -> when (mode) {
-            GameMode.Classic -> "highScoreClassicBlockWise"
-            GameMode.TimeAttack -> "highScoreTimeAttackBlockWise"
+        return when (mode) {
+            GameMode.Classic -> "highScoreClassic$suffix"
+            GameMode.TimeAttack -> "highScoreTimeAttack$suffix"
         }
-        GameplayStyle.ChainShift -> when (mode) {
-            GameMode.Classic -> "highScoreClassicChainShift"
-            GameMode.TimeAttack -> "highScoreTimeAttackChainShift"
+    }
+
+    private fun legacyKeyFor(mode: GameMode): String? = when (GlobalPlatformConfig.gameplayStyle) {
+        GameplayStyle.DigitShift -> when (mode) {
+            GameMode.Classic -> "highScoreClassicWordShift"
+            GameMode.TimeAttack -> "highScoreTimeAttackWordShift"
         }
-        GameplayStyle.MergeShift -> when (mode) {
-            GameMode.Classic -> "highScoreClassicMergeShift"
-            GameMode.TimeAttack -> "highScoreTimeAttackMergeShift"
-        }
-        GameplayStyle.BoomBlocks -> when (mode) {
-            GameMode.Classic -> "highScoreClassicBoomBlocks"
-            GameMode.TimeAttack -> "highScoreTimeAttackBoomBlocks"
-        }
-        GameplayStyle.BlockSort -> when (mode) {
-            GameMode.Classic -> "highScoreClassicBlockSort"
-            GameMode.TimeAttack -> "highScoreTimeAttackBlockSort"
-        }
-        }
+        else -> null
     }
 }
