@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_stackshift_desc">从底部发射方块以清除行和列。</string>
+
+    <!-- StackShiftGameScreen -->
+    <string name="reward_piece_row_message">横行清除器方块已装备！</string>
+    <string name="reward_piece_column_message">纵列清除器方块已装备！</string>
+    <string name="launch_bar">发射条</string>
+    <string name="launch_boost_active">加速生效 • %1$s 回合</string>
+    <string name="launch_special_chance">特殊方块概率 +%1$s%</string>
+    <string name="launch_soft_lock_message">已启用软锁 • 允许微调</string>
+    <string name="launch_chain_message">行 + 列 • +%2$s</string>
+    <string name="launch_paused">已暂停</string>
+    <string name="launch_game_over">重新开始新一局</string>
+    <string name="launch_drag_hint">水平拖动 → 松开</string>
+    <string name="queue_next_short">下一个</string>
+    <string name="game_message_soft_lock">短暂调整窗口已开启。请微调列位置。</string>
+    <string name="game_message_overflow">列已溢出！你没能跟上关键列。</string>
+    <string name="game_message_special_chain_board">特殊连击 x%1$s！棋盘已重塑。</string>
+    <string name="game_message_pressure_game_over">列压力已达上限。开始新一局。</string>
+    <string name="game_message_special_lines">特殊方块连击！已清除 %1$s 行。</string>
+    <string name="game_message_special_triggered">特殊方块已触发。%1$d 个方块已引爆！</string>
+    <string name="game_message_perfect_drop">完美落点 x%1$s！保持连击。</string>
+    <string name="game_message_chain_lines">双重清除！已清除 %2$s 行。</string>
+    <string name="game_message_good_shot">命中不错。规划下一列。</string>
+    <string name="game_message_hold_updated">暂存已更新。请选择新列。</string>
+    <string name="game_message_tempo_critical">节奏加快。请清理关键列。</string>
+    <string name="game_message_tempo_up">节奏加快。更难的方块来了。</string>
+    <string name="game_message_resumed">继续。选择列并发射。</string>
+    <string name="feedback_perfect_lane">完美路线 x%1$s</string>
+    <string name="feedback_micro_adjust">微调</string>
+    <string name="feedback_soft_lock">软锁</string>
+    <string name="feedback_hold_armed">暂存就绪</string>
+    <string name="feedback_swap">已交换</string>
+    <string name="feedback_special_chain">特殊连击 +%1$s • %2$d 个方块</string>
+    <string name="feedback_special">特殊 +%1$s • %2$d 个方块</string>
+    <string name="feedback_perfect">完美 x%1$s +%2$s</string>
+    <string name="feedback_chain">连击 x%1$s +%2$s</string>
+    <string name="game_message_ad_reward_stackshift">特殊方块已装备！准备发射。</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_stackshift_intro_title">从底部托盘发射方块</string>
+    <string name="tutorial_stackshift_intro_body">当前方块会在底部等待。左右拖动它来对准列，然后松手把它发射到棋盘上。下一块预览会故意更淡一些，让注意力留在当前方块上。</string>
+    <string name="tutorial_stackshift_systems_title">棋盘变紧时使用操作方块</string>
+    <string name="tutorial_stackshift_systems_body">暂存用于交换当前方块，暂停会冻结本局，方块属性解释图标含义，设置可以调整外观。这些按钮也会匹配你当前选择的棋盘方块风格。</string>
+    <string name="tutorial_stackshift_specials_title">特殊方块可以拯救一局</string>
+    <string name="tutorial_stackshift_specials_body">有些方块带有特殊效果。记住它们的标记，并在需要减压、腾出空间或穿过困难堆叠时使用它们。</string>
+    <string name="tutorial_stackshift_ready_title">你已经准备好继续这一局了</string>
+    <string name="tutorial_stackshift_ready_body">就是这些——规划下一列，留意发射条，并在合适的时机使用特殊效果。你随时都可以从设置重新打开这个教程。</string>
+    <string name="tutorial_stackshift_ready_tutorial_hint">想快速回顾操作和特殊图标时，随时打开教程。</string>
+    <string name="tutorial_stackshift_ready_settings_hint">在下一局开始前，你可以打开设置来调整语言、主题、颜色和方块风格。</string>
+
+</resources>

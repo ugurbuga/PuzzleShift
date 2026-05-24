@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_mergeshift_desc">Объединяйте фигуры с одинаковыми значениями, чтобы достичь больших результатов.</string>
+
+    <!-- MergeShiftGameScreen -->
+    <string name="game_message_ad_reward_mergeshift">Числа изменены! Продолжайте объединять.</string>
+    <string name="ad_reward_mergeshift_swap">Изменить число</string>
+    <string name="feedback_ad_reward_mergeshift">Числа изменены</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_mergeshift_intro_title">Запускайте фигуры, чтобы объединять блоки с одинаковым значением</string>
+    <string name="tutorial_mergeshift_intro_body">В MergeShift фигуры запускаются из дока. Когда блок приземляется на другой с таким же значением, они объединяются в более высокое значение. Продолжайте объединять, чтобы освобождать место и достигать больших результатов.</string>
+    <string name="tutorial_mergeshift_systems_title">Планируйте объединения, чтобы предотвратить переполнение</string>
+    <string name="tutorial_mergeshift_systems_body">Каждая запущенная фигура увеличивает высоту колонки. Если колонка достигает верха, игра заканчивается. Используйте предпросмотр, чтобы видеть, куда приземлится ваша фигура и с какими блоками она может объединиться.</string>
+    <string name="tutorial_mergeshift_specials_title">Комбинируйте несколько объединений для больших комбо</string>
+    <string name="tutorial_mergeshift_specials_body">Один запуск может вызвать цепную реакцию объединений. Эти комбо дают больше очков и освобождают больше места на поле, помогая вам дольше оставаться в игре.</string>
+    <string name="tutorial_mergeshift_ready_title">Вы готовы к MergeShift</string>
+    <string name="tutorial_mergeshift_ready_body">Сосредоточьтесь на том, чтобы ваши колонки были низкими, и подготавливайте объединения с высокими значениями. Удачи в достижении самых больших чисел!</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_mergeshift_launch_title">Запустите вашу первую фигуру</string>
+    <string name="interactive_onboarding_mergeshift_launch_body">Перетащите фигуру по горизонтали под полем, чтобы прицелиться, затем отпустите, чтобы запустить её в колонку.</string>
+    <string name="interactive_onboarding_mergeshift_merge_vertical_title">Объединяйте одинаковые значения вертикально</string>
+    <string name="interactive_onboarding_mergeshift_merge_vertical_body">Запустите фигуру в колонку, где уже есть блок с таким же значением. Они объединятся в большее число!</string>
+    <string name="interactive_onboarding_mergeshift_merge_horizontal_title">Объединяйте одинаковые значения горизонтально</string>
+    <string name="interactive_onboarding_mergeshift_merge_horizontal_body">Блоки также могут объединяться со своими соседями слева или справа. Цельтесь в подсвеченное место, чтобы вызвать горизонтальное объединение. </string>
+    <string name="interactive_onboarding_mergeshift_merge_multi_title">Вызывайте множественные объединения</string>
+    <string name="interactive_onboarding_mergeshift_merge_multi_body">Одно размещение может вызвать объединения в нескольких направлениях (сверху, слева, справа). Используйте это, чтобы освободить больше места и набрать много очков!</string>
+
+</resources>

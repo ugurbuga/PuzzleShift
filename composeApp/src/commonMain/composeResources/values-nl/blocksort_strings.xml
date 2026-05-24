@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blocksort_desc">Sorteer gemengde kleurstapels totdat elke gevulde kolom uit één kleur bestaat.</string>
+
+    <!-- BlockSortGameScreen -->
+    <string name="game_message_ad_reward_blocksort">Een extra lege kolom is toegevoegd voor deze ronde.</string>
+    <string name="blocksort_completed_label">Gesorteerd</string>
+    <string name="blocksort_goal_hint">Doel: beëindig de ronde met elke gevulde kolom in één kleur. Rondes kunnen 3, 4, 5 of 6 even grote slots per kolom gebruiken en het bord kan zich in twee rijen splitsen.</string>
+    <string name="blocksort_no_moves_hint">Er zijn geen geldige verplaatsingen meer in deze gemengde layout. Probeer een herschikking of start een nieuwe ronde.</string>
+    <string name="blocksort_round_congrats_title">Gefeliciteerd!</string>
+    <string name="blocksort_round_complete_hint">Ronde voltooid! Bonus +%1$d en er is een nieuwe gemengde layout verschenen.</string>
+    <string name="blocksort_round_label">Ronde</string>
+    <string name="blocksort_select_source_hint">Tik op een niet-lege gemengde kolom om de bovenste kleurstapel op te pakken.</string>
+    <string name="blocksort_selected_hint">Tik nu op een lege kolom of een kolom met dezelfde bovenste kleur om de stapel te verplaatsen.</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rounds_title">Rondes</string>
+    <string name="challenge_info_clear_rounds">Voltooi volledige BlockSort-rondes door elke gevulde kolom in één kleur te veranderen.</string>
+    <string name="challenge_task_complete_columns">Voltooi %1$d kolommen</string>
+    <string name="challenge_task_clear_rounds">Voltooi %1$d rondes</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_blocksort_intro_title">Verplaats even grote bovenste stapels tussen kolommen</string>
+    <string name="tutorial_blocksort_intro_body">Elke ronde gebruikt één gedeelde slotgrootte voor elke kolom. Tik op een niet-lege gemengde kolom om de bovenste kleurstapel op te pakken en verplaats die daarna naar een lege kolom of een kolom met dezelfde bovenkleur.</string>
+    <string name="tutorial_blocksort_rules_title">Alleen gelijke kleuren mogen op elkaar</string>
+    <string name="tutorial_blocksort_rules_body">Je kunt alleen verplaatsen naar lege ruimte of naar dezelfde bovenkleur. Naarmate de puzzel groeit kan het bord zich opdelen in een bovenste en onderste rij, dus houd rekening met zowel hulpruimte als overzicht.</string>
+    <string name="tutorial_blocksort_finish_title">Voltooi elke kolom als één kleur</string>
+    <string name="tutorial_blocksort_finish_body">Een kolom is compleet wanneer elk slot in die ronde dezelfde kleur heeft. Verschillende rondes kunnen 3, 4, 5 of 6 gelijke slots gebruiken en een nieuwe gemengde layout verschijnt zodra je ze allemaal hebt voltooid.</string>
+    <string name="tutorial_blocksort_ready_title">Je bent klaar voor BlockSort</string>
+    <string name="tutorial_blocksort_ready_body">Plan twee of drie zetten vooruit, bescherm je hulpkolommen en pas je snel aan wanneer elke ronde het aantal slots verandert en het bord zich mogelijk in twee rijen splitst.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_blocksort_pick_title">Kies een bronkolom</string>
+    <string name="interactive_onboarding_blocksort_pick_body">Begin door op de gemarkeerde gemengde kolom te tikken. Je verplaatst eerst de bovenste kleurstapel en elk slot in deze ronde heeft dezelfde grootte.</string>
+    <string name="interactive_onboarding_blocksort_pick_hint">Tik eerst op de gemarkeerde bronkolom in de gemengde layout.</string>
+    <string name="interactive_onboarding_blocksort_match_title">Match de bovenste kleur</string>
+    <string name="interactive_onboarding_blocksort_match_body">Verplaats die stapel nu naar een kolom waarvan de bovenste kleur al overeenkomt. Bijpassende kolommen laten je kleuren veilig groeperen, ook wanneer het bord zich in twee rijen splitst.</string>
+    <string name="interactive_onboarding_blocksort_match_hint">Verplaats de stapel naar de gemarkeerde kolom met dezelfde kleur.</string>
+    <string name="interactive_onboarding_blocksort_finish_title">Voltooi een nette kolom</string>
+    <string name="interactive_onboarding_blocksort_finish_body">Mooi. Nog één zet voltooit in deze ronde een kolom in één kleur. Maak die af om het kerndoel van BlockSort te zien.</string>
+    <string name="interactive_onboarding_blocksort_finish_hint">Voltooi de gemarkeerde kolom zodat elk slot dezelfde kleur toont.</string>
+
+</resources>

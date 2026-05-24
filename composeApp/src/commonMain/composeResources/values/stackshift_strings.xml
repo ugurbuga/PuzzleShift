@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_stackshift_desc">Launch pieces from the bottom to clear rows and columns.</string>
+
+    <!-- StackShiftGameScreen -->
+    <string name="reward_piece_row_message">Horizontal Row Clearer piece equipped!</string>
+    <string name="reward_piece_column_message">Vertical Column Clearer piece equipped!</string>
+    <string name="launch_bar">Launch bar</string>
+    <string name="launch_boost_active">Boost active • %1$s turns</string>
+    <string name="launch_special_chance">Special block chance +%1$s%</string>
+    <string name="launch_soft_lock_message">Preview the target, then release to place</string>
+    <string name="launch_chain_message">Row + Column • +%2$s</string>
+    <string name="launch_paused">Paused</string>
+    <string name="launch_game_over">Restart for a new run</string>
+    <string name="launch_drag_hint">Drag horizontally → release</string>
+    <string name="queue_next_short">Next</string>
+    <string name="game_message_soft_lock">Release to place the piece on the highlighted cells.</string>
+    <string name="game_message_overflow">No space remains for any piece in the tray.</string>
+    <string name="game_message_special_chain_board">Row and column clear together! %1$s lines cleared.</string>
+    <string name="game_message_pressure_game_over">No more placements are possible. Start a new run.</string>
+    <string name="game_message_special_lines">Nice combo! %1$s lines cleared.</string>
+    <string name="game_message_special_triggered">A big clear removed %1$d cells!</string>
+    <string name="game_message_perfect_drop">Clean placement x%1$s!</string>
+    <string name="game_message_chain_lines">Double clear! %2$s lines cleared.</string>
+    <string name="game_message_good_shot">Good move. Check the remaining tray pieces.</string>
+    <string name="game_message_hold_updated">Tray refreshed. Keep building.</string>
+    <string name="game_message_tempo_critical">Look for a row or column clear before the tray locks up.</string>
+    <string name="game_message_tempo_up">A new trio is ready. Scan the board carefully.</string>
+    <string name="game_message_resumed">Resume. Choose the column and launch.</string>
+    <string name="feedback_perfect_lane">Clean fit x%1$s</string>
+    <string name="feedback_micro_adjust">Reposition</string>
+    <string name="feedback_soft_lock">Preview ready</string>
+    <string name="feedback_hold_armed">Hold ready</string>
+    <string name="feedback_swap">Swapped</string>
+    <string name="feedback_special_chain">Special chain +%1$s • %2$d blocks</string>
+    <string name="feedback_special">Special +%1$s • %2$d blocks</string>
+    <string name="feedback_perfect">Perfect x%1$s +%2$s</string>
+    <string name="feedback_chain">Chain x%1$s +%2$s</string>
+    <string name="game_message_ad_reward_stackshift">Special block equipped! Ready to launch.</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_stackshift_intro_title">Drag the active piece and line up your launch</string>
+    <string name="tutorial_stackshift_intro_body">The current piece starts in the launch dock. Drag it left or right under the board, release when the preview looks good, and it will drop into the nearest valid lane.</string>
+    <string name="tutorial_stackshift_systems_title">Use action blocks when the board gets crowded</string>
+    <string name="tutorial_stackshift_systems_body">Hold swaps the current piece, Pause freezes the run, Block Properties explains symbols, and Settings changes the look and language. These buttons also follow your chosen board block style.</string>
+    <string name="tutorial_stackshift_specials_title">Special blocks can save tight boards</string>
+    <string name="tutorial_stackshift_specials_body">Some pieces carry special effects. Learn what each icon does so you can clear a row, clear a column, slip through gaps, or punch through danger when the board gets crowded.</string>
+    <string name="tutorial_stackshift_ready_title">You are ready to launch in StackShift</string>
+    <string name="tutorial_stackshift_ready_body">Keep your launches clean, plan for the next queue, and use specials before pressure builds too high. When you want a refresher, come back to this guide anytime.</string>
+    <string name="tutorial_stackshift_ready_tutorial_hint">Open Tutorial anytime to review launching, queue awareness, and special block effects.</string>
+    <string name="tutorial_stackshift_ready_settings_hint">Open Settings to change the language, theme, colors, and block style before your next run.</string>
+
+</resources>

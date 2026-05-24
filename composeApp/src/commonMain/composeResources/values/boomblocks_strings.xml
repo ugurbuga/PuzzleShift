@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_boomblocks_desc">Tap groups of 3 or more blocks to explode them.</string>
+
+    <!-- BoomBlocksGameScreen -->
+    <string name="game_message_ad_reward_boomblocks">Color cleared! The board is reshaped.</string>
+    <string name="ad_reward_boomblocks_clear">Clear Color</string>
+    <string name="feedback_ad_reward_boomblocks">%1$s cleared</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_task_explode_groups">Explode %1$d block groups</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_boomblocks_intro_title">Explode matching groups</string>
+    <string name="tutorial_boomblocks_intro_body">In BoomBlocks, you don\'t launch or drag pieces. Instead, look for three or more touching blocks of the same color and tap any of them to clear the whole group.</string>
+    <string name="tutorial_boomblocks_gravity_title">Dynamic board movement</string>
+    <string name="tutorial_boomblocks_gravity_body">When a group explodes, it creates a vacuum that pulls surrounding blocks in. New blocks then refill the board from the nearest edge, keeping the action dynamic.</string>
+    <string name="tutorial_boomblocks_ready_title">You are ready for BoomBlocks</string>
+    <string name="tutorial_boomblocks_ready_body">Focus on finding large groups for maximum score and watch how each explosion reshapes the board. Good luck!</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_boomblocks_basic_title">Tap to explode</string>
+    <string name="interactive_onboarding_boomblocks_basic_body">Find a group of three or more same-colored blocks and tap them to clear them from the board.</string>
+    <string name="interactive_onboarding_boomblocks_large_title">Bigger groups, more points</string>
+    <string name="interactive_onboarding_boomblocks_large_body">Larger groups give more points and clear more space. Tap the highlighted large group!</string>
+    <string name="interactive_onboarding_boomblocks_gravity_title">Gravity shifts</string>
+    <string name="interactive_onboarding_boomblocks_gravity_body">When you explode blocks, new ones fall in from the opposite side of the explosion. Watch how the board shifts!</string>
+    <string name="interactive_onboarding_boomblocks_strategic_title">Strategic refills</string>
+    <string name="interactive_onboarding_boomblocks_strategic_body">New blocks refill the board based on the explosion center. Use this to set up even bigger groups!</string>
+    <string name="interactive_onboarding_boomblocks_tap_hint">Tap the highlighted group to continue.</string>
+
+</resources>

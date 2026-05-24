@@ -11,6 +11,7 @@ import com.ugurbuga.blockgames.game.model.GameMode
 import com.ugurbuga.blockgames.game.model.GameplayStyle
 import com.ugurbuga.blockgames.game.model.DigitShiftGuess
 import com.ugurbuga.blockgames.game.model.DigitShiftLetterState
+import com.ugurbuga.blockgames.game.model.GridPoint
 import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -155,6 +156,43 @@ class GameSessionCodecTest {
         assertEquals(state.digitShiftKeyboardHints, decoded.digitShiftKeyboardHints)
         assertTrue(decoded.digitShiftAwaitingNextRound)
         assertEquals(challenge.tasks, decoded.activeChallenge?.tasks)
+    }
+
+    @Test
+    fun encodeDecode_preservesSumShiftSessionDetails() {
+        val state = com.ugurbuga.blockgames.game.logic.SumShiftGameLogic(random = Random(5), scoreCalculator = ScoreCalculator()).newGame(
+            config = GameConfig(columns = 5, rows = 7, difficultyIntervalSeconds = 9_999, linesPerLevel = 9_999),
+            challenge = null,
+            mode = GameMode.TimeAttack,
+        ).copy(
+            score = 1_420,
+            remainingTimeMillis = 27_000L,
+            sumShiftRowTargets = listOf(6, 6, 9, 8, 8, 7, 10),
+            sumShiftColumnTargets = listOf(7, 11, 8, 5, 6),
+            sumShiftSelectedCells = setOf(
+                GridPoint(0, 0),
+                GridPoint(1, 0),
+                GridPoint(3, 1),
+                GridPoint(4, 1),
+                GridPoint(1, 2),
+            ),
+            sumShiftManualDisabledCells = setOf(
+                GridPoint(3, 4),
+                GridPoint(0, 6),
+            ),
+        )
+
+        val decoded = GameSessionCodec.decode(GameSessionCodec.encode(state))
+
+        assertNotNull(decoded)
+        assertEquals(GameplayStyle.SumShift, decoded.gameplayStyle)
+        assertEquals(5, decoded.config.columns)
+        assertEquals(7, decoded.config.rows)
+        assertEquals(27_000L, decoded.remainingTimeMillis)
+        assertEquals(state.sumShiftRowTargets, decoded.sumShiftRowTargets)
+        assertEquals(state.sumShiftColumnTargets, decoded.sumShiftColumnTargets)
+        assertEquals(state.sumShiftSelectedCells, decoded.sumShiftSelectedCells)
+        assertEquals(state.sumShiftManualDisabledCells, decoded.sumShiftManualDisabledCells)
     }
 }
 

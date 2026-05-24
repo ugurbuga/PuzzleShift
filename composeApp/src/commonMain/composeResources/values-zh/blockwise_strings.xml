@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blockwise_desc">在棋盘的任何位置拖放方块。</string>
+
+    <!-- BlockWiseGameScreen -->
+    <string name="ad_reward_blockwise_refresh">刷新托盘</string>
+    <string name="feedback_ad_reward_blockwise">托盘已刷新</string>
+    <string name="launch_drag_hint_blockwise">在棋盘上任意拖动 → 松开放置</string>
+    <string name="game_message_select_column">将方块水平拖动，选择列，然后向上发射。</string>
+    <string name="game_message_ad_reward_blockwise">托盘已刷新！新形状已就绪。</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rows_title">行</string>
+    <string name="challenge_info_clear_rows">填满整行后，该行会从棋盘上清除。</string>
+    <string name="challenge_info_clear_both_directions_title">行 + 列</string>
+    <string name="challenge_info_clear_both_directions">一次放置可以同时清除至少一行和一列。</string>
+    <string name="challenge_task_clear_rows">清除 %1$d 行</string>
+    <string name="challenge_task_clear_both_directions">完成 %1$d 次行 + 列同时清除</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_intro_title">将三个方块中的任意一个拖动到棋盘上</string>
+    <string name="tutorial_intro_body">托盘中有三个形状。选择你想要的一个，将其拖动到任何空单元格上，然后松手将其放置在合适的位置。</string>
+    <string name="tutorial_systems_title">考虑整个托盘，而不仅仅是一步棋</string>
+    <string name="tutorial_systems_body">放置一个方块后，剩余的托盘仍留在屏幕上。当三个方块都用完时，会出现新的三个。尽量为您仍然拥有的每个形状留出足够的空间。</string>
+    <string name="tutorial_specials_title">填满整行或整列即可清除</string>
+    <string name="tutorial_specials_body">这里没有特殊方块。相反，只要填满整行或整列就能将其清除；如果一行和一列同时完成，它们会一起被清掉。</string>
+    <string name="tutorial_ready_title">你已经准备好体验新的方块解谜流程了</string>
+    <string name="tutorial_ready_body">继续观察整组托盘，准备好行列清除，并避免把大形状卡死。当三块中没有任何一块还能放下时，本局就结束了。</string>
+    <string name="tutorial_ready_block_properties_hint">如果你想重新了解自由放置以及同时清除行和列，可以随时打开教程。</string>
+    <string name="tutorial_ready_tutorial_hint">如果你想重新了解自由放置以及同时清除行和列，可以随时打开教程。</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_drag_title">把托盘中的方块拖到棋盘上</string>
+    <string name="interactive_onboarding_drag_body">点按托盘中的任意一个形状，把它移动到棋盘上，并与高亮单元格对齐。</string>
+    <string name="interactive_onboarding_drag_to_board">把高亮的方块拖到发光的目标区域中。</string>
+    <string name="interactive_onboarding_drag_ready">很好——现在松手。等它吸附到高亮单元格后，下一步引导会自动打开。</string>
+    <string name="interactive_onboarding_aim_hint">把方块放进高亮单元格内以继续。</string>
+    <string name="interactive_onboarding_target_locked">很好——保持在这里，然后松手继续。</string>
+    <string name="interactive_onboarding_waiting">放置已接受，正在准备下一步引导…</string>
+    <string name="interactive_onboarding_line_clear_title">填满一整行并清除它</string>
+    <string name="interactive_onboarding_line_clear_body">把这个形状放到引导位置，让这一行填满、闪光并消失。</string>
+    <string name="interactive_onboarding_column_clearer_title">填满一整列并清除它</string>
+    <string name="interactive_onboarding_column_clearer_body">现在使用高亮的放置位置补满整列，腾出纵向空间。</string>
+    <string name="interactive_onboarding_row_clearer_title">整行可以打开横向空间</string>
+    <string name="interactive_onboarding_row_clearer_body">一整行填满后会立刻清除。对准高亮单元格，看看棋盘如何横向打开。</string>
+    <string name="interactive_onboarding_ghost_title">托盘和棋盘同样重要</string>
+    <string name="interactive_onboarding_ghost_body">放置当前形状前，也看看另外两块。好的局面来自为整组托盘留空间，而不只是当前这一步。</string>
+    <string name="interactive_onboarding_heavy_title">同时清除两个方向</string>
+    <string name="interactive_onboarding_heavy_body">有些放置会同时完成一行和一列。用这个引导位置触发一次更大的双重清除。</string>
+
+</resources>

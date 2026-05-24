@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_stackshift_desc">Starte Teile von unten, um Reihen und Spalten zu löschen.</string>
+
+    <!-- StackShiftGameScreen -->
+    <string name="reward_piece_row_message">Horizontale Reihenräumer-Teil ausgerüstet!</string>
+    <string name="reward_piece_column_message">Vertikale Spaltenräumer-Teil ausgerüstet!</string>
+    <string name="launch_bar">Startleiste</string>
+    <string name="launch_boost_active">Schub aktiv • %1$s Züge</string>
+    <string name="launch_special_chance">Chance auf Spezialblock +%1$s%</string>
+    <string name="launch_soft_lock_message">Sanfte Sperre aktiv • Mikroanpassung aktiviert</string>
+    <string name="launch_chain_message">Reihe + Spalte • +%2$s</string>
+    <string name="launch_paused">Pausiert</string>
+    <string name="launch_game_over">Für eine neue Runde neu starten</string>
+    <string name="launch_drag_hint">Horizontal ziehen → loslassen</string>
+    <string name="queue_next_short">Nächste</string>
+    <string name="game_message_soft_lock">Das kurze Anpassungsfenster ist offen. Passe die Spalte fein an.</string>
+    <string name="game_message_overflow">Spaltenüberlauf! Du konntest die kritischen Spalten nicht halten.</string>
+    <string name="game_message_special_chain_board">Spezialkette x%1$s! Das Spielfeld wurde neu geformt.</string>
+    <string name="game_message_pressure_game_over">Der Spaltendruck hat das Limit erreicht. Starte eine neue Runde.</string>
+    <string name="game_message_special_lines">Spezialblock-Kette! %1$s Linien wurden gelöscht.</string>
+    <string name="game_message_special_triggered">Spezialblock ausgelöst. %1$d Blöcke explodiert!</string>
+    <string name="game_message_perfect_drop">Perfekter Drop x%1$s! Halte die Serie.</string>
+    <string name="game_message_chain_lines">Doppeltes Löschen! %2$s Linien wurden entfernt.</string>
+    <string name="game_message_good_shot">Guter Schuss. Plane die nächste Spalte.</string>
+    <string name="game_message_hold_updated">Ablage aktualisiert. Wähle eine neue Spalte.</string>
+    <string name="game_message_tempo_critical">Das Tempo steigt. Räume die kritischen Spalten frei.</string>
+    <string name="game_message_tempo_up">Das Tempo steigt. Schwieriger Teile kommen.</string>
+    <string name="game_message_resumed">Weiter. Wähle die Spalte und starte.</string>
+    <string name="feedback_perfect_lane">Perfekte Spur x%1$s</string>
+    <string name="feedback_micro_adjust">Mikroanpassung</string>
+    <string name="feedback_soft_lock">Sanfte Sperre</string>
+    <string name="feedback_hold_armed">Ablage bereit</string>
+    <string name="feedback_swap">Getauscht</string>
+    <string name="feedback_special_chain">Spezialkette +%1$s • %2$d Blöcke</string>
+    <string name="feedback_special">Spezial +%1$s • %2$d Blöcke</string>
+    <string name="feedback_perfect">Perfekt x%1$s +%2$s</string>
+    <string name="feedback_chain">Kette x%1$s +%2$s</string>
+    <string name="game_message_ad_reward_stackshift">Spezialblock ausgerüstet! Bereit zum Start.</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_stackshift_intro_title">Starte Teile aus dem unteren Dock</string>
+    <string name="tutorial_stackshift_intro_body">Dein aktives Teil wartet unten. Ziehe es horizontal, um eine Spalte auszurichten, und lass los, um es auf das Spielfeld zu starten. Die Vorschau auf das nächste Teil ist absichtlich dezenter, damit dein Blick auf dem aktiven Teil bleibt.</string>
+    <string name="tutorial_stackshift_systems_title">Nutze die Aktionsblöcke, wenn es eng wird</string>
+    <string name="tutorial_stackshift_systems_body">Ablage tauscht das aktuelle Teil, Pausieren friert die Runde ein, Blockeigenschaften erklärt die Symbole und Einstellungen verändert das Erscheinungsbild. Diese Buttons übernehmen außerdem deinen gewählten Spielfeld-Blockstil.</string>
+    <string name="tutorial_stackshift_specials_title">Spezialblöcke können eine Runde retten</string>
+    <string name="tutorial_stackshift_specials_body">Einige Teile haben Spezialeffekte. Lerne ihre Symbole und nutze sie, um Druck zu senken, Platz zu schaffen oder schwierige Stapel zu durchdringen.</string>
+    <string name="tutorial_stackshift_ready_title">Du bist bereit, diese Runde fortzusetzen</string>
+    <string name="tutorial_stackshift_ready_body">Das ist alles: Plane die nächste Spalte, beobachte die Startleiste und setze Specials im richtigen Moment ein. Du kannst dieses Tutorial jederzeit über Einstellungen erneut öffnen.</string>
+    <string name="tutorial_stackshift_ready_tutorial_hint">Öffne das Tutorial, wenn du eine kurze Auffrischung zu Steuerung und Spezialsymbolen möchtest.</string>
+    <string name="tutorial_stackshift_ready_settings_hint">Öffne Einstellungen, um Sprache, Thema, Farben und Blockstil vor deiner nächsten Runde anzupassen.</string>
+
+</resources>

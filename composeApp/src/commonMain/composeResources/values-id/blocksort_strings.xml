@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blocksort_desc">Urutkan tumpukan warna campuran sampai setiap kolom terisi menjadi satu warna.</string>
+
+    <!-- BlockSortGameScreen -->
+    <string name="game_message_ad_reward_blocksort">Board remixed! Fresh routes are open.</string>
+    <string name="blocksort_completed_label">Tersortir</string>
+    <string name="blocksort_goal_hint">Tujuan: selesaikan ronde dengan setiap kolom terisi hanya satu warna. Ronde bisa memakai 3, 4, 5, atau 6 slot berukuran sama per kolom, dan papan dapat terbagi menjadi dua baris.</string>
+    <string name="blocksort_no_moves_hint">Tidak ada perpindahan valid yang tersisa pada tata letak campuran ini. Coba acak ulang atau mulai ronde baru.</string>
+    <string name="blocksort_round_congrats_title">Selamat!</string>
+    <string name="blocksort_round_complete_hint">Ronde selesai! Bonus +%1$d dan tata letak campuran baru telah datang.</string>
+    <string name="blocksort_round_label">Ronde</string>
+    <string name="blocksort_select_source_hint">Ketuk kolom campuran yang tidak kosong untuk mengambil tumpukan warna teratasnya.</string>
+    <string name="blocksort_selected_hint">Sekarang ketuk kolom kosong atau kolom dengan warna atas yang sama untuk memindahkan tumpukan ke sana.</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rounds_title">Ronde</string>
+    <string name="challenge_info_clear_rounds">Selesaikan ronde BlockSort penuh dengan mengubah setiap kolom yang terisi menjadi satu warna.</string>
+    <string name="challenge_task_complete_columns">Selesaikan %1$d kolom</string>
+    <string name="challenge_task_clear_rounds">Selesaikan %1$d ronde</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_blocksort_intro_title">Pindahkan tumpukan atas berukuran sama antar kolom</string>
+    <string name="tutorial_blocksort_intro_body">Setiap ronde memakai ukuran slot yang sama untuk semua kolom. Ketuk kolom campuran yang tidak kosong untuk mengambil tumpukan warna teratasnya, lalu pindahkan ke kolom kosong atau kolom dengan warna atas yang sama.</string>
+    <string name="tutorial_blocksort_rules_title">Hanya warna yang sama yang bisa ditumpuk bersama</string>
+    <string name="tutorial_blocksort_rules_body">Anda hanya bisa memindahkan ke ruang kosong atau ke warna atas yang sama. Saat puzzle berkembang, papan bisa terbagi menjadi baris atas dan bawah, jadi perhatikan ruang bantu dan visibilitas.</string>
+    <string name="tutorial_blocksort_finish_title">Selesaikan setiap kolom dengan satu warna</string>
+    <string name="tutorial_blocksort_finish_body">Sebuah kolom dianggap selesai ketika setiap slot pada ronde itu berisi warna yang sama. Ronde yang berbeda bisa memakai 3, 4, 5, atau 6 slot berukuran sama, dan tata letak campuran baru akan datang setelah semuanya selesai.</string>
+    <string name="tutorial_blocksort_ready_title">Anda siap untuk BlockSort</string>
+    <string name="tutorial_blocksort_ready_body">Rencanakan dua atau tiga langkah ke depan, lindungi kolom bantuan Anda, dan cepat beradaptasi saat setiap ronde mengubah jumlah slot dan papan bisa terbagi menjadi dua baris.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_blocksort_pick_title">Pilih kolom asal</string>
+    <string name="interactive_onboarding_blocksort_pick_body">Mulailah dengan mengetuk kolom campuran yang disorot. Anda akan memindahkan tumpukan warna teratasnya lebih dulu, dan setiap slot pada ronde ini berukuran sama.</string>
+    <string name="interactive_onboarding_blocksort_pick_hint">Ketuk dulu kolom asal yang disorot pada tata letak campuran.</string>
+    <string name="interactive_onboarding_blocksort_match_title">Cocokkan warna atas</string>
+    <string name="interactive_onboarding_blocksort_match_body">Sekarang pindahkan tumpukan itu ke kolom yang warna paling atasnya sudah sama. Kolom yang cocok membantu Anda mengelompokkan warna dengan aman bahkan saat papan terbagi menjadi dua baris.</string>
+    <string name="interactive_onboarding_blocksort_match_hint">Pindahkan tumpukan ke kolom warna cocok yang disorot.</string>
+    <string name="interactive_onboarding_blocksort_finish_title">Selesaikan satu kolom rapi</string>
+    <string name="interactive_onboarding_blocksort_finish_body">Bagus. Satu langkah lagi akan melengkapi setiap slot pada kolom satu warna di ronde ini. Selesaikan untuk melihat tujuan utama BlockSort.</string>
+    <string name="interactive_onboarding_blocksort_finish_hint">Lengkapi kolom yang disorot agar setiap slot menunjukkan warna yang sama.</string>
+
+</resources>

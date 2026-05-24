@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_mergeshift_desc">Merge pieces of the same value to reach higher scores.</string>
+
+    <!-- MergeShiftGameScreen -->
+    <string name="game_message_ad_reward_mergeshift">Numbers changed! Keep merging.</string>
+    <string name="ad_reward_mergeshift_swap">Change Number</string>
+    <string name="feedback_ad_reward_mergeshift">Numbers changed</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_mergeshift_intro_title">Launch pieces to merge same-valued blocks</string>
+    <string name="tutorial_mergeshift_intro_body">In MergeShift, pieces are launched from the dock. When a block lands on another with the same value, they merge into a higher value. Keep merging to clear space and reach higher scores.</string>
+    <string name="tutorial_mergeshift_systems_title">Plan your mergers to prevent overflow</string>
+    <string name="tutorial_mergeshift_systems_body">Every piece you launch adds to the column height. If any column reaches the top, the game ends. Use the preview to see where your piece will land, or open Settings to customize your experience.</string>
+    <string name="tutorial_mergeshift_specials_title">Combine multiple merges for bigger combos</string>
+    <string name="tutorial_mergeshift_specials_body">A single launch can trigger a chain reaction of merges. These combos award more points and clear more space on the board, helping you stay in the game longer.</string>
+    <string name="tutorial_mergeshift_ready_title">You are ready for MergeShift</string>
+    <string name="tutorial_mergeshift_ready_body">Focus on keeping your columns low and setting up high-value merges. Good luck reaching the highest numbers!</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_mergeshift_launch_title">Launch your first piece</string>
+    <string name="interactive_onboarding_mergeshift_launch_body">Drag the piece horizontally under the board to aim, then release to launch it into a column.</string>
+    <string name="interactive_onboarding_mergeshift_merge_vertical_title">Merge same values vertically</string>
+    <string name="interactive_onboarding_mergeshift_merge_vertical_body">Launch a piece into a column that already has a block with the same value. They will merge into a higher number!</string>
+    <string name="interactive_onboarding_mergeshift_merge_horizontal_title">Merge same values horizontally</string>
+    <string name="interactive_onboarding_mergeshift_merge_horizontal_body">Blocks can also merge with their neighbors to the left or right. Aim for the highlighted spot to trigger a horizontal merge.</string>
+    <string name="interactive_onboarding_mergeshift_merge_multi_title">Trigger multiple merges</string>
+    <string name="interactive_onboarding_mergeshift_merge_multi_body">A single placement can trigger merges in multiple directions (above, left, right). Use this to clear more space and score big!</string>
+
+</resources>

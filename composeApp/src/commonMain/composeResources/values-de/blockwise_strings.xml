@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blockwise_desc">Ziehe Teile an eine beliebige Stelle auf dem Spielfeld.</string>
+
+    <!-- BlockWiseGameScreen -->
+    <string name="ad_reward_blockwise_refresh">Ablage aktualisieren</string>
+    <string name="feedback_ad_reward_blockwise">Tablett aktualisiert</string>
+    <string name="launch_drag_hint_blockwise">Überall auf das Spielfeld ziehen → zum Platzieren loslassen</string>
+    <string name="game_message_select_column">Ziehe das Teil horizontal, wähle die Spalte und starte nach oben.</string>
+    <string name="game_message_ad_reward_blockwise">Ablage aktualisiert! Neue Formen sind bereit.</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rows_title">Reihen</string>
+    <string name="challenge_info_clear_rows">Vervollständige ganze Reihen, damit sie vom Spielfeld verschwinden.</string>
+    <string name="challenge_info_clear_both_directions_title">Reihe + Spalte</string>
+    <string name="challenge_info_clear_both_directions">Eine einzige Platzierung kann gleichzeitig mindestens eine Reihe und eine Spalte löschen.</string>
+    <string name="challenge_task_clear_rows">%1$d Reihen löschen</string>
+    <string name="challenge_task_clear_both_directions">%1$d Reihen- + Spaltenlöschungen erzielen</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_intro_title">Ziehe eines der drei Teile auf das Spielfeld</string>
+    <string name="tutorial_intro_body">Drei Formen warten in der Ablage. Wähle eine aus, ziehe sie auf leere Zellen und lass sie dort los, wo sie genau hinpasst.</string>
+    <string name="tutorial_systems_title">Denk an die ganze Ablage, nicht nur an einen Zug</string>
+    <string name="tutorial_systems_body">Nachdem du ein Teil platziert hast, bleiben die restlichen Teile in der Ablage auf dem Bildschirm. Wenn alle drei verbraucht sind, erscheint ein neues Trio. Versuche, genug Platz für jede Form zu lassen, die du noch hast.</string>
+    <string name="tutorial_specials_title">Reihen und Spalten werden durch vollständiges Füllen gelöscht</string>
+    <string name="tutorial_specials_body">Hier gibt es keine Spezialteile. Fülle stattdessen eine komplette Reihe oder Spalte, um sie zu löschen. Wenn beides gleichzeitig voll wird, werden beide zusammen entfernt.</string>
+    <string name="tutorial_ready_title">Du bist bereit für den neuen Block-Puzzle-Ablauf</string>
+    <string name="tutorial_ready_body">Behalte die Ablage im Blick, bereite Reihen- und Spaltenlöschungen vor und vermeide es, große Formen einzuklemmen. Wenn keines der drei Teile mehr passt, endet die Runde.</string>
+    <string name="tutorial_ready_block_properties_hint">Öffne das Tutorial jederzeit, wenn du freie Platzierung und gleichzeitige Reihen-/Spaltenlöschungen wiederholen möchtest.</string>
+    <string name="tutorial_ready_tutorial_hint">Öffne das Tutorial jederzeit, wenn du freie Platzierung und gleichzeitige Reihen-/Spaltenlöschungen wiederholen möchtest.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_drag_title">Ziehe ein Teil aus der Ablage auf das Spielfeld</string>
+    <string name="interactive_onboarding_drag_body">Berühre eine der drei Formen in der Ablage, bewege sie über das Spielfeld und richte sie an den markierten Zellen aus.</string>
+    <string name="interactive_onboarding_drag_to_board">Ziehe das markierte Teil in den leuchtenden Zielbereich.</string>
+    <string name="interactive_onboarding_drag_ready">Gut — jetzt loslassen. Sobald es in die markierten Zellen einrastet, öffnet sich die nächste Anleitung automatisch.</string>
+    <string name="interactive_onboarding_aim_hint">Lass das Teil in den markierten Zellen los, um fortzufahren.</string>
+    <string name="interactive_onboarding_target_locked">Perfekt — halte es dort und lass los, um fortzufahren.</string>
+    <string name="interactive_onboarding_waiting">Platzierung akzeptiert. Der nächste geführte Moment wird vorbereitet…</string>
+    <string name="interactive_onboarding_line_clear_title">Fülle eine Reihe, um sie zu löschen</string>
+    <string name="interactive_onboarding_line_clear_body">Platziere diese Form an der geführten Stelle, damit die Reihe voll wird, aufleuchtet und verschwindet.</string>
+    <string name="interactive_onboarding_column_clearer_title">Fülle eine Spalte, um sie zu löschen</string>
+    <string name="interactive_onboarding_column_clearer_body">Nutze jetzt die markierte Platzierung, um eine volle Spalte zu vervollständigen und vertikalen Raum zu öffnen.</string>
+    <string name="interactive_onboarding_row_clearer_title">Reihen öffnen horizontalen Raum</string>
+    <string name="interactive_onboarding_row_clearer_body">Eine volle Reihe verschwindet sofort. Ziele auf die markierten Zellen und beobachte, wie sich das Spielfeld über die ganze Breite öffnet.</string>
+    <string name="interactive_onboarding_ghost_title">Die Ablage ist genauso wichtig wie das Spielfeld</string>
+    <string name="interactive_onboarding_ghost_body">Bevor du eine Form platzierst, wirf auch einen Blick auf die anderen beiden Teile. Gute Läufe entstehen, wenn du Platz für die gesamte Ablage lässt, nicht nur für diesen einen Zug.</string>
+    <string name="interactive_onboarding_heavy_title">Lösche beide Richtungen gleichzeitig</string>
+    <string name="interactive_onboarding_heavy_body">Manche Platzierungen vervollständigen gleichzeitig eine Reihe und eine Spalte. Nutze die geführte Stelle für eine größere Doppellöschung.</string>
+
+</resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_chainshift_desc">Schieße aus der Mitte, füge Blöcke in eine Spiralkette ein und lasse 3er- oder größere Farbtreffer platzen.</string>
+
+    <!-- ChainShiftGameScreen -->
+    <string name="game_message_ad_reward_chainshift">Aktiver Block für Chain Shift aktualisiert!</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_chainshift_intro_title">Lerne Chain Shift kennen</string>
+    <string name="tutorial_chainshift_intro_body">Blöcke kommen vom Rand herein, winden sich um das Spielfeld und kriechen zur Mitte. Dein Shooter bleibt im Zentrum, deshalb muss jeder Schuss die bewegte Kette treffen, bevor sie dich erreicht.</string>
+    <string name="tutorial_chainshift_path_title">Zielen und Schießen</string>
+    <string name="tutorial_chainshift_path_body">Ziele aus der Mitte und lass los, um zu schießen. Dein Block fügt sich dort ein, wo er auf die Kette trifft, und schiebt nachfolgende Blöcke nach vorne.</string>
+    <string name="tutorial_chainshift_combo_title">Rückzüge und Combos erstellen</string>
+    <string name="tutorial_chainshift_combo_body">Kombiniere 3 oder mehr verbundene Blöcke derselben Farbe entlang der Kette, um sie platzen zu lassen. Wenn sich die Lücke schließt, zieht sich die Kette zum Rand zurück, was möglicherweise Kettenreaktionen auslöst.</string>
+    <string name="tutorial_chainshift_ready_title">Halte die Mitte</string>
+    <string name="tutorial_chainshift_ready_body">Bleib ruhig, halte die Spirale kurz und nutze deine Schüsse, um gefährliche Folgen zu brechen, bevor sie das Zentrum verriegeln. Je tiefer die Kette eindringt, desto weniger Raum bleibt dir zur Erholung.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_chainshift_intro_title">Schieße auf den geführten Block</string>
+    <string name="interactive_onboarding_chainshift_intro_body">Beginne damit, auf den hervorgehobenen Teil der Spirale zu schießen. Dein Block startet aus der Mitte und fügt sich am Aufprallpunkt in die Kette ein.</string>
+    <string name="interactive_onboarding_chainshift_match_title">Erzeuge einen 3er-Treffer</string>
+    <string name="interactive_onboarding_chainshift_match_body">Nutze jetzt den geführten Schuss, um 3 Blöcke derselben Farbe auszurichten. Passende Segmente platzen sofort und schaffen Luft rund um die Mitte.</string>
+    <string name="interactive_onboarding_chainshift_chain_title">Eine Kettenreaktion auslösen</string>
+    <string name="interactive_onboarding_chainshift_chain_body">Dieses Setup belohnt einen klügeren Schuss. Räume das erste Match ab, beobachte, wie sich die Kette zum Rand zurückzieht, und lass das zweite Match von selbst platzen.</string>
+    <string name="interactive_onboarding_chainshift_tap_hint">Zielen und loslassen, um den markierten Block zu schießen.</string>
+
+</resources>

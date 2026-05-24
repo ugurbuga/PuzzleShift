@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_stackshift_desc">Satır ve sütunları temizlemek için parçaları alttan fırlatın.</string>
+
+    <!-- StackShiftGameScreen -->
+    <string name="reward_piece_row_message">Yatay Satır Temizleyici parça alındı!</string>
+    <string name="reward_piece_column_message">Dikey Sütun Temizleyici parça alındı!</string>
+    <string name="launch_bar">Fırlatma çubuğu</string>
+    <string name="launch_boost_active">Hız aktif • %1$s tur</string>
+    <string name="launch_special_chance">Özel blok şansı +%1$s%</string>
+    <string name="launch_soft_lock_message">Hedefi önizle, sonra bırakıp yerleştir</string>
+    <string name="launch_chain_message">Satır + Sütun • +%2$s</string>
+    <string name="launch_paused">Duraklatıldı</string>
+    <string name="launch_game_over">Yeni tur için yeniden başlat</string>
+    <string name="launch_drag_hint">Yatay sürükle → bırak</string>
+    <string name="queue_next_short">Sıradaki</string>
+    <string name="game_message_soft_lock">Vurgulanan hücreleri kontrol et, sonra bırakıp yerleştir.</string>
+    <string name="game_message_overflow">Havuzdaki hiçbir parça artık sığmıyor.</string>
+    <string name="game_message_special_chain_board">Satır ve sütun aynı anda temizlendi! %1$s çizgi temizlendi.</string>
+    <string name="game_message_pressure_game_over">Artık yerleştirme yapılamıyor. Yeni tur başlat.</string>
+    <string name="game_message_special_lines">Güzel kombo! %1$s çizgi temizlendi.</string>
+    <string name="game_message_special_triggered">Büyük temizlik %1$d hücreyi kaldırdı!</string>
+    <string name="game_message_perfect_drop">Temiz yerleşim x%1$s!</string>
+    <string name="game_message_chain_lines">Çifte temizlik! %2$s çizgi temizlendi.</string>
+    <string name="game_message_good_shot">İyi hamle. Havuzdaki kalan parçalara bak.</string>
+    <string name="game_message_hold_updated">Parça havuzu yenilendi. Devam et.</string>
+    <string name="game_message_tempo_critical">Havuz tıkanmadan önce bir satır veya sütun temizliği ara.</string>
+    <string name="game_message_tempo_up">Yeni bir üçlü hazır. Tahtayı dikkatle tara.</string>
+    <string name="game_message_resumed">Devam. Sütunu seç ve fırlat.</string>
+    <string name="feedback_perfect_lane">Temiz uyum x%1$s</string>
+    <string name="feedback_micro_adjust">Yeniden konumlandır</string>
+    <string name="feedback_soft_lock">Önizleme hazır</string>
+    <string name="feedback_hold_armed">Beklet hazır</string>
+    <string name="feedback_swap">Değiştirildi</string>
+    <string name="feedback_special_chain">Özel zincir +%1$s • %2$d blok</string>
+    <string name="feedback_special">Özel +%1$s • %2$d blok</string>
+    <string name="feedback_perfect">Mükemmel x%1$s +%2$s</string>
+    <string name="feedback_chain">Zincir x%1$s +%2$s</string>
+    <string name="game_message_ad_reward_stackshift">Özel blok kuşanıldı! Fırlatmaya hazır.</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_stackshift_intro_title">Aktif parçayı sürükle ve fırlatmanı hizala</string>
+    <string name="tutorial_stackshift_intro_body">Mevcut parça fırlatma yuvasında başlar. Tahtanın altında sola veya sağa sürükle, ön izleme iyi görünüyorsa bırak; en yakın geçerli şeride düşer.</string>
+    <string name="tutorial_stackshift_systems_title">Tahta dolmaya başladığında aksiyon bloklarını kullan</string>
+    <string name="tutorial_stackshift_systems_body">Beklet mevcut parçayı değiştirir, Duraklat oyunu dondurur, Blok Özellikleri simgelerin anlamını gösterir ve Ayarlar görünümü ve dili değiştirir. Bu butonlar aynı zamanda seçtiğin tahta blok stiline de uyum sağlar.</string>
+    <string name="tutorial_stackshift_specials_title">Özel bloklar sıkışık tahtaları kurtarabilir</string>
+    <string name="tutorial_stackshift_specials_body">Bazı parçalar özel etkiler taşır. Her ikonun ne yaptığını öğren ki bir satırı temizleyebilesin, bir sütunu temizleyebilesin, boşluklardan sızabilesin ya da tahta sıkıştığında tehlikeyi delebilesin.</string>
+    <string name="tutorial_stackshift_ready_title">StackShift'te fırlatmaya hazırsın</string>
+    <string name="tutorial_stackshift_ready_body">Fırlatmalarını temiz tut, sonraki sırayı planla ve baskı çok yükselmeden özel parçaları kullan. Hatırlatmaya ihtiyaç duyduğunda bu rehbere istediğin zaman geri dönebilirsin.</string>
+    <string name="tutorial_stackshift_ready_tutorial_hint">Fırlatma, sıra takibi ve özel blok etkilerini yeniden gözden geçirmek için istediğin zaman Rehber'i aç.</string>
+    <string name="tutorial_stackshift_ready_settings_hint">Sonraki turundan önce dili, temayı, renkleri ve blok stilini değiştirmek için Ayarlar'ı aç.</string>
+
+</resources>

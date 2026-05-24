@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_boomblocks_desc">उन्हें फोड़ने के लिए 3 या अधिक ब्लॉक्स के समूहों पर टैप करें।</string>
+
+    <!-- BoomBlocksGameScreen -->
+    <string name="game_message_ad_reward_boomblocks">रंग साफ़ हो गया! बोर्ड का आकार बदल गया है।</string>
+    <string name="ad_reward_boomblocks_clear">रंग साफ़ करें</string>
+    <string name="feedback_ad_reward_boomblocks">%1$s साफ हो गया</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_task_explode_groups">%1$d ब्लॉक समूह फोड़ें</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_boomblocks_intro_title">मिलते-जुलते समूह फोड़ें</string>
+    <string name="tutorial_boomblocks_intro_body">BoomBlocks में आप पीस लॉन्च या ड्रैग नहीं करते। इसके बजाय, एक ही रंग के आपस में जुड़े तीन या अधिक ब्लॉक्स खोजें और पूरे समूह को साफ़ करने के लिए उनमें से किसी एक पर टैप करें।</string>
+    <string name="tutorial_boomblocks_gravity_title">बोर्ड की गतिशील चाल</string>
+    <string name="tutorial_boomblocks_gravity_body">जब कोई समूह फटता है, तो वह एक खाली जगह बनाता है जो आसपास के ब्लॉक्स को अपनी ओर खींचती है। इसके बाद नए ब्लॉक्स सबसे नज़दीकी किनारे से बोर्ड को फिर भरते हैं, जिससे खेल लगातार गतिशील बना रहता है।</string>
+    <string name="tutorial_boomblocks_ready_title">अब आप BoomBlocks के लिए तैयार हैं</string>
+    <string name="tutorial_boomblocks_ready_body">सबसे ज़्यादा स्कोर के लिए बड़े समूह खोजने पर ध्यान दें और देखें कि हर विस्फोट बोर्ड को कैसे बदल देता है। शुभकामनाएँ!</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_boomblocks_basic_title">फोड़ने के लिए टैप करें</string>
+    <string name="interactive_onboarding_boomblocks_basic_body">एक ही रंग के तीन या अधिक ब्लॉक्स का समूह खोजें और उसे बोर्ड से साफ़ करने के लिए टैप करें।</string>
+    <string name="interactive_onboarding_boomblocks_large_title">बड़े समूह, ज़्यादा अंक</string>
+    <string name="interactive_onboarding_boomblocks_large_body">बड़े समूह ज़्यादा अंक देते हैं और ज़्यादा जगह खाली करते हैं। हाइलाइट किए गए बड़े समूह पर टैप करें!</string>
+    <string name="interactive_onboarding_boomblocks_gravity_title">गुरुत्व का रुख बदलता है</string>
+    <string name="interactive_onboarding_boomblocks_gravity_body">जब आप ब्लॉक्स फोड़ते हैं, तो नए ब्लॉक्स विस्फोट के उल्टे किनारे से अंदर आते हैं। देखें कि बोर्ड कैसे खिसकता है!</string>
+    <string name="interactive_onboarding_boomblocks_strategic_title">रणनीतिक रीफ़िल</string>
+    <string name="interactive_onboarding_boomblocks_strategic_body">नए ब्लॉक्स विस्फोट के केंद्र के आधार पर बोर्ड को फिर भरते हैं। इसका उपयोग और भी बड़े समूह बनाने के लिए करें!</string>
+    <string name="interactive_onboarding_boomblocks_tap_hint">आगे बढ़ने के लिए हाइलाइट किए गए समूह पर टैप करें।</string>
+
+</resources>

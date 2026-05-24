@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_chainshift_desc">중앙에서 쏘아 블록을 나선형 체인에 끼워 넣고, 같은 색 3개 이상 매치를 터뜨리세요.</string>
+
+    <!-- ChainShiftGameScreen -->
+    <string name="game_message_ad_reward_chainshift">Chain Shift의 활성 블록이 새로고침되었습니다!</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_chainshift_intro_title">Chain Shift를 만나보세요</string>
+    <string name="tutorial_chainshift_intro_body">블록은 가장자리에서 들어와 보드를 감싸며 중앙으로 기어옵니다. 슈터는 가운데에 머무르므로, 모든 발사는 체인이 당신에게 닿기 전에 움직이는 줄을 끊어야 합니다.</string>
+    <string name="tutorial_chainshift_path_title">조준하고 발사</string>
+    <string name="tutorial_chainshift_path_body">중앙에서 조준하고 손을 떼서 발사하세요. 블록이 체인에 닿는 지점에 삽입되며 다음 블록들을 앞으로 밀어냅니다.</string>
+    <string name="tutorial_chainshift_combo_title">후퇴와 콤보 만들기</string>
+    <string name="tutorial_chainshift_combo_body">체인을 따라 같은 색상의 연결된 블록을 3개 이상 맞춰 터뜨리세요. 간격이 좁아지면 체인이 가장자리로 후퇴하며 연쇄 반응이 일어날 수 있습니다.</string>
+    <string name="tutorial_chainshift_ready_title">중앙을 지키세요</string>
+    <string name="tutorial_chainshift_ready_body">침착하게 나선을 짧게 유지하고, 위험한 줄이 중심을 봉쇄하기 전에 발사로 끊어내세요. 체인이 안쪽으로 깊게 들어올수록 회복할 공간은 더 줄어듭니다.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_chainshift_intro_title">가이드된 블록 쏘기</string>
+    <string name="interactive_onboarding_chainshift_intro_body">나선의 하이라이트된 부분을 향해 발사하며 시작하세요. 블록이 중앙에서 발사되어 충돌 지점에서 체인에 삽입됩니다.</string>
+    <string name="interactive_onboarding_chainshift_match_title">3블록 매치를 만드세요</string>
+    <string name="interactive_onboarding_chainshift_match_body">이제 안내된 발사를 사용해 같은 색 블록 3개를 정렬하세요. 맞춘 구간은 즉시 터지며 중심 근처에 숨 돌릴 공간을 만들어 줍니다.</string>
+    <string name="interactive_onboarding_chainshift_chain_title">연쇄 반응 유도</string>
+    <string name="interactive_onboarding_chainshift_chain_body">이 설정은 더 영리한 샷에 보상을 줍니다. 첫 번째 매치를 제거하고 체인이 가장자리로 후퇴하는 것을 지켜본 뒤, 두 번째 매치가 저절로 터지게 하세요.</string>
+    <string name="interactive_onboarding_chainshift_tap_hint">조준하고 손을 떼서 하이라이트된 블록을 쏘세요.</string>
+
+</resources>

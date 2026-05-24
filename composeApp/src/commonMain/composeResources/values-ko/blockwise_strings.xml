@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blockwise_desc">보드 어디에나 피스를 드래그 앤 드롭합니다.</string>
+
+    <!-- BlockWiseGameScreen -->
+    <string name="ad_reward_blockwise_refresh">트레이 새로고침</string>
+    <string name="feedback_ad_reward_blockwise">트레이 새로고침</string>
+    <string name="launch_drag_hint_blockwise">보드 어디든 드래그 → 놓아 배치</string>
+    <string name="game_message_select_column">세 개의 피스 중 하나를 빈 공간으로 드래그하세요.</string>
+    <string name="game_message_ad_reward_blockwise">트레이가 새로고침되었습니다! 새로운 도형이 준비됐습니다.</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rows_title">행</string>
+    <string name="challenge_info_clear_rows">가득 찬 행을 완성해 보드에서 제거하세요.</string>
+    <string name="challenge_info_clear_both_directions_title">행 + 열</string>
+    <string name="challenge_info_clear_both_directions">한 번의 배치로 최소 한 행과 한 열을 동시에 지울 수 있습니다.</string>
+    <string name="challenge_task_clear_rows">행 %1$d개 제거</string>
+    <string name="challenge_task_clear_both_directions">행 + 열 동시 제거 %1$d회</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_intro_title">세 개의 피스 중 하나를 보드로 드래그하세요</string>
+    <string name="tutorial_intro_body">트레이에는 세 가지 도형이 기다리고 있습니다. 원하는 피스를 골라 빈 칸으로 드래그하고, 딱 맞는 위치에서 놓으세요.</string>
+    <string name="tutorial_systems_title">한 수가 아니라 트레이 전체를 보세요</string>
+    <string name="tutorial_systems_body">피스를 하나 놓아도 나머지 트레이는 그대로 남아 있습니다. 세 개를 모두 사용하면 새로운 세트가 등장합니다. 남은 모든 도형을 놓을 공간을 확보하세요.</string>
+    <string name="tutorial_specials_title">행과 열은 모두 채우면 지워집니다</string>
+    <string name="tutorial_specials_body">이 모드에는 특수 피스가 없습니다. 대신 행이나 열 전체를 채우면 제거됩니다. 두 방향이 동시에 완성되면 함께 지워집니다.</string>
+    <string name="tutorial_ready_title">새로운 블록 퍼즐 흐름을 익힐 준비가 되었습니다</string>
+    <string name="tutorial_ready_body">트레이를 계속 살피고, 행/열 제거를 준비하며, 큰 도형이 갇히지 않도록 하세요. 세 개의 피스가 모두 더 이상 들어가지 않으면 플레이가 끝납니다.</string>
+    <string name="tutorial_ready_block_properties_hint">자유 배치와 행/열 동시 제거를 다시 보고 싶다면 언제든 튜토리얼을 여세요.</string>
+    <string name="tutorial_ready_tutorial_hint">자유 배치와 행/열 동시 제거를 다시 보고 싶다면 언제든 튜토리얼을 여세요.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_drag_title">트레이 피스를 보드로 드래그하세요</string>
+    <string name="interactive_onboarding_drag_body">트레이의 세 도형 중 하나를 터치해 보드 위로 옮기고, 하이라이트된 칸에 맞추세요.</string>
+    <string name="interactive_onboarding_drag_to_board">하이라이트된 트레이 피스를 빛나는 목표 영역으로 드래그하세요.</string>
+    <string name="interactive_onboarding_drag_ready">좋습니다 — 이제 손을 떼세요. 하이라이트된 칸에 정확히 맞으면 다음 가이드가 자동으로 열립니다.</string>
+    <string name="interactive_onboarding_aim_hint">계속하려면 피스를 하이라이트된 칸 안에 놓으세요.</string>
+    <string name="interactive_onboarding_target_locked">완벽합니다 — 그대로 두고 손을 떼어 계속하세요.</string>
+    <string name="interactive_onboarding_waiting">배치를 확인했습니다. 다음 가이드 장면을 준비 중…</string>
+    <string name="interactive_onboarding_line_clear_title">행을 완성해 제거하세요</string>
+    <string name="interactive_onboarding_line_clear_body">이 도형을 안내된 위치에 놓아 행을 가득 채우고, 반짝인 뒤 사라지는 모습을 확인하세요.</string>
+    <string name="interactive_onboarding_column_clearer_title">열을 완성해 제거하세요</string>
+    <string name="interactive_onboarding_column_clearer_body">이제 하이라이트된 위치를 사용해 열 전체를 완성하고 세로 공간을 확보하세요.</string>
+    <string name="interactive_onboarding_row_clearer_title">행 제거로 가로 공간을 확보하세요</string>
+    <string name="interactive_onboarding_row_clearer_body">행이 가득 차면 즉시 지워집니다. 하이라이트된 칸을 노려 보드가 가로로 열리는 모습을 보세요.</string>
+    <string name="interactive_onboarding_ghost_title">보드만큼 트레이도 중요합니다</string>
+    <string name="interactive_onboarding_ghost_body">도형을 놓기 전에 다른 두 피스도 확인하세요. 좋은 플레이는 현재 수만이 아니라 전체 트레이를 놓을 공간을 남기는 데서 나옵니다.</string>
+    <string name="interactive_onboarding_heavy_title">두 방향을 동시에 지우세요</string>
+    <string name="interactive_onboarding_heavy_body">어떤 배치는 행과 열을 동시에 완성합니다. 가이드된 위치를 사용해 더 큰 더블 클리어를 만들어 보세요.</string>
+
+</resources>

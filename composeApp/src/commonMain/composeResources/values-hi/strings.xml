@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- SettingsScreen -->
     <string name="settings_title">सेटिंग्स</string>
     <string name="settings_language">भाषा</string>
     <string name="settings_sound">ध्वनि</string>
@@ -10,14 +12,9 @@
     <string name="settings_block_palette">ब्लॉक रंग पैलेट</string>
     <string name="settings_block_style">ब्लॉक शैली</string>
     <string name="settings_tokens_title">टोकन</string>
-    <string name="settings_tokens_balance">Token: %1$d</string>
+    <string name="settings_tokens_balance">टोकन: %1$d</string>
     <string name="settings_tokens_earn_challenge">• डेली चैलेंज इनाम: +%1$d टोकन</string>
     <string name="settings_tokens_earn_score">• गेम इनाम: हर %1$d स्कोर पर +1 टोकन</string>
-    <string name="rewarded_tokens_button_bullet">• विज्ञापन देखें और %1$d टोकन पाएं</string>
-    <string name="rewarded_tokens_button">विज्ञापन देखें और %1$d टोकन पाएं</string>
-    <string name="reward_earned_message">आपने %1$d टोकन जीते!</string>
-    <string name="reward_piece_row_message">क्षैतिज पंक्ति साफ़ करने वाला टुकड़ा सुसज्जित!</string>
-    <string name="reward_piece_column_message">ऊर्ध्वाधर स्तंभ साफ़ करने वाला टुकड़ा सुसज्जित!</string>
     <string name="unlock_dialog_watch_ad">टोकन कमाने के लिए विज्ञापन देखें</string>
     <string name="token_label">टोकन</string>
     <string name="settings_board_block_style">बोर्ड ब्लॉक शैली</string>
@@ -64,6 +61,29 @@
     <string name="block_style_electric">इलेक्ट्रिक</string>
     <string name="board_block_style_always_flat">हमेशा सादा</string>
     <string name="board_block_style_match_selected">चयनित शैली से मिलाएँ</string>
+    <string name="settings_tutorial">ट्यूटोरियल</string>
+    <string name="settings_tutorial_body">फ्री प्लेसमेंट, पंक्ति/स्तंभ साफ़ करना और तीन-पीस ट्रे फ़्लो दोबारा देखने के लिए कभी भी ट्यूटोरियल या गाइडेड प्रैक्टिस खोलें।</string>
+    <string name="settings_tutorial_replay">अभ्यास</string>
+    <string name="settings_color_palette">रंग पैलेट</string>
+    <string name="block_style_lava">लावा</string>
+    <string name="block_style_light_burst">प्रकाश विस्फोट</string>
+    <string name="block_style_matte_soft">नरम मैट</string>
+    <string name="block_style_stone_texture">पत्थर बनावट</string>
+    <string name="rewarded_tokens_button_bullet">• विज्ञापन देखें और %1$d टोकन पाएं</string>
+    <string name="rewarded_tokens_button">विज्ञापन देखें और %1$d टोकन पाएं</string>
+    <string name="unlock_dialog_title">क्या %1$s अनलॉक करें?</string>
+    <string name="unlock_dialog_insufficient_title">%1$s लॉक है</string>
+    <string name="unlock_dialog_message">%1$s की कीमत %2$d टोकन है। मौजूदा बैलेंस: %3$d.</string>
+    <string name="unlock_dialog_not_enough">इस आइटम को अनलॉक करने के लिए आपको %1$d टोकन चाहिए। आपका मौजूदा बैलेंस %2$d है.</string>
+    <string name="unlock_dialog_confirm">अनलॉक करें</string>
+    <string name="unlock_dialog_locked_suffix">लॉक है</string>
+
+    <!-- HomeScreen -->
+    <string name="home_play_cta">खेलें</string>
+    <string name="home_classic_cta">क्लासिक</string>
+    <string name="home_time_attack_cta">टाइम अटैक</string>
+
+    <!-- GameDialogs -->
     <string name="hold">संग्रह</string>
     <string name="pause">रोकें</string>
     <string name="resume">जारी रखें</string>
@@ -78,69 +98,39 @@
     <string name="score">स्कोर</string>
     <string name="high_score">सर्वश्रेष्ठ</string>
     <string name="high_score_new_record">नया रिकॉर्ड</string>
-    <string name="home_play_cta">खेलें</string>
-    <string name="home_classic_cta">क्लासिक</string>
-    <string name="home_time_attack_cta">टाइम अटैक</string>
     <string name="lines">लाइन</string>
     <string name="time_remaining">शेष समय</string>
     <string name="boost">बूस्ट</string>
     <string name="danger">खतरा</string>
     <string name="danger_none">-</string>
     <string name="launch_label">प्रक्षेपण</string>
-    <string name="launch_bar">लॉन्च बार</string>
-    <string name="launch_boost_active">बूस्ट सक्रिय • %1$s टर्न</string>
-    <string name="launch_special_chance">विशेष ब्लॉक संभावना +%1$s%</string>
-    <string name="launch_soft_lock_message">सॉफ्ट लॉक सक्रिय • सूक्ष्म समायोजन सक्षम</string>
-    <string name="launch_chain_message">पंक्ति + कॉलम • +%2$s</string>
-    <string name="launch_paused">रुका हुआ</string>
-    <string name="launch_game_over">नई रन के लिए पुनः प्रारंभ करें</string>
-    <string name="launch_drag_hint">क्षैतिज रूप से खींचें → छोड़ें</string>
-    <string name="launch_drag_hint_blockwise">बोर्ड पर कहीं भी खींचें → रखने के लिए छोड़ें</string>
-    <string name="queue_hold">संग्रह</string>
-    <string name="queue_next_short">अगला</string>
-    <string name="queue_empty">—</string>
-    <string name="pause_title">रुका हुआ</string>
     <string name="game_over_title">खेल समाप्त</string>
     <string name="continue_label">जारी रखें</string>
     <string name="game_over_extra_life">एक अतिरिक्त जीवन के लिए विज्ञापन देखें</string>
     <string name="game_over_extra_life_loading">विज्ञापन लोड हो रहा है…</string>
     <string name="play_again">फिर से खेलें</string>
     <string name="game_over_new_high_score">नया उच्च स्कोर!</string>
-    <string name="game_message_select_column">पीस को क्षैतिज रूप से खींचें, कॉलम चुनें और ऊपर लॉन्च करें।</string>
     <string name="game_message_no_opening">कोई वैध प्रारंभिक कॉलम नहीं है। पुनः प्रारंभ करें।</string>
-    <string name="game_message_soft_lock">छोटी समायोजन विंडो खुली है। कॉलम को सूक्ष्म रूप से समायोजित करें।</string>
-    <string name="game_message_overflow">कॉलम ओवरफ्लो! आप महत्वपूर्ण कॉलमों को संभाल नहीं पाए।</string>
-    <string name="game_message_special_chain_board">विशेष चेन x%1$s! बोर्ड का आकार बदला गया।</string>
-    <string name="game_message_pressure_game_over">कॉलम दबाव सीमा तक पहुँच गया। नई रन शुरू करें।</string>
-    <string name="game_message_special_lines">विशेष ब्लॉक चेन! %1$s लाइनें साफ़ की गईं।</string>
-    <string name="game_message_special_triggered">विशेष ब्लॉक सक्रिय हुआ। %1$d ब्लॉक फूटे!</string>
-    <string name="game_message_perfect_drop">परफेक्ट ड्रॉप x%1$s! श्रृंखला जारी रखें।</string>
-    <string name="game_message_chain_lines">डबल क्लियर! %2$s लाइनें साफ़ हुईं।</string>
-    <string name="game_message_lines_cleared">%1$s लाइनें साफ़ की गईं।</string>
-    <string name="game_message_good_shot">अच्छा शॉट। अगला कॉलम योजनाबद्ध करें।</string>
-    <string name="game_message_ad_reward_blockwise">ट्रे रिफ्रेश हो गई! नई आकृतियाँ तैयार हैं।</string>
-    <string name="game_message_ad_reward_mergeshift">संख्याएँ बदल गईं! मिलाना जारी रखें।</string>
-    <string name="game_message_ad_reward_boomblocks">रंग साफ़ हो गया! बोर्ड का आकार बदल गया है।</string>
-    <string name="game_message_ad_reward_stackshift">विशेष ब्लॉक सुसज्जित! लॉन्च के लिए तैयार।</string>
-    <string name="game_message_hold_updated">संग्रह अपडेट हुआ। नया कॉलम चुनें।</string>
-    <string name="game_message_tempo_critical">गति बढ़ गई है। महत्वपूर्ण कॉलम साफ़ करें।</string>
-    <string name="game_message_tempo_up">गति बढ़ गई है। और कठिन पीस आने वाले हैं।</string>
     <string name="game_message_paused">खेल रोक दिया गया है।</string>
-    <string name="game_message_resumed">जारी रखें। कॉलम चुनें और लॉन्च करें।</string>
     <string name="game_message_extra_life_used">अतिरिक्त जीवन सक्रिय! %1$s पंक्तियाँ साफ़ की गईं।</string>
+    <string name="queue_hold">संग्रह</string>
+    <string name="pause_title">रुका हुआ</string>
+    <string name="game_message_lines_cleared">%1$s लाइनें साफ़ की गईं।</string>
+
+    <!-- NotificationWorker -->
     <string name="notification_reminders_channel_name">अनुस्मारक</string>
     <string name="notification_miss_you_body">हमें आपकी याद आई! वापस आएं और कुछ और खेलें।</string>
     <string name="notification_daily_challenge_title">दैनिक चुनौती</string>
     <string name="notification_daily_challenge_body">Have you completed today's daily challenge tasks yet?</string>
     <string name="notification_test_body">यह एक परीक्षण सूचना है।</string>
+
+    <!-- DailyChallengeScreen -->
     <string name="challenge_tasks_title">कार्य</string>
     <string name="challenge_info_title">कार्यों के बारे में</string>
     <string name="challenge_info_clear_blocks_title">ब्लॉक्स</string>
     <string name="challenge_info_clear_blocks">पंक्तियाँ पूरी करके और चेन रिएक्शन शुरू करके भरी हुई खानों को बोर्ड से हटाएँ।</string>
-    <string name="challenge_info_clear_rows_title">पंक्तियाँ</string>
     <string name="challenge_info_reach_score">पीस रखकर और लाइन साफ़ करके अपना स्कोर बढ़ाएँ।</string>
     <string name="challenge_info_reach_score_title">स्कोर</string>
-    <string name="challenge_info_clear_rows">पूरी भरी हुई पंक्तियों को पूरा करें और उन्हें बोर्ड से हटाएँ।</string>
     <string name="challenge_info_trigger_special_title">विशेष ब्लॉक्स</string>
     <string name="challenge_info_trigger_special">पंक्ति साफ़ करने वाले, स्तंभ साफ़ करने वाले, घोस्ट और भारी ब्लॉक्स जैसे विशेष ब्लॉक्स सक्रिय करें।</string>
     <string name="challenge_info_perfect_placement_title">परफेक्ट प्लेसमेंट</string>
@@ -149,24 +139,35 @@
     <string name="challenge_info_chain_reaction">ऐसी अगली सफ़ाइयाँ तैयार करें कि एक चाल के बाद अतिरिक्त सफ़ाइयाँ भी शुरू हो जाएँ।</string>
     <string name="challenge_info_clear_columns_title">कॉलम</string>
     <string name="challenge_info_clear_columns">पूरे भरे हुए कॉलम पूरे करें और उन्हें बोर्ड से हटाएँ।</string>
-    <string name="challenge_info_clear_rounds_title">राउंड</string>
-    <string name="challenge_info_clear_rounds">हर भरे हुए कॉलम को एक ही रंग में बदलकर पूरे BlockSort राउंड पूरे करें।</string>
     <string name="challenge_info_place_pieces_title">स्थापन</string>
     <string name="challenge_info_place_pieces">भले ही कोई लाइन साफ़ न हो, हर सफल प्लेसमेंट गिना जाता है।</string>
-    <string name="challenge_info_clear_both_directions_title">पंक्ति + कॉलम</string>
-    <string name="challenge_info_clear_both_directions">एक ही प्लेसमेंट से कम से कम एक पंक्ति और एक कॉलम एक साथ साफ़ हो सकते हैं।</string>
     <string name="challenge_completed">चुनौती पूरी हुई!</string>
     <string name="challenge_task_clear_blocks">%1$d ब्लॉक्स साफ करें</string>
-    <string name="challenge_task_clear_rows">%1$d पंक्तियाँ साफ करें</string>
     <string name="challenge_task_reach_score">%1$d स्कोर तक पहुँचें</string>
     <string name="challenge_task_trigger_special">%1$d विशेष ब्लॉक्स सक्रिय करें</string>
     <string name="challenge_task_perfect_placement">%1$d परफेक्ट प्लेसमेंट करें</string>
     <string name="challenge_task_chain_reaction">%1$d चेन रिएक्शन बनाएँ</string>
     <string name="challenge_task_clear_columns">%1$d कॉलम साफ करें</string>
-    <string name="challenge_task_complete_columns">%1$d कॉलम पूरे करें</string>
     <string name="challenge_task_place_pieces">%1$d पीस रखें</string>
-    <string name="challenge_task_clear_rounds">%1$d राउंड पूरे करें</string>
-    <string name="challenge_task_clear_both_directions">%1$d बार पंक्ति + कॉलम साफ करें</string>
+    <string name="challenge_progress_value">%1$d/%2$d</string>
+
+    <!-- RewardFeedback -->
+    <string name="reward_earned_message">आपने %1$d टोकन जीते!</string>
+    <string name="feedback_overflow">ओवरफ़्लो</string>
+    <string name="feedback_clear">साफ़ +%1$s</string>
+    <string name="feedback_score_only">+%1$s</string>
+    <string name="feedback_extra_life">अतिरिक्त जीवन! %1$s पंक्तियाँ</string>
+    <string name="color_cyan">सियान</string>
+    <string name="color_gold">सुनहरा</string>
+    <string name="color_violet">बैंगनी</string>
+    <string name="color_emerald">पन्ना</string>
+    <string name="color_coral">मूंगा</string>
+    <string name="color_blue">नीला</string>
+    <string name="color_rose">गुलाबी</string>
+    <string name="color_lime">लाइम</string>
+    <string name="color_amber">एम्बर</string>
+
+    <!-- Calendar -->
     <string name="month_january">जनवरी</string>
     <string name="month_february">फरवरी</string>
     <string name="month_march">मार्च</string>
@@ -187,27 +188,15 @@
     <string name="day_friday_short">शुक्र</string>
     <string name="day_saturday_short">शनि</string>
     <string name="day_sunday_short">रवि</string>
-    <string name="feedback_overflow">ओवरफ़्लो</string>
-    <string name="feedback_perfect_lane">परफेक्ट लेन x%1$s</string>
-    <string name="feedback_micro_adjust">सूक्ष्म समायोजन</string>
-    <string name="feedback_soft_lock">सॉफ्ट लॉक</string>
-    <string name="feedback_hold_armed">संग्रह तैयार</string>
-    <string name="feedback_swap">स्वैप किया गया</string>
-    <string name="feedback_special_chain">विशेष चेन +%1$s • %2$d ब्लॉक</string>
-    <string name="feedback_special">विशेष +%1$s • %2$d ब्लॉक</string>
-    <string name="feedback_perfect">परफेक्ट x%1$s +%2$s</string>
-    <string name="feedback_chain">चेन x%1$s +%2$s</string>
-    <string name="feedback_clear">साफ़ +%1$s</string>
-    <string name="feedback_score_only">+%1$s</string>
-    <string name="feedback_extra_life">अतिरिक्त जीवन! %1$s पंक्तियाँ</string>
-    <string name="challenge_progress_value">%1$d/%2$d</string>
     <string name="stat_label_value_format">%1$s: %2$s</string>
     <string name="time_minutes_seconds_format">%1$d:%2$s</string>
+
+    <!-- PiecePropertiesScreen -->
+    <string name="queue_empty">—</string>
     <string name="special_column_clearer">कॉलम</string>
     <string name="special_row_clearer">पंक्ति</string>
     <string name="special_ghost">घोस्ट</string>
     <string name="special_heavy">भारी</string>
-
     <string name="piece_properties_title">पीस गुण</string>
     <string name="piece_properties_active">सक्रिय पीस</string>
     <string name="piece_properties_kind">प्रकार</string>
@@ -216,222 +205,38 @@
     <string name="piece_properties_cells">सेल</string>
     <string name="piece_properties_unlock_level">अनलॉक स्तर</string>
     <string name="piece_properties_none">कोई नहीं</string>
-
     <string name="active_piece_summary">%1$s • %2$s • %3$s</string>
     <string name="piece_size_format">%1$dx%2$d</string>
 
+    <!-- BlockPropertiesScreen -->
     <string name="block_properties_title">ब्लॉक गुण</string>
     <string name="block_properties_select_hint">ब्लॉक प्रकार चुनें</string>
-
     <string name="block_properties_normal_title">सामान्य ब्लॉक</string>
     <string name="block_properties_normal_desc">मानक भरा हुआ सेल। कोई विशेष प्रभाव नहीं।</string>
-
     <string name="block_properties_column_clearer_title">कॉलम क्लियरर</string>
     <string name="block_properties_column_clearer_desc">जिस कॉलम में यह गिरता है उसे साफ़ करता है। दबाव कम करने के लिए बहुत अच्छा।</string>
-
     <string name="block_properties_row_clearer_title">पंक्ति क्लियरर</string>
     <string name="block_properties_row_clearer_desc">जिस पंक्ति में यह गिरता है उसे साफ़ करता है। जल्दी जगह बनाता है।</string>
-
     <string name="block_properties_ghost_title">घोस्ट</string>
     <string name="block_properties_ghost_desc">अन्य ब्लॉकों के बीच से गुजर सकता है। तंग जगहों के लिए उपयोगी।</string>
-
     <string name="block_properties_heavy_title">भारी</string>
     <string name="block_properties_heavy_desc">अधिक आक्रामक व्यवहार करता है; उतरने के बाद इसका प्रभाव अधिक मजबूत होता है।</string>
-
     <string name="block_properties_dot_desc">ऊपरी-दाएँ कोने का छोटा बिंदु दिखाता है कि इस ब्लॉक में विशेष प्रभाव है। बिंदु और बॉर्डर का रंग प्रभाव के प्रकार को दर्शाता है।</string>
+
+    <!-- GameTutorialScreen -->
     <string name="tutorial_subtitle">आपकी पहली रन से पहले एक छोटा मार्गदर्शन।</string>
     <string name="tutorial_step_counter">चरण %1$d / %2$d</string>
     <string name="tutorial_back">वापस</string>
     <string name="cancel">रद्द करें</string>
-    <string name="unlock_dialog_title">क्या %1$s अनलॉक करें?</string>
-    <string name="unlock_dialog_insufficient_title">%1$s लॉक है</string>
-    <string name="unlock_dialog_message">%1$s की कीमत %2$d टोकन है। मौजूदा बैलेंस: %3$d.</string>
-    <string name="unlock_dialog_not_enough">इस आइटम को अनलॉक करने के लिए आपको %1$d टोकन चाहिए। आपका मौजूदा बैलेंस %2$d है.</string>
-    <string name="unlock_dialog_confirm">अनलॉक करें</string>
-    <string name="unlock_dialog_locked_suffix">लॉक है</string>
     <string name="tutorial_next">आगे</string>
     <string name="return_home">होम पर लौटें</string>
     <string name="tutorial_finish">गेम शुरू करें</string>
-    <string name="tutorial_stackshift_intro_title">नीचे के डॉक से पीस लॉन्च करें</string>
-    <string name="tutorial_stackshift_intro_body">आपका सक्रिय पीस नीचे इंतज़ार करता है। कॉलम मिलाने के लिए उसे क्षैतिज रूप से खींचें, फिर छोड़कर बोर्ड पर लॉन्च करें। अगले पीस की झलक जानबूझकर हल्की रखी गई है ताकि ध्यान सक्रिय पीस पर रहे।</string>
-    <string name="tutorial_stackshift_systems_title">जब बोर्ड भरने लगे तो एक्शन ब्लॉक्स का उपयोग करें</string>
-    <string name="tutorial_stackshift_systems_body">संग्रह वर्तमान पीस को बदलता है, विराम रन को रोक देता है, ब्लॉक गुण प्रतीकों को समझाता है, और सेटिंग्स रूप-रंग बदलती हैं। ये बटन आपके चुने हुए बोर्ड ब्लॉक स्टाइल से भी मेल खाते हैं।</string>
-    <string name="tutorial_stackshift_specials_title">स्पेशल ब्लॉक रन बचा सकते हैं</string>
-    <string name="tutorial_stackshift_specials_body">कुछ पीस विशेष प्रभाव लाते हैं। उनके बैज पहचानें और दबाव घटाने, जगह खोलने या कठिन स्टैक के बीच से निकलने के लिए सही समय पर उनका उपयोग करें।</string>
-    <string name="tutorial_stackshift_ready_title">अब आप इस रन को जारी रखने के लिए तैयार हैं</string>
-    <string name="tutorial_stackshift_ready_body">बस इतना ही — अगला कॉलम सोचें, लॉन्च बार पर नज़र रखें, और सही समय पर स्पेशल्स का उपयोग करें। आप इस ट्यूटोरियल को कभी भी Settings से फिर खोल सकते हैं।</string>
-    <string name="tutorial_stackshift_ready_tutorial_hint">कंट्रोल और विशेष आइकन जल्दी से दोहराने के लिए कभी भी ट्यूटोरियल खोलें।</string>
-    <string name="tutorial_stackshift_ready_settings_hint">अगली रन से पहले भाषा, थीम, रंग और ब्लॉक स्टाइल बदलने के लिए Settings खोलें।</string>
-    <string name="tutorial_intro_title">तीनों पीस में से किसी एक को बोर्ड पर खींचें</string>
-    <string name="tutorial_intro_body">ट्रे में तीन आकृतियाँ इंतज़ार करती हैं। अपनी पसंद की आकृति चुनें, उसे किसी भी खाली सेल पर खींचें, और जहाँ वह फिट हो वहाँ रखने के लिए छोड़ दें।</string>
-    <string name="tutorial_systems_title">केवल एक चाल नहीं, बल्कि पूरी ट्रे के बारे में सोचें</string>
-    <string name="tutorial_systems_body">एक पीस रखने के बाद, बाकी बची हुई ट्रे स्क्रीन पर ही रहती है। जब तीनों का उपयोग हो जाता है, तो एक नया तिकड़ी आ जाती है। आपके पास अभी भी जो आकृतियाँ हैं, उनके लिए पर्याप्त जगह छोड़ने की कोशिश करें।</string>
-    <string name="tutorial_specials_title">पूरी पंक्ति और स्तंभ भरने पर साफ़ होते हैं</string>
-    <string name="tutorial_specials_body">यहाँ कोई स्पेशल पीस नहीं हैं। इसकी जगह, एक पूरी पंक्ति या पूरा स्तंभ भरें ताकि वह साफ़ हो जाए। अगर दोनों एक साथ पूरे होते हैं, तो दोनों साथ में साफ़ होते हैं।</string>
-    <string name="tutorial_ready_title">अब आप नए ब्लॉक पज़ल फ़्लो के लिए तैयार हैं</string>
-    <string name="tutorial_ready_body">ट्रे पर नज़र बनाए रखें, पंक्ति और स्तंभ साफ़ करने की तैयारी करें, और बड़े आकारों को फँसने न दें। जब तीनों में से कोई भी पीस फिट न हो, तब रन समाप्त हो जाती है।</string>
-    <string name="tutorial_ready_block_properties_hint">अगर आप फ्री प्लेसमेंट और एक साथ पंक्ति/स्तंभ साफ़ करने की प्रक्रिया दोबारा देखना चाहते हैं, तो कभी भी ट्यूटोरियल खोलें।</string>
     <string name="tutorial_ready_settings_hint">अगली रन से पहले भाषा, थीम, रंग और ब्लॉक स्टाइल बदलने के लिए Settings खोलें।</string>
-    <string name="tutorial_mergeshift_intro_title">समान मान वाले ब्लॉकों को मिलाने के लिए पीस लॉन्च करें</string>
-    <string name="tutorial_mergeshift_intro_body">MergeShift में, पीस डॉक से लॉन्च किए जाते हैं। जब एक ब्लॉक उसी मान वाले दूसरे ब्लॉक पर गिरता है, तो वे एक उच्च मान में मिल जाते हैं। जगह बनाने और उच्च स्कोर तक पहुँचने के लिए मिलाते रहें।</string>
-    <string name="tutorial_mergeshift_systems_title">ओवरफ़्लो को रोकने के लिए अपने विलय की योजना बनाएं</string>
-    <string name="tutorial_mergeshift_systems_body">आपके द्वारा लॉन्च किया गया प्रत्येक पीस कॉलम की ऊंचाई बढ़ाता है। यदि कोई कॉलम शीर्ष पर पहुँच जाता है, तो खेल समाप्त हो जाता है। यह देखने के लिए पूर्वावलोकन का उपयोग करें कि आपका पीस कहाँ गिरेगा और किन ब्लॉकों के साथ मिल सकता है।</string>
-    <string name="tutorial_mergeshift_specials_title">बड़े कॉम्बो के लिए कई विलय संयोजित करें</string>
-    <string name="tutorial_mergeshift_specials_body">एक ही लॉन्च विलय की श्रृंखला प्रतिक्रिया शुरू कर सकता है। ये कॉम्बो अधिक अंक देते हैं और बोर्ड पर अधिक जगह खाली करते हैं, जिससे आपको खेल में लंबे समय तक बने रहने में मदद मिलती है।</string>
-    <string name="tutorial_mergeshift_ready_title">आप MergeShift के लिए तैयार हैं</string>
-    <string name="tutorial_mergeshift_ready_body">अपने कॉलम को नीचे रखने और उच्च-मान वाले विलय स्थापित करने पर ध्यान दें। उच्चतम संख्याओं तक पहुँचने के लिए शुभकामनाएँ!</string>
-    <string name="settings_tutorial">ट्यूटोरियल</string>
-    <string name="settings_tutorial_body">फ्री प्लेसमेंट, पंक्ति/स्तंभ साफ़ करना और तीन-पीस ट्रे फ़्लो दोबारा देखने के लिए कभी भी ट्यूटोरियल या गाइडेड प्रैक्टिस खोलें।</string>
-    <string name="settings_tutorial_replay">अभ्यास</string>
-    <string name="tutorial_ready_tutorial_hint">अगर आप फ्री प्लेसमेंट और एक साथ पंक्ति/स्तंभ साफ़ करने की प्रक्रिया दोबारा देखना चाहते हैं, तो कभी भी ट्यूटोरियल खोलें।</string>
     <string name="interactive_onboarding_step_counter">गाइड %1$d / %2$d</string>
-    <string name="interactive_onboarding_drag_title">ट्रे से एक पीस बोर्ड पर खींचें</string>
-    <string name="interactive_onboarding_drag_body">ट्रे में रखी तीन आकृतियों में से किसी एक को छुएँ, उसे बोर्ड पर ले जाएँ और हाइलाइट किए गए सेल्स के साथ मिलाएँ।</string>
-    <string name="interactive_onboarding_drag_to_board">हाइलाइट किए गए पीस को चमकते लक्ष्य क्षेत्र तक खींचें।</string>
-    <string name="interactive_onboarding_drag_ready">बहुत बढ़िया — अब छोड़ें। जैसे ही यह हाइलाइट किए गए सेल्स में फिट होगा, अगला गाइड अपने-आप खुल जाएगा।</string>
-    <string name="interactive_onboarding_aim_hint">आगे बढ़ने के लिए पीस को हाइलाइट किए गए सेल्स के अंदर छोड़ें।</string>
-    <string name="interactive_onboarding_target_locked">सही है — इसे यहीं रखें और आगे बढ़ने के लिए छोड़ें।</string>
-    <string name="interactive_onboarding_waiting">प्लेसमेंट स्वीकार हो गया। अगला निर्देशित चरण तैयार हो रहा है…</string>
-    <string name="interactive_onboarding_line_clear_title">एक पूरी पंक्ति भरकर साफ़ करें</string>
-    <string name="interactive_onboarding_line_clear_body">इस आकृति को गाइड किए गए स्थान पर रखें ताकि पंक्ति पूरी हो, चमके और गायब हो जाए।</string>
-    <string name="interactive_onboarding_column_clearer_title">एक पूरा स्तंभ भरकर साफ़ करें</string>
-    <string name="interactive_onboarding_column_clearer_body">अब हाइलाइट की गई जगह का उपयोग करके पूरा स्तंभ भरें और लंबवत जगह खोलें।</string>
-    <string name="interactive_onboarding_row_clearer_title">पंक्तियाँ क्षैतिज जगह खोलती हैं</string>
-    <string name="interactive_onboarding_row_clearer_body">पूरी पंक्ति तुरंत साफ़ हो जाती है। हाइलाइट किए गए सेल्स पर निशाना लगाएँ और देखें कि बोर्ड एक किनारे से दूसरे किनारे तक कैसे खुलता है।</string>
-    <string name="interactive_onboarding_ghost_title">ट्रे उतनी ही महत्वपूर्ण है जितना बोर्ड</string>
-    <string name="interactive_onboarding_ghost_body">किसी आकृति को रखने से पहले बाकी दो पीस भी देख लें। अच्छी रन केवल इस चाल से नहीं, बल्कि पूरी ट्रे के लिए जगह छोड़ने से बनती है।</string>
-    <string name="interactive_onboarding_heavy_title">दोनों दिशाएँ एक साथ साफ़ करें</string>
-    <string name="interactive_onboarding_heavy_body">कुछ प्लेसमेंट एक साथ एक पंक्ति और एक स्तंभ पूरा करते हैं। बड़े डबल क्लियर के लिए इस गाइड किए गए स्थान का उपयोग करें।</string>
 
-    <string name="interactive_onboarding_mergeshift_launch_title">अपना पहला पीस लॉन्च करें</string>
-    <string name="interactive_onboarding_mergeshift_launch_body">निशाना साधने के लिए पीस को बोर्ड के नीचे क्षैतिज रूप से खींचें, फिर उसे एक कॉलम में लॉन्च करने के लिए छोड़ दें।</string>
-    <string name="interactive_onboarding_mergeshift_merge_vertical_title">समान मानों को लंबवत रूप से मिलाएं</string>
-    <string name="interactive_onboarding_mergeshift_merge_vertical_body">उस कॉलम में पीस लॉन्च करें जिसमें पहले से ही उसी मान का ब्लॉक हो। वे एक उच्च संख्या में मिल जाएंगे!</string>
-    <string name="interactive_onboarding_mergeshift_merge_horizontal_title">समान मानों को क्षैतिज रूप से मिलाएं</string>
-    <string name="interactive_onboarding_mergeshift_merge_horizontal_body">ब्लॉक अपने बाएं या दाएं पड़ोसियों के साथ भी मिल सकते हैं। क्षैतिज विलय शुरू करने के लिए हाइलाइट किए गए स्थान पर निशाना लगाएं।</string>
-    <string name="interactive_onboarding_mergeshift_merge_multi_title">एकाधिक विलय ट्रिगर करें</string>
-    <string name="interactive_onboarding_mergeshift_merge_multi_body">एक ही प्लेसमेंट कई दिशाओं (ऊपर, बाएं, दाएं) में विलय ट्रिगर कर सकता है। अधिक जगह खाली करने और बड़ा स्कोर बनाने के लिए इसका उपयोग करें!</string>
-
-    <string name="settings_color_palette">रंग पैलेट</string>
-    <string name="ad_reward_blockwise_refresh">ट्रे रीफ्रेश करें</string>
-    <string name="ad_reward_mergeshift_swap">संख्या बदलें</string>
-    <string name="ad_reward_boomblocks_clear">रंग साफ़ करें</string>
-    <string name="feedback_ad_reward_blockwise">ट्रे रिफ्रेश हो गई</string>
-    <string name="feedback_ad_reward_mergeshift">नंबर बदल गए</string>
-    <string name="feedback_ad_reward_boomblocks">%1$s साफ हो गया</string>
-    <string name="color_cyan">सियान</string>
-    <string name="color_gold">सुनहरा</string>
-    <string name="color_violet">बैंगनी</string>
-    <string name="color_emerald">पन्ना</string>
-    <string name="color_coral">मूंगा</string>
-    <string name="color_blue">नीला</string>
-    <string name="color_rose">गुलाबी</string>
-    <string name="color_lime">लाइम</string>
-    <string name="color_amber">एम्बर</string>
-    <string name="challenge_task_explode_groups">%1$d ब्लॉक समूह फोड़ें</string>
-    <string name="tutorial_boomblocks_intro_title">मिलते-जुलते समूह फोड़ें</string>
-    <string name="tutorial_boomblocks_intro_body">BoomBlocks में आप पीस लॉन्च या ड्रैग नहीं करते। इसके बजाय, एक ही रंग के आपस में जुड़े तीन या अधिक ब्लॉक्स खोजें और पूरे समूह को साफ़ करने के लिए उनमें से किसी एक पर टैप करें।</string>
-    <string name="tutorial_boomblocks_gravity_title">बोर्ड की गतिशील चाल</string>
-    <string name="tutorial_boomblocks_gravity_body">जब कोई समूह फटता है, तो वह एक खाली जगह बनाता है जो आसपास के ब्लॉक्स को अपनी ओर खींचती है। इसके बाद नए ब्लॉक्स सबसे नज़दीकी किनारे से बोर्ड को फिर भरते हैं, जिससे खेल लगातार गतिशील बना रहता है।</string>
-    <string name="tutorial_boomblocks_ready_title">अब आप BoomBlocks के लिए तैयार हैं</string>
-    <string name="tutorial_boomblocks_ready_body">सबसे ज़्यादा स्कोर के लिए बड़े समूह खोजने पर ध्यान दें और देखें कि हर विस्फोट बोर्ड को कैसे बदल देता है। शुभकामनाएँ!</string>
-    <string name="interactive_onboarding_boomblocks_basic_title">फोड़ने के लिए टैप करें</string>
-    <string name="interactive_onboarding_boomblocks_basic_body">एक ही रंग के तीन या अधिक ब्लॉक्स का समूह खोजें और उसे बोर्ड से साफ़ करने के लिए टैप करें।</string>
-    <string name="interactive_onboarding_boomblocks_large_title">बड़े समूह, ज़्यादा अंक</string>
-    <string name="interactive_onboarding_boomblocks_large_body">बड़े समूह ज़्यादा अंक देते हैं और ज़्यादा जगह खाली करते हैं। हाइलाइट किए गए बड़े समूह पर टैप करें!</string>
-    <string name="interactive_onboarding_boomblocks_gravity_title">गुरुत्व का रुख बदलता है</string>
-    <string name="interactive_onboarding_boomblocks_gravity_body">जब आप ब्लॉक्स फोड़ते हैं, तो नए ब्लॉक्स विस्फोट के उल्टे किनारे से अंदर आते हैं। देखें कि बोर्ड कैसे खिसकता है!</string>
-    <string name="interactive_onboarding_boomblocks_strategic_title">रणनीतिक रीफ़िल</string>
-    <string name="interactive_onboarding_boomblocks_strategic_body">नए ब्लॉक्स विस्फोट के केंद्र के आधार पर बोर्ड को फिर भरते हैं। इसका उपयोग और भी बड़े समूह बनाने के लिए करें!</string>
-    <string name="interactive_onboarding_boomblocks_tap_hint">आगे बढ़ने के लिए हाइलाइट किए गए समूह पर टैप करें।</string>
-
+    <!-- AppSelectionScreen -->
     <string name="selection_title">अपना खेल चुनें</string>
-    <string name="selection_stackshift_desc">पंक्तियों और स्तंभों को साफ़ करने के लिए नीचे से पीस लॉन्च करें।</string>
-    <string name="selection_blockwise_desc">बोर्ड पर कहीं भी पीस को ड्रैग और ड्रॉप करें।</string>
-    <string name="selection_mergeshift_desc">उच्च स्कोर तक पहुँचने के लिए समान मान वाले पीस मिलाएं।</string>
-    <string name="selection_boomblocks_desc">उन्हें फोड़ने के लिए 3 या अधिक ब्लॉक्स के समूहों पर टैप करें।</string>
     <string name="selection_switch_game">खेल बदलें</string>
     <string name="selection_active_game_badge">सक्रिय</string>
-    <string name="game_message_ad_reward_blocksort">Board remixed! Fresh routes are open.</string>
-    <string name="tutorial_blocksort_intro_title">समान आकार की ऊपरी स्टैक्स को कॉलमों के बीच ले जाएँ</string>
-    <string name="tutorial_blocksort_intro_body">हर राउंड में सभी कॉलम एक जैसी स्लॉट साइज का उपयोग करते हैं। किसी भरे हुए मिश्रित कॉलम पर टैप करके उसकी ऊपरी रंग-स्टैक उठाएँ, फिर उसे किसी खाली कॉलम या उसी ऊपर वाले रंग वाले कॉलम पर ले जाएँ।</string>
-    <string name="tutorial_blocksort_rules_title">सिर्फ समान रंग एक साथ स्टैक हो सकते हैं</string>
-    <string name="tutorial_blocksort_rules_body">आप केवल खाली जगह या उसी ऊपर वाले रंग पर ही ट्रांसफर कर सकते हैं। जैसे-जैसे पहेली बढ़ती है, बोर्ड ऊपर और नीचे दो पंक्तियों में बँट सकता है, इसलिए सहायक जगह और दृश्यता दोनों का ध्यान रखें।</string>
-    <string name="tutorial_blocksort_finish_title">हर कॉलम को एक ही रंग में पूरा करें</string>
-    <string name="tutorial_blocksort_finish_body">किसी राउंड में जब उस कॉलम का हर स्लॉट एक ही रंग का हो जाता है, तो वह कॉलम पूरा माना जाता है। अलग-अलग राउंड 3, 4, 5 या 6 समान आकार के स्लॉट इस्तेमाल कर सकते हैं, और सब पूरे होने पर नया मिश्रित लेआउट आता है।</string>
-    <string name="tutorial_blocksort_ready_title">अब आप BlockSort के लिए तैयार हैं</string>
-    <string name="tutorial_blocksort_ready_body">दो या तीन चाल आगे सोचें, अपनी सहायक कॉलमों को बचाएँ, और हर राउंड में स्लॉट संख्या बदलने व बोर्ड के दो पंक्तियों में बँटने पर जल्दी ढलें।</string>
-    <string name="interactive_onboarding_blocksort_pick_title">स्रोत कॉलम चुनें</string>
-    <string name="interactive_onboarding_blocksort_pick_body">हाइलाइट किए गए मिश्रित कॉलम पर टैप करके शुरू करें। आप पहले उसकी ऊपरी रंग-स्टैक को हिलाएँगे, और इस राउंड का हर स्लॉट एक ही आकार का है।</string>
-    <string name="interactive_onboarding_blocksort_pick_hint">पहले मिश्रित लेआउट में हाइलाइट किए गए स्रोत कॉलम पर टैप करें।</string>
-    <string name="interactive_onboarding_blocksort_match_title">ऊपरी रंग मिलाएँ</string>
-    <string name="interactive_onboarding_blocksort_match_body">अब उस स्टैक को ऐसे कॉलम पर भेजें जिसकी ऊपरी रंगत पहले से मेल खाती हो। मेल खाते कॉलम रंगों को सुरक्षित रूप से इकट्ठा करने देते हैं, भले ही बोर्ड दो पंक्तियों में बँट जाए।</string>
-    <string name="interactive_onboarding_blocksort_match_hint">स्टैक को हाइलाइट किए गए मेल खाते रंग वाले कॉलम पर ले जाएँ।</string>
-    <string name="interactive_onboarding_blocksort_finish_title">एक साफ कॉलम पूरा करें</string>
-    <string name="interactive_onboarding_blocksort_finish_body">बहुत बढ़िया। बस एक और चाल इस राउंड में एक एकरंगी कॉलम के हर स्लॉट को पूरा कर देगी। इसे पूरा करके BlockSort का मुख्य लक्ष्य देखें।</string>
-    <string name="interactive_onboarding_blocksort_finish_hint">हाइलाइट किए गए कॉलम को पूरा करें ताकि हर स्लॉट एक ही रंग दिखाए।</string>
-    <string name="blocksort_completed_label">सॉर्टेड</string>
-    <string name="blocksort_goal_hint">लक्ष्य: राउंड को इस तरह समाप्त करें कि हर भरा हुआ कॉलम एक ही रंग का हो। राउंड में प्रति कॉलम 3, 4, 5 या 6 समान आकार के स्लॉट हो सकते हैं, और बोर्ड दो पंक्तियों में बँट सकता है।</string>
-    <string name="blocksort_no_moves_hint">इस मिश्रित लेआउट में अब कोई वैध ट्रांसफर नहीं बचा। फिर से शफल करें या नया राउंड शुरू करें।</string>
-    <string name="blocksort_round_congrats_title">बधाई हो!</string>
-    <string name="blocksort_round_complete_hint">राउंड पूरा! बोनस +%1$d और नया मिश्रित लेआउट आ गया।</string>
-    <string name="blocksort_round_label">राउंड</string>
-    <string name="blocksort_select_source_hint">किसी भरे हुए मिश्रित कॉलम पर टैप करके उसकी ऊपरी रंग-स्टैक उठाएँ।</string>
-    <string name="blocksort_selected_hint">अब किसी खाली कॉलम या उसी ऊपर वाले रंग वाले कॉलम पर टैप करके स्टैक को वहाँ ले जाएँ।</string>
-    <string name="selection_blocksort_desc">मिश्रित रंग-स्टैक्स को तब तक सजाएँ जब तक हर भरा कॉलम एक ही रंग का न हो जाए।</string>
 
-    <string name="app_title_chainshift">Chain Shift</string>
-    <string name="selection_chainshift_desc">Shoot from the center, slip blocks into a spiral chain, and pop 3+ color matches.</string>
-    <string name="app_title_banner_chainshift_top">CHAIN</string>
-    <string name="app_title_banner_chainshift_bottom">SHIFT</string>
-    <string name="tutorial_chainshift_intro_title">Meet Chain Shift</string>
-    <string name="tutorial_chainshift_intro_body">Blocks enter from the edge, wrap around the board, and crawl toward the center. Your shooter stays in the middle, so every shot must cut into the moving chain before it reaches you.</string>
-    <string name="tutorial_chainshift_path_title">निशाना लगाएं और शूट करें</string>
-    <string name="tutorial_chainshift_path_body">केंद्र से निशाना लगाएं और शूट करने के लिए छोड़ें। आपका ब्लॉक वहां जुड़ जाता है जहां वह चेन से टकराता है, जिससे बाद के ब्लॉक आगे बढ़ जाते हैं।</string>
-    <string name="tutorial_chainshift_combo_title">रिट्रीट और कॉम्बो बनाएं</string>
-    <string name="tutorial_chainshift_combo_body">चेन के साथ एक ही रंग के 3 या अधिक जुड़े हुए ब्लॉकों का मिलान करें ताकि वे फूट जाएं। जब गैप बंद हो जाता है, तो चेन किनारे की ओर पीछे हट जाती है, जिससे संभावित रूप से चेन रिएक्शन शुरू हो जाते हैं।</string>
-    <string name="tutorial_chainshift_ready_title">Hold the center</string>
-    <string name="tutorial_chainshift_ready_body">Stay calm, keep the spiral short, and use your shots to break dangerous runs before they lock the center. The deeper the chain goes, the less room you have to recover.</string>
-    <string name="interactive_onboarding_chainshift_intro_title">गाइडेड ब्लॉक पर शूट करें</string>
-    <string name="interactive_onboarding_chainshift_intro_body">सर्पिल के हाइलाइट किए गए हिस्से पर फायरिंग करके शुरू करें। आपका ब्लॉक केंद्र से लॉन्च होता है और प्रभाव के बिंदु पर चेन में जुड़ जाता।</string>
-    <string name="interactive_onboarding_chainshift_match_title">Make a 3-block match</string>
-    <string name="interactive_onboarding_chainshift_match_body">Now use the guided shot to line up 3 blocks of the same color. Matching segments burst immediately and open breathing room near the center.</string>
-    <string name="interactive_onboarding_chainshift_chain_title">चेन रिएक्शन शुरू करें</string>
-    <string name="interactive_onboarding_chainshift_chain_body">यह सेटअप एक स्मार्ट शॉट को पुरस्कृत करता है। पहले मिलान को साफ करें, चेन को किनारे की ओर पीछे हटते हुए देखें, और दूसरे मिलान को अपने आप फूटने दें।</string>
-    <string name="interactive_onboarding_chainshift_tap_hint">निशाना लगाएं और हाइलाइट किए गए ब्लॉक को शूट करने के लिए छोड़ें।</string>
-    <string name="game_message_ad_reward_chainshift">Active block refreshed for Chain Shift!</string>
-
-    <string name="block_style_lava">Lava</string>
-    <string name="block_style_light_burst">Light Burst</string>
-    <string name="block_style_matte_soft">Matte Soft</string>
-    <string name="block_style_stone_texture">Stone Texture</string>
-    <string name="selection_digitshift_desc">Wordle-style word puzzles with language-specific vocabularies.</string>
-    <string name="tutorial_digitshift_intro_title">Find the hidden word</string>
-    <string name="tutorial_digitshift_intro_body">Build a five-token word and submit it. Every guess reveals which tokens are correct, present, or absent.</string>
-    <string name="tutorial_digitshift_hints_title">Read the colors</string>
-    <string name="tutorial_digitshift_hints_body">Green means the token is correct, gold means it belongs somewhere else, and muted means it is not in the answer.</string>
-    <string name="tutorial_digitshift_strategy_title">Use the keyboard hints</string>
-    <string name="tutorial_digitshift_strategy_body">Each submitted guess upgrades the keyboard. Reuse green tokens, relocate gold ones, and avoid muted tokens to solve faster.</string>
-    <string name="tutorial_digitshift_ready_title">Ready to shift words?</string>
-    <string name="tutorial_digitshift_ready_body">Classic mode keeps the streak going until you miss a word. Time Attack adds pressure, so solve quickly to bank score and bonus time.</string>
-    <string name="interactive_onboarding_digitshift_type_hint">Type the suggested word to learn the board.</string>
-    <string name="interactive_onboarding_digitshift_submit_hint">Submit another valid word and watch the keyboard update.</string>
-    <string name="interactive_onboarding_digitshift_solve_hint">Use the clues and solve the hidden word.</string>
-    <string name="digitshift_enter">Enter</string>
-    <string name="digitshift_delete">Delete</string>
-    <string name="digitshift_guess_label">Guess %1$d</string>
-    <string name="digitshift_solved_words">Solved</string>
-    <string name="digitshift_attempts_left">Attempts</string>
-    <string name="digitshift_current_language">Language</string>
-    <string name="game_message_digitshift_enter_word">Build a word and submit your guess.</string>
-    <string name="game_message_digitshift_not_enough_letters">Not enough letters yet.</string>
-    <string name="game_message_digitshift_not_in_dictionary">That word is not in this language pack.</string>
-    <string name="game_message_digitshift_keep_trying">Good clue. Refine the next guess.</string>
-    <string name="game_message_digitshift_solved">Solved: %1$s</string>
-    <string name="game_message_digitshift_failed">Round over. The word was %1$s.</string>
-    <string name="game_message_digitshift_revived">Extra life used. Try the word again.</string>
-    <string name="game_message_ad_reward_digitshift">Word refreshed. Keep guessing!</string>
-    <string name="challenge_task_solve_words">Solve %1$d words</string>
-    <string name="challenge_info_solve_words_title">Solve words</string>
-    <string name="challenge_info_solve_words">Complete full DigitShift rounds by finding the hidden word before you run out of guesses.</string>
 </resources>

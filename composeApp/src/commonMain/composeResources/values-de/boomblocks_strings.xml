@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_boomblocks_desc">Tippe auf Gruppen aus 3 oder mehr Blöcken, um sie explodieren zu lassen.</string>
+
+    <!-- BoomBlocksGameScreen -->
+    <string name="game_message_ad_reward_boomblocks">Farbe gelöscht! Das Spielfeld wurde neu geformt.</string>
+    <string name="ad_reward_boomblocks_clear">Farbe löschen</string>
+    <string name="feedback_ad_reward_boomblocks">%1$s gelöscht</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_task_explode_groups">Lass %1$d Blockgruppen explodieren</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_boomblocks_intro_title">Lass passende Gruppen explodieren</string>
+    <string name="tutorial_boomblocks_intro_body">In BoomBlocks startest oder ziehst du keine Teile. Suche stattdessen nach drei oder mehr gleichfarbigen Blöcken, die sich berühren, und tippe einen davon an, um die ganze Gruppe zu entfernen.</string>
+    <string name="tutorial_boomblocks_gravity_title">Dynamische Spielfeldbewegung</string>
+    <string name="tutorial_boomblocks_gravity_body">Wenn eine Gruppe explodiert, entsteht ein Sog, der umliegende Blöcke anzieht. Danach füllen neue Blöcke das Spielfeld vom nächstgelegenen Rand wieder auf und halten die Action in Bewegung.</string>
+    <string name="tutorial_boomblocks_ready_title">Du bist bereit für BoomBlocks</string>
+    <string name="tutorial_boomblocks_ready_body">Konzentriere dich auf große Gruppen für maximale Punkte und beobachte, wie jede Explosion das Spielfeld neu formt. Viel Erfolg!</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_boomblocks_basic_title">Tippen zum Explodieren</string>
+    <string name="interactive_onboarding_boomblocks_basic_body">Finde eine Gruppe aus drei oder mehr gleichfarbigen Blöcken und tippe sie an, um sie vom Spielfeld zu entfernen.</string>
+    <string name="interactive_onboarding_boomblocks_large_title">Größere Gruppen, mehr Punkte</string>
+    <string name="interactive_onboarding_boomblocks_large_body">Größere Gruppen bringen mehr Punkte und schaffen mehr Platz. Tippe auf die markierte große Gruppe!</string>
+    <string name="interactive_onboarding_boomblocks_gravity_title">Die Schwerkraft verschiebt sich</string>
+    <string name="interactive_onboarding_boomblocks_gravity_body">Wenn du Blöcke explodieren lässt, rücken neue von der gegenüberliegenden Seite der Explosion nach. Beobachte, wie sich das Spielfeld verschiebt!</string>
+    <string name="interactive_onboarding_boomblocks_strategic_title">Strategisches Nachfüllen</string>
+    <string name="interactive_onboarding_boomblocks_strategic_body">Neue Blöcke füllen das Spielfeld abhängig vom Explosionszentrum wieder auf. Nutze das, um noch größere Gruppen vorzubereiten!</string>
+    <string name="interactive_onboarding_boomblocks_tap_hint">Tippe zum Fortfahren auf die markierte Gruppe.</string>
+
+</resources>

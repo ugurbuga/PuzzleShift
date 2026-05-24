@@ -82,6 +82,11 @@ class GameStore(
         updateState(restoreState(state))
     }
 
+    fun replaceStateDirect(state: GameState) {
+        effectHandler.handle(GameEffect.CancelSoftLockTimer)
+        updateState(state)
+    }
+
     fun dispose() {
         effectHandler.dispose()
     }

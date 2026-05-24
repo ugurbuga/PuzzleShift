@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blocksort_desc">Triez les piles colorées mélangées jusqu’à ce que chaque colonne remplie n’ait plus qu’une seule couleur.</string>
+
+    <!-- BlockSortGameScreen -->
+    <string name="game_message_ad_reward_blocksort">Plateau réorganisé ! De nouvelles routes sont ouvertes.</string>
+    <string name="blocksort_completed_label">Trié</string>
+    <string name="blocksort_goal_hint">Objectif : terminez la manche avec chaque colonne remplie d’une seule couleur. Les manches peuvent utiliser 3, 4, 5 ou 6 emplacements de taille égale par colonne, et le plateau peut se répartir sur deux rangées.</string>
+    <string name="blocksort_no_moves_hint">Aucun transfert valide ne reste dans cette disposition mixte. Essayez un nouveau mélange ou lancez une nouvelle manche.</string>
+    <string name="blocksort_round_congrats_title">Félicitations !</string>
+    <string name="blocksort_round_complete_hint">Manche terminée ! Bonus +%1$d et une nouvelle disposition mixte est arrivée.</string>
+    <string name="blocksort_round_label">Manche</string>
+    <string name="blocksort_select_source_hint">Touchez une colonne mixte non vide pour prendre sa pile de couleur supérieure.</string>
+    <string name="blocksort_selected_hint">Touchez maintenant une colonne vide ou une colonne avec la même couleur supérieure pour y déplacer la pile.</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rounds_title">Manches</string>
+    <string name="challenge_info_clear_rounds">Terminez des manches complètes de BlockSort en transformant chaque colonne remplie en une seule couleur.</string>
+    <string name="challenge_task_complete_columns">Complétez %1$d colonnes</string>
+    <string name="challenge_task_clear_rounds">Terminez %1$d manches</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_blocksort_intro_title">Déplacez des piles supérieures de taille égale entre les colonnes</string>
+    <string name="tutorial_blocksort_intro_body">Chaque manche utilise une taille d’emplacement commune pour toutes les colonnes. Touchez une colonne mixte non vide pour prendre sa pile de couleur supérieure, puis déplacez-la vers une colonne vide ou une colonne dont la couleur du dessus correspond.</string>
+    <string name="tutorial_blocksort_rules_title">Seules les couleurs identiques peuvent s’empiler ensemble</string>
+    <string name="tutorial_blocksort_rules_body">Vous ne pouvez transférer que vers un espace vide ou sur la même couleur supérieure. À mesure que le puzzle grandit, le plateau peut se répartir sur une rangée du haut et une rangée du bas, gardez donc à l’esprit l’espace d’aide et la visibilité.</string>
+    <string name="tutorial_blocksort_finish_title">Complétez chaque colonne avec une seule couleur</string>
+    <string name="tutorial_blocksort_finish_body">Une colonne est complète lorsque chaque emplacement de cette manche contient la même couleur. Les différentes manches peuvent utiliser 3, 4, 5 ou 6 emplacements de taille égale, et une nouvelle disposition mixte arrive une fois que vous les avez toutes terminées.</string>
+    <string name="tutorial_blocksort_ready_title">Vous êtes prêt pour BlockSort</string>
+    <string name="tutorial_blocksort_ready_body">Prévoyez deux ou trois coups à l’avance, protégez vos colonnes d’aide et adaptez-vous vite lorsque chaque manche change le nombre d’emplacements et peut répartir le plateau sur deux rangées.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_blocksort_pick_title">Choisissez une colonne source</string>
+    <string name="interactive_onboarding_blocksort_pick_body">Commencez par toucher la colonne mixte mise en évidence. Vous déplacerez d’abord sa pile de couleur supérieure, et chaque emplacement de cette manche a la même taille.</string>
+    <string name="interactive_onboarding_blocksort_pick_hint">Touchez d’abord la colonne source mise en évidence dans la disposition mixte.</string>
+    <string name="interactive_onboarding_blocksort_match_title">Associez la couleur du dessus</string>
+    <string name="interactive_onboarding_blocksort_match_body">Envoyez maintenant cette pile vers une colonne dont la couleur supérieure correspond déjà. Les colonnes assorties vous permettent de regrouper les couleurs en sécurité même lorsque le plateau se répartit sur deux rangées.</string>
+    <string name="interactive_onboarding_blocksort_match_hint">Déplacez la pile vers la colonne mise en évidence avec la même couleur.</string>
+    <string name="interactive_onboarding_blocksort_finish_title">Terminez une colonne propre</string>
+    <string name="interactive_onboarding_blocksort_finish_body">Parfait. Un seul mouvement de plus complétera tous les emplacements d’une colonne d’une seule couleur pour cette manche. Terminez-la pour voir l’objectif principal de BlockSort.</string>
+    <string name="interactive_onboarding_blocksort_finish_hint">Complétez la colonne mise en évidence pour que chaque emplacement affiche la même couleur.</string>
+
+</resources>

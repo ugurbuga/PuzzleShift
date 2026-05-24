@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_boomblocks_desc">点击 3 个或更多方块组成的群组来引爆它们。</string>
+
+    <!-- BoomBlocksGameScreen -->
+    <string name="game_message_ad_reward_boomblocks">颜色已清除！棋盘已重塑。</string>
+    <string name="ad_reward_boomblocks_clear">清除颜色</string>
+    <string name="feedback_ad_reward_boomblocks">%1$s 已清除</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_task_explode_groups">引爆 %1$d 个方块群组</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_boomblocks_intro_title">引爆相连的同色群组</string>
+    <string name="tutorial_boomblocks_intro_body">在 BoomBlocks 中，你不会发射或拖动方块。你要寻找三个或更多相互接触的同色方块，然后点击其中任意一个来清除整个群组。</string>
+    <string name="tutorial_boomblocks_gravity_title">动态棋盘流动</string>
+    <string name="tutorial_boomblocks_gravity_body">当一个群组爆炸时，会形成一个真空，把周围的方块吸过去。随后，新方块会从最近的边缘补入，让局面持续变化。</string>
+    <string name="tutorial_boomblocks_ready_title">你已经准备好挑战 BoomBlocks 了</string>
+    <string name="tutorial_boomblocks_ready_body">尽量寻找更大的群组来拿到更高分数，并观察每次爆炸如何重塑棋盘。祝你好运！</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_boomblocks_basic_title">点击即可引爆</string>
+    <string name="interactive_onboarding_boomblocks_basic_body">找到三个或更多同色方块组成的群组，然后点击它，把它们从棋盘上清除。</string>
+    <string name="interactive_onboarding_boomblocks_large_title">群组越大，得分越高</string>
+    <string name="interactive_onboarding_boomblocks_large_body">更大的群组能获得更多分数，也能腾出更多空间。点击高亮显示的大群组吧！</string>
+    <string name="interactive_onboarding_boomblocks_gravity_title">重力方向会改变</string>
+    <string name="interactive_onboarding_boomblocks_gravity_body">当你引爆方块时，新方块会从爆炸相反的一侧补进来。留意棋盘是如何移动的！</string>
+    <string name="interactive_onboarding_boomblocks_strategic_title">策略性补盘</string>
+    <string name="interactive_onboarding_boomblocks_strategic_body">新方块会根据爆炸中心重新填充棋盘。利用这一点来准备更大的群组吧！</string>
+    <string name="interactive_onboarding_boomblocks_tap_hint">点击高亮群组以继续。</string>
+
+</resources>

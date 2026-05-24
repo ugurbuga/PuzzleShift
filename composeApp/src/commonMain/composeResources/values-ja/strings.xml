@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- SettingsScreen -->
     <string name="settings_title">設定</string>
     <string name="settings_language">言語</string>
     <string name="settings_sound">サウンド</string>
@@ -11,14 +13,9 @@
     <string name="settings_block_palette">ブロックカラーパレット</string>
     <string name="settings_block_style">ブロックスタイル</string>
     <string name="settings_tokens_title">トークン</string>
-    <string name="settings_tokens_balance">Token: %1$d</string>
+    <string name="settings_tokens_balance">トークン: %1$d</string>
     <string name="settings_tokens_earn_challenge">• デイリーチャレンジ報酬: +%1$d トークン</string>
     <string name="settings_tokens_earn_score">• ゲーム報酬: スコア %1$d ごとに +1 トークン</string>
-    <string name="rewarded_tokens_button_bullet">• 広告を見て %1$d トークンを獲得</string>
-    <string name="rewarded_tokens_button">広告を見て %1$d トークンを獲得</string>
-    <string name="reward_earned_message">%1$d トークンを獲得しました！</string>
-    <string name="reward_piece_row_message">横一列クリアピースを装備しました！</string>
-    <string name="reward_piece_column_message">縦一列クリアピースを装備しました！</string>
     <string name="unlock_dialog_watch_ad">広告を見てトークンを獲得</string>
     <string name="token_label">トークン</string>
     <string name="settings_board_block_style">盤面ブロックスタイル</string>
@@ -68,6 +65,25 @@
     <string name="block_style_electric">エレクトリック</string>
     <string name="board_block_style_always_flat">常にフラット</string>
     <string name="board_block_style_match_selected">選択中のブロックスタイルに合わせる</string>
+    <string name="block_style_lava">溶岩</string>
+    <string name="block_style_light_burst">光のバースト</string>
+    <string name="block_style_matte_soft">やわらかマット</string>
+    <string name="block_style_stone_texture">石の質感</string>
+    <string name="rewarded_tokens_button_bullet">• 広告を見て %1$d トークンを獲得</string>
+    <string name="rewarded_tokens_button">広告を見て %1$d トークンを獲得</string>
+    <string name="unlock_dialog_title">%1$s を解放しますか？</string>
+    <string name="unlock_dialog_insufficient_title">%1$s はロック中です</string>
+    <string name="unlock_dialog_message">%1$s の解放には %2$d トークン必要です。現在の残高: %3$d。</string>
+    <string name="unlock_dialog_not_enough">このアイテムを解放するには %1$d トークン必要です。現在の残高は %2$d です。</string>
+    <string name="unlock_dialog_confirm">解放</string>
+    <string name="unlock_dialog_locked_suffix">ロック中</string>
+
+    <!-- HomeScreen -->
+    <string name="home_play_cta">プレイ</string>
+    <string name="home_classic_cta">クラシック</string>
+    <string name="home_time_attack_cta">タイムアタック</string>
+
+    <!-- GameDialogs -->
     <string name="hold">ホールド</string>
     <string name="pause">一時停止</string>
     <string name="resume">再開</string>
@@ -82,68 +98,37 @@
     <string name="score">スコア</string>
     <string name="high_score">ベスト</string>
     <string name="high_score_new_record">新記録</string>
-    <string name="home_play_cta">プレイ</string>
-    <string name="home_classic_cta">クラシック</string>
-    <string name="home_time_attack_cta">タイムアタック</string>
     <string name="lines">ライン</string>
     <string name="time_remaining">残り時間</string>
     <string name="boost">ブースト</string>
     <string name="danger">危険</string>
     <string name="danger_none">-</string>
     <string name="launch_label">発射</string>
-    <string name="launch_bar">発射バー</string>
-    <string name="launch_boost_active">ブースト発動中 • 残り %1$s ターン</string>
-    <string name="launch_special_chance">特殊ブロック出現率 +%1$s%</string>
-    <string name="launch_soft_lock_message">目標位置を確認してから離してください</string>
-    <string name="launch_chain_message">行 + 列 • +%2$s</string>
-    <string name="launch_paused">一時停止中</string>
-    <string name="launch_game_over">新しいプレイを始めるにはリスタート</string>
-    <string name="launch_drag_hint">横にドラッグ → 離す</string>
-    <string name="launch_drag_hint_blockwise">盤面上のどこかへドラッグ → 離して配置</string>
-    <string name="queue_hold">ホールド</string>
-    <string name="queue_next_short">次</string>
-    <string name="queue_empty">—</string>
-    <string name="pause_title">一時停止</string>
     <string name="game_over_title">ゲームオーバー</string>
     <string name="continue_label">続ける</string>
     <string name="game_over_extra_life">広告を見てエクストラライフを獲得</string>
     <string name="game_over_extra_life_loading">広告を読み込み中…</string>
     <string name="play_again">もう一度プレイ</string>
     <string name="game_over_new_high_score">ハイスコア更新！</string>
-    <string name="game_message_select_column">3つのピースのうち1つを空いている場所へドラッグしてください。</string>
     <string name="game_message_no_opening">現在のトレイでは有効な手が残っていません。</string>
-    <string name="game_message_soft_lock">ハイライトされたマスにピースを配置するには離してください。</string>
-    <string name="game_message_overflow">トレイ内のどのピースも置ける空きがありません。</string>
-    <string name="game_message_special_chain_board">行と列を同時に消去！ %1$s ライン消去。</string>
-    <string name="game_message_pressure_game_over">これ以上配置できません。新しいプレイを始めましょう。</string>
-    <string name="game_message_special_lines">ナイスコンボ！ %1$s ライン消去。</string>
-    <string name="game_message_special_triggered">大きな消去で %1$d マスを取り除きました！</string>
-    <string name="game_message_perfect_drop">きれいな配置 x%1$s！</string>
-    <string name="game_message_chain_lines">ダブル消去！ %2$s ライン消去。</string>
-    <string name="game_message_lines_cleared">%1$s ライン消去。</string>
-    <string name="game_message_good_shot">いい手です。残りのトレイピースも確認しましょう。</string>
-    <string name="game_message_ad_reward_blockwise">トレイを更新しました！ 新しい形が準備できています。</string>
-    <string name="game_message_ad_reward_mergeshift">数字が変わりました！ そのままマージを続けましょう。</string>
-    <string name="game_message_ad_reward_boomblocks">色を消去しました！ 盤面が再構成されました。</string>
-    <string name="game_message_ad_reward_stackshift">特殊ブロックを装備しました！ 発射準備完了。</string>
-    <string name="game_message_ad_reward_blocksort">このラウンドに空き列を1本追加しました。</string>
-    <string name="game_message_hold_updated">トレイを更新しました。組み立てを続けましょう。</string>
-    <string name="game_message_tempo_critical">トレイが詰まる前に行または列の消去を狙いましょう。</string>
-    <string name="game_message_tempo_up">新しい3ピースが到着しました。盤面をよく見てください。</string>
     <string name="game_message_paused">ゲームは一時停止中です。</string>
-    <string name="game_message_resumed">再開しました。列を選んで発射しましょう。</string>
     <string name="game_message_extra_life_used">エクストラライフ発動！ %1$s 行を消去しました。</string>
+    <string name="queue_hold">ホールド</string>
+    <string name="pause_title">一時停止</string>
+    <string name="game_message_lines_cleared">%1$s ライン消去。</string>
+
+    <!-- NotificationWorker -->
     <string name="notification_reminders_channel_name">リマインダー</string>
     <string name="notification_miss_you_body">おかえりを待っていました！ またプレイしに来てください。</string>
     <string name="notification_daily_challenge_title">デイリーチャレンジ</string>
     <string name="notification_daily_challenge_body">今日のデイリーチャレンジのタスクはもう達成しましたか？</string>
     <string name="notification_test_body">これはテスト通知です。</string>
+
+    <!-- DailyChallengeScreen -->
     <string name="challenge_tasks_title">タスク</string>
     <string name="challenge_info_title">タスクについて</string>
     <string name="challenge_info_clear_blocks_title">ブロック</string>
     <string name="challenge_info_clear_blocks">ラインを完成させたり連鎖を起こしたりして、埋まったマスを盤面から消しましょう。</string>
-    <string name="challenge_info_clear_rows_title">行</string>
-    <string name="challenge_info_clear_rows">行をすべて埋めると盤面から消去されます。</string>
     <string name="challenge_info_reach_score_title">スコア</string>
     <string name="challenge_info_reach_score">ピースを置いたりラインを消したりしてスコアを伸ばしましょう。</string>
     <string name="challenge_info_trigger_special_title">特殊ブロック</string>
@@ -154,29 +139,20 @@
     <string name="challenge_info_chain_reaction">1手のあとに追加消去が続くように連鎖を組みましょう。</string>
     <string name="challenge_info_clear_columns_title">列</string>
     <string name="challenge_info_clear_columns">列をすべて埋めて盤面から消去しましょう。</string>
-    <string name="challenge_info_clear_rounds_title">ラウンド</string>
-    <string name="challenge_info_clear_rounds">埋まっている各列を単色にそろえて、BlockSort のラウンドを最後まで完了しましょう。</string>
     <string name="challenge_info_place_pieces_title">配置</string>
     <string name="challenge_info_place_pieces">ラインが消えなくても、成功した配置はすべてカウントされます。</string>
-    <string name="challenge_info_clear_both_directions_title">行 + 列</string>
-    <string name="challenge_info_clear_both_directions">1回の配置で少なくとも1行と1列を同時に消すことができます。</string>
     <string name="challenge_completed">チャレンジ達成！</string>
     <string name="challenge_task_clear_blocks">%1$d 個のブロックを消す</string>
-    <string name="challenge_task_clear_rows">%1$d 行を消す</string>
     <string name="challenge_task_reach_score">スコア %1$d に到達</string>
     <string name="challenge_task_trigger_special">%1$d 回特殊ブロックを発動</string>
     <string name="challenge_task_perfect_placement">%1$d 回パーフェクト配置を行う</string>
     <string name="challenge_task_chain_reaction">%1$d 回連鎖を起こす</string>
     <string name="challenge_task_clear_columns">%1$d 列を消す</string>
-    <string name="challenge_task_complete_columns">%1$d 列を完成させる</string>
     <string name="challenge_task_place_pieces">%1$d 個のピースを置く</string>
-    <string name="challenge_task_clear_rounds">%1$d ラウンドをクリア</string>
-    <string name="ad_reward_blockwise_refresh">トレイを更新</string>
-    <string name="ad_reward_mergeshift_swap">数字を変更</string>
-    <string name="ad_reward_boomblocks_clear">色を消去</string>
-    <string name="feedback_ad_reward_blockwise">トレイを更新</string>
-    <string name="feedback_ad_reward_mergeshift">数字を変更</string>
-    <string name="feedback_ad_reward_boomblocks">%1$s を消去</string>
+    <string name="challenge_progress_value">%1$d/%2$d</string>
+
+    <!-- RewardFeedback -->
+    <string name="reward_earned_message">%1$d トークンを獲得しました！</string>
     <string name="color_cyan">シアン</string>
     <string name="color_gold">ゴールド</string>
     <string name="color_violet">バイオレット</string>
@@ -186,8 +162,12 @@
     <string name="color_rose">ローズ</string>
     <string name="color_lime">ライム</string>
     <string name="color_amber">アンバー</string>
-    <string name="challenge_task_explode_groups">%1$d 個のブロックグループを爆破</string>
-    <string name="challenge_task_clear_both_directions">%1$d 回 行 + 列 を同時消去</string>
+    <string name="feedback_overflow">オーバーフロー</string>
+    <string name="feedback_clear">消去 +%1$s</string>
+    <string name="feedback_score_only">+%1$s</string>
+    <string name="feedback_extra_life">エクストラライフ！ %1$s 行</string>
+
+    <!-- Calendar -->
     <string name="month_january">1月</string>
     <string name="month_february">2月</string>
     <string name="month_march">3月</string>
@@ -208,27 +188,15 @@
     <string name="day_friday_short">金</string>
     <string name="day_saturday_short">土</string>
     <string name="day_sunday_short">日</string>
-    <string name="feedback_overflow">オーバーフロー</string>
-    <string name="feedback_perfect_lane">ぴったり配置 x%1$s</string>
-    <string name="feedback_micro_adjust">位置調整</string>
-    <string name="feedback_soft_lock">プレビュー準備完了</string>
-    <string name="feedback_hold_armed">ホールド準備完了</string>
-    <string name="feedback_swap">入れ替え</string>
-    <string name="feedback_special_chain">特殊連鎖 +%1$s • %2$d ブロック</string>
-    <string name="feedback_special">特殊 +%1$s • %2$d ブロック</string>
-    <string name="feedback_perfect">パーフェクト x%1$s +%2$s</string>
-    <string name="feedback_chain">連鎖 x%1$s +%2$s</string>
-    <string name="feedback_clear">消去 +%1$s</string>
-    <string name="feedback_score_only">+%1$s</string>
-    <string name="feedback_extra_life">エクストラライフ！ %1$s 行</string>
-    <string name="challenge_progress_value">%1$d/%2$d</string>
     <string name="stat_label_value_format">%1$s: %2$s</string>
     <string name="time_minutes_seconds_format">%1$d:%2$s</string>
+
+    <!-- PiecePropertiesScreen -->
+    <string name="queue_empty">—</string>
     <string name="special_column_clearer">列</string>
     <string name="special_row_clearer">行</string>
     <string name="special_ghost">ゴースト</string>
     <string name="special_heavy">ヘビー</string>
-
     <string name="piece_properties_title">ピース情報</string>
     <string name="piece_properties_active">現在のピース</string>
     <string name="piece_properties_kind">種類</string>
@@ -237,206 +205,38 @@
     <string name="piece_properties_cells">マス</string>
     <string name="piece_properties_unlock_level">解放レベル</string>
     <string name="piece_properties_none">なし</string>
-
     <string name="active_piece_summary">%1$s • %2$s • %3$s</string>
     <string name="piece_size_format">%1$dx%2$d</string>
 
+    <!-- BlockPropertiesScreen -->
     <string name="block_properties_title">ブロック情報</string>
     <string name="block_properties_select_hint">ブロックタイプを選択</string>
-
     <string name="block_properties_normal_title">通常ブロック</string>
     <string name="block_properties_normal_desc">標準的な埋まりマスです。特殊効果はありません。</string>
-
     <string name="block_properties_column_clearer_title">列消去</string>
     <string name="block_properties_column_clearer_desc">その列のすべてのマスが埋まると列が消えます。</string>
-
     <string name="block_properties_row_clearer_title">行消去</string>
     <string name="block_properties_row_clearer_desc">その行のすべてのマスが埋まると行が消えます。</string>
-
     <string name="block_properties_ghost_title">自由配置</string>
     <string name="block_properties_ghost_desc">トレイのピースは、収まる空きエリアならどこにでも直接配置できます。</string>
-
     <string name="block_properties_heavy_title">特殊ブロックなし</string>
     <string name="block_properties_heavy_desc">このモードは形の選択、ライン消去、トレイ全体を置ける空間作りが中心です。</string>
-
     <string name="block_properties_dot_desc">右上の小さな点は、このブロックに特殊効果があることを示します。点と枠線の色で効果の種類が分かります。</string>
+
+    <!-- GameTutorialScreen -->
     <string name="tutorial_subtitle">最初のプレイ前に短いガイドを確認しましょう。</string>
     <string name="tutorial_step_counter">ステップ %1$d / %2$d</string>
     <string name="tutorial_back">戻る</string>
     <string name="cancel">キャンセル</string>
-    <string name="unlock_dialog_title">%1$s を解放しますか？</string>
-    <string name="unlock_dialog_insufficient_title">%1$s はロック中です</string>
-    <string name="unlock_dialog_message">%1$s の解放には %2$d トークン必要です。現在の残高: %3$d。</string>
-    <string name="unlock_dialog_not_enough">このアイテムを解放するには %1$d トークン必要です。現在の残高は %2$d です。</string>
-    <string name="unlock_dialog_confirm">解放</string>
-    <string name="unlock_dialog_locked_suffix">ロック中</string>
     <string name="tutorial_next">次へ</string>
     <string name="tutorial_finish">ゲームを始める</string>
     <string name="return_home">ホームに戻る</string>
-    <string name="tutorial_stackshift_intro_title">現在のピースをドラッグして発射位置を決めよう</string>
-    <string name="tutorial_stackshift_intro_body">現在のピースは発射ドックから始まります。盤面の下で左右にドラッグし、プレビューが良ければ離しましょう。最も近い有効レーンに落ちます。</string>
-    <string name="tutorial_stackshift_systems_title">盤面が混み合ったらアクションブロックを使おう</string>
-    <string name="tutorial_stackshift_systems_body">ホールドで現在のピースを入れ替え、一時停止でプレイを止め、ブロック情報で記号を確認し、設定で見た目や言語を変更できます。これらのボタンも選択中の盤面ブロックスタイルに合わせて表示されます。</string>
-    <string name="tutorial_stackshift_specials_title">特殊ブロックは窮地を救ってくれる</string>
-    <string name="tutorial_stackshift_specials_body">一部のピースには特殊効果があります。各アイコンの意味を覚えて、行消去、列消去、すり抜け、危険突破を使い分けましょう。</string>
-    <string name="tutorial_stackshift_ready_title">StackShift の発射準備は完了です</string>
-    <string name="tutorial_stackshift_ready_body">正確に発射し、次のキューを見据え、圧迫される前に特殊ブロックを使いましょう。復習したくなったらいつでもこのガイドに戻れます。</string>
-    <string name="tutorial_stackshift_ready_tutorial_hint">発射、キュー確認、特殊ブロック効果を復習したい時はいつでもチュートリアルを開いてください。</string>
-    <string name="tutorial_stackshift_ready_settings_hint">次のプレイ前に設定を開いて言語、テーマ、色、ブロックスタイルを変更できます。</string>
-    <string name="tutorial_intro_title">3つのピースのどれかを盤面にドラッグ</string>
-    <string name="tutorial_intro_body">トレイには3つの形があります。置きたいものを選び、空いているマスへドラッグして、ぴったり合う場所で離してください。</string>
-    <string name="tutorial_systems_title">1手だけでなくトレイ全体を考えよう</string>
-    <string name="tutorial_systems_body">1つ置いても残りのトレイはそのまま表示されます。3つすべて使うと新しい3個セットが出現します。残っている形すべてが置けるスペースを意識しましょう。</string>
-    <string name="tutorial_specials_title">行と列は全部埋まると消える</string>
-    <string name="tutorial_specials_body">このモードに特殊ピースはありません。その代わり、行または列を完全に埋めると消去されます。両方同時に完成すれば同時消去になります。</string>
-    <string name="tutorial_ready_title">新しいブロックパズルの流れに備えましょう</string>
-    <string name="tutorial_ready_body">トレイ全体を見渡し、行と列の消去を組み立て、大きな形を詰まらせないようにしましょう。3つのピースのどれも入らなくなったらプレイ終了です。</string>
-    <string name="tutorial_ready_block_properties_hint">自由配置や行・列同時消去を復習したい時はいつでもチュートリアルを開いてください。</string>
-    <string name="tutorial_ready_tutorial_hint">自由配置や行・列同時消去を復習したい時はいつでもチュートリアルを開いてください。</string>
     <string name="tutorial_ready_settings_hint">次のプレイ前に設定を開いて言語、テーマ、色、ブロックスタイルを変更できます。</string>
-    <string name="tutorial_mergeshift_intro_title">ピースを発射して同じ値をマージしよう</string>
-    <string name="tutorial_mergeshift_intro_body">MergeShift ではピースをドックから発射します。ブロックが同じ値の別ブロックに重なると、より高い値にマージされます。マージを重ねてスペースを作り、高スコアを目指しましょう。</string>
-    <string name="tutorial_mergeshift_systems_title">積み上がり過ぎを防ぐようにマージを計画しよう</string>
-    <string name="tutorial_mergeshift_systems_body">発射するたびに列の高さが増します。いずれかの列が天井まで届くとゲームオーバーです。プレビューで落下位置を確認し、必要なら設定で体験を調整しましょう。</string>
-    <string name="tutorial_mergeshift_specials_title">複数マージで大きなコンボを狙おう</string>
-    <string name="tutorial_mergeshift_specials_body">1回の発射で連続マージが起こることがあります。大きなコンボは得点も空きスペースも増やしてくれます。</string>
-    <string name="tutorial_mergeshift_ready_title">MergeShift の準備は完了です</string>
-    <string name="tutorial_mergeshift_ready_body">列を低く保ちつつ高い値のマージを狙いましょう。最高値を目指してがんばってください！</string>
-
-    <string name="tutorial_boomblocks_intro_title">同じ色のグループを爆破しよう</string>
-    <string name="tutorial_boomblocks_intro_body">BoomBlocks ではピースを発射したりドラッグしたりしません。代わりに、同じ色で3個以上つながっているブロックを探し、そのどれかをタップしてグループ全体を消しましょう。</string>
-    <string name="tutorial_boomblocks_gravity_title">ダイナミックに動く盤面</string>
-    <string name="tutorial_boomblocks_gravity_body">グループが爆発すると周囲のブロックが引き寄せられます。その後、新しいブロックが最寄りの端から補充され、盤面が常に変化します。</string>
-    <string name="tutorial_boomblocks_ready_title">BoomBlocks の準備は完了です</string>
-    <string name="tutorial_boomblocks_ready_body">大きなグループを見つけて高得点を狙い、爆発のたびに盤面がどう変わるかを観察しましょう。健闘を祈ります！</string>
-    <string name="tutorial_blocksort_intro_title">同じサイズの上段スタックを列間で移動しよう</string>
-    <string name="tutorial_blocksort_intro_body">各ラウンドでは、すべての列が共通のスロットサイズを使います。空でない混色列をタップして上の色スタックを取り出し、空の列か同じ色が一番上にある列へ移動させましょう。</string>
-    <string name="tutorial_blocksort_rules_title">同じ色同士だけを重ねられる</string>
-    <string name="tutorial_blocksort_rules_body">移動先は空き列か、同じ色が一番上にある列だけです。パズルが進むと盤面が上下2段に分かれることがあるので、補助スペースと見通しを両方意識しましょう。</string>
-    <string name="tutorial_blocksort_finish_title">単色列を完成させよう</string>
-    <string name="tutorial_blocksort_finish_body">そのラウンドのすべてのスロットが同じ色になると列が完成です。ラウンドごとに 3、4、5、6 スロットがあり、全部終えると新しい混色レイアウトが届きます。</string>
-    <string name="tutorial_blocksort_ready_title">BlockSort の準備は完了です</string>
-    <string name="tutorial_blocksort_ready_body">2～3手先を読み、補助列を守り、ラウンドごとのスロット数変化や2段盤面への切り替わりに素早く対応しましょう。</string>
-
     <string name="interactive_onboarding_step_counter">ガイド %1$d / %2$d</string>
 
-    <string name="interactive_onboarding_drag_title">トレイのピースを盤面へドラッグ</string>
-    <string name="interactive_onboarding_drag_body">トレイ内の3つの形のうち1つに触れ、盤面へ動かして、ハイライトされたマスに合わせましょう。</string>
-    <string name="interactive_onboarding_drag_to_board">ハイライトされたトレイピースを光っている目標エリアへドラッグしてください。</string>
-    <string name="interactive_onboarding_drag_ready">いい感じです — そのまま離してください。ハイライトされたマスに収まると次のガイドが自動で開きます。</string>
-    <string name="interactive_onboarding_aim_hint">続けるにはピースをハイライトされたマスの中に置いてください。</string>
-    <string name="interactive_onboarding_target_locked">完璧です — そのまま離して続けてください。</string>
-    <string name="interactive_onboarding_waiting">配置を受け付けました。次のガイドを準備しています…</string>
-    <string name="interactive_onboarding_line_clear_title">行を完成させて消そう</string>
-    <string name="interactive_onboarding_line_clear_body">この形をガイドされた位置に置いて、行を埋めて光らせ、消してみましょう。</string>
-    <string name="interactive_onboarding_column_clearer_title">列を完成させて消そう</string>
-    <string name="interactive_onboarding_column_clearer_body">今度はハイライト位置に置いて列全体を完成させ、縦方向のスペースを作りましょう。</string>
-    <string name="interactive_onboarding_row_clearer_title">行消去で横に広く空ける</string>
-    <string name="interactive_onboarding_row_clearer_body">行が埋まると即座に消えます。ハイライトされたマスを狙って、盤面が横に開く様子を見てみましょう。</string>
-    <string name="interactive_onboarding_ghost_title">盤面だけでなくトレイも重要</string>
-    <string name="interactive_onboarding_ghost_body">形を置く前に、残り2つのピースも確認しましょう。良いプレイは今の1手だけでなく、トレイ全体の置き場を残すことから生まれます。</string>
-    <string name="interactive_onboarding_heavy_title">行と列を同時に消そう</string>
-    <string name="interactive_onboarding_heavy_body">1回の配置で行と列を同時に完成させられることがあります。ガイドされた位置を使って大きなダブル消去を体験しましょう。</string>
-
-    <string name="interactive_onboarding_mergeshift_launch_title">最初のピースを発射しよう</string>
-    <string name="interactive_onboarding_mergeshift_launch_body">盤面下でピースを左右にドラッグして狙いを定め、離して列へ発射します。</string>
-    <string name="interactive_onboarding_mergeshift_merge_vertical_title">縦方向に同じ値をマージ</string>
-    <string name="interactive_onboarding_mergeshift_merge_vertical_body">同じ値のブロックがすでにある列へピースを発射すると、より高い数字にマージされます！</string>
-    <string name="interactive_onboarding_mergeshift_merge_horizontal_title">横方向にもマージできる</string>
-    <string name="interactive_onboarding_mergeshift_merge_horizontal_body">ブロックは左右の隣ともマージできます。ハイライト位置を狙って横方向マージを起こしましょう。</string>
-    <string name="interactive_onboarding_mergeshift_merge_multi_title">複数マージを発動しよう</string>
-    <string name="interactive_onboarding_mergeshift_merge_multi_body">1回の配置で上・左・右など複数方向のマージが起こることがあります。大きく得点して、より多くのスペースを作りましょう！</string>
-
-    <string name="interactive_onboarding_boomblocks_basic_title">タップして爆破</string>
-    <string name="interactive_onboarding_boomblocks_basic_body">同じ色が3個以上つながったグループを見つけてタップし、盤面から消しましょう。</string>
-    <string name="interactive_onboarding_boomblocks_large_title">大きいグループほど高得点</string>
-    <string name="interactive_onboarding_boomblocks_large_body">大きなグループほど高得点で、より多くのスペースを作れます。ハイライトされた大きなグループをタップしましょう！</string>
-    <string name="interactive_onboarding_boomblocks_gravity_title">重力の向きが変わる</string>
-    <string name="interactive_onboarding_boomblocks_gravity_body">ブロックを爆破すると、新しいブロックが爆発の反対側から流れ込みます。盤面の動きを確認してみましょう！</string>
-    <string name="interactive_onboarding_boomblocks_strategic_title">戦略的な補充</string>
-    <string name="interactive_onboarding_boomblocks_strategic_body">新しいブロックは爆発の中心に応じて補充されます。これを利用してさらに大きなグループを作りましょう！</string>
-    <string name="interactive_onboarding_boomblocks_tap_hint">続けるにはハイライトされたグループをタップしてください。</string>
-    <string name="interactive_onboarding_blocksort_pick_title">元の列を選ぼう</string>
-    <string name="interactive_onboarding_blocksort_pick_body">まずハイライトされた混色列をタップします。最上段の色スタックを最初に動かします。このラウンドではすべてのスロットが同じサイズです。</string>
-    <string name="interactive_onboarding_blocksort_pick_hint">まずハイライトされた元の列をタップしてください。</string>
-    <string name="interactive_onboarding_blocksort_match_title">上の色を合わせよう</string>
-    <string name="interactive_onboarding_blocksort_match_body">次は、そのスタックを同じ色が一番上にある列へ移動します。盤面が2段になっても、色が一致する列なら安全にまとめられます。</string>
-    <string name="interactive_onboarding_blocksort_match_hint">スタックをハイライトされた一致色の列へ移動してください。</string>
-    <string name="interactive_onboarding_blocksort_finish_title">単色列を完成させよう</string>
-    <string name="interactive_onboarding_blocksort_finish_body">素晴らしいです。あと1手で、このラウンドの単色列が完成します。BlockSort の基本目標を確認してみましょう。</string>
-    <string name="interactive_onboarding_blocksort_finish_hint">ハイライトされた列を完成させて、すべてのスロットを同じ色にしてください。</string>
-    <string name="blocksort_completed_label">完了</string>
-    <string name="blocksort_goal_hint">目標: 埋まっている各列を単色にしてラウンドを終えましょう。ラウンドごとに列は 3、4、5、6 個の同サイズスロットを使い、盤面が2段に分かれることもあります。</string>
-    <string name="blocksort_no_moves_hint">この混色配置では有効な移動が残っていません。シャッフルするか、新しいラウンドを始めましょう。</string>
-    <string name="blocksort_round_congrats_title">おめでとう！</string>
-    <string name="blocksort_round_complete_hint">ラウンドクリア！ ボーナス +%1$d、そして新しい混色レイアウトが到着しました。</string>
-    <string name="blocksort_round_label">ラウンド</string>
-    <string name="blocksort_select_source_hint">空でない混色列をタップして、一番上の色スタックを持ち上げましょう。</string>
-    <string name="blocksort_selected_hint">次に、空の列か同じ色が一番上にある列をタップしてスタックを移動させましょう。</string>
-
+    <!-- AppSelectionScreen -->
     <string name="selection_title">ゲームを選択</string>
-
-    <string name="selection_stackshift_desc">下からピースを発射して行と列を消去します。</string>
-    <string name="selection_blockwise_desc">盤面の好きな場所にピースをドラッグ＆ドロップします。</string>
-    <string name="selection_blocksort_desc">混色スタックを並べ替え、埋まった列をすべて単色にそろえましょう。</string>
-    <string name="selection_mergeshift_desc">同じ値のピースをマージして高得点を目指します。</string>
-    <string name="selection_boomblocks_desc">3個以上つながったブロックグループをタップして爆破します。</string>
     <string name="selection_switch_game">ゲーム切替</string>
     <string name="selection_active_game_badge">プレイ中</string>
 
-    <string name="app_title_chainshift">Chain Shift</string>
-    <string name="selection_chainshift_desc">Shoot from the center, slip blocks into a spiral chain, and pop 3+ color matches.</string>
-    <string name="app_title_banner_chainshift_top">CHAIN</string>
-    <string name="app_title_banner_chainshift_bottom">SHIFT</string>
-    <string name="tutorial_chainshift_intro_title">Meet Chain Shift</string>
-    <string name="tutorial_chainshift_intro_body">Blocks enter from the edge, wrap around the board, and crawl toward the center. Your shooter stays in the middle, so every shot must cut into the moving chain before it reaches you.</string>
-    <string name="tutorial_chainshift_path_title">狙って撃つ</string>
-    <string name="tutorial_chainshift_path_body">中心から狙いを定め、離して発射します。ブロックは連鎖に当たった場所に挿入され、後続のブロックを前方に押し出します。</string>
-    <string name="tutorial_chainshift_combo_title">後退とコンボを作る</string>
-    <string name="tutorial_chainshift_combo_body">連鎖に沿って同じ色のつながったブロックを3つ以上揃えて消します。隙間が閉じると、連鎖は端に向かって後退し、連鎖反応が起こる可能性があります。</string>
-    <string name="tutorial_chainshift_ready_title">Hold the center</string>
-    <string name="tutorial_chainshift_ready_body">Stay calm, keep the spiral short, and use your shots to break dangerous runs before they lock the center. The deeper the chain goes, the less room you have to recover.</string>
-    <string name="interactive_onboarding_chainshift_intro_title">ガイドされたブロックを撃つ</string>
-    <string name="interactive_onboarding_chainshift_intro_body">螺旋のハイライトされた部分に向かって発射することから始めます。ブロックは中心から発射され、衝突した場所で連鎖に挿入されます。</string>
-    <string name="interactive_onboarding_chainshift_match_title">Make a 3-block match</string>
-    <string name="interactive_onboarding_chainshift_match_body">Now use the guided shot to line up 3 blocks of the same color. Matching segments burst immediately and open breathing room near the center.</string>
-    <string name="interactive_onboarding_chainshift_chain_title">連鎖反応を起こす</string>
-    <string name="interactive_onboarding_chainshift_chain_body">このセットアップでは、より賢いショットが報われます。最初のマッチを消し、連鎖が端に向かって後退するのを見守り、2番目のマッチが自然に消えるようにします。</string>
-    <string name="interactive_onboarding_chainshift_tap_hint">狙いを定めて離し、ハイライトされたブロックを撃ちます。</string>
-    <string name="game_message_ad_reward_chainshift">Active block refreshed for Chain Shift!</string>
-
-    <string name="block_style_lava">Lava</string>
-    <string name="block_style_light_burst">Light Burst</string>
-    <string name="block_style_matte_soft">Matte Soft</string>
-    <string name="block_style_stone_texture">Stone Texture</string>
-    <string name="selection_digitshift_desc">Wordle-style word puzzles with language-specific vocabularies.</string>
-    <string name="tutorial_digitshift_intro_title">Find the hidden word</string>
-    <string name="tutorial_digitshift_intro_body">Build a five-token word and submit it. Every guess reveals which tokens are correct, present, or absent.</string>
-    <string name="tutorial_digitshift_hints_title">Read the colors</string>
-    <string name="tutorial_digitshift_hints_body">Green means the token is correct, gold means it belongs somewhere else, and muted means it is not in the answer.</string>
-    <string name="tutorial_digitshift_strategy_title">Use the keyboard hints</string>
-    <string name="tutorial_digitshift_strategy_body">Each submitted guess upgrades the keyboard. Reuse green tokens, relocate gold ones, and avoid muted tokens to solve faster.</string>
-    <string name="tutorial_digitshift_ready_title">Ready to shift words?</string>
-    <string name="tutorial_digitshift_ready_body">Classic mode keeps the streak going until you miss a word. Time Attack adds pressure, so solve quickly to bank score and bonus time.</string>
-    <string name="interactive_onboarding_digitshift_type_hint">Type the suggested word to learn the board.</string>
-    <string name="interactive_onboarding_digitshift_submit_hint">Submit another valid word and watch the keyboard update.</string>
-    <string name="interactive_onboarding_digitshift_solve_hint">Use the clues and solve the hidden word.</string>
-    <string name="digitshift_enter">Enter</string>
-    <string name="digitshift_delete">Delete</string>
-    <string name="digitshift_guess_label">Guess %1$d</string>
-    <string name="digitshift_solved_words">Solved</string>
-    <string name="digitshift_attempts_left">Attempts</string>
-    <string name="digitshift_current_language">Language</string>
-    <string name="game_message_digitshift_enter_word">Build a word and submit your guess.</string>
-    <string name="game_message_digitshift_not_enough_letters">Not enough letters yet.</string>
-    <string name="game_message_digitshift_not_in_dictionary">That word is not in this language pack.</string>
-    <string name="game_message_digitshift_keep_trying">Good clue. Refine the next guess.</string>
-    <string name="game_message_digitshift_solved">Solved: %1$s</string>
-    <string name="game_message_digitshift_failed">Round over. The word was %1$s.</string>
-    <string name="game_message_digitshift_revived">Extra life used. Try the word again.</string>
-    <string name="game_message_ad_reward_digitshift">Word refreshed. Keep guessing!</string>
-    <string name="challenge_task_solve_words">Solve %1$d words</string>
-    <string name="challenge_info_solve_words_title">Solve words</string>
-    <string name="challenge_info_solve_words">Complete full DigitShift rounds by finding the hidden word before you run out of guesses.</string>
 </resources>
-

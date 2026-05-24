@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- SettingsScreen -->
     <string name="settings_title">设置</string>
     <string name="settings_language">语言</string>
     <string name="settings_sound">声音</string>
@@ -13,11 +15,6 @@
     <string name="settings_tokens_balance">Token：%1$d</string>
     <string name="settings_tokens_earn_challenge">• 每日挑战奖励：+%1$d 代币</string>
     <string name="settings_tokens_earn_score">• 对局奖励：每 %1$d 分获得 +1 代币</string>
-    <string name="rewarded_tokens_button_bullet">• 观看广告并获得 %1$d 代币</string>
-    <string name="rewarded_tokens_button">观看广告并获得 %1$d 代币</string>
-    <string name="reward_earned_message">你赢得了 %1$d 个代币！</string>
-    <string name="reward_piece_row_message">横行清除器方块已装备！</string>
-    <string name="reward_piece_column_message">纵列清除器方块已装备！</string>
     <string name="unlock_dialog_watch_ad">观看广告赚取代币</string>
     <string name="token_label">代币</string>
     <string name="settings_board_block_style">棋盘方块样式</string>
@@ -64,6 +61,29 @@
     <string name="block_style_electric">电力</string>
     <string name="board_block_style_always_flat">始终平面</string>
     <string name="board_block_style_match_selected">与所选样式一致</string>
+    <string name="settings_tutorial">教程</string>
+    <string name="settings_tutorial_body">你可以随时打开教程或引导练习，重新查看自由放置、行列清除，以及三块托盘的游玩流程。</string>
+    <string name="settings_tutorial_replay">练习</string>
+    <string name="settings_color_palette">颜色面板</string>
+    <string name="block_style_lava">熔岩</string>
+    <string name="block_style_light_burst">光爆</string>
+    <string name="block_style_matte_soft">柔雾哑光</string>
+    <string name="block_style_stone_texture">石材纹理</string>
+    <string name="rewarded_tokens_button_bullet">• 观看广告并获得 %1$d 代币</string>
+    <string name="rewarded_tokens_button">观看广告并获得 %1$d 代币</string>
+    <string name="unlock_dialog_title">解锁 %1$s？</string>
+    <string name="unlock_dialog_insufficient_title">%1$s 已锁定</string>
+    <string name="unlock_dialog_message">%1$s 需要 %2$d 代币。当前余额：%3$d。</string>
+    <string name="unlock_dialog_not_enough">你需要 %1$d 代币才能解锁此项目。当前余额为 %2$d。</string>
+    <string name="unlock_dialog_confirm">解锁</string>
+    <string name="unlock_dialog_locked_suffix">已锁定</string>
+
+    <!-- HomeScreen -->
+    <string name="home_play_cta">开始</string>
+    <string name="home_classic_cta">经典</string>
+    <string name="home_time_attack_cta">限时挑战</string>
+
+    <!-- GameDialogs -->
     <string name="hold">暂存</string>
     <string name="pause">暂停</string>
     <string name="resume">继续</string>
@@ -78,69 +98,39 @@
     <string name="score">分数</string>
     <string name="high_score">最高分</string>
     <string name="high_score_new_record">新纪录</string>
-    <string name="home_play_cta">开始</string>
-    <string name="home_classic_cta">经典</string>
-    <string name="home_time_attack_cta">限时挑战</string>
     <string name="lines">行</string>
     <string name="time_remaining">剩余时间</string>
     <string name="boost">加速</string>
     <string name="danger">危险</string>
     <string name="danger_none">-</string>
     <string name="launch_label">发射</string>
-    <string name="launch_bar">发射条</string>
-    <string name="launch_boost_active">加速生效 • %1$s 回合</string>
-    <string name="launch_special_chance">特殊方块概率 +%1$s%</string>
-    <string name="launch_soft_lock_message">已启用软锁 • 允许微调</string>
-    <string name="launch_chain_message">行 + 列 • +%2$s</string>
-    <string name="launch_paused">已暂停</string>
-    <string name="launch_game_over">重新开始新一局</string>
-    <string name="launch_drag_hint">水平拖动 → 松开</string>
-    <string name="launch_drag_hint_blockwise">在棋盘上任意拖动 → 松开放置</string>
-    <string name="queue_hold">暂存</string>
-    <string name="queue_next_short">下一个</string>
-    <string name="queue_empty">—</string>
-    <string name="pause_title">已暂停</string>
     <string name="game_over_title">游戏结束</string>
     <string name="continue_label">继续</string>
     <string name="game_over_extra_life">观看广告获得额外生命</string>
     <string name="game_over_extra_life_loading">广告加载中…</string>
     <string name="play_again">再玩一次</string>
     <string name="game_over_new_high_score">达到新高分！</string>
-    <string name="game_message_select_column">将方块水平拖动，选择列，然后向上发射。</string>
     <string name="game_message_no_opening">没有可用的起始列。请重新开始。</string>
-    <string name="game_message_soft_lock">短暂调整窗口已开启。请微调列位置。</string>
-    <string name="game_message_overflow">列已溢出！你没能跟上关键列。</string>
-    <string name="game_message_special_chain_board">特殊连击 x%1$s！棋盘已重塑。</string>
-    <string name="game_message_pressure_game_over">列压力已达上限。开始新一局。</string>
-    <string name="game_message_special_lines">特殊方块连击！已清除 %1$s 行。</string>
-    <string name="game_message_special_triggered">特殊方块已触发。%1$d 个方块已引爆！</string>
-    <string name="game_message_perfect_drop">完美落点 x%1$s！保持连击。</string>
-    <string name="game_message_chain_lines">双重清除！已清除 %2$s 行。</string>
-    <string name="game_message_lines_cleared">已清除 %1$s 行。</string>
-    <string name="game_message_good_shot">命中不错。规划下一列。</string>
-    <string name="game_message_ad_reward_blockwise">托盘已刷新！新形状已就绪。</string>
-    <string name="game_message_ad_reward_mergeshift">数字已更改！继续合并。</string>
-    <string name="game_message_ad_reward_boomblocks">颜色已清除！棋盘已重塑。</string>
-    <string name="game_message_ad_reward_stackshift">特殊方块已装备！准备发射。</string>
-    <string name="game_message_hold_updated">暂存已更新。请选择新列。</string>
-    <string name="game_message_tempo_critical">节奏加快。请清理关键列。</string>
-    <string name="game_message_tempo_up">节奏加快。更难的方块来了。</string>
     <string name="game_message_paused">游戏已暂停。</string>
-    <string name="game_message_resumed">继续。选择列并发射。</string>
     <string name="game_message_extra_life_used">已激活额外生命！已清除 %1$s 行。</string>
+    <string name="queue_hold">暂存</string>
+    <string name="pause_title">已暂停</string>
+    <string name="game_message_lines_cleared">已清除 %1$s 行。</string>
+
+    <!-- NotificationWorker -->
     <string name="notification_reminders_channel_name">提醒</string>
     <string name="notification_miss_you_body">我们想你了！回来再玩一会儿吧。</string>
     <string name="notification_daily_challenge_title">每日挑战</string>
     <string name="notification_daily_challenge_body">你今天完成每日挑战任务了吗？</string>
     <string name="notification_test_body">这是一条测试通知。</string>
+
+    <!-- DailyChallengeScreen -->
     <string name="challenge_tasks_title">任务</string>
     <string name="challenge_info_title">关于任务</string>
     <string name="challenge_info_clear_blocks_title">方块</string>
     <string name="challenge_info_clear_blocks">通过完成行列并触发连锁反应，从棋盘上清除已填充的格子。</string>
-    <string name="challenge_info_clear_rows_title">行</string>
     <string name="challenge_info_reach_score">通过放置方块和清除行数来提高分数。</string>
     <string name="challenge_info_reach_score_title">分数</string>
-    <string name="challenge_info_clear_rows">填满整行后，该行会从棋盘上清除。</string>
     <string name="challenge_info_trigger_special_title">特殊方块</string>
     <string name="challenge_info_trigger_special">激活行消除、列消除、幽灵和重型方块等特殊方块。</string>
     <string name="challenge_info_perfect_placement_title">完美放置</string>
@@ -149,24 +139,35 @@
     <string name="challenge_info_chain_reaction">提前布置后续消除，让一次移动在之后触发额外消除。</string>
     <string name="challenge_info_clear_columns_title">列</string>
     <string name="challenge_info_clear_columns">填满整列后，该列会从棋盘上清除。</string>
-    <string name="challenge_info_clear_rounds_title">回合</string>
-    <string name="challenge_info_clear_rounds">将每个已填充的列整理为单一颜色，完成完整的 BlockSort 回合。</string>
     <string name="challenge_info_place_pieces_title">放置</string>
     <string name="challenge_info_place_pieces">每次成功放置都会计数，即使没有清除任何行列。</string>
-    <string name="challenge_info_clear_both_directions_title">行 + 列</string>
-    <string name="challenge_info_clear_both_directions">一次放置可以同时清除至少一行和一列。</string>
     <string name="challenge_completed">挑战完成！</string>
     <string name="challenge_task_clear_blocks">清除 %1$d 个方块</string>
-    <string name="challenge_task_clear_rows">清除 %1$d 行</string>
     <string name="challenge_task_reach_score">达到 %1$d 分</string>
     <string name="challenge_task_trigger_special">触发 %1$d 个特殊方块</string>
     <string name="challenge_task_perfect_placement">完成 %1$d 次完美放置</string>
     <string name="challenge_task_chain_reaction">制造 %1$d 次连锁反应</string>
     <string name="challenge_task_clear_columns">清除 %1$d 列</string>
-    <string name="challenge_task_complete_columns">完成 %1$d 列</string>
     <string name="challenge_task_place_pieces">放置 %1$d 个方块</string>
-    <string name="challenge_task_clear_rounds">完成 %1$d 回合</string>
-    <string name="challenge_task_clear_both_directions">完成 %1$d 次行 + 列同时清除</string>
+    <string name="challenge_progress_value">%1$d/%2$d</string>
+
+    <!-- RewardFeedback -->
+    <string name="reward_earned_message">你赢得了 %1$d 个代币！</string>
+    <string name="feedback_overflow">溢出</string>
+    <string name="feedback_clear">清除 +%1$s</string>
+    <string name="feedback_score_only">+%1$s</string>
+    <string name="feedback_extra_life">额外生命！%1$s 行</string>
+    <string name="color_cyan">青色</string>
+    <string name="color_gold">金色</string>
+    <string name="color_violet">紫色</string>
+    <string name="color_emerald">祖母绿</string>
+    <string name="color_coral">珊瑚色</string>
+    <string name="color_blue">蓝色</string>
+    <string name="color_rose">玫瑰色</string>
+    <string name="color_lime">柠檬绿</string>
+    <string name="color_amber">琥珀色</string>
+
+    <!-- Calendar -->
     <string name="month_january">一月</string>
     <string name="month_february">二月</string>
     <string name="month_march">三月</string>
@@ -187,27 +188,15 @@
     <string name="day_friday_short">五</string>
     <string name="day_saturday_short">六</string>
     <string name="day_sunday_short">日</string>
-    <string name="feedback_overflow">溢出</string>
-    <string name="feedback_perfect_lane">完美路线 x%1$s</string>
-    <string name="feedback_micro_adjust">微调</string>
-    <string name="feedback_soft_lock">软锁</string>
-    <string name="feedback_hold_armed">暂存就绪</string>
-    <string name="feedback_swap">已交换</string>
-    <string name="feedback_special_chain">特殊连击 +%1$s • %2$d 个方块</string>
-    <string name="feedback_special">特殊 +%1$s • %2$d 个方块</string>
-    <string name="feedback_perfect">完美 x%1$s +%2$s</string>
-    <string name="feedback_chain">连击 x%1$s +%2$s</string>
-    <string name="feedback_clear">清除 +%1$s</string>
-    <string name="feedback_score_only">+%1$s</string>
-    <string name="feedback_extra_life">额外生命！%1$s 行</string>
-    <string name="challenge_progress_value">%1$d/%2$d</string>
     <string name="stat_label_value_format">%1$s：%2$s</string>
     <string name="time_minutes_seconds_format">%1$d:%2$s</string>
+
+    <!-- PiecePropertiesScreen -->
+    <string name="queue_empty">—</string>
     <string name="special_column_clearer">列清除</string>
     <string name="special_row_clearer">行清除</string>
     <string name="special_ghost">幽灵</string>
     <string name="special_heavy">重型</string>
-
     <string name="piece_properties_title">方块属性</string>
     <string name="piece_properties_active">当前方块</string>
     <string name="piece_properties_kind">类型</string>
@@ -216,222 +205,38 @@
     <string name="piece_properties_cells">单元</string>
     <string name="piece_properties_unlock_level">解锁等级</string>
     <string name="piece_properties_none">无</string>
-
     <string name="active_piece_summary">%1$s • %2$s • %3$s</string>
     <string name="piece_size_format">%1$dx%2$d</string>
 
+    <!-- BlockPropertiesScreen -->
     <string name="block_properties_title">方块属性</string>
     <string name="block_properties_select_hint">选择一个方块类型</string>
-
     <string name="block_properties_normal_title">普通方块</string>
     <string name="block_properties_normal_desc">标准填充单元。无特殊效果。</string>
-
     <string name="block_properties_column_clearer_title">列清除器</string>
     <string name="block_properties_column_clearer_desc">清除落入列。非常适合降低压力。</string>
-
     <string name="block_properties_row_clearer_title">行清除器</string>
     <string name="block_properties_row_clearer_desc">清除落入行。可快速腾出空间。</string>
-
     <string name="block_properties_ghost_title">幽灵</string>
     <string name="block_properties_ghost_desc">可穿过其他方块。适合狭窄缝隙。</string>
-
     <string name="block_properties_heavy_title">重型</string>
     <string name="block_properties_heavy_desc">行为更激进；落地后的效果更强。</string>
-
     <string name="block_properties_dot_desc">右上角的小点表示此方块拥有特殊效果。点和边框的颜色表示效果类型。</string>
+
+    <!-- GameTutorialScreen -->
     <string name="tutorial_subtitle">开始第一局前的简短说明。</string>
     <string name="tutorial_step_counter">步骤 %1$d / %2$d</string>
     <string name="tutorial_back">返回</string>
     <string name="cancel">取消</string>
-    <string name="unlock_dialog_title">解锁 %1$s？</string>
-    <string name="unlock_dialog_insufficient_title">%1$s 已锁定</string>
-    <string name="unlock_dialog_message">%1$s 需要 %2$d 代币。当前余额：%3$d。</string>
-    <string name="unlock_dialog_not_enough">你需要 %1$d 代币才能解锁此项目。当前余额为 %2$d。</string>
-    <string name="unlock_dialog_confirm">解锁</string>
-    <string name="unlock_dialog_locked_suffix">已锁定</string>
     <string name="tutorial_next">下一步</string>
     <string name="return_home">返回主页</string>
     <string name="tutorial_finish">开始游戏</string>
-    <string name="tutorial_stackshift_intro_title">从底部托盘发射方块</string>
-    <string name="tutorial_stackshift_intro_body">当前方块会在底部等待。左右拖动它来对准列，然后松手把它发射到棋盘上。下一块预览会故意更淡一些，让注意力留在当前方块上。</string>
-    <string name="tutorial_stackshift_systems_title">棋盘变紧时使用操作方块</string>
-    <string name="tutorial_stackshift_systems_body">暂存用于交换当前方块，暂停会冻结本局，方块属性解释图标含义，设置可以调整外观。这些按钮也会匹配你当前选择的棋盘方块风格。</string>
-    <string name="tutorial_stackshift_specials_title">特殊方块可以拯救一局</string>
-    <string name="tutorial_stackshift_specials_body">有些方块带有特殊效果。记住它们的标记，并在需要减压、腾出空间或穿过困难堆叠时使用它们。</string>
-    <string name="tutorial_stackshift_ready_title">你已经准备好继续这一局了</string>
-    <string name="tutorial_stackshift_ready_body">就是这些——规划下一列，留意发射条，并在合适的时机使用特殊效果。你随时都可以从设置重新打开这个教程。</string>
-    <string name="tutorial_stackshift_ready_tutorial_hint">想快速回顾操作和特殊图标时，随时打开教程。</string>
-    <string name="tutorial_stackshift_ready_settings_hint">在下一局开始前，你可以打开设置来调整语言、主题、颜色和方块风格。</string>
-    <string name="tutorial_intro_title">将三个方块中的任意一个拖动到棋盘上</string>
-    <string name="tutorial_intro_body">托盘中有三个形状。选择你想要的一个，将其拖动到任何空单元格上，然后松手将其放置在合适的位置。</string>
-    <string name="tutorial_systems_title">考虑整个托盘，而不仅仅是一步棋</string>
-    <string name="tutorial_systems_body">放置一个方块后，剩余的托盘仍留在屏幕上。当三个方块都用完时，会出现新的三个。尽量为您仍然拥有的每个形状留出足够的空间。</string>
-    <string name="tutorial_specials_title">填满整行或整列即可清除</string>
-    <string name="tutorial_specials_body">这里没有特殊方块。相反，只要填满整行或整列就能将其清除；如果一行和一列同时完成，它们会一起被清掉。</string>
-    <string name="tutorial_ready_title">你已经准备好体验新的方块解谜流程了</string>
-    <string name="tutorial_ready_body">继续观察整组托盘，准备好行列清除，并避免把大形状卡死。当三块中没有任何一块还能放下时，本局就结束了。</string>
-    <string name="tutorial_ready_block_properties_hint">如果你想重新了解自由放置以及同时清除行和列，可以随时打开教程。</string>
     <string name="tutorial_ready_settings_hint">在下一局开始前，你可以打开设置来调整语言、主题、颜色和方块风格。</string>
-    <string name="tutorial_mergeshift_intro_title">发射方块以合并相同数值的方块</string>
-    <string name="tutorial_mergeshift_intro_body">在 MergeShift 中，方块从底座发射。当一个方块落在另一个具有相同数值的方块上时，它们会合并成一个更高的数值。继续合并以腾出空间并获得更高分数。</string>
-    <string name="tutorial_mergeshift_systems_title">规划你的合并以防止溢出</string>
-    <string name="tutorial_mergeshift_systems_body">你发射的每一个方块都会增加列的高度。如果任何列到达顶部，游戏结束。使用预览查看你的方块将落在哪里，以及它可能与哪些方块合并。</string>
-    <string name="tutorial_mergeshift_specials_title">组合多次合并以获得更大的连击</string>
-    <string name="tutorial_mergeshift_specials_body">单次发射可以触发合并的连锁反应。这些连击会奖励更多分数，并在棋盘上腾出更多空间，帮助你在游戏中坚持更久。</string>
-    <string name="tutorial_mergeshift_ready_title">你已准备好玩 MergeShift</string>
-    <string name="tutorial_mergeshift_ready_body">专注于保持你的列高度较低，并准备高数值的合并。祝你好运，挑战最高数字！</string>
-    <string name="settings_tutorial">教程</string>
-    <string name="settings_tutorial_body">你可以随时打开教程或引导练习，重新查看自由放置、行列清除，以及三块托盘的游玩流程。</string>
-    <string name="settings_tutorial_replay">练习</string>
-    <string name="tutorial_ready_tutorial_hint">如果你想重新了解自由放置以及同时清除行和列，可以随时打开教程。</string>
     <string name="interactive_onboarding_step_counter">引导 %1$d / %2$d</string>
-    <string name="interactive_onboarding_drag_title">把托盘中的方块拖到棋盘上</string>
-    <string name="interactive_onboarding_drag_body">点按托盘中的任意一个形状，把它移动到棋盘上，并与高亮单元格对齐。</string>
-    <string name="interactive_onboarding_drag_to_board">把高亮的方块拖到发光的目标区域中。</string>
-    <string name="interactive_onboarding_drag_ready">很好——现在松手。等它吸附到高亮单元格后，下一步引导会自动打开。</string>
-    <string name="interactive_onboarding_aim_hint">把方块放进高亮单元格内以继续。</string>
-    <string name="interactive_onboarding_target_locked">很好——保持在这里，然后松手继续。</string>
-    <string name="interactive_onboarding_waiting">放置已接受，正在准备下一步引导…</string>
-    <string name="interactive_onboarding_line_clear_title">填满一整行并清除它</string>
-    <string name="interactive_onboarding_line_clear_body">把这个形状放到引导位置，让这一行填满、闪光并消失。</string>
-    <string name="interactive_onboarding_column_clearer_title">填满一整列并清除它</string>
-    <string name="interactive_onboarding_column_clearer_body">现在使用高亮的放置位置补满整列，腾出纵向空间。</string>
-    <string name="interactive_onboarding_row_clearer_title">整行可以打开横向空间</string>
-    <string name="interactive_onboarding_row_clearer_body">一整行填满后会立刻清除。对准高亮单元格，看看棋盘如何横向打开。</string>
-    <string name="interactive_onboarding_ghost_title">托盘和棋盘同样重要</string>
-    <string name="interactive_onboarding_ghost_body">放置当前形状前，也看看另外两块。好的局面来自为整组托盘留空间，而不只是当前这一步。</string>
-    <string name="interactive_onboarding_heavy_title">同时清除两个方向</string>
-    <string name="interactive_onboarding_heavy_body">有些放置会同时完成一行和一列。用这个引导位置触发一次更大的双重清除。</string>
 
-    <string name="interactive_onboarding_mergeshift_launch_title">发射你的第一个方块</string>
-    <string name="interactive_onboarding_mergeshift_launch_body">在棋盘下方水平拖动方块进行瞄准，然后松手将其发射到一列中。</string>
-    <string name="interactive_onboarding_mergeshift_merge_vertical_title">垂直合并相同数值</string>
-    <string name="interactive_onboarding_mergeshift_merge_vertical_body">将方块发射到已经包含相同数值方块的列中。它们将合并成一个更大的数字！</string>
-    <string name="interactive_onboarding_mergeshift_merge_horizontal_title">水平合并相同数值</string>
-    <string name="interactive_onboarding_mergeshift_merge_horizontal_body">方块也可以与其左侧或右侧的相邻方块合并。瞄准高亮位置以触发水平合并。</string>
-    <string name="interactive_onboarding_mergeshift_merge_multi_title">触发多次合并</string>
-    <string name="interactive_onboarding_mergeshift_merge_multi_body">单次放置可以触发多个方向（上方、左侧、右侧）的合并。利用这一点腾出更多空间并获得高分！</string>
-
-    <string name="settings_color_palette">颜色面板</string>
-    <string name="ad_reward_blockwise_refresh">刷新托盘</string>
-    <string name="ad_reward_mergeshift_swap">更换数字</string>
-    <string name="ad_reward_boomblocks_clear">清除颜色</string>
-    <string name="feedback_ad_reward_blockwise">托盘已刷新</string>
-    <string name="feedback_ad_reward_mergeshift">数字已更改</string>
-    <string name="feedback_ad_reward_boomblocks">%1$s 已清除</string>
-    <string name="color_cyan">青色</string>
-    <string name="color_gold">金色</string>
-    <string name="color_violet">紫色</string>
-    <string name="color_emerald">祖母绿</string>
-    <string name="color_coral">珊瑚色</string>
-    <string name="color_blue">蓝色</string>
-    <string name="color_rose">玫瑰色</string>
-    <string name="color_lime">柠檬绿</string>
-    <string name="color_amber">琥珀色</string>
-    <string name="challenge_task_explode_groups">引爆 %1$d 个方块群组</string>
-    <string name="tutorial_boomblocks_intro_title">引爆相连的同色群组</string>
-    <string name="tutorial_boomblocks_intro_body">在 BoomBlocks 中，你不会发射或拖动方块。你要寻找三个或更多相互接触的同色方块，然后点击其中任意一个来清除整个群组。</string>
-    <string name="tutorial_boomblocks_gravity_title">动态棋盘流动</string>
-    <string name="tutorial_boomblocks_gravity_body">当一个群组爆炸时，会形成一个真空，把周围的方块吸过去。随后，新方块会从最近的边缘补入，让局面持续变化。</string>
-    <string name="tutorial_boomblocks_ready_title">你已经准备好挑战 BoomBlocks 了</string>
-    <string name="tutorial_boomblocks_ready_body">尽量寻找更大的群组来拿到更高分数，并观察每次爆炸如何重塑棋盘。祝你好运！</string>
-    <string name="interactive_onboarding_boomblocks_basic_title">点击即可引爆</string>
-    <string name="interactive_onboarding_boomblocks_basic_body">找到三个或更多同色方块组成的群组，然后点击它，把它们从棋盘上清除。</string>
-    <string name="interactive_onboarding_boomblocks_large_title">群组越大，得分越高</string>
-    <string name="interactive_onboarding_boomblocks_large_body">更大的群组能获得更多分数，也能腾出更多空间。点击高亮显示的大群组吧！</string>
-    <string name="interactive_onboarding_boomblocks_gravity_title">重力方向会改变</string>
-    <string name="interactive_onboarding_boomblocks_gravity_body">当你引爆方块时，新方块会从爆炸相反的一侧补进来。留意棋盘是如何移动的！</string>
-    <string name="interactive_onboarding_boomblocks_strategic_title">策略性补盘</string>
-    <string name="interactive_onboarding_boomblocks_strategic_body">新方块会根据爆炸中心重新填充棋盘。利用这一点来准备更大的群组吧！</string>
-    <string name="interactive_onboarding_boomblocks_tap_hint">点击高亮群组以继续。</string>
-
+    <!-- AppSelectionScreen -->
     <string name="selection_title">选择游戏</string>
-    <string name="selection_stackshift_desc">从底部发射方块以清除行和列。</string>
-    <string name="selection_blockwise_desc">在棋盘的任何位置拖放方块。</string>
-    <string name="selection_mergeshift_desc">合并相同数值的方块以获得更高分数。</string>
-    <string name="selection_boomblocks_desc">点击 3 个或更多方块组成的群组来引爆它们。</string>
     <string name="selection_switch_game">切换游戏</string>
     <string name="selection_active_game_badge">当前游戏</string>
-    <string name="game_message_ad_reward_blocksort">Board remixed! Fresh routes are open.</string>
-    <string name="tutorial_blocksort_intro_title">在列之间移动等大小的顶部堆叠</string>
-    <string name="tutorial_blocksort_intro_body">每个回合中，所有列都使用相同大小的槽位。点击一个非空的混合列以拿起顶部颜色堆叠，然后把它移动到空列，或移动到顶部颜色相同的列。</string>
-    <string name="tutorial_blocksort_rules_title">只有相同颜色才能叠在一起</string>
-    <string name="tutorial_blocksort_rules_body">你只能转移到空位，或转移到顶部颜色相同的位置。随着谜题变难，棋盘可能会分成上下两排，所以要同时考虑辅助空间和可视性。</string>
-    <string name="tutorial_blocksort_finish_title">把每一列整理成单一颜色</string>
-    <string name="tutorial_blocksort_finish_body">当该回合中一列的每个槽位都变成同一种颜色时，这一列就算完成。不同回合可能会使用 3、4、5 或 6 个相同大小的槽位，全部完成后会出现新的混合布局。</string>
-    <string name="tutorial_blocksort_ready_title">你已经准备好体验 BlockSort</string>
-    <string name="tutorial_blocksort_ready_body">提前规划两到三步，保护你的辅助列，并在每回合槽位数量变化、棋盘可能分成两排时迅速适应。</string>
-    <string name="interactive_onboarding_blocksort_pick_title">选择源列</string>
-    <string name="interactive_onboarding_blocksort_pick_body">先点击高亮显示的混合列。你会先移动它顶部的颜色堆叠，而这一回合中的每个槽位大小都相同。</string>
-    <string name="interactive_onboarding_blocksort_pick_hint">先点击混合布局中高亮显示的源列。</string>
-    <string name="interactive_onboarding_blocksort_match_title">匹配顶部颜色</string>
-    <string name="interactive_onboarding_blocksort_match_body">现在把这堆方块移到一个顶部颜色已经匹配的列。即使棋盘分成两排，匹配列也能让你安全地整理颜色。</string>
-    <string name="interactive_onboarding_blocksort_match_hint">把堆叠移动到高亮显示的同色列。</string>
-    <string name="interactive_onboarding_blocksort_finish_title">完成一列整洁的单色列</string>
-    <string name="interactive_onboarding_blocksort_finish_body">很好。再走一步，就能在本回合完成一整列单色槽位。完成它，看看 BlockSort 的核心目标。</string>
-    <string name="interactive_onboarding_blocksort_finish_hint">完成高亮列，让每个槽位都显示相同颜色。</string>
-    <string name="blocksort_completed_label">已整理</string>
-    <string name="blocksort_goal_hint">目标：以每个已填充列都只包含一种颜色的状态完成本回合。每列可能使用 3、4、5 或 6 个相同大小的槽位，棋盘也可能分成两排。</string>
-    <string name="blocksort_no_moves_hint">这个混合布局中已没有有效转移。尝试重新洗牌，或开始新的回合。</string>
-    <string name="blocksort_round_congrats_title">恭喜！</string>
-    <string name="blocksort_round_complete_hint">回合完成！奖励 +%1$d，并已出现新的混合布局。</string>
-    <string name="blocksort_round_label">回合</string>
-    <string name="blocksort_select_source_hint">点击一个非空的混合列以拿起顶部颜色堆叠。</string>
-    <string name="blocksort_selected_hint">现在点击一个空列，或点击一个顶部颜色相同的列来移动堆叠。</string>
-    <string name="selection_blocksort_desc">整理混色堆叠，直到每个已填充列都只剩一种颜色。</string>
 
-    <string name="app_title_chainshift">Chain Shift</string>
-    <string name="selection_chainshift_desc">Shoot from the center, slip blocks into a spiral chain, and pop 3+ color matches.</string>
-    <string name="app_title_banner_chainshift_top">CHAIN</string>
-    <string name="app_title_banner_chainshift_bottom">SHIFT</string>
-    <string name="tutorial_chainshift_intro_title">Meet Chain Shift</string>
-    <string name="tutorial_chainshift_intro_body">Blocks enter from the edge, wrap around the board, and crawl toward the center. Your shooter stays in the middle, so every shot must cut into the moving chain before it reaches you.</string>
-    <string name="tutorial_chainshift_path_title">瞄准与射击</string>
-    <string name="tutorial_chainshift_path_body">从中心瞄准并释放以进行射击。您的方块会在击中链条的地方插入，并将后续方块推向前。</string>
-    <string name="tutorial_chainshift_combo_title">创造后退与连击</string>
-    <string name="tutorial_chainshift_combo_body">沿链条匹配3个或更多相同颜色的连接方块以消除它们。当间隙关闭时，链条会向边缘后退，可能会触发连锁反应。</string>
-    <string name="tutorial_chainshift_ready_title">Hold the center</string>
-    <string name="tutorial_chainshift_ready_body">Stay calm, keep the spiral short, and use your shots to break dangerous runs before they lock the center. The deeper the chain goes, the less room you have to recover.</string>
-    <string name="interactive_onboarding_chainshift_intro_title">射击引导方块</string>
-    <string name="interactive_onboarding_chainshift_intro_body">首先向螺旋线的突出部分开火。您的方块从中心发射，并在撞击点插入链条。</string>
-    <string name="interactive_onboarding_chainshift_match_title">Make a 3-block match</string>
-    <string name="interactive_onboarding_chainshift_match_body">Now use the guided shot to line up 3 blocks of the same color. Matching segments burst immediately and open breathing room near the center.</string>
-    <string name="interactive_onboarding_chainshift_chain_title">触发连锁反应</string>
-    <string name="interactive_onboarding_chainshift_chain_body">这种设置奖励更聪明的射击。清除第一组匹配，观察链条向边缘后退，让第二组匹配自行消除。</string>
-    <string name="interactive_onboarding_chainshift_tap_hint">瞄准并释放以射击突出的方块。</string>
-    <string name="game_message_ad_reward_chainshift">Active block refreshed for Chain Shift!</string>
-
-    <string name="block_style_lava">Lava</string>
-    <string name="block_style_light_burst">Light Burst</string>
-    <string name="block_style_matte_soft">Matte Soft</string>
-    <string name="block_style_stone_texture">Stone Texture</string>
-    <string name="selection_digitshift_desc">Wordle-style word puzzles with language-specific vocabularies.</string>
-    <string name="tutorial_digitshift_intro_title">Find the hidden word</string>
-    <string name="tutorial_digitshift_intro_body">Build a five-token word and submit it. Every guess reveals which tokens are correct, present, or absent.</string>
-    <string name="tutorial_digitshift_hints_title">Read the colors</string>
-    <string name="tutorial_digitshift_hints_body">Green means the token is correct, gold means it belongs somewhere else, and muted means it is not in the answer.</string>
-    <string name="tutorial_digitshift_strategy_title">Use the keyboard hints</string>
-    <string name="tutorial_digitshift_strategy_body">Each submitted guess upgrades the keyboard. Reuse green tokens, relocate gold ones, and avoid muted tokens to solve faster.</string>
-    <string name="tutorial_digitshift_ready_title">Ready to shift words?</string>
-    <string name="tutorial_digitshift_ready_body">Classic mode keeps the streak going until you miss a word. Time Attack adds pressure, so solve quickly to bank score and bonus time.</string>
-    <string name="interactive_onboarding_digitshift_type_hint">Type the suggested word to learn the board.</string>
-    <string name="interactive_onboarding_digitshift_submit_hint">Submit another valid word and watch the keyboard update.</string>
-    <string name="interactive_onboarding_digitshift_solve_hint">Use the clues and solve the hidden word.</string>
-    <string name="digitshift_enter">Enter</string>
-    <string name="digitshift_delete">Delete</string>
-    <string name="digitshift_guess_label">Guess %1$d</string>
-    <string name="digitshift_solved_words">Solved</string>
-    <string name="digitshift_attempts_left">Attempts</string>
-    <string name="digitshift_current_language">Language</string>
-    <string name="game_message_digitshift_enter_word">Build a word and submit your guess.</string>
-    <string name="game_message_digitshift_not_enough_letters">Not enough letters yet.</string>
-    <string name="game_message_digitshift_not_in_dictionary">That word is not in this language pack.</string>
-    <string name="game_message_digitshift_keep_trying">Good clue. Refine the next guess.</string>
-    <string name="game_message_digitshift_solved">Solved: %1$s</string>
-    <string name="game_message_digitshift_failed">Round over. The word was %1$s.</string>
-    <string name="game_message_digitshift_revived">Extra life used. Try the word again.</string>
-    <string name="game_message_ad_reward_digitshift">Word refreshed. Keep guessing!</string>
-    <string name="challenge_task_solve_words">Solve %1$d words</string>
-    <string name="challenge_info_solve_words_title">Solve words</string>
-    <string name="challenge_info_solve_words">Complete full DigitShift rounds by finding the hidden word before you run out of guesses.</string>
 </resources>

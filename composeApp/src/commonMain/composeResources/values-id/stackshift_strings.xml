@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_stackshift_desc">Luncurkan piece dari bawah untuk membersihkan baris dan kolom.</string>
+
+    <!-- StackShiftGameScreen -->
+    <string name="reward_piece_row_message">Bagian Pembersih Baris Horizontal terpasang!</string>
+    <string name="reward_piece_column_message">Bagian Pembersih Kolom Vertikal terpasang!</string>
+    <string name="launch_bar">Bar luncur</string>
+    <string name="launch_boost_active">Dorongan aktif • %1$s giliran</string>
+    <string name="launch_special_chance">Peluang blok spesial +%1$s%</string>
+    <string name="launch_soft_lock_message">Kunci lunak aktif • penyesuaian mikro diaktifkan</string>
+    <string name="launch_chain_message">Baris + Kolom • +%2$s</string>
+    <string name="launch_paused">Dijeda</string>
+    <string name="launch_game_over">Mulai ulang untuk putaran baru</string>
+    <string name="launch_drag_hint">Seret horizontal → lepaskan</string>
+    <string name="queue_next_short">Berikutnya</string>
+    <string name="game_message_soft_lock">Jendela penyesuaian singkat terbuka. Sesuaikan kolom dengan mikro.</string>
+    <string name="game_message_overflow">Kolom meluap! Anda tidak mampu mengikuti kolom kritis.</string>
+    <string name="game_message_special_chain_board">Rantai spesial x%1$s! Papan dibentuk ulang.</string>
+    <string name="game_message_pressure_game_over">Tekanan kolom sudah mencapai batas. Mulai putaran baru.</string>
+    <string name="game_message_special_lines">Rantai blok spesial! %1$s baris dihapus.</string>
+    <string name="game_message_special_triggered">Blok spesial terpicu. %1$d blok meledak!</string>
+    <string name="game_message_perfect_drop">Jatuh sempurna x%1$s! Pertahankan streak.</string>
+    <string name="game_message_chain_lines">Pembersihan ganda! %2$s baris dibersihkan.</string>
+    <string name="game_message_good_shot">Tembakan bagus. Rencanakan kolom berikutnya.</string>
+    <string name="game_message_hold_updated">Simpanan diperbarui. Pilih kolom baru.</string>
+    <string name="game_message_tempo_critical">Tempo meningkat. Bersihkan kolom kritis.</string>
+    <string name="game_message_tempo_up">Tempo meningkat. Potongan yang lebih sulit akan datang.</string>
+    <string name="game_message_resumed">Lanjut. Pilih kolom dan luncurkan.</string>
+    <string name="feedback_perfect_lane">Lintasan sempurna x%1$s</string>
+    <string name="feedback_micro_adjust">Penyesuaian mikro</string>
+    <string name="feedback_soft_lock">Kunci lunak</string>
+    <string name="feedback_hold_armed">Simpanan siap</string>
+    <string name="feedback_swap">Ditukar</string>
+    <string name="feedback_special_chain">Rantai spesial +%1$s • %2$d blok</string>
+    <string name="feedback_special">Spesial +%1$s • %2$d blok</string>
+    <string name="feedback_perfect">Sempurna x%1$s +%2$s</string>
+    <string name="feedback_chain">Rantai x%1$s +%2$s</string>
+    <string name="game_message_ad_reward_stackshift">Blok spesial terpasang! Siap meluncur.</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_stackshift_intro_title">Luncurkan piece dari dock bawah</string>
+    <string name="tutorial_stackshift_intro_body">Piece aktifmu menunggu di bawah. Geser secara horizontal untuk menyelaraskan kolom, lalu lepaskan untuk meluncurkannya ke papan. Pratinjau piece berikutnya sengaja dibuat lebih samar agar fokus tetap pada piece aktif.</string>
+    <string name="tutorial_stackshift_systems_title">Gunakan blok aksi saat papan mulai penuh</string>
+    <string name="tutorial_stackshift_systems_body">Simpanan menukar piece saat ini, Jeda membekukan permainan, Properti blok menjelaskan simbol, dan Pengaturan mengubah tampilan. Tombol-tombol ini juga mengikuti gaya blok papan yang kamu pilih.</string>
+    <string name="tutorial_stackshift_specials_title">Blok spesial bisa menyelamatkan permainan</string>
+    <string name="tutorial_stackshift_specials_body">Beberapa piece memiliki efek spesial. Pelajari lencananya dan gunakan untuk menurunkan tekanan, membuka ruang, atau menembus tumpukan yang sulit.</string>
+    <string name="tutorial_stackshift_ready_title">Kamu siap melanjutkan permainan ini</string>
+    <string name="tutorial_stackshift_ready_body">Itu saja — rencanakan kolom berikutnya, perhatikan bilah launch, dan gunakan spesial di saat yang tepat. Kamu bisa membuka kembali tutorial ini kapan saja dari Pengaturan.</string>
+    <string name="tutorial_stackshift_ready_tutorial_hint">Buka Tutorial kapan saja jika kamu ingin mengingat cepat kontrol dan ikon spesial.</string>
+    <string name="tutorial_stackshift_ready_settings_hint">Buka Pengaturan untuk mengubah bahasa, tema, warna, dan gaya blok sebelum permainan berikutnya.</string>
+
+</resources>

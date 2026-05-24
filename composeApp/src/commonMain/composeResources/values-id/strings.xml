@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- SettingsScreen -->
     <string name="settings_title">Pengaturan</string>
     <string name="settings_language">Bahasa</string>
     <string name="settings_sound">Suara</string>
@@ -10,16 +12,11 @@
     <string name="settings_block_palette">Palet warna blok</string>
     <string name="settings_block_style">Gaya blok</string>
     <string name="settings_tokens_title">Token</string>
-    <string name="settings_tokens_balance">Token: %1$d</string>
+    <string name="settings_tokens_balance">Token permainan: %1$d</string>
     <string name="settings_tokens_earn_challenge">• Hadiah tantangan harian: +%1$d token</string>
     <string name="settings_tokens_earn_score">• Hadiah permainan: +1 token setiap %1$d skor</string>
-    <string name="rewarded_tokens_button_bullet">• Tonton iklan dan dapatkan %1$d token</string>
-    <string name="rewarded_tokens_button">Tonton iklan dan dapatkan %1$d token</string>
-    <string name="reward_earned_message">Anda mendapatkan %1$d token!</string>
-    <string name="reward_piece_row_message">Bagian Pembersih Baris Horizontal terpasang!</string>
-    <string name="reward_piece_column_message">Bagian Pembersih Kolom Vertikal terpasang!</string>
     <string name="unlock_dialog_watch_ad">Tonton iklan untuk mendapatkan token</string>
-    <string name="token_label">Token</string>
+    <string name="token_label">Token permainan</string>
     <string name="settings_board_block_style">Gaya blok papan</string>
     <string name="settings_challenges">Tantangan</string>
     <string name="app_theme_system">Sistem</string>
@@ -46,7 +43,7 @@
     <string name="block_style_prism">Prisma</string>
     <string name="block_style_crystal">Kristal</string>
     <string name="block_style_dynamic_liquid">Cairan dinamis</string>
-    <string name="block_style_tornado">Tornado</string>
+    <string name="block_style_tornado">Puting Beliung</string>
     <string name="block_style_brick">Bata</string>
     <string name="block_style_honeycomb_texture">Sarang Lebah</string>
     <string name="block_style_spider_web">Jaring Laba-laba</string>
@@ -60,10 +57,33 @@
     <string name="block_style_circuit_board">Papan Sirkuit</string>
     <string name="block_style_gears">Roda Gigi</string>
     <string name="block_style_pixel">Piksel</string>
-    <string name="block_style_cyberpunk">Cyberpunk</string>
+    <string name="block_style_cyberpunk">Siberpunk</string>
     <string name="block_style_electric">Listrik</string>
     <string name="board_block_style_always_flat">Selalu datar</string>
     <string name="board_block_style_match_selected">Sesuai gaya yang dipilih</string>
+    <string name="settings_tutorial">Panduan</string>
+    <string name="settings_tutorial_body">Buka tutorial atau latihan terpandu kapan saja untuk meninjau penempatan bebas, pembersihan baris dan kolom, serta alur tray berisi tiga piece.</string>
+    <string name="settings_tutorial_replay">Latihan</string>
+    <string name="settings_color_palette">Palet Warna</string>
+    <string name="block_style_lava">Lava</string>
+    <string name="block_style_light_burst">Ledakan Cahaya</string>
+    <string name="block_style_matte_soft">Matte Lembut</string>
+    <string name="block_style_stone_texture">Tekstur Batu</string>
+    <string name="rewarded_tokens_button_bullet">• Tonton iklan dan dapatkan %1$d token</string>
+    <string name="rewarded_tokens_button">Tonton iklan dan dapatkan %1$d token</string>
+    <string name="unlock_dialog_title">Buka kunci %1$s?</string>
+    <string name="unlock_dialog_insufficient_title">%1$s terkunci</string>
+    <string name="unlock_dialog_message">%1$s membutuhkan %2$d token. Saldo saat ini: %3$d.</string>
+    <string name="unlock_dialog_not_enough">Kamu membutuhkan %1$d token untuk membuka item ini. Saldo kamu saat ini %2$d.</string>
+    <string name="unlock_dialog_confirm">Buka kunci</string>
+    <string name="unlock_dialog_locked_suffix">Terkunci</string>
+
+    <!-- HomeScreen -->
+    <string name="home_play_cta">Main</string>
+    <string name="home_classic_cta">Klasik</string>
+    <string name="home_time_attack_cta">Serangan Waktu</string>
+
+    <!-- GameDialogs -->
     <string name="hold">Simpan</string>
     <string name="pause">Jeda</string>
     <string name="resume">Lanjutkan</string>
@@ -78,69 +98,39 @@
     <string name="score">Skor</string>
     <string name="high_score">Terbaik</string>
     <string name="high_score_new_record">Rekor baru</string>
-    <string name="home_play_cta">Main</string>
-    <string name="home_classic_cta">Klasik</string>
-    <string name="home_time_attack_cta">Serangan Waktu</string>
     <string name="lines">Baris</string>
     <string name="time_remaining">Sisa Waktu</string>
     <string name="boost">Dorongan</string>
     <string name="danger">Bahaya</string>
     <string name="danger_none">-</string>
     <string name="launch_label">Luncurkan</string>
-    <string name="launch_bar">Bar luncur</string>
-    <string name="launch_boost_active">Dorongan aktif • %1$s giliran</string>
-    <string name="launch_special_chance">Peluang blok spesial +%1$s%</string>
-    <string name="launch_soft_lock_message">Kunci lunak aktif • penyesuaian mikro diaktifkan</string>
-    <string name="launch_chain_message">Baris + Kolom • +%2$s</string>
-    <string name="launch_paused">Dijeda</string>
-    <string name="launch_game_over">Mulai ulang untuk putaran baru</string>
-    <string name="launch_drag_hint">Seret horizontal → lepaskan</string>
-    <string name="launch_drag_hint_blockwise">Seret ke mana saja di papan → lepaskan untuk menempatkan</string>
-    <string name="queue_hold">Simpan</string>
-    <string name="queue_next_short">Berikutnya</string>
-    <string name="queue_empty">—</string>
-    <string name="pause_title">Dijeda</string>
     <string name="game_over_title">Permainan selesai</string>
     <string name="continue_label">Lanjutkan</string>
     <string name="game_over_extra_life">Tonton iklan untuk nyawa ekstra</string>
     <string name="game_over_extra_life_loading">Memuat iklan…</string>
     <string name="play_again">Main lagi</string>
     <string name="game_over_new_high_score">Skor tertinggi baru!</string>
-    <string name="game_message_select_column">Seret potongan secara horizontal, pilih kolom, lalu luncurkan ke atas.</string>
     <string name="game_message_no_opening">Tidak ada kolom awal yang valid. Mulai ulang.</string>
-    <string name="game_message_soft_lock">Jendela penyesuaian singkat terbuka. Sesuaikan kolom dengan mikro.</string>
-    <string name="game_message_overflow">Kolom meluap! Anda tidak mampu mengikuti kolom kritis.</string>
-    <string name="game_message_special_chain_board">Rantai spesial x%1$s! Papan dibentuk ulang.</string>
-    <string name="game_message_pressure_game_over">Tekanan kolom sudah mencapai batas. Mulai putaran baru.</string>
-    <string name="game_message_special_lines">Rantai blok spesial! %1$s baris dihapus.</string>
-    <string name="game_message_special_triggered">Blok spesial terpicu. %1$d blok meledak!</string>
-    <string name="game_message_perfect_drop">Jatuh sempurna x%1$s! Pertahankan streak.</string>
-    <string name="game_message_chain_lines">Pembersihan ganda! %2$s baris dibersihkan.</string>
-    <string name="game_message_lines_cleared">%1$s baris dihapus.</string>
-    <string name="game_message_good_shot">Tembakan bagus. Rencanakan kolom berikutnya.</string>
-    <string name="game_message_ad_reward_blockwise">Tray diperbarui! Bentuk baru telah siap.</string>
-    <string name="game_message_ad_reward_mergeshift">Angka berubah! Teruslah menggabungkan.</string>
-    <string name="game_message_ad_reward_boomblocks">Warna dibersihkan! Papan telah dibentuk ulang.</string>
-    <string name="game_message_ad_reward_stackshift">Blok spesial terpasang! Siap meluncur.</string>
-    <string name="game_message_hold_updated">Simpanan diperbarui. Pilih kolom baru.</string>
-    <string name="game_message_tempo_critical">Tempo meningkat. Bersihkan kolom kritis.</string>
-    <string name="game_message_tempo_up">Tempo meningkat. Potongan yang lebih sulit akan datang.</string>
     <string name="game_message_paused">Permainan dijeda.</string>
-    <string name="game_message_resumed">Lanjut. Pilih kolom dan luncurkan.</string>
     <string name="game_message_extra_life_used">Nyawa ekstra aktif! %1$s baris dihapus.</string>
+    <string name="queue_hold">Simpan</string>
+    <string name="pause_title">Dijeda</string>
+    <string name="game_message_lines_cleared">%1$s baris dihapus.</string>
+
+    <!-- NotificationWorker -->
     <string name="notification_reminders_channel_name">Pengingat</string>
     <string name="notification_miss_you_body">Kami merindukanmu! Datanglah kembali dan bermain lebih banyak lagi.</string>
     <string name="notification_daily_challenge_title">Tantangan Harian</string>
     <string name="notification_daily_challenge_body">Apakah kamu sudah menyelesaikan tugas tantangan harian hari ini?</string>
     <string name="notification_test_body">Ini adalah notifikasi uji coba.</string>
+
+    <!-- DailyChallengeScreen -->
     <string name="challenge_tasks_title">Tugas</string>
     <string name="challenge_info_title">Tentang Tugas</string>
     <string name="challenge_info_clear_blocks_title">Blok</string>
     <string name="challenge_info_clear_blocks">Bersihkan sel yang terisi dari papan dengan menyelesaikan garis dan memicu reaksi berantai.</string>
-    <string name="challenge_info_clear_rows_title">Baris</string>
     <string name="challenge_info_reach_score">Tingkatkan skor dengan menempatkan piece dan membersihkan baris.</string>
     <string name="challenge_info_reach_score_title">Skor</string>
-    <string name="challenge_info_clear_rows">Lengkapi baris penuh untuk menghapusnya dari papan.</string>
     <string name="challenge_info_trigger_special_title">Blok Spesial</string>
     <string name="challenge_info_trigger_special">Aktifkan blok spesial seperti pembersih baris, pembersih kolom, hantu, dan blok berat.</string>
     <string name="challenge_info_perfect_placement_title">Penempatan Sempurna</string>
@@ -149,24 +139,35 @@
     <string name="challenge_info_chain_reaction">Siapkan pembersihan lanjutan agar satu langkah memicu pembersihan tambahan sesudahnya.</string>
     <string name="challenge_info_clear_columns_title">Kolom</string>
     <string name="challenge_info_clear_columns">Lengkapi kolom penuh untuk menghapusnya dari papan.</string>
-    <string name="challenge_info_clear_rounds_title">Ronde</string>
-    <string name="challenge_info_clear_rounds">Selesaikan ronde BlockSort penuh dengan mengubah setiap kolom yang terisi menjadi satu warna.</string>
     <string name="challenge_info_place_pieces_title">Penempatan</string>
     <string name="challenge_info_place_pieces">Setiap penempatan yang berhasil dihitung, meskipun tidak menghapus garis.</string>
-    <string name="challenge_info_clear_both_directions_title">Baris + Kolom</string>
-    <string name="challenge_info_clear_both_directions">Satu penempatan dapat menghapus setidaknya satu baris dan satu kolom secara bersamaan.</string>
     <string name="challenge_completed">Tantangan Selesai!</string>
     <string name="challenge_task_clear_blocks">Hapus %1$d blok</string>
-    <string name="challenge_task_clear_rows">Hapus %1$d baris</string>
     <string name="challenge_task_reach_score">Capai skor %1$d</string>
     <string name="challenge_task_trigger_special">Aktifkan %1$d blok spesial</string>
     <string name="challenge_task_perfect_placement">Lakukan %1$d penempatan sempurna</string>
     <string name="challenge_task_chain_reaction">Buat %1$d reaksi berantai</string>
     <string name="challenge_task_clear_columns">Hapus %1$d kolom</string>
-    <string name="challenge_task_complete_columns">Selesaikan %1$d kolom</string>
     <string name="challenge_task_place_pieces">Tempatkan %1$d piece</string>
-    <string name="challenge_task_clear_rounds">Selesaikan %1$d ronde</string>
-    <string name="challenge_task_clear_both_directions">Buat %1$d hapusan baris + kolom</string>
+    <string name="challenge_progress_value">%1$d/%2$d</string>
+
+    <!-- RewardFeedback -->
+    <string name="reward_earned_message">Anda mendapatkan %1$d token!</string>
+    <string name="feedback_overflow">Meluap</string>
+    <string name="feedback_clear">Bersih +%1$s</string>
+    <string name="feedback_score_only">+%1$s</string>
+    <string name="feedback_extra_life">Nyawa ekstra! %1$s baris</string>
+    <string name="color_cyan">Sian</string>
+    <string name="color_gold">Emas</string>
+    <string name="color_violet">Ungu</string>
+    <string name="color_emerald">Zamrud</string>
+    <string name="color_coral">Koral</string>
+    <string name="color_blue">Biru</string>
+    <string name="color_rose">Mawar</string>
+    <string name="color_lime">Limau</string>
+    <string name="color_amber">Jingga Keemasan</string>
+
+    <!-- Calendar -->
     <string name="month_january">Januari</string>
     <string name="month_february">Februari</string>
     <string name="month_march">Maret</string>
@@ -187,27 +188,15 @@
     <string name="day_friday_short">Ju</string>
     <string name="day_saturday_short">Sa</string>
     <string name="day_sunday_short">Mi</string>
-    <string name="feedback_overflow">Meluap</string>
-    <string name="feedback_perfect_lane">Lintasan sempurna x%1$s</string>
-    <string name="feedback_micro_adjust">Penyesuaian mikro</string>
-    <string name="feedback_soft_lock">Kunci lunak</string>
-    <string name="feedback_hold_armed">Simpanan siap</string>
-    <string name="feedback_swap">Ditukar</string>
-    <string name="feedback_special_chain">Rantai spesial +%1$s • %2$d blok</string>
-    <string name="feedback_special">Spesial +%1$s • %2$d blok</string>
-    <string name="feedback_perfect">Sempurna x%1$s +%2$s</string>
-    <string name="feedback_chain">Rantai x%1$s +%2$s</string>
-    <string name="feedback_clear">Bersih +%1$s</string>
-    <string name="feedback_score_only">+%1$s</string>
-    <string name="feedback_extra_life">Nyawa ekstra! %1$s baris</string>
-    <string name="challenge_progress_value">%1$d/%2$d</string>
     <string name="stat_label_value_format">%1$s: %2$s</string>
     <string name="time_minutes_seconds_format">%1$d:%2$s</string>
+
+    <!-- PiecePropertiesScreen -->
+    <string name="queue_empty">—</string>
     <string name="special_column_clearer">KOLOM</string>
     <string name="special_row_clearer">BARIS</string>
     <string name="special_ghost">HANTU</string>
     <string name="special_heavy">BERAT</string>
-
     <string name="piece_properties_title">Properti potongan</string>
     <string name="piece_properties_active">Potongan aktif</string>
     <string name="piece_properties_kind">Jenis</string>
@@ -216,222 +205,38 @@
     <string name="piece_properties_cells">Sel</string>
     <string name="piece_properties_unlock_level">Level pembuka</string>
     <string name="piece_properties_none">Tidak ada</string>
-
     <string name="active_piece_summary">%1$s • %2$s • %3$s</string>
     <string name="piece_size_format">%1$dx%2$d</string>
 
+    <!-- BlockPropertiesScreen -->
     <string name="block_properties_title">Properti blok</string>
     <string name="block_properties_select_hint">Pilih jenis blok</string>
-
     <string name="block_properties_normal_title">Blok normal</string>
     <string name="block_properties_normal_desc">Sel terisi standar. Tidak ada efek spesial.</string>
-
     <string name="block_properties_column_clearer_title">Pembersih kolom</string>
     <string name="block_properties_column_clearer_desc">Membersihkan kolom tempat ia jatuh. Sangat bagus untuk mengurangi tekanan.</string>
-
     <string name="block_properties_row_clearer_title">Pembersih baris</string>
     <string name="block_properties_row_clearer_desc">Membersihkan baris tempat ia jatuh. Membuka ruang dengan cepat.</string>
-
     <string name="block_properties_ghost_title">Hantu</string>
     <string name="block_properties_ghost_desc">Dapat menembus blok lain. Berguna untuk celah sempit.</string>
-
     <string name="block_properties_heavy_title">Berat</string>
     <string name="block_properties_heavy_desc">Berperilaku lebih agresif; efeknya setelah mendarat lebih kuat.</string>
-
     <string name="block_properties_dot_desc">Titik kecil di kanan atas menunjukkan bahwa blok ini memiliki efek spesial. Warna titik dan bingkai menunjukkan jenis efeknya.</string>
+
+    <!-- GameTutorialScreen -->
     <string name="tutorial_subtitle">Panduan singkat sebelum permainan pertamamu.</string>
     <string name="tutorial_step_counter">Langkah %1$d / %2$d</string>
     <string name="tutorial_back">Kembali</string>
     <string name="cancel">Batal</string>
-    <string name="unlock_dialog_title">Buka kunci %1$s?</string>
-    <string name="unlock_dialog_insufficient_title">%1$s terkunci</string>
-    <string name="unlock_dialog_message">%1$s membutuhkan %2$d token. Saldo saat ini: %3$d.</string>
-    <string name="unlock_dialog_not_enough">Kamu membutuhkan %1$d token untuk membuka item ini. Saldo kamu saat ini %2$d.</string>
-    <string name="unlock_dialog_confirm">Buka kunci</string>
-    <string name="unlock_dialog_locked_suffix">Terkunci</string>
     <string name="tutorial_next">Lanjut</string>
     <string name="return_home">Kembali ke beranda</string>
     <string name="tutorial_finish">Mulai permainan</string>
-    <string name="tutorial_stackshift_intro_title">Luncurkan piece dari dock bawah</string>
-    <string name="tutorial_stackshift_intro_body">Piece aktifmu menunggu di bawah. Geser secara horizontal untuk menyelaraskan kolom, lalu lepaskan untuk meluncurkannya ke papan. Pratinjau piece berikutnya sengaja dibuat lebih samar agar fokus tetap pada piece aktif.</string>
-    <string name="tutorial_stackshift_systems_title">Gunakan blok aksi saat papan mulai penuh</string>
-    <string name="tutorial_stackshift_systems_body">Simpanan menukar piece saat ini, Jeda membekukan permainan, Properti blok menjelaskan simbol, dan Pengaturan mengubah tampilan. Tombol-tombol ini juga mengikuti gaya blok papan yang kamu pilih.</string>
-    <string name="tutorial_stackshift_specials_title">Blok spesial bisa menyelamatkan permainan</string>
-    <string name="tutorial_stackshift_specials_body">Beberapa piece memiliki efek spesial. Pelajari lencananya dan gunakan untuk menurunkan tekanan, membuka ruang, atau menembus tumpukan yang sulit.</string>
-    <string name="tutorial_stackshift_ready_title">Kamu siap melanjutkan permainan ini</string>
-    <string name="tutorial_stackshift_ready_body">Itu saja — rencanakan kolom berikutnya, perhatikan bilah launch, dan gunakan spesial di saat yang tepat. Kamu bisa membuka kembali tutorial ini kapan saja dari Pengaturan.</string>
-    <string name="tutorial_stackshift_ready_tutorial_hint">Buka Tutorial kapan saja jika kamu ingin mengingat cepat kontrol dan ikon spesial.</string>
-    <string name="tutorial_stackshift_ready_settings_hint">Buka Pengaturan untuk mengubah bahasa, tema, warna, dan gaya blok sebelum permainan berikutnya.</string>
-    <string name="tutorial_intro_title">Seret salah satu dari tiga piece ke papan</string>
-    <string name="tutorial_intro_body">Tiga bentuk menunggu di tray. Pilih yang kamu inginkan, seret ke sel kosong mana pun, dan lepaskan untuk menempatkannya tepat di tempat yang pas.</string>
-    <string name="tutorial_systems_title">Pikirkan seluruh tray, bukan hanya satu langkah</string>
-    <string name="tutorial_systems_body">Setelah menempatkan satu piece, tray yang tersisa tetap di layar. Saat ketiganya habis, trio baru akan muncul. Coba sisakan ruang yang cukup untuk setiap bentuk yang masih kamu miliki.</string>
-    <string name="tutorial_specials_title">Baris dan kolom akan hilang saat terisi penuh</string>
-    <string name="tutorial_specials_body">Di sini tidak ada piece spesial. Sebagai gantinya, penuhi satu baris penuh atau satu kolom penuh untuk membersihkannya. Jika keduanya selesai bersamaan, keduanya akan hilang sekaligus.</string>
-    <string name="tutorial_ready_title">Kamu siap untuk alur puzzle blok yang baru</string>
-    <string name="tutorial_ready_body">Terus perhatikan tray, siapkan pembersihan baris dan kolom, dan jangan sampai bentuk besar terjebak. Saat tak ada lagi dari tiga piece yang muat, permainan berakhir.</string>
-    <string name="tutorial_ready_block_properties_hint">Buka Tutorial kapan saja jika kamu ingin meninjau kembali penempatan bebas dan pembersihan baris/kolom secara bersamaan.</string>
     <string name="tutorial_ready_settings_hint">Buka Pengaturan untuk mengubah bahasa, tema, warna, dan gaya blok sebelum permainan berikutnya.</string>
-    <string name="tutorial_mergeshift_intro_title">Luncurkan piece untuk menggabungkan blok bernilai sama</string>
-    <string name="tutorial_mergeshift_intro_body">Di MergeShift, piece diluncurkan dari dock. Saat sebuah blok mendarat di blok lain dengan nilai yang sama, keduanya akan bergabung menjadi nilai yang lebih tinggi. Terus gabungkan untuk membuka ruang dan mencapai skor yang lebih tinggi.</string>
-    <string name="tutorial_mergeshift_systems_title">Rencanakan penggabunganmu untuk mencegah luapan</string>
-    <string name="tutorial_mergeshift_systems_body">Setiap piece yang kamu luncurkan akan menambah tinggi kolom. Jika ada kolom yang mencapai puncak, permainan berakhir. Gunakan pratinjau untuk melihat di mana piece-mu akan mendarat dan dengan blok mana ia mungkin bergabung.</string>
-    <string name="tutorial_mergeshift_specials_title">Gabungkan beberapa merger untuk combo yang lebih besar</string>
-    <string name="tutorial_mergeshift_specials_body">Satu peluncuran dapat memicu reaksi berantai penggabungan. Combo ini memberikan lebih banyak poin dan membuka lebih banyak ruang di papan, membantumu bertahan dalam permainan lebih lama.</string>
-    <string name="tutorial_mergeshift_ready_title">Kamu siap untuk MergeShift</string>
-    <string name="tutorial_mergeshift_ready_body">Fokuslah untuk menjaga kolommu tetap rendah dan siapkan penggabungan bernilai tinggi. Semoga berhasil mencapai angka tertinggi!</string>
-    <string name="settings_tutorial">Tutorial</string>
-    <string name="settings_tutorial_body">Buka tutorial atau latihan terpandu kapan saja untuk meninjau penempatan bebas, pembersihan baris dan kolom, serta alur tray berisi tiga piece.</string>
-    <string name="settings_tutorial_replay">Latihan</string>
-    <string name="tutorial_ready_tutorial_hint">Buka Tutorial kapan saja jika kamu ingin meninjau kembali penempatan bebas dan pembersihan baris/kolom secara bersamaan.</string>
     <string name="interactive_onboarding_step_counter">Panduan %1$d / %2$d</string>
-    <string name="interactive_onboarding_drag_title">Seret piece dari tray ke papan</string>
-    <string name="interactive_onboarding_drag_body">Sentuh salah satu dari tiga bentuk di tray, pindahkan ke atas papan, lalu sejajarkan dengan sel yang disorot.</string>
-    <string name="interactive_onboarding_drag_to_board">Seret piece yang disorot ke area target yang bercahaya.</string>
-    <string name="interactive_onboarding_drag_ready">Bagus — lepaskan sekarang. Saat piece menempel ke sel yang disorot, panduan berikutnya akan terbuka otomatis.</string>
-    <string name="interactive_onboarding_aim_hint">Lepaskan piece di dalam sel yang disorot untuk melanjutkan.</string>
-    <string name="interactive_onboarding_target_locked">Pas sekali — tahan di sana lalu lepaskan untuk melanjutkan.</string>
-    <string name="interactive_onboarding_waiting">Penempatan diterima. Momen terpandu berikutnya sedang disiapkan…</string>
-    <string name="interactive_onboarding_line_clear_title">Penuhi satu baris untuk menghapusnya</string>
-    <string name="interactive_onboarding_line_clear_body">Tempatkan bentuk ini di titik panduan agar barisnya penuh, menyala, lalu hilang.</string>
-    <string name="interactive_onboarding_column_clearer_title">Penuhi satu kolom untuk menghapusnya</string>
-    <string name="interactive_onboarding_column_clearer_body">Sekarang gunakan penempatan yang disorot untuk melengkapi satu kolom penuh dan membuka ruang vertikal.</string>
-    <string name="interactive_onboarding_row_clearer_title">Baris membuka ruang horizontal</string>
-    <string name="interactive_onboarding_row_clearer_body">Satu baris penuh akan langsung hilang. Arahkan ke sel yang disorot dan lihat bagaimana papan terbuka dari sisi ke sisi.</string>
-    <string name="interactive_onboarding_ghost_title">Tray sama pentingnya dengan papan</string>
-    <string name="interactive_onboarding_ghost_body">Sebelum menaruh satu bentuk, lihat juga dua piece lainnya. Permainan yang bagus datang dari menyisakan ruang untuk seluruh tray, bukan hanya langkah ini.</string>
-    <string name="interactive_onboarding_heavy_title">Bersihkan dua arah sekaligus</string>
-    <string name="interactive_onboarding_heavy_body">Beberapa penempatan bisa melengkapi satu baris dan satu kolom secara bersamaan. Gunakan titik panduan untuk memicu pembersihan ganda yang lebih besar.</string>
 
-    <string name="interactive_onboarding_mergeshift_launch_title">Luncurkan piece pertamamu</string>
-    <string name="interactive_onboarding_mergeshift_launch_body">Seret piece secara horizontal di bawah papan untuk membidik, lalu lepaskan untuk meluncurkannya ke dalam kolom.</string>
-    <string name="interactive_onboarding_mergeshift_merge_vertical_title">Gabungkan nilai yang sama secara vertikal</string>
-    <string name="interactive_onboarding_mergeshift_merge_vertical_body">Luncurkan piece ke dalam kolom yang sudah memiliki blok dengan nilai yang sama. Keduanya akan bergabung menjadi angka yang lebih tinggi!</string>
-    <string name="interactive_onboarding_mergeshift_merge_horizontal_title">Gabungkan nilai yang sama secara horizontal</string>
-    <string name="interactive_onboarding_mergeshift_merge_horizontal_body">Blok juga dapat bergabung dengan tetangganya di kiri atau kanan. Bidik tempat yang disorot untuk memicu penggabungan horizontal.</string>
-    <string name="interactive_onboarding_mergeshift_merge_multi_title">Picu penggabungan ganda</string>
-    <string name="interactive_onboarding_mergeshift_merge_multi_body">Satu penempatan dapat memicu penggabungan di berbagai arah (atas, kiri, kanan). Gunakan ini untuk membuka lebih banyak ruang dan mencetak skor besar!</string>
-
-    <string name="settings_color_palette">Palet Warna</string>
-    <string name="ad_reward_blockwise_refresh">Segarkan Tray</string>
-    <string name="ad_reward_mergeshift_swap">Ubah Angka</string>
-    <string name="ad_reward_boomblocks_clear">Bersihkan Warna</string>
-    <string name="feedback_ad_reward_blockwise">Baki terisi kembali</string>
-    <string name="feedback_ad_reward_mergeshift">Angka berubah</string>
-    <string name="feedback_ad_reward_boomblocks">%1$s dibersihkan</string>
-    <string name="color_cyan">Sian</string>
-    <string name="color_gold">Emas</string>
-    <string name="color_violet">Violet</string>
-    <string name="color_emerald">Zamrud</string>
-    <string name="color_coral">Koral</string>
-    <string name="color_blue">Biru</string>
-    <string name="color_rose">Mawar</string>
-    <string name="color_lime">Limau</string>
-    <string name="color_amber">Amber</string>
-    <string name="challenge_task_explode_groups">Ledakkan %1$d kelompok blok</string>
-    <string name="tutorial_boomblocks_intro_title">Ledakkan kelompok yang cocok</string>
-    <string name="tutorial_boomblocks_intro_body">Di BoomBlocks, kamu tidak meluncurkan atau menyeret piece. Sebagai gantinya, cari tiga atau lebih blok dengan warna yang sama yang saling bersentuhan, lalu ketuk salah satunya untuk membersihkan seluruh kelompok.</string>
-    <string name="tutorial_boomblocks_gravity_title">Gerakan papan yang dinamis</string>
-    <string name="tutorial_boomblocks_gravity_body">Saat sebuah kelompok meledak, ledakan itu menciptakan ruang hampa yang menarik blok di sekitarnya. Setelah itu, blok baru mengisi kembali papan dari sisi terdekat agar aksinya tetap dinamis.</string>
-    <string name="tutorial_boomblocks_ready_title">Kamu siap untuk BoomBlocks</string>
-    <string name="tutorial_boomblocks_ready_body">Fokuslah mencari kelompok besar untuk skor maksimum dan perhatikan bagaimana setiap ledakan membentuk ulang papan. Semoga beruntung!</string>
-    <string name="interactive_onboarding_boomblocks_basic_title">Ketuk untuk meledak</string>
-    <string name="interactive_onboarding_boomblocks_basic_body">Cari kelompok berisi tiga atau lebih blok dengan warna yang sama, lalu ketuk untuk membersihkannya dari papan.</string>
-    <string name="interactive_onboarding_boomblocks_large_title">Kelompok lebih besar, poin lebih banyak</string>
-    <string name="interactive_onboarding_boomblocks_large_body">Kelompok yang lebih besar memberi lebih banyak poin dan membuka lebih banyak ruang. Ketuk kelompok besar yang disorot!</string>
-    <string name="interactive_onboarding_boomblocks_gravity_title">Gravitasi bergeser</string>
-    <string name="interactive_onboarding_boomblocks_gravity_body">Saat kamu meledakkan blok, blok baru masuk dari sisi berlawanan arah ledakan. Perhatikan bagaimana papan ikut bergeser!</string>
-    <string name="interactive_onboarding_boomblocks_strategic_title">Isi ulang strategis</string>
-    <string name="interactive_onboarding_boomblocks_strategic_body">Blok baru mengisi ulang papan berdasarkan pusat ledakan. Gunakan ini untuk menyiapkan kelompok yang lebih besar lagi!</string>
-    <string name="interactive_onboarding_boomblocks_tap_hint">Ketuk kelompok yang disorot untuk melanjutkan.</string>
-
+    <!-- AppSelectionScreen -->
     <string name="selection_title">Pilih Game Kamu</string>
-    <string name="selection_stackshift_desc">Luncurkan piece dari bawah untuk membersihkan baris dan kolom.</string>
-    <string name="selection_blockwise_desc">Seret dan lepas piece di mana saja di papan.</string>
-    <string name="selection_mergeshift_desc">Gabungkan piece bernilai sama untuk mencapai skor yang lebih tinggi.</string>
-    <string name="selection_boomblocks_desc">Ketuk kelompok berisi 3 blok atau lebih untuk meledakkannya.</string>
     <string name="selection_switch_game">Ganti Game</string>
     <string name="selection_active_game_badge">AKTIF</string>
-    <string name="game_message_ad_reward_blocksort">Board remixed! Fresh routes are open.</string>
-    <string name="tutorial_blocksort_intro_title">Pindahkan tumpukan atas berukuran sama antar kolom</string>
-    <string name="tutorial_blocksort_intro_body">Setiap ronde memakai ukuran slot yang sama untuk semua kolom. Ketuk kolom campuran yang tidak kosong untuk mengambil tumpukan warna teratasnya, lalu pindahkan ke kolom kosong atau kolom dengan warna atas yang sama.</string>
-    <string name="tutorial_blocksort_rules_title">Hanya warna yang sama yang bisa ditumpuk bersama</string>
-    <string name="tutorial_blocksort_rules_body">Anda hanya bisa memindahkan ke ruang kosong atau ke warna atas yang sama. Saat puzzle berkembang, papan bisa terbagi menjadi baris atas dan bawah, jadi perhatikan ruang bantu dan visibilitas.</string>
-    <string name="tutorial_blocksort_finish_title">Selesaikan setiap kolom dengan satu warna</string>
-    <string name="tutorial_blocksort_finish_body">Sebuah kolom dianggap selesai ketika setiap slot pada ronde itu berisi warna yang sama. Ronde yang berbeda bisa memakai 3, 4, 5, atau 6 slot berukuran sama, dan tata letak campuran baru akan datang setelah semuanya selesai.</string>
-    <string name="tutorial_blocksort_ready_title">Anda siap untuk BlockSort</string>
-    <string name="tutorial_blocksort_ready_body">Rencanakan dua atau tiga langkah ke depan, lindungi kolom bantuan Anda, dan cepat beradaptasi saat setiap ronde mengubah jumlah slot dan papan bisa terbagi menjadi dua baris.</string>
-    <string name="interactive_onboarding_blocksort_pick_title">Pilih kolom asal</string>
-    <string name="interactive_onboarding_blocksort_pick_body">Mulailah dengan mengetuk kolom campuran yang disorot. Anda akan memindahkan tumpukan warna teratasnya lebih dulu, dan setiap slot pada ronde ini berukuran sama.</string>
-    <string name="interactive_onboarding_blocksort_pick_hint">Ketuk dulu kolom asal yang disorot pada tata letak campuran.</string>
-    <string name="interactive_onboarding_blocksort_match_title">Cocokkan warna atas</string>
-    <string name="interactive_onboarding_blocksort_match_body">Sekarang pindahkan tumpukan itu ke kolom yang warna paling atasnya sudah sama. Kolom yang cocok membantu Anda mengelompokkan warna dengan aman bahkan saat papan terbagi menjadi dua baris.</string>
-    <string name="interactive_onboarding_blocksort_match_hint">Pindahkan tumpukan ke kolom warna cocok yang disorot.</string>
-    <string name="interactive_onboarding_blocksort_finish_title">Selesaikan satu kolom rapi</string>
-    <string name="interactive_onboarding_blocksort_finish_body">Bagus. Satu langkah lagi akan melengkapi setiap slot pada kolom satu warna di ronde ini. Selesaikan untuk melihat tujuan utama BlockSort.</string>
-    <string name="interactive_onboarding_blocksort_finish_hint">Lengkapi kolom yang disorot agar setiap slot menunjukkan warna yang sama.</string>
-    <string name="blocksort_completed_label">Tersortir</string>
-    <string name="blocksort_goal_hint">Tujuan: selesaikan ronde dengan setiap kolom terisi hanya satu warna. Ronde bisa memakai 3, 4, 5, atau 6 slot berukuran sama per kolom, dan papan dapat terbagi menjadi dua baris.</string>
-    <string name="blocksort_no_moves_hint">Tidak ada perpindahan valid yang tersisa pada tata letak campuran ini. Coba acak ulang atau mulai ronde baru.</string>
-    <string name="blocksort_round_congrats_title">Selamat!</string>
-    <string name="blocksort_round_complete_hint">Ronde selesai! Bonus +%1$d dan tata letak campuran baru telah datang.</string>
-    <string name="blocksort_round_label">Ronde</string>
-    <string name="blocksort_select_source_hint">Ketuk kolom campuran yang tidak kosong untuk mengambil tumpukan warna teratasnya.</string>
-    <string name="blocksort_selected_hint">Sekarang ketuk kolom kosong atau kolom dengan warna atas yang sama untuk memindahkan tumpukan ke sana.</string>
-    <string name="selection_blocksort_desc">Urutkan tumpukan warna campuran sampai setiap kolom terisi menjadi satu warna.</string>
 
-    <string name="app_title_chainshift">Chain Shift</string>
-    <string name="selection_chainshift_desc">Shoot from the center, slip blocks into a spiral chain, and pop 3+ color matches.</string>
-    <string name="app_title_banner_chainshift_top">CHAIN</string>
-    <string name="app_title_banner_chainshift_bottom">SHIFT</string>
-    <string name="tutorial_chainshift_intro_title">Meet Chain Shift</string>
-    <string name="tutorial_chainshift_intro_body">Blocks enter from the edge, wrap around the board, and crawl toward the center. Your shooter stays in the middle, so every shot must cut into the moving chain before it reaches you.</string>
-    <string name="tutorial_chainshift_path_title">Bidik dan Tembak</string>
-    <string name="tutorial_chainshift_path_body">Bidik dari tengah dan lepaskan untuk menembak. Balok Anda masuk di tempat ia mengenai rantai, mendorong balok-balok berikutnya ke depan.</string>
-    <string name="tutorial_chainshift_combo_title">Buat mundur dan kombo</string>
-    <string name="tutorial_chainshift_combo_body">Cocokkan 3 atau lebih balok terhubung dengan warna yang sama di sepanjang rantai untuk meledakkannya. Saat celah tertutup, rantai mundur ke arah tepi, yang berpotensi memicu reaksi berantai.</string>
-    <string name="tutorial_chainshift_ready_title">Hold the center</string>
-    <string name="tutorial_chainshift_ready_body">Stay calm, keep the spiral short, and use your shots to break dangerous runs before they lock the center. The deeper the chain goes, the less room you have to recover.</string>
-    <string name="interactive_onboarding_chainshift_intro_title">Tembak balok panduan</string>
-    <string name="interactive_onboarding_chainshift_intro_body">Mulailah dengan menembak ke bagian spiral yang disorot. Balok Anda meluncur dari tengah dan masuk ke dalam rantai pada titik tumbukan.</string>
-    <string name="interactive_onboarding_chainshift_match_title">Make a 3-block match</string>
-    <string name="interactive_onboarding_chainshift_match_body">Now use the guided shot to line up 3 blocks of the same color. Matching segments burst immediately and open breathing room near the center.</string>
-    <string name="interactive_onboarding_chainshift_chain_title">Picu reaksi berantai</string>
-    <string name="interactive_onboarding_chainshift_chain_body">Pengaturan ini menghargai tembakan yang lebih cerdas. Bersihkan kecocokan pertama, saksikan rantai mundur ke arah tepi, dan biarkan kecocokan kedua meledak dengan sendirinya.</string>
-    <string name="interactive_onboarding_chainshift_tap_hint">Bidik dan lepaskan untuk menembak balok yang disorot.</string>
-    <string name="game_message_ad_reward_chainshift">Active block refreshed for Chain Shift!</string>
-
-    <string name="block_style_lava">Lava</string>
-    <string name="block_style_light_burst">Light Burst</string>
-    <string name="block_style_matte_soft">Matte Soft</string>
-    <string name="block_style_stone_texture">Stone Texture</string>
-    <string name="selection_digitshift_desc">Wordle-style word puzzles with language-specific vocabularies.</string>
-    <string name="tutorial_digitshift_intro_title">Find the hidden word</string>
-    <string name="tutorial_digitshift_intro_body">Build a five-token word and submit it. Every guess reveals which tokens are correct, present, or absent.</string>
-    <string name="tutorial_digitshift_hints_title">Read the colors</string>
-    <string name="tutorial_digitshift_hints_body">Green means the token is correct, gold means it belongs somewhere else, and muted means it is not in the answer.</string>
-    <string name="tutorial_digitshift_strategy_title">Use the keyboard hints</string>
-    <string name="tutorial_digitshift_strategy_body">Each submitted guess upgrades the keyboard. Reuse green tokens, relocate gold ones, and avoid muted tokens to solve faster.</string>
-    <string name="tutorial_digitshift_ready_title">Ready to shift words?</string>
-    <string name="tutorial_digitshift_ready_body">Classic mode keeps the streak going until you miss a word. Time Attack adds pressure, so solve quickly to bank score and bonus time.</string>
-    <string name="interactive_onboarding_digitshift_type_hint">Type the suggested word to learn the board.</string>
-    <string name="interactive_onboarding_digitshift_submit_hint">Submit another valid word and watch the keyboard update.</string>
-    <string name="interactive_onboarding_digitshift_solve_hint">Use the clues and solve the hidden word.</string>
-    <string name="digitshift_enter">Enter</string>
-    <string name="digitshift_delete">Delete</string>
-    <string name="digitshift_guess_label">Guess %1$d</string>
-    <string name="digitshift_solved_words">Solved</string>
-    <string name="digitshift_attempts_left">Attempts</string>
-    <string name="digitshift_current_language">Language</string>
-    <string name="game_message_digitshift_enter_word">Build a word and submit your guess.</string>
-    <string name="game_message_digitshift_not_enough_letters">Not enough letters yet.</string>
-    <string name="game_message_digitshift_not_in_dictionary">That word is not in this language pack.</string>
-    <string name="game_message_digitshift_keep_trying">Good clue. Refine the next guess.</string>
-    <string name="game_message_digitshift_solved">Solved: %1$s</string>
-    <string name="game_message_digitshift_failed">Round over. The word was %1$s.</string>
-    <string name="game_message_digitshift_revived">Extra life used. Try the word again.</string>
-    <string name="game_message_ad_reward_digitshift">Word refreshed. Keep guessing!</string>
-    <string name="challenge_task_solve_words">Solve %1$d words</string>
-    <string name="challenge_info_solve_words_title">Solve words</string>
-    <string name="challenge_info_solve_words">Complete full DigitShift rounds by finding the hidden word before you run out of guesses.</string>
 </resources>

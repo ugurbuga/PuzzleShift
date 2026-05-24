@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_digitshift_desc">Угадывайте скрытые 5- или 6-значные числа по подсказкам для каждой цифры.</string>
+
+    <!-- DigitShiftGameScreen -->
+    <string name="digitshift_enter">Ввод</string>
+    <string name="digitshift_delete">Удалить</string>
+    <string name="digitshift_guess_label">Попытка %1$d</string>
+    <string name="digitshift_solved_words">Решено</string>
+    <string name="digitshift_attempts_left">Попытки</string>
+    <string name="digitshift_current_language">Язык</string>
+    <string name="game_message_digitshift_enter_word">Соберите 5- или 6-значное число и отправьте свою попытку.</string>
+    <string name="game_message_digitshift_not_enough_letters">Пока недостаточно цифр.</string>
+    <string name="game_message_digitshift_not_in_dictionary">Разрешены только цифры 0–9.</string>
+    <string name="game_message_digitshift_keep_trying">Хорошая подсказка. Уточните следующее число.</string>
+    <string name="game_message_digitshift_solved">Решено: %1$s</string>
+    <string name="game_message_digitshift_failed">Раунд окончен. Число было %1$s.</string>
+    <string name="game_message_digitshift_revived">Дополнительная жизнь использована. Попробуйте число ещё раз.</string>
+    <string name="game_message_ad_reward_digitshift">Число обновлено. Продолжайте угадывать!</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_task_solve_words">Решите %1$d чисел</string>
+    <string name="challenge_info_solve_words_title">Решить числа</string>
+    <string name="challenge_info_solve_words">Проходите полные раунды DigitShift, находя скрытое число до того, как закончатся попытки.</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_digitshift_intro_title">Найдите скрытое число</string>
+    <string name="tutorial_digitshift_intro_body">Соберите скрытое 5- или 6-значное число из цифр 0–9 и отправьте его. Каждая попытка показывает, какие цифры верны, присутствуют или отсутствуют.</string>
+    <string name="tutorial_digitshift_hints_title">Читайте цвета</string>
+    <string name="tutorial_digitshift_hints_body">Зелёный означает, что цифра стоит верно, оранжевый — что цифра есть, но в другом месте, а тёмно-серый — что её нет в ответе.</string>
+    <string name="tutorial_digitshift_strategy_title">Используйте подсказки клавиатуры</string>
+    <string name="tutorial_digitshift_strategy_body">После каждой попытки цифровая клавиатура обновляется. Используйте зелёные цифры снова, переставляйте оранжевые и избегайте тёмно-серых, чтобы решать быстрее.</string>
+    <string name="tutorial_digitshift_ready_title">Готовы взламывать числа?</string>
+    <string name="tutorial_digitshift_ready_body">В классическом режиме раунды на 5 и 6 цифр чередуются, пока вы не ошибётесь. В режиме на время давление выше, поэтому решайте быстро, чтобы заработать очки и бонусное время.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_digitshift_type_hint">Введите предложенное число, чтобы освоить поле.</string>
+    <string name="interactive_onboarding_digitshift_submit_hint">Отправьте ещё одно число и посмотрите, как обновится клавиатура.</string>
+    <string name="interactive_onboarding_digitshift_solve_hint">Используйте подсказки и найдите скрытое число.</string>
+
+</resources>

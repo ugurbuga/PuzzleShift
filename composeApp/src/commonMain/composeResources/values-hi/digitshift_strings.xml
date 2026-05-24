@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_digitshift_desc">अंकों के संकेतों की मदद से छिपी हुई 5 या 6 अंकों की संख्याएँ पहचानें।</string>
+
+    <!-- DigitShiftGameScreen -->
+    <string name="digitshift_enter">दर्ज करें</string>
+    <string name="digitshift_delete">मिटाएँ</string>
+    <string name="digitshift_guess_label">अनुमान %1$d</string>
+    <string name="digitshift_solved_words">हल किए</string>
+    <string name="digitshift_attempts_left">प्रयास</string>
+    <string name="digitshift_current_language">भाषा</string>
+    <string name="game_message_digitshift_enter_word">5 या 6 अंकों की संख्या बनाकर अपना अनुमान सबमिट करें।</string>
+    <string name="game_message_digitshift_not_enough_letters">अभी पर्याप्त अंक नहीं हैं।</string>
+    <string name="game_message_digitshift_not_in_dictionary">केवल 0–9 अंक ही मान्य हैं।</string>
+    <string name="game_message_digitshift_keep_trying">अच्छा संकेत मिला। अगली संख्या को और बेहतर बनाइए।</string>
+    <string name="game_message_digitshift_solved">हल हुआ: %1$s</string>
+    <string name="game_message_digitshift_failed">राउंड समाप्त। संख्या %1$s थी।</string>
+    <string name="game_message_digitshift_revived">अतिरिक्त जीवन उपयोग हुआ। संख्या को फिर से आज़माइए।</string>
+    <string name="game_message_ad_reward_digitshift">संख्या ताज़ा हो गई। अनुमान लगाते रहें!</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_task_solve_words">%1$d संख्याएँ हल करें</string>
+    <string name="challenge_info_solve_words_title">संख्याएँ हल करें</string>
+    <string name="challenge_info_solve_words">अनुमान खत्म होने से पहले छिपी हुई संख्या ढूँढकर पूरे DigitShift राउंड पूरे करें।</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_digitshift_intro_title">छिपी हुई संख्या खोजें</string>
+    <string name="tutorial_digitshift_intro_body">0–9 अंकों का उपयोग करके 5 या 6 अंकों की छिपी हुई संख्या बनाकर सबमिट करें। हर अनुमान बताएगा कि कौन से अंक सही हैं, मौजूद हैं या नहीं हैं।</string>
+    <string name="tutorial_digitshift_hints_title">रंगों को समझें</string>
+    <string name="tutorial_digitshift_hints_body">हरा मतलब अंक सही है, नारंगी मतलब वह किसी दूसरी जगह है, और गहरा धूसर मतलब वह उत्तर में नहीं है।</string>
+    <string name="tutorial_digitshift_strategy_title">कीपैड संकेतों का उपयोग करें</string>
+    <string name="tutorial_digitshift_strategy_body">हर सबमिट के बाद नंबर कीपैड अपडेट होता है। हरे अंकों को रखें, नारंगी अंकों को नई जगह रखें और गहरे धूसर अंकों से बचें ताकि आप जल्दी हल कर सकें।</string>
+    <string name="tutorial_digitshift_ready_title">क्या आप संख्याएँ सुलझाने के लिए तैयार हैं?</string>
+    <string name="tutorial_digitshift_ready_body">क्लासिक मोड 5 और 6 अंकों वाले राउंड्स के बीच बदलता रहता है, जब तक आप कोई संख्या नहीं चूकते। टाइम अटैक दबाव बढ़ाता है, इसलिए स्कोर और बोनस समय पाने के लिए जल्दी हल करें।</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_digitshift_type_hint">बोर्ड समझने के लिए सुझाई गई संख्या टाइप करें।</string>
+    <string name="interactive_onboarding_digitshift_submit_hint">एक और संख्या सबमिट करें और देखें कि कीपैड कैसे अपडेट होता है।</string>
+    <string name="interactive_onboarding_digitshift_solve_hint">संकेतों का उपयोग करें और छिपी हुई संख्या हल करें।</string>
+
+</resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blockwise_desc">Sleep en plaats stukken overal op het bord.</string>
+
+    <!-- BlockWiseGameScreen -->
+    <string name="ad_reward_blockwise_refresh">Vak vernieuwen</string>
+    <string name="feedback_ad_reward_blockwise">Vak vernieuwd</string>
+    <string name="launch_drag_hint_blockwise">Sleep ergens op het bord → laat los om te plaatsen</string>
+    <string name="game_message_select_column">Sleep één van de drie stukken naar een willekeurige lege plek.</string>
+    <string name="game_message_ad_reward_blockwise">Vak vernieuwd! Nieuwe vormen staan klaar.</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rows_title">Rijen</string>
+    <string name="challenge_info_clear_rows">Voltooi volledige rijen om ze van het bord te verwijderen.</string>
+    <string name="challenge_info_clear_both_directions_title">Rij + Kolom</string>
+    <string name="challenge_info_clear_both_directions">Met één plaatsing kun je tegelijk minstens één rij en één kolom wissen.</string>
+    <string name="challenge_task_clear_rows">Wis %1$d rijen</string>
+    <string name="challenge_task_clear_both_directions">Doe %1$d rij + kolom-clears</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_intro_title">Sleep een van de drie stukken naar het bord</string>
+    <string name="tutorial_intro_body">Drie vormen wachten in het vak. Kies degene die je wilt, sleep hem naar lege cellen en laat los precies waar hij past.</string>
+    <string name="tutorial_systems_title">Denk aan het hele vak, niet aan één zet</string>
+    <string name="tutorial_systems_body">Na het plaatsen van één stuk blijft de rest van het vak zichtbaar. Zodra alle drie de stukken zijn gebruikt, verschijnt een nieuw trio. Probeer genoeg ruimte over te laten voor elke vorm die je nog hebt.</string>
+    <string name="tutorial_specials_title">Rijen en kolommen wissen bij volledige dekking</string>
+    <string name="tutorial_specials_body">Hier zijn geen speciale stukken. Vul in plaats daarvan een hele rij of een hele kolom om die te wissen. Als beide tegelijk worden voltooid, verdwijnen ze samen.</string>
+    <string name="tutorial_ready_title">Je bent klaar voor de nieuwe blokpuzzelstroom</string>
+    <string name="tutorial_ready_body">Blijf het vak scannen, bereid rij- en kolomclears voor en voorkom dat grote vormen vastlopen. Wanneer geen van de drie stukken nog past, eindigt de run.</string>
+    <string name="tutorial_ready_block_properties_hint">Open Tutorial wanneer je vrije plaatsing en gelijktijdige rij-/kolomclears wilt herhalen.</string>
+    <string name="tutorial_ready_tutorial_hint">Open Tutorial wanneer je vrije plaatsing en gelijktijdige rij-/kolomclears wilt herhalen.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_drag_title">Sleep een stuk uit het vak naar het bord</string>
+    <string name="interactive_onboarding_drag_body">Raak een van de drie vormen in het vak aan, verplaats hem over het bord en lijn hem uit met de gemarkeerde cellen.</string>
+    <string name="interactive_onboarding_drag_to_board">Sleep het gemarkeerde vakstuk naar het gloeiende doelgebied.</string>
+    <string name="interactive_onboarding_drag_ready">Mooi — laat nu los. Zodra het in de gemarkeerde cellen vastklikt, opent de volgende gids automatisch.</string>
+    <string name="interactive_onboarding_aim_hint">Laat het stuk binnen de gemarkeerde cellen vallen om door te gaan.</string>
+    <string name="interactive_onboarding_target_locked">Perfect — houd het daar en laat los om door te gaan.</string>
+    <string name="interactive_onboarding_waiting">Plaatsing geaccepteerd. Volgend begeleid moment wordt voorbereid…</string>
+    <string name="interactive_onboarding_line_clear_title">Voltooi een rij om die te wissen</string>
+    <string name="interactive_onboarding_line_clear_body">Plaats deze vorm op de begeleide plek zodat de rij vol raakt, oplicht en verdwijnt.</string>
+    <string name="interactive_onboarding_column_clearer_title">Voltooi een kolom om die te wissen</string>
+    <string name="interactive_onboarding_column_clearer_body">Gebruik nu de gemarkeerde plaatsing om een volledige kolom af te maken en verticale ruimte te openen.</string>
+    <string name="interactive_onboarding_row_clearer_title">Rijen openen horizontale ruimte</string>
+    <string name="interactive_onboarding_row_clearer_body">Een volle rij wordt direct gewist. Richt op de gemarkeerde cellen en zie hoe het bord in de breedte opengaat.</string>
+    <string name="interactive_onboarding_ghost_title">Het vak is net zo belangrijk als het bord</string>
+    <string name="interactive_onboarding_ghost_body">Kijk voordat je een vorm plaatst ook naar de andere twee stukken. Goede runs ontstaan doordat je ruimte laat voor het hele vak, niet alleen voor de huidige zet.</string>
+    <string name="interactive_onboarding_heavy_title">Wis beide richtingen tegelijk</string>
+    <string name="interactive_onboarding_heavy_body">Sommige plaatsingen voltooien tegelijk een rij en een kolom. Gebruik de begeleide plek om een grotere dubbele clear te activeren.</string>
+
+</resources>

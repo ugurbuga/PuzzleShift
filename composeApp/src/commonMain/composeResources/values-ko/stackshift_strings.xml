@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_stackshift_desc">아래에서 피스를 발사해 행과 열을 제거합니다.</string>
+
+    <!-- StackShiftGameScreen -->
+    <string name="reward_piece_row_message">가로 줄 제거 피스를 장착했습니다!</string>
+    <string name="reward_piece_column_message">세로 열 제거 피스를 장착했습니다!</string>
+    <string name="launch_bar">발사 바</string>
+    <string name="launch_boost_active">부스트 활성화 • %1$s턴 남음</string>
+    <string name="launch_special_chance">특수 블록 확률 +%1$s%</string>
+    <string name="launch_soft_lock_message">목표를 확인한 뒤 놓아서 배치하세요</string>
+    <string name="launch_chain_message">행 + 열 • +%2$s</string>
+    <string name="launch_paused">일시정지됨</string>
+    <string name="launch_game_over">새 플레이를 시작하려면 다시 시작하세요</string>
+    <string name="launch_drag_hint">가로로 드래그 → 놓기</string>
+    <string name="queue_next_short">다음</string>
+    <string name="game_message_soft_lock">하이라이트된 칸에 배치하려면 손을 떼세요.</string>
+    <string name="game_message_overflow">트레이의 어떤 피스도 놓을 공간이 남아 있지 않습니다.</string>
+    <string name="game_message_special_chain_board">행과 열을 동시에 제거! %1$s라인 제거.</string>
+    <string name="game_message_pressure_game_over">더 이상 놓을 수 없습니다. 새 플레이를 시작하세요.</string>
+    <string name="game_message_special_lines">좋은 콤보! %1$s라인 제거.</string>
+    <string name="game_message_special_triggered">큰 제거로 %1$d칸을 없앴습니다!</string>
+    <string name="game_message_perfect_drop">깔끔한 배치 x%1$s!</string>
+    <string name="game_message_chain_lines">더블 클리어! %2$s라인 제거.</string>
+    <string name="game_message_good_shot">좋은 수입니다. 남은 트레이 피스도 확인하세요.</string>
+    <string name="game_message_hold_updated">트레이가 갱신되었습니다. 계속 이어 가세요.</string>
+    <string name="game_message_tempo_critical">트레이가 막히기 전에 행이나 열 제거를 노리세요.</string>
+    <string name="game_message_tempo_up">새로운 3피스가 준비되었습니다. 보드를 신중히 살펴보세요.</string>
+    <string name="game_message_resumed">재개되었습니다. 열을 골라 발사하세요.</string>
+    <string name="feedback_perfect_lane">정확 배치 x%1$s</string>
+    <string name="feedback_micro_adjust">위치 조정</string>
+    <string name="feedback_soft_lock">미리보기 준비 완료</string>
+    <string name="feedback_hold_armed">홀드 준비 완료</string>
+    <string name="feedback_swap">교체됨</string>
+    <string name="feedback_special_chain">특수 연쇄 +%1$s • 블록 %2$d개</string>
+    <string name="feedback_special">특수 +%1$s • 블록 %2$d개</string>
+    <string name="feedback_perfect">완벽 x%1$s +%2$s</string>
+    <string name="feedback_chain">연쇄 x%1$s +%2$s</string>
+    <string name="game_message_ad_reward_stackshift">특수 블록을 장착했습니다! 발사 준비 완료.</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_stackshift_intro_title">현재 피스를 드래그해 발사 위치를 맞추세요</string>
+    <string name="tutorial_stackshift_intro_body">현재 피스는 발사 도크에서 시작합니다. 보드 아래에서 좌우로 드래그하고, 미리보기가 괜찮으면 손을 떼세요. 가장 가까운 유효 레인에 떨어집니다.</string>
+    <string name="tutorial_stackshift_systems_title">보드가 복잡해지면 액션 블록을 활용하세요</string>
+    <string name="tutorial_stackshift_systems_body">홀드는 현재 피스를 교체하고, 일시정지는 진행을 멈추며, 블록 정보는 기호를 설명하고, 설정은 외형과 언어를 바꿉니다. 이 버튼들도 선택한 보드 블록 스타일을 따릅니다.</string>
+    <string name="tutorial_stackshift_specials_title">특수 블록은 위기 상황을 구해줍니다</string>
+    <string name="tutorial_stackshift_specials_body">일부 피스는 특수 효과를 지닙니다. 각 아이콘의 의미를 익혀 행 제거, 열 제거, 틈 통과, 위험 돌파에 활용하세요.</string>
+    <string name="tutorial_stackshift_ready_title">이제 StackShift를 발사할 준비가 되었습니다</string>
+    <string name="tutorial_stackshift_ready_body">정확하게 발사하고 다음 큐를 계획하며, 압박이 심해지기 전에 특수 블록을 사용하세요. 복습이 필요하면 언제든 이 가이드로 돌아오면 됩니다.</string>
+    <string name="tutorial_stackshift_ready_tutorial_hint">발사, 큐 확인, 특수 블록 효과를 복습하고 싶다면 언제든 튜토리얼을 여세요.</string>
+    <string name="tutorial_stackshift_ready_settings_hint">다음 플레이 전에 설정을 열어 언어, 테마, 색상, 블록 스타일을 바꿀 수 있습니다.</string>
+
+</resources>

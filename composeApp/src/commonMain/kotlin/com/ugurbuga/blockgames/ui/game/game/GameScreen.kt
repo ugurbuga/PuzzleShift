@@ -48,6 +48,8 @@ import com.ugurbuga.blockgames.settings.StackShiftGameOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.StackShiftOnboardingStage
 import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStage
 import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStateFactory
+import com.ugurbuga.blockgames.settings.SumShiftOnboardingStage
+import com.ugurbuga.blockgames.settings.SumShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.telemetry.AppTelemetry
 import com.ugurbuga.blockgames.telemetry.LogScreen
 import com.ugurbuga.blockgames.telemetry.NoOpAppTelemetry
@@ -88,6 +90,7 @@ fun BlockGamesGameApp(
             GameplayStyle.BoomBlocks -> BoomBlocksOnboardingStateFactory.stages
             GameplayStyle.BlockSort -> BlockSortOnboardingStateFactory.stages
             GameplayStyle.DigitShift -> DigitShiftOnboardingStateFactory.stages
+            GameplayStyle.SumShift -> SumShiftOnboardingStateFactory.stages
             else -> StackShiftGameOnboardingStateFactory.stages
         }
     }
@@ -201,6 +204,12 @@ fun BlockGamesGameApp(
         } else null
     }
 
+    val sumShiftOnboardingScene = remember(interactiveOnboardingEnabled, onboardingStage) {
+        if (interactiveOnboardingEnabled && onboardingStage is SumShiftOnboardingStage) {
+            SumShiftOnboardingStateFactory.scene(onboardingStage as SumShiftOnboardingStage)
+        } else null
+    }
+
     val onboardingSceneGameState = stackShiftOnboardingScene?.gameState
         ?: blockWiseOnboardingScene?.gameState
         ?: chainShiftOnboardingScene?.gameState
@@ -208,6 +217,7 @@ fun BlockGamesGameApp(
         ?: boomBlocksOnboardingScene?.gameState
         ?: blockSortOnboardingScene?.gameState
         ?: digitShiftOnboardingScene?.gameState
+        ?: sumShiftOnboardingScene?.gameState
 
     val displayGameState by remember(
         uiState.gameState,
@@ -229,7 +239,11 @@ fun BlockGamesGameApp(
         onboardingAdvanceRequest = null
         showOnboardingCompletionDialog = false
         pendingOnboardingCompletionState = null
-        viewModel.replaceState(onboardingSceneGameState)
+        if (gameplayStyle == GameplayStyle.SumShift) {
+            viewModel.replaceStateDirect(onboardingSceneGameState)
+        } else {
+            viewModel.replaceState(onboardingSceneGameState)
+        }
 
         val stageName = onboardingStage?.name ?: "unknown"
 
@@ -268,6 +282,7 @@ fun BlockGamesGameApp(
                 GameplayStyle.BoomBlocks -> BoomBlocksOnboardingStateFactory.cleanGameState()
                 GameplayStyle.BlockSort -> BlockSortOnboardingStateFactory.cleanGameState()
                 GameplayStyle.DigitShift -> DigitShiftOnboardingStateFactory.cleanGameState()
+                GameplayStyle.SumShift -> SumShiftOnboardingStateFactory.cleanGameState()
                 else -> StackShiftGameOnboardingStateFactory.cleanGameState()
             }
             showOnboardingCompletionDialog = true
@@ -511,6 +526,74 @@ fun BlockGamesGameApp(
                     soundPlayer,
                     haptics,
                 )
+            },
+            onRewardedRevive = {
+                telemetry.logUserAction(RewardedReviveTelemetryAction)
+                dispatchFeedback(viewModel.reviveFromReward(), soundPlayer, haptics)
+            },
+            onBack = onBack,
+            onInteractiveOnboardingStartGame = {
+                pendingOnboardingCompletionState?.let(onInteractiveOnboardingFinished)
+            },
+            onInteractiveOnboardingReturnHome = {
+                pendingOnboardingCompletionState?.let(onInteractiveOnboardingReturnHome)
+            },
+        )
+
+        GameplayStyle.SumShift -> SumShiftGameScreen(
+            modifier = modifier,
+            gameState = displayGameState,
+            highestScore = highestScore,
+            showNewHighScoreMessage = newHighScoreReached,
+            adController = adController,
+            interactiveOnboardingScene = sumShiftOnboardingScene,
+            interactiveOnboardingCurrentStep = onboardingStages.indexOf(onboardingStage)
+                .takeIf { it >= 0 }?.plus(1) ?: 0,
+            interactiveOnboardingTotalSteps = onboardingStages.size,
+            interactiveOnboardingCompletionDialogVisible = showOnboardingCompletionDialog,
+            onTapCell = { origin ->
+                telemetry.logUserAction("tap_cell_sumshift")
+                val result = viewModel.placeSumShiftCellResult(
+                    origin = origin,
+                    scheduleNextBoard = !interactiveOnboardingEnabled,
+                )
+                dispatchFeedback(result.feedback, soundPlayer, haptics)
+                val latestState = viewModel.snapshotState()
+                if (interactiveOnboardingEnabled && sumShiftOnboardingScene != null) {
+                    val shouldAdvance = if (sumShiftOnboardingScene.advanceWhenSolved) {
+                        latestState.completedSumShiftRows() == latestState.sumShiftRowTargets.size &&
+                            latestState.completedSumShiftColumns() == latestState.sumShiftColumnTargets.size
+                    } else {
+                        sumShiftOnboardingScene.requiredSelection.all(latestState.sumShiftSelectedCells::contains)
+                    }
+                    if (shouldAdvance) {
+                        onboardingAdvanceRequest = InteractiveOnboardingAdvanceRequest(
+                            completedStage = sumShiftOnboardingScene.stage,
+                            nextStage = nextInteractiveOnboardingStage(
+                                sumShiftOnboardingScene.stage,
+                                onboardingStages,
+                            ),
+                        )
+                    }
+                }
+            },
+            onRestart = {
+                telemetry.logUserAction(TelemetryActionNames.RestartGame)
+                dispatchFeedback(
+                    viewModel.restartSumShift(
+                        config = restartConfigForStyle(uiState.gameState, GameplayStyle.SumShift),
+                    ),
+                    soundPlayer,
+                    haptics,
+                )
+            },
+            onManualDisabledCellsChange = { points ->
+                viewModel.updateSumShiftManualDisabledCells(points)
+            },
+            onWrongTap = {
+                if (!interactiveOnboardingEnabled) {
+                    dispatchFeedback(viewModel.recordSumShiftMistake(), soundPlayer, haptics)
+                }
             },
             onRewardedRevive = {
                 telemetry.logUserAction(RewardedReviveTelemetryAction)
@@ -795,15 +878,10 @@ internal fun restartConfigForStyle(
     state: GameState,
     expectedStyle: GameplayStyle,
 ): GameConfig {
-    val defaultConfig = GameConfig.default(expectedStyle)
-    return if (
-        state.gameplayStyle == expectedStyle &&
-        state.config.columns == defaultConfig.columns &&
-        state.config.rows == defaultConfig.rows
-    ) {
+    return if (state.gameplayStyle == expectedStyle) {
         state.config
     } else {
-        defaultConfig
+        GameConfig.default(expectedStyle)
     }
 }
 

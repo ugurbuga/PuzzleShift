@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_mergeshift_desc">ادمج القطع ذات القيمة نفسها للوصول إلى درجات أعلى.</string>
+
+    <!-- MergeShiftGameScreen -->
+    <string name="game_message_ad_reward_mergeshift">تغيرت الأرقام! استمر في الدمج.</string>
+    <string name="ad_reward_mergeshift_swap">تغيير الرقم</string>
+    <string name="feedback_ad_reward_mergeshift">تم تغيير الأرقام</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_mergeshift_intro_title">أطلق القطع لدمج الكتل ذات القيمة نفسها</string>
+    <string name="tutorial_mergeshift_intro_body">في MergeShift، يتم إطلاق القطع من الشريط السفلي. عندما تهبط كتلة على أخرى بنفس القيمة، يندمجان في قيمة أعلى. استمر في الدمج لفتح مساحة والوصول إلى درجات أعلى.</string>
+    <string name="tutorial_mergeshift_systems_title">خطط لعمليات الدمج لمنع الفيضان</string>
+    <string name="tutorial_mergeshift_systems_body">كل قطعة تطلقها تزيد من ارتفاع العمود. إذا وصل أي عمود إلى الأعلى، تنتهي اللعبة. استخدم المعاينة لمعرفة مكان هبوط قطعتك والكتل التي قد تندمج معها.</string>
+    <string name="tutorial_mergeshift_specials_title">ادمج عمليات دمج متعددة للحصول على مجموعات أكبر</string>
+    <string name="tutorial_mergeshift_specials_body">إطلاق واحد يمكن أن يؤدي إلى سلسلة من عمليات الدمج. تمنح هذه المجموعات نقاطًا أكثر وتفتح مساحة أكبر على اللوحة، مما يساعدك على البقاء في اللعبة لفترة أطول.</string>
+    <string name="tutorial_mergeshift_ready_title">أنت جاهز لـ MergeShift</string>
+    <string name="tutorial_mergeshift_ready_body">ركز على إبقاء أعمدتك منخفضة وإعداد عمليات دمج عالية القيمة. حظًا سعيدًا في الوصول إلى أعلى الأرقام!</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_mergeshift_launch_title">أطلق قطعتك الأولى</string>
+    <string name="interactive_onboarding_mergeshift_launch_body">اسحب القطعة أفقيًا أسفل اللوحة للتصويب، ثم أفلتها لإطلاقها في عمود.</string>
+    <string name="interactive_onboarding_mergeshift_merge_vertical_title">ادمج القيم نفسها عموديًا</string>
+    <string name="interactive_onboarding_mergeshift_merge_vertical_body">أطلق قطعة في عمود يحتوي بالفعل على كتلة بنفس القيمة. سيندمجان في رقم أعلى!</string>
+    <string name="interactive_onboarding_mergeshift_merge_horizontal_title">ادمج القيم نفسها أفقيًا</string>
+    <string name="interactive_onboarding_mergeshift_merge_horizontal_body">يمكن للكتل أيضًا أن تندمج مع جيرانها لليسار أو اليمين. صوب نحو المكان المظلل لتفعيل دمج أفقي.</string>
+    <string name="interactive_onboarding_mergeshift_merge_multi_title">فعل عمليات دمج متعددة</string>
+    <string name="interactive_onboarding_mergeshift_merge_multi_body">وضع قطعة واحدة يمكن أن يفعل عمليات دمج في اتجاهات متعددة (أعلى، يسار، يمين). استخدم هذا لفتح مساحة أكبر وتحقيق نتائج كبيرة!</string>
+
+</resources>

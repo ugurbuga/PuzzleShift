@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blocksort_desc">Sort mixed color stacks until every filled column becomes a single color.</string>
+
+    <!-- BlockSortGameScreen -->
+    <string name="game_message_ad_reward_blocksort">Extra empty column added for this round.</string>
+    <string name="blocksort_completed_label">Sorted</string>
+    <string name="blocksort_goal_hint">Goal: finish the round with every filled column holding a single color. Rounds can use 3, 4, 5, or 6 equal-size slots per column, and the board may wrap into two rows.</string>
+    <string name="blocksort_no_moves_hint">No valid transfers remain in this mixed layout. Try a reshuffle or start a fresh round.</string>
+    <string name="blocksort_round_congrats_title">Congratulations!</string>
+    <string name="blocksort_round_complete_hint">Round cleared! Bonus +%1$d and a fresh mixed layout arrived.</string>
+    <string name="blocksort_round_label">Round</string>
+    <string name="blocksort_select_source_hint">Tap a non-empty mixed column to pick up its top color stack.</string>
+    <string name="blocksort_selected_hint">Now tap an empty column or a column with the same top color to move the stack across.</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rounds_title">Rounds</string>
+    <string name="challenge_info_clear_rounds">Finish full BlockSort rounds by turning every filled column into a single color.</string>
+    <string name="challenge_task_complete_columns">Complete %1$d columns</string>
+    <string name="challenge_task_clear_rounds">Clear %1$d rounds</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_blocksort_intro_title">Move equal-size top stacks between columns</string>
+    <string name="tutorial_blocksort_intro_body">Each round uses one shared slot size for every column. Tap a non-empty mixed column to pick its top color stack, then move it onto an empty column or a column whose top color matches.</string>
+    <string name="tutorial_blocksort_rules_title">Only matching colors can stack together</string>
+    <string name="tutorial_blocksort_rules_body">You can only transfer onto empty space or the same top color. As the puzzle grows, the board may wrap into an upper and lower row, so keep both helper space and visibility in mind.</string>
+    <string name="tutorial_blocksort_finish_title">Complete every slot in a single-color column</string>
+    <string name="tutorial_blocksort_finish_body">A column is complete when every slot in that round holds the same color. Different rounds can use 3, 4, 5, or 6 equal-size slots, and a new mixed layout arrives after you finish them all.</string>
+    <string name="tutorial_blocksort_ready_title">You are ready for BlockSort</string>
+    <string name="tutorial_blocksort_ready_body">Plan two or three moves ahead, protect your helper columns, and adapt quickly as each round changes the slot count and may split the board into two rows.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_blocksort_pick_title">Pick a source column</string>
+    <string name="interactive_onboarding_blocksort_pick_body">Start by tapping the highlighted mixed column. You will move its top color stack first, and every slot in this round is the same size.</string>
+    <string name="interactive_onboarding_blocksort_pick_hint">Tap the highlighted source column in the mixed layout first.</string>
+    <string name="interactive_onboarding_blocksort_match_title">Match the top color</string>
+    <string name="interactive_onboarding_blocksort_match_body">Now send that stack onto a column whose top color already matches. Matching columns let you group colors safely even when the board wraps into two rows.</string>
+    <string name="interactive_onboarding_blocksort_match_hint">Move the stack onto the highlighted matching color column.</string>
+    <string name="interactive_onboarding_blocksort_finish_title">Finish a clean column</string>
+    <string name="interactive_onboarding_blocksort_finish_body">Great. One more move will complete every slot in a single-color column for this round. Finish it to see the core goal of BlockSort.</string>
+    <string name="interactive_onboarding_blocksort_finish_hint">Complete the highlighted column so every slot shows the same color.</string>
+
+</resources>

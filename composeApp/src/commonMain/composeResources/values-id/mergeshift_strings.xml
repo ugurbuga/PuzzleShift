@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_mergeshift_desc">Gabungkan piece bernilai sama untuk mencapai skor yang lebih tinggi.</string>
+
+    <!-- MergeShiftGameScreen -->
+    <string name="game_message_ad_reward_mergeshift">Angka berubah! Teruslah menggabungkan.</string>
+    <string name="ad_reward_mergeshift_swap">Ubah Angka</string>
+    <string name="feedback_ad_reward_mergeshift">Angka berubah</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_mergeshift_intro_title">Luncurkan piece untuk menggabungkan blok bernilai sama</string>
+    <string name="tutorial_mergeshift_intro_body">Di MergeShift, piece diluncurkan dari dock. Saat sebuah blok mendarat di blok lain dengan nilai yang sama, keduanya akan bergabung menjadi nilai yang lebih tinggi. Terus gabungkan untuk membuka ruang dan mencapai skor yang lebih tinggi.</string>
+    <string name="tutorial_mergeshift_systems_title">Rencanakan penggabunganmu untuk mencegah luapan</string>
+    <string name="tutorial_mergeshift_systems_body">Setiap piece yang kamu luncurkan akan menambah tinggi kolom. Jika ada kolom yang mencapai puncak, permainan berakhir. Gunakan pratinjau untuk melihat di mana piece-mu akan mendarat dan dengan blok mana ia mungkin bergabung.</string>
+    <string name="tutorial_mergeshift_specials_title">Gabungkan beberapa merger untuk combo yang lebih besar</string>
+    <string name="tutorial_mergeshift_specials_body">Satu peluncuran dapat memicu reaksi berantai penggabungan. Combo ini memberikan lebih banyak poin dan membuka lebih banyak ruang di papan, membantumu bertahan dalam permainan lebih lama.</string>
+    <string name="tutorial_mergeshift_ready_title">Kamu siap untuk MergeShift</string>
+    <string name="tutorial_mergeshift_ready_body">Fokuslah untuk menjaga kolommu tetap rendah dan siapkan penggabungan bernilai tinggi. Semoga berhasil mencapai angka tertinggi!</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_mergeshift_launch_title">Luncurkan piece pertamamu</string>
+    <string name="interactive_onboarding_mergeshift_launch_body">Seret piece secara horizontal di bawah papan untuk membidik, lalu lepaskan untuk meluncurkannya ke dalam kolom.</string>
+    <string name="interactive_onboarding_mergeshift_merge_vertical_title">Gabungkan nilai yang sama secara vertikal</string>
+    <string name="interactive_onboarding_mergeshift_merge_vertical_body">Luncurkan piece ke dalam kolom yang sudah memiliki blok dengan nilai yang sama. Keduanya akan bergabung menjadi angka yang lebih tinggi!</string>
+    <string name="interactive_onboarding_mergeshift_merge_horizontal_title">Gabungkan nilai yang sama secara horizontal</string>
+    <string name="interactive_onboarding_mergeshift_merge_horizontal_body">Blok juga dapat bergabung dengan tetangganya di kiri atau kanan. Bidik tempat yang disorot untuk memicu penggabungan horizontal.</string>
+    <string name="interactive_onboarding_mergeshift_merge_multi_title">Picu penggabungan ganda</string>
+    <string name="interactive_onboarding_mergeshift_merge_multi_body">Satu penempatan dapat memicu penggabungan di berbagai arah (atas, kiri, kanan). Gunakan ini untuk membuka lebih banyak ruang dan mencetak skor besar!</string>
+
+</resources>

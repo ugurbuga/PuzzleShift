@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_digitshift_desc">Errate geheime 5- oder 6-stellige Zahlen mit Hinweisen für jede Ziffer.</string>
+
+    <!-- DigitShiftGameScreen -->
+    <string name="digitshift_enter">Eingabe</string>
+    <string name="digitshift_delete">Löschen</string>
+    <string name="digitshift_guess_label">Versuch %1$d</string>
+    <string name="digitshift_solved_words">Gelöst</string>
+    <string name="digitshift_attempts_left">Versuche</string>
+    <string name="digitshift_current_language">Sprache</string>
+    <string name="game_message_digitshift_enter_word">Baue eine 5- oder 6-stellige Zahl und sende deinen Tipp ab.</string>
+    <string name="game_message_digitshift_not_enough_letters">Noch nicht genug Ziffern.</string>
+    <string name="game_message_digitshift_not_in_dictionary">Nur die Ziffern 0–9 sind erlaubt.</string>
+    <string name="game_message_digitshift_keep_trying">Guter Hinweis. Verfeinere die nächste Zahl.</string>
+    <string name="game_message_digitshift_solved">Gelöst: %1$s</string>
+    <string name="game_message_digitshift_failed">Runde vorbei. Die Zahl war %1$s.</string>
+    <string name="game_message_digitshift_revived">Extra-Leben verwendet. Versuche die Zahl erneut.</string>
+    <string name="game_message_ad_reward_digitshift">Zahl aktualisiert. Rate weiter!</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_task_solve_words">Löse %1$d Zahlen</string>
+    <string name="challenge_info_solve_words_title">Zahlen lösen</string>
+    <string name="challenge_info_solve_words">Schließe vollständige DigitShift-Runden ab, indem du die geheime Zahl findest, bevor dir die Versuche ausgehen.</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_digitshift_intro_title">Finde die geheime Zahl</string>
+    <string name="tutorial_digitshift_intro_body">Baue eine geheime 5- oder 6-stellige Zahl aus den Ziffern 0–9 und sende sie ab. Jeder Versuch zeigt, welche Ziffern korrekt, vorhanden oder nicht enthalten sind.</string>
+    <string name="tutorial_digitshift_hints_title">Lies die Farben</string>
+    <string name="tutorial_digitshift_hints_body">Grün bedeutet, dass die Ziffer korrekt ist, Orange bedeutet, dass sie woanders hingehört, und Dunkelgrau bedeutet, dass sie nicht in der Lösung vorkommt.</string>
+    <string name="tutorial_digitshift_strategy_title">Nutze die Tastaturhinweise</string>
+    <string name="tutorial_digitshift_strategy_body">Mit jedem Tipp wird das Tastenfeld aktualisiert. Nutze grüne Ziffern weiter, verschiebe orangefarbene und vermeide dunkelgraue, um schneller zu lösen.</string>
+    <string name="tutorial_digitshift_ready_title">Bereit, Zahlen zu knacken?</string>
+    <string name="tutorial_digitshift_ready_body">Im Klassikmodus wechseln sich Runden mit 5 und 6 Stellen ab, bis du eine Zahl verfehlst. Im Zeitangriff steigt der Druck, also löse schnell, um Punkte und Bonuszeit zu sammeln.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_digitshift_type_hint">Gib die vorgeschlagene Zahl ein, um das Spielfeld kennenzulernen.</string>
+    <string name="interactive_onboarding_digitshift_submit_hint">Sende eine weitere Zahl ab und beobachte, wie sich das Tastenfeld aktualisiert.</string>
+    <string name="interactive_onboarding_digitshift_solve_hint">Nutze die Hinweise und finde die geheime Zahl.</string>
+
+</resources>

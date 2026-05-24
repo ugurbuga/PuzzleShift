@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_boomblocks_desc">3個以上つながったブロックグループをタップして爆破します。</string>
+
+    <!-- BoomBlocksGameScreen -->
+    <string name="game_message_ad_reward_boomblocks">色を消去しました！ 盤面が再構成されました。</string>
+    <string name="ad_reward_boomblocks_clear">色を消去</string>
+    <string name="feedback_ad_reward_boomblocks">%1$s を消去</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_task_explode_groups">%1$d 個のブロックグループを爆破</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_boomblocks_intro_title">同じ色のグループを爆破しよう</string>
+    <string name="tutorial_boomblocks_intro_body">BoomBlocks ではピースを発射したりドラッグしたりしません。代わりに、同じ色で3個以上つながっているブロックを探し、そのどれかをタップしてグループ全体を消しましょう。</string>
+    <string name="tutorial_boomblocks_gravity_title">ダイナミックに動く盤面</string>
+    <string name="tutorial_boomblocks_gravity_body">グループが爆発すると周囲のブロックが引き寄せられます。その後、新しいブロックが最寄りの端から補充され、盤面が常に変化します。</string>
+    <string name="tutorial_boomblocks_ready_title">BoomBlocks の準備は完了です</string>
+    <string name="tutorial_boomblocks_ready_body">大きなグループを見つけて高得点を狙い、爆発のたびに盤面がどう変わるかを観察しましょう。健闘を祈ります！</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_boomblocks_basic_title">タップして爆破</string>
+    <string name="interactive_onboarding_boomblocks_basic_body">同じ色が3個以上つながったグループを見つけてタップし、盤面から消しましょう。</string>
+    <string name="interactive_onboarding_boomblocks_large_title">大きいグループほど高得点</string>
+    <string name="interactive_onboarding_boomblocks_large_body">大きなグループほど高得点で、より多くのスペースを作れます。ハイライトされた大きなグループをタップしましょう！</string>
+    <string name="interactive_onboarding_boomblocks_gravity_title">重力の向きが変わる</string>
+    <string name="interactive_onboarding_boomblocks_gravity_body">ブロックを爆破すると、新しいブロックが爆発の反対側から流れ込みます。盤面の動きを確認してみましょう！</string>
+    <string name="interactive_onboarding_boomblocks_strategic_title">戦略的な補充</string>
+    <string name="interactive_onboarding_boomblocks_strategic_body">新しいブロックは爆発の中心に応じて補充されます。これを利用してさらに大きなグループを作りましょう！</string>
+    <string name="interactive_onboarding_boomblocks_tap_hint">続けるにはハイライトされたグループをタップしてください。</string>
+
+</resources>

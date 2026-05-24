@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_digitshift_desc">Devinez des nombres cachés à 5 ou 6 chiffres grâce à des indices chiffre par chiffre.</string>
+
+    <!-- DigitShiftGameScreen -->
+    <string name="digitshift_enter">Valider</string>
+    <string name="digitshift_delete">Effacer</string>
+    <string name="digitshift_guess_label">Essai %1$d</string>
+    <string name="digitshift_solved_words">Résolus</string>
+    <string name="digitshift_attempts_left">Essais</string>
+    <string name="digitshift_current_language">Langue</string>
+    <string name="game_message_digitshift_enter_word">Composez un nombre à 5 ou 6 chiffres et validez votre tentative.</string>
+    <string name="game_message_digitshift_not_enough_letters">Pas assez de chiffres pour l’instant.</string>
+    <string name="game_message_digitshift_not_in_dictionary">Seuls les chiffres 0 à 9 sont autorisés.</string>
+    <string name="game_message_digitshift_keep_trying">Bon indice. Affinez le nombre suivant.</string>
+    <string name="game_message_digitshift_solved">Résolu : %1$s</string>
+    <string name="game_message_digitshift_failed">Manche terminée. Le nombre était %1$s.</string>
+    <string name="game_message_digitshift_revived">Vie supplémentaire utilisée. Réessayez avec le nombre.</string>
+    <string name="game_message_ad_reward_digitshift">Nombre renouvelé. Continuez à deviner !</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_task_solve_words">Résolvez %1$d nombres</string>
+    <string name="challenge_info_solve_words_title">Résoudre des nombres</string>
+    <string name="challenge_info_solve_words">Terminez des manches complètes de DigitShift en trouvant le nombre caché avant d’épuiser vos tentatives.</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_digitshift_intro_title">Trouvez le nombre caché</string>
+    <string name="tutorial_digitshift_intro_body">Composez un nombre caché de 5 ou 6 chiffres avec les chiffres 0–9 puis validez-le. Chaque tentative révèle quels chiffres sont corrects, présents ou absents.</string>
+    <string name="tutorial_digitshift_hints_title">Lisez les couleurs</string>
+    <string name="tutorial_digitshift_hints_body">Le vert signifie que le chiffre est correct, l’orange qu’il appartient à une autre position et le gris foncé qu’il n’est pas dans la réponse.</string>
+    <string name="tutorial_digitshift_strategy_title">Utilisez les indices du clavier</string>
+    <string name="tutorial_digitshift_strategy_body">Chaque tentative améliore le pavé numérique. Réutilisez les chiffres verts, déplacez les oranges et évitez les gris foncé pour résoudre plus vite.</string>
+    <string name="tutorial_digitshift_ready_title">Prêt à casser les nombres ?</string>
+    <string name="tutorial_digitshift_ready_body">Le mode Classique alterne des manches à 5 et 6 chiffres jusqu’à ce que vous manquiez un nombre. Le mode Contre-la-montre met la pression, alors résolvez vite pour engranger score et temps bonus.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_digitshift_type_hint">Tapez le nombre suggéré pour apprendre le plateau.</string>
+    <string name="interactive_onboarding_digitshift_submit_hint">Validez un autre nombre et regardez le pavé numérique se mettre à jour.</string>
+    <string name="interactive_onboarding_digitshift_solve_hint">Utilisez les indices et trouvez le nombre caché.</string>
+
+</resources>

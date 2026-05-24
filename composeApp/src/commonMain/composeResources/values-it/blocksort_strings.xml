@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_blocksort_desc">Riordina le pile di colori misti finché ogni colonna piena non diventa di un solo colore.</string>
+
+    <!-- BlockSortGameScreen -->
+    <string name="game_message_ad_reward_blocksort">È stata aggiunta una colonna vuota extra per questo round.</string>
+    <string name="blocksort_completed_label">Ordinata</string>
+    <string name="blocksort_goal_hint">Obiettivo: concludi il round con ogni colonna piena composta da un solo colore. I round possono usare 3, 4, 5 o 6 slot uguali per colonna e il tabellone può dividersi in due righe.</string>
+    <string name="blocksort_no_moves_hint">Non restano trasferimenti validi in questo layout misto. Prova un rimescolamento oppure avvia un nuovo round.</string>
+    <string name="blocksort_round_congrats_title">Congratulazioni!</string>
+    <string name="blocksort_round_complete_hint">Round completato! Bonus +%1$d ed è arrivato un nuovo layout misto.</string>
+    <string name="blocksort_round_label">Turno</string>
+    <string name="blocksort_select_source_hint">Tocca una colonna mista non vuota per prendere la sua pila di colore superiore.</string>
+    <string name="blocksort_selected_hint">Ora tocca una colonna vuota o una colonna con lo stesso colore superiore per spostare la pila.</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_info_clear_rounds_title">Round</string>
+    <string name="challenge_info_clear_rounds">Completa interi round di BlockSort trasformando ogni colonna piena in un unico colore.</string>
+    <string name="challenge_task_complete_columns">Completa %1$d colonne</string>
+    <string name="challenge_task_clear_rounds">Completa %1$d round</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_blocksort_intro_title">Sposta pile superiori della stessa dimensione tra colonne</string>
+    <string name="tutorial_blocksort_intro_body">Ogni round usa una dimensione condivisa degli slot per tutte le colonne. Tocca una colonna mista non vuota per prendere la pila del colore superiore, poi spostala su una colonna vuota o su una colonna con lo stesso colore in cima.</string>
+    <string name="tutorial_blocksort_rules_title">Solo i colori uguali possono stare insieme</string>
+    <string name="tutorial_blocksort_rules_body">Puoi trasferire solo in uno spazio vuoto o sopra lo stesso colore superiore. Quando il puzzle cresce, il tabellone può dividersi in una riga superiore e una inferiore, quindi considera sia lo spazio di supporto sia la visibilità.</string>
+    <string name="tutorial_blocksort_finish_title">Completa ogni slot in una colonna monocolore</string>
+    <string name="tutorial_blocksort_finish_body">Una colonna è completa quando ogni slot di quel round contiene lo stesso colore. I vari round possono usare 3, 4, 5 o 6 slot uguali e un nuovo layout misto arriva dopo averli completati tutti.</string>
+    <string name="tutorial_blocksort_ready_title">Sei pronto per BlockSort</string>
+    <string name="tutorial_blocksort_ready_body">Pianifica due o tre mosse avanti, proteggi le colonne di supporto e adattati in fretta quando ogni round cambia il numero di slot e può dividere il tabellone in due righe.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_blocksort_pick_title">Scegli una colonna di partenza</string>
+    <string name="interactive_onboarding_blocksort_pick_body">Inizia toccando la colonna mista evidenziata. Sposterai per prima la sua pila di colore superiore e ogni slot di questo round ha la stessa dimensione.</string>
+    <string name="interactive_onboarding_blocksort_pick_hint">Tocca prima la colonna sorgente evidenziata nel layout misto.</string>
+    <string name="interactive_onboarding_blocksort_match_title">Abbina il colore superiore</string>
+    <string name="interactive_onboarding_blocksort_match_body">Ora manda quella pila su una colonna il cui colore superiore corrisponde già. Le colonne abbinate ti permettono di raggruppare i colori in sicurezza anche quando il tabellone si divide in due righe.</string>
+    <string name="interactive_onboarding_blocksort_match_hint">Sposta la pila sulla colonna evidenziata con lo stesso colore.</string>
+    <string name="interactive_onboarding_blocksort_finish_title">Completa una colonna pulita</string>
+    <string name="interactive_onboarding_blocksort_finish_body">Ottimo. Ancora una mossa completerà una colonna monocolore per questo round. Finiscila per vedere l'obiettivo principale di BlockSort.</string>
+    <string name="interactive_onboarding_blocksort_finish_hint">Completa la colonna evidenziata così che ogni slot mostri lo stesso colore.</string>
+
+</resources>

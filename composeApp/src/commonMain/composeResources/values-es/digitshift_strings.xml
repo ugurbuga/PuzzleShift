@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_digitshift_desc">Adivina números ocultos de 5 o 6 cifras usando pistas dígito por dígito.</string>
+
+    <!-- DigitShiftGameScreen -->
+    <string name="digitshift_enter">Enviar</string>
+    <string name="digitshift_delete">Borrar</string>
+    <string name="digitshift_guess_label">Intento %1$d</string>
+    <string name="digitshift_solved_words">Resueltos</string>
+    <string name="digitshift_attempts_left">Intentos</string>
+    <string name="digitshift_current_language">Idioma</string>
+    <string name="game_message_digitshift_enter_word">Forma un número de 5 o 6 cifras y envía tu intento.</string>
+    <string name="game_message_digitshift_not_enough_letters">Todavía no hay suficientes dígitos.</string>
+    <string name="game_message_digitshift_not_in_dictionary">Solo se permiten los dígitos del 0 al 9.</string>
+    <string name="game_message_digitshift_keep_trying">Buena pista. Ajusta el siguiente número.</string>
+    <string name="game_message_digitshift_solved">Resuelto: %1$s</string>
+    <string name="game_message_digitshift_failed">Ronda terminada. El número era %1$s.</string>
+    <string name="game_message_digitshift_revived">Se usó una vida extra. Intenta el número otra vez.</string>
+    <string name="game_message_ad_reward_digitshift">Se actualizó el número. ¡Sigue adivinando!</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_task_solve_words">Resuelve %1$d números</string>
+    <string name="challenge_info_solve_words_title">Resuelve números</string>
+    <string name="challenge_info_solve_words">Completa rondas enteras de DigitShift encontrando el número oculto antes de quedarte sin intentos.</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_digitshift_intro_title">Encuentra el número oculto</string>
+    <string name="tutorial_digitshift_intro_body">Forma un número oculto de 5 o 6 cifras con los dígitos 0–9 y envíalo. Cada intento revela qué dígitos son correctos, cuáles están presentes y cuáles no aparecen.</string>
+    <string name="tutorial_digitshift_hints_title">Lee los colores</string>
+    <string name="tutorial_digitshift_hints_body">Verde significa que el dígito es correcto, naranja que pertenece a otra posición y gris oscuro que no está en la respuesta.</string>
+    <string name="tutorial_digitshift_strategy_title">Usa las pistas del teclado</string>
+    <string name="tutorial_digitshift_strategy_body">Cada intento mejora el teclado numérico. Reutiliza los dígitos verdes, recoloca los naranjas y evita los gris oscuro para resolver más rápido.</string>
+    <string name="tutorial_digitshift_ready_title">¿Listo para descifrar números?</string>
+    <string name="tutorial_digitshift_ready_body">El modo Clásico alterna rondas de 5 y 6 cifras hasta que falles un número. Contrarreloj añade presión, así que resuelve rápido para guardar puntuación y tiempo extra.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_digitshift_type_hint">Escribe el número sugerido para aprender el tablero.</string>
+    <string name="interactive_onboarding_digitshift_submit_hint">Envía otro número y mira cómo se actualiza el teclado numérico.</string>
+    <string name="interactive_onboarding_digitshift_solve_hint">Usa las pistas y resuelve el número oculto.</string>
+
+</resources>

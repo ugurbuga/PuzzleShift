@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_stackshift_desc">Запускайте фигуры снизу, чтобы очищать ряды и колонки.</string>
+
+    <!-- StackShiftGameScreen -->
+    <string name="launch_bar">Шкала запуска</string>
+    <string name="launch_boost_active">Ускорение активно • %1$s ходов</string>
+    <string name="launch_special_chance">Шанс специального блока +%1$s%</string>
+    <string name="launch_soft_lock_message">Мягкая блокировка активна • микронастройка включена</string>
+    <string name="launch_chain_message">Ряд + колонка • +%2$s</string>
+    <string name="launch_paused">Пауза</string>
+    <string name="launch_game_over">Перезапустите для новой партии</string>
+    <string name="launch_drag_hint">Тяните по горизонтали → отпустите</string>
+    <string name="queue_next_short">Следующий</string>
+    <string name="game_message_soft_lock">Открыто короткое окно корректировки. Точно подстройте колонку.</string>
+    <string name="game_message_overflow">Переполнение колонки! Вы не удержали критические колонки.</string>
+    <string name="game_message_special_chain_board">Спеццепочка x%1$s! Поле изменило форму.</string>
+    <string name="game_message_pressure_game_over">Давление колонок достигло предела. Начните новую партию.</string>
+    <string name="game_message_special_lines">Цепочка специальных блоков! Очищено %1$s линий.</string>
+    <string name="game_message_special_triggered">Спецблок сработал. Взорвано %1$d блоков!</string>
+    <string name="game_message_perfect_drop">Идеальный бросок x%1$s! Сохраняйте серию.</string>
+    <string name="game_message_chain_lines">Двойная очистка! Очищено %2$s линий.</string>
+    <string name="game_message_good_shot">Хороший запуск. Планируйте следующую колонку.</string>
+    <string name="game_message_hold_updated">Удержание обновлено. Выберите новую колонку.</string>
+    <string name="game_message_tempo_critical">Темп вырос. Освободите критические колонки.</string>
+    <string name="game_message_tempo_up">Темп вырос. Появляются более сложные фигуры.</string>
+    <string name="game_message_resumed">Продолжайте. Выберите колонку и запускайте.</string>
+    <string name="feedback_perfect_lane">Идеальная колонка x%1$s</string>
+    <string name="feedback_micro_adjust">Микрокоррекция</string>
+    <string name="feedback_soft_lock">Мягкая блокировка</string>
+    <string name="feedback_hold_armed">Удержание готово</string>
+    <string name="feedback_swap">Обмен</string>
+    <string name="feedback_special_chain">Спеццепочка +%1$s • %2$d блоков</string>
+    <string name="feedback_special">Спец +%1$s • %2$d блоков</string>
+    <string name="feedback_perfect">Идеально x%1$s +%2$s</string>
+    <string name="feedback_chain">Цепочка x%1$s +%2$s</string>
+    <string name="reward_piece_row_message">Установлен горизонтальный очиститель строк!</string>
+    <string name="reward_piece_column_message">Установлен вертикальный очиститель колонок!</string>
+    <string name="game_message_ad_reward_stackshift">Спецблок экипирован! Готов к запуску.</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_stackshift_intro_title">Запускайте фигуры из нижнего дока</string>
+    <string name="tutorial_stackshift_intro_body">Активная фигура ждёт внизу. Перетащите её по горизонтали, чтобы выбрать колонку, затем отпустите, чтобы запустить её на поле. Следующая фигура показана более мягко, чтобы внимание оставалось на активной.</string>
+    <string name="tutorial_stackshift_systems_title">Используйте блоки действий, когда поле заполняется</string>
+    <string name="tutorial_stackshift_systems_body">Удержание меняет текущую фигуру, Пауза замораживает игру, Свойства блока объясняют символы, а Настройки меняют внешний вид. Эти кнопки также подстраиваются под выбранный стиль блоков поля.</string>
+    <string name="tutorial_stackshift_specials_title">Специальные блоки могут спасти игру</string>
+    <string name="tutorial_stackshift_specials_body">Некоторые фигуры имеют особые эффекты. Запомните их значки и используйте их, чтобы снизить давление, освободить место или пройти через сложные завалы.</string>
+    <string name="tutorial_stackshift_ready_title">Вы готовы продолжить эту игру</string>
+    <string name="tutorial_stackshift_ready_body">Вот и всё: планируйте следующую колонку, следите за полосой запуска и используйте спецэффекты в нужный момент. Вы можете открыть это руководство снова в Настройках в любое время.</string>
+    <string name="tutorial_stackshift_ready_tutorial_hint">Открывайте обучение, когда хотите быстро освежить в памяти управление и специальные значки.</string>
+    <string name="tutorial_stackshift_ready_settings_hint">Откройте Настройки, чтобы изменить язык, тему, цвета и стиль блоков перед следующей игрой.</string>
+
+</resources>

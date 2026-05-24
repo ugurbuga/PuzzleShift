@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_mergeshift_desc">उच्च स्कोर तक पहुँचने के लिए समान मान वाले पीस मिलाएं।</string>
+
+    <!-- MergeShiftGameScreen -->
+    <string name="game_message_ad_reward_mergeshift">संख्याएँ बदल गईं! मिलाना जारी रखें।</string>
+    <string name="ad_reward_mergeshift_swap">संख्या बदलें</string>
+    <string name="feedback_ad_reward_mergeshift">नंबर बदल गए</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_mergeshift_intro_title">समान मान वाले ब्लॉकों को मिलाने के लिए पीस लॉन्च करें</string>
+    <string name="tutorial_mergeshift_intro_body">MergeShift में, पीस डॉक से लॉन्च किए जाते हैं। जब एक ब्लॉक उसी मान वाले दूसरे ब्लॉक पर गिरता है, तो वे एक उच्च मान में मिल जाते हैं। जगह बनाने और उच्च स्कोर तक पहुँचने के लिए मिलाते रहें।</string>
+    <string name="tutorial_mergeshift_systems_title">ओवरफ़्लो को रोकने के लिए अपने विलय की योजना बनाएं</string>
+    <string name="tutorial_mergeshift_systems_body">आपके द्वारा लॉन्च किया गया प्रत्येक पीस कॉलम की ऊंचाई बढ़ाता है। यदि कोई कॉलम शीर्ष पर पहुँच जाता है, तो खेल समाप्त हो जाता है। यह देखने के लिए पूर्वावलोकन का उपयोग करें कि आपका पीस कहाँ गिरेगा और किन ब्लॉकों के साथ मिल सकता है।</string>
+    <string name="tutorial_mergeshift_specials_title">बड़े कॉम्बो के लिए कई विलय संयोजित करें</string>
+    <string name="tutorial_mergeshift_specials_body">एक ही लॉन्च विलय की श्रृंखला प्रतिक्रिया शुरू कर सकता है। ये कॉम्बो अधिक अंक देते हैं और बोर्ड पर अधिक जगह खाली करते हैं, जिससे आपको खेल में लंबे समय तक बने रहने में मदद मिलती है।</string>
+    <string name="tutorial_mergeshift_ready_title">आप MergeShift के लिए तैयार हैं</string>
+    <string name="tutorial_mergeshift_ready_body">अपने कॉलम को नीचे रखने और उच्च-मान वाले विलय स्थापित करने पर ध्यान दें। उच्चतम संख्याओं तक पहुँचने के लिए शुभकामनाएँ!</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_mergeshift_launch_title">अपना पहला पीस लॉन्च करें</string>
+    <string name="interactive_onboarding_mergeshift_launch_body">निशाना साधने के लिए पीस को बोर्ड के नीचे क्षैतिज रूप से खींचें, फिर उसे एक कॉलम में लॉन्च करने के लिए छोड़ दें।</string>
+    <string name="interactive_onboarding_mergeshift_merge_vertical_title">समान मानों को लंबवत रूप से मिलाएं</string>
+    <string name="interactive_onboarding_mergeshift_merge_vertical_body">उस कॉलम में पीस लॉन्च करें जिसमें पहले से ही उसी मान का ब्लॉक हो। वे एक उच्च संख्या में मिल जाएंगे!</string>
+    <string name="interactive_onboarding_mergeshift_merge_horizontal_title">समान मानों को क्षैतिज रूप से मिलाएं</string>
+    <string name="interactive_onboarding_mergeshift_merge_horizontal_body">ब्लॉक अपने बाएं या दाएं पड़ोसियों के साथ भी मिल सकते हैं। क्षैतिज विलय शुरू करने के लिए हाइलाइट किए गए स्थान पर निशाना लगाएं।</string>
+    <string name="interactive_onboarding_mergeshift_merge_multi_title">एकाधिक विलय ट्रिगर करें</string>
+    <string name="interactive_onboarding_mergeshift_merge_multi_body">एक ही प्लेसमेंट कई दिशाओं (ऊपर, बाएं, दाएं) में विलय ट्रिगर कर सकता है। अधिक जगह खाली करने और बड़ा स्कोर बनाने के लिए इसका उपयोग करें!</string>
+
+</resources>

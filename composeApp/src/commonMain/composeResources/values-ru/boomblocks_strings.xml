@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_boomblocks_desc">Нажимайте на группы из 3 и более блоков, чтобы взрывать их.</string>
+
+    <!-- BoomBlocksGameScreen -->
+    <string name="game_message_ad_reward_boomblocks">Цвет очищен! Поле перестроено.</string>
+    <string name="ad_reward_boomblocks_clear">Очистить цвет</string>
+    <string name="feedback_ad_reward_boomblocks">%1$s очищено</string>
+
+    <!-- DailyChallengeScreen -->
+    <string name="challenge_task_explode_groups">Взорвите %1$d групп блоков</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_boomblocks_intro_title">Взрывайте группы одинаковых блоков</string>
+    <string name="tutorial_boomblocks_intro_body">В BoomBlocks вы не запускаете и не перетаскиваете фигуры. Вместо этого ищите три или более соприкасающихся блока одного цвета и нажимайте на любой из них, чтобы убрать всю группу.</string>
+    <string name="tutorial_boomblocks_gravity_title">Динамичное движение поля</string>
+    <string name="tutorial_boomblocks_gravity_body">Когда группа взрывается, она создаёт пустоту, которая затягивает соседние блоки. Затем новые блоки заполняют поле с ближайшего края, сохраняя динамику игры.</string>
+    <string name="tutorial_boomblocks_ready_title">Вы готовы к BoomBlocks</string>
+    <string name="tutorial_boomblocks_ready_body">Старайтесь находить большие группы для максимального счёта и следите за тем, как каждый взрыв перестраивает поле. Удачи!</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_boomblocks_basic_title">Нажмите, чтобы взорвать</string>
+    <string name="interactive_onboarding_boomblocks_basic_body">Найдите группу из трёх или более блоков одного цвета и нажмите на неё, чтобы убрать её с поля.</string>
+    <string name="interactive_onboarding_boomblocks_large_title">Чем больше группа, тем больше очков</string>
+    <string name="interactive_onboarding_boomblocks_large_body">Крупные группы дают больше очков и освобождают больше места. Нажмите на подсвеченную большую группу!</string>
+    <string name="interactive_onboarding_boomblocks_gravity_title">Гравитация смещается</string>
+    <string name="interactive_onboarding_boomblocks_gravity_body">Когда вы взрываете блоки, новые приходят с противоположной стороны взрыва. Наблюдайте, как смещается поле!</string>
+    <string name="interactive_onboarding_boomblocks_strategic_title">Стратегическое заполнение</string>
+    <string name="interactive_onboarding_boomblocks_strategic_body">Новые блоки заполняют поле в зависимости от центра взрыва. Используйте это, чтобы готовить ещё более крупные группы!</string>
+    <string name="interactive_onboarding_boomblocks_tap_hint">Нажмите на подсвеченную группу, чтобы продолжить.</string>
+
+</resources>
