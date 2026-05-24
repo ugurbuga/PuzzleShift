@@ -161,13 +161,13 @@ class GameSessionCodecTest {
     @Test
     fun encodeDecode_preservesSumShiftSessionDetails() {
         val state = com.ugurbuga.blockgames.game.logic.SumShiftGameLogic(random = Random(5), scoreCalculator = ScoreCalculator()).newGame(
-            config = GameConfig(columns = 5, rows = 7, difficultyIntervalSeconds = 9_999, linesPerLevel = 9_999),
+            config = GameConfig(columns = 5, rows = 6, difficultyIntervalSeconds = 9_999, linesPerLevel = 9_999),
             challenge = null,
             mode = GameMode.TimeAttack,
         ).copy(
             score = 1_420,
             remainingTimeMillis = 27_000L,
-            sumShiftRowTargets = listOf(6, 6, 9, 8, 8, 7, 10),
+            sumShiftRowTargets = listOf(6, 6, 9, 8, 8, 7),
             sumShiftColumnTargets = listOf(7, 11, 8, 5, 6),
             sumShiftSelectedCells = setOf(
                 GridPoint(0, 0),
@@ -175,10 +175,12 @@ class GameSessionCodecTest {
                 GridPoint(3, 1),
                 GridPoint(4, 1),
                 GridPoint(1, 2),
+                GridPoint(4, 5),
             ),
             sumShiftManualDisabledCells = setOf(
                 GridPoint(3, 4),
-                GridPoint(0, 6),
+                GridPoint(0, 5),
+                GridPoint(4, 4),
             ),
         )
 
@@ -187,7 +189,7 @@ class GameSessionCodecTest {
         assertNotNull(decoded)
         assertEquals(GameplayStyle.SumShift, decoded.gameplayStyle)
         assertEquals(5, decoded.config.columns)
-        assertEquals(7, decoded.config.rows)
+        assertEquals(6, decoded.config.rows)
         assertEquals(27_000L, decoded.remainingTimeMillis)
         assertEquals(state.sumShiftRowTargets, decoded.sumShiftRowTargets)
         assertEquals(state.sumShiftColumnTargets, decoded.sumShiftColumnTargets)

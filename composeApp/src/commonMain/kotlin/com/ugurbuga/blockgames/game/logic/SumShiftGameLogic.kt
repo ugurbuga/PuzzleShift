@@ -13,6 +13,7 @@ import com.ugurbuga.blockgames.game.model.GridPoint
 import com.ugurbuga.blockgames.game.model.PlacementPreview
 import com.ugurbuga.blockgames.game.model.SpecialBlockType
 import com.ugurbuga.blockgames.platform.currentEpochMillis
+import kotlin.math.abs
 import kotlin.random.Random
 
 internal class SumShiftGameLogic(
@@ -231,6 +232,17 @@ private enum class SumShiftPatternStyle {
     Scatter,
 }
 
+private val SumShiftSupportedConfigs = listOf(
+    GameConfig(columns = 5, rows = 6, difficultyIntervalSeconds = 9_999, linesPerLevel = 9_999),
+    GameConfig(columns = 5, rows = 7, difficultyIntervalSeconds = 9_999, linesPerLevel = 9_999),
+    GameConfig(columns = 5, rows = 8, difficultyIntervalSeconds = 9_999, linesPerLevel = 9_999),
+    GameConfig(columns = 6, rows = 7, difficultyIntervalSeconds = 9_999, linesPerLevel = 9_999),
+    GameConfig(columns = 6, rows = 8, difficultyIntervalSeconds = 9_999, linesPerLevel = 9_999),
+    GameConfig(columns = 7, rows = 9, difficultyIntervalSeconds = 9_999, linesPerLevel = 9_999),
+)
+
+internal fun sumShiftSupportedConfigs(): List<GameConfig> = SumShiftSupportedConfigs
+
 internal fun createSumShiftNewGame(
     config: GameConfig,
     challenge: DailyChallenge?,
@@ -296,8 +308,11 @@ private fun generateSumShiftPuzzle(
     val area = rows * columns
     val targetDensity = random.nextDouble(from = 0.30, until = 0.54)
     val candidateCount = when {
-        area >= 48 -> 80
-        area >= 36 -> 64
+        area >= 96 -> 28
+        area >= 84 -> 36
+        area >= 72 -> 44
+        area >= 56 -> 52
+        area >= 42 -> 60
         else -> 48
     }
 
@@ -327,28 +342,27 @@ private fun generateSumShiftPuzzle(
 }
 
 internal fun isValidSumShiftConfig(config: GameConfig): Boolean {
-    if (config.columns !in 5..6) return false
-    val minimumRows = config.columns.coerceAtLeast(5)
-    return config.rows in minimumRows..9
+    return SumShiftSupportedConfigs.any { supported ->
+        supported.columns == config.columns && supported.rows == config.rows
+    }
 }
 
 internal fun normalizeSumShiftConfig(config: GameConfig): GameConfig {
-    val columns = config.columns.coerceIn(5, 6)
-    val minimumRows = columns.coerceAtLeast(5)
-    return GameConfig(
-        columns = columns,
-        rows = config.rows.coerceIn(minimumRows, 9),
+    val nearest = SumShiftSupportedConfigs.minWithOrNull(
+        compareBy<GameConfig>(
+            { abs(it.columns - config.columns) },
+            { abs(it.rows - config.rows) },
+            { abs((it.columns * it.rows) - (config.columns * config.rows)) },
+        )
+    ) ?: SumShiftSupportedConfigs.first()
+    return nearest.copy(
         difficultyIntervalSeconds = 9_999,
         linesPerLevel = 9_999,
     )
 }
 
 internal fun randomSumShiftConfig(random: Random = Random.Default): GameConfig {
-    val options = buildList {
-        for (rows in 5..9) add(GameConfig(columns = 5, rows = rows, difficultyIntervalSeconds = 9_999, linesPerLevel = 9_999))
-        for (rows in 6..9) add(GameConfig(columns = 6, rows = rows, difficultyIntervalSeconds = 9_999, linesPerLevel = 9_999))
-    }
-    return normalizeSumShiftConfig(options.random(random))
+    return SumShiftSupportedConfigs.random(random)
 }
 
 internal fun resolveSumShiftAutoSelectedCells(
