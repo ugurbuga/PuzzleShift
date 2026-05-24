@@ -230,6 +230,12 @@ android {
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     signingConfigs {
+        getByName("debug") {
+            storeFile = rootProject.file("keystore/GameDebug.jks")
+            storePassword = "GameDebug"
+            keyAlias = "GameDebug"
+            keyPassword = "GameDebug"
+        }
         androidFlavorConfigs.forEach { flavor ->
             create(flavor.flavorName) {
                 storeFile = keystoreProperty(flavor.flavorName, "storeFile")
@@ -295,6 +301,9 @@ android {
         }
     }
     buildTypes {
+        getByName("debug") {
+            signingConfig = signingConfigs.getByName("debug")
+        }
         getByName("release") {
             isMinifyEnabled = false
             proguardFiles(
