@@ -9,6 +9,7 @@ import blockgames.composeapp.generated.resources.app_title_boomblocks
 import blockgames.composeapp.generated.resources.app_title_mergeshift
 import blockgames.composeapp.generated.resources.app_title_stackshift
 import blockgames.composeapp.generated.resources.app_title_digitshift
+import blockgames.composeapp.generated.resources.app_title_sumshift
 import com.ugurbuga.blockgames.game.model.GameplayStyle
 import com.ugurbuga.blockgames.platform.GlobalPlatformConfig
 import org.jetbrains.compose.resources.StringResource
@@ -32,6 +33,7 @@ fun appNameResourceId(): StringResource {
         GameplayStyle.BoomBlocks -> Res.string.app_title_boomblocks
         GameplayStyle.BlockSort -> Res.string.app_title_blocksort
         GameplayStyle.DigitShift -> Res.string.app_title_digitshift
+        GameplayStyle.SumShift -> Res.string.app_title_sumshift
         else -> Res.string.app_title_stackshift
     }
 }
@@ -59,6 +61,9 @@ fun formatAppString(raw: String): String {
         }
         GameplayStyle.DigitShift -> {
             raw.replace(stackShiftTitle, stringResource(Res.string.app_title_digitshift))
+        }
+        GameplayStyle.SumShift -> {
+            raw.replace(stackShiftTitle, stringResource(Res.string.app_title_sumshift))
         }
         else -> raw
     }

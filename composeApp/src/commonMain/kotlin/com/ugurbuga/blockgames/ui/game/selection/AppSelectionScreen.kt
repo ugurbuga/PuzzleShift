@@ -78,6 +78,7 @@ import blockgames.composeapp.generated.resources.app_title_boomblocks
 import blockgames.composeapp.generated.resources.app_title_mergeshift
 import blockgames.composeapp.generated.resources.app_title_stackshift
 import blockgames.composeapp.generated.resources.app_title_digitshift
+import blockgames.composeapp.generated.resources.app_title_sumshift
 import blockgames.composeapp.generated.resources.home_play_cta
 import blockgames.composeapp.generated.resources.selection_active_game_badge
 import blockgames.composeapp.generated.resources.selection_chainshift_desc
@@ -87,6 +88,7 @@ import blockgames.composeapp.generated.resources.selection_boomblocks_desc
 import blockgames.composeapp.generated.resources.selection_mergeshift_desc
 import blockgames.composeapp.generated.resources.selection_stackshift_desc
 import blockgames.composeapp.generated.resources.selection_digitshift_desc
+import blockgames.composeapp.generated.resources.selection_sumshift_desc
 import blockgames.composeapp.generated.resources.selection_title
 import com.ugurbuga.blockgames.BlockGamesTheme
 import com.ugurbuga.blockgames.ads.AppFooterBannerHeight
@@ -114,6 +116,8 @@ import com.ugurbuga.blockgames.settings.StackShiftGameOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.StackShiftOnboardingStage
 import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStage
 import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStateFactory
+import com.ugurbuga.blockgames.settings.SumShiftOnboardingStateFactory
+import com.ugurbuga.blockgames.settings.SumShiftOnboardingStage
 import com.ugurbuga.blockgames.telemetry.AppTelemetry
 import com.ugurbuga.blockgames.telemetry.LogScreen
 import com.ugurbuga.blockgames.telemetry.NoOpAppTelemetry
@@ -128,6 +132,7 @@ import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
 import com.ugurbuga.blockgames.ui.theme.appBackgroundBrush
 import com.ugurbuga.blockgames.ui.theme.blockGamesSurfaceShadow
 import com.ugurbuga.blockgames.ui.game.game.DigitShiftBoard
+import com.ugurbuga.blockgames.ui.game.game.SumShiftBoardCard
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.StringResource
@@ -210,6 +215,7 @@ fun AppSelectionScreen(
             SelectionGameSpec(GameplayStyle.MergeShift, Res.string.app_title_mergeshift, Res.string.selection_mergeshift_desc),
             SelectionGameSpec(GameplayStyle.BoomBlocks, Res.string.app_title_boomblocks, Res.string.selection_boomblocks_desc),
             SelectionGameSpec(GameplayStyle.DigitShift, Res.string.app_title_digitshift, Res.string.selection_digitshift_desc),
+            SelectionGameSpec(GameplayStyle.SumShift, Res.string.app_title_sumshift, Res.string.selection_sumshift_desc),
         )
     }
 
@@ -482,6 +488,11 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
             DigitShiftOnboardingStateFactory.stages.map(DigitShiftOnboardingStateFactory::scene)
         } else emptyList()
     }
+    val sumShiftScenes = remember(style) {
+        if (style == GameplayStyle.SumShift) {
+            SumShiftOnboardingStateFactory.stages.map(SumShiftOnboardingStateFactory::scene)
+        } else emptyList()
+    }
     val logic = remember(style, stackShiftScenario?.seed) {
         com.ugurbuga.blockgames.game.logic.GameLogic.create(
             random = Random(stackShiftScenario?.seed ?: (style.ordinal + 17)),
@@ -501,6 +512,8 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
             GameplayStyle.BoomBlocks -> BoomBlocksOnboardingStateFactory.scene(BoomBlocksOnboardingStage.BasicExplosion).gameState
             GameplayStyle.DigitShift -> digitShiftScenes.firstOrNull()?.gameState
                 ?: DigitShiftOnboardingStateFactory.scene(DigitShiftOnboardingStage.FirstGuess).gameState
+            GameplayStyle.SumShift -> sumShiftScenes.firstOrNull()?.gameState
+                ?: SumShiftOnboardingStateFactory.scene(SumShiftOnboardingStage.MatchRow).gameState
         }
     }
     val boomBlocksScenario = remember(style) {
@@ -759,6 +772,15 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
                         }
                     }
                 }
+
+                GameplayStyle.SumShift -> {
+                    if (sumShiftScenes.isNotEmpty()) {
+                        sumShiftScenes.forEach { scene ->
+                            gameState = scene.gameState
+                            delay(1500)
+                        }
+                    }
+                }
             }
             delay(2000)
         }
@@ -820,6 +842,12 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
                     modifier = Modifier
                         .offset(x = boardOffsetX)
                         .size(actualBoardWidth, actualBoardHeight),
+                )
+            } else if (style == GameplayStyle.SumShift) {
+                SumShiftBoardCard(
+                    gameState = gameState,
+                    modifier = Modifier.fillMaxSize(),
+                    controlsEnabled = false,
                 )
             } else {
                 BoardGrid(
@@ -900,6 +928,7 @@ internal fun GameplayStyle.selectionTone(): CellTone = when (this) {
     GameplayStyle.MergeShift -> CellTone.Violet
     GameplayStyle.BoomBlocks -> CellTone.Coral
     GameplayStyle.DigitShift -> CellTone.Gold
+    GameplayStyle.SumShift -> CellTone.Blue
 }
 
 private fun com.ugurbuga.blockgames.ui.theme.BlockGamesUiColors.selectionAccentFor(style: GameplayStyle): Color = when (style) {
@@ -910,6 +939,7 @@ private fun com.ugurbuga.blockgames.ui.theme.BlockGamesUiColors.selectionAccentF
     GameplayStyle.MergeShift -> selectionMergeShift
     GameplayStyle.BoomBlocks -> danger
     GameplayStyle.DigitShift -> warning
+    GameplayStyle.SumShift -> selectionStackShift
 }
 
 internal fun initialExpandedSelectionStyle(currentStyle: GameplayStyle?): GameplayStyle? =

@@ -104,7 +104,7 @@ expect object GameSessionStorage {
 }
 
 internal object GameSessionCodec {
-    private const val Version = 9
+    private const val Version = 12
     private const val SectionSeparator = '|'
     private const val FieldSeparator = ','
     private const val ListSeparator = ';'
@@ -140,13 +140,15 @@ internal object GameSessionCodec {
         encodeActivityState(state),
         encodeChallenge(state.activeChallenge),
         encodeDigitShiftState(state),
+        encodeSumShiftState(state),
     ).joinToString(separator = SectionSeparator.toString())
 
     fun decode(value: String): GameState? {
-        val parts = value.split(SectionSeparator, limit = 21)
+        val parts = value.split(SectionSeparator, limit = 22)
         val version = parts.firstOrNull()?.toIntOrNull() ?: return null
         if (version !in 2..Version) return null
         val expectedPartCount = when {
+            version >= 10 -> 22
             version >= 8 -> 21
             version >= 3 -> 20
             else -> 18
@@ -182,6 +184,7 @@ internal object GameSessionCodec {
         }
         val activeChallenge = if (version >= 3) decodeChallenge(parts[19]) else null
         val digitShiftState = if (version >= 8) decodeDigitShiftState(parts[20]) ?: return null else DigitShiftState()
+        val sumShiftState = if (version >= 10) decodeSumShiftState(parts[21], version) ?: return null else SumShiftState()
 
         return GameState(
             config = config,
@@ -229,6 +232,12 @@ internal object GameSessionCodec {
             digitShiftCurrentGuess = digitShiftState.currentGuess,
             digitShiftKeyboardHints = digitShiftState.keyboardHints,
             digitShiftAwaitingNextRound = digitShiftState.awaitingNextRound,
+            sumShiftRowTargets = sumShiftState.rowTargets,
+            sumShiftColumnTargets = sumShiftState.columnTargets,
+            sumShiftSelectedCells = sumShiftState.selectedCells,
+            sumShiftManualDisabledCells = sumShiftState.manualDisabledCells,
+            sumShiftMistakesUsed = sumShiftState.mistakesUsed,
+            sumShiftPreparingBoard = sumShiftState.preparingBoard,
         )
     }
 
@@ -710,6 +719,15 @@ internal object GameSessionCodec {
         val awaitingNextRound: Boolean = false,
     )
 
+    private data class SumShiftState(
+        val rowTargets: List<Int> = emptyList(),
+        val columnTargets: List<Int> = emptyList(),
+        val selectedCells: Set<GridPoint> = emptySet(),
+        val manualDisabledCells: Set<GridPoint> = emptySet(),
+        val mistakesUsed: Int = 0,
+        val preparingBoard: Boolean = false,
+    )
+
     private fun encodeDigitShiftState(state: GameState): String = listOf(
         state.digitShiftLocaleTag.ifBlank { EmptyToken },
         encodeDigitShiftTokens(state.digitShiftSolution),
@@ -729,6 +747,28 @@ internal object GameSessionCodec {
             guesses = decodeDigitShiftGuesses(parts[3]) ?: return null,
             keyboardHints = decodeDigitShiftHints(parts[4]) ?: return null,
             awaitingNextRound = parts.getOrNull(5) == "1",
+        )
+    }
+
+    private fun encodeSumShiftState(state: GameState): String = listOf(
+        encodeIntList(state.sumShiftRowTargets),
+        encodeIntList(state.sumShiftColumnTargets),
+        encodePoints(state.sumShiftSelectedCells.toList()),
+        encodePoints(state.sumShiftManualDisabledCells.toList()),
+        state.sumShiftMistakesUsed.toString(),
+        if (state.sumShiftPreparingBoard) "1" else "0",
+    ).joinToString(separator = FieldSeparator.toString())
+
+    private fun decodeSumShiftState(value: String, version: Int): SumShiftState? {
+        val parts = value.split(FieldSeparator, limit = if (version >= 12) 6 else if (version >= 11) 4 else 3)
+        if (parts.size !in 3..6) return null
+        return SumShiftState(
+            rowTargets = decodeIntList(parts[0]) ?: return null,
+            columnTargets = decodeIntList(parts[1]) ?: return null,
+            selectedCells = decodePoints(parts[2])?.toSet() ?: return null,
+            manualDisabledCells = if (version >= 11) decodePoints(parts.getOrElse(3) { EmptyToken })?.toSet() ?: return null else emptySet(),
+            mistakesUsed = if (version >= 12) parts.getOrNull(4)?.toIntOrNull() ?: return null else 0,
+            preparingBoard = version >= 12 && parts.getOrNull(5) == "1",
         )
     }
 
@@ -793,11 +833,24 @@ internal object GameSessionCodec {
 
     private fun encodeIntSet(values: Set<Int>): String = values.sorted().joinToString(separator = ListSeparator.toString())
 
+    private fun encodeIntList(values: List<Int>): String =
+        if (values.isEmpty()) EmptyToken else values.joinToString(separator = ListSeparator.toString())
+
     private fun encodeStringSet(values: Set<String>): String = values.sorted().joinToString(separator = ListSeparator.toString())
+
+    private fun encodePoints(values: List<GridPoint>): String =
+        if (values.isEmpty()) EmptyToken else values.joinToString(separator = ListSeparator.toString()) { point ->
+            "${point.column}$PointSeparator${point.row}"
+        }
 
     private fun decodeIntSet(value: String): Set<Int>? {
         if (value.isBlank()) return emptySet()
         return value.split(ListSeparator).mapNotNull { token -> token.toIntOrNull() }.toSet()
+    }
+
+    private fun decodeIntList(value: String): List<Int>? {
+        if (value == EmptyToken || value.isBlank()) return emptyList()
+        return value.split(ListSeparator).map { token -> token.toIntOrNull() ?: return null }
     }
 
     private fun decodeStringSet(value: String): Set<String>? {
@@ -806,7 +859,7 @@ internal object GameSessionCodec {
     }
 
     private fun decodePoints(value: String): List<GridPoint>? {
-        if (value.isBlank()) return emptyList()
+        if (value == EmptyToken || value.isBlank()) return emptyList()
         return value.split(ListSeparator).mapNotNull { token ->
             val parts = token.split(PointSeparator)
             if (parts.size != 2) return null

@@ -40,6 +40,7 @@ object ChallengeGenerator {
                     GameplayStyle.BoomBlocks -> random.nextInt(15, 40) * 1000
                     GameplayStyle.BlockSort -> random.nextInt(3, 10) * 1000
                     GameplayStyle.DigitShift -> random.nextInt(2, 7) * 1000
+                    GameplayStyle.SumShift -> random.nextInt(2, 7) * 1000
                 }
                 ChallengeTaskType.TriggerSpecial -> random.nextInt(2, 6)
                 ChallengeTaskType.PerfectPlacement -> random.nextInt(10, 20)

@@ -50,6 +50,7 @@ import com.ugurbuga.blockgames.game.model.GameState
 import com.ugurbuga.blockgames.game.model.GameStatus
 import com.ugurbuga.blockgames.game.model.GameplayStyle
 import com.ugurbuga.blockgames.game.model.SpecialBlockType
+import com.ugurbuga.blockgames.game.logic.isValidSumShiftConfig
 import com.ugurbuga.blockgames.localization.AppEnvironment
 import com.ugurbuga.blockgames.localization.appStringResource
 import com.ugurbuga.blockgames.localization.currentDeviceLocaleTag
@@ -71,6 +72,7 @@ import com.ugurbuga.blockgames.settings.HighScoreStorage
 import com.ugurbuga.blockgames.settings.MergeShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.RewardedTokenAdReward
 import com.ugurbuga.blockgames.settings.StackShiftGameOnboardingStateFactory
+import com.ugurbuga.blockgames.settings.SumShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.awardBonusTokens
 import com.ugurbuga.blockgames.settings.awardCompletedChallenge
 import com.ugurbuga.blockgames.settings.awardScoreTokens
@@ -120,6 +122,10 @@ internal fun isUsableSavedSession(
 ): Boolean {
     if (state.gameplayStyle == GameplayStyle.BlockSort) {
         if (state.config.columns <= 0 || state.config.rows <= 0) return false
+    } else if (state.gameplayStyle == GameplayStyle.SumShift) {
+        if (!isValidSumShiftConfig(state.config)) return false
+        if (state.sumShiftRowTargets.size != state.config.rows) return false
+        if (state.sumShiftColumnTargets.size != state.config.columns) return false
     } else if (state.gameplayStyle == GameplayStyle.DigitShift) {
         if (state.config.columns !in setOf(5, 6)) return false
         if (state.config.rows != digitShiftAttemptsForLength(state.config.columns)) return false
@@ -143,6 +149,7 @@ internal fun isUsableSavedSession(
         GameplayStyle.BoomBlocks -> true
         GameplayStyle.BlockSort -> state.board.occupiedCount > 0
         GameplayStyle.DigitShift -> state.digitShiftSolution.isNotEmpty()
+        GameplayStyle.SumShift -> state.sumShiftRowTargets.isNotEmpty() && state.sumShiftColumnTargets.isNotEmpty()
     }
 }
 
@@ -245,6 +252,11 @@ internal fun rewardedDockFeedbackSpec(
         )
 
         GameplayStyle.DigitShift -> RewardFeedbackSpec(
+            messageRes = Res.string.game_message_ad_reward_digitshift,
+            icon = Icons.Filled.Refresh,
+        )
+
+        GameplayStyle.SumShift -> RewardFeedbackSpec(
             messageRes = Res.string.game_message_ad_reward_digitshift,
             icon = Icons.Filled.Refresh,
         )
@@ -626,6 +638,7 @@ fun BlockGamesAppHost(
             GameplayStyle.BoomBlocks -> BoomBlocksOnboardingStateFactory.initialState()
             GameplayStyle.BlockSort -> BlockSortOnboardingStateFactory.initialState()
             GameplayStyle.DigitShift -> DigitShiftOnboardingStateFactory.initialState()
+            GameplayStyle.SumShift -> SumShiftOnboardingStateFactory.initialState()
             else -> StackShiftGameOnboardingStateFactory.initialState()
         }
         gameViewModel = createGameViewModel(initialState)
@@ -644,10 +657,17 @@ fun BlockGamesAppHost(
         } else {
             pendingRequestedGameMode = null
             restoreOrRestartSession(slot = sessionSlot, gameplayStyle = gameplayStyle) {
-                gameViewModel.restart(
-                    config = GameConfig.default(gameplayStyle),
-                    mode = mode,
-                )
+                if (gameplayStyle == GameplayStyle.SumShift) {
+                    gameViewModel.restartSumShift(
+                        config = GameConfig.default(gameplayStyle),
+                        mode = mode,
+                    )
+                } else {
+                    gameViewModel.restart(
+                        config = GameConfig.default(gameplayStyle),
+                        mode = mode,
+                    )
+                }
             }
             navigateTo(AppRoute.Game)
         }
@@ -677,10 +697,17 @@ fun BlockGamesAppHost(
                 slot = sessionSlotFor(requestedMode, gameplayStyle = gameplayStyle),
                 gameplayStyle = gameplayStyle,
             ) {
-                gameViewModel.restart(
-                    config = GameConfig.default(gameplayStyle),
-                    mode = requestedMode,
-                )
+                if (gameplayStyle == GameplayStyle.SumShift) {
+                    gameViewModel.restartSumShift(
+                        config = GameConfig.default(gameplayStyle),
+                        mode = requestedMode,
+                    )
+                } else {
+                    gameViewModel.restart(
+                        config = GameConfig.default(gameplayStyle),
+                        mode = requestedMode,
+                    )
+                }
             }
             replaceTop(AppRoute.Game)
         }

@@ -36,6 +36,7 @@ actual object HighScoreStorage {
             GameplayStyle.BoomBlocks -> "BoomBlocks"
             GameplayStyle.BlockSort -> "BlockSort"
             GameplayStyle.DigitShift -> "DigitShift"
+            GameplayStyle.SumShift -> "SumShift"
         }
         return when (mode) {
             GameMode.Classic -> "highScoreClassic$suffix"

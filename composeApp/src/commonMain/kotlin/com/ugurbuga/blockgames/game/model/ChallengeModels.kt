@@ -107,6 +107,10 @@ enum class ChallengeTaskType(
                 ReachScore,
                 SolveWords,
             ).getOrNull(ordinal)
+
+            GameplayStyle.SumShift -> listOf(
+                ReachScore,
+            ).getOrNull(ordinal)
         }
     }
 }

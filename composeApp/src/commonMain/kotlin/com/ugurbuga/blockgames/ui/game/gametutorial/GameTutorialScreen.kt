@@ -175,6 +175,14 @@ import blockgames.composeapp.generated.resources.tutorial_digitshift_ready_body
 import blockgames.composeapp.generated.resources.tutorial_digitshift_ready_title
 import blockgames.composeapp.generated.resources.tutorial_digitshift_strategy_body
 import blockgames.composeapp.generated.resources.tutorial_digitshift_strategy_title
+import blockgames.composeapp.generated.resources.tutorial_sumshift_intro_body
+import blockgames.composeapp.generated.resources.tutorial_sumshift_intro_title
+import blockgames.composeapp.generated.resources.tutorial_sumshift_ready_body
+import blockgames.composeapp.generated.resources.tutorial_sumshift_ready_title
+import blockgames.composeapp.generated.resources.tutorial_sumshift_strategy_body
+import blockgames.composeapp.generated.resources.tutorial_sumshift_strategy_title
+import blockgames.composeapp.generated.resources.tutorial_sumshift_targets_body
+import blockgames.composeapp.generated.resources.tutorial_sumshift_targets_title
 import com.ugurbuga.blockgames.BlockGamesTheme
 import com.ugurbuga.blockgames.ads.GameAdController
 import com.ugurbuga.blockgames.ads.NoOpGameAdController
@@ -204,6 +212,9 @@ import com.ugurbuga.blockgames.settings.ChainShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.DigitShiftOnboardingScene
 import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStage
 import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStateFactory
+import com.ugurbuga.blockgames.settings.SumShiftOnboardingScene
+import com.ugurbuga.blockgames.settings.SumShiftOnboardingStage
+import com.ugurbuga.blockgames.settings.SumShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.telemetry.AppTelemetry
 import com.ugurbuga.blockgames.telemetry.LogScreen
 import com.ugurbuga.blockgames.telemetry.NoOpAppTelemetry
@@ -221,6 +232,7 @@ import com.ugurbuga.blockgames.ui.game.game.BlockSortBoard
 import com.ugurbuga.blockgames.ui.game.game.GameGrid
 import com.ugurbuga.blockgames.ui.game.game.LaunchGuideLineOverlay
 import com.ugurbuga.blockgames.ui.game.game.DigitShiftBoard
+import com.ugurbuga.blockgames.ui.game.game.SumShiftBoardCard
 import com.ugurbuga.blockgames.ui.game.game.columnToLeft
 import com.ugurbuga.blockgames.ui.game.game.pieceSpawnTopLeft
 import com.ugurbuga.blockgames.ui.game.game.resolveSelectedColumn
@@ -344,6 +356,10 @@ private enum class TutorialPage {
     DigitShiftHints,
     DigitShiftStrategy,
     DigitShiftReady,
+    SumShiftIntro,
+    SumShiftTargets,
+    SumShiftStrategy,
+    SumShiftReady,
 }
 
 internal fun tutorialBoomBlocksIntroScene(): TutorialDemoScene {
@@ -667,6 +683,13 @@ fun GameTutorialScreen(
                 TutorialPage.DigitShiftStrategy,
                 TutorialPage.DigitShiftReady,
             )
+
+            GameplayStyle.SumShift -> listOf(
+                TutorialPage.SumShiftIntro,
+                TutorialPage.SumShiftTargets,
+                TutorialPage.SumShiftStrategy,
+                TutorialPage.SumShiftReady,
+            )
         }
     }
     val totalSteps = tutorialPages.size
@@ -789,6 +812,10 @@ fun GameTutorialScreen(
                                 TutorialPage.DigitShiftHints -> TutorialDigitShiftHintsStep()
                                 TutorialPage.DigitShiftStrategy -> TutorialDigitShiftStrategyStep()
                                 TutorialPage.DigitShiftReady -> TutorialDigitShiftReadyStep()
+                                TutorialPage.SumShiftIntro -> TutorialSumShiftIntroStep()
+                                TutorialPage.SumShiftTargets -> TutorialSumShiftTargetsStep()
+                                TutorialPage.SumShiftStrategy -> TutorialSumShiftStrategyStep()
+                                TutorialPage.SumShiftReady -> TutorialSumShiftReadyStep()
                             }
                         }
                     }
@@ -1400,6 +1427,71 @@ private fun TutorialDigitShiftReadyStep() {
         body = stringResource(Res.string.tutorial_digitshift_ready_body),
     ) {
         TutorialHintCard(text = stringResource(Res.string.tutorial_ready_settings_hint))
+    }
+}
+
+@Composable
+private fun TutorialSumShiftIntroStep() {
+    val scene = remember { SumShiftOnboardingStateFactory.scene(SumShiftOnboardingStage.MatchRow) }
+    TutorialSection(
+        title = stringResource(Res.string.tutorial_sumshift_intro_title),
+        body = stringResource(Res.string.tutorial_sumshift_intro_body),
+    ) {
+        TutorialSumShiftBoardDemo(scene = scene)
+    }
+}
+
+@Composable
+private fun TutorialSumShiftTargetsStep() {
+    val scene = remember { SumShiftOnboardingStateFactory.scene(SumShiftOnboardingStage.MatchColumn) }
+    TutorialSection(
+        title = stringResource(Res.string.tutorial_sumshift_targets_title),
+        body = stringResource(Res.string.tutorial_sumshift_targets_body),
+    ) {
+        TutorialSumShiftBoardDemo(scene = scene)
+        TutorialHintCard(text = stringResource(scene.hintRes))
+    }
+}
+
+@Composable
+private fun TutorialSumShiftStrategyStep() {
+    val scene = remember { SumShiftOnboardingStateFactory.scene(SumShiftOnboardingStage.FinishPuzzle) }
+    TutorialSection(
+        title = stringResource(Res.string.tutorial_sumshift_strategy_title),
+        body = stringResource(Res.string.tutorial_sumshift_strategy_body),
+    ) {
+        TutorialSumShiftBoardDemo(scene = scene)
+        TutorialHintCard(text = stringResource(scene.hintRes))
+    }
+}
+
+@Composable
+private fun TutorialSumShiftReadyStep() {
+    TutorialSection(
+        title = stringResource(Res.string.tutorial_sumshift_ready_title),
+        body = stringResource(Res.string.tutorial_sumshift_ready_body),
+    ) {
+        TutorialHintCard(text = stringResource(Res.string.tutorial_ready_settings_hint))
+    }
+}
+
+@Composable
+private fun TutorialSumShiftBoardDemo(
+    scene: SumShiftOnboardingScene,
+    modifier: Modifier = Modifier,
+) {
+    TutorialMiniBoardShell(modifier = modifier) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(320.dp),
+        ) {
+            SumShiftBoardCard(
+                gameState = scene.gameState,
+                modifier = Modifier.fillMaxSize(),
+                controlsEnabled = false,
+            )
+        }
     }
 }
 

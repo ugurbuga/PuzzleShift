@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppSelectionScreen -->
+    <string name="selection_sumshift_desc">Select numbered tiles so every row and column matches its outer target sum.</string>
+
+    <!-- GameTutorialScreen -->
+    <string name="tutorial_sumshift_intro_title">Match every target sum</string>
+    <string name="tutorial_sumshift_intro_body">Each board shows row and column targets around the grid. Select the numbered cells that should count toward those totals.</string>
+    <string name="tutorial_sumshift_targets_title">Read the outer targets</string>
+    <string name="tutorial_sumshift_targets_body">A target is complete only when the selected cells in that row or column add up exactly to the number outside the board.</string>
+    <string name="tutorial_sumshift_strategy_title">Balance both directions</string>
+    <string name="tutorial_sumshift_strategy_body">Every selected cell affects one row and one column. Build solutions that satisfy both at the same time, especially on taller 5x6, 5x7, and 5x8 boards.</string>
+    <string name="tutorial_sumshift_ready_title">Ready to shift the sums?</string>
+    <string name="tutorial_sumshift_ready_body">Complete all row and column targets to clear the puzzle and roll into the next board. Time Attack rewards faster full-board solves.</string>
+
+    <!-- InteractiveOnboarding -->
+    <string name="interactive_onboarding_sumshift_row_hint">Tap the 3 in the top row. It completes that row target.</string>
+    <string name="interactive_onboarding_sumshift_column_hint">Tap the 2 in the second row. This move completes the column target.</string>
+    <string name="interactive_onboarding_sumshift_finish_hint">Tap the 4 in the third row. Practice ends and the real game starts.</string>
+
+</resources>
+

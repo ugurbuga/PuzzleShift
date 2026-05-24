@@ -258,6 +258,7 @@ data class GameConfig(
             GameplayStyle.BoomBlocks -> GameConfig(columns = 6, rows = 8)
             GameplayStyle.BlockSort -> GameConfig(columns = 6, rows = 4, difficultyIntervalSeconds = 9_999, linesPerLevel = 9_999)
             GameplayStyle.DigitShift -> GameConfig(columns = 5, rows = 6, difficultyIntervalSeconds = 9_999, linesPerLevel = 9_999)
+            GameplayStyle.SumShift -> GameConfig(columns = 5, rows = 6, difficultyIntervalSeconds = 9_999, linesPerLevel = 9_999)
         }
     }
 }
@@ -275,6 +276,7 @@ enum class GameplayStyle {
     BoomBlocks,
     BlockSort,
     DigitShift,
+    SumShift,
 }
 
 fun GameplayStyle.storageKey(): String = when (this) {
@@ -1018,6 +1020,12 @@ data class GameState(
     val digitShiftCurrentGuess: List<String> = emptyList(),
     val digitShiftKeyboardHints: Map<String, DigitShiftLetterState> = emptyMap(),
     val digitShiftAwaitingNextRound: Boolean = false,
+    val sumShiftRowTargets: List<Int> = emptyList(),
+    val sumShiftColumnTargets: List<Int> = emptyList(),
+    val sumShiftSelectedCells: Set<GridPoint> = emptySet(),
+    val sumShiftManualDisabledCells: Set<GridPoint> = emptySet(),
+    val sumShiftMistakesUsed: Int = 0,
+    val sumShiftPreparingBoard: Boolean = false,
 ) {
     val nextPiece: Piece?
         get() = nextQueue.firstOrNull()
