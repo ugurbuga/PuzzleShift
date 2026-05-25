@@ -141,6 +141,12 @@ fun BoardGrid(
                 emptyList()
             }
         }
+    val shouldRenderAnimatedBoardShift = shouldAnimateBoardShift && animatedBoardCells.isNotEmpty()
+    val animatedBoardCellKeys = remember(animatedBoardCells) {
+        animatedBoardCells.mapTo(mutableSetOf()) { animatedCell ->
+            boardPointKey(animatedCell.point.column, animatedCell.point.row)
+        }
+    }
 
     val boardEffectsTransition = if (hasDangerPulse || hasImpactPulse) {
         rememberInfiniteTransition(label = "boardEffectsTransition")
@@ -270,7 +276,7 @@ fun BoardGrid(
             return@LaunchedEffect
         }
 
-        if (!shouldAnimateBoardShift) {
+        if (!shouldRenderAnimatedBoardShift) {
             boardShiftProgress.snapTo(1f)
             boardTransitionSource = gameState.board
             boardTransitionToken = gameState.clearAnimationToken
@@ -617,7 +623,7 @@ fun BoardGrid(
                         }
                     }
 
-                    if (!shouldAnimateBoardShift) {
+                    if (!shouldRenderAnimatedBoardShift || boardPointKey(column, row) !in animatedBoardCellKeys) {
                         gameState.board.cellAt(column, row)?.let { cell ->
                             val isImpactedByPreview = GridPoint(column, row) in impactedPreviewCells
                             val isRecentlyMerged =
@@ -890,7 +896,7 @@ fun BoardGrid(
                 }
             }
 
-            if (shouldAnimateBoardShift) {
+            if (shouldRenderAnimatedBoardShift) {
                 animatedBoardCells.forEach { animatedCell ->
                     val sourceRow = animatedCell.sourceRow.toFloat()
                     val targetRow = animatedCell.point.row.toFloat()
@@ -948,7 +954,21 @@ fun BoardGrid(
             }
         }
 
-        if (shouldAnimateBoardShift) {
+        if (shouldRenderAnimatedBoardShift) {
+            currentBoardSpecialCells.forEach { (column, row, cell) ->
+                if (boardPointKey(column, row) in animatedBoardCellKeys) return@forEach
+                BoardSpecialIconOverlay(
+                    cell = cell,
+                    column = column,
+                    row = row,
+                    cellWidth = cellWidth,
+                    cellHeight = cellHeight,
+                    alphaProvider = {
+                        val clearProgress = gameOverClearProgressProvider().coerceIn(0f, 1f)
+                        (1f - clearProgress).coerceIn(0f, 1f)
+                    },
+                )
+            }
             animatedSpecialCells.forEach { animatedCell ->
                 if (animatedCell.cell.special == SpecialBlockType.None) return@forEach
                 BoardSpecialIconOverlay(
@@ -1297,6 +1317,7 @@ private fun buildAnimatedBoardCells(
                 val cell = currentBoard.cellAt(column, row) ?: continue
                 val key = boardCellKey(cell)
                 val sourceRow = previousByColumnAndKey[column]?.get(key)?.removeFirstOrNull() ?: row
+                if (sourceRow == row) continue
                 add(
                     AnimatedBoardCell(
                         point = GridPoint(column = column, row = row),
@@ -1308,6 +1329,8 @@ private fun buildAnimatedBoardCells(
         }
     }
 }
+
+private fun boardPointKey(column: Int, row: Int): Int = (column shl 16) or (row and 0xFFFF)
 
 private fun boardCellKey(cell: BoardCell): Int = (cell.tone.ordinal shl 8) or cell.special.ordinal
 

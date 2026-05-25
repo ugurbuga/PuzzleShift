@@ -10,7 +10,7 @@
     <string name="tutorial_sumshift_targets_title">Dış hedefleri oku</string>
     <string name="tutorial_sumshift_targets_body">Bir hedef, yalnızca o satır veya sütundaki seçili hücrelerin toplamı dıştaki sayıya tam eşit olduğunda tamamlanır.</string>
     <string name="tutorial_sumshift_strategy_title">İki yönü birden dengele</string>
-    <string name="tutorial_sumshift_strategy_body">Seçtiğin her hücre aynı anda bir satırı ve bir sütunu etkiler. Özellikle 5x6, 5x7 ve 5x8 gibi uzun tahtalarda iki yönü de birlikte çöz.</string>
+    <string name="tutorial_sumshift_strategy_body">Seçtiğin her hücre aynı anda bir satırı ve bir sütunu etkiler. Tahta yoğunlaştıkça iki yönü birlikte dengelemeye odaklan.</string>
     <string name="tutorial_sumshift_ready_title">Toplamları kaydırmaya hazır mısın?</string>
     <string name="tutorial_sumshift_ready_body">Tüm satır ve sütun hedeflerini tamamladığında bulmaca biter ve yeni tahta gelir. Zamana Karşı modunda hızlı tamamlama daha çok ödül kazandırır.</string>
 

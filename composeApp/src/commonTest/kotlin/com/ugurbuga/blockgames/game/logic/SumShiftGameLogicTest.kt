@@ -27,22 +27,32 @@ class SumShiftGameLogicTest {
             mode = GameMode.Classic,
         )
 
-        val wideState = logic.newGame(
-            config = GameConfig(columns = 6, rows = 5, difficultyIntervalSeconds = 1, linesPerLevel = 1),
+        val hardState = logic.newGame(
+            config = GameConfig(columns = 9, rows = 20, difficultyIntervalSeconds = 1, linesPerLevel = 1),
             challenge = null,
             mode = GameMode.Classic,
         )
 
         assertEquals(GameplayStyle.SumShift, state.gameplayStyle)
         assertEquals(5, state.config.columns)
-        assertEquals(9, state.config.rows)
-        assertEquals(9, state.sumShiftRowTargets.size)
+        assertEquals(8, state.config.rows)
+        assertEquals(8, state.sumShiftRowTargets.size)
         assertEquals(5, state.sumShiftColumnTargets.size)
 
-        assertEquals(6, wideState.config.columns)
-        assertEquals(6, wideState.config.rows)
-        assertEquals(6, wideState.sumShiftRowTargets.size)
-        assertEquals(6, wideState.sumShiftColumnTargets.size)
+        assertEquals(7, hardState.config.columns)
+        assertEquals(9, hardState.config.rows)
+        assertEquals(9, hardState.sumShiftRowTargets.size)
+        assertEquals(7, hardState.sumShiftColumnTargets.size)
+    }
+
+    @Test
+    fun randomConfig_usesOnlySupportedSmallerBoardTiers() {
+        val supported = sumShiftSupportedConfigs().map { it.columns to it.rows }.toSet()
+
+        repeat(40) {
+            val config = randomSumShiftConfig(Random(it + 1))
+            assertTrue((config.columns to config.rows) in supported)
+        }
     }
 
     @Test

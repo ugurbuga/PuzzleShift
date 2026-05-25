@@ -64,6 +64,53 @@ class SumShiftGameScreenTest {
     }
 
     @Test
+    fun selectableSumShiftSums_excludeCurrentlyDisabledCells() {
+        var board = BoardMatrix.empty(columns = 3, rows = 3)
+        val values = listOf(
+            listOf(2, 3, 1),
+            listOf(5, 4, 2),
+            listOf(6, 1, 7),
+        )
+        values.forEachIndexed { row, rowValues ->
+            rowValues.forEachIndexed { column, value ->
+                board = board.fill(
+                    points = listOf(GridPoint(column, row)),
+                    tone = CellTone.Cyan,
+                    value = value,
+                )
+            }
+        }
+
+        val state = GameState(
+            config = GameConfig(columns = 3, rows = 3, difficultyIntervalSeconds = 9_999, linesPerLevel = 9_999),
+            gameplayStyle = GameplayStyle.SumShift,
+            board = board,
+            activePiece = null,
+            nextQueue = emptyList(),
+            holdPiece = null,
+            canHold = false,
+            score = 0,
+            linesCleared = 0,
+            level = 1,
+            difficultyStage = 0,
+            secondsUntilDifficultyIncrease = 9_999,
+            sumShiftRowTargets = listOf(2, 99, 99),
+            sumShiftColumnTargets = listOf(99, 4, 99),
+            sumShiftSelectedCells = setOf(
+                GridPoint(0, 0),
+                GridPoint(1, 1),
+            ),
+            sumShiftManualDisabledCells = setOf(GridPoint(2, 2)),
+        )
+
+        val disabledCells = state.systemDisabledSumShiftCells() + state.sumShiftManualDisabledCells
+
+        assertEquals(2, state.selectableSumShiftRowSum(rowIndex = 0, disabledCells = disabledCells))
+        assertEquals(13, state.selectableSumShiftColumnSum(columnIndex = 0, disabledCells = disabledCells))
+        assertEquals(2, state.selectableSumShiftColumnSum(columnIndex = 2, disabledCells = disabledCells))
+    }
+
+    @Test
     fun sumShiftCellIsEnabled_keepsManualDisabledCellsClickableInDisableMode() {
         assertTrue(
             sumShiftCellIsEnabled(
