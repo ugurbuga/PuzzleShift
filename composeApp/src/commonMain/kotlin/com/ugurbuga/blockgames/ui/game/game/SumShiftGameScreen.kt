@@ -5,6 +5,10 @@ import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -27,8 +31,9 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.HeartBroken
 import androidx.compose.material.icons.filled.Lightbulb
-import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.TouchApp
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -48,15 +53,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.graphics.lerp
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import blockgames.composeapp.generated.resources.Res
@@ -64,10 +70,19 @@ import blockgames.composeapp.generated.resources.restart_cancel
 import blockgames.composeapp.generated.resources.restart_confirm
 import blockgames.composeapp.generated.resources.restart_confirm_body
 import blockgames.composeapp.generated.resources.restart_confirm_title
+import blockgames.composeapp.generated.resources.sumshift_completion_feedback
+import blockgames.composeapp.generated.resources.sumshift_hint_action
+import blockgames.composeapp.generated.resources.sumshift_mistake_badge_content_description
+import blockgames.composeapp.generated.resources.sumshift_summary_best_label
+import blockgames.composeapp.generated.resources.sumshift_summary_columns_label
+import blockgames.composeapp.generated.resources.sumshift_summary_mistakes_label
+import blockgames.composeapp.generated.resources.sumshift_summary_rows_label
 import blockgames.composeapp.generated.resources.time_remaining
+import blockgames.composeapp.generated.resources.tutorial_step_counter
 import com.ugurbuga.blockgames.BlockGamesTheme
 import com.ugurbuga.blockgames.ads.GameAdController
 import com.ugurbuga.blockgames.ads.NoOpGameAdController
+import com.ugurbuga.blockgames.game.model.BlockVisualStyle
 import com.ugurbuga.blockgames.game.model.BoardMatrix
 import com.ugurbuga.blockgames.game.model.CellTone
 import com.ugurbuga.blockgames.game.model.GameConfig
@@ -99,6 +114,18 @@ private enum class SumShiftCellInteractionMode {
     Disable,
 }
 
+private fun sumShiftNumericTextStyle(
+    base: TextStyle,
+    fontSize: TextUnit,
+    fontWeight: FontWeight,
+): TextStyle = base.copy(
+    fontFamily = FontFamily.SansSerif,
+    fontWeight = fontWeight,
+    fontSize = fontSize,
+    lineHeight = fontSize,
+    letterSpacing = 0.sp,
+)
+
 @Composable
 internal fun SumShiftGameScreen(
     gameState: GameState,
@@ -121,6 +148,7 @@ internal fun SumShiftGameScreen(
     modifier: Modifier = Modifier,
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
+    val blockStyle = LocalAppSettings.current.blockVisualStyle
     var showRestartDialog by remember { mutableStateOf(false) }
     var interactionMode by remember { mutableStateOf(SumShiftCellInteractionMode.Select) }
     var displayedBoardState by remember { mutableStateOf(gameState) }
@@ -129,7 +157,7 @@ internal fun SumShiftGameScreen(
     var wrongTapPoint by remember { mutableStateOf<GridPoint?>(null) }
     val outgoingClearProgress = remember { Animatable(1f) }
     val incomingRevealProgress = remember { Animatable(1f) }
-    val blockStylePulse = rememberBlockStylePulse(style = LocalAppSettings.current.blockVisualStyle)
+    val controlsStylePulse = rememberBlockStylePulse(style = blockStyle)
 
     LaunchedEffect(gameState) {
         if (gameState.sumShiftPreparingBoard && displayedBoardState.board == gameState.board) {
@@ -197,6 +225,11 @@ internal fun SumShiftGameScreen(
             gameState.clearAnimationToken == 0L
     val boardInteractionEnabled =
         gameState.status == GameStatus.Running && !isPreparingBoard && !isSolvedBoard && outgoingBoardState == null && incomingRevealProgress.value >= 0.999f
+    val showCompletionToast = shouldShowSumShiftCompletionToast(
+        isSolvedBoard = isSolvedBoard,
+        isPreparingBoard = isPreparingBoard,
+        shouldShowFullPreparationCard = shouldShowFullPreparationCard,
+    )
 
 
     if (showRestartDialog) {
@@ -271,10 +304,6 @@ internal fun SumShiftGameScreen(
                 gameState = gameState,
                 highestScore = highestScore,
             )
-        } else {
-            SumShiftMistakeStatusCard(
-                mistakesUsed = gameState.sumShiftMistakesUsed,
-            )
         }
 
         interactiveOnboardingScene?.let { scene ->
@@ -285,102 +314,100 @@ internal fun SumShiftGameScreen(
             )
         }
 
-        when {
-            shouldShowFullPreparationCard -> {
-                SumShiftPreparingBoardCard(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(1f),
-                    title = "Oyun hazırlanıyor",
-                    body = "Rastgele mod seçildi, yeni düzen oluşturuluyor.",
-                )
-            }
-
-            else -> {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(1f),
-                    contentAlignment = Alignment.Center,
-                ) {
-                    SumShiftBoardCard(
-                        gameState = displayedBoardState,
-                        modifier = Modifier.fillMaxSize(),
-                        outgoingGameState = outgoingBoardState,
-                        outgoingClearProgress = outgoingClearProgress.value,
-                        incomingRevealProgress = incomingRevealProgress.value,
-                        disabledCells = disabledCells,
-                        manualDisabledCells = gameState.sumShiftManualDisabledCells,
-                        guidedCells = guidedCells,
-                        stylePulse = blockStylePulse,
-                        wrongTapPoint = wrongTapPoint,
-                        onTapCell = cellTap@ { point ->
-                            when (effectiveInteractionMode) {
-                                SumShiftCellInteractionMode.Select -> {
-                                    if (interactiveOnboardingScene != null && !interactiveOnboardingScene.allowsGuidedTap(point, gameState.sumShiftSelectedCells)) {
-                                        wrongTapPoint = point
-                                        onWrongTap()
-                                        return@cellTap
-                                    }
-                                    if (point !in disabledCells) {
-                                        val nextSelected = gameState.sumShiftSelectedCells.toggle(point)
-                                        if (gameState.isSumShiftPlayableWith(nextSelected, gameState.sumShiftManualDisabledCells)) {
-                                            onTapCell(point)
-                                        } else {
-                                            wrongTapPoint = point
-                                            onWrongTap()
-                                        }
-                                    }
-                                }
-
-                                SumShiftCellInteractionMode.Disable -> {
-                                    if (point in systemDisabledCells && point !in gameState.sumShiftManualDisabledCells) {
-                                        return@cellTap
-                                    }
-
-                                    val nextManualDisabledCells = gameState.sumShiftManualDisabledCells.toggle(point)
-                                    val shouldDisable = point !in gameState.sumShiftManualDisabledCells
-                                    val nextSelected = if (shouldDisable && point in gameState.sumShiftSelectedCells) {
-                                        gameState.sumShiftSelectedCells - point
-                                    } else {
-                                        gameState.sumShiftSelectedCells
-                                    }
-                                    if (gameState.isSumShiftPlayableWith(nextSelected, nextManualDisabledCells)) {
-                                        if (shouldDisable && point in gameState.sumShiftSelectedCells) {
-                                            onTapCell(point)
-                                        }
-                                        onManualDisabledCellsChange(nextManualDisabledCells)
-                                    } else {
-                                        wrongTapPoint = point
-                                        onWrongTap()
-                                    }
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f),
+            contentAlignment = Alignment.Center,
+        ) {
+            SumShiftBoardCard(
+                gameState = displayedBoardState,
+                modifier = Modifier.fillMaxSize(),
+                outgoingGameState = outgoingBoardState,
+                outgoingClearProgress = outgoingClearProgress.value,
+                incomingRevealProgress = incomingRevealProgress.value,
+                disabledCells = disabledCells,
+                manualDisabledCells = gameState.sumShiftManualDisabledCells,
+                guidedCells = guidedCells,
+                wrongTapPoint = wrongTapPoint,
+                onTapCell = cellTap@ { point ->
+                    when (effectiveInteractionMode) {
+                        SumShiftCellInteractionMode.Select -> {
+                            if (interactiveOnboardingScene != null && !interactiveOnboardingScene.allowsGuidedTap(point, gameState.sumShiftSelectedCells)) {
+                                wrongTapPoint = point
+                                onWrongTap()
+                                return@cellTap
+                            }
+                            if (point !in disabledCells) {
+                                val nextSelected = gameState.sumShiftSelectedCells.toggle(point)
+                                if (gameState.isSumShiftPlayableWith(nextSelected, gameState.sumShiftManualDisabledCells)) {
+                                    onTapCell(point)
+                                } else {
+                                    wrongTapPoint = point
+                                    onWrongTap()
                                 }
                             }
-                        },
-                        controlsEnabled = boardInteractionEnabled,
-                    )
+                        }
 
-                    if (isPreparingBoard) {
-                        SumShiftPreparingOverlay()
+                        SumShiftCellInteractionMode.Disable -> {
+                            if (point in systemDisabledCells && point !in gameState.sumShiftManualDisabledCells) {
+                                return@cellTap
+                            }
+
+                            val nextManualDisabledCells = gameState.sumShiftManualDisabledCells.toggle(point)
+                            val shouldDisable = point !in gameState.sumShiftManualDisabledCells
+                            val nextSelected = if (shouldDisable && point in gameState.sumShiftSelectedCells) {
+                                gameState.sumShiftSelectedCells - point
+                            } else {
+                                gameState.sumShiftSelectedCells
+                            }
+                            if (gameState.isSumShiftPlayableWith(nextSelected, nextManualDisabledCells)) {
+                                if (shouldDisable && point in gameState.sumShiftSelectedCells) {
+                                    onTapCell(point)
+                                }
+                                onManualDisabledCellsChange(nextManualDisabledCells)
+                            } else {
+                                wrongTapPoint = point
+                                onWrongTap()
+                            }
+                        }
                     }
-                }
+                },
+                controlsEnabled = boardInteractionEnabled,
+            )
+
+            androidx.compose.animation.AnimatedVisibility(
+                visible = showCompletionToast,
+                modifier = Modifier
+                    .align(Alignment.TopCenter)
+                    .padding(top = 18.dp),
+                enter = fadeIn(animationSpec = tween(durationMillis = 220)) +
+                    slideInVertically(
+                        animationSpec = tween(durationMillis = 260),
+                        initialOffsetY = { -it / 2 },
+                    ),
+                exit = fadeOut(animationSpec = tween(durationMillis = 180)) +
+                    slideOutVertically(
+                        animationSpec = tween(durationMillis = 220),
+                        targetOffsetY = { -it / 3 },
+                    ),
+            ) {
+                FloatingFeedbackBubble(
+                    text = stringResource(Res.string.sumshift_completion_feedback),
+                    isBonus = true,
+                )
             }
         }
 
         if (interactiveOnboardingScene == null) {
             SumShiftControlsRow(
+                mistakesUsed = gameState.sumShiftMistakesUsed,
                 interactionMode = interactionMode,
                 onInteractionModeChange = { interactionMode = it },
-                onClearMarks = {
-                    onManualDisabledCellsChange(emptySet())
-                    gameState.sumShiftSelectedCells
-                        .sortedWith(compareBy(GridPoint::row, GridPoint::column))
-                        .forEach(onTapCell)
-                },
                 onRewardedHint = onRewardedHint,
                 controlsEnabled = boardInteractionEnabled,
                 adController = adController,
-                stylePulse = blockStylePulse,
+                stylePulse = controlsStylePulse,
                 hintEnabled = hasRewardedHint,
             )
         }
@@ -408,22 +435,22 @@ private fun SumShiftSummaryCard(
             horizontalArrangement = Arrangement.spacedBy(10.dp),
         ) {
             SumShiftInfoChip(
-                label = "Rows",
+                label = stringResource(Res.string.sumshift_summary_rows_label),
                 value = "${gameState.completedSumShiftRows()}/${gameState.sumShiftRowTargets.size}",
                 modifier = Modifier.weight(1f),
             )
             SumShiftInfoChip(
-                label = "Cols",
+                label = stringResource(Res.string.sumshift_summary_columns_label),
                 value = "${gameState.completedSumShiftColumns()}/${gameState.sumShiftColumnTargets.size}",
                 modifier = Modifier.weight(1f),
             )
             SumShiftInfoChip(
-                label = "Hata",
+                label = stringResource(Res.string.sumshift_summary_mistakes_label),
                 value = "${(1 - gameState.sumShiftMistakesUsed).coerceAtLeast(0)}",
                 modifier = Modifier.weight(1f),
             )
             SumShiftInfoChip(
-                label = "Best",
+                label = stringResource(Res.string.sumshift_summary_best_label),
                 value = highestScore.toString(),
                 modifier = Modifier.weight(1f),
             )
@@ -431,39 +458,22 @@ private fun SumShiftSummaryCard(
     }
 }
 
-@Composable
-private fun SumShiftMistakeStatusCard(
-    mistakesUsed: Int,
-) {
-    val uiColors = BlockGamesThemeTokens.uiColors
-    val remaining = (1 - mistakesUsed).coerceAtLeast(0)
-    val shape = RoundedCornerShape(GameUiShapeTokens.chipCorner)
+internal fun shouldShowSumShiftCompletionToast(
+    isSolvedBoard: Boolean,
+    isPreparingBoard: Boolean,
+    shouldShowFullPreparationCard: Boolean,
+): Boolean = isSolvedBoard || (isPreparingBoard && !shouldShowFullPreparationCard)
 
-    Surface(
-        modifier = Modifier.fillMaxWidth(),
-        shape = shape,
-        color = uiColors.metricCard.copy(alpha = 0.94f),
-        tonalElevation = 0.dp,
-        shadowElevation = 0.dp,
-        border = BorderStroke(1.dp, uiColors.panelStroke.copy(alpha = 0.70f)),
-    ) {
-        Row(
-            modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Text(
-                text = "Hata hakkı",
-                style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Bold),
-                color = uiColors.subtitle,
-            )
-            Text(
-                text = "$remaining / 1",
-                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.ExtraBold),
-                color = if (remaining > 0) uiColors.success else uiColors.danger,
-            )
-        }
-    }
+@Composable
+private fun rememberSumShiftAnimatedPulse(
+    style: BlockVisualStyle,
+    shouldAnimate: Boolean,
+    multiplier: Float = 1f,
+    minimum: Float = 0f,
+): Float {
+    if (!shouldAnimate) return 0f
+    val animatedPulse = rememberBlockStylePulse(style = style)
+    return (animatedPulse * multiplier).coerceAtLeast(minimum).coerceIn(0f, 1f)
 }
 
 @Composable
@@ -502,92 +512,10 @@ private fun SumShiftInfoChip(
 }
 
 @Composable
-private fun SumShiftPreparingBoardCard(
-    modifier: Modifier = Modifier,
-    title: String = "Oyun hazırlanıyor",
-    body: String = "Yeni düzen oluşturuluyor, lütfen bekle.",
-) {
-    val uiColors = BlockGamesThemeTokens.uiColors
-    val shape = RoundedCornerShape(GameUiShapeTokens.surfaceCorner)
-
-    Card(
-        modifier = modifier
-            .fillMaxWidth()
-            .widthIn(max = 420.dp)
-            .blockGamesSurfaceShadow(shape = shape, elevation = 16.dp),
-        shape = shape,
-        colors = CardDefaults.cardColors(containerColor = uiColors.gameSurface.copy(alpha = 0.96f)),
-        border = BorderStroke(1.dp, uiColors.panelStroke.copy(alpha = 0.80f)),
-        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 20.dp, vertical = 24.dp),
-            contentAlignment = Alignment.Center,
-        ) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(10.dp),
-            ) {
-                Text(
-                    text = title,
-                    style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.ExtraBold),
-                    color = MaterialTheme.colorScheme.onSurface,
-                    textAlign = TextAlign.Center,
-                )
-                Text(
-                    text = body,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = uiColors.subtitle,
-                    textAlign = TextAlign.Center,
-                )
-            }
-        }
-    }
-}
-
-@Composable
-private fun SumShiftPreparingOverlay() {
-    val uiColors = BlockGamesThemeTokens.uiColors
-    val shape = RoundedCornerShape(GameUiShapeTokens.panelCorner)
-
-    Surface(
-        modifier = Modifier
-            .fillMaxWidth(0.78f)
-            .widthIn(max = 260.dp),
-        shape = shape,
-        color = uiColors.panel.copy(alpha = 0.94f),
-        tonalElevation = 0.dp,
-        shadowElevation = 0.dp,
-        border = BorderStroke(1.dp, uiColors.panelStroke.copy(alpha = 0.74f)),
-    ) {
-        Column(
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 14.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(6.dp),
-        ) {
-            Text(
-                text = "Yeni oyun hazırlanıyor",
-                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.ExtraBold),
-                color = MaterialTheme.colorScheme.onSurface,
-                textAlign = TextAlign.Center,
-            )
-            Text(
-                text = "Eski tahta kısa süre daha ekranda kalıyor.",
-                style = MaterialTheme.typography.bodySmall,
-                color = uiColors.subtitle,
-                textAlign = TextAlign.Center,
-            )
-        }
-    }
-}
-
-@Composable
 private fun SumShiftControlsRow(
+    mistakesUsed: Int,
     interactionMode: SumShiftCellInteractionMode,
     onInteractionModeChange: (SumShiftCellInteractionMode) -> Unit,
-    onClearMarks: () -> Unit,
     onRewardedHint: () -> Unit,
     controlsEnabled: Boolean,
     adController: GameAdController,
@@ -596,32 +524,81 @@ private fun SumShiftControlsRow(
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        SumShiftToolButton(
-            icon = Icons.Filled.Refresh,
-            onClick = onClearMarks,
-            modifier = Modifier.weight(1f),
-            tone = CellTone.Gold,
-            enabled = controlsEnabled,
+        SumShiftMistakeBadge(
+            mistakesUsed = mistakesUsed,
+            modifier = Modifier.width(72.dp),
         )
+        //SumShiftToolButton(
+        //    icon = Icons.Filled.Refresh,
+        //    onClick = onClearMarks,
+        //    modifier = Modifier.weight(1f),
+        //    tone = CellTone.Gold,
+        //    enabled = controlsEnabled,
+        //)
         SumShiftInteractionModeSwitch(
             selectedMode = interactionMode,
             onModeChange = onInteractionModeChange,
-            modifier = Modifier.weight(1.2f),
+            modifier = Modifier.width(150.dp),
             enabled = controlsEnabled,
         )
         SumShiftToolButton(
             icon = Icons.Filled.Lightbulb,
             onClick = onRewardedHint,
-            modifier = Modifier.weight(1f),
             tone = CellTone.Cyan,
             enabled = controlsEnabled && hintEnabled && adController !== NoOpGameAdController,
             adController = adController,
             stylePulse = stylePulse,
             isRewarded = true,
         )
+    }
+}
+
+@Composable
+private fun SumShiftMistakeBadge(
+    mistakesUsed: Int,
+    modifier: Modifier = Modifier,
+) {
+    val uiColors = BlockGamesThemeTokens.uiColors
+    val remaining = (1 - mistakesUsed).coerceAtLeast(0)
+    val icon = if (remaining > 0) Icons.Filled.Favorite else Icons.Filled.HeartBroken
+    val accentColor = uiColors.danger
+    val shape = RoundedCornerShape(GameUiShapeTokens.buttonCorner)
+
+    Surface(
+        modifier = modifier
+            .height(52.dp)
+            .blockGamesSurfaceShadow(shape = shape, elevation = 6.dp),
+        shape = shape,
+        color = uiColors.metricCard.copy(alpha = 0.96f),
+        tonalElevation = 0.dp,
+        shadowElevation = 0.dp,
+        border = BorderStroke(1.dp, uiColors.panelStroke.copy(alpha = 0.74f)),
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 6.dp, vertical = 4.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+        ) {
+            Icon(
+                imageVector = icon,
+                contentDescription = stringResource(
+                    Res.string.sumshift_mistake_badge_content_description,
+                    remaining,
+                ),
+                tint = accentColor,
+                modifier = Modifier.size(18.dp),
+            )
+            Text(
+                text = "$remaining/1",
+                style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Bold),
+                color = MaterialTheme.colorScheme.onSurface,
+            )
+        }
     }
 }
 
@@ -645,7 +622,7 @@ private fun SumShiftToolButton(
             TopBarActionBlockButton(
                 tone = tone,
                 icon = icon,
-                contentDescription = "Hint",
+                contentDescription = stringResource(Res.string.sumshift_hint_action),
                 onClick = onClick@{
                     if (loading) return@onClick
                     loading = true
@@ -805,7 +782,6 @@ internal fun SumShiftBoardCard(
     disabledCells: Set<GridPoint> = emptySet(),
     manualDisabledCells: Set<GridPoint> = emptySet(),
     guidedCells: Set<GridPoint> = emptySet(),
-    stylePulse: Float = 0f,
     wrongTapPoint: GridPoint? = null,
     onTapCell: (GridPoint) -> Unit = {},
 ) {
@@ -855,7 +831,6 @@ internal fun SumShiftBoardCard(
                     disabledCells = disabledCells,
                     manualDisabledCells = manualDisabledCells,
                     guidedCells = guidedCells,
-                    stylePulse = stylePulse,
                     wrongTapPoint = wrongTapPoint,
                     topTargetAlpha = sumShiftRevealAlphaFromBottom(0, rows + 1, incomingRevealProgress),
                     rowAlphaProvider = { rowIndex ->
@@ -875,7 +850,6 @@ internal fun SumShiftBoardCard(
                         disabledCells = emptySet(),
                         manualDisabledCells = emptySet(),
                         guidedCells = emptySet(),
-                        stylePulse = 0f,
                         wrongTapPoint = null,
                         topTargetAlpha = sumShiftClearAlpha(0, rows + 1, outgoingClearProgress),
                         rowAlphaProvider = { rowIndex ->
@@ -899,7 +873,6 @@ private fun SumShiftPuzzleBoard(
     disabledCells: Set<GridPoint>,
     manualDisabledCells: Set<GridPoint>,
     guidedCells: Set<GridPoint>,
-    stylePulse: Float,
     wrongTapPoint: GridPoint?,
     topTargetAlpha: Float = 1f,
     rowAlphaProvider: (Int) -> Float = { 1f },
@@ -930,7 +903,6 @@ private fun SumShiftPuzzleBoard(
                     ),
                     completed = gameState.isSumShiftColumnCompleted(columnIndex),
                     size = targetSize,
-                    stylePulse = stylePulse,
                 )
             }
         }
@@ -949,7 +921,6 @@ private fun SumShiftPuzzleBoard(
                         ),
                         completed = gameState.isSumShiftRowCompleted(rowIndex),
                         size = targetSize,
-                        stylePulse = stylePulse,
                         modifier = Modifier.alpha(rowAlpha),
                     )
                 }
@@ -971,13 +942,11 @@ private fun SumShiftPuzzleBoard(
                                 value = boardCell?.value ?: 0,
                                 selected = point in gameState.sumShiftSelectedCells,
                                 disabled = point in disabledCells,
-                                systemDisabled = point in disabledCells && point !in manualDisabledCells,
                                 manualDisabled = point in manualDisabledCells,
                                 guided = point in guidedCells,
                                 completed = gameState.isSumShiftRowCompleted(rowIndex) || gameState.isSumShiftColumnCompleted(columnIndex),
                                 wrongTapped = point == wrongTapPoint,
                                 size = cellSize,
-                                stylePulse = stylePulse,
                                 enabled = sumShiftCellIsEnabled(
                                     controlsEnabled = controlsEnabled,
                                     disabled = point in disabledCells,
@@ -1013,7 +982,7 @@ private fun SumShiftOnboardingHintCard(
             verticalArrangement = Arrangement.spacedBy(6.dp),
         ) {
             Text(
-                text = "Adım $currentStep / $totalSteps",
+                text = stringResource(Res.string.tutorial_step_counter, currentStep, totalSteps),
                 style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
                 color = MaterialTheme.colorScheme.primary,
             )
@@ -1033,7 +1002,6 @@ private fun SumShiftTargetCell(
     currentValue: Int,
     completed: Boolean,
     size: Dp,
-    stylePulse: Float,
     modifier: Modifier = Modifier,
 ) {
     val settings = LocalAppSettings.current
@@ -1041,9 +1009,34 @@ private fun SumShiftTargetCell(
     val accent = if (completed) uiColors.success else MaterialTheme.colorScheme.primary
     val blockStyle = settings.blockVisualStyle
     val shape = RoundedCornerShape(GameUiShapeTokens.chipCorner)
+    val targetBaseColor by animateColorAsState(
+        targetValue = if (completed) {
+            accent.copy(alpha = 0.20f)
+        } else {
+            uiColors.metricCard.copy(alpha = 0.96f)
+        },
+        animationSpec = tween(durationMillis = 220),
+        label = "sumShiftTargetBaseColor",
+    )
+    val targetBorderColor by animateColorAsState(
+        targetValue = if (completed) accent.copy(alpha = 0.80f) else uiColors.panelStroke.copy(alpha = 0.74f),
+        animationSpec = tween(durationMillis = 220),
+        label = "sumShiftTargetBorderColor",
+    )
+    val targetScale by animateFloatAsState(
+        targetValue = if (completed) 1.02f else 1f,
+        animationSpec = spring(stiffness = 900f, dampingRatio = 0.86f),
+        label = "sumShiftTargetScale",
+    )
+    val targetPulse = rememberSumShiftAnimatedPulse(
+        style = blockStyle,
+        shouldAnimate = completed,
+        multiplier = 0.45f,
+    )
     Surface(
         modifier = modifier
             .size(size)
+            .scale(targetScale)
             .blockGamesSurfaceShadow(shape = shape, elevation = if (completed) 6.dp else 3.dp),
         shape = shape,
         color = Color.Transparent,
@@ -1051,27 +1044,24 @@ private fun SumShiftTargetCell(
         shadowElevation = 0.dp,
         border = BorderStroke(
             width = if (completed) 1.6.dp else 1.dp,
-            color = if (completed) accent.copy(alpha = 0.80f) else uiColors.panelStroke.copy(alpha = 0.74f),
+            color = targetBorderColor,
         ),
     ) {
         Box(contentAlignment = Alignment.Center) {
             BlockCellPreview(
-                baseColor = if (completed) {
-                    accent.copy(alpha = 0.20f)
-                } else {
-                    uiColors.metricCard.copy(alpha = 0.96f)
-                },
+                baseColor = targetBaseColor,
                 style = blockStyle,
                 size = size,
                 alpha = 0.98f,
-                pulse = stylePulse,
+                pulse = targetPulse,
                 modifier = Modifier.matchParentSize(),
             )
             Text(
                 text = value.toString(),
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.titleMedium.copy(
-                    fontWeight = FontWeight.ExtraBold,
+                style = sumShiftNumericTextStyle(
+                    base = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold,
                     fontSize = when {
                         size <= 26.dp -> 11.sp
                         size <= 30.dp -> 13.sp
@@ -1080,19 +1070,14 @@ private fun SumShiftTargetCell(
                     },
                 ),
                 color = MaterialTheme.colorScheme.onSurface,
-                lineHeight = when {
-                    size <= 26.dp -> 11.sp
-                    size <= 30.dp -> 13.sp
-                    size <= 38.dp -> 16.sp
-                    else -> 18.sp
-                },
                 modifier = Modifier.align(Alignment.Center),
             )
             Text(
                 text = currentValue.toString(),
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.labelSmall.copy(
-                    fontWeight = FontWeight.Bold,
+                style = sumShiftNumericTextStyle(
+                    base = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.SemiBold,
                     fontSize = when {
                         size <= 26.dp -> 6.sp
                         size <= 30.dp -> 7.sp
@@ -1101,12 +1086,6 @@ private fun SumShiftTargetCell(
                     },
                 ),
                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.82f),
-                lineHeight = when {
-                    size <= 26.dp -> 6.sp
-                    size <= 30.dp -> 7.sp
-                    size <= 38.dp -> 8.sp
-                    else -> 9.sp
-                },
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .padding(bottom = if (size <= 30.dp) 1.dp else 2.dp),
@@ -1120,13 +1099,11 @@ private fun SumShiftNumberCell(
     value: Int,
     selected: Boolean,
     disabled: Boolean,
-    systemDisabled: Boolean,
     manualDisabled: Boolean,
     guided: Boolean,
     completed: Boolean,
     wrongTapped: Boolean,
     size: Dp,
-    stylePulse: Float,
     enabled: Boolean,
     onClick: () -> Unit,
 ) {
@@ -1170,11 +1147,21 @@ private fun SumShiftNumberCell(
         wrongTapped -> 1f
         else -> 0.98f
     }
-    val blockPulse = when {
-        wrongTapped -> stylePulse
-        selected || guided || completed -> (stylePulse * 0.95f).coerceAtLeast(0.12f)
-        else -> stylePulse * 0.55f
-    }
+    val animatedBaseBlockColor by animateColorAsState(
+        targetValue = baseBlockColor,
+        animationSpec = tween(durationMillis = 180),
+        label = "sumShiftCellBaseColor",
+    )
+    val blockPulse = rememberSumShiftAnimatedPulse(
+        style = blockStyle,
+        shouldAnimate = wrongTapped || selected || guided || completed,
+        multiplier = when {
+            wrongTapped -> 1f
+            selected || guided || completed -> 0.95f
+            else -> 0f
+        },
+        minimum = if (selected || guided || completed) 0.12f else 0f,
+    )
     val animatedContainerColor = animateColorAsState(
         targetValue = overlayColor,
         animationSpec = spring(stiffness = 900f, dampingRatio = 0.92f),
@@ -1239,7 +1226,7 @@ private fun SumShiftNumberCell(
             contentAlignment = Alignment.Center,
         ) {
             BlockCellPreview(
-                baseColor = baseBlockColor,
+                baseColor = animatedBaseBlockColor,
                 style = blockStyle,
                 size = size,
                 alpha = blockAlpha,
@@ -1274,14 +1261,10 @@ private fun SumShiftNumberCell(
             }
             Text(
                 text = value.toString(),
-                style = MaterialTheme.typography.headlineMedium.copy(
-                    fontWeight = FontWeight.ExtraBold,
+                style = sumShiftNumericTextStyle(
+                    base = MaterialTheme.typography.headlineMedium,
+                    fontWeight = FontWeight.Bold,
                     fontSize = if (size <= 38.dp) 18.sp else 26.sp,
-                    shadow = Shadow(
-                        color = Color.Black.copy(alpha = if (disabled) 0.42f else 0.72f),
-                        offset = Offset(1.5f, 2f),
-                        blurRadius = 4f,
-                    ),
                 ),
                 color = animatedTextColor.value,
                 textDecoration = if (manualDisabled) TextDecoration.LineThrough else null,

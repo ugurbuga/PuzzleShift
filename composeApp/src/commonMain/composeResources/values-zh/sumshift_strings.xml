@@ -2,22 +2,33 @@
 <resources>
 
     <!-- AppSelectionScreen -->
-    <string name="selection_sumshift_desc">Select numbered tiles so every row and column matches its outer target sum.</string>
+    <string name="selection_sumshift_desc">选择带数字的方块，让每一行和每一列都与外侧目标和一致。</string>
 
     <!-- GameTutorialScreen -->
-    <string name="tutorial_sumshift_intro_title">Match every target sum</string>
-    <string name="tutorial_sumshift_intro_body">Each board shows row and column targets around the grid. Select the numbered cells that should count toward those totals.</string>
-    <string name="tutorial_sumshift_targets_title">Read the outer targets</string>
-    <string name="tutorial_sumshift_targets_body">A target is complete only when the selected cells in that row or column add up exactly to the number outside the board.</string>
-    <string name="tutorial_sumshift_strategy_title">Balance both directions</string>
-    <string name="tutorial_sumshift_strategy_body">Every selected cell affects one row and one column. Build solutions that satisfy both at the same time, especially on taller 5x6, 5x7, and 5x8 boards.</string>
-    <string name="tutorial_sumshift_ready_title">Ready to shift the sums?</string>
-    <string name="tutorial_sumshift_ready_body">Complete all row and column targets to clear the puzzle and roll into the next board. Time Attack rewards faster full-board solves.</string>
+    <string name="tutorial_sumshift_intro_title">匹配所有目标和</string>
+    <string name="tutorial_sumshift_intro_body">每个棋盘的网格外侧都会显示行与列的目标值。选择应该计入这些总和的数字格子。</string>
+    <string name="tutorial_sumshift_targets_title">查看外侧目标</string>
+    <string name="tutorial_sumshift_targets_body">只有当该行或该列中被选中的格子总和与棋盘外的数字完全相等时，目标才算完成。</string>
+    <string name="tutorial_sumshift_strategy_title">同时兼顾两个方向</string>
+    <string name="tutorial_sumshift_strategy_body">你选择的每个格子都会同时影响一行和一列。构建能同时满足两个方向的解法，尤其是在棋盘更密集时。</string>
+    <string name="tutorial_sumshift_ready_title">准备好移动这些总和了吗？</string>
+    <string name="tutorial_sumshift_ready_body">完成所有行与列目标即可解开谜题并进入下一块棋盘。限时模式会奖励更快的全盘通关。</string>
 
     <!-- InteractiveOnboarding -->
-    <string name="interactive_onboarding_sumshift_row_hint">Start by completing the easiest row target with the correct cells.</string>
-    <string name="interactive_onboarding_sumshift_column_hint">Now finish a column target while keeping the row totals balanced.</string>
-    <string name="interactive_onboarding_sumshift_finish_hint">Use the selected cells to satisfy every row and column target on the board.</string>
+    <string name="interactive_onboarding_sumshift_row_hint">点击顶行的 3。这样就能完成该行目标。</string>
+    <string name="interactive_onboarding_sumshift_column_hint">现在点击第二行的 2。此步会完成该列目标。</string>
+    <string name="interactive_onboarding_sumshift_finish_hint">点击第三行的 4。练习结束，正式游戏开始。</string>
+
+    <!-- Accessibility -->
+    <string name="sumshift_hint_action">获取提示</string>
+    <string name="sumshift_mistake_badge_content_description">剩余失误次数：%1$d / 1</string>
+
+    <!-- GameScreen -->
+    <string name="sumshift_completion_feedback">太棒了！谜题已完成，正在准备下一块棋盘。</string>
+    <string name="sumshift_summary_rows_label">行</string>
+    <string name="sumshift_summary_columns_label">列</string>
+    <string name="sumshift_summary_mistakes_label">失误</string>
+    <string name="sumshift_summary_best_label">最佳</string>
 
 </resources>
 

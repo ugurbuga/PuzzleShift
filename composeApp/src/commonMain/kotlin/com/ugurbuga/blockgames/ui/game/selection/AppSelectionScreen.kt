@@ -104,8 +104,6 @@ import com.ugurbuga.blockgames.settings.BlockWiseOnboardingStage
 import com.ugurbuga.blockgames.settings.BlockWiseOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.BoomBlocksOnboardingStage
 import com.ugurbuga.blockgames.settings.BoomBlocksOnboardingStateFactory
-import com.ugurbuga.blockgames.settings.ChainShiftOnboardingStage
-import com.ugurbuga.blockgames.settings.ChainShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.BlockSortOnboardingStage
 import com.ugurbuga.blockgames.settings.BlockSortOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.MergeShiftOnboardingStage
@@ -475,11 +473,6 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
     val blockSortScenario = remember(style) {
         if (style == GameplayStyle.BlockSort) buildBlockSortDemoScenario() else emptyList()
     }
-    val chainShiftScene = remember(style) {
-        if (style == GameplayStyle.ChainShift) {
-            ChainShiftOnboardingStateFactory.scene(ChainShiftOnboardingStage.CreateMatch)
-        } else null
-    }
     val digitShiftScenes = remember(style) {
         if (style == GameplayStyle.DigitShift) {
             DigitShiftOnboardingStateFactory.stages.map(DigitShiftOnboardingStateFactory::scene)
@@ -501,8 +494,6 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
                 ?: StackShiftGameOnboardingStateFactory.scene(StackShiftOnboardingStage.LineClear).gameState
             GameplayStyle.BlockWise -> blockWiseScenario?.steps?.firstOrNull()?.beforeState
                 ?: BlockWiseOnboardingStateFactory.scene(BlockWiseOnboardingStage.CrossClear).gameState
-            GameplayStyle.ChainShift -> chainShiftScene?.gameState
-                ?: ChainShiftOnboardingStateFactory.scene(ChainShiftOnboardingStage.CreateMatch).gameState
             GameplayStyle.BlockSort -> blockSortScenario.firstOrNull()?.beforeState
                 ?: BlockSortOnboardingStateFactory.scene(BlockSortOnboardingStage.PickSource).gameState
             GameplayStyle.MergeShift -> MergeShiftOnboardingStateFactory.scene(MergeShiftOnboardingStage.VerticalMerge).gameState
@@ -665,36 +656,6 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
                             blockSortSelectedSource = null
                             delay(1200)
                         }
-                    }
-                }
-
-                GameplayStyle.ChainShift -> {
-                    repeat(SelectionDemoActionCount) {
-                        val currentConfig = gameState.config
-                        val piece = gameState.activePiece ?: return@repeat
-                        val (target, preview) = findPreferredGridPlacement(
-                            state = gameState,
-                            pieceId = piece.id,
-                            previewProvider = logic::previewPlacement,
-                        ) ?: return@repeat
-                        activeDemoPiece = piece
-                        activePreview = preview
-                        impactedPreviewCells = logic.previewImpactPoints(gameState, preview)
-
-                        animatedX.snapTo(demoTrayLeftFraction(piece = piece, slotIndex = 0, columns = currentConfig.columns))
-                        animatedY.snapTo(demoTrayTopFraction(piece = piece, rows = currentConfig.rows))
-                        delay(400)
-
-                        launch { animatedX.animateTo(target.column.toFloat() / currentConfig.columns.toFloat(), tween(700)) }
-                        launch { animatedY.animateTo(target.row.toFloat() / currentConfig.rows.toFloat(), tween(700)) }
-                        delay(850)
-
-                        val result = logic.placePiece(gameState, piece.id, target)
-                        gameState = result.state
-                        activeDemoPiece = null
-                        activePreview = null
-                        impactedPreviewCells = emptySet()
-                        delay(1200)
                     }
                 }
 
@@ -920,7 +881,6 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
 internal fun GameplayStyle.selectionTone(): CellTone = when (this) {
     GameplayStyle.StackShift -> CellTone.Cyan
     GameplayStyle.BlockWise -> CellTone.Amber
-    GameplayStyle.ChainShift -> CellTone.Blue
     GameplayStyle.BlockSort -> CellTone.Emerald
     GameplayStyle.MergeShift -> CellTone.Violet
     GameplayStyle.BoomBlocks -> CellTone.Coral
@@ -931,7 +891,6 @@ internal fun GameplayStyle.selectionTone(): CellTone = when (this) {
 private fun com.ugurbuga.blockgames.ui.theme.BlockGamesUiColors.selectionAccentFor(style: GameplayStyle): Color = when (style) {
     GameplayStyle.StackShift -> selectionStackShift
     GameplayStyle.BlockWise -> warning
-    GameplayStyle.ChainShift -> selectionMergeShift
     GameplayStyle.BlockSort -> success
     GameplayStyle.MergeShift -> selectionMergeShift
     GameplayStyle.BoomBlocks -> danger

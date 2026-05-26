@@ -56,7 +56,6 @@ private class AdaptiveGameLogic(
     private fun gameLogic(gameplayStyle: GameplayStyle): GameLogic = when (gameplayStyle) {
         GameplayStyle.BlockWise -> BlockWiseGameLogic(random, scoreCalculator)
         GameplayStyle.StackShift -> StackShiftGameLogic(random, scoreCalculator)
-        GameplayStyle.ChainShift -> ChainShiftGameLogic(random, scoreCalculator)
         GameplayStyle.MergeShift -> MergeShiftGameLogic(random, scoreCalculator)
         GameplayStyle.BoomBlocks -> BoomBlocksGameLogic(random, scoreCalculator)
         GameplayStyle.BlockSort -> BlockSortGameLogic(random, scoreCalculator)

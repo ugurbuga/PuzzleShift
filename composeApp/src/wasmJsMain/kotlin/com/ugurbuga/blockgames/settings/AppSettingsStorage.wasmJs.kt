@@ -18,6 +18,11 @@ actual object AppSettingsStorage {
             ?: return AppSettings()
 
         val defaultSettings = AppSettings()
+        fun readPart(primaryIndex: Int, fallbackIndex: Int? = null): String? {
+            val primary = parts.getOrNull(primaryIndex)?.takeIf(String::isNotBlank)
+            if (primary != null) return primary
+            return fallbackIndex?.let { parts.getOrNull(it)?.takeIf(String::isNotBlank) }
+        }
         val legacyThemePalette = AppColorPalette.entries.getOrElse(parts[2].toIntOrNull() ?: -1) { defaultSettings.themeColorPalette }
         val legacyBlockPalette = BlockColorPalette.entries.getOrElse(parts[3].toIntOrNull() ?: -1) { defaultSettings.blockColorPalette }
         return AppSettings(
@@ -36,10 +41,12 @@ actual object AppSettingsStorage {
             unlockedBlockStyles = decodeEnumSet(parts.getOrNull(13), BlockVisualStyle.entries),
             styleChallengeProgress = decodeStyleChallengeProgress(parts.getOrNull(9) ?: parts.getOrNull(8)),
             lastAppOpenedAtEpochMillis = parts.getOrNull(14)?.toLongOrNull() ?: defaultSettings.lastAppOpenedAtEpochMillis,
-            lastActiveSlot = parts.getOrNull(16)?.let { GameSessionSlot.fromKey(it) },
-            selectedGameplayStyle = parts.getOrNull(17)?.takeIf(String::isNotBlank)?.let(::gameplayStyleFromPersistedValue),
-            seenTutorialStyles = decodeEnumSet(parts.getOrNull(18), GameplayStyle.entries),
-            shownInteractiveOnboardingStyles = decodeEnumSet(parts.getOrNull(19), GameplayStyle.entries),
+            lastActiveSlot = readPart(primaryIndex = 16, fallbackIndex = 15)?.let { GameSessionSlot.fromKey(it) },
+            selectedGameplayStyle = readPart(primaryIndex = 17, fallbackIndex = 16)?.let(::gameplayStyleFromPersistedValue),
+            seenTutorialStyles = decodeEnumSet(readPart(primaryIndex = 18, fallbackIndex = 17), GameplayStyle.entries),
+            shownInteractiveOnboardingStyles = decodeEnumSet(readPart(primaryIndex = 19, fallbackIndex = 18), GameplayStyle.entries),
+            totalGameplayDurationMillis = parts.getOrNull(20)?.toLongOrNull() ?: defaultSettings.totalGameplayDurationMillis,
+            hasRequestedInAppReview = (parts.getOrNull(21)?.toIntOrNull() ?: 0) == 1,
         ).sanitized()
     }
 
@@ -67,13 +74,15 @@ actual object AppSettingsStorage {
                 sanitized.selectedGameplayStyle?.name ?: "",
                 encodeEnumSet(sanitized.seenTutorialStyles),
                 encodeEnumSet(sanitized.shownInteractiveOnboardingStyles),
+                sanitized.totalGameplayDurationMillis,
+                if (sanitized.hasRequestedInAppReview) 1 else 0,
             ).joinToString(separator = Separator.toString()),
         )
     }
 
     private const val StorageKey = "stackshift.settings"
     private const val Separator = ','
-    private val SupportedFieldCounts = 7..21
+    private val SupportedFieldCounts = 7..22
 
     private fun decodeStyleChallengeProgress(encoded: String?): Map<GameplayStyle, com.ugurbuga.blockgames.game.model.ChallengeProgress> {
         val legacy = decodeChallengeProgress(encoded)

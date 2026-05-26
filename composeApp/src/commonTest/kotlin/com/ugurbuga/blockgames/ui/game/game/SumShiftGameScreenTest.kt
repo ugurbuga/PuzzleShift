@@ -165,5 +165,34 @@ class SumShiftGameScreenTest {
 
         assertEquals(scene.requiredSelection.single(), scene.gameState.findSumShiftHintPoint())
     }
+
+    @Test
+    fun shouldShowSumShiftCompletionToast_showsForSolvedBoardAndSolvedPreparationState() {
+        assertTrue(
+            shouldShowSumShiftCompletionToast(
+                isSolvedBoard = true,
+                isPreparingBoard = false,
+                shouldShowFullPreparationCard = false,
+            )
+        )
+        assertTrue(
+            shouldShowSumShiftCompletionToast(
+                isSolvedBoard = false,
+                isPreparingBoard = true,
+                shouldShowFullPreparationCard = false,
+            )
+        )
+    }
+
+    @Test
+    fun shouldShowSumShiftCompletionToast_hidesForInitialFullPreparation() {
+        assertFalse(
+            shouldShowSumShiftCompletionToast(
+                isSolvedBoard = false,
+                isPreparingBoard = true,
+                shouldShowFullPreparationCard = true,
+            )
+        )
+    }
 }
 

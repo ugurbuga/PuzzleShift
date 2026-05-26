@@ -52,6 +52,8 @@ actual object AppSettingsStorage {
                 )
             }.filterValues { it.completedDays.isNotEmpty() },
             lastAppOpenedAtEpochMillis = prefs.getLong(KeyLastAppOpenedAtEpochMillis, defaultSettings.lastAppOpenedAtEpochMillis),
+            totalGameplayDurationMillis = prefs.getLong(KeyTotalGameplayDurationMillis, defaultSettings.totalGameplayDurationMillis),
+            hasRequestedInAppReview = prefs.getBoolean(KeyHasRequestedInAppReview, defaultSettings.hasRequestedInAppReview),
             lastActiveSlot = prefs.get(KeyLastActiveSlot, null)?.let {
                 GameSessionSlot.fromKey(it)
             },
@@ -84,6 +86,8 @@ actual object AppSettingsStorage {
             prefs.put(KeyChallengeProgressPrefix + style.name.lowercase(), encodeChallengeProgress(progress))
         }
         prefs.putLong(KeyLastAppOpenedAtEpochMillis, sanitized.lastAppOpenedAtEpochMillis)
+        prefs.putLong(KeyTotalGameplayDurationMillis, sanitized.totalGameplayDurationMillis)
+        prefs.putBoolean(KeyHasRequestedInAppReview, sanitized.hasRequestedInAppReview)
         if (sanitized.lastActiveSlot != null) {
             prefs.put(KeyLastActiveSlot, sanitized.lastActiveSlot.key)
         } else {
@@ -101,6 +105,8 @@ actual object AppSettingsStorage {
 
     private const val Namespace = "com.ugurbuga.blockgames.settings"
     private const val KeyLastAppOpenedAtEpochMillis = "lastAppOpenedAtEpochMillis"
+    private const val KeyTotalGameplayDurationMillis = "totalGameplayDurationMillis"
+    private const val KeyHasRequestedInAppReview = "hasRequestedInAppReview"
     private const val KeyChallengeProgressPrefix = "challengeProgress_"
     private const val KeyTokenBalance = "tokenBalance"
     private const val KeyUnlockedThemeModes = "unlockedThemeModes"

@@ -2,22 +2,32 @@
 <resources>
 
     <!-- AppSelectionScreen -->
-    <string name="selection_sumshift_desc">Select numbered tiles so every row and column matches its outer target sum.</string>
+    <string name="selection_sumshift_desc">Wähle nummerierte Felder so aus, dass jede Zeile und jede Spalte ihrer äußeren Zielsumme entspricht.</string>
 
     <!-- GameTutorialScreen -->
-    <string name="tutorial_sumshift_intro_title">Match every target sum</string>
-    <string name="tutorial_sumshift_intro_body">Each board shows row and column targets around the grid. Select the numbered cells that should count toward those totals.</string>
-    <string name="tutorial_sumshift_targets_title">Read the outer targets</string>
-    <string name="tutorial_sumshift_targets_body">A target is complete only when the selected cells in that row or column add up exactly to the number outside the board.</string>
-    <string name="tutorial_sumshift_strategy_title">Balance both directions</string>
-    <string name="tutorial_sumshift_strategy_body">Every selected cell affects one row and one column. Build solutions that satisfy both at the same time, especially on taller 5x6, 5x7, and 5x8 boards.</string>
-    <string name="tutorial_sumshift_ready_title">Ready to shift the sums?</string>
-    <string name="tutorial_sumshift_ready_body">Complete all row and column targets to clear the puzzle and roll into the next board. Time Attack rewards faster full-board solves.</string>
+    <string name="tutorial_sumshift_intro_title">Erreiche alle Zielsummen</string>
+    <string name="tutorial_sumshift_intro_body">Jedes Spielfeld zeigt Zeilen- und Spaltenziele rund um das Raster. Wähle die nummerierten Felder aus, die zu diesen Summen beitragen sollen.</string>
+    <string name="tutorial_sumshift_targets_title">Lies die äußeren Ziele</string>
+    <string name="tutorial_sumshift_targets_body">Ein Ziel ist nur erfüllt, wenn die ausgewählten Felder in dieser Zeile oder Spalte genau die Zahl außerhalb des Spielfelds ergeben.</string>
+    <string name="tutorial_sumshift_strategy_title">Behalte beide Richtungen im Gleichgewicht</string>
+    <string name="tutorial_sumshift_strategy_body">Jedes ausgewählte Feld beeinflusst eine Zeile und eine Spalte. Finde Lösungen, die beide Richtungen gleichzeitig erfüllen, besonders wenn das Spielfeld dichter wird.</string>
+    <string name="tutorial_sumshift_ready_title">Bereit, die Summen zu verschieben?</string>
+    <string name="tutorial_sumshift_ready_body">Erfülle alle Zeilen- und Spaltenziele, um das Rätsel zu lösen und zum nächsten Spielfeld überzugehen. Im Zeitangriff werden schnellere vollständige Lösungen belohnt.</string>
 
     <!-- InteractiveOnboarding -->
-    <string name="interactive_onboarding_sumshift_row_hint">Start by completing the easiest row target with the correct cells.</string>
-    <string name="interactive_onboarding_sumshift_column_hint">Now finish a column target while keeping the row totals balanced.</string>
-    <string name="interactive_onboarding_sumshift_finish_hint">Use the selected cells to satisfy every row and column target on the board.</string>
+    <string name="interactive_onboarding_sumshift_row_hint">Tippe auf die 3 in der obersten Zeile. Damit erfüllst du das Ziel dieser Zeile.</string>
+    <string name="interactive_onboarding_sumshift_column_hint">Tippe jetzt auf die 2 in der zweiten Zeile. Dieser Zug erfüllt das Spaltenziel.</string>
+    <string name="interactive_onboarding_sumshift_finish_hint">Tippe auf die 4 in der dritten Zeile. Die Übung endet und das echte Spiel beginnt.</string>
+
+    <!-- Accessibility -->
+    <string name="sumshift_hint_action">Hinweis holen</string>
+    <string name="sumshift_mistake_badge_content_description">Verbleibende Fehler: %1$d von 1</string>
+
+    <!-- GameScreen -->
+    <string name="sumshift_completion_feedback">Stark gemacht! Rätsel gelöst. Das nächste Spielfeld wird vorbereitet.</string>
+    <string name="sumshift_summary_rows_label">Zeilen</string>
+    <string name="sumshift_summary_columns_label">Sp.</string>
+    <string name="sumshift_summary_mistakes_label">Fehler</string>
+    <string name="sumshift_summary_best_label">Rekord</string>
 
 </resources>
-

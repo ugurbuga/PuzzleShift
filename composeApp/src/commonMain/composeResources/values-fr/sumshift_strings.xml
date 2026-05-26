@@ -2,22 +2,32 @@
 <resources>
 
     <!-- AppSelectionScreen -->
-    <string name="selection_sumshift_desc">Select numbered tiles so every row and column matches its outer target sum.</string>
+    <string name="selection_sumshift_desc">Sélectionnez les cases numérotées pour que chaque ligne et chaque colonne corresponde à sa somme cible extérieure.</string>
 
     <!-- GameTutorialScreen -->
-    <string name="tutorial_sumshift_intro_title">Match every target sum</string>
-    <string name="tutorial_sumshift_intro_body">Each board shows row and column targets around the grid. Select the numbered cells that should count toward those totals.</string>
-    <string name="tutorial_sumshift_targets_title">Read the outer targets</string>
-    <string name="tutorial_sumshift_targets_body">A target is complete only when the selected cells in that row or column add up exactly to the number outside the board.</string>
-    <string name="tutorial_sumshift_strategy_title">Balance both directions</string>
-    <string name="tutorial_sumshift_strategy_body">Every selected cell affects one row and one column. Build solutions that satisfy both at the same time, especially on taller 5x6, 5x7, and 5x8 boards.</string>
-    <string name="tutorial_sumshift_ready_title">Ready to shift the sums?</string>
-    <string name="tutorial_sumshift_ready_body">Complete all row and column targets to clear the puzzle and roll into the next board. Time Attack rewards faster full-board solves.</string>
+    <string name="tutorial_sumshift_intro_title">Atteignez toutes les sommes cibles</string>
+    <string name="tutorial_sumshift_intro_body">Chaque plateau affiche des objectifs de lignes et de colonnes autour de la grille. Sélectionnez les cases numérotées qui doivent compter dans ces totaux.</string>
+    <string name="tutorial_sumshift_targets_title">Lisez les objectifs extérieurs</string>
+    <string name="tutorial_sumshift_targets_body">Un objectif n'est terminé que lorsque les cases sélectionnées de cette ligne ou colonne totalisent exactement le nombre indiqué à l'extérieur du plateau.</string>
+    <string name="tutorial_sumshift_strategy_title">Équilibrez les deux directions</string>
+    <string name="tutorial_sumshift_strategy_body">Chaque case sélectionnée influence une ligne et une colonne. Construisez des solutions qui satisfont les deux à la fois, surtout lorsque le plateau devient plus dense.</string>
+    <string name="tutorial_sumshift_ready_title">Prêt à faire glisser les sommes ?</string>
+    <string name="tutorial_sumshift_ready_body">Terminez tous les objectifs de lignes et de colonnes pour résoudre le puzzle et passer au plateau suivant. Le Contre-la-montre récompense les résolutions complètes les plus rapides.</string>
 
     <!-- InteractiveOnboarding -->
-    <string name="interactive_onboarding_sumshift_row_hint">Start by completing the easiest row target with the correct cells.</string>
-    <string name="interactive_onboarding_sumshift_column_hint">Now finish a column target while keeping the row totals balanced.</string>
-    <string name="interactive_onboarding_sumshift_finish_hint">Use the selected cells to satisfy every row and column target on the board.</string>
+    <string name="interactive_onboarding_sumshift_row_hint">Touchez le 3 de la rangée du haut. Cela complète l'objectif de cette ligne.</string>
+    <string name="interactive_onboarding_sumshift_column_hint">Touchez maintenant le 2 de la deuxième rangée. Ce coup complète l'objectif de la colonne.</string>
+    <string name="interactive_onboarding_sumshift_finish_hint">Touchez le 4 de la troisième rangée. L'entraînement se termine et la vraie partie commence.</string>
+
+    <!-- Accessibility -->
+    <string name="sumshift_hint_action">Obtenir un indice</string>
+    <string name="sumshift_mistake_badge_content_description">Erreurs restantes : %1$d sur 1</string>
+
+    <!-- GameScreen -->
+    <string name="sumshift_completion_feedback">Bravo ! Puzzle résolu. Préparation du plateau suivant.</string>
+    <string name="sumshift_summary_rows_label">Lignes</string>
+    <string name="sumshift_summary_columns_label">Col.</string>
+    <string name="sumshift_summary_mistakes_label">Erreurs</string>
+    <string name="sumshift_summary_best_label">Record</string>
 
 </resources>
-

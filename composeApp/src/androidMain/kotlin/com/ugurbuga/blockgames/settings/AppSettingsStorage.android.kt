@@ -99,6 +99,14 @@ actual object AppSettingsStorage {
                 KeyLastAppOpenedAtEpochMillis,
                 defaultSettings.lastAppOpenedAtEpochMillis,
             ),
+            totalGameplayDurationMillis = prefs.getLong(
+                KeyTotalGameplayDurationMillis,
+                defaultSettings.totalGameplayDurationMillis,
+            ),
+            hasRequestedInAppReview = prefs.getBoolean(
+                KeyHasRequestedInAppReview,
+                defaultSettings.hasRequestedInAppReview,
+            ),
             lastActiveSlot = prefs.getString(KeyLastActiveSlot, null)?.let {
                 GameSessionSlot.fromKey(it)
             },
@@ -142,6 +150,8 @@ actual object AppSettingsStorage {
                 }
             }
             .putLong(KeyLastAppOpenedAtEpochMillis, sanitized.lastAppOpenedAtEpochMillis)
+            .putLong(KeyTotalGameplayDurationMillis, sanitized.totalGameplayDurationMillis)
+            .putBoolean(KeyHasRequestedInAppReview, sanitized.hasRequestedInAppReview)
             .apply {
                 if (sanitized.lastActiveSlot != null) {
                     putString(KeyLastActiveSlot, sanitized.lastActiveSlot.key)
@@ -160,6 +170,8 @@ actual object AppSettingsStorage {
     private const val KeyLastActiveSlot = "lastActiveSlot"
     private const val KeySelectedGameplayStyle = "selectedGameplayStyle"
     private const val KeyLastAppOpenedAtEpochMillis = "lastAppOpenedAtEpochMillis"
+    private const val KeyTotalGameplayDurationMillis = "totalGameplayDurationMillis"
+    private const val KeyHasRequestedInAppReview = "hasRequestedInAppReview"
     private const val KeyChallengeProgressPrefix = "challengeProgress_"
     private const val KeyTokenBalance = "tokenBalance"
     private const val KeyUnlockedThemeModes = "unlockedThemeModes"

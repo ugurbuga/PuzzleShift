@@ -19,7 +19,8 @@ kotlinx-coroutines = "1.11.0"
 material3 = "1.9.0"
 firebaseAnalytics = "22.5.0"
 firebaseCrashlytics = "19.4.4"
-googleMobileAds = "25.2.0"
+googleMobileAds = "25.3.0"
+googlePlayReview = "2.0.2"
 googleServices = "4.4.4"
 firebaseCrashlyticsPlugin = "3.0.7"
 gitliveFirebase = "2.4.0"
@@ -50,6 +51,7 @@ kotlinx-coroutinesSwing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-s
 firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx", version.ref = "firebaseAnalytics" }
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics-ktx", version.ref = "firebaseCrashlytics" }
 google-play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "googleMobileAds" }
+googlePlayReview = { module = "com.google.android.play:review-ktx", version.ref = "googlePlayReview" }
 gitlive-firebase-app = { module = "dev.gitlive:firebase-app", version.ref = "gitliveFirebase" }
 gitlive-firebase-analytics = { module = "dev.gitlive:firebase-analytics", version.ref = "gitliveFirebase" }
 gitlive-firebase-crashlytics = { module = "dev.gitlive:firebase-crashlytics", version.ref = "gitliveFirebase" }

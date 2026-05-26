@@ -31,7 +31,6 @@ import blockgames.composeapp.generated.resources.cancel
 import blockgames.composeapp.generated.resources.game_message_ad_reward_blocksort
 import blockgames.composeapp.generated.resources.game_message_ad_reward_blockwise
 import blockgames.composeapp.generated.resources.game_message_ad_reward_boomblocks
-import blockgames.composeapp.generated.resources.game_message_ad_reward_chainshift
 import blockgames.composeapp.generated.resources.game_message_ad_reward_digitshift
 import blockgames.composeapp.generated.resources.game_message_ad_reward_mergeshift
 import blockgames.composeapp.generated.resources.leave_session_confirm
@@ -57,6 +56,7 @@ import com.ugurbuga.blockgames.localization.currentDeviceLocaleTag
 import com.ugurbuga.blockgames.platform.GlobalPlatformConfig
 import com.ugurbuga.blockgames.platform.currentEpochMillis
 import com.ugurbuga.blockgames.platform.getCurrentDate
+import com.ugurbuga.blockgames.platform.rememberInAppReviewController
 import com.ugurbuga.blockgames.platform.rememberNotificationManager
 import com.ugurbuga.blockgames.presentation.game.GameViewModel
 import com.ugurbuga.blockgames.settings.AppSettings
@@ -64,7 +64,6 @@ import com.ugurbuga.blockgames.settings.AppSettingsStorage
 import com.ugurbuga.blockgames.settings.BlockSortOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.BlockWiseOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.BoomBlocksOnboardingStateFactory
-import com.ugurbuga.blockgames.settings.ChainShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.GameSessionSlot
 import com.ugurbuga.blockgames.settings.GameSessionStorage
@@ -79,9 +78,12 @@ import com.ugurbuga.blockgames.settings.awardScoreTokens
 import com.ugurbuga.blockgames.settings.hasSeenTutorialFor
 import com.ugurbuga.blockgames.settings.hasShownInteractiveOnboardingFor
 import com.ugurbuga.blockgames.settings.initializeAppSettingsForFirstLaunch
+import com.ugurbuga.blockgames.settings.isEligibleForInAppReview
 import com.ugurbuga.blockgames.settings.logLanguageBootstrapDecision
+import com.ugurbuga.blockgames.settings.markInAppReviewRequested
 import com.ugurbuga.blockgames.settings.markInteractiveOnboardingShown
 import com.ugurbuga.blockgames.settings.markTutorialSeen
+import com.ugurbuga.blockgames.settings.recordGameplayDuration
 import com.ugurbuga.blockgames.settings.recordAppOpened
 import com.ugurbuga.blockgames.settings.sanitized
 import com.ugurbuga.blockgames.settings.sessionSlot
@@ -116,6 +118,8 @@ enum class AppRoute {
     Selection,
 }
 
+private const val InAppReviewPromptDelayMillis = 750L
+
 internal fun isUsableSavedSession(
     state: GameState,
     slot: GameSessionSlot,
@@ -144,7 +148,6 @@ internal fun isUsableSavedSession(
     return when (state.gameplayStyle) {
         GameplayStyle.BlockWise -> state.trayPieces.isNotEmpty()
         GameplayStyle.StackShift -> state.activePiece != null
-        GameplayStyle.ChainShift -> state.activePiece != null
         GameplayStyle.MergeShift -> state.activePiece != null
         GameplayStyle.BoomBlocks -> true
         GameplayStyle.BlockSort -> state.board.occupiedCount > 0
@@ -228,11 +231,6 @@ internal fun rewardedDockFeedbackSpec(
 
         GameplayStyle.BlockWise -> RewardFeedbackSpec(
             messageRes = Res.string.game_message_ad_reward_blockwise,
-            icon = Icons.Filled.Refresh,
-        )
-
-        GameplayStyle.ChainShift -> RewardFeedbackSpec(
-            messageRes = Res.string.game_message_ad_reward_chainshift,
             icon = Icons.Filled.Refresh,
         )
 
@@ -458,6 +456,7 @@ fun BlockGamesAppHost(
     beforeRoot: @Composable (settings: AppSettings, canNavigateBack: Boolean, onRequestBack: () -> Unit) -> Unit = { _, _, _ -> },
 ) {
     val telemetry = rememberAppTelemetry()
+    val inAppReviewController = rememberInAppReviewController()
     val initialBootstrapResult = remember(startupGameplayStyleOverride) {
         val loadedSettings = AppSettingsStorage.load()
         val startupGameplayStyle = resolveStartupGameplayStyle(
@@ -484,6 +483,7 @@ fun BlockGamesAppHost(
     }
     var settings by remember(initialBootstrapResult) { mutableStateOf(initialBootstrapResult.settings.sanitized()) }
     var settingsTabIndex by rememberSaveable { mutableIntStateOf(0) }
+    var activeGameplayStartedAtEpochMillis by remember { mutableStateOf<Long?>(null) }
 
     LaunchedEffect(settings.selectedGameplayStyle) {
         settings.selectedGameplayStyle?.let {
@@ -511,6 +511,14 @@ fun BlockGamesAppHost(
         val sanitizedSettings = updated.sanitized()
         settings = sanitizedSettings
         AppSettingsStorage.save(sanitizedSettings)
+    }
+
+    fun flushTrackedGameplayDuration() {
+        val startedAt = activeGameplayStartedAtEpochMillis ?: return
+        activeGameplayStartedAtEpochMillis = null
+        val elapsedMillis = (currentEpochMillis() - startedAt).coerceAtLeast(0L)
+        if (elapsedMillis <= 0L) return
+        persistSettings(settings.recordGameplayDuration(elapsedMillis))
     }
 
     fun createGameViewModel(initialState: GameState?) = GameViewModel(
@@ -592,6 +600,9 @@ fun BlockGamesAppHost(
         if (routeStack.size <= 1) return
         showLeaveSessionDialog = false
         val leavingRoute = routeStack.lastOrNull()
+        if (leavingRoute == AppRoute.Game) {
+            flushTrackedGameplayDuration()
+        }
         routeStack = routeStack.dropLast(1)
 
         // Save immediately when leaving a game
@@ -616,6 +627,9 @@ fun BlockGamesAppHost(
     fun navigateHome() {
         showLeaveSessionDialog = false
         pendingRequestedGameMode = null
+        if (currentRoute == AppRoute.Game) {
+            flushTrackedGameplayDuration()
+        }
         routeStack = listOf(AppRoute.Home)
     }
 
@@ -633,7 +647,6 @@ fun BlockGamesAppHost(
         pendingSessionState = null
         val initialState = when (GlobalPlatformConfig.gameplayStyle) {
             GameplayStyle.BlockWise -> BlockWiseOnboardingStateFactory.initialState()
-            GameplayStyle.ChainShift -> ChainShiftOnboardingStateFactory.initialState()
             GameplayStyle.MergeShift -> MergeShiftOnboardingStateFactory.initialState()
             GameplayStyle.BoomBlocks -> BoomBlocksOnboardingStateFactory.initialState()
             GameplayStyle.BlockSort -> BlockSortOnboardingStateFactory.initialState()
@@ -723,6 +736,29 @@ fun BlockGamesAppHost(
             AppSettingsStorage.save(settings)
         }
     }
+    LaunchedEffect(currentRoute) {
+        if (currentRoute == AppRoute.Game) {
+            if (activeGameplayStartedAtEpochMillis == null) {
+                activeGameplayStartedAtEpochMillis = currentEpochMillis()
+            }
+        } else {
+            activeGameplayStartedAtEpochMillis = null
+        }
+    }
+    LaunchedEffect(
+        currentRoute,
+        settings.totalGameplayDurationMillis,
+        settings.hasRequestedInAppReview,
+        inAppReviewController.isSupported,
+    ) {
+        if (currentRoute != AppRoute.Home) return@LaunchedEffect
+        if (!inAppReviewController.isSupported || !settings.isEligibleForInAppReview()) return@LaunchedEffect
+        delay(InAppReviewPromptDelayMillis.milliseconds)
+        if (!inAppReviewController.isSupported || !settings.isEligibleForInAppReview()) return@LaunchedEffect
+        persistSettings(settings.markInAppReviewRequested())
+        telemetry.logUserAction(TelemetryActionNames.RequestInAppReview)
+        inAppReviewController.launchReviewRequest()
+    }
     LaunchedEffect(persistActiveSession.value, pendingSessionState) {
         val state = pendingSessionState ?: return@LaunchedEffect
         if (!persistActiveSession.value) return@LaunchedEffect
@@ -730,6 +766,9 @@ fun BlockGamesAppHost(
         if (persistActiveSession.value && (pendingSessionState == state)) {
             GameSessionStorage.save(state.sessionSlot(), state)
         }
+    }
+    DisposableEffect(Unit) {
+        onDispose(::flushTrackedGameplayDuration)
     }
     DisposableEffect(gameViewModel) {
         onDispose(gameViewModel::dispose)

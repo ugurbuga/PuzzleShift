@@ -19,5 +19,16 @@
     <string name="interactive_onboarding_sumshift_column_hint">İkinci satırdaki 2'ye dokun. Bu hamle sütunu tamamlar.</string>
     <string name="interactive_onboarding_sumshift_finish_hint">Üçüncü satırdaki 4'e dokun. Alıştırma bitecek ve oyun başlayacak.</string>
 
+    <!-- Accessibility -->
+    <string name="sumshift_hint_action">İpucu al</string>
+    <string name="sumshift_mistake_badge_content_description">Kalan hata hakkı: 1 üzerinden %1$d</string>
+
+    <!-- GameScreen -->
+    <string name="sumshift_completion_feedback">Tebrikler! Bulmaca tamamlandı, yeni tahta hazırlanıyor.</string>
+    <string name="sumshift_summary_rows_label">Satır</string>
+    <string name="sumshift_summary_columns_label">Sütun</string>
+    <string name="sumshift_summary_mistakes_label">Hata</string>
+    <string name="sumshift_summary_best_label">En iyi</string>
+
 </resources>
 

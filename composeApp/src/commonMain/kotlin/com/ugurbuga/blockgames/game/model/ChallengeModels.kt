@@ -10,7 +10,7 @@ enum class ChallengeTaskType(
 ) {
     ClearBlocks(
         stableId = "clear_blocks",
-        supportedStyles = setOf(GameplayStyle.StackShift, GameplayStyle.ChainShift),
+        supportedStyles = setOf(GameplayStyle.StackShift),
     ),
     ReachScore(
         stableId = "reach_score",
@@ -26,7 +26,7 @@ enum class ChallengeTaskType(
     ),
     ChainReaction(
         stableId = "chain_reaction",
-        supportedStyles = setOf(GameplayStyle.StackShift, GameplayStyle.ChainShift),
+        supportedStyles = setOf(GameplayStyle.StackShift),
     ),
     ClearRows(
         stableId = "clear_rows",
@@ -38,7 +38,7 @@ enum class ChallengeTaskType(
     ),
     PlacePieces(
         stableId = "place_pieces",
-        supportedStyles = setOf(GameplayStyle.BlockWise, GameplayStyle.BoomBlocks, GameplayStyle.ChainShift),
+        supportedStyles = setOf(GameplayStyle.BlockWise, GameplayStyle.BoomBlocks),
     ),
     ClearRounds(
         stableId = "clear_rounds",
@@ -77,13 +77,6 @@ enum class ChallengeTaskType(
                 ClearColumns,
                 PlacePieces,
                 ClearBothDirections,
-            ).getOrNull(ordinal)
-
-            GameplayStyle.ChainShift -> listOf(
-                ClearBlocks,
-                ReachScore,
-                PlacePieces,
-                ChainReaction,
             ).getOrNull(ordinal)
 
             GameplayStyle.MergeShift -> listOf(

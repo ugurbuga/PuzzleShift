@@ -52,6 +52,10 @@ fun AppFooterAdSlot(
     onOpenSelection: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    if (adController.bannerPresentationMode == BannerPresentationMode.External) {
+        return
+    }
+
     var bannerEverLoaded by remember { mutableStateOf(false) }
     val uiColors = BlockGamesThemeTokens.uiColors
 
@@ -73,18 +77,16 @@ fun AppFooterAdSlot(
                     onOpenSelection = onOpenSelection,
                 )
             }
-            if (adController.bannerPresentationMode == BannerPresentationMode.Inline) {
-                adController.Banner(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .graphicsLayer { alpha = if (bannerEverLoaded) 1f else 0f },
-                    onLoadStateChanged = { loaded ->
-                        if (loaded) {
-                            bannerEverLoaded = true
-                        }
-                    },
-                )
-            }
+            adController.Banner(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .graphicsLayer { alpha = if (bannerEverLoaded) 1f else 0f },
+                onLoadStateChanged = { loaded ->
+                    if (loaded) {
+                        bannerEverLoaded = true
+                    }
+                },
+            )
         }
     }
 }
