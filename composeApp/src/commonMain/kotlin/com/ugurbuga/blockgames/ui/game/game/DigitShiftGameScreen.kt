@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
@@ -18,6 +17,7 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.requiredWidth
@@ -53,6 +53,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import blockgames.composeapp.generated.resources.Res
+import blockgames.composeapp.generated.resources.digitshift_delete
+import blockgames.composeapp.generated.resources.digitshift_enter
+import blockgames.composeapp.generated.resources.digitshift_guess_label
 import blockgames.composeapp.generated.resources.game_message_digitshift_enter_word
 import blockgames.composeapp.generated.resources.interactive_onboarding_digitshift_solve_hint
 import blockgames.composeapp.generated.resources.interactive_onboarding_digitshift_submit_hint
@@ -62,17 +65,14 @@ import blockgames.composeapp.generated.resources.restart_confirm
 import blockgames.composeapp.generated.resources.restart_confirm_body
 import blockgames.composeapp.generated.resources.restart_confirm_title
 import blockgames.composeapp.generated.resources.time_remaining
-import blockgames.composeapp.generated.resources.digitshift_delete
-import blockgames.composeapp.generated.resources.digitshift_enter
-import blockgames.composeapp.generated.resources.digitshift_guess_label
 import com.ugurbuga.blockgames.ads.GameAdController
 import com.ugurbuga.blockgames.ads.NoOpGameAdController
 import com.ugurbuga.blockgames.game.logic.DigitShiftLexicon
+import com.ugurbuga.blockgames.game.model.DigitShiftGuess
+import com.ugurbuga.blockgames.game.model.DigitShiftLetterState
 import com.ugurbuga.blockgames.game.model.GameState
 import com.ugurbuga.blockgames.game.model.GameStatus
 import com.ugurbuga.blockgames.game.model.GameTextKey
-import com.ugurbuga.blockgames.game.model.DigitShiftGuess
-import com.ugurbuga.blockgames.game.model.DigitShiftLetterState
 import com.ugurbuga.blockgames.settings.DigitShiftOnboardingScene
 import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStage
 import com.ugurbuga.blockgames.ui.game.GameOverDialog
@@ -193,7 +193,13 @@ internal fun DigitShiftGameScreen(
             dismissLabel = stringResource(Res.string.restart_cancel),
             onConfirm = {
                 showRestartDialog = false
-                onRestart()
+                if (adController === NoOpGameAdController) {
+                    onRestart()
+                } else {
+                    adController.showRestartInterstitial {
+                        onRestart()
+                    }
+                }
             },
         )
     }
@@ -214,7 +220,15 @@ internal fun DigitShiftGameScreen(
             canUseExtraLife = !gameState.rewardedReviveUsed,
             isExtraLifeLoading = false,
             showExtraLifeButton = adController !== NoOpGameAdController && gameState.activeChallenge?.isCompleted != true,
-            onPlayAgain = onRestart,
+            onPlayAgain = {
+                if (adController === NoOpGameAdController) {
+                    onRestart()
+                } else {
+                    adController.showRestartInterstitial {
+                        onRestart()
+                    }
+                }
+            },
             onUseExtraLife = onRewardedRevive,
         )
     }

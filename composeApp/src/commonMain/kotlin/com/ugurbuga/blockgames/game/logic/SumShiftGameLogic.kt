@@ -97,49 +97,14 @@ internal class SumShiftGameLogic(
             lastActionTime = currentEpochMillis(),
         )
 
-        val allSolved = isSolved(updatedState)
-        if (!allSolved) {
+        if (!isSolved(updatedState)) {
             return GameMoveResult(
                 state = updatedState,
                 events = setOf(GameEvent.PlacementAccepted),
             )
         }
 
-        val scoreGain = 180 + (updatedState.sumShiftSelectedCells.size * 24) + (updatedState.config.rows * 18)
-        val nextScore = updatedState.score + scoreGain
-        val nextSolvedBoards = updatedState.linesCleared + 1
-        val nextLevel = 1 + (nextSolvedBoards / 3)
-        val updatedChallenge = updateChallenge(
-            challenge = updatedState.activeChallenge,
-            score = nextScore,
-            solvedBoards = nextSolvedBoards,
-        )
-        val challengeCompleted = updatedState.activeChallenge?.isCompleted != true && updatedChallenge?.isCompleted == true
-        val awardedTimeMillis = if (updatedState.gameMode == GameMode.TimeAttack) {
-            2_500L + (updatedState.sumShiftSelectedCells.size * 120L)
-        } else {
-            0L
-        }
-
-        return GameMoveResult(
-            state = updatedState.copy(
-                score = nextScore,
-                lastMoveScore = scoreGain,
-                linesCleared = nextSolvedBoards,
-                level = nextLevel,
-                difficultyStage = nextLevel - 1,
-                sumShiftManualDisabledCells = emptySet(),
-                sumShiftPreparingBoard = false,
-                feedbackToken = updatedState.feedbackToken + 1,
-                activeChallenge = updatedChallenge,
-                remainingTimeMillis = updatedState.remainingTimeMillis?.plus(awardedTimeMillis),
-            ),
-            events = buildSet {
-                add(GameEvent.PlacementAccepted)
-                add(GameEvent.LineClear)
-                if (challengeCompleted) add(GameEvent.ChallengeCompleted)
-            },
-        )
+        return finalizeSolvedSumShiftState(updatedState)
     }
 
     override fun holdPiece(state: GameState): GameMoveResult = GameMoveResult(state)
@@ -176,15 +141,7 @@ internal class SumShiftGameLogic(
 
     private fun normalizeConfig(config: GameConfig): GameConfig = normalizeSumShiftConfig(config)
 
-    private fun isSolved(state: GameState): Boolean {
-        val rowsSolved = state.sumShiftRowTargets.indices.all { index ->
-            rowSum(state, index) == state.sumShiftRowTargets[index]
-        }
-        val columnsSolved = state.sumShiftColumnTargets.indices.all { index ->
-            columnSum(state, index) == state.sumShiftColumnTargets[index]
-        }
-        return rowsSolved && columnsSolved
-    }
+    private fun isSolved(state: GameState): Boolean = isSolvedSumShiftState(state)
 
     private fun rowSum(state: GameState, rowIndex: Int): Int =
         (0 until state.config.columns).sumOf { column ->
@@ -198,25 +155,74 @@ internal class SumShiftGameLogic(
             if (point in state.sumShiftSelectedCells) state.board.cellAt(columnIndex, row)?.value ?: 0 else 0
         }
 
-    private fun updateChallenge(
-        challenge: DailyChallenge?,
-        score: Int,
-        solvedBoards: Int,
-    ): DailyChallenge? {
-        challenge ?: return null
-        return challenge.copy(
-            tasks = challenge.tasks.map { task ->
-                when (task.type) {
-                    ChallengeTaskType.ReachScore -> task.copy(current = score)
-                    else -> task
-                }
-            },
-        )
-    }
-
     private fun invalidMove(state: GameState): GameMoveResult =
         GameMoveResult(state = state, events = setOf(GameEvent.InvalidDrop))
 }
+
+internal fun isSolvedSumShiftState(state: GameState): Boolean {
+    val rowsSolved = state.sumShiftRowTargets.indices.all { index ->
+        selectedSumShiftRow(state, state.sumShiftSelectedCells, index) == state.sumShiftRowTargets[index]
+    }
+    val columnsSolved = state.sumShiftColumnTargets.indices.all { index ->
+        selectedSumShiftColumn(state, state.sumShiftSelectedCells, index) == state.sumShiftColumnTargets[index]
+    }
+    return rowsSolved && columnsSolved
+}
+
+internal fun finalizeSolvedSumShiftState(state: GameState): GameMoveResult {
+    val scoreGain = 180 + (state.sumShiftSelectedCells.size * 24) + (state.config.rows * 18)
+    val nextScore = state.score + scoreGain
+    val nextSolvedBoards = state.linesCleared + 1
+    val nextLevel = 1 + (nextSolvedBoards / 3)
+    val updatedChallenge = updateSumShiftChallenge(
+        challenge = state.activeChallenge,
+        score = nextScore,
+        solvedBoards = nextSolvedBoards,
+    )
+    val challengeCompleted = state.activeChallenge?.isCompleted != true && updatedChallenge?.isCompleted == true
+    val awardedTimeMillis = if (state.gameMode == GameMode.TimeAttack) {
+        2_500L + (state.sumShiftSelectedCells.size * 120L)
+    } else {
+        0L
+    }
+
+    return GameMoveResult(
+        state = state.copy(
+            score = nextScore,
+            lastMoveScore = scoreGain,
+            linesCleared = nextSolvedBoards,
+            level = nextLevel,
+            difficultyStage = nextLevel - 1,
+            sumShiftManualDisabledCells = emptySet(),
+            sumShiftPreparingBoard = false,
+            feedbackToken = state.feedbackToken + 1,
+            activeChallenge = updatedChallenge,
+            remainingTimeMillis = state.remainingTimeMillis?.plus(awardedTimeMillis),
+        ),
+        events = buildSet {
+            add(GameEvent.PlacementAccepted)
+            add(GameEvent.LineClear)
+            if (challengeCompleted) add(GameEvent.ChallengeCompleted)
+        },
+    )
+}
+
+private fun updateSumShiftChallenge(
+    challenge: DailyChallenge?,
+    score: Int,
+    solvedBoards: Int,
+): DailyChallenge? {
+    challenge ?: return null
+    return challenge.copy(
+        tasks = challenge.tasks.map { task ->
+            when (task.type) {
+                ChallengeTaskType.ReachScore -> task.copy(current = score)
+                else -> task
+            }
+        },
+    )
+}
+
 
 private data class SumShiftPuzzle(
     val board: BoardMatrix,

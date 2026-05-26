@@ -71,7 +71,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import blockgames.composeapp.generated.resources.Res
-import blockgames.composeapp.generated.resources.app_title_chainshift
 import blockgames.composeapp.generated.resources.app_title_blocksort
 import blockgames.composeapp.generated.resources.app_title_blockwise
 import blockgames.composeapp.generated.resources.app_title_boomblocks
@@ -81,7 +80,6 @@ import blockgames.composeapp.generated.resources.app_title_digitshift
 import blockgames.composeapp.generated.resources.app_title_sumshift
 import blockgames.composeapp.generated.resources.home_play_cta
 import blockgames.composeapp.generated.resources.selection_active_game_badge
-import blockgames.composeapp.generated.resources.selection_chainshift_desc
 import blockgames.composeapp.generated.resources.selection_blocksort_desc
 import blockgames.composeapp.generated.resources.selection_blockwise_desc
 import blockgames.composeapp.generated.resources.selection_boomblocks_desc
@@ -210,7 +208,6 @@ fun AppSelectionScreen(
         listOf(
             SelectionGameSpec(GameplayStyle.StackShift, Res.string.app_title_stackshift, Res.string.selection_stackshift_desc),
             SelectionGameSpec(GameplayStyle.BlockWise, Res.string.app_title_blockwise, Res.string.selection_blockwise_desc),
-            SelectionGameSpec(GameplayStyle.ChainShift, Res.string.app_title_chainshift, Res.string.selection_chainshift_desc),
             SelectionGameSpec(GameplayStyle.BlockSort, Res.string.app_title_blocksort, Res.string.selection_blocksort_desc),
             SelectionGameSpec(GameplayStyle.MergeShift, Res.string.app_title_mergeshift, Res.string.selection_mergeshift_desc),
             SelectionGameSpec(GameplayStyle.BoomBlocks, Res.string.app_title_boomblocks, Res.string.selection_boomblocks_desc),

@@ -4,7 +4,9 @@ import androidx.compose.runtime.Stable
 import com.ugurbuga.blockgames.game.logic.GameEvent
 import com.ugurbuga.blockgames.game.logic.GameLogic
 import com.ugurbuga.blockgames.game.logic.createSumShiftNewGame
+import com.ugurbuga.blockgames.game.logic.finalizeSolvedSumShiftState
 import com.ugurbuga.blockgames.game.logic.generateNextSumShiftBoard
+import com.ugurbuga.blockgames.game.logic.isSolvedSumShiftState
 import com.ugurbuga.blockgames.game.logic.normalizeSumShiftConfig
 import com.ugurbuga.blockgames.game.logic.randomSumShiftConfig
 import com.ugurbuga.blockgames.game.logic.resolveSumShiftAutoSelectedCells
@@ -95,7 +97,19 @@ class GameViewModel(
         origin: GridPoint,
         scheduleNextBoard: Boolean = true,
     ): GameDispatchResult {
-        val result = dispatchResult(GameIntent.PlacePiece(pieceId = 0L, origin = origin))
+        var result = dispatchResult(GameIntent.PlacePiece(pieceId = 0L, origin = origin))
+        if (GameEvent.LineClear !in result.events) {
+            maybeFinalizeSolvedSumShiftState(
+                state = uiState.value.gameState,
+                scheduleNextBoard = false,
+            )?.let { repaired ->
+                val mergedEvents = result.events + repaired.events
+                result = GameDispatchResult(
+                    events = mergedEvents,
+                    feedback = feedbackMapper.map(mergedEvents),
+                )
+            }
+        }
         if (scheduleNextBoard && GameEvent.LineClear in result.events) {
             scheduleNextSumShiftBoardAfterCompletion()
         }
@@ -161,21 +175,25 @@ class GameViewModel(
         store.replaceStateDirect(state)
     }
 
-    fun updateSumShiftManualDisabledCells(points: Set<GridPoint>) {
+    fun updateSumShiftManualDisabledCells(points: Set<GridPoint>): GameDispatchResult {
         val state = uiState.value.gameState
-        if (state.gameplayStyle != GameplayStyle.SumShift) return
+        if (state.gameplayStyle != GameplayStyle.SumShift) return GameDispatchResult()
         val nextSelectedCells = resolveSumShiftAutoSelectedCells(
             state = state,
             selectedCells = state.sumShiftSelectedCells - points,
             manualDisabledCells = points,
         )
-        store.replaceStateDirect(
-            state.copy(
-                sumShiftManualDisabledCells = points,
-                sumShiftSelectedCells = nextSelectedCells,
-                lastActionTime = currentEpochMillis(),
-            )
+        val nextState = state.copy(
+            sumShiftManualDisabledCells = points,
+            sumShiftSelectedCells = nextSelectedCells,
+            lastActionTime = currentEpochMillis(),
         )
+        maybeFinalizeSolvedSumShiftState(
+            state = nextState,
+            scheduleNextBoard = true,
+        )?.let { return it }
+        store.replaceStateDirect(nextState)
+        return GameDispatchResult()
     }
 
     fun recordSumShiftMistake(): InteractionFeedback {
@@ -248,6 +266,28 @@ class GameViewModel(
                 store.replaceStateDirect(generatedState)
             }
         }
+    }
+
+    private fun maybeFinalizeSolvedSumShiftState(
+        state: GameState,
+        scheduleNextBoard: Boolean,
+    ): GameDispatchResult? {
+        if (state.gameplayStyle != GameplayStyle.SumShift || !isSolvedSumShiftState(state)) {
+            return null
+        }
+
+        val result = finalizeSolvedSumShiftState(state)
+        store.replaceStateDirect(result.state)
+        if (GameEvent.ChallengeCompleted in result.events) {
+            result.state.activeChallenge?.let(onChallengeCompleted)
+        }
+        if (scheduleNextBoard && GameEvent.LineClear in result.events) {
+            scheduleNextSumShiftBoardAfterCompletion()
+        }
+        return GameDispatchResult(
+            events = result.events,
+            feedback = feedbackMapper.map(result.events),
+        )
     }
 
     private fun launchSumShiftPreparation(

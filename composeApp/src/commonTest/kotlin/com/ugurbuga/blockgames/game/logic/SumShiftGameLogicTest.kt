@@ -175,6 +175,22 @@ class SumShiftGameLogicTest {
         assertTrue(GridPoint(1, 0) !in next.sumShiftSelectedCells)
         assertEquals(1, next.linesCleared)
     }
+
+    @Test
+    fun finalizeSolvedSumShiftState_awardsSolvedBoardProgress() {
+        val scene = SumShiftOnboardingStateFactory.scene(SumShiftOnboardingStage.FinishPuzzle)
+        val solvedState = scene.gameState.copy(
+            sumShiftSelectedCells = scene.gameState.sumShiftSelectedCells + scene.requiredSelection,
+            sumShiftManualDisabledCells = setOf(GridPoint(3, 3)),
+        )
+
+        val result = finalizeSolvedSumShiftState(solvedState)
+
+        assertTrue(GameEvent.LineClear in result.events)
+        assertEquals(solvedState.linesCleared + 1, result.state.linesCleared)
+        assertTrue(result.state.sumShiftManualDisabledCells.isEmpty())
+        assertTrue(result.state.score > solvedState.score)
+    }
 }
 
 

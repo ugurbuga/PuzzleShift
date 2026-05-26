@@ -95,6 +95,13 @@ import blockgames.composeapp.generated.resources.game_message_ad_reward_boombloc
 import blockgames.composeapp.generated.resources.game_message_ad_reward_mergeshift
 import blockgames.composeapp.generated.resources.game_message_ad_reward_stackshift
 import blockgames.composeapp.generated.resources.game_message_chain_lines
+import blockgames.composeapp.generated.resources.game_message_digitshift_enter_word
+import blockgames.composeapp.generated.resources.game_message_digitshift_failed
+import blockgames.composeapp.generated.resources.game_message_digitshift_keep_trying
+import blockgames.composeapp.generated.resources.game_message_digitshift_not_enough_letters
+import blockgames.composeapp.generated.resources.game_message_digitshift_not_in_dictionary
+import blockgames.composeapp.generated.resources.game_message_digitshift_revived
+import blockgames.composeapp.generated.resources.game_message_digitshift_solved
 import blockgames.composeapp.generated.resources.game_message_extra_life_used
 import blockgames.composeapp.generated.resources.game_message_good_shot
 import blockgames.composeapp.generated.resources.game_message_hold_updated
@@ -110,13 +117,6 @@ import blockgames.composeapp.generated.resources.game_message_special_lines
 import blockgames.composeapp.generated.resources.game_message_special_triggered
 import blockgames.composeapp.generated.resources.game_message_tempo_critical
 import blockgames.composeapp.generated.resources.game_message_tempo_up
-import blockgames.composeapp.generated.resources.game_message_digitshift_enter_word
-import blockgames.composeapp.generated.resources.game_message_digitshift_failed
-import blockgames.composeapp.generated.resources.game_message_digitshift_keep_trying
-import blockgames.composeapp.generated.resources.game_message_digitshift_not_enough_letters
-import blockgames.composeapp.generated.resources.game_message_digitshift_not_in_dictionary
-import blockgames.composeapp.generated.resources.game_message_digitshift_revived
-import blockgames.composeapp.generated.resources.game_message_digitshift_solved
 import blockgames.composeapp.generated.resources.game_over_extra_life
 import blockgames.composeapp.generated.resources.game_over_extra_life_loading
 import blockgames.composeapp.generated.resources.game_over_new_high_score
@@ -1174,7 +1174,16 @@ internal fun rememberBlockStylePulse(
             style == BlockVisualStyle.Tornado ||
             style == BlockVisualStyle.Prism ||
             style == BlockVisualStyle.SoundWave ||
-            style == BlockVisualStyle.Flame
+            style == BlockVisualStyle.Flame ||
+            style == BlockVisualStyle.Cosmic ||
+            style == BlockVisualStyle.Gears ||
+            style == BlockVisualStyle.Cyberpunk ||
+            style == BlockVisualStyle.NeonGlow ||
+            style == BlockVisualStyle.LiquidMarble ||
+            style == BlockVisualStyle.Holographic ||
+            style == BlockVisualStyle.GlitchTech ||
+            style == BlockVisualStyle.AuraEnergy ||
+            style == BlockVisualStyle.CircuitBoard
 
     if (pulse != 0f || !needsPulse) {
         return pulse

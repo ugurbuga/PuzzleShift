@@ -31,23 +31,23 @@ import com.ugurbuga.blockgames.presentation.game.GameDispatchResult
 import com.ugurbuga.blockgames.presentation.game.GameIntent
 import com.ugurbuga.blockgames.presentation.game.GameViewModel
 import com.ugurbuga.blockgames.presentation.game.InteractionFeedback
+import com.ugurbuga.blockgames.settings.AppSettings
+import com.ugurbuga.blockgames.settings.BlockSortOnboardingStage
+import com.ugurbuga.blockgames.settings.BlockSortOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.BlockWiseOnboardingStage
 import com.ugurbuga.blockgames.settings.BlockWiseOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.BoomBlocksOnboardingStage
 import com.ugurbuga.blockgames.settings.BoomBlocksOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.ChainShiftOnboardingStage
 import com.ugurbuga.blockgames.settings.ChainShiftOnboardingStateFactory
+import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStage
+import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.HighScoreStorage
-import com.ugurbuga.blockgames.settings.BlockSortOnboardingStage
-import com.ugurbuga.blockgames.settings.BlockSortOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.MergeShiftOnboardingStage
 import com.ugurbuga.blockgames.settings.MergeShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.OnboardingStage
-import com.ugurbuga.blockgames.settings.AppSettings
 import com.ugurbuga.blockgames.settings.StackShiftGameOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.StackShiftOnboardingStage
-import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStage
-import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.SumShiftOnboardingStage
 import com.ugurbuga.blockgames.settings.SumShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.telemetry.AppTelemetry
@@ -577,6 +577,15 @@ fun BlockGamesGameApp(
                     }
                 }
             },
+            onRewardedHint = {
+                telemetry.logUserAction("rewarded_hint_sumshift")
+                val hintPoint = viewModel.snapshotState().findSumShiftHintPoint() ?: return@SumShiftGameScreen
+                val result = viewModel.placeSumShiftCellResult(
+                    origin = hintPoint,
+                    scheduleNextBoard = !interactiveOnboardingEnabled,
+                )
+                dispatchFeedback(result.feedback, soundPlayer, haptics)
+            },
             onRestart = {
                 telemetry.logUserAction(TelemetryActionNames.RestartGame)
                 dispatchFeedback(
@@ -588,7 +597,7 @@ fun BlockGamesGameApp(
                 )
             },
             onManualDisabledCellsChange = { points ->
-                viewModel.updateSumShiftManualDisabledCells(points)
+                dispatchFeedback(viewModel.updateSumShiftManualDisabledCells(points).feedback, soundPlayer, haptics)
             },
             onWrongTap = {
                 if (!interactiveOnboardingEnabled) {
