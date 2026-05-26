@@ -1517,6 +1517,7 @@ internal fun BlockCellPreview(
     val settings = LocalAppSettings.current
     val isDarkTheme = isBlockGamesDarkTheme(settings)
     val density = LocalDensity.current
+    val effectivePulse = rememberBlockStylePulse(style = style, pulse = pulse)
     val cellInset = boardCellInsetDp(size)
     val cellCornerRadius = boardCellCornerRadiusDp(size, style)
     val cellCornerRadiusPx = with(density) { cellCornerRadius.toPx() }
@@ -1536,7 +1537,7 @@ internal fun BlockCellPreview(
                 size = this.size,
                 cornerRadius = CornerRadius(cellCornerRadiusPx, cellCornerRadiusPx),
                 alpha = alpha,
-                pulse = pulse,
+                pulse = effectivePulse,
             )
         }
         if (special != SpecialBlockType.None) {
@@ -1566,6 +1567,7 @@ internal fun BlockCellPreview(
 ) {
     val density = LocalDensity.current
     val settings = LocalAppSettings.current
+    val effectivePulse = rememberBlockStylePulse(style = style, pulse = pulse)
     val cellInset = boardCellInsetDp(size)
     val cellCornerRadius = boardCellCornerRadiusDp(size, style)
     val cellCornerRadiusPx = with(density) { cellCornerRadius.toPx() }
@@ -1584,7 +1586,7 @@ internal fun BlockCellPreview(
                 size = this.size,
                 cornerRadius = CornerRadius(cellCornerRadiusPx, cellCornerRadiusPx),
                 alpha = alpha,
-                pulse = pulse,
+                pulse = effectivePulse,
             )
         }
     }

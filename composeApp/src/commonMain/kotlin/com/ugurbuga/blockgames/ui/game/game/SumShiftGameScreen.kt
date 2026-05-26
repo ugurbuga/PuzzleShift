@@ -85,6 +85,7 @@ import com.ugurbuga.blockgames.ui.game.GameOverDialog
 import com.ugurbuga.blockgames.ui.game.InteractiveOnboardingCompletionDialog
 import com.ugurbuga.blockgames.ui.game.MinimalTopBar
 import com.ugurbuga.blockgames.ui.game.RestartConfirmDialog
+import com.ugurbuga.blockgames.ui.game.TopBarActionBlockButton
 import com.ugurbuga.blockgames.ui.game.boardCellCornerRadiusDp
 import com.ugurbuga.blockgames.ui.game.rememberBlockStylePulse
 import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
@@ -106,6 +107,7 @@ internal fun SumShiftGameScreen(
     onManualDisabledCellsChange: (Set<GridPoint>) -> Unit = {},
     onWrongTap: () -> Unit = {},
     onRewardedRevive: () -> Unit = {},
+    onRewardedHint: () -> Unit = {},
     onBack: () -> Unit,
     highestScore: Int,
     showNewHighScoreMessage: Boolean = false,
@@ -185,6 +187,7 @@ internal fun SumShiftGameScreen(
     } else {
         interactionMode
     }
+    val hasRewardedHint = remember(gameState) { gameState.findSumShiftHintPoint() != null }
     val isPreparingBoard = gameState.sumShiftPreparingBoard
     val isSolvedBoard = gameState.isSumShiftSolvedBoard()
     val shouldShowFullPreparationCard =
@@ -205,7 +208,13 @@ internal fun SumShiftGameScreen(
             dismissLabel = stringResource(Res.string.restart_cancel),
             onConfirm = {
                 showRestartDialog = false
-                onRestart()
+                if (adController === NoOpGameAdController) {
+                    onRestart()
+                } else {
+                    adController.showRestartInterstitial {
+                        onRestart()
+                    }
+                }
             },
         )
     }
@@ -226,7 +235,15 @@ internal fun SumShiftGameScreen(
             canUseExtraLife = !gameState.rewardedReviveUsed,
             isExtraLifeLoading = false,
             showExtraLifeButton = adController !== NoOpGameAdController,
-            onPlayAgain = onRestart,
+            onPlayAgain = {
+                if (adController === NoOpGameAdController) {
+                    onRestart()
+                } else {
+                    adController.showRestartInterstitial {
+                        onRestart()
+                    }
+                }
+            },
             onUseExtraLife = onRewardedRevive,
         )
     }
@@ -360,7 +377,11 @@ internal fun SumShiftGameScreen(
                         .sortedWith(compareBy(GridPoint::row, GridPoint::column))
                         .forEach(onTapCell)
                 },
+                onRewardedHint = onRewardedHint,
                 controlsEnabled = boardInteractionEnabled,
+                adController = adController,
+                stylePulse = blockStylePulse,
+                hintEnabled = hasRewardedHint,
             )
         }
     }
@@ -567,7 +588,11 @@ private fun SumShiftControlsRow(
     interactionMode: SumShiftCellInteractionMode,
     onInteractionModeChange: (SumShiftCellInteractionMode) -> Unit,
     onClearMarks: () -> Unit,
+    onRewardedHint: () -> Unit,
     controlsEnabled: Boolean,
+    adController: GameAdController,
+    stylePulse: Float,
+    hintEnabled: Boolean,
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -589,10 +614,13 @@ private fun SumShiftControlsRow(
         )
         SumShiftToolButton(
             icon = Icons.Filled.Lightbulb,
-            onClick = {},
+            onClick = onRewardedHint,
             modifier = Modifier.weight(1f),
             tone = CellTone.Cyan,
-            enabled = false,
+            enabled = controlsEnabled && hintEnabled && adController !== NoOpGameAdController,
+            adController = adController,
+            stylePulse = stylePulse,
+            isRewarded = true,
         )
     }
 }
@@ -604,7 +632,40 @@ private fun SumShiftToolButton(
     modifier: Modifier = Modifier,
     tone: CellTone,
     enabled: Boolean = true,
+    adController: GameAdController = NoOpGameAdController,
+    stylePulse: Float = 0f,
+    isRewarded: Boolean = false,
 ) {
+    if (isRewarded) {
+        var loading by remember { mutableStateOf(false) }
+        Box(
+            modifier = modifier.height(52.dp),
+            contentAlignment = Alignment.Center,
+        ) {
+            TopBarActionBlockButton(
+                tone = tone,
+                icon = icon,
+                contentDescription = "Hint",
+                onClick = onClick@{
+                    if (loading) return@onClick
+                    loading = true
+                    adController.showRewardedAd { success ->
+                        loading = false
+                        if (success) {
+                            onClick()
+                        }
+                    }
+                },
+                enabled = enabled && !loading,
+                pulse = stylePulse,
+                size = 52.dp,
+                showAdIcon = true,
+                extraAlpha = 0.94f,
+            )
+        }
+        return
+    }
+
     val uiColors = BlockGamesThemeTokens.uiColors
     val accent = when (tone) {
         CellTone.Gold, CellTone.Amber -> uiColors.actionWarning
@@ -1110,8 +1171,9 @@ private fun SumShiftNumberCell(
         else -> 0.98f
     }
     val blockPulse = when {
-        wrongTapped || selected || guided || completed -> stylePulse
-        else -> 0f
+        wrongTapped -> stylePulse
+        selected || guided || completed -> (stylePulse * 0.95f).coerceAtLeast(0.12f)
+        else -> stylePulse * 0.55f
     }
     val animatedContainerColor = animateColorAsState(
         targetValue = overlayColor,
@@ -1250,21 +1312,23 @@ private fun sumShiftRevealAlphaFromBottom(rowIndex: Int, rowCount: Int, progress
         progress = progress,
     )
 
-internal fun GameState.systemDisabledSumShiftCells(): Set<GridPoint> = buildSet {
+internal fun GameState.systemDisabledSumShiftCells(
+    selectedCells: Set<GridPoint> = sumShiftSelectedCells,
+): Set<GridPoint> = buildSet {
     sumShiftRowTargets.indices.forEach { rowIndex ->
-        if (!isSumShiftRowCompleted(rowIndex)) return@forEach
+        if (sumShiftRowTargets.getOrNull(rowIndex) != selectedSumShiftRowSum(rowIndex, selectedCells)) return@forEach
         repeat(config.columns) { columnIndex ->
             val point = GridPoint(columnIndex, rowIndex)
-            if (point !in sumShiftSelectedCells) {
+            if (point !in selectedCells) {
                 add(point)
             }
         }
     }
     sumShiftColumnTargets.indices.forEach { columnIndex ->
-        if (!isSumShiftColumnCompleted(columnIndex)) return@forEach
+        if (sumShiftColumnTargets.getOrNull(columnIndex) != selectedSumShiftColumnSum(columnIndex, selectedCells)) return@forEach
         repeat(config.rows) { rowIndex ->
             val point = GridPoint(columnIndex, rowIndex)
-            if (point !in sumShiftSelectedCells) {
+            if (point !in selectedCells) {
                 add(point)
             }
         }
@@ -1337,15 +1401,27 @@ private fun Set<GridPoint>.toggle(point: GridPoint): Set<GridPoint> =
     if (point in this) this - point else this + point
 
 internal fun GameState.selectedSumShiftRowSum(rowIndex: Int): Int =
+    selectedSumShiftRowSum(rowIndex = rowIndex, selectedCells = sumShiftSelectedCells)
+
+internal fun GameState.selectedSumShiftRowSum(
+    rowIndex: Int,
+    selectedCells: Set<GridPoint>,
+): Int =
     (0 until config.columns).sumOf { column ->
         val point = GridPoint(column, rowIndex)
-        if (point in sumShiftSelectedCells) board.cellAt(column, rowIndex)?.value ?: 0 else 0
+        if (point in selectedCells) board.cellAt(column, rowIndex)?.value ?: 0 else 0
     }
 
 internal fun GameState.selectedSumShiftColumnSum(columnIndex: Int): Int =
+    selectedSumShiftColumnSum(columnIndex = columnIndex, selectedCells = sumShiftSelectedCells)
+
+internal fun GameState.selectedSumShiftColumnSum(
+    columnIndex: Int,
+    selectedCells: Set<GridPoint>,
+): Int =
     (0 until config.rows).sumOf { row ->
         val point = GridPoint(columnIndex, row)
-        if (point in sumShiftSelectedCells) board.cellAt(columnIndex, row)?.value ?: 0 else 0
+        if (point in selectedCells) board.cellAt(columnIndex, row)?.value ?: 0 else 0
     }
 
 internal fun GameState.selectableSumShiftRowSum(
@@ -1383,6 +1459,122 @@ internal fun GameState.isSumShiftSolvedBoard(): Boolean =
         sumShiftColumnTargets.isNotEmpty() &&
         completedSumShiftRows() == sumShiftRowTargets.size &&
         completedSumShiftColumns() == sumShiftColumnTargets.size
+
+internal fun GameState.findSumShiftHintPoint(): GridPoint? {
+    if (gameplayStyle != GameplayStyle.SumShift || status != GameStatus.Running || isSumShiftSolvedBoard()) {
+        return null
+    }
+
+    val currentDisabledCells = sumShiftManualDisabledCells + systemDisabledSumShiftCells()
+
+    return solveSumShiftHintPoint(
+        lockedSelectedCells = sumShiftSelectedCells,
+        manualDisabledCells = sumShiftManualDisabledCells,
+    ) ?: solveSumShiftHintPoint(
+        lockedSelectedCells = emptySet(),
+        manualDisabledCells = sumShiftManualDisabledCells,
+    )?.takeIf { it !in currentDisabledCells && it !in sumShiftSelectedCells }
+}
+
+private fun GameState.solveSumShiftHintPoint(
+    lockedSelectedCells: Set<GridPoint>,
+    manualDisabledCells: Set<GridPoint>,
+): GridPoint? {
+    val disabledCells = manualDisabledCells + systemDisabledSumShiftCells(selectedCells = lockedSelectedCells)
+    val fixedSelectedCells = lockedSelectedCells.filterTo(linkedSetOf()) { it !in manualDisabledCells }
+    val rowSelected = IntArray(config.rows) { rowIndex -> selectedSumShiftRowSum(rowIndex, fixedSelectedCells) }
+    val columnSelected = IntArray(config.columns) { columnIndex -> selectedSumShiftColumnSum(columnIndex, fixedSelectedCells) }
+    val rowRemaining = IntArray(config.rows)
+    val columnRemaining = IntArray(config.columns)
+    val candidates = buildList {
+        repeat(config.rows) { rowIndex ->
+            repeat(config.columns) { columnIndex ->
+                val point = GridPoint(columnIndex, rowIndex)
+                if (point in fixedSelectedCells || point in disabledCells) return@repeat
+                val value = board.cellAt(columnIndex, rowIndex)?.value ?: 0
+                rowRemaining[rowIndex] += value
+                columnRemaining[columnIndex] += value
+                add(point)
+            }
+        }
+    }.sortedBy { point ->
+        val rowSlack = (sumShiftRowTargets[point.row] - rowSelected[point.row]).coerceAtLeast(0)
+        val columnSlack = (sumShiftColumnTargets[point.column] - columnSelected[point.column]).coerceAtLeast(0)
+        minOf(rowSlack, columnSlack)
+    }
+
+    if (!sumShiftConstraintsRemainFeasible(rowSelected, rowRemaining, sumShiftRowTargets) ||
+        !sumShiftConstraintsRemainFeasible(columnSelected, columnRemaining, sumShiftColumnTargets)
+    ) {
+        return null
+    }
+
+    val solution = fixedSelectedCells.toMutableSet()
+
+    fun search(index: Int): Boolean {
+        if (index >= candidates.size) {
+            return rowSelected.indices.all { rowSelected[it] == sumShiftRowTargets[it] } &&
+                columnSelected.indices.all { columnSelected[it] == sumShiftColumnTargets[it] }
+        }
+
+        val point = candidates[index]
+        val value = board.cellAt(point.column, point.row)?.value ?: 0
+        rowRemaining[point.row] -= value
+        columnRemaining[point.column] -= value
+
+        val canInclude =
+            rowSelected[point.row] + value <= sumShiftRowTargets[point.row] &&
+                columnSelected[point.column] + value <= sumShiftColumnTargets[point.column]
+
+        if (canInclude) {
+            rowSelected[point.row] += value
+            columnSelected[point.column] += value
+            if (sumShiftConstraintIsFeasible(point.row, rowSelected, rowRemaining, sumShiftRowTargets) &&
+                sumShiftConstraintIsFeasible(point.column, columnSelected, columnRemaining, sumShiftColumnTargets)
+            ) {
+                solution += point
+                if (search(index + 1)) {
+                    return true
+                }
+                solution -= point
+            }
+            rowSelected[point.row] -= value
+            columnSelected[point.column] -= value
+        }
+
+        if (sumShiftConstraintIsFeasible(point.row, rowSelected, rowRemaining, sumShiftRowTargets) &&
+            sumShiftConstraintIsFeasible(point.column, columnSelected, columnRemaining, sumShiftColumnTargets) &&
+            search(index + 1)
+        ) {
+            return true
+        }
+
+        rowRemaining[point.row] += value
+        columnRemaining[point.column] += value
+        return false
+    }
+
+    if (!search(0)) return null
+    return solution.firstOrNull { it !in sumShiftSelectedCells && it !in disabledCells }
+}
+
+private fun sumShiftConstraintsRemainFeasible(
+    selected: IntArray,
+    remaining: IntArray,
+    targets: List<Int>,
+): Boolean = selected.indices.all { index ->
+    sumShiftConstraintIsFeasible(index, selected, remaining, targets)
+}
+
+private fun sumShiftConstraintIsFeasible(
+    index: Int,
+    selected: IntArray,
+    remaining: IntArray,
+    targets: List<Int>,
+): Boolean {
+    val target = targets.getOrElse(index) { 0 }
+    return selected[index] <= target && selected[index] + remaining[index] >= target
+}
 
 private fun previewSumShiftState(rows: Int = 6): GameState {
     val values = listOf(

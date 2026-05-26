@@ -158,5 +158,12 @@ class SumShiftGameScreenTest {
         assertNotEquals(requiredPoint, blockedPoint)
         assertFalse(scene.allowsGuidedTap(blockedPoint, scene.gameState.sumShiftSelectedCells))
     }
+
+    @Test
+    fun findSumShiftHintPoint_returnsRemainingCorrectMoveForOnboardingScene() {
+        val scene = SumShiftOnboardingStateFactory.scene(SumShiftOnboardingStateFactory.stages.first())
+
+        assertEquals(scene.requiredSelection.single(), scene.gameState.findSumShiftHintPoint())
+    }
 }
 
