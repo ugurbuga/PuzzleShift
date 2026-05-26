@@ -31,7 +31,6 @@ actual object HighScoreStorage {
         val suffix = when (GlobalPlatformConfig.gameplayStyle) {
             GameplayStyle.StackShift -> ""
             GameplayStyle.BlockWise -> "BlockWise"
-            GameplayStyle.ChainShift -> "ChainShift"
             GameplayStyle.MergeShift -> "MergeShift"
             GameplayStyle.BoomBlocks -> "BoomBlocks"
             GameplayStyle.BlockSort -> "BlockSort"

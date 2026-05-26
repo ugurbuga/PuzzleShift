@@ -2,22 +2,33 @@
 <resources>
 
     <!-- AppSelectionScreen -->
-    <string name="selection_sumshift_desc">Select numbered tiles so every row and column matches its outer target sum.</string>
+    <string name="selection_sumshift_desc">Pilih ubin bernomor agar setiap baris dan kolom cocok dengan jumlah target di luar papan.</string>
 
     <!-- GameTutorialScreen -->
-    <string name="tutorial_sumshift_intro_title">Match every target sum</string>
-    <string name="tutorial_sumshift_intro_body">Each board shows row and column targets around the grid. Select the numbered cells that should count toward those totals.</string>
-    <string name="tutorial_sumshift_targets_title">Read the outer targets</string>
-    <string name="tutorial_sumshift_targets_body">A target is complete only when the selected cells in that row or column add up exactly to the number outside the board.</string>
-    <string name="tutorial_sumshift_strategy_title">Balance both directions</string>
-    <string name="tutorial_sumshift_strategy_body">Every selected cell affects one row and one column. Build solutions that satisfy both at the same time, especially on taller 5x6, 5x7, and 5x8 boards.</string>
-    <string name="tutorial_sumshift_ready_title">Ready to shift the sums?</string>
-    <string name="tutorial_sumshift_ready_body">Complete all row and column targets to clear the puzzle and roll into the next board. Time Attack rewards faster full-board solves.</string>
+    <string name="tutorial_sumshift_intro_title">Cocokkan semua jumlah target</string>
+    <string name="tutorial_sumshift_intro_body">Setiap papan menampilkan target baris dan kolom di sekeliling grid. Pilih sel bernomor yang harus dihitung ke total tersebut.</string>
+    <string name="tutorial_sumshift_targets_title">Baca target di luar papan</string>
+    <string name="tutorial_sumshift_targets_body">Target hanya selesai jika sel yang dipilih pada baris atau kolom itu berjumlah tepat sama dengan angka di luar papan.</string>
+    <string name="tutorial_sumshift_strategy_title">Seimbangkan kedua arah</string>
+    <string name="tutorial_sumshift_strategy_body">Setiap sel yang dipilih memengaruhi satu baris dan satu kolom. Susun solusi yang memenuhi keduanya sekaligus, terutama saat papan menjadi lebih padat.</string>
+    <string name="tutorial_sumshift_ready_title">Siap menggeser jumlahnya?</string>
+    <string name="tutorial_sumshift_ready_body">Selesaikan semua target baris dan kolom untuk menuntaskan teka-teki dan lanjut ke papan berikutnya. Mode Time Attack memberi hadiah untuk penyelesaian penuh yang lebih cepat.</string>
 
     <!-- InteractiveOnboarding -->
-    <string name="interactive_onboarding_sumshift_row_hint">Start by completing the easiest row target with the correct cells.</string>
-    <string name="interactive_onboarding_sumshift_column_hint">Now finish a column target while keeping the row totals balanced.</string>
-    <string name="interactive_onboarding_sumshift_finish_hint">Use the selected cells to satisfy every row and column target on the board.</string>
+    <string name="interactive_onboarding_sumshift_row_hint">Ketuk angka 3 di baris teratas. Itu menyelesaikan target baris tersebut.</string>
+    <string name="interactive_onboarding_sumshift_column_hint">Sekarang ketuk angka 2 di baris kedua. Langkah ini menyelesaikan target kolom.</string>
+    <string name="interactive_onboarding_sumshift_finish_hint">Ketuk angka 4 di baris ketiga. Latihan selesai dan permainan sebenarnya dimulai.</string>
+
+    <!-- Accessibility -->
+    <string name="sumshift_hint_action">Dapatkan petunjuk</string>
+    <string name="sumshift_mistake_badge_content_description">Sisa kesalahan: %1$d dari 1</string>
+
+    <!-- GameScreen -->
+    <string name="sumshift_completion_feedback">Kerja bagus! Teka-teki selesai. Menyiapkan papan berikutnya.</string>
+    <string name="sumshift_summary_rows_label">Baris</string>
+    <string name="sumshift_summary_columns_label">Kol.</string>
+    <string name="sumshift_summary_mistakes_label">Salah</string>
+    <string name="sumshift_summary_best_label">Terbaik</string>
 
 </resources>
 

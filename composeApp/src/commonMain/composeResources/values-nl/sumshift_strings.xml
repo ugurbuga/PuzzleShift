@@ -2,22 +2,33 @@
 <resources>
 
     <!-- AppSelectionScreen -->
-    <string name="selection_sumshift_desc">Select numbered tiles so every row and column matches its outer target sum.</string>
+    <string name="selection_sumshift_desc">Selecteer genummerde tegels zodat elke rij en kolom overeenkomt met de doelssom aan de buitenkant.</string>
 
     <!-- GameTutorialScreen -->
-    <string name="tutorial_sumshift_intro_title">Match every target sum</string>
-    <string name="tutorial_sumshift_intro_body">Each board shows row and column targets around the grid. Select the numbered cells that should count toward those totals.</string>
-    <string name="tutorial_sumshift_targets_title">Read the outer targets</string>
-    <string name="tutorial_sumshift_targets_body">A target is complete only when the selected cells in that row or column add up exactly to the number outside the board.</string>
-    <string name="tutorial_sumshift_strategy_title">Balance both directions</string>
-    <string name="tutorial_sumshift_strategy_body">Every selected cell affects one row and one column. Build solutions that satisfy both at the same time, especially on taller 5x6, 5x7, and 5x8 boards.</string>
-    <string name="tutorial_sumshift_ready_title">Ready to shift the sums?</string>
-    <string name="tutorial_sumshift_ready_body">Complete all row and column targets to clear the puzzle and roll into the next board. Time Attack rewards faster full-board solves.</string>
+    <string name="tutorial_sumshift_intro_title">Haal alle doelssommen</string>
+    <string name="tutorial_sumshift_intro_body">Elk bord toont rij- en kolomdoelen rond het raster. Selecteer de genummerde vakjes die moeten meetellen voor die totalen.</string>
+    <string name="tutorial_sumshift_targets_title">Lees de doelen aan de buitenkant</string>
+    <string name="tutorial_sumshift_targets_body">Een doel is pas voltooid wanneer de geselecteerde vakjes in die rij of kolom exact optellen tot het getal buiten het bord.</string>
+    <string name="tutorial_sumshift_strategy_title">Houd beide richtingen in balans</string>
+    <string name="tutorial_sumshift_strategy_body">Elk geselecteerd vakje beïnvloedt één rij en één kolom. Bouw oplossingen die beide richtingen tegelijk halen, vooral wanneer het bord voller wordt.</string>
+    <string name="tutorial_sumshift_ready_title">Klaar om de sommen te verschuiven?</string>
+    <string name="tutorial_sumshift_ready_body">Voltooi alle rij- en kolomdoelen om de puzzel op te lossen en door te rollen naar het volgende bord. In Time Attack leveren snellere volledige oplossingen meer op.</string>
 
     <!-- InteractiveOnboarding -->
-    <string name="interactive_onboarding_sumshift_row_hint">Start by completing the easiest row target with the correct cells.</string>
-    <string name="interactive_onboarding_sumshift_column_hint">Now finish a column target while keeping the row totals balanced.</string>
-    <string name="interactive_onboarding_sumshift_finish_hint">Use the selected cells to satisfy every row and column target on the board.</string>
+    <string name="interactive_onboarding_sumshift_row_hint">Tik op de 3 in de bovenste rij. Daarmee voltooi je het doel van die rij.</string>
+    <string name="interactive_onboarding_sumshift_column_hint">Tik nu op de 2 in de tweede rij. Deze zet voltooit het kolomdoel.</string>
+    <string name="interactive_onboarding_sumshift_finish_hint">Tik op de 4 in de derde rij. De oefening eindigt en het echte spel begint.</string>
+
+    <!-- Accessibility -->
+    <string name="sumshift_hint_action">Hint krijgen</string>
+    <string name="sumshift_mistake_badge_content_description">Resterende fouten: %1$d van 1</string>
+
+    <!-- GameScreen -->
+    <string name="sumshift_completion_feedback">Goed gedaan! Puzzel opgelost. Het volgende bord wordt voorbereid.</string>
+    <string name="sumshift_summary_rows_label">Rijen</string>
+    <string name="sumshift_summary_columns_label">Kol.</string>
+    <string name="sumshift_summary_mistakes_label">Fouten</string>
+    <string name="sumshift_summary_best_label">Beste</string>
 
 </resources>
 

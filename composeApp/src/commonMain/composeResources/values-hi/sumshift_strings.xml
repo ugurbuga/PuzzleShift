@@ -2,22 +2,33 @@
 <resources>
 
     <!-- AppSelectionScreen -->
-    <string name="selection_sumshift_desc">Select numbered tiles so every row and column matches its outer target sum.</string>
+    <string name="selection_sumshift_desc">संख्या वाले टाइल चुनें ताकि हर पंक्ति और स्तंभ बाहरी लक्ष्य-योग से मेल खाएँ।</string>
 
     <!-- GameTutorialScreen -->
-    <string name="tutorial_sumshift_intro_title">Match every target sum</string>
-    <string name="tutorial_sumshift_intro_body">Each board shows row and column targets around the grid. Select the numbered cells that should count toward those totals.</string>
-    <string name="tutorial_sumshift_targets_title">Read the outer targets</string>
-    <string name="tutorial_sumshift_targets_body">A target is complete only when the selected cells in that row or column add up exactly to the number outside the board.</string>
-    <string name="tutorial_sumshift_strategy_title">Balance both directions</string>
-    <string name="tutorial_sumshift_strategy_body">Every selected cell affects one row and one column. Build solutions that satisfy both at the same time, especially on taller 5x6, 5x7, and 5x8 boards.</string>
-    <string name="tutorial_sumshift_ready_title">Ready to shift the sums?</string>
-    <string name="tutorial_sumshift_ready_body">Complete all row and column targets to clear the puzzle and roll into the next board. Time Attack rewards faster full-board solves.</string>
+    <string name="tutorial_sumshift_intro_title">सभी लक्ष्य योग मिलाएँ</string>
+    <string name="tutorial_sumshift_intro_body">हर बोर्ड में ग्रिड के बाहर पंक्ति और स्तंभ के लक्ष्य दिखते हैं। उन संख्या वाली कोशिकाओं को चुनें जिन्हें उन कुलों में गिना जाना चाहिए।</string>
+    <string name="tutorial_sumshift_targets_title">बाहरी लक्ष्य पढ़ें</string>
+    <string name="tutorial_sumshift_targets_body">कोई लक्ष्य तभी पूरा होता है जब उस पंक्ति या स्तंभ की चुनी गई कोशिकाओं का योग बोर्ड के बाहर लिखे अंक के बराबर हो।</string>
+    <string name="tutorial_sumshift_strategy_title">दोनों दिशाओं का संतुलन रखें</string>
+    <string name="tutorial_sumshift_strategy_body">आपकी चुनी गई हर कोशिका एक पंक्ति और एक स्तंभ दोनों को प्रभावित करती है। ऐसे हल बनाइए जो दोनों दिशाओं को एक साथ पूरा करें, खासकर जब बोर्ड अधिक घना हो जाए।</string>
+    <string name="tutorial_sumshift_ready_title">क्या आप योग बदलने के लिए तैयार हैं?</string>
+    <string name="tutorial_sumshift_ready_body">सभी पंक्ति और स्तंभ लक्ष्यों को पूरा करें, पहेली सुलझाएँ और अगले बोर्ड पर जाएँ। टाइम अटैक में तेज़ पूर्ण समाधान अधिक इनाम देते हैं।</string>
 
     <!-- InteractiveOnboarding -->
-    <string name="interactive_onboarding_sumshift_row_hint">Start by completing the easiest row target with the correct cells.</string>
-    <string name="interactive_onboarding_sumshift_column_hint">Now finish a column target while keeping the row totals balanced.</string>
-    <string name="interactive_onboarding_sumshift_finish_hint">Use the selected cells to satisfy every row and column target on the board.</string>
+    <string name="interactive_onboarding_sumshift_row_hint">ऊपर वाली पंक्ति में 3 पर टैप करें। इससे उस पंक्ति का लक्ष्य पूरा हो जाएगा।</string>
+    <string name="interactive_onboarding_sumshift_column_hint">अब दूसरी पंक्ति में 2 पर टैप करें। यह चाल स्तंभ का लक्ष्य पूरा करेगी।</string>
+    <string name="interactive_onboarding_sumshift_finish_hint">तीसरी पंक्ति में 4 पर टैप करें। अभ्यास समाप्त होगा और असली खेल शुरू होगा।</string>
+
+    <!-- Accessibility -->
+    <string name="sumshift_hint_action">संकेत लें</string>
+    <string name="sumshift_mistake_badge_content_description">बाकी गलतियाँ: 1 में से %1$d</string>
+
+    <!-- GameScreen -->
+    <string name="sumshift_completion_feedback">शाबाश! पहेली पूरी हुई। अगला बोर्ड तैयार किया जा रहा है।</string>
+    <string name="sumshift_summary_rows_label">पंक्ति</string>
+    <string name="sumshift_summary_columns_label">स्तंभ</string>
+    <string name="sumshift_summary_mistakes_label">गलती</string>
+    <string name="sumshift_summary_best_label">श्रेष्ठ</string>
 
 </resources>
 

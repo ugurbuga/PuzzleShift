@@ -1,19 +1,19 @@
 package com.ugurbuga.blockgames.settings
 
-import com.ugurbuga.blockgames.game.model.GameplayStyle
-import com.ugurbuga.blockgames.game.model.gameplayStyleFromPersistedValue
-
 import com.ugurbuga.blockgames.game.model.AppColorPalette
 import com.ugurbuga.blockgames.game.model.AppThemeMode
 import com.ugurbuga.blockgames.game.model.BlockVisualStyle
 import com.ugurbuga.blockgames.game.model.ChallengeProgress
 import com.ugurbuga.blockgames.game.model.DailyChallenge
+import com.ugurbuga.blockgames.game.model.GameplayStyle
+import com.ugurbuga.blockgames.game.model.gameplayStyleFromPersistedValue
 import com.ugurbuga.blockgames.game.model.normalizeBlockVisualStyle
 import com.ugurbuga.blockgames.platform.isDebugBuild
 
 const val DailyChallengeTokenReward = 10
 const val RewardedTokenAdReward = 10
 const val ScorePointsPerToken = 1_000
+const val InAppReviewPromptThresholdMillis = 10 * 60 * 1_000L
 
 private val DefaultUnlockedThemeModes = AppThemeMode.entries.toSet()
 private val DefaultUnlockedThemePalettes = setOf(AppColorPalette.Classic)
@@ -120,12 +120,26 @@ fun AppSettings.sanitized(): AppSettings {
         unlockedBlockStyles = sanitizedUnlockedBlockStyles,
         tokenBalance = this.tokenBalance.coerceAtLeast(0),
         lastAppOpenedAtEpochMillis = this.lastAppOpenedAtEpochMillis.coerceAtLeast(0L),
+        totalGameplayDurationMillis = this.totalGameplayDurationMillis.coerceAtLeast(0L),
         hasSeenTutorial = sanitizedSeenTutorialStyles.isNotEmpty(),
         hasShownInteractiveOnboarding = sanitizedShownInteractiveOnboardingStyles.isNotEmpty(),
         seenTutorialStyles = sanitizedSeenTutorialStyles,
         shownInteractiveOnboardingStyles = sanitizedShownInteractiveOnboardingStyles,
     )
 }
+
+fun AppSettings.recordGameplayDuration(durationMillis: Long): AppSettings {
+    if (durationMillis <= 0L) return sanitized()
+    return this.copy(
+        totalGameplayDurationMillis = this.totalGameplayDurationMillis + durationMillis,
+    ).sanitized()
+}
+
+fun AppSettings.isEligibleForInAppReview(): Boolean =
+    !hasRequestedInAppReview && totalGameplayDurationMillis >= InAppReviewPromptThresholdMillis
+
+fun AppSettings.markInAppReviewRequested(): AppSettings =
+    this.copy(hasRequestedInAppReview = true).sanitized()
 
 fun AppSettings.hasSeenTutorialFor(style: GameplayStyle): Boolean = style in this.seenTutorialStyles
 

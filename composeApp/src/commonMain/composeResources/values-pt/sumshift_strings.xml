@@ -2,22 +2,33 @@
 <resources>
 
     <!-- AppSelectionScreen -->
-    <string name="selection_sumshift_desc">Select numbered tiles so every row and column matches its outer target sum.</string>
+    <string name="selection_sumshift_desc">Selecione blocos numerados para que cada linha e coluna corresponda à soma-alvo externa.</string>
 
     <!-- GameTutorialScreen -->
-    <string name="tutorial_sumshift_intro_title">Match every target sum</string>
-    <string name="tutorial_sumshift_intro_body">Each board shows row and column targets around the grid. Select the numbered cells that should count toward those totals.</string>
-    <string name="tutorial_sumshift_targets_title">Read the outer targets</string>
-    <string name="tutorial_sumshift_targets_body">A target is complete only when the selected cells in that row or column add up exactly to the number outside the board.</string>
-    <string name="tutorial_sumshift_strategy_title">Balance both directions</string>
-    <string name="tutorial_sumshift_strategy_body">Every selected cell affects one row and one column. Build solutions that satisfy both at the same time, especially on taller 5x6, 5x7, and 5x8 boards.</string>
-    <string name="tutorial_sumshift_ready_title">Ready to shift the sums?</string>
-    <string name="tutorial_sumshift_ready_body">Complete all row and column targets to clear the puzzle and roll into the next board. Time Attack rewards faster full-board solves.</string>
+    <string name="tutorial_sumshift_intro_title">Iguale todas as somas-alvo</string>
+    <string name="tutorial_sumshift_intro_body">Cada tabuleiro mostra metas de linhas e colunas ao redor da grade. Selecione as células numeradas que devem contar para esses totais.</string>
+    <string name="tutorial_sumshift_targets_title">Leia as metas externas</string>
+    <string name="tutorial_sumshift_targets_body">Uma meta só é concluída quando as células selecionadas daquela linha ou coluna somam exatamente o número fora do tabuleiro.</string>
+    <string name="tutorial_sumshift_strategy_title">Equilibre as duas direções</string>
+    <string name="tutorial_sumshift_strategy_body">Cada célula selecionada afeta uma linha e uma coluna. Monte soluções que satisfaçam as duas ao mesmo tempo, especialmente quando o tabuleiro ficar mais denso.</string>
+    <string name="tutorial_sumshift_ready_title">Pronto para mover as somas?</string>
+    <string name="tutorial_sumshift_ready_body">Conclua todas as metas de linhas e colunas para resolver o quebra-cabeça e avançar para o próximo tabuleiro. O modo Contra o Tempo recompensa soluções completas mais rápidas.</string>
 
     <!-- InteractiveOnboarding -->
-    <string name="interactive_onboarding_sumshift_row_hint">Start by completing the easiest row target with the correct cells.</string>
-    <string name="interactive_onboarding_sumshift_column_hint">Now finish a column target while keeping the row totals balanced.</string>
-    <string name="interactive_onboarding_sumshift_finish_hint">Use the selected cells to satisfy every row and column target on the board.</string>
+    <string name="interactive_onboarding_sumshift_row_hint">Toque no 3 da linha superior. Isso completa a meta dessa linha.</string>
+    <string name="interactive_onboarding_sumshift_column_hint">Agora toque no 2 da segunda linha. Esse movimento completa a meta da coluna.</string>
+    <string name="interactive_onboarding_sumshift_finish_hint">Toque no 4 da terceira linha. A prática termina e o jogo real começa.</string>
+
+    <!-- Accessibility -->
+    <string name="sumshift_hint_action">Obter dica</string>
+    <string name="sumshift_mistake_badge_content_description">Erros restantes: %1$d de 1</string>
+
+    <!-- GameScreen -->
+    <string name="sumshift_completion_feedback">Muito bem! Quebra-cabeça resolvido. Preparando o próximo tabuleiro.</string>
+    <string name="sumshift_summary_rows_label">Linhas</string>
+    <string name="sumshift_summary_columns_label">Cols.</string>
+    <string name="sumshift_summary_mistakes_label">Erros</string>
+    <string name="sumshift_summary_best_label">Melhor</string>
 
 </resources>
 

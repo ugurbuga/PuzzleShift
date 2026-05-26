@@ -12,6 +12,9 @@ private enum StackShiftAdNotification {
 }
 
 private struct StackShiftAdsProperties {
+    private static let scopedPrefix = "ads.ios.stackshift."
+    private static let legacyPrefix = "ads.ios."
+
     static let shared = load()
 
     let iosApplicationId: String
@@ -34,12 +37,16 @@ private struct StackShiftAdsProperties {
 
         let values = parse(content)
         return StackShiftAdsProperties(
-            iosApplicationId: values["ads.ios.applicationId"] ?? "",
-            banner: values["ads.ios.bannerUnitId"] ?? "",
-            interstitial: values["ads.ios.interstitialUnitId"] ?? "",
-            rewardedRevive: values["ads.ios.rewardedUnitId"] ?? "",
-            rewardedSpecial: values["ads.ios.rewardedSpecialUnitId"] ?? ""
+            iosApplicationId: value(for: "applicationId", in: values),
+            banner: value(for: "bannerUnitId", in: values),
+            interstitial: value(for: "interstitialUnitId", in: values),
+            rewardedRevive: value(for: "rewardedUnitId", in: values),
+            rewardedSpecial: value(for: "rewardedSpecialUnitId", in: values)
         )
+    }
+
+    private static func value(for suffix: String, in values: [String: String]) -> String {
+        values[scopedPrefix + suffix] ?? values[legacyPrefix + suffix] ?? ""
     }
 
     private static func parse(_ content: String) -> [String: String] {
@@ -67,6 +74,50 @@ private enum StackShiftAdMobIDs {
     static let rewardedSpecial = StackShiftAdsProperties.shared.rewardedSpecial
 }
 
+private enum StackShiftAdMobConfiguration {
+    private static let placeholderMarker = "$("
+
+    static let infoPlistApplicationId: String = {
+        let value = Bundle.main.object(forInfoDictionaryKey: "GADApplicationIdentifier") as? String
+        return normalized(value)
+    }()
+
+    static let bundledApplicationId: String = normalized(StackShiftAdsProperties.shared.iosApplicationId)
+
+    static var canInitializeSdk: Bool {
+        isValidApplicationId(infoPlistApplicationId)
+    }
+
+    static func isValidUnitId(_ value: String) -> Bool {
+        let normalizedValue = normalized(value)
+        return !normalizedValue.isEmpty &&
+            !normalizedValue.contains(placeholderMarker) &&
+            normalizedValue.hasPrefix("ca-app-pub-")
+    }
+
+    static func logDisabledReasonIfNeeded() {
+        guard !canInitializeSdk else { return }
+
+        if isValidApplicationId(bundledApplicationId) {
+            print("[Ads] Google Mobile Ads disabled because Info.plist GADApplicationIdentifier is missing or unresolved. Verify ADS_IOS_APPLICATION_ID in GeneratedAds.xcconfig.")
+        } else {
+            print("[Ads] Google Mobile Ads disabled because no valid iOS AdMob application ID is configured.")
+        }
+    }
+
+    private static func isValidApplicationId(_ value: String) -> Bool {
+        !value.isEmpty &&
+            !value.contains(placeholderMarker) &&
+            value.hasPrefix("ca-app-pub-")
+    }
+
+    private static func normalized(_ value: String?) -> String {
+        value?
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .replacingOccurrences(of: "\0", with: "") ?? ""
+    }
+}
+
 final class StackShiftAdBridge: NSObject, FullScreenContentDelegate {
     static let shared = StackShiftAdBridge()
 
@@ -87,8 +138,14 @@ final class StackShiftAdBridge: NSObject, FullScreenContentDelegate {
         guard !started else { return }
         started = true
 
-        MobileAds.shared.start(completionHandler: nil)
         registerObservers()
+
+        guard StackShiftAdMobConfiguration.canInitializeSdk else {
+            StackShiftAdMobConfiguration.logDisabledReasonIfNeeded()
+            return
+        }
+
+        MobileAds.shared.start(completionHandler: nil)
         loadInterstitial()
         loadRewardedRevive()
         loadRewardedSpecial()
@@ -181,6 +238,8 @@ final class StackShiftAdBridge: NSObject, FullScreenContentDelegate {
     }
 
     private func loadInterstitial() {
+        guard StackShiftAdMobConfiguration.canInitializeSdk,
+              StackShiftAdMobConfiguration.isValidUnitId(StackShiftAdMobIDs.interstitial) else { return }
         InterstitialAd.load(
             with: StackShiftAdMobIDs.interstitial,
             request: Request()
@@ -190,7 +249,8 @@ final class StackShiftAdBridge: NSObject, FullScreenContentDelegate {
     }
 
     private func loadRewardedRevive() {
-        guard !StackShiftAdMobIDs.rewardedRevive.isEmpty else { return }
+        guard StackShiftAdMobConfiguration.canInitializeSdk,
+              StackShiftAdMobConfiguration.isValidUnitId(StackShiftAdMobIDs.rewardedRevive) else { return }
         RewardedAd.load(
             with: StackShiftAdMobIDs.rewardedRevive,
             request: Request()
@@ -200,7 +260,8 @@ final class StackShiftAdBridge: NSObject, FullScreenContentDelegate {
     }
 
     private func loadRewardedSpecial() {
-        guard !StackShiftAdMobIDs.rewardedSpecial.isEmpty else { return }
+        guard StackShiftAdMobConfiguration.canInitializeSdk,
+              StackShiftAdMobConfiguration.isValidUnitId(StackShiftAdMobIDs.rewardedSpecial) else { return }
         RewardedAd.load(
             with: StackShiftAdMobIDs.rewardedSpecial,
             request: Request()
@@ -288,7 +349,8 @@ struct StackShiftBannerHost: UIViewRepresentable {
             placeholderView.bottomAnchor.constraint(equalTo: container.bottomAnchor)
         ])
 
-        guard !StackShiftAdMobIDs.banner.isEmpty else {
+        guard StackShiftAdMobConfiguration.canInitializeSdk,
+              StackShiftAdMobConfiguration.isValidUnitId(StackShiftAdMobIDs.banner) else {
             context.coordinator.placeholderView = placeholderView
             return container
         }
@@ -314,6 +376,8 @@ struct StackShiftBannerHost: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: UIView, context: Context) {
+        guard StackShiftAdMobConfiguration.canInitializeSdk,
+              StackShiftAdMobConfiguration.isValidUnitId(StackShiftAdMobIDs.banner) else { return }
         guard let bannerView = context.coordinator.bannerView else { return }
 
         bannerView.rootViewController = StackShiftAdBridge.topViewController()

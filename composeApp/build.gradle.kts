@@ -2,7 +2,6 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.gradle.api.tasks.JavaExec
 
 private fun findDesktopJdkHome(): File? {
     val candidateHomes = buildList {
@@ -83,6 +82,7 @@ kotlin {
             implementation(libs.firebase.analytics)
             implementation(libs.firebase.crashlytics)
             implementation(libs.google.play.services.ads)
+            implementation(libs.googlePlayReview)
             implementation(libs.androidx.work.runtime)
         }
         commonMain.dependencies {

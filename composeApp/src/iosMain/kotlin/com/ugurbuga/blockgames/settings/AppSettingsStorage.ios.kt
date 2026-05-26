@@ -52,6 +52,11 @@ actual object AppSettingsStorage {
                 defaults.stringForKey(KeyLastAppOpenedAtEpochMillis)?.toLongOrNull()
                     ?: defaults.integerForKey(KeyLastAppOpenedAtEpochMillis).toLong()
             } ?: defaultSettings.lastAppOpenedAtEpochMillis,
+            totalGameplayDurationMillis = defaults.objectForKey(KeyTotalGameplayDurationMillis)?.let {
+                defaults.stringForKey(KeyTotalGameplayDurationMillis)?.toLongOrNull()
+                    ?: defaults.integerForKey(KeyTotalGameplayDurationMillis).toLong()
+            } ?: defaultSettings.totalGameplayDurationMillis,
+            hasRequestedInAppReview = defaults.boolForKey(KeyHasRequestedInAppReview),
             lastActiveSlot = defaults.stringForKey(KeyLastActiveSlot)?.let {
                 GameSessionSlot.fromKey(it)
             },
@@ -84,6 +89,8 @@ actual object AppSettingsStorage {
             defaults.setObject(encodeChallengeProgress(progress), forKey = KeyChallengeProgressPrefix + style.name.lowercase())
         }
         defaults.setObject(sanitized.lastAppOpenedAtEpochMillis.toString(), forKey = KeyLastAppOpenedAtEpochMillis)
+        defaults.setObject(sanitized.totalGameplayDurationMillis.toString(), forKey = KeyTotalGameplayDurationMillis)
+        defaults.setBool(sanitized.hasRequestedInAppReview, forKey = KeyHasRequestedInAppReview)
         if (sanitized.lastActiveSlot != null) {
             defaults.setObject(sanitized.lastActiveSlot.key, forKey = KeyLastActiveSlot)
         } else {
@@ -99,6 +106,8 @@ actual object AppSettingsStorage {
     private const val KeySelectedGameplayStyle = "selectedGameplayStyle"
     private const val KeyLastActiveSlot = "lastActiveSlot"
     private const val KeyLastAppOpenedAtEpochMillis = "lastAppOpenedAtEpochMillis"
+    private const val KeyTotalGameplayDurationMillis = "totalGameplayDurationMillis"
+    private const val KeyHasRequestedInAppReview = "hasRequestedInAppReview"
     private const val KeyChallengeProgressPrefix = "challengeProgress_"
     private const val KeyTokenBalance = "tokenBalance"
     private const val KeyUnlockedThemeModes = "unlockedThemeModes"

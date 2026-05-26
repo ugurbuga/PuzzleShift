@@ -2,22 +2,33 @@
 <resources>
 
     <!-- AppSelectionScreen -->
-    <string name="selection_sumshift_desc">Select numbered tiles so every row and column matches its outer target sum.</string>
+    <string name="selection_sumshift_desc">数字付きタイルを選んで、各行と各列の合計を外側の目標値に合わせましょう。</string>
 
     <!-- GameTutorialScreen -->
-    <string name="tutorial_sumshift_intro_title">Match every target sum</string>
-    <string name="tutorial_sumshift_intro_body">Each board shows row and column targets around the grid. Select the numbered cells that should count toward those totals.</string>
-    <string name="tutorial_sumshift_targets_title">Read the outer targets</string>
-    <string name="tutorial_sumshift_targets_body">A target is complete only when the selected cells in that row or column add up exactly to the number outside the board.</string>
-    <string name="tutorial_sumshift_strategy_title">Balance both directions</string>
-    <string name="tutorial_sumshift_strategy_body">Every selected cell affects one row and one column. Build solutions that satisfy both at the same time, especially on taller 5x6, 5x7, and 5x8 boards.</string>
-    <string name="tutorial_sumshift_ready_title">Ready to shift the sums?</string>
-    <string name="tutorial_sumshift_ready_body">Complete all row and column targets to clear the puzzle and roll into the next board. Time Attack rewards faster full-board solves.</string>
+    <string name="tutorial_sumshift_intro_title">すべての目標合計をそろえよう</string>
+    <string name="tutorial_sumshift_intro_body">各ボードの外側には行と列の目標値が表示されます。その合計に含めたい数字マスを選択してください。</string>
+    <string name="tutorial_sumshift_targets_title">外側の目標値を確認しよう</string>
+    <string name="tutorial_sumshift_targets_body">行または列で選択したマスの合計が、外側の数字とぴったり一致したときだけ目標達成です。</string>
+    <string name="tutorial_sumshift_strategy_title">縦横の両方をバランスよく</string>
+    <string name="tutorial_sumshift_strategy_body">選んだマスは1つの行と1つの列の両方に影響します。特に盤面が複雑になるほど、縦横の両方を同時に満たす組み合わせを作りましょう。</string>
+    <string name="tutorial_sumshift_ready_title">合計を動かす準備はいい？</string>
+    <string name="tutorial_sumshift_ready_body">すべての行と列の目標を達成するとパズルクリアとなり、次の盤面に進みます。タイムアタックでは、より速い全達成ほど高く評価されます。</string>
 
     <!-- InteractiveOnboarding -->
-    <string name="interactive_onboarding_sumshift_row_hint">Start by completing the easiest row target with the correct cells.</string>
-    <string name="interactive_onboarding_sumshift_column_hint">Now finish a column target while keeping the row totals balanced.</string>
-    <string name="interactive_onboarding_sumshift_finish_hint">Use the selected cells to satisfy every row and column target on the board.</string>
+    <string name="interactive_onboarding_sumshift_row_hint">一番上の行の 3 をタップしてください。その行の目標を達成できます。</string>
+    <string name="interactive_onboarding_sumshift_column_hint">次に2行目の 2 をタップしてください。この手で列の目標を達成できます。</string>
+    <string name="interactive_onboarding_sumshift_finish_hint">3行目の 4 をタップしてください。練習が終わり、本番が始まります。</string>
+
+    <!-- Accessibility -->
+    <string name="sumshift_hint_action">ヒントを見る</string>
+    <string name="sumshift_mistake_badge_content_description">残りミス回数：%1$d / 1</string>
+
+    <!-- GameScreen -->
+    <string name="sumshift_completion_feedback">やった！パズル完成。次の盤面を準備中です。</string>
+    <string name="sumshift_summary_rows_label">行</string>
+    <string name="sumshift_summary_columns_label">列</string>
+    <string name="sumshift_summary_mistakes_label">ミス</string>
+    <string name="sumshift_summary_best_label">ベスト</string>
 
 </resources>
 

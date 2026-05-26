@@ -34,6 +34,7 @@ object TelemetryEventNames {
 object TelemetryActionNames {
     const val StartGameFromHome = "start_game_from_home"
     const val StartTimeAttackFromHome = "start_time_attack_from_home"
+    const val RequestInAppReview = "request_in_app_review"
     const val OpenInteractiveOnboarding = "open_interactive_onboarding"
     const val OpenSettings = "open_settings"
     const val OpenTheme = "open_theme"

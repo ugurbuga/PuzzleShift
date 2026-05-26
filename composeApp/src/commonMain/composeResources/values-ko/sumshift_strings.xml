@@ -2,22 +2,33 @@
 <resources>
 
     <!-- AppSelectionScreen -->
-    <string name="selection_sumshift_desc">Select numbered tiles so every row and column matches its outer target sum.</string>
+    <string name="selection_sumshift_desc">숫자 타일을 선택해 각 행과 열의 합이 바깥쪽 목표 합과 일치하도록 만드세요.</string>
 
     <!-- GameTutorialScreen -->
-    <string name="tutorial_sumshift_intro_title">Match every target sum</string>
-    <string name="tutorial_sumshift_intro_body">Each board shows row and column targets around the grid. Select the numbered cells that should count toward those totals.</string>
-    <string name="tutorial_sumshift_targets_title">Read the outer targets</string>
-    <string name="tutorial_sumshift_targets_body">A target is complete only when the selected cells in that row or column add up exactly to the number outside the board.</string>
-    <string name="tutorial_sumshift_strategy_title">Balance both directions</string>
-    <string name="tutorial_sumshift_strategy_body">Every selected cell affects one row and one column. Build solutions that satisfy both at the same time, especially on taller 5x6, 5x7, and 5x8 boards.</string>
-    <string name="tutorial_sumshift_ready_title">Ready to shift the sums?</string>
-    <string name="tutorial_sumshift_ready_body">Complete all row and column targets to clear the puzzle and roll into the next board. Time Attack rewards faster full-board solves.</string>
+    <string name="tutorial_sumshift_intro_title">모든 목표 합 맞추기</string>
+    <string name="tutorial_sumshift_intro_body">각 보드의 격자 바깥에는 행과 열 목표가 표시됩니다. 그 합계에 포함되어야 할 숫자 칸을 선택하세요.</string>
+    <string name="tutorial_sumshift_targets_title">바깥 목표 읽기</string>
+    <string name="tutorial_sumshift_targets_body">해당 행 또는 열에서 선택한 칸의 합이 보드 바깥 숫자와 정확히 같을 때만 목표가 완료됩니다.</string>
+    <string name="tutorial_sumshift_strategy_title">가로와 세로를 함께 맞추기</string>
+    <string name="tutorial_sumshift_strategy_body">선택한 각 칸은 행 하나와 열 하나에 동시에 영향을 줍니다. 특히 보드가 더 빽빽해질수록 두 방향을 동시에 만족하는 해법을 만드세요.</string>
+    <string name="tutorial_sumshift_ready_title">합계를 움직일 준비가 됐나요?</string>
+    <string name="tutorial_sumshift_ready_body">모든 행과 열 목표를 완료하면 퍼즐을 클리어하고 다음 보드로 넘어갑니다. 타임어택에서는 더 빠른 전체 해결이 더 큰 보상이 됩니다.</string>
 
     <!-- InteractiveOnboarding -->
-    <string name="interactive_onboarding_sumshift_row_hint">Start by completing the easiest row target with the correct cells.</string>
-    <string name="interactive_onboarding_sumshift_column_hint">Now finish a column target while keeping the row totals balanced.</string>
-    <string name="interactive_onboarding_sumshift_finish_hint">Use the selected cells to satisfy every row and column target on the board.</string>
+    <string name="interactive_onboarding_sumshift_row_hint">맨 윗줄의 3을 탭하세요. 그러면 그 행 목표가 완료됩니다.</string>
+    <string name="interactive_onboarding_sumshift_column_hint">이제 둘째 줄의 2를 탭하세요. 이 움직임으로 열 목표가 완료됩니다.</string>
+    <string name="interactive_onboarding_sumshift_finish_hint">셋째 줄의 4를 탭하세요. 연습이 끝나고 실제 게임이 시작됩니다.</string>
+
+    <!-- Accessibility -->
+    <string name="sumshift_hint_action">힌트 보기</string>
+    <string name="sumshift_mistake_badge_content_description">남은 실수: 1회 중 %1$d회</string>
+
+    <!-- GameScreen -->
+    <string name="sumshift_completion_feedback">잘했어요! 퍼즐을 완료했습니다. 다음 보드를 준비 중입니다.</string>
+    <string name="sumshift_summary_rows_label">행</string>
+    <string name="sumshift_summary_columns_label">열</string>
+    <string name="sumshift_summary_mistakes_label">실수</string>
+    <string name="sumshift_summary_best_label">최고</string>
 
 </resources>
 
