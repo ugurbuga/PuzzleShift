@@ -16,6 +16,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -23,17 +24,17 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -57,7 +58,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -74,18 +74,18 @@ import blockgames.composeapp.generated.resources.Res
 import blockgames.composeapp.generated.resources.app_title_blocksort
 import blockgames.composeapp.generated.resources.app_title_blockwise
 import blockgames.composeapp.generated.resources.app_title_boomblocks
+import blockgames.composeapp.generated.resources.app_title_digitshift
 import blockgames.composeapp.generated.resources.app_title_mergeshift
 import blockgames.composeapp.generated.resources.app_title_stackshift
-import blockgames.composeapp.generated.resources.app_title_digitshift
 import blockgames.composeapp.generated.resources.app_title_sumshift
 import blockgames.composeapp.generated.resources.home_play_cta
 import blockgames.composeapp.generated.resources.selection_active_game_badge
 import blockgames.composeapp.generated.resources.selection_blocksort_desc
 import blockgames.composeapp.generated.resources.selection_blockwise_desc
 import blockgames.composeapp.generated.resources.selection_boomblocks_desc
+import blockgames.composeapp.generated.resources.selection_digitshift_desc
 import blockgames.composeapp.generated.resources.selection_mergeshift_desc
 import blockgames.composeapp.generated.resources.selection_stackshift_desc
-import blockgames.composeapp.generated.resources.selection_digitshift_desc
 import blockgames.composeapp.generated.resources.selection_sumshift_desc
 import blockgames.composeapp.generated.resources.selection_title
 import com.ugurbuga.blockgames.BlockGamesTheme
@@ -100,20 +100,20 @@ import com.ugurbuga.blockgames.game.model.Piece
 import com.ugurbuga.blockgames.game.model.PlacementPreview
 import com.ugurbuga.blockgames.localization.LocalAppSettings
 import com.ugurbuga.blockgames.settings.AppSettings
+import com.ugurbuga.blockgames.settings.BlockSortOnboardingStage
+import com.ugurbuga.blockgames.settings.BlockSortOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.BlockWiseOnboardingStage
 import com.ugurbuga.blockgames.settings.BlockWiseOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.BoomBlocksOnboardingStage
 import com.ugurbuga.blockgames.settings.BoomBlocksOnboardingStateFactory
-import com.ugurbuga.blockgames.settings.BlockSortOnboardingStage
-import com.ugurbuga.blockgames.settings.BlockSortOnboardingStateFactory
+import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStage
+import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.MergeShiftOnboardingStage
 import com.ugurbuga.blockgames.settings.MergeShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.StackShiftGameOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.StackShiftOnboardingStage
-import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStage
-import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStateFactory
-import com.ugurbuga.blockgames.settings.SumShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.SumShiftOnboardingStage
+import com.ugurbuga.blockgames.settings.SumShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.telemetry.AppTelemetry
 import com.ugurbuga.blockgames.telemetry.LogScreen
 import com.ugurbuga.blockgames.telemetry.NoOpAppTelemetry
@@ -123,12 +123,11 @@ import com.ugurbuga.blockgames.ui.game.BoardGrid
 import com.ugurbuga.blockgames.ui.game.PieceBlocks
 import com.ugurbuga.blockgames.ui.game.TopBarActionBlockButton
 import com.ugurbuga.blockgames.ui.game.game.BlockSortBoard
+import com.ugurbuga.blockgames.ui.game.game.DigitShiftBoard
+import com.ugurbuga.blockgames.ui.game.game.SumShiftBoardCard
 import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
 import com.ugurbuga.blockgames.ui.theme.appBackgroundBrush
-import com.ugurbuga.blockgames.ui.theme.blockGamesSurfaceShadow
-import com.ugurbuga.blockgames.ui.game.game.DigitShiftBoard
-import com.ugurbuga.blockgames.ui.game.game.SumShiftBoardCard
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.StringResource
@@ -333,10 +332,6 @@ private fun SelectionItem(
         modifier = modifier
             .fillMaxWidth()
             .bringIntoViewRequester(itemBringIntoViewRequester)
-            .blockGamesSurfaceShadow(
-                shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
-                elevation = if (isExpanded) 12.dp else 8.dp,
-            )
             .clip(RoundedCornerShape(GameUiShapeTokens.panelCorner))
             .clickable(
                 interactionSource = cardInteractionSource,

@@ -74,7 +74,6 @@ import com.ugurbuga.blockgames.ui.game.onboarding.BoomBlocksInteractiveGameOnboa
 import com.ugurbuga.blockgames.ui.game.onboarding.BoomBlocksInteractiveGameOnboardingUi
 import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
-import com.ugurbuga.blockgames.ui.theme.blockGamesSurfaceShadow
 import com.ugurbuga.blockgames.ui.theme.isBlockGamesDarkTheme
 import org.jetbrains.compose.resources.stringResource
 import kotlin.math.PI
@@ -224,10 +223,6 @@ fun BoomBlocksGameScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .aspectRatio(gameState.config.columns.toFloat() / gameState.config.rows.toFloat())
-                        .blockGamesSurfaceShadow(
-                            shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
-                            elevation = 8.dp,
-                        )
                         .clip(RoundedCornerShape(GameUiShapeTokens.panelCorner))
                         .background(uiColors.gameSurface.copy(alpha = 0.8f))
                         .onGloballyPositioned { coordinates ->
@@ -426,18 +421,18 @@ internal fun GameGrid(
     val isDarkTheme = isBlockGamesDarkTheme(settings)
     val resolvedStyle = settings.blockVisualStyle
     val board = gameState.board
-    
+
     var previousBoard by remember { mutableStateOf<BoardMatrix?>(null) }
     var visualBlocks by remember { mutableStateOf<List<VisualBlock>>(emptyList()) }
     val animationProgress = remember { Animatable(0f) }
-    
+
     val explosionProgress = remember { Animatable(0f) }
     var explodedPoints by remember { mutableStateOf(emptySet<GridPoint>()) }
     var explosionTones by remember { mutableStateOf(mapOf<GridPoint, CellTone>()) }
 
     LaunchedEffect(board, gameState.clearAnimationToken) {
         val prev = previousBoard
-        
+
         // Reset previous board on restart or significant change to prevent sliding from old game sessions
         val isRestart = gameState.status == GameStatus.Running && gameState.score == 0
         if (isRestart || prev == null || prev.columns != board.columns || prev.rows != board.rows) {
@@ -549,17 +544,17 @@ internal fun GameGrid(
         previousBoard = board
         animationProgress.stop()
         animationProgress.snapTo(0f)
-        
+
         if (gameState.recentlyExplodedPoints.isNotEmpty()) {
             kotlinx.coroutines.delay(BOOM_BLOCKS_FALL_DELAY_MILLIS)
         }
-        
+
         animationProgress.animateTo(
             targetValue = 1f,
             animationSpec = tween(BOOM_BLOCKS_FALL_DURATION_MILLIS, easing = FastOutSlowInEasing)
         )
     }
-    
+
     LaunchedEffect(gameState.clearAnimationToken) {
         if (gameState.recentlyExplodedPoints.isNotEmpty()) {
             explosionTones = gameState.recentlyExplodedTones

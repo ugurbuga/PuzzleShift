@@ -169,7 +169,6 @@ import com.ugurbuga.blockgames.ui.game.TopBarActionBlockButton
 import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
 import com.ugurbuga.blockgames.ui.theme.appBackgroundBrush
-import com.ugurbuga.blockgames.ui.theme.blockGamesSurfaceShadow
 import com.ugurbuga.blockgames.ui.theme.blockGamesThemeSpec
 import com.ugurbuga.blockgames.ui.theme.isBlockGamesDarkTheme
 import kotlinx.coroutines.delay
@@ -683,7 +682,6 @@ private fun SettingsTabSwitcher(
                 .graphicsLayer {
                     translationX = (pagerState.currentPage + pagerState.currentPageOffsetFraction) * size.width
                 }
-                .blockGamesSurfaceShadow(shape, 4.dp)
                 .background(color = uiColors.actionPrimary, shape = shape)
         )
 
@@ -748,7 +746,6 @@ private fun SettingsSectionCard(
         modifier = Modifier
             .fillMaxWidth()
             .widthIn(max = ScreenContentMaxWidth)
-            .blockGamesSurfaceShadow(shape, 4.dp)
             .background(uiColors.panel.copy(alpha = 0.95f), shape)
             .border(1.dp, uiColors.panelStroke.copy(alpha = 0.3f), shape)
             .padding(20.dp)
@@ -930,10 +927,6 @@ private fun TokenBalanceCard(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .blockGamesSurfaceShadow(
-                shape = surfaceShape,
-                elevation = 4.dp,
-            )
             .widthIn(max = ScreenContentMaxWidth),
         shape = surfaceShape,
         colors = CardDefaults.cardColors(containerColor = uiColors.panel.copy(alpha = 0.95f)),

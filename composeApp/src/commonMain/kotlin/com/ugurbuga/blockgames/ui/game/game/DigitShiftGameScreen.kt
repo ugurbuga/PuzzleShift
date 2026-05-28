@@ -82,7 +82,6 @@ import com.ugurbuga.blockgames.ui.game.RestartConfirmDialog
 import com.ugurbuga.blockgames.ui.game.resolveGameText
 import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
-import com.ugurbuga.blockgames.ui.theme.blockGamesSurfaceShadow
 import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.stringResource
 
@@ -294,10 +293,7 @@ internal fun DigitShiftBoard(
     modifier: Modifier = Modifier,
 ) {
     Card(
-        modifier = modifier.blockGamesSurfaceShadow(
-            shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
-            elevation = 10.dp,
-        ),
+        modifier = modifier,
         shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
         colors = CardDefaults.cardColors(containerColor = BlockGamesThemeTokens.uiColors.gameSurface.copy(alpha = 0.92f)),
         border = BorderStroke(1.dp, BlockGamesThemeTokens.uiColors.panelStroke.copy(alpha = 0.7f)),

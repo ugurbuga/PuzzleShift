@@ -1,9 +1,11 @@
 package com.ugurbuga.blockgames.ui.game.home
 
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
@@ -42,8 +44,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -51,6 +56,7 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalDensity
@@ -69,8 +75,6 @@ import blockgames.composeapp.generated.resources.app_title_banner_blockwise_bott
 import blockgames.composeapp.generated.resources.app_title_banner_blockwise_top
 import blockgames.composeapp.generated.resources.app_title_banner_boomblocks_bottom
 import blockgames.composeapp.generated.resources.app_title_banner_boomblocks_top
-import blockgames.composeapp.generated.resources.app_title_banner_digitshift_bottom
-import blockgames.composeapp.generated.resources.app_title_banner_digitshift_top
 import blockgames.composeapp.generated.resources.app_title_banner_stackshift_bottom
 import blockgames.composeapp.generated.resources.app_title_banner_stackshift_top
 import blockgames.composeapp.generated.resources.app_title_banner_sumshift_bottom
@@ -86,6 +90,7 @@ import com.ugurbuga.blockgames.BlockGamesTheme
 import com.ugurbuga.blockgames.game.model.AppThemeMode
 import com.ugurbuga.blockgames.game.model.BlockVisualStyle
 import com.ugurbuga.blockgames.game.model.CellTone
+import com.ugurbuga.blockgames.game.model.DigitShiftLetterState
 import com.ugurbuga.blockgames.game.model.GameplayStyle
 import com.ugurbuga.blockgames.localization.appNameStringResource
 import com.ugurbuga.blockgames.localization.appStringResource
@@ -109,7 +114,6 @@ import com.ugurbuga.blockgames.ui.game.specialBlockIconTint
 import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import com.ugurbuga.blockgames.ui.theme.BlockGamesUiColors
 import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
-import com.ugurbuga.blockgames.ui.theme.blockGamesSurfaceShadow
 import com.ugurbuga.blockgames.ui.theme.isBlockGamesDarkTheme
 import org.jetbrains.compose.resources.stringResource
 import kotlin.math.abs
@@ -118,6 +122,9 @@ private const val HomeTitleBannerColumns = 6
 private const val HomeTitleBannerRows = 2
 private const val BlockSortHomeBannerColumns = 5
 private const val BlockSortHomeBannerRows = 4
+private const val DigitShiftHomeBannerRows = 3
+private const val DigitShiftHomeBannerSequenceDurationMillis = 12_600
+private const val DigitShiftHomeBannerFlipAnimationMillis = 360
 
 @Composable
 fun HomeScreen(
@@ -311,7 +318,7 @@ private fun HomeTitleBanner(
         GameplayStyle.MergeShift -> MergeShiftHomeTitleBanner(settings, pulse, modifier)
         GameplayStyle.BoomBlocks -> BoomBlocksHomeTitleBanner(settings, pulse, modifier)
         GameplayStyle.BlockSort -> BlockSortHomeTitleBanner(settings, pulse, modifier)
-        GameplayStyle.DigitShift -> DigitShiftHomeTitleBanner(settings, pulse, modifier)
+        GameplayStyle.DigitShift -> DigitShiftHomeTitleBanner(pulse, modifier)
         GameplayStyle.SumShift -> SumShiftHomeTitleBanner(settings, pulse, modifier)
     }
 }
@@ -328,11 +335,7 @@ private fun SumShiftHomeTitleBanner(
     val accent = uiColors.selectionStackShift
     Card(
         modifier = modifier
-            .fillMaxWidth()
-            .blockGamesSurfaceShadow(
-                shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
-                elevation = 10.dp,
-            ),
+            .fillMaxWidth(),
         shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
         colors = CardDefaults.cardColors(containerColor = uiColors.gameSurface.copy(alpha = 0.92f)),
         border = BorderStroke(1.dp, accent.copy(alpha = 0.40f)),
@@ -373,56 +376,327 @@ private fun SumShiftHomeTitleBanner(
 
 @Composable
 private fun DigitShiftHomeTitleBanner(
-    settings: AppSettings,
     pulse: Float,
     modifier: Modifier = Modifier,
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
-    val topWord = stringResource(Res.string.app_title_banner_digitshift_top)
-    val bottomWord = stringResource(Res.string.app_title_banner_digitshift_bottom)
     val accent = uiColors.warning
+    val bannerMotionTransition = rememberInfiniteTransition(label = "digitShiftBannerMotion")
+    val sequenceClock by bannerMotionTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = DigitShiftHomeBannerSequenceDurationMillis, easing = LinearEasing),
+            repeatMode = RepeatMode.Restart,
+        ),
+        label = "digitShiftBannerSequenceClock",
+    )
+    val sequencePhase = normalizedPhase(sequenceClock)
+    val guesses = remember { digitShiftHomeBannerGuesses() }
+    val rowTimelines = remember { digitShiftHomeBannerTimelines() }
+    val rowStates = remember(sequencePhase) {
+        listOf(
+            digitShiftHomeBannerRowState(guesses[0], sequencePhase, rowTimelines[0]),
+            digitShiftHomeBannerRowState(guesses[1], sequencePhase, rowTimelines[1]),
+            digitShiftHomeBannerRowState(guesses[2], sequencePhase, rowTimelines[2]),
+        )
+    }
     Card(
         modifier = modifier
-            .fillMaxWidth()
-            .blockGamesSurfaceShadow(
-                shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
-                elevation = 10.dp,
-            ),
+            .fillMaxWidth(),
         shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
-        colors = CardDefaults.cardColors(containerColor = uiColors.gameSurface.copy(alpha = 0.92f)),
-        border = BorderStroke(1.dp, accent.copy(alpha = 0.40f)),
+        colors = CardDefaults.cardColors(containerColor = Color.Transparent),
+        border = BorderStroke(1.dp, accent.copy(alpha = 0.34f + (pulse * 0.08f))),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
     ) {
-        Column(
+        BoxWithConstraints(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(
-                    Brush.verticalGradient(
-                        colors = listOf(
-                            accent.copy(alpha = 0.18f + (pulse * 0.08f)),
-                            Color.Transparent,
-                        ),
-                    ),
-                )
-                .padding(horizontal = 24.dp, vertical = 22.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(4.dp),
+                .padding(horizontal = 8.dp, vertical = 8.dp),
+            contentAlignment = Alignment.Center,
         ) {
-            Text(
-                text = topWord,
-                style = MaterialTheme.typography.headlineMedium,
-                fontWeight = FontWeight.Black,
-                color = MaterialTheme.colorScheme.onSurface,
-                textAlign = TextAlign.Center,
-            )
-            Text(
-                text = bottomWord,
-                style = MaterialTheme.typography.headlineMedium,
-                fontWeight = FontWeight.Black,
-                color = accent,
-                textAlign = TextAlign.Center,
+            val cellGap = 6.dp
+            val cellsWidth = maxWidth - (cellGap * (HomeTitleBannerColumns - 1))
+            val widthBasedCell = cellsWidth / HomeTitleBannerColumns
+            val cellsHeight = (maxHeight - (cellGap * (DigitShiftHomeBannerRows - 1))) / DigitShiftHomeBannerRows
+            val cellSize = minOf(widthBasedCell, cellsHeight).coerceAtLeast(16.dp)
+
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(cellGap),
+            ) {
+                rowStates.forEach { rowState ->
+                    DigitShiftHomeBannerGuessRow(
+                        rowState = rowState,
+                        cellSize = cellSize,
+                        cellGap = cellGap,
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                }
+            }
+        }
+    }
+}
+
+private data class DigitShiftFeedbackPalette(
+    val container: Color,
+    val border: Color,
+    val content: Color,
+)
+
+private data class DigitShiftHomeBannerGuess(
+    val tokens: List<String>,
+    val states: List<DigitShiftLetterState>,
+)
+
+private data class DigitShiftHomeBannerTimeline(
+    val fillStart: Float,
+    val fillEnd: Float,
+    val revealStart: Float,
+    val revealEnd: Float,
+)
+
+private data class DigitShiftHomeBannerRowState(
+    val tokens: List<String>,
+    val states: List<DigitShiftLetterState?>,
+    val focusedIndex: Int?,
+    val active: Boolean,
+)
+
+private fun digitShiftHomeBannerGuesses(): List<DigitShiftHomeBannerGuess> = listOf(
+    DigitShiftHomeBannerGuess(
+        tokens = listOf("8", "2", "1", "9", "7", "4"),
+        states = listOf(
+            DigitShiftLetterState.Correct,
+            DigitShiftLetterState.Absent,
+            DigitShiftLetterState.Correct,
+            DigitShiftLetterState.Present,
+            DigitShiftLetterState.Absent,
+            DigitShiftLetterState.Present,
+        ),
+    ),
+    DigitShiftHomeBannerGuess(
+        tokens = listOf("8", "4", "1", "6", "3", "9"),
+        states = listOf(
+            DigitShiftLetterState.Correct,
+            DigitShiftLetterState.Present,
+            DigitShiftLetterState.Correct,
+            DigitShiftLetterState.Correct,
+            DigitShiftLetterState.Present,
+            DigitShiftLetterState.Correct,
+        ),
+    ),
+    DigitShiftHomeBannerGuess(
+        tokens = listOf("8", "3", "1", "6", "4", "9"),
+        states = List(HomeTitleBannerColumns) { DigitShiftLetterState.Correct },
+    ),
+)
+
+private fun digitShiftHomeBannerTimelines(): List<DigitShiftHomeBannerTimeline> = listOf(
+    DigitShiftHomeBannerTimeline(
+        fillStart = 0.08f,
+        fillEnd = 0.24f,
+        revealStart = 0.24f,
+        revealEnd = 0.38f,
+    ),
+    DigitShiftHomeBannerTimeline(
+        fillStart = 0.44f,
+        fillEnd = 0.60f,
+        revealStart = 0.60f,
+        revealEnd = 0.74f,
+    ),
+    DigitShiftHomeBannerTimeline(
+        fillStart = 0.80f,
+        fillEnd = 0.86f,
+        revealStart = 0.86f,
+        revealEnd = 0.90f,
+    ),
+)
+
+private fun digitShiftHomeBannerRowState(
+    guess: DigitShiftHomeBannerGuess,
+    phase: Float,
+    timeline: DigitShiftHomeBannerTimeline,
+): DigitShiftHomeBannerRowState {
+    val fillStart = timeline.fillStart
+    val fillEnd = timeline.fillEnd
+    val revealStart = timeline.revealStart
+    val revealEnd = timeline.revealEnd
+    val fillProgress = segmentProgress(phase, fillStart, fillEnd)
+    val revealProgress = segmentProgress(phase, revealStart, revealEnd)
+    val typedCount = digitShiftHomeBannerVisibleCount(fillProgress, guess.tokens.size)
+    val revealedCount = digitShiftHomeBannerVisibleCount(revealProgress, typedCount)
+    val tokens = List(HomeTitleBannerColumns) { index ->
+        if (index < typedCount) guess.tokens.getOrElse(index) { "" } else ""
+    }
+    val states = List(HomeTitleBannerColumns) { index ->
+        when {
+            index >= typedCount -> null
+            index < revealedCount -> guess.states.getOrNull(index) ?: DigitShiftLetterState.Unknown
+            else -> DigitShiftLetterState.Unknown
+        }
+    }
+    val focusedIndex = when {
+        phase in fillStart..fillEnd && typedCount < guess.tokens.size -> typedCount
+        phase in revealStart..revealEnd && revealedCount < typedCount -> revealedCount
+        else -> null
+    }
+    return DigitShiftHomeBannerRowState(
+        tokens = tokens,
+        states = states,
+        focusedIndex = focusedIndex,
+        active = phase in fillStart..revealEnd,
+    )
+}
+
+private fun digitShiftHomeBannerVisibleCount(progress: Float, total: Int): Int = when {
+    total <= 0 -> 0
+    progress <= 0f -> 0
+    progress >= 1f -> total
+    else -> ((progress * total).toInt() + 1).coerceAtMost(total)
+}
+
+@Composable
+private fun DigitShiftHomeBannerGuessRow(
+    rowState: DigitShiftHomeBannerRowState,
+    cellSize: Dp,
+    cellGap: Dp,
+    modifier: Modifier = Modifier,
+) {
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(cellGap),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        repeat(HomeTitleBannerColumns) { index ->
+            DigitShiftHomeBannerCell(
+                token = rowState.tokens.getOrElse(index) { "" },
+                state = rowState.states.getOrNull(index),
+                focused = rowState.focusedIndex == index,
+                modifier = Modifier.size(cellSize),
             )
         }
+    }
+}
+
+@Composable
+private fun DigitShiftHomeBannerCell(
+    token: String,
+    state: DigitShiftLetterState?,
+    focused: Boolean,
+    modifier: Modifier = Modifier,
+) {
+    val palette = digitShiftHomeBannerPaletteFor(state)
+    val animatedBackground by animateColorAsState(
+        targetValue = palette.container,
+        animationSpec = tween(durationMillis = DigitShiftHomeBannerFlipAnimationMillis),
+        label = "digitShiftHomeCellBackground",
+    )
+    val animatedBorder by animateColorAsState(
+        targetValue = palette.border,
+        animationSpec = tween(durationMillis = DigitShiftHomeBannerFlipAnimationMillis),
+        label = "digitShiftHomeCellBorder",
+    )
+    val animatedContentColor by animateColorAsState(
+        targetValue = palette.content,
+        animationSpec = tween(durationMillis = DigitShiftHomeBannerFlipAnimationMillis),
+        label = "digitShiftHomeCellContent",
+    )
+    var faceUp by remember(token, state) {
+        mutableStateOf(token.isBlank() || state == null || state == DigitShiftLetterState.Unknown)
+    }
+    LaunchedEffect(token, state) {
+        if (token.isBlank() || state == null || state == DigitShiftLetterState.Unknown) {
+            faceUp = true
+            return@LaunchedEffect
+        }
+        faceUp = false
+        kotlinx.coroutines.delay(18L)
+        faceUp = true
+    }
+    val flipProgress by animateFloatAsState(
+        targetValue = if (faceUp) 1f else 0f,
+        animationSpec = tween(durationMillis = DigitShiftHomeBannerFlipAnimationMillis),
+        label = "digitShiftHomeCellFlip",
+    )
+    val focusScale by animateFloatAsState(
+        targetValue = if (focused) 1.06f else 1f,
+        animationSpec = tween(durationMillis = 180),
+        label = "digitShiftHomeCellFocusScale",
+    )
+    val density = LocalDensity.current
+
+    Card(
+        modifier = modifier
+            .graphicsLayer {
+                rotationX = -180f * (1f - flipProgress)
+                scaleX = focusScale * (0.92f + (flipProgress * 0.08f))
+                scaleY = focusScale * (0.84f + (flipProgress * 0.16f))
+                alpha = if (token.isBlank()) 0.88f else 0.94f + (flipProgress * 0.06f)
+                transformOrigin = TransformOrigin(0.5f, 1f)
+                cameraDistance = with(density) { 12.dp.toPx() }
+            },
+        shape = RoundedCornerShape(12.dp),
+        colors = CardDefaults.cardColors(containerColor = animatedBackground),
+        border = BorderStroke(
+            width = if (focused) 1.6.dp else 1.dp,
+            color = if (focused) Color.White.copy(alpha = 0.42f) else animatedBorder,
+        ),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
+    ) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center,
+        ) {
+            Text(
+                text = token,
+                style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.Black,
+                color = animatedContentColor,
+                textAlign = TextAlign.Center,
+                maxLines = 1,
+            )
+        }
+    }
+}
+
+@Composable
+private fun digitShiftHomeBannerPaletteFor(
+    state: DigitShiftLetterState?,
+): DigitShiftFeedbackPalette {
+    val uiColors = BlockGamesThemeTokens.uiColors
+    val colorScheme = MaterialTheme.colorScheme
+    return when (state) {
+        DigitShiftLetterState.Correct -> DigitShiftFeedbackPalette(
+            container = androidx.compose.ui.graphics.lerp(uiColors.success, uiColors.actionSuccess, 0.28f).copy(alpha = 0.95f),
+            border = androidx.compose.ui.graphics.lerp(uiColors.success, Color.White, 0.18f),
+            content = Color.White,
+        )
+
+        DigitShiftLetterState.Present -> DigitShiftFeedbackPalette(
+            container = androidx.compose.ui.graphics.lerp(uiColors.warning, uiColors.actionWarning, 0.18f).copy(alpha = 0.95f),
+            border = androidx.compose.ui.graphics.lerp(uiColors.warning, Color.White, 0.14f),
+            content = Color.White,
+        )
+
+        DigitShiftLetterState.Absent -> DigitShiftFeedbackPalette(
+            container = Color(0xFF24262B).copy(alpha = 0.96f),
+            border = Color(0xFF0F1115),
+            content = Color(0xFFF2F4F7),
+        )
+
+        DigitShiftLetterState.Unknown,
+        null,
+        -> DigitShiftFeedbackPalette(
+            container = if (state == null) {
+                uiColors.metricCard.copy(alpha = 0.82f)
+            } else {
+                uiColors.metricCard.copy(alpha = 0.92f)
+            },
+            border = uiColors.panelStroke.copy(alpha = if (state == null) 0.58f else 0.74f),
+            content = if (state == null) uiColors.subtitle.copy(alpha = 0.34f) else colorScheme.onSurface,
+        )
     }
 }
 
@@ -496,11 +770,7 @@ private fun BlockSortHomeTitleBanner(
 
     Card(
         modifier = modifier
-            .fillMaxWidth()
-            .blockGamesSurfaceShadow(
-                shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
-                elevation = 10.dp,
-            ),
+            .fillMaxWidth(),
         shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
         colors = CardDefaults.cardColors(containerColor = uiColors.gameSurface.copy(alpha = 0.94f)),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
@@ -857,11 +1127,7 @@ private fun BoomBlocksHomeTitleBanner(
 
     Card(
         modifier = modifier
-            .fillMaxWidth()
-            .blockGamesSurfaceShadow(
-                shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
-                elevation = 10.dp,
-            ),
+            .fillMaxWidth(),
         shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
         colors = CardDefaults.cardColors(containerColor = uiColors.gameSurface.copy(alpha = 0.94f)),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
@@ -1728,11 +1994,7 @@ private fun HomeTitleBannerLayout(
 ) {
     Card(
         modifier = modifier
-            .fillMaxWidth()
-            .blockGamesSurfaceShadow(
-                shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
-                elevation = 10.dp,
-            ),
+            .fillMaxWidth(),
         shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
         colors = CardDefaults.cardColors(containerColor = uiColors.gameSurface.copy(alpha = 0.94f)),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
@@ -2064,10 +2326,7 @@ private fun HomeTitleMiniDock(
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
     Card(
-        modifier = modifier.blockGamesSurfaceShadow(
-            shape = RoundedCornerShape(GameUiShapeTokens.dockCorner),
-            elevation = 8.dp,
-        ),
+        modifier = modifier,
         shape = RoundedCornerShape(GameUiShapeTokens.dockCorner),
         colors = CardDefaults.cardColors(containerColor = uiColors.gameSurface.copy(alpha = 0.90f)),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
@@ -2182,10 +2441,6 @@ private fun HomeHighScoreCard(
     val uiColors = BlockGamesThemeTokens.uiColors
     Surface(
         modifier = modifier
-            .blockGamesSurfaceShadow(
-                shape = RoundedCornerShape(GameUiShapeTokens.surfaceCorner),
-                elevation = 5.dp,
-            )
             .clip(RoundedCornerShape(GameUiShapeTokens.surfaceCorner))
             .clickable { onClick() },
         shape = RoundedCornerShape(GameUiShapeTokens.surfaceCorner),
@@ -2286,10 +2541,7 @@ private fun HomeQuickActionButton(
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .blockGamesSurfaceShadow(
-                        shape = buttonShape,
-                        elevation = 0.dp,
-                    )
+
                     .clip(buttonShape)
                     .clickable(onClick = onClick),
                 contentAlignment = Alignment.Center,
@@ -2424,6 +2676,84 @@ fun HomeScreenBoomBlocksPreview() {
     val settings = AppSettings(
         themeMode = AppThemeMode.Dark,
         blockVisualStyle = BlockVisualStyle.Crystal
+    )
+    BlockGamesTheme(settings = settings) {
+        HomeScreen(
+            settings = settings,
+            classicHighScore = 1250,
+            timeAttackHighScore = 860,
+            telemetry = NoOpAppTelemetry,
+            onPlay = {},
+            onPlayTimeAttack = {},
+            onOpenTutorial = {},
+            onOpenTheme = {},
+            onOpenLanguage = {},
+            onOpenChallenges = {},
+            onSwitchGame = {},
+            notificationManager = rememberNotificationManager(),
+        )
+    }
+}
+
+@Preview(name = "BlockSort", showBackground = true)
+@Composable
+fun HomeScreenBlockSortPreview() {
+    GlobalPlatformConfig.gameplayStyle = GameplayStyle.BlockSort
+    val settings = AppSettings(
+        themeMode = AppThemeMode.Light,
+        blockVisualStyle = BlockVisualStyle.CircuitBoard
+    )
+    BlockGamesTheme(settings = settings) {
+        HomeScreen(
+            settings = settings,
+            classicHighScore = 1250,
+            timeAttackHighScore = 860,
+            telemetry = NoOpAppTelemetry,
+            onPlay = {},
+            onPlayTimeAttack = {},
+            onOpenTutorial = {},
+            onOpenTheme = {},
+            onOpenLanguage = {},
+            onOpenChallenges = {},
+            onSwitchGame = {},
+            notificationManager = rememberNotificationManager(),
+        )
+    }
+}
+
+@Preview(name = "DigitShift", showBackground = true)
+@Composable
+fun HomeScreenDigitShiftPreview() {
+    GlobalPlatformConfig.gameplayStyle = GameplayStyle.DigitShift
+    val settings = AppSettings(
+        themeMode = AppThemeMode.Dark,
+        blockVisualStyle = BlockVisualStyle.AuraEnergy
+    )
+    BlockGamesTheme(settings = settings) {
+        HomeScreen(
+            settings = settings,
+            classicHighScore = 1250,
+            timeAttackHighScore = 860,
+            telemetry = NoOpAppTelemetry,
+            onPlay = {},
+            onPlayTimeAttack = {},
+            onOpenTutorial = {},
+            onOpenTheme = {},
+            onOpenLanguage = {},
+            onOpenChallenges = {},
+            onSwitchGame = {},
+            notificationManager = rememberNotificationManager(),
+        )
+    }
+}
+
+@Preview(name = "SumShift", showBackground = true)
+@Composable
+fun HomeScreenSumShiftPreview() {
+    GlobalPlatformConfig.gameplayStyle = GameplayStyle.SumShift
+    val settings = AppSettings(
+        themeMode = AppThemeMode.Light,
+        blockVisualStyle = BlockVisualStyle.NeonGlow
     )
     BlockGamesTheme(settings = settings) {
         HomeScreen(

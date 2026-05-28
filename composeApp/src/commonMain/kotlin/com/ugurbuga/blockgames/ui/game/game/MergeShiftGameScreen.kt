@@ -105,7 +105,6 @@ import com.ugurbuga.blockgames.ui.game.onboarding.rememberMergeShiftInteractiveO
 import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
 import com.ugurbuga.blockgames.ui.theme.appBackgroundBrush
-import com.ugurbuga.blockgames.ui.theme.blockGamesSurfaceShadow
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
@@ -404,10 +403,6 @@ fun MergeShiftGameScreen(
                         Box(
                             modifier = Modifier
                                 .size(width = cellSize * columns, height = cellSize * rows)
-                                .blockGamesSurfaceShadow(
-                                    shape = boardShape,
-                                    elevation = 10.dp,
-                                )
                         ) {
                             BoardGrid(
                                 modifier = Modifier
@@ -633,10 +628,7 @@ private fun MergeShiftBottomDock(
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
     Card(
-        modifier = modifier.blockGamesSurfaceShadow(
-            shape = RoundedCornerShape(GameUiShapeTokens.dockCorner),
-            elevation = 10.dp,
-        ),
+        modifier = modifier,
         shape = RoundedCornerShape(GameUiShapeTokens.dockCorner),
         colors = CardDefaults.cardColors(containerColor = uiColors.panel.copy(alpha = 0.90f)),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),

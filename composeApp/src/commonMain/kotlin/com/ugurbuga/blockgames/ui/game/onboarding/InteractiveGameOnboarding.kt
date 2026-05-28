@@ -86,7 +86,6 @@ import com.ugurbuga.blockgames.ui.game.game.resolveSpawnColumn
 import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
 import com.ugurbuga.blockgames.ui.theme.appBackgroundBrush
-import com.ugurbuga.blockgames.ui.theme.blockGamesSurfaceShadow
 import org.jetbrains.compose.resources.stringResource
 
 @Immutable
@@ -287,10 +286,7 @@ internal fun InteractiveOnboardingInfoCard(
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
     Card(
-        modifier = modifier.blockGamesSurfaceShadow(
-            shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
-            elevation = 10.dp,
-        ),
+        modifier = modifier,
         shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
         colors = CardDefaults.cardColors(containerColor = uiColors.gameSurface.copy(alpha = 0.95f)),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),

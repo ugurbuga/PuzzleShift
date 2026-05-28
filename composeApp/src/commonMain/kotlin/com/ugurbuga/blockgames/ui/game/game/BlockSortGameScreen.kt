@@ -102,7 +102,6 @@ import com.ugurbuga.blockgames.ui.game.resolveGameText
 import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
 import com.ugurbuga.blockgames.ui.theme.appBackgroundBrush
-import com.ugurbuga.blockgames.ui.theme.blockGamesSurfaceShadow
 import org.jetbrains.compose.resources.stringResource
 
 private const val BlockSortStylePulseTransitionLabel = "blockSortInteractionPulse"
@@ -556,10 +555,7 @@ internal fun BlockSortBoard(
     }
 
     Card(
-        modifier = modifier.blockGamesSurfaceShadow(
-            shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
-            elevation = 10.dp,
-        ),
+        modifier = modifier,
         shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
         colors = CardDefaults.cardColors(containerColor = uiColors.gameSurface.copy(alpha = 0.88f)),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
@@ -1046,10 +1042,7 @@ private fun BlockSortInfoPanel(
     }
 
     Card(
-        modifier = modifier.blockGamesSurfaceShadow(
-            shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
-            elevation = 10.dp,
-        ),
+        modifier = modifier,
         shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
         colors = CardDefaults.cardColors(containerColor = uiColors.panel.copy(alpha = 0.94f)),
         border = BorderStroke(1.dp, uiColors.panelStroke.copy(alpha = 0.72f)),
@@ -1412,10 +1405,7 @@ private fun BlockSortOnboardingCard(
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
     Card(
-        modifier = modifier.blockGamesSurfaceShadow(
-            shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
-            elevation = 10.dp,
-        ),
+        modifier = modifier,
         shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
         colors = CardDefaults.cardColors(containerColor = uiColors.panel.copy(alpha = 0.95f)),
         border = BorderStroke(1.dp, uiColors.guideAccent.copy(alpha = 0.42f)),
