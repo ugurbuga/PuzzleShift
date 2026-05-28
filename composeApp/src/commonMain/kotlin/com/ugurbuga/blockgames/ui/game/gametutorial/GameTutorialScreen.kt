@@ -228,7 +228,6 @@ import com.ugurbuga.blockgames.ui.game.rememberBlockStylePulse
 import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
 import com.ugurbuga.blockgames.ui.theme.appBackgroundBrush
-import com.ugurbuga.blockgames.ui.theme.blockGamesSurfaceShadow
 import com.ugurbuga.blockgames.ui.theme.isBlockGamesDarkTheme
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
@@ -849,10 +848,7 @@ fun GameTutorialScreen(
 private fun TutorialStepChip(currentStep: Int, totalSteps: Int) {
     val uiColors = BlockGamesThemeTokens.uiColors
     Card(
-        modifier = Modifier.blockGamesSurfaceShadow(
-            shape = RoundedCornerShape(GameUiShapeTokens.chipCorner),
-            elevation = 5.dp,
-        ),
+        modifier = Modifier,
         shape = RoundedCornerShape(GameUiShapeTokens.chipCorner),
         colors = CardDefaults.cardColors(containerColor = uiColors.panelMuted.copy(alpha = 0.92f)),
         border = BorderStroke(1.dp, uiColors.panelStroke.copy(alpha = 0.68f)),
@@ -942,14 +938,7 @@ private fun TutorialMiniBoardShell(
     val settings = LocalAppSettings.current
     val boardStyle = settings.blockVisualStyle
     Card(
-        modifier = modifier.blockGamesSurfaceShadow(
-            shape = RoundedCornerShape(
-                boardFrameCornerRadiusDp(
-                    boardStyle
-                )
-            ),
-            elevation = 10.dp,
-        ),
+        modifier = modifier,
         shape = RoundedCornerShape(
             boardFrameCornerRadiusDp(
                 boardStyle
@@ -2234,10 +2223,7 @@ private fun TutorialMiniBottomDock(
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
     Card(
-        modifier = modifier.blockGamesSurfaceShadow(
-            shape = RoundedCornerShape(GameUiShapeTokens.dockCorner),
-            elevation = 10.dp,
-        ),
+        modifier = modifier,
         shape = RoundedCornerShape(GameUiShapeTokens.dockCorner),
         colors = CardDefaults.cardColors(containerColor = uiColors.gameSurface.copy(alpha = 0.90f)),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
@@ -2338,10 +2324,7 @@ private fun TutorialSection(
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
     Card(
-        modifier = Modifier.blockGamesSurfaceShadow(
-            shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
-            elevation = 5.dp,
-        ),
+        modifier = Modifier,
         shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
         colors = CardDefaults.cardColors(containerColor = uiColors.gameSurface.copy(alpha = 0.84f)),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
@@ -2378,10 +2361,7 @@ private fun TutorialPieceCard(
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
     Card(
-        modifier = modifier.blockGamesSurfaceShadow(
-            shape = RoundedCornerShape(GameUiShapeTokens.surfaceCorner),
-            elevation = 5.dp,
-        ),
+        modifier = modifier,
         shape = RoundedCornerShape(GameUiShapeTokens.surfaceCorner),
         colors = CardDefaults.cardColors(containerColor = uiColors.panelMuted.copy(alpha = 0.76f)),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
@@ -2464,10 +2444,7 @@ private fun TutorialSpecialCard(
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
     Card(
-        modifier = Modifier.blockGamesSurfaceShadow(
-            shape = RoundedCornerShape(GameUiShapeTokens.surfaceCorner),
-            elevation = 5.dp,
-        ),
+        modifier = Modifier,
         shape = RoundedCornerShape(GameUiShapeTokens.surfaceCorner),
         colors = CardDefaults.cardColors(containerColor = uiColors.panelMuted.copy(alpha = 0.78f)),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
@@ -2509,10 +2486,7 @@ private fun TutorialSpecialCard(
 private fun TutorialHintCard(text: String) {
     val uiColors = BlockGamesThemeTokens.uiColors
     Card(
-        modifier = Modifier.blockGamesSurfaceShadow(
-            shape = RoundedCornerShape(GameUiShapeTokens.hintCorner),
-            elevation = 5.dp,
-        ),
+        modifier = Modifier,
         shape = RoundedCornerShape(GameUiShapeTokens.hintCorner),
         colors = CardDefaults.cardColors(containerColor = uiColors.metricCard.copy(alpha = 0.84f)),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),

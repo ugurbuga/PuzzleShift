@@ -106,7 +106,6 @@ import com.ugurbuga.blockgames.ui.game.rememberBlockStylePulse
 import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
 import com.ugurbuga.blockgames.ui.theme.appBackgroundBrush
-import com.ugurbuga.blockgames.ui.theme.blockGamesSurfaceShadow
 import org.jetbrains.compose.resources.stringResource
 
 private enum class SumShiftCellInteractionMode {
@@ -423,8 +422,7 @@ private fun SumShiftSummaryCard(
     val shape = RoundedCornerShape(GameUiShapeTokens.panelCorner)
     Card(
         modifier = Modifier
-            .fillMaxWidth()
-            .blockGamesSurfaceShadow(shape = shape, elevation = 10.dp),
+            .fillMaxWidth(),
         shape = shape,
         colors = CardDefaults.cardColors(containerColor = uiColors.gameSurface.copy(alpha = 0.94f)),
         border = BorderStroke(1.dp, uiColors.panelStroke.copy(alpha = 0.72f)),
@@ -569,8 +567,7 @@ private fun SumShiftMistakeBadge(
 
     Surface(
         modifier = modifier
-            .height(52.dp)
-            .blockGamesSurfaceShadow(shape = shape, elevation = 6.dp),
+            .height(52.dp),
         shape = shape,
         color = uiColors.metricCard.copy(alpha = 0.96f),
         tonalElevation = 0.dp,
@@ -656,7 +653,6 @@ private fun SumShiftToolButton(
         modifier = modifier
             .height(52.dp)
             .alpha(if (enabled) 1f else 0.72f)
-            .blockGamesSurfaceShadow(shape = shape, elevation = 8.dp)
             .clip(shape)
             .clickable(enabled = enabled, onClick = onClick),
         shape = shape,
@@ -695,8 +691,7 @@ private fun SumShiftInteractionModeSwitch(
     Surface(
         modifier = modifier
             .height(52.dp)
-            .alpha(if (enabled) 1f else 0.72f)
-            .blockGamesSurfaceShadow(shape = shape, elevation = 6.dp),
+            .alpha(if (enabled) 1f else 0.72f),
         shape = shape,
         color = uiColors.metricCard.copy(alpha = 0.96f),
         tonalElevation = 0.dp,
@@ -791,8 +786,7 @@ internal fun SumShiftBoardCard(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .widthIn(max = 420.dp)
-            .blockGamesSurfaceShadow(shape = boardPanelShape, elevation = 16.dp),
+            .widthIn(max = 420.dp),
         shape = boardPanelShape,
         colors = CardDefaults.cardColors(containerColor = uiColors.gameSurface.copy(alpha = 0.96f)),
         border = BorderStroke(1.dp, uiColors.panelStroke.copy(alpha = 0.80f)),
@@ -1036,8 +1030,7 @@ private fun SumShiftTargetCell(
     Surface(
         modifier = modifier
             .size(size)
-            .scale(targetScale)
-            .blockGamesSurfaceShadow(shape = shape, elevation = if (completed) 6.dp else 3.dp),
+            .scale(targetScale),
         shape = shape,
         color = Color.Transparent,
         tonalElevation = 0.dp,
@@ -1201,12 +1194,11 @@ private fun SumShiftNumberCell(
         label = "sumShiftGuidedBadgeScale",
     )
     val borderWidth = if (visuallyActive) 1.6.dp else 1.dp
-    val shadowElevation = if (visuallyActive) 5.dp else 0.dp
 
     Surface(
         modifier = Modifier
             .size(size)
-            .blockGamesSurfaceShadow(shape = shape, elevation = shadowElevation)
+
             .scale(animatedScale.value)
             .clip(shape)
             .clickable(

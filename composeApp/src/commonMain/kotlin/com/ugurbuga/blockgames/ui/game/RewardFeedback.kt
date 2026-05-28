@@ -32,7 +32,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
-import com.ugurbuga.blockgames.ui.theme.blockGamesSurfaceShadow
 import kotlinx.coroutines.delay
 import kotlin.time.Duration.Companion.milliseconds
 
@@ -65,14 +64,9 @@ fun RewardFeedbackCard(
         ) {
             val uiColors = BlockGamesThemeTokens.uiColors
             val panelShape = RoundedCornerShape(GameUiShapeTokens.panelCorner)
-            
             Card(
                 modifier = Modifier
-                    .widthIn(max = 400.dp)
-                    .blockGamesSurfaceShadow(
-                        shape = panelShape,
-                        elevation = 12.dp,
-                    ),
+                    .widthIn(max = 400.dp),
                 shape = panelShape,
                 colors = CardDefaults.cardColors(containerColor = uiColors.panel),
                 border = BorderStroke(1.dp, uiColors.panelStroke),

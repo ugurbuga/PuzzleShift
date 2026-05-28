@@ -176,7 +176,6 @@ import com.ugurbuga.blockgames.settings.AppSettings
 import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import com.ugurbuga.blockgames.ui.theme.BlockGamesUiColors
 import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
-import com.ugurbuga.blockgames.ui.theme.blockGamesSurfaceShadow
 import com.ugurbuga.blockgames.ui.theme.isBlockGamesDarkTheme
 import kotlinx.coroutines.isActive
 import org.jetbrains.compose.resources.StringResource
@@ -303,10 +302,7 @@ internal fun GameOverDialogContent(
     }
 
     Card(
-        modifier = modifier.blockGamesSurfaceShadow(
-            shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
-            elevation = 12.dp,
-        ),
+        modifier = modifier,
         shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
         colors = CardDefaults.cardColors(containerColor = dialogContainerColor),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
@@ -441,10 +437,7 @@ internal fun GameOverStatChip(
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
     Card(
-        modifier = modifier.blockGamesSurfaceShadow(
-            shape = RoundedCornerShape(GameUiShapeTokens.surfaceCorner),
-            elevation = 5.dp,
-        ),
+        modifier = modifier,
         shape = RoundedCornerShape(GameUiShapeTokens.surfaceCorner),
         colors = CardDefaults.cardColors(containerColor = uiColors.metricCard.copy(alpha = 0.88f)),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
@@ -547,10 +540,7 @@ internal fun GameEventDialogCard(
     val dialogContainerColor = dialogContainerColor(uiColors)
     val dialogShape = RoundedCornerShape(GameUiShapeTokens.panelCorner)
     Card(
-        modifier = modifier.blockGamesSurfaceShadow(
-            shape = dialogShape,
-            elevation = 12.dp,
-        ),
+        modifier = modifier,
         shape = dialogShape,
         colors = CardDefaults.cardColors(containerColor = dialogContainerColor),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
@@ -648,10 +638,6 @@ internal fun DialogHeroIcon(
     Box(
         modifier = modifier
             .size(tileSize)
-            .blockGamesSurfaceShadow(
-                shape = tileShape,
-                elevation = 10.dp,
-            )
             .clip(tileShape)
             .background(heroColor.copy(alpha = 0.10f)),
         contentAlignment = Alignment.Center,
@@ -671,7 +657,6 @@ internal fun DialogHeroIcon(
         )
     }
 }
-
 
 @Composable
 internal fun DialogActionButton(
@@ -734,10 +719,6 @@ internal fun BlockStyleActionButton(
         modifier = modifier
             .height(height)
             .graphicsLayer { alpha = if (enabled) 1f else 0.72f }
-            .blockGamesSurfaceShadow(
-                shape = buttonShape,
-                elevation = if (emphasized) 10.dp else 5.dp,
-            )
             .clip(buttonShape)
             .clickable(enabled = enabled, onClick = onClick),
         contentAlignment = Alignment.Center,
@@ -824,10 +805,7 @@ internal fun MinimalTopBar(
         colors = CardDefaults.cardColors(containerColor = uiColors.gameSurface.copy(alpha = TopBarPanelAlpha)),
         border = BorderStroke(1.dp, panelStrokeColor),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
-        modifier = Modifier.blockGamesSurfaceShadow(
-            shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
-            elevation = 10.dp,
-        ),
+        modifier = Modifier,
     ) {
         Column(
             modifier = Modifier
@@ -904,10 +882,6 @@ internal fun CompactMetricChip(
 
     Card(
         modifier = modifier
-            .blockGamesSurfaceShadow(
-                shape = RoundedCornerShape(GameUiShapeTokens.chipCorner),
-                elevation = 5.dp,
-            )
             .graphicsLayer {
                 val scale = scaleProvider()
                 scaleX = scale
@@ -1292,10 +1266,6 @@ internal fun TopBarActionBlockButton(
         modifier = Modifier
             .size(size)
             .graphicsLayer { alpha = if (enabled) 1f * extraAlpha else 0.72f * extraAlpha }
-            .blockGamesSurfaceShadow(
-                shape = RoundedCornerShape(launchCellCornerRadius),
-                elevation = 5.dp,
-            )
             .clip(RoundedCornerShape(launchCellCornerRadius))
             .clickable(enabled = enabled) { onClick.invoke() },
         contentAlignment = Alignment.Center,

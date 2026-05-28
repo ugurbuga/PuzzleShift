@@ -99,9 +99,7 @@ import com.ugurbuga.blockgames.ui.game.resolveGameText
 import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
 import com.ugurbuga.blockgames.ui.theme.appBackgroundBrush
-import com.ugurbuga.blockgames.ui.theme.blockGamesSurfaceShadow
 import org.jetbrains.compose.resources.stringResource
-
 
 private const val FreePlacementDragLiftPx = 400f
 private val FreePlacementTrayCardHeight = 104.dp
@@ -368,10 +366,6 @@ fun BlockWiseGameScreen(
                     Box(
                         modifier = Modifier
                             .size(width = boardWidth, height = boardHeight)
-                            .blockGamesSurfaceShadow(
-                                shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
-                                elevation = 10.dp,
-                            ),
                     ) {
                         BoardGrid(
                             modifier = Modifier
@@ -580,10 +574,6 @@ private fun TrayDock(
             },
         ),
         modifier = Modifier
-            .blockGamesSurfaceShadow(
-                shape = RoundedCornerShape(GameUiShapeTokens.dockCorner),
-                elevation = 10.dp,
-            )
             .onGloballyPositioned { onPositioned(it.boundsInRoot()) },
     ) {
         Column(
@@ -1038,5 +1028,4 @@ private fun BlockWiseOnboardingCrossClearPreview() {
         )
     }
 }
-
 

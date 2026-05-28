@@ -65,7 +65,6 @@ import com.ugurbuga.blockgames.ui.game.TopBarActionBlockButton
 import com.ugurbuga.blockgames.ui.game.blockStyleIconTint
 import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
-import com.ugurbuga.blockgames.ui.theme.blockGamesSurfaceShadow
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -102,10 +101,7 @@ fun BlockPropertiesScreen(
                 .padding(horizontal = 12.dp, vertical = 10.dp),
         ) {
             Card(
-                modifier = Modifier.blockGamesSurfaceShadow(
-                    shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
-                    elevation = 10.dp,
-                ),
+                modifier = Modifier,
                 shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
                 colors = CardDefaults.cardColors(containerColor = uiColors.panel),
                 border = BorderStroke(1.dp, uiColors.panelStroke),
@@ -156,11 +152,7 @@ fun BlockPropertiesScreen(
             ) {
                 Card(
                     modifier = Modifier
-                        .width(132.dp)
-                        .blockGamesSurfaceShadow(
-                            shape = RoundedCornerShape(GameUiShapeTokens.surfaceCorner),
-                            elevation = 5.dp,
-                        ),
+                        .width(132.dp),
                     shape = RoundedCornerShape(GameUiShapeTokens.surfaceCorner),
                     colors = CardDefaults.cardColors(containerColor = uiColors.panelMuted),
                     border = BorderStroke(1.dp, uiColors.panelStroke.copy(alpha = 0.72f)),
@@ -220,10 +212,7 @@ private fun BlockTypeRow(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .blockGamesSurfaceShadow(
-                shape = rowShape,
-                elevation = 5.dp,
-            )
+
             .clip(rowShape)
             .clickable(onClick = onClick),
         shape = rowShape,

@@ -51,7 +51,6 @@ import com.ugurbuga.blockgames.telemetry.TelemetryScreenNames
 import com.ugurbuga.blockgames.ui.game.TopBarActionBlockButton
 import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
 import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
-import com.ugurbuga.blockgames.ui.theme.blockGamesSurfaceShadow
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -75,10 +74,7 @@ fun PiecePropertiesScreen(
                 .padding(horizontal = 12.dp, vertical = 10.dp),
         ) {
             Card(
-                modifier = Modifier.blockGamesSurfaceShadow(
-                    shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
-                    elevation = 10.dp,
-                ),
+                modifier = Modifier,
                 shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
                 colors = CardDefaults.cardColors(containerColor = uiColors.panel),
                 border = BorderStroke(1.dp, uiColors.panelStroke),
@@ -115,11 +111,7 @@ fun PiecePropertiesScreen(
 
             Card(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .blockGamesSurfaceShadow(
-                        shape = RoundedCornerShape(GameUiShapeTokens.surfaceCorner),
-                        elevation = 5.dp,
-                    ),
+                    .fillMaxWidth(),
                 shape = RoundedCornerShape(GameUiShapeTokens.surfaceCorner),
                 colors = CardDefaults.cardColors(containerColor = uiColors.panelMuted),
                 border = BorderStroke(1.dp, uiColors.panelStroke.copy(alpha = 0.72f)),

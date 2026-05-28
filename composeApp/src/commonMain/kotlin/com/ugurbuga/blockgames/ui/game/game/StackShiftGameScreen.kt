@@ -151,7 +151,6 @@ import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import com.ugurbuga.blockgames.ui.theme.BlockGamesUiColors
 import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
 import com.ugurbuga.blockgames.ui.theme.appBackgroundBrush
-import com.ugurbuga.blockgames.ui.theme.blockGamesSurfaceShadow
 import com.ugurbuga.blockgames.ui.theme.isBlockGamesDarkTheme
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
@@ -810,10 +809,6 @@ fun GameScreen(
                                     .size(
                                         width = layoutSpec.boardWidth,
                                         height = layoutSpec.boardHeight
-                                    )
-                                    .blockGamesSurfaceShadow(
-                                        shape = boardShape,
-                                        elevation = 10.dp,
                                     ),
                                 contentAlignment = Alignment.Center,
                             ) {
@@ -1453,10 +1448,7 @@ private fun MinimalBottomDock(
     val resolvedHighlightColor = highlightColor ?: uiColors.actionButton
     val dockPulseAlpha = if (highlightDock) 0.10f + (0.08f * stylePulse) else 0f
     Card(
-        modifier = modifier.blockGamesSurfaceShadow(
-            shape = RoundedCornerShape(GameUiShapeTokens.dockCorner),
-            elevation = 10.dp,
-        ),
+        modifier = modifier,
         shape = RoundedCornerShape(GameUiShapeTokens.dockCorner),
         colors = CardDefaults.cardColors(containerColor = uiColors.panel.copy(alpha = DockPanelAlpha)),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
