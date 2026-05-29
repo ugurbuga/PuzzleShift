@@ -31,6 +31,7 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.MenuBook
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material.icons.filled.Palette
 import androidx.compose.material.icons.filled.PlayArrow
@@ -63,9 +64,11 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import blockgames.composeapp.generated.resources.Res
@@ -77,8 +80,6 @@ import blockgames.composeapp.generated.resources.app_title_banner_boomblocks_bot
 import blockgames.composeapp.generated.resources.app_title_banner_boomblocks_top
 import blockgames.composeapp.generated.resources.app_title_banner_stackshift_bottom
 import blockgames.composeapp.generated.resources.app_title_banner_stackshift_top
-import blockgames.composeapp.generated.resources.app_title_banner_sumshift_bottom
-import blockgames.composeapp.generated.resources.app_title_banner_sumshift_top
 import blockgames.composeapp.generated.resources.high_score
 import blockgames.composeapp.generated.resources.home_classic_cta
 import blockgames.composeapp.generated.resources.home_time_attack_cta
@@ -122,6 +123,9 @@ private const val HomeTitleBannerColumns = 6
 private const val HomeTitleBannerRows = 2
 private const val BlockSortHomeBannerColumns = 5
 private const val BlockSortHomeBannerRows = 4
+private const val SumShiftHomeBannerColumns = 5
+private const val SumShiftHomeBannerRows = 2
+private const val SumShiftHomeBannerSequenceDurationMillis = 9_200
 private const val DigitShiftHomeBannerRows = 3
 private const val DigitShiftHomeBannerSequenceDurationMillis = 12_600
 private const val DigitShiftHomeBannerFlipAnimationMillis = 360
@@ -176,41 +180,34 @@ fun HomeScreen(
                 .statusBarsPadding()
                 .padding(horizontal = 18.dp, vertical = 16.dp),
         ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .align(Alignment.TopCenter),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(10.dp),
-            ) {
-                Text(
-                    text = appNameStringResource(),
-                    style = MaterialTheme.typography.headlineSmall,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    fontWeight = FontWeight.ExtraBold,
-                    textAlign = TextAlign.Center,
-                )
-                HomeTitleBanner(
-                    settings = settings,
-                    pulse = stylePulse,
-                    modifier = Modifier.fillMaxWidth(),
-                )
-            }
-
-            Row(
-                modifier = Modifier
-                    .align(Alignment.Center)
-                    .fillMaxWidth(0.78f),
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
                 Column(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxSize(),
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(12.dp),
+                    verticalArrangement = Arrangement.spacedBy(0.dp),
                 ) {
-                    Row(
+                    Column(
                         modifier = Modifier.fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(10.dp),
+                    ) {
+                        Text(
+                            text = appNameStringResource(),
+                            style = MaterialTheme.typography.headlineSmall,
+                            color = MaterialTheme.colorScheme.onSurface,
+                            fontWeight = FontWeight.ExtraBold,
+                            textAlign = TextAlign.Center,
+                        )
+                        HomeTitleBanner(
+                            settings = settings,
+                            pulse = stylePulse,
+                            modifier = Modifier.fillMaxWidth(),
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.weight(1f))
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(0.78f),
                         horizontalArrangement = Arrangement.spacedBy(16.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
@@ -238,73 +235,73 @@ fun HomeScreen(
                             textStyle = MaterialTheme.typography.labelLarge,
                         )
                     }
-                }
-            }
 
-            Column(
-                modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .fillMaxWidth()
-                    .padding(bottom = 6.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(14.dp),
-            ) {
-                HomeHighScoreCard(
-                    classicHighScore = classicHighScore,
-                    timeAttackHighScore = timeAttackHighScore,
-                    onClick = {
-                        if (isDebugBuild()) {
-                            notificationManager.sendTestNotification()
+                    Spacer(modifier = Modifier.weight(1f))
+
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = 6.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(14.dp),
+                    ) {
+                        HomeHighScoreCard(
+                            classicHighScore = classicHighScore,
+                            timeAttackHighScore = timeAttackHighScore,
+                            onClick = {
+                                if (isDebugBuild()) {
+                                    notificationManager.sendTestNotification()
+                                }
+                            }
+                        )
+
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(10.dp),
+                            verticalAlignment = Alignment.Bottom,
+                        ) {
+                            HomeQuickActionButton(
+                                text = appStringResource(Res.string.settings_challenges),
+                                icon = Icons.Default.EmojiEvents,
+                                tone = CellTone.Emerald,
+                                settings = settings,
+                                pulse = stylePulse,
+                                modifier = Modifier.weight(1f),
+                                onClick = onOpenChallenges,
+                            )
+                            HomeQuickActionButton(
+                                text = appStringResource(Res.string.settings_tutorial),
+                                icon = Icons.AutoMirrored.Filled.MenuBook,
+                                tone = CellTone.Gold,
+                                settings = settings,
+                                pulse = stylePulse,
+                                modifier = Modifier.weight(1f),
+                                onClick = onOpenTutorial,
+                            )
+                            HomeQuickActionButton(
+                                text = stringResource(Res.string.selection_switch_game),
+                                icon = Icons.Default.SwapHoriz,
+                                tone = CellTone.Blue,
+                                settings = settings,
+                                pulse = stylePulse,
+                                modifier = Modifier.weight(1f),
+                                onClick = onSwitchGame,
+                            )
+                            HomeQuickActionButton(
+                                text = appStringResource(Res.string.settings_theme),
+                                icon = Icons.Filled.Palette,
+                                tone = CellTone.Violet,
+                                settings = settings,
+                                pulse = stylePulse,
+                                modifier = Modifier.weight(1f),
+                                onClick = onOpenTheme,
+                            )
                         }
                     }
-                )
-
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(10.dp),
-                    verticalAlignment = Alignment.Bottom,
-                ) {
-                    HomeQuickActionButton(
-                        text = appStringResource(Res.string.settings_challenges),
-                        icon = Icons.Default.EmojiEvents,
-                        tone = CellTone.Emerald,
-                        settings = settings,
-                        pulse = stylePulse,
-                        modifier = Modifier.weight(1f),
-                        onClick = onOpenChallenges,
-                    )
-                    HomeQuickActionButton(
-                        text = appStringResource(Res.string.settings_tutorial),
-                        icon = Icons.AutoMirrored.Filled.MenuBook,
-                        tone = CellTone.Gold,
-                        settings = settings,
-                        pulse = stylePulse,
-                        modifier = Modifier.weight(1f),
-                        onClick = onOpenTutorial,
-                    )
-                    HomeQuickActionButton(
-                        text = stringResource(Res.string.selection_switch_game),
-                        icon = Icons.Default.SwapHoriz,
-                        tone = CellTone.Blue,
-                        settings = settings,
-                        pulse = stylePulse,
-                        modifier = Modifier.weight(1f),
-                        onClick = onSwitchGame,
-                    )
-                    HomeQuickActionButton(
-                        text = appStringResource(Res.string.settings_theme),
-                        icon = Icons.Filled.Palette,
-                        tone = CellTone.Violet,
-                        settings = settings,
-                        pulse = stylePulse,
-                        modifier = Modifier.weight(1f),
-                        onClick = onOpenTheme,
-                    )
                 }
             }
         }
     }
-}
 
 @Composable
 private fun HomeTitleBanner(
@@ -330,46 +327,447 @@ private fun SumShiftHomeTitleBanner(
     modifier: Modifier = Modifier,
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
-    val topWord = stringResource(Res.string.app_title_banner_sumshift_top)
-    val bottomWord = stringResource(Res.string.app_title_banner_sumshift_bottom)
     val accent = uiColors.selectionStackShift
+    val bannerMotionTransition = rememberInfiniteTransition(label = "sumShiftBannerMotion")
+    val sequenceClock by bannerMotionTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = SumShiftHomeBannerSequenceDurationMillis, easing = LinearEasing),
+            repeatMode = RepeatMode.Restart,
+        ),
+        label = "sumShiftBannerSequenceClock",
+    )
+    val sequencePhase = normalizedPhase(sequenceClock)
+    val board = remember { sumShiftHomeBannerBoard() }
+    val actionProgress = segmentProgress(sequencePhase, start = 0.12f, end = 0.80f)
+    val actionCount = sumShiftHomeBannerActionCount(actionProgress, board.actions.size)
+    val bannerState = remember(actionCount) {
+        sumShiftHomeBannerState(board, actionCount)
+    }
+    val focusedAction = when {
+        sequencePhase < 0.12f -> board.actions.firstOrNull()
+        sequencePhase < 0.80f && actionCount < board.actions.size -> board.actions[actionCount]
+        else -> null
+    }
+    val rowSums = List(SumShiftHomeBannerRows) { rowIndex ->
+        sumShiftHomeBannerCurrentRowSum(board, rowIndex, bannerState.selectedCells)
+    }
+    val columnSums = List(SumShiftHomeBannerColumns) { columnIndex ->
+        sumShiftHomeBannerCurrentColumnSum(board, columnIndex, bannerState.selectedCells)
+    }
     Card(
         modifier = modifier
             .fillMaxWidth(),
         shape = RoundedCornerShape(GameUiShapeTokens.panelCorner),
-        colors = CardDefaults.cardColors(containerColor = uiColors.gameSurface.copy(alpha = 0.92f)),
+        colors = CardDefaults.cardColors(containerColor = uiColors.gameSurface.copy(alpha = 0.94f)),
         border = BorderStroke(1.dp, accent.copy(alpha = 0.40f)),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
     ) {
-        Column(
+        BoxWithConstraints(
             modifier = Modifier
                 .fillMaxWidth()
+                .aspectRatio(6.7f / 3.4f)
                 .background(
                     Brush.verticalGradient(
                         colors = listOf(
-                            accent.copy(alpha = 0.18f + (pulse * 0.08f)),
+                            accent.copy(alpha = 0.16f + (pulse * 0.06f)),
                             Color.Transparent,
                         ),
                     ),
                 )
-                .padding(horizontal = 24.dp, vertical = 22.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(4.dp),
+                .padding(horizontal = 12.dp, vertical = 12.dp),
+            contentAlignment = Alignment.Center,
         ) {
+            val laneGap = 8.dp
+            val gridGap = 7.dp
+            val widthBasedCell = (maxWidth - laneGap - (gridGap * (SumShiftHomeBannerColumns - 1))) / (SumShiftHomeBannerColumns + 1)
+            val heightBasedCell = (maxHeight - laneGap - (gridGap * (SumShiftHomeBannerRows - 1))) / (SumShiftHomeBannerRows + 1)
+            val cellSize = minOf(widthBasedCell, heightBasedCell).coerceAtLeast(18.dp)
+            val targetSize = cellSize
+
+            Column(
+                horizontalAlignment = Alignment.End,
+                verticalArrangement = Arrangement.spacedBy(laneGap),
+            ) {
+                Row(
+                    modifier = Modifier.padding(start = targetSize + laneGap),
+                    horizontalArrangement = Arrangement.spacedBy(gridGap),
+                ) {
+                    repeat(SumShiftHomeBannerColumns) { columnIndex ->
+                        SumShiftHomeBannerTargetCell(
+                            targetValue = board.columnTargets[columnIndex],
+                            currentValue = columnSums[columnIndex],
+                            completed = columnSums[columnIndex] == board.columnTargets[columnIndex],
+                            size = targetSize,
+                            settings = settings,
+                            pulse = pulse,
+                        )
+                    }
+                }
+
+                Row(horizontalArrangement = Arrangement.spacedBy(laneGap)) {
+                    Column(verticalArrangement = Arrangement.spacedBy(gridGap)) {
+                        repeat(SumShiftHomeBannerRows) { rowIndex ->
+                            SumShiftHomeBannerTargetCell(
+                                targetValue = board.rowTargets[rowIndex],
+                                currentValue = rowSums[rowIndex],
+                                completed = rowSums[rowIndex] == board.rowTargets[rowIndex],
+                                size = targetSize,
+                                settings = settings,
+                                pulse = pulse,
+                            )
+                        }
+                    }
+
+                    Column(verticalArrangement = Arrangement.spacedBy(gridGap)) {
+                        repeat(SumShiftHomeBannerRows) { rowIndex ->
+                            Row(horizontalArrangement = Arrangement.spacedBy(gridGap)) {
+                                repeat(SumShiftHomeBannerColumns) { columnIndex ->
+                                    val cellIndex = sumShiftHomeBannerCellIndex(rowIndex, columnIndex)
+                                    val rowCompleted = rowSums[rowIndex] == board.rowTargets[rowIndex]
+                                    val columnCompleted = columnSums[columnIndex] == board.columnTargets[columnIndex]
+                                    SumShiftHomeBannerNumberCell(
+                                        value = board.valueAt(rowIndex, columnIndex),
+                                        selected = cellIndex in bannerState.selectedCells,
+                                        disabled = cellIndex in bannerState.disabledCells,
+                                        focused = focusedAction?.cellIndex == cellIndex,
+                                        focusedMode = focusedAction?.mode,
+                                        completed = rowCompleted || columnCompleted,
+                                        size = cellSize,
+                                        settings = settings,
+                                        pulse = pulse,
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+private data class SumShiftHomeBannerBoard(
+    val values: List<Int>,
+    val rowTargets: List<Int>,
+    val columnTargets: List<Int>,
+    val actions: List<SumShiftHomeBannerAction>,
+)
+
+private enum class SumShiftHomeBannerActionMode {
+    Select,
+    Disable,
+}
+
+private data class SumShiftHomeBannerAction(
+    val cellIndex: Int,
+    val mode: SumShiftHomeBannerActionMode,
+)
+
+private data class SumShiftHomeBannerState(
+    val selectedCells: Set<Int>,
+    val disabledCells: Set<Int>,
+)
+
+private fun sumShiftHomeBannerBoard(): SumShiftHomeBannerBoard = SumShiftHomeBannerBoard(
+    values = listOf(
+        4, 2, 5, 1, 3,
+        2, 6, 1, 4, 5,
+    ),
+    rowTargets = listOf(12, 15),
+    columnTargets = listOf(4, 6, 5, 4, 8),
+    actions = listOf(
+        SumShiftHomeBannerAction(sumShiftHomeBannerCellIndex(0, 0), SumShiftHomeBannerActionMode.Select),
+        SumShiftHomeBannerAction(sumShiftHomeBannerCellIndex(0, 1), SumShiftHomeBannerActionMode.Disable),
+        SumShiftHomeBannerAction(sumShiftHomeBannerCellIndex(1, 1), SumShiftHomeBannerActionMode.Select),
+        SumShiftHomeBannerAction(sumShiftHomeBannerCellIndex(1, 2), SumShiftHomeBannerActionMode.Disable),
+        SumShiftHomeBannerAction(sumShiftHomeBannerCellIndex(0, 2), SumShiftHomeBannerActionMode.Select),
+        SumShiftHomeBannerAction(sumShiftHomeBannerCellIndex(0, 3), SumShiftHomeBannerActionMode.Disable),
+        SumShiftHomeBannerAction(sumShiftHomeBannerCellIndex(1, 3), SumShiftHomeBannerActionMode.Select),
+        SumShiftHomeBannerAction(sumShiftHomeBannerCellIndex(1, 0), SumShiftHomeBannerActionMode.Disable),
+        SumShiftHomeBannerAction(sumShiftHomeBannerCellIndex(0, 4), SumShiftHomeBannerActionMode.Select),
+        SumShiftHomeBannerAction(sumShiftHomeBannerCellIndex(1, 4), SumShiftHomeBannerActionMode.Select),
+    ),
+)
+
+private fun sumShiftHomeBannerCellIndex(row: Int, column: Int): Int = (row * SumShiftHomeBannerColumns) + column
+
+private fun SumShiftHomeBannerBoard.valueAt(row: Int, column: Int): Int =
+    values[sumShiftHomeBannerCellIndex(row, column)]
+
+private fun sumShiftHomeBannerActionCount(progress: Float, total: Int): Int = when {
+    total <= 0 -> 0
+    progress <= 0f -> 0
+    progress >= 1f -> total
+    else -> (progress * total).toInt().coerceIn(0, total - 1)
+}
+
+private fun sumShiftHomeBannerState(
+    board: SumShiftHomeBannerBoard,
+    actionCount: Int,
+): SumShiftHomeBannerState {
+    val selectedCells = linkedSetOf<Int>()
+    val disabledCells = linkedSetOf<Int>()
+    board.actions.take(actionCount).forEach { action ->
+        when (action.mode) {
+            SumShiftHomeBannerActionMode.Select -> {
+                if (action.cellIndex !in disabledCells) {
+                    selectedCells += action.cellIndex
+                }
+            }
+
+            SumShiftHomeBannerActionMode.Disable -> {
+                disabledCells += action.cellIndex
+                selectedCells -= action.cellIndex
+            }
+        }
+    }
+    return SumShiftHomeBannerState(
+        selectedCells = selectedCells,
+        disabledCells = disabledCells,
+    )
+}
+
+private fun sumShiftHomeBannerCurrentRowSum(
+    board: SumShiftHomeBannerBoard,
+    row: Int,
+    selectedCells: Set<Int>,
+): Int {
+    var sum = 0
+    repeat(SumShiftHomeBannerColumns) { column ->
+        val index = sumShiftHomeBannerCellIndex(row, column)
+        if (index in selectedCells) {
+            sum += board.valueAt(row, column)
+        }
+    }
+    return sum
+}
+
+private fun sumShiftHomeBannerCurrentColumnSum(
+    board: SumShiftHomeBannerBoard,
+    column: Int,
+    selectedCells: Set<Int>,
+): Int {
+    var sum = 0
+    repeat(SumShiftHomeBannerRows) { row ->
+        val index = sumShiftHomeBannerCellIndex(row, column)
+        if (index in selectedCells) {
+            sum += board.valueAt(row, column)
+        }
+    }
+    return sum
+}
+
+@Composable
+private fun SumShiftHomeBannerTargetCell(
+    targetValue: Int,
+    currentValue: Int,
+    completed: Boolean,
+    size: Dp,
+    settings: AppSettings,
+    pulse: Float,
+    modifier: Modifier = Modifier,
+) {
+    val uiColors = BlockGamesThemeTokens.uiColors
+    val accent = if (completed) uiColors.success else MaterialTheme.colorScheme.primary
+    val backgroundColor by animateColorAsState(
+        targetValue = if (completed) {
+            accent.copy(alpha = 0.18f)
+        } else {
+            uiColors.metricCard.copy(alpha = 0.96f)
+        },
+        animationSpec = tween(durationMillis = 220),
+        label = "sumShiftHomeTargetBg",
+    )
+    val borderColor by animateColorAsState(
+        targetValue = if (completed) accent.copy(alpha = 0.84f) else uiColors.panelStroke.copy(alpha = 0.74f),
+        animationSpec = tween(durationMillis = 220),
+        label = "sumShiftHomeTargetBorder",
+    )
+    val scale by animateFloatAsState(
+        targetValue = if (completed) 1.03f else 1f,
+        animationSpec = tween(durationMillis = 220),
+        label = "sumShiftHomeTargetScale",
+    )
+
+    Surface(
+        modifier = modifier
+            .size(size)
+            .graphicsLayer {
+                scaleX = scale
+                scaleY = scale
+            },
+        shape = RoundedCornerShape(GameUiShapeTokens.chipCorner),
+        color = Color.Transparent,
+        tonalElevation = 0.dp,
+        shadowElevation = 0.dp,
+        border = BorderStroke(if (completed) 1.6.dp else 1.dp, borderColor),
+    ) {
+        Box(contentAlignment = Alignment.Center) {
+            BlockCellPreview(
+                baseColor = backgroundColor,
+                style = settings.blockVisualStyle,
+                size = size,
+                modifier = Modifier.matchParentSize(),
+                alpha = 0.98f,
+                pulse = if (completed) 0.20f + (pulse * 0.32f) else 0f,
+            )
             Text(
-                text = topWord,
-                style = MaterialTheme.typography.headlineMedium,
-                fontWeight = FontWeight.Black,
+                text = targetValue.toString(),
+                style = MaterialTheme.typography.titleSmall.copy(
+                    fontWeight = FontWeight.Bold,
+                    fontSize = if (size <= 28.dp) 12.sp else 14.sp,
+                ),
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center,
             )
             Text(
-                text = bottomWord,
-                style = MaterialTheme.typography.headlineMedium,
-                fontWeight = FontWeight.Black,
-                color = accent,
-                textAlign = TextAlign.Center,
+                text = currentValue.toString(),
+                style = MaterialTheme.typography.labelSmall.copy(
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = if (size <= 28.dp) 7.sp else 8.sp,
+                ),
+                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.82f),
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(bottom = if (size <= 28.dp) 1.dp else 2.dp),
             )
+        }
+    }
+}
+
+@Composable
+private fun SumShiftHomeBannerNumberCell(
+    value: Int,
+    selected: Boolean,
+    disabled: Boolean,
+    focused: Boolean,
+    focusedMode: SumShiftHomeBannerActionMode?,
+    completed: Boolean,
+    size: Dp,
+    settings: AppSettings,
+    pulse: Float,
+    modifier: Modifier = Modifier,
+) {
+    val uiColors = BlockGamesThemeTokens.uiColors
+    val colorScheme = MaterialTheme.colorScheme
+    val shape = RoundedCornerShape(boardCellCornerRadiusDp(size, settings.blockVisualStyle))
+    val baseColor by animateColorAsState(
+        targetValue = when {
+            disabled -> uiColors.panelMuted.copy(alpha = 0.82f)
+            selected && completed -> colorScheme.primary.copy(alpha = 0.24f)
+            selected -> colorScheme.primaryContainer
+            focused -> uiColors.metricCard.copy(alpha = 0.98f)
+            else -> uiColors.boardEmptyCell
+        },
+        animationSpec = tween(durationMillis = 180),
+        label = "sumShiftHomeCellBg",
+    )
+    val borderColor by animateColorAsState(
+        targetValue = when {
+            disabled -> uiColors.panelStroke.copy(alpha = 0.48f)
+            focused && focusedMode == SumShiftHomeBannerActionMode.Disable -> uiColors.danger.copy(alpha = 0.90f)
+            focused -> Color.White.copy(alpha = 0.92f)
+            selected && completed -> colorScheme.primary.copy(alpha = 0.94f)
+            selected -> colorScheme.primary.copy(alpha = 0.82f)
+            else -> uiColors.boardEmptyCellBorder
+        },
+        animationSpec = tween(durationMillis = 180),
+        label = "sumShiftHomeCellBorder",
+    )
+    val textColor by animateColorAsState(
+        targetValue = when {
+            disabled -> MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.72f)
+            selected -> colorScheme.onPrimaryContainer
+            else -> MaterialTheme.colorScheme.onSurface
+        },
+        animationSpec = tween(durationMillis = 180),
+        label = "sumShiftHomeCellText",
+    )
+    val scale by animateFloatAsState(
+        targetValue = when {
+            focused -> 1.06f
+            selected -> 1.02f
+            else -> 1f
+        },
+        animationSpec = tween(durationMillis = 180),
+        label = "sumShiftHomeCellScale",
+    )
+
+    Surface(
+        modifier = modifier
+            .size(size)
+            .graphicsLayer {
+                scaleX = scale
+                scaleY = scale
+            },
+        shape = shape,
+        color = Color.Transparent,
+        tonalElevation = 0.dp,
+        shadowElevation = 0.dp,
+        border = BorderStroke(if (focused || selected) 1.6.dp else 1.dp, borderColor),
+    ) {
+        Box(contentAlignment = Alignment.Center) {
+            BlockCellPreview(
+                baseColor = baseColor,
+                style = settings.blockVisualStyle,
+                size = size,
+                modifier = Modifier.matchParentSize(),
+                alpha = if (disabled) 0.82f else 0.98f,
+                pulse = when {
+                    focused && focusedMode == SumShiftHomeBannerActionMode.Disable -> 0.18f + (pulse * 0.34f)
+                    focused -> 0.28f + (pulse * 0.55f)
+                    selected -> 0.12f + (pulse * 0.26f)
+                    else -> 0f
+                },
+            )
+
+            if (disabled) {
+                Canvas(modifier = Modifier.matchParentSize()) {
+                    drawLine(
+                        color = Color.Black.copy(alpha = 0.22f),
+                        start = Offset(x = this.size.width * 0.18f, y = this.size.height * 0.22f),
+                        end = Offset(x = this.size.width * 0.82f, y = this.size.height * 0.78f),
+                        strokeWidth = this.size.minDimension * 0.06f,
+                    )
+                }
+            }
+
+            Text(
+                text = value.toString(),
+                style = MaterialTheme.typography.titleMedium.copy(
+                    fontWeight = FontWeight.Bold,
+                    fontSize = when {
+                        size <= 24.dp -> 11.sp
+                        size <= 32.dp -> 13.sp
+                        else -> 15.sp
+                    },
+                ),
+                color = textColor,
+                textAlign = TextAlign.Center,
+                textDecoration = if (disabled) TextDecoration.LineThrough else null,
+            )
+
+            if (focused && !disabled) {
+                Icon(
+                    imageVector = if (focusedMode == SumShiftHomeBannerActionMode.Disable) {
+                        Icons.Filled.Close
+                    } else {
+                        Icons.Filled.TouchApp
+                    },
+                    contentDescription = null,
+                    tint = if (focusedMode == SumShiftHomeBannerActionMode.Disable) {
+                        uiColors.danger.copy(alpha = 0.94f)
+                    } else {
+                        Color.White.copy(alpha = 0.90f)
+                    },
+                    modifier = Modifier
+                        .align(Alignment.TopEnd)
+                        .padding(2.dp)
+                        .size((size.value * 0.22f).coerceAtLeast(10f).dp),
+                )
+            }
         }
     }
 }
@@ -2448,34 +2846,39 @@ private fun HomeHighScoreCard(
         shadowElevation = 0.dp,
         border = BorderStroke(1.dp, uiColors.panelStroke.copy(alpha = 0.76f)),
     ) {
-        Column(
-            modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(10.dp),
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 10.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(14.dp),
         ) {
             Text(
                 text = appStringResource(Res.string.high_score),
                 style = MaterialTheme.typography.labelMedium,
                 color = uiColors.subtitle,
                 fontWeight = FontWeight.SemiBold,
+                modifier = Modifier.padding(end = 2.dp),
             )
             Row(
-                horizontalArrangement = Arrangement.spacedBy(14.dp),
+                modifier = Modifier.weight(1f),
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 HomeHighScoreMetric(
                     title = appStringResource(Res.string.home_classic_cta),
                     value = classicHighScore.toString(),
+                    modifier = Modifier.weight(1f),
                 )
                 Box(
                     modifier = Modifier
-                        .size(width = 1.dp, height = 32.dp)
-                        .height(32.dp)
+                        .size(width = 1.dp, height = 26.dp)
                         .background(uiColors.panelStroke.copy(alpha = 0.48f)),
                 )
                 HomeHighScoreMetric(
                     title = appStringResource(Res.string.home_time_attack_cta),
                     value = timeAttackHighScore.toString(),
+                    modifier = Modifier.weight(1f),
                 )
             }
         }
@@ -2486,24 +2889,35 @@ private fun HomeHighScoreCard(
 private fun HomeHighScoreMetric(
     title: String,
     value: String,
+    modifier: Modifier = Modifier,
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(2.dp),
-    ) {
-        Text(
-            text = title,
-            style = MaterialTheme.typography.labelSmall,
-            color = uiColors.subtitle,
-            fontWeight = FontWeight.Bold,
-        )
-        Text(
-            text = value,
-            style = MaterialTheme.typography.headlineSmall,
-            color = MaterialTheme.colorScheme.onSurface,
-            fontWeight = FontWeight.Bold,
-        )
+    BoxWithConstraints(modifier = modifier) {
+        val metricWidth = maxWidth
+        val titleFontSize = (metricWidth.value * 0.085f).coerceIn(10f, 15f).sp
+        val valueFontSize = (metricWidth.value * 0.16f).coerceIn(18f, 30f).sp
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(1.dp),
+        ) {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.labelSmall.copy(fontSize = titleFontSize, lineHeight = titleFontSize),
+                color = uiColors.subtitle,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
+                maxLines = 1,
+            )
+            Text(
+                text = value,
+                style = MaterialTheme.typography.titleMedium.copy(fontSize = valueFontSize, lineHeight = valueFontSize),
+                color = MaterialTheme.colorScheme.onSurface,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
+                maxLines = 1,
+            )
+        }
     }
 }
 
@@ -2525,6 +2939,20 @@ private fun HomeQuickActionButton(
         val cellSize = maxWidth
         val cellInset = boardCellInsetDp(cellSize)
         val buttonShape = RoundedCornerShape(boardCellCornerRadiusDp(cellSize, resolvedStyle))
+        val contentPadding = (cellSize * 0.075f).coerceIn(8.dp, 18.dp)
+        val contentGap = (cellSize * 0.04f).coerceIn(4.dp, 10.dp)
+        val adaptiveIconSize = maxOf(
+            iconSize,
+            cellSize * if (iconSize >= 40.dp) 0.32f else 0.24f,
+        ).coerceAtMost(60.dp)
+        val baseTextSize = if (textStyle.fontSize == TextUnit.Unspecified) 14.sp else textStyle.fontSize
+        val adaptiveTextSizeValue = maxOf(baseTextSize.value, cellSize.value * 0.11f).coerceAtMost(22f)
+        val adaptiveTextSize = adaptiveTextSizeValue.sp
+        val adaptiveLineHeight = (adaptiveTextSizeValue * 1.08f).sp
+        val adaptiveTextStyle = textStyle.copy(
+            fontSize = adaptiveTextSize,
+            lineHeight = adaptiveLineHeight,
+        )
         val effectivePulse = rememberBlockStylePulse(
             style = resolvedStyle,
             pulse = pulse,
@@ -2566,19 +2994,19 @@ private fun HomeQuickActionButton(
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(8.dp),
+                        .padding(contentPadding),
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterVertically),
+                    verticalArrangement = Arrangement.spacedBy(contentGap, Alignment.CenterVertically),
                 ) {
                     Icon(
                         imageVector = icon,
                         contentDescription = null,
                         tint = contentColor,
-                        modifier = Modifier.size(iconSize),
+                        modifier = Modifier.size(adaptiveIconSize),
                     )
                     Text(
                         text = text,
-                        style = textStyle,
+                        style = adaptiveTextStyle,
                         color = contentColor,
                         fontWeight = FontWeight.ExtraBold,
                         textAlign = TextAlign.Center,
