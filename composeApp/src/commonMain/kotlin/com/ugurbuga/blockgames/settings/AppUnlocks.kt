@@ -6,6 +6,7 @@ import com.ugurbuga.blockgames.game.model.BlockVisualStyle
 import com.ugurbuga.blockgames.game.model.ChallengeProgress
 import com.ugurbuga.blockgames.game.model.DailyChallenge
 import com.ugurbuga.blockgames.game.model.GameplayStyle
+import com.ugurbuga.blockgames.game.model.blockVisualStyleFromPersistedValue
 import com.ugurbuga.blockgames.game.model.gameplayStyleFromPersistedValue
 import com.ugurbuga.blockgames.game.model.normalizeBlockVisualStyle
 import com.ugurbuga.blockgames.platform.isDebugBuild
@@ -76,6 +77,7 @@ fun BlockVisualStyle.tokenCost(): Int = when (normalizeBlockVisualStyle(this)) {
     BlockVisualStyle.GlitchTech -> 48
     BlockVisualStyle.AuraEnergy -> 48
     BlockVisualStyle.CircuitBoard -> 48
+    BlockVisualStyle.LightBurst -> 44
 }
 
 fun AppSettings.isThemeModeUnlocked(mode: AppThemeMode): Boolean = mode in availableThemeModes()
@@ -239,6 +241,9 @@ internal fun <T : Enum<T>> decodeEnumSet(raw: String?, entries: List<T>): Set<T>
                 ?: if (entries.firstOrNull() is GameplayStyle) {
                     @Suppress("UNCHECKED_CAST")
                     gameplayStyleFromPersistedValue(trimmed) as T?
+                } else if (entries.firstOrNull() is BlockVisualStyle) {
+                    @Suppress("UNCHECKED_CAST")
+                    blockVisualStyleFromPersistedValue(trimmed) as T?
                 } else {
                     null
                 }

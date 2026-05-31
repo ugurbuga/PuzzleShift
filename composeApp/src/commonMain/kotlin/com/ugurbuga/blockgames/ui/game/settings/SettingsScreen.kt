@@ -104,6 +104,7 @@ import blockgames.composeapp.generated.resources.block_style_glitch_tech
 import blockgames.composeapp.generated.resources.block_style_grid_split
 import blockgames.composeapp.generated.resources.block_style_holographic
 import blockgames.composeapp.generated.resources.block_style_honeycomb_texture
+import blockgames.composeapp.generated.resources.block_style_light_burst
 import blockgames.composeapp.generated.resources.block_style_liquid_marble
 import blockgames.composeapp.generated.resources.block_style_neon_glow
 import blockgames.composeapp.generated.resources.block_style_outline
@@ -146,6 +147,7 @@ import com.ugurbuga.blockgames.game.model.AppThemeMode
 import com.ugurbuga.blockgames.game.model.BlockColorPalette
 import com.ugurbuga.blockgames.game.model.BlockVisualStyle
 import com.ugurbuga.blockgames.game.model.CellTone
+import com.ugurbuga.blockgames.game.model.normalizeBlockVisualStyle
 import com.ugurbuga.blockgames.game.model.paletteColor
 import com.ugurbuga.blockgames.settings.AppSettings
 import com.ugurbuga.blockgames.settings.DailyChallengeTokenReward
@@ -1132,7 +1134,8 @@ private fun blockStyleOptions(
     pulseProvider: () -> Float,
     previewColorProvider: () -> Color,
 ): List<SettingsOption<BlockVisualStyle>> {
-    return visibleBlockStyles().map { style ->
+    return visibleBlockStyles().map { visibleStyle ->
+        val style = normalizeBlockVisualStyle(visibleStyle)
         SettingsOption(
             value = style,
             label = when (style) {
@@ -1161,6 +1164,7 @@ private fun blockStyleOptions(
                 BlockVisualStyle.GlitchTech -> stringResource(Res.string.block_style_glitch_tech)
                 BlockVisualStyle.AuraEnergy -> stringResource(Res.string.block_style_aura_energy)
                 BlockVisualStyle.CircuitBoard -> stringResource(Res.string.block_style_circuit_board)
+                BlockVisualStyle.LightBurst -> stringResource(Res.string.block_style_light_burst)
             },
             preview = {
                 BlockCellPreview(
@@ -1202,6 +1206,7 @@ internal fun visibleBlockStyles(): List<BlockVisualStyle> = listOf(
     BlockVisualStyle.GlitchTech,
     BlockVisualStyle.AuraEnergy,
     BlockVisualStyle.CircuitBoard,
+    BlockVisualStyle.LightBurst,
 )
 
 private fun interpolatedPreviewColor(

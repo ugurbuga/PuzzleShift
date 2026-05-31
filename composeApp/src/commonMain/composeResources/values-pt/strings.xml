@@ -64,12 +64,10 @@
     <string name="settings_tutorial_body">Abra o tutorial ou a prática guiada a qualquer momento para rever a colocação livre, as limpezas de linhas e colunas e o fluxo da bandeja de três peças.</string>
     <string name="settings_tutorial_replay">Prática</string>
     <string name="settings_color_palette">Paleta de cores</string>
-    <string name="block_style_electric">Elétrico</string>
-    <string name="block_style_flame">Chama</string>
+<string name="block_style_flame">Chama</string>
     <string name="block_style_gears">Engrenagens</string>
     <string name="block_style_pixel">Píxel</string>
-    <string name="block_style_lava">Lava</string>
-    <string name="rewarded_tokens_button_bullet">• Assista a um anúncio e ganhe %1$d tokens</string>
+<string name="rewarded_tokens_button_bullet">• Assista a um anúncio e ganhe %1$d tokens</string>
     <string name="rewarded_tokens_button">Assista a um anúncio e ganhe %1$d tokens</string>
     <string name="unlock_dialog_title">Desbloquear %1$s?</string>
     <string name="unlock_dialog_insufficient_title">%1$s está bloqueado</string>

@@ -2,10 +2,14 @@ package com.ugurbuga.blockgames.settings
 
 import com.ugurbuga.blockgames.game.model.AppColorPalette
 import com.ugurbuga.blockgames.game.model.AppThemeMode
+import com.ugurbuga.blockgames.game.model.BlockVisualStyle
+import com.ugurbuga.blockgames.game.model.blockVisualStyleFromPersistedOrdinal
+import com.ugurbuga.blockgames.game.model.blockVisualStyleFromPersistedValue
 import com.ugurbuga.blockgames.platform.isDebugBuild
 import kotlin.test.assertNotNull
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class AppSettingsThemeAccessTest {
@@ -83,6 +87,22 @@ class AppSettingsThemeAccessTest {
                 unlockedPalette.unlockedThemePalettes,
             )
         }
+    }
+
+    @Test
+    fun legacyPersistedBlockStyleValues_remapToVisibleAlternatives() {
+        assertEquals(BlockVisualStyle.LightBurst, blockVisualStyleFromPersistedValue("Electric"))
+        assertEquals(BlockVisualStyle.Prism, blockVisualStyleFromPersistedValue("Lava"))
+        assertEquals(BlockVisualStyle.LightBurst, blockVisualStyleFromPersistedOrdinal(25, BlockVisualStyle.Flat))
+        assertEquals(BlockVisualStyle.Prism, blockVisualStyleFromPersistedOrdinal(26, BlockVisualStyle.Flat))
+        assertEquals(BlockVisualStyle.LightBurst, blockVisualStyleFromPersistedOrdinal(27, BlockVisualStyle.Flat))
+
+        val decoded = decodeEnumSet("Electric;Lava;LightBurst", BlockVisualStyle.entries)
+
+        assertTrue(BlockVisualStyle.LightBurst in decoded)
+        assertTrue(BlockVisualStyle.Prism in decoded)
+        assertFalse(decoded.any { it.name == "Electric" })
+        assertFalse(decoded.any { it.name == "Lava" })
     }
 }
 

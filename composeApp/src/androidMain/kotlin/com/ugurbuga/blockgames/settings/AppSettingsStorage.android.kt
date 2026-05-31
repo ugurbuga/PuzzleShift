@@ -8,6 +8,8 @@ import com.ugurbuga.blockgames.game.model.AppThemeMode
 import com.ugurbuga.blockgames.game.model.BlockColorPalette
 import com.ugurbuga.blockgames.game.model.BlockVisualStyle
 import com.ugurbuga.blockgames.game.model.GameplayStyle
+import com.ugurbuga.blockgames.game.model.blockVisualStyleFromPersistedOrdinal
+import com.ugurbuga.blockgames.game.model.blockVisualStyleFromPersistedValue
 import com.ugurbuga.blockgames.game.model.gameplayStyleFromPersistedValue
 import com.ugurbuga.blockgames.game.model.persistedKeys
 import com.ugurbuga.blockgames.game.model.resolveUnifiedThemePalette
@@ -51,12 +53,15 @@ actual object AppSettingsStorage {
                 themePalette = legacyThemePalette,
                 blockPalette = legacyBlockPalette,
             ),
-            blockVisualStyle = BlockVisualStyle.entries.getOrElse(
+            blockVisualStyle = blockVisualStyleFromPersistedValue(
+                prefs.getSafeString(KeyBlockVisualStyle, null),
+            ) ?: blockVisualStyleFromPersistedOrdinal(
                 prefs.getInt(
                     KeyBlockVisualStyle,
-                    defaultSettings.blockVisualStyle.ordinal
-                )
-            ) { defaultSettings.blockVisualStyle },
+                    defaultSettings.blockVisualStyle.ordinal,
+                ),
+                defaultSettings.blockVisualStyle,
+            ),
             hasSeenTutorial = prefs.getBoolean(KeyHasSeenTutorial, defaultSettings.hasSeenTutorial),
             hasShownInteractiveOnboarding = prefs.getBoolean(
                 KeyHasShownInteractiveOnboarding,
@@ -131,7 +136,7 @@ actual object AppSettingsStorage {
             .putInt(KeyThemeMode, sanitized.themeMode.ordinal)
             .putInt(KeyThemeColorPalette, sanitized.themeColorPalette.ordinal)
             .putInt(KeyBlockColorPalette, sanitized.blockColorPalette.ordinal)
-            .putInt(KeyBlockVisualStyle, sanitized.blockVisualStyle.ordinal)
+            .putString(KeyBlockVisualStyle, sanitized.blockVisualStyle.name)
             .putBoolean(KeyHasSeenTutorial, sanitized.hasSeenTutorial)
             .putBoolean(KeyHasShownInteractiveOnboarding, sanitized.hasShownInteractiveOnboarding)
             .putString(KeySeenTutorialStyles, encodeEnumSet(sanitized.seenTutorialStyles))

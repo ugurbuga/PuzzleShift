@@ -6,6 +6,8 @@ import com.ugurbuga.blockgames.game.model.AppThemeMode
 import com.ugurbuga.blockgames.game.model.BlockColorPalette
 import com.ugurbuga.blockgames.game.model.BlockVisualStyle
 import com.ugurbuga.blockgames.game.model.GameplayStyle
+import com.ugurbuga.blockgames.game.model.blockVisualStyleFromPersistedOrdinal
+import com.ugurbuga.blockgames.game.model.blockVisualStyleFromPersistedValue
 import com.ugurbuga.blockgames.game.model.gameplayStyleFromPersistedValue
 import com.ugurbuga.blockgames.game.model.normalizeBlockVisualStyle
 import com.ugurbuga.blockgames.game.model.resolveUnifiedThemePalette
@@ -29,8 +31,9 @@ actual object AppSettingsStorage {
             language = AppLanguage.entries.getOrElse(parts[0].toIntOrNull() ?: -1) { defaultSettings.language },
             themeMode = AppThemeMode.entries.getOrElse(parts[1].toIntOrNull() ?: -1) { defaultSettings.themeMode },
             themeColorPalette = resolveUnifiedThemePalette(themePalette = legacyThemePalette, blockPalette = legacyBlockPalette),
-            blockVisualStyle = normalizeBlockVisualStyle(
-                BlockVisualStyle.entries.getOrElse(parts[4].toIntOrNull() ?: -1) { defaultSettings.blockVisualStyle }
+            blockVisualStyle = blockVisualStyleFromPersistedValue(parts[4]) ?: blockVisualStyleFromPersistedOrdinal(
+                parts[4].toIntOrNull() ?: -1,
+                defaultSettings.blockVisualStyle,
             ),
             hasSeenTutorial = (parts[5].toIntOrNull() ?: 0) == 1,
             hasInitializedLanguage = (parts.getOrNull(6)?.toIntOrNull() ?: 0) == 1 || parts.isNotEmpty(),
@@ -59,7 +62,7 @@ actual object AppSettingsStorage {
                 sanitized.themeMode.ordinal,
                 sanitized.themeColorPalette.ordinal,
                 sanitized.blockColorPalette.ordinal,
-                normalizeBlockVisualStyle(sanitized.blockVisualStyle).ordinal,
+                normalizeBlockVisualStyle(sanitized.blockVisualStyle).name,
                 if (sanitized.hasSeenTutorial) 1 else 0,
                 if (sanitized.hasInitializedLanguage) 1 else 0,
                 if (sanitized.hasShownInteractiveOnboarding) 1 else 0,

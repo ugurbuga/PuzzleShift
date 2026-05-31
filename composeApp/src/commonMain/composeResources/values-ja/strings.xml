@@ -62,11 +62,9 @@
     <string name="block_style_gears">ギア</string>
     <string name="block_style_pixel">ピクセル</string>
     <string name="block_style_cyberpunk">サイバーパンク</string>
-    <string name="block_style_electric">エレクトリック</string>
-    <string name="board_block_style_always_flat">常にフラット</string>
+<string name="board_block_style_always_flat">常にフラット</string>
     <string name="board_block_style_match_selected">選択中のブロックスタイルに合わせる</string>
-    <string name="block_style_lava">溶岩</string>
-    <string name="block_style_light_burst">光のバースト</string>
+<string name="block_style_light_burst">光のバースト</string>
     <string name="block_style_matte_soft">やわらかマット</string>
     <string name="block_style_stone_texture">石の質感</string>
     <string name="rewarded_tokens_button_bullet">• 広告を見て %1$d トークンを獲得</string>

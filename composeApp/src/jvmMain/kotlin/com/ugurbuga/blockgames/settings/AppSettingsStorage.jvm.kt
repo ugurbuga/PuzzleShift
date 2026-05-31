@@ -6,6 +6,8 @@ import com.ugurbuga.blockgames.game.model.AppThemeMode
 import com.ugurbuga.blockgames.game.model.BlockColorPalette
 import com.ugurbuga.blockgames.game.model.BlockVisualStyle
 import com.ugurbuga.blockgames.game.model.GameplayStyle
+import com.ugurbuga.blockgames.game.model.blockVisualStyleFromPersistedOrdinal
+import com.ugurbuga.blockgames.game.model.blockVisualStyleFromPersistedValue
 import com.ugurbuga.blockgames.game.model.gameplayStyleFromPersistedValue
 import com.ugurbuga.blockgames.game.model.normalizeBlockVisualStyle
 import com.ugurbuga.blockgames.game.model.persistedKeys
@@ -28,8 +30,11 @@ actual object AppSettingsStorage {
             language = AppLanguage.entries.getOrElse(prefs.getInt(KeyLanguage, defaultSettings.language.ordinal)) { defaultSettings.language },
             themeMode = AppThemeMode.entries.getOrElse(prefs.getInt(KeyThemeMode, defaultSettings.themeMode.ordinal)) { defaultSettings.themeMode },
             themeColorPalette = resolveUnifiedThemePalette(themePalette = legacyThemePalette, blockPalette = legacyBlockPalette),
-            blockVisualStyle = normalizeBlockVisualStyle(
-                BlockVisualStyle.entries.getOrElse(prefs.getInt(KeyBlockVisualStyle, defaultSettings.blockVisualStyle.ordinal)) { defaultSettings.blockVisualStyle }
+            blockVisualStyle = blockVisualStyleFromPersistedValue(
+                prefs.get(KeyBlockVisualStyle, null),
+            ) ?: blockVisualStyleFromPersistedOrdinal(
+                prefs.getInt(KeyBlockVisualStyle, defaultSettings.blockVisualStyle.ordinal),
+                defaultSettings.blockVisualStyle,
             ),
             hasSeenTutorial = prefs.getBoolean(KeyHasSeenTutorial, defaultSettings.hasSeenTutorial),
             hasShownInteractiveOnboarding = prefs.getBoolean(KeyHasShownInteractiveOnboarding, defaultSettings.hasShownInteractiveOnboarding),
@@ -43,7 +48,7 @@ actual object AppSettingsStorage {
             unlockedThemeModes = decodeEnumSet(prefs.getSafeString(KeyUnlockedThemeModes, null), AppThemeMode.entries),
             unlockedThemePalettes = decodeEnumSet(prefs.getSafeString(KeyUnlockedThemePalettes, null), AppColorPalette.entries),
             unlockedBlockStyles = decodeEnumSet(prefs.getSafeString(KeyUnlockedBlockStyles, null), BlockVisualStyle.entries),
-            styleChallengeProgress = com.ugurbuga.blockgames.game.model.GameplayStyle.entries.associateWith { style ->
+            styleChallengeProgress = GameplayStyle.entries.associateWith { style ->
                 decodeChallengeProgress(
                     style.persistedKeys()
                         .asSequence()
@@ -69,7 +74,7 @@ actual object AppSettingsStorage {
         prefs.putInt(KeyThemeMode, sanitized.themeMode.ordinal)
         prefs.putInt(KeyThemeColorPalette, sanitized.themeColorPalette.ordinal)
         prefs.putInt(KeyBlockColorPalette, sanitized.blockColorPalette.ordinal)
-        prefs.putInt(KeyBlockVisualStyle, normalizeBlockVisualStyle(sanitized.blockVisualStyle).ordinal)
+        prefs.put(KeyBlockVisualStyle, normalizeBlockVisualStyle(sanitized.blockVisualStyle).name)
         prefs.putBoolean(KeyHasSeenTutorial, sanitized.hasSeenTutorial)
         prefs.putBoolean(KeyHasShownInteractiveOnboarding, sanitized.hasShownInteractiveOnboarding)
         prefs.put(KeySeenTutorialStyles, encodeEnumSet(sanitized.seenTutorialStyles))

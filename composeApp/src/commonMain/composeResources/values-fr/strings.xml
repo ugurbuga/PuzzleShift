@@ -64,8 +64,6 @@
     <string name="settings_tutorial_body">Ouvrez le tutoriel ou l’exercice guidé à tout moment pour revoir le placement libre, les effacements de lignes et de colonnes, ainsi que le fonctionnement du plateau de trois pièces.</string>
     <string name="settings_tutorial_replay">Exercice</string>
     <string name="settings_color_palette">Palette de couleurs</string>
-    <string name="block_style_electric">Électrique</string>
-    <string name="block_style_lava">Lave</string>
     <string name="block_style_light_burst">Éclat lumineux</string>
     <string name="block_style_matte_soft">Mat doux</string>
     <string name="block_style_stone_texture">Texture pierre</string>
