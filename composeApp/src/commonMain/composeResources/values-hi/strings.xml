@@ -58,15 +58,13 @@
     <string name="block_style_gears">गियर्स</string>
     <string name="block_style_pixel">पिक्सेल</string>
     <string name="block_style_cyberpunk">साइबरपंक</string>
-    <string name="block_style_electric">इलेक्ट्रिक</string>
-    <string name="board_block_style_always_flat">हमेशा सादा</string>
+<string name="board_block_style_always_flat">हमेशा सादा</string>
     <string name="board_block_style_match_selected">चयनित शैली से मिलाएँ</string>
     <string name="settings_tutorial">ट्यूटोरियल</string>
     <string name="settings_tutorial_body">फ्री प्लेसमेंट, पंक्ति/स्तंभ साफ़ करना और तीन-पीस ट्रे फ़्लो दोबारा देखने के लिए कभी भी ट्यूटोरियल या गाइडेड प्रैक्टिस खोलें।</string>
     <string name="settings_tutorial_replay">अभ्यास</string>
     <string name="settings_color_palette">रंग पैलेट</string>
-    <string name="block_style_lava">लावा</string>
-    <string name="block_style_light_burst">प्रकाश विस्फोट</string>
+<string name="block_style_light_burst">प्रकाश विस्फोट</string>
     <string name="block_style_matte_soft">नरम मैट</string>
     <string name="block_style_stone_texture">पत्थर बनावट</string>
     <string name="rewarded_tokens_button_bullet">• विज्ञापन देखें और %1$d टोकन पाएं</string>

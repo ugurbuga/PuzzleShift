@@ -174,6 +174,7 @@ enum class BlockVisualStyle {
     GlitchTech,
     AuraEnergy,
     CircuitBoard,
+    LightBurst,
     ;
 
     fun cornerScale(): Float = when (this) {
@@ -202,6 +203,7 @@ enum class BlockVisualStyle {
         GlitchTech -> 0.15f
         AuraEnergy -> 1.30f
         CircuitBoard -> 0.45f
+        LightBurst -> 0.72f
     }
 
     fun frameCornerRadius(): Dp = when (this) {
@@ -230,6 +232,7 @@ enum class BlockVisualStyle {
         GlitchTech -> 2.dp
         AuraEnergy -> 24.dp
         CircuitBoard -> 8.dp
+        LightBurst -> 14.dp
     }
 }
 
@@ -1283,7 +1286,29 @@ fun CellTone.paletteColor(palette: BlockColorPalette, isDark: Boolean = true): C
     }
 }
 
+private const val LegacyElectricBlockStyleOrdinal = 25
+private const val LegacyLavaBlockStyleOrdinal = 26
+private const val LegacyLightBurstBlockStyleOrdinal = 27
+
 fun normalizeBlockVisualStyle(style: BlockVisualStyle): BlockVisualStyle = style
+
+fun blockVisualStyleFromPersistedValue(raw: String?): BlockVisualStyle? = when (raw?.trim()) {
+    null,
+    "" -> null
+    "Electric" -> BlockVisualStyle.LightBurst
+    "Lava" -> BlockVisualStyle.Prism
+    else -> BlockVisualStyle.entries.firstOrNull { it.name == raw }
+}
+
+fun blockVisualStyleFromPersistedOrdinal(
+    ordinal: Int,
+    defaultStyle: BlockVisualStyle,
+): BlockVisualStyle = when (ordinal) {
+    LegacyElectricBlockStyleOrdinal,
+    LegacyLightBurstBlockStyleOrdinal -> BlockVisualStyle.LightBurst
+    LegacyLavaBlockStyleOrdinal -> BlockVisualStyle.Prism
+    else -> BlockVisualStyle.entries.getOrElse(ordinal) { defaultStyle }
+}
 
 fun boardSpecialIcon(type: SpecialBlockType): ImageVector = when (type) {
     SpecialBlockType.ColumnClearer -> Icons.Filled.SwapVert

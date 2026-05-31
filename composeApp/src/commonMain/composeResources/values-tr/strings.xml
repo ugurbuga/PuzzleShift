@@ -58,15 +58,13 @@
     <string name="block_style_circuit_board">Devre Kartı</string>
     <string name="block_style_spider_web">Örümcek Ağı</string>
     <string name="block_style_cosmic">Kozmik</string>
-    <string name="block_style_electric">Elektrik</string>
-    <string name="block_style_flame">Alev</string>
+<string name="block_style_flame">Alev</string>
     <string name="block_style_gears">Dişliler</string>
     <string name="block_style_pixel">Piksel</string>
     <string name="block_style_cyberpunk">Siberpunk</string>
     <string name="board_block_style_always_flat">Her zaman düz</string>
     <string name="board_block_style_match_selected">Seçili blok stiliyle eşleşsin</string>
-    <string name="block_style_lava">Lav</string>
-    <string name="block_style_light_burst">Işık Patlaması</string>
+<string name="block_style_light_burst">Işık Patlaması</string>
     <string name="block_style_matte_soft">Yumuşak Mat</string>
     <string name="block_style_stone_texture">Taş Dokusu</string>
     <string name="rewarded_tokens_button_bullet">• Reklam izle ve %1$d jeton kazan</string>

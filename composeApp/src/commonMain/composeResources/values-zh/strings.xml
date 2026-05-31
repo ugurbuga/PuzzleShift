@@ -58,15 +58,13 @@
     <string name="block_style_gears">齿轮</string>
     <string name="block_style_pixel">像素</string>
     <string name="block_style_cyberpunk">赛博朋克</string>
-    <string name="block_style_electric">电力</string>
-    <string name="board_block_style_always_flat">始终平面</string>
+<string name="board_block_style_always_flat">始终平面</string>
     <string name="board_block_style_match_selected">与所选样式一致</string>
     <string name="settings_tutorial">教程</string>
     <string name="settings_tutorial_body">你可以随时打开教程或引导练习，重新查看自由放置、行列清除，以及三块托盘的游玩流程。</string>
     <string name="settings_tutorial_replay">练习</string>
     <string name="settings_color_palette">颜色面板</string>
-    <string name="block_style_lava">熔岩</string>
-    <string name="block_style_light_burst">光爆</string>
+<string name="block_style_light_burst">光爆</string>
     <string name="block_style_matte_soft">柔雾哑光</string>
     <string name="block_style_stone_texture">石材纹理</string>
     <string name="rewarded_tokens_button_bullet">• 观看广告并获得 %1$d 代币</string>

@@ -58,15 +58,13 @@
     <string name="block_style_gears">Roda Gigi</string>
     <string name="block_style_pixel">Piksel</string>
     <string name="block_style_cyberpunk">Siberpunk</string>
-    <string name="block_style_electric">Listrik</string>
-    <string name="board_block_style_always_flat">Selalu datar</string>
+<string name="board_block_style_always_flat">Selalu datar</string>
     <string name="board_block_style_match_selected">Sesuai gaya yang dipilih</string>
     <string name="settings_tutorial">Panduan</string>
     <string name="settings_tutorial_body">Buka tutorial atau latihan terpandu kapan saja untuk meninjau penempatan bebas, pembersihan baris dan kolom, serta alur tray berisi tiga piece.</string>
     <string name="settings_tutorial_replay">Latihan</string>
     <string name="settings_color_palette">Palet Warna</string>
-    <string name="block_style_lava">Lava</string>
-    <string name="block_style_light_burst">Ledakan Cahaya</string>
+<string name="block_style_light_burst">Ledakan Cahaya</string>
     <string name="block_style_matte_soft">Matte Lembut</string>
     <string name="block_style_stone_texture">Tekstur Batu</string>
     <string name="rewarded_tokens_button_bullet">• Tonton iklan dan dapatkan %1$d token</string>

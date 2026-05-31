@@ -59,14 +59,12 @@
     <string name="block_style_gears">تروس</string>
     <string name="block_style_pixel">بكسل</string>
     <string name="block_style_cyberpunk">سايبيربانك</string>
-    <string name="block_style_electric">كهربائي</string>
-    <string name="board_block_style_always_flat">مسطح دائمًا</string>
+<string name="board_block_style_always_flat">مسطح دائمًا</string>
     <string name="board_block_style_match_selected">مطابق للنمط المحدد</string>
     <string name="settings_tutorial">البرنامج التعليمي</string>
     <string name="settings_tutorial_body">افتح البرنامج التعليمي أو التدريب الموجّه في أي وقت لمراجعة الوضع الحر ومسح الصفوف والأعمدة وآلية الحاوية ذات القطع الثلاث.</string>
     <string name="settings_tutorial_replay">تدريب</string>
-    <string name="block_style_lava">حمم</string>
-    <string name="block_style_light_burst">وميض ضوئي</string>
+<string name="block_style_light_burst">وميض ضوئي</string>
     <string name="block_style_matte_soft">مطفي ناعم</string>
     <string name="block_style_stone_texture">ملمس حجري</string>
     <string name="rewarded_tokens_button_bullet">• شاهد إعلانًا واحصل على %1$d رمز</string>

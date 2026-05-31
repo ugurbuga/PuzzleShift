@@ -7,10 +7,10 @@
     <!-- BlockSortGameScreen -->
     <string name="game_message_ad_reward_blocksort">Bu tur için fazladan boş bir kolon eklendi.</string>
     <string name="blocksort_completed_label">Tamamlanan</string>
-    <string name="blocksort_goal_hint">Hedef: Round’u, dolu tüm sütunlar tek renk olacak şekilde bitirmek. Round’larda sütun başına 3, 4, 5 veya 6 eşit slot olabilir ve tahta iki sıraya bölünebilir.</string>
-    <string name="blocksort_no_moves_hint">Bu karışık düzende geçerli hamle kalmadı. Karıştırma kullan ya da yeni bir round başlat.</string>
+    <string name="blocksort_goal_hint">Hedef: turu, dolu tüm sütunlar tek renk olacak şekilde bitirmek. Turlarda sütun başına 3, 4, 5 veya 6 eşit boyutlu yuva olabilir ve tahta iki sıraya bölünebilir.</string>
+    <string name="blocksort_no_moves_hint">Bu karışık düzende geçerli hamle kalmadı. Karıştırma kullan ya da yeni bir tur başlat.</string>
     <string name="blocksort_round_congrats_title">Tebrikler!</string>
-    <string name="blocksort_round_complete_hint">Round tamamlandı! +%1$d bonus ve yeni karışık düzen geldi.</string>
+    <string name="blocksort_round_complete_hint">Tur tamamlandı! +%1$d bonus ve yeni karışık düzen geldi.</string>
     <string name="blocksort_round_label">Tur</string>
     <string name="blocksort_select_source_hint">Üstteki renk grubunu almak için dolu bir karışık sütuna dokun.</string>
     <string name="blocksort_selected_hint">Şimdi boş bir sütuna ya da üst rengi aynı olan bir sütuna dokunarak grubu taşı.</string>
@@ -23,23 +23,23 @@
 
     <!-- GameTutorialScreen -->
     <string name="tutorial_blocksort_intro_title">Eşit boydaki üst blokları sütunlar arasında taşı</string>
-    <string name="tutorial_blocksort_intro_body">Her round’da tüm sütunlar aynı slot yüksekliğini kullanır. Karışık bir sütuna dokunup üstteki renk grubunu seç, ardından bunu boş bir sütuna ya da üst rengi aynı olan bir sütuna taşı.</string>
+    <string name="tutorial_blocksort_intro_body">Her turda tüm sütunlar aynı yuva yüksekliğini kullanır. Karışık bir sütuna dokunup üstteki renk grubunu seç, ardından bunu boş bir sütuna ya da üst rengi aynı olan bir sütuna taşı.</string>
     <string name="tutorial_blocksort_rules_title">Sadece eşleşen renkler üst üste gelebilir</string>
     <string name="tutorial_blocksort_rules_body">Blokları yalnızca boş alana ya da üst rengi aynı olan bir sütuna taşıyabilirsin. Bulmaca büyüdükçe tahta üst ve alt sıra olarak ikiye bölünebilir; bu yüzden hem yardımcı boş sütunları hem de görünürlüğü iyi yönet.</string>
-    <string name="tutorial_blocksort_finish_title">Tek renkli bir sütunun tüm slotlarını tamamla</string>
-    <string name="tutorial_blocksort_finish_body">Bir sütun, o round’daki tüm slotları aynı renkle dolduğunda tamamlanmış sayılır. Farklı round’larda 3, 4, 5 veya 6 eşit slot olabilir; hepsini bitirdiğinde yeni karışık düzen gelir.</string>
+    <string name="tutorial_blocksort_finish_title">Tek renkli bir sütunun tüm yuvalarını tamamla</string>
+    <string name="tutorial_blocksort_finish_body">Bir sütun, o turdaki tüm yuvaları aynı renkle dolduğunda tamamlanmış sayılır. Farklı turlarda 3, 4, 5 veya 6 eşit boyutlu yuva olabilir; hepsini bitirdiğinde yeni karışık düzen gelir.</string>
     <string name="tutorial_blocksort_ready_title">BlockSort için hazırsın</string>
-    <string name="tutorial_blocksort_ready_body">İki üç hamle sonrasını düşün, yardımcı boş sütunlarını koru ve her round’da değişen slot sayısına ve iki sıralı düzene hızlıca uyum sağla.</string>
+    <string name="tutorial_blocksort_ready_body">İki üç hamle sonrasını düşün, yardımcı boş sütunlarını koru ve her turda değişen yuva sayısına ve iki sıralı düzene hızlıca uyum sağla.</string>
 
     <!-- InteractiveOnboarding -->
     <string name="interactive_onboarding_blocksort_pick_title">Kaynak sütunu seç</string>
-    <string name="interactive_onboarding_blocksort_pick_body">Önce vurgulanan karışık sütuna dokun. İlk olarak onun üstteki renk grubunu taşıyacaksın ve bu round’daki tüm slotlar aynı boyda.</string>
+    <string name="interactive_onboarding_blocksort_pick_body">Önce vurgulanan karışık sütuna dokun. İlk olarak onun üstteki renk grubunu taşıyacaksın ve bu turdaki tüm yuvalar aynı boyda.</string>
     <string name="interactive_onboarding_blocksort_pick_hint">İlk adımda karışık düzende vurgulanan kaynak sütuna dokun.</string>
     <string name="interactive_onboarding_blocksort_match_title">Üst rengi eşleştir</string>
     <string name="interactive_onboarding_blocksort_match_body">Şimdi bu grubu üst rengi aynı olan sütuna gönder. Eşleşen sütunlar, tahta iki sıraya bölünse bile renkleri güvenle gruplayabilmeni sağlar.</string>
     <string name="interactive_onboarding_blocksort_match_hint">Grubu vurgulanan, rengi eşleşen sütuna taşı.</string>
     <string name="interactive_onboarding_blocksort_finish_title">Temiz bir sütunu tamamla</string>
-    <string name="interactive_onboarding_blocksort_finish_body">Harika. Bir hamle daha yapınca bu round için tek renkli bir sütunun tüm slotları tamamlanacak. Böylece BlockSort’un ana hedefini göreceksin.</string>
-    <string name="interactive_onboarding_blocksort_finish_hint">Vurgulanan sütunu tüm slotları aynı rengi gösterecek şekilde tamamla.</string>
+    <string name="interactive_onboarding_blocksort_finish_body">Harika. Bir hamle daha yapınca bu tur için tek renkli bir sütunun tüm yuvaları tamamlanacak. Böylece BlockSort’un ana hedefini göreceksin.</string>
+    <string name="interactive_onboarding_blocksort_finish_hint">Vurgulanan sütunu tüm yuvaları aynı rengi gösterecek şekilde tamamla.</string>
 
 </resources>

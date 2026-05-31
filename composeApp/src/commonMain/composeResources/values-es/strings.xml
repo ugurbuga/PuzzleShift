@@ -64,8 +64,6 @@
     <string name="settings_tutorial_body">Abre el tutorial o la práctica guiada en cualquier momento para repasar la colocación libre, las limpiezas de filas y columnas y el flujo de la bandeja de tres piezas.</string>
     <string name="settings_tutorial_replay">Práctica</string>
     <string name="settings_color_palette">Paleta de colores</string>
-    <string name="block_style_electric">Eléctrico</string>
-    <string name="block_style_lava">Lava</string>
     <string name="block_style_light_burst">Destello de luz</string>
     <string name="block_style_matte_soft">Mate suave</string>
     <string name="block_style_stone_texture">Textura de piedra</string>

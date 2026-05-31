@@ -33,10 +33,12 @@ class SettingsScreenCommonTest {
         val styles = visibleBlockStyles()
 
         assertEquals(BlockVisualStyle.Flat, styles.first())
-        assertEquals(BlockVisualStyle.CircuitBoard, styles.last())
-        assertEquals(25, styles.size)
+        assertEquals(BlockVisualStyle.LightBurst, styles.last())
+        assertEquals(26, styles.size)
         assertTrue(BlockVisualStyle.DynamicLiquid in styles)
         assertTrue(BlockVisualStyle.Prism in styles)
+        assertFalse(styles.any { it.name == "Electric" })
+        assertFalse(styles.any { it.name == "Lava" })
     }
 }
 
