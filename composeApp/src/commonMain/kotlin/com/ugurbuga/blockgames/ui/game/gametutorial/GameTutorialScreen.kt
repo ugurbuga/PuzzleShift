@@ -192,6 +192,7 @@ import com.ugurbuga.blockgames.game.model.PieceKind
 import com.ugurbuga.blockgames.game.model.SpecialBlockType
 import com.ugurbuga.blockgames.game.model.gameText
 import com.ugurbuga.blockgames.localization.LocalAppSettings
+import com.ugurbuga.blockgames.localization.LocalBlockStylePulse
 import com.ugurbuga.blockgames.platform.GlobalPlatformConfig
 import com.ugurbuga.blockgames.settings.AppSettings
 import com.ugurbuga.blockgames.settings.BlockSortOnboardingScene
@@ -684,16 +685,7 @@ fun GameTutorialScreen(
         )
     }
 
-    val transition = rememberInfiniteTransition(label = "tutorialStylePulse")
-    val stylePulse by transition.animateFloat(
-        initialValue = 0f,
-        targetValue = 1f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 2200, easing = FastOutSlowInEasing),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "stylePulse",
-    )
+    val stylePulse = LocalBlockStylePulse.current
 
     Surface(
         modifier = modifier.fillMaxSize(),
@@ -1458,15 +1450,7 @@ private fun TutorialBoomBlocksDemo(
         ),
         label = "hintPhase",
     )
-    val stylePulse by infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 1f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 3200, easing = FastOutSlowInEasing),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "stylePulse",
-    )
+    val stylePulse = LocalBlockStylePulse.current
 
     val targetPoint = remember(scene) {
         var found: GridPoint? = null

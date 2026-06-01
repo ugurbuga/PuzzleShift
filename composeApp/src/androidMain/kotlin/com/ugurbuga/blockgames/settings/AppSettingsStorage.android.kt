@@ -125,7 +125,11 @@ actual object AppSettingsStorage {
         return try {
             getString(key, defaultValue)
         } catch (_: ClassCastException) {
-            getStringSet(key, null)?.joinToString(";") ?: defaultValue
+            try {
+                getStringSet(key, null)?.joinToString(";") ?: defaultValue
+            } catch (_: ClassCastException) {
+                defaultValue
+            }
         }
     }
 

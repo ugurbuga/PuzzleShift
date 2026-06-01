@@ -112,6 +112,7 @@ import com.ugurbuga.blockgames.game.model.gameText
 import com.ugurbuga.blockgames.game.model.paletteColor
 import com.ugurbuga.blockgames.game.model.toTopLeft
 import com.ugurbuga.blockgames.localization.LocalAppSettings
+import com.ugurbuga.blockgames.localization.LocalBlockStylePulse
 import com.ugurbuga.blockgames.localization.appNameStringResource
 import com.ugurbuga.blockgames.platform.GlobalPlatformConfig
 import com.ugurbuga.blockgames.platform.feedback.GameHaptic
@@ -383,17 +384,7 @@ fun GameScreen(
     var showGameOverDialog by remember { mutableStateOf(value = false) }
     var rewardedReviveLoading by remember { mutableStateOf(value = false) }
 
-    val stylePulseState = rememberInfiniteTransition(label = "stylePulse")
-        .animateFloat(
-            initialValue = 0f,
-            targetValue = 1f,
-            animationSpec = infiniteRepeatable(
-                animation = tween(durationMillis = 3200, easing = FastOutSlowInEasing),
-                repeatMode = RepeatMode.Reverse
-            ),
-            label = "stylePulse",
-        )
-    val stylePulse = stylePulseState.value
+    val stylePulse = LocalBlockStylePulse.current
 
     val interactiveOnboardingEnabled = interactiveOnboardingScene != null
     val interactiveOnboardingAcceptedColumns = interactiveOnboardingScene?.acceptedColumns.orEmpty()

@@ -42,7 +42,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.clipPath
@@ -76,6 +75,8 @@ import com.ugurbuga.blockgames.game.model.boardSpecialIcon
 import com.ugurbuga.blockgames.game.model.formatMergeValue
 import com.ugurbuga.blockgames.game.model.paletteColor
 import com.ugurbuga.blockgames.localization.LocalAppSettings
+import com.ugurbuga.blockgames.localization.LocalBlockStylePulse
+import com.ugurbuga.blockgames.localization.isAnimatedBlockStyle
 import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import com.ugurbuga.blockgames.ui.theme.BlockGamesUiColors
 import com.ugurbuga.blockgames.ui.theme.isBlockGamesDarkTheme
@@ -89,6 +90,29 @@ private const val DefaultBoardShiftDurationMillis = 220
 private const val CosmicStarCount = 20
 private const val CosmicFieldSeed = 0x51A71C
 private val BoardFrameInset = 1.dp
+
+/** Pre-computed circuit path points for CircuitBoard style — avoids list allocation per cell per frame. */
+private val CircuitPathData: List<List<Offset>> = listOf(
+    listOf(Offset(0.1f, 0.1f), Offset(0.4f, 0.1f), Offset(0.5f, 0.2f), Offset(0.5f, 0.5f)),
+    listOf(Offset(0.9f, 0.9f), Offset(0.6f, 0.9f), Offset(0.5f, 0.8f), Offset(0.5f, 0.5f)),
+    listOf(Offset(0.1f, 0.9f), Offset(0.1f, 0.6f), Offset(0.2f, 0.5f), Offset(0.5f, 0.5f)),
+    listOf(Offset(0.9f, 0.1f), Offset(0.9f, 0.4f), Offset(0.8f, 0.5f), Offset(0.5f, 0.5f)),
+)
+
+/**
+ * Pre-computed holographic color factors: Pair(isTint, factor).
+ * factor=0f means use toneColor directly (tintColor/shadeColor with 0f == identity).
+ */
+private val HolographicColorFactors: List<Pair<Boolean, Float>> = listOf(
+    true to 0.7f,   // tintColor(toneColor, 0.7f)
+    true to 0.35f,  // tintColor(toneColor, 0.35f)
+    true to 0f,     // toneColor
+    false to 0.35f, // shadeColor(toneColor, 0.35f)
+    false to 0.7f,  // shadeColor(toneColor, 0.7f)
+    false to 0.35f, // shadeColor(toneColor, 0.35f)
+    true to 0f,     // toneColor
+    true to 0.35f,  // tintColor(toneColor, 0.35f)
+)
 
 @Composable
 fun BoardGrid(
@@ -212,29 +236,11 @@ fun BoardGrid(
     } else {
         remember { mutableFloatStateOf(0f) }
     }
-    val shouldAnimateStylePulse = stylePulse == 0f && (
-            boardBlockStyle == BlockVisualStyle.DynamicLiquid ||
-                    boardBlockStyle == BlockVisualStyle.Tornado ||
-                    boardBlockStyle == BlockVisualStyle.Prism ||
-                    boardBlockStyle == BlockVisualStyle.Flame
-            )
-    val stylePulseTransition = if (shouldAnimateStylePulse) {
-        rememberInfiniteTransition(label = "stylePulse")
+    val shouldAnimateStylePulse = stylePulse == 0f && isAnimatedBlockStyle(boardBlockStyle)
+    val effectiveStylePulse = if (shouldAnimateStylePulse) {
+        LocalBlockStylePulse.current
     } else {
-        null
-    }
-    val stylePulseState = if (shouldAnimateStylePulse) {
-        stylePulseTransition!!.animateFloat(
-            initialValue = 0f,
-            targetValue = 1f,
-            animationSpec = infiniteRepeatable(
-                animation = tween(durationMillis = 2400, easing = FastOutSlowInEasing),
-                repeatMode = RepeatMode.Reverse,
-            ),
-            label = "stylePulse",
-        )
-    } else {
-        remember { mutableFloatStateOf(0f) }
+        stylePulse
     }
 
     LaunchedEffect(gameState.clearAnimationToken) {
@@ -418,8 +424,6 @@ fun BoardGrid(
             val dangerSweep = dangerSweepState.value
             val impactPulse = impactPulseState.value
             val impactSweep = impactSweepState.value
-            val stylePulseInternal = stylePulseState.value
-            val effectiveStylePulse = if (stylePulse != 0f) stylePulse else stylePulseInternal
 
             val previewGuideAlpha = when {
                 isDarkTheme && isDragging -> 0.12f
@@ -1280,12 +1284,13 @@ private fun BoardSpecialIconOverlay(
         Icon(
             imageVector = boardSpecialIcon(cell.special),
             contentDescription = null,
-            tint = specialBlockIconTint(
+            tint = blockForegroundTint(
                 style = resolvedBoardStyle,
                 isDarkTheme = isDarkTheme,
                 palette = settings.blockColorPalette,
             ).copy(alpha = iconAlpha),
-            modifier = Modifier.size(minOf(cellWidth, cellHeight) * iconSizeRatio),
+            modifier = Modifier
+                .size(minOf(cellWidth, cellHeight) * iconSizeRatio),
         )
     }
 }
@@ -1335,7 +1340,7 @@ private fun boardPointKey(column: Int, row: Int): Int = (column shl 16) or (row 
 
 private fun boardCellKey(cell: BoardCell): Int = (cell.tone.ordinal shl 8) or cell.special.ordinal
 
-internal fun specialBlockIconTint(
+internal fun blockForegroundTint(
     style: BlockVisualStyle,
     isDarkTheme: Boolean,
     palette: BlockColorPalette,
@@ -1353,6 +1358,7 @@ internal fun specialBlockIconTint(
         }
 
         BlockVisualStyle.SpiderWeb,
+        BlockVisualStyle.LightBurst,
         BlockVisualStyle.Cosmic -> {
             Color.Black
         }
@@ -1367,7 +1373,7 @@ internal fun blockStyleIconTint(
     enabled: Boolean = true,
 ): Color {
     val settings = LocalAppSettings.current
-    return specialBlockIconTint(
+    return blockForegroundTint(
         style = style,
         isDarkTheme = isBlockGamesDarkTheme(settings),
         palette = settings.blockColorPalette,
@@ -1545,7 +1551,7 @@ internal fun BlockCellPreview(
             Icon(
                 imageVector = boardSpecialIcon(special),
                 contentDescription = null,
-                tint = specialBlockIconTint(
+                tint = blockForegroundTint(
                     style = style,
                     isDarkTheme = isDarkTheme,
                     palette = palette,
@@ -1614,6 +1620,7 @@ fun PieceBlocks(
         val density = LocalDensity.current
         val visualStyle = settings.blockVisualStyle
         val isDarkTheme = isBlockGamesDarkTheme(settings)
+        val effectivePulse = rememberBlockStylePulse(style = visualStyle, pulse = pulse)
         val resolvedCellInset = cellInset ?: boardCellInsetDp(cellSize)
         val resolvedCellCornerRadius =
             cellCornerRadius ?: boardCellCornerRadiusDp(cellSize, visualStyle)
@@ -1636,7 +1643,7 @@ fun PieceBlocks(
                         size = this.size,
                         cornerRadius = CornerRadius(cellCornerRadiusPx, cellCornerRadiusPx),
                         alpha = alpha,
-                        pulse = pulse,
+                        pulse = effectivePulse,
                     )
                 }
 
@@ -1661,7 +1668,7 @@ fun PieceBlocks(
                     Icon(
                         imageVector = boardSpecialIcon(piece.special),
                         contentDescription = null,
-                        tint = specialBlockIconTint(
+                        tint = blockForegroundTint(
                             style = visualStyle,
                             isDarkTheme = isDarkTheme,
                             palette = settings.blockColorPalette,
@@ -2323,12 +2330,14 @@ private fun DrawScope.drawCyberpunkPattern(
             )
         }
 
-        // Random digital "glitch" pixels
-        val rand = kotlin.random.Random((pulse * 10).toInt())
-        if (rand.nextFloat() > 0.7f) {
+        // Random digital "glitch" pixels — use deterministic hash instead of allocating Random per cell
+        val glitchSeed = (pulse * 10).toInt()
+        if ((glitchSeed * 31 + topLeft.x.toInt() * 7 + topLeft.y.toInt() * 13) % 10 > 6) {
             val pxSize = 4.dp.toPx()
-            val pxX = rand.nextFloat() * (size.width - pxSize)
-            val pxY = rand.nextFloat() * (size.height - pxSize)
+            val hashF = ((glitchSeed * 17 + topLeft.x.toInt() * 3) and 0xFFFF) / 65535f
+            val hashG = ((glitchSeed * 23 + topLeft.y.toInt() * 5) and 0xFFFF) / 65535f
+            val pxX = hashF * (size.width - pxSize)
+            val pxY = hashG * (size.height - pxSize)
             drawRect(
                 color = accentColor.copy(alpha = 0.8f * alpha),
                 topLeft = Offset(topLeft.x + pxX, topLeft.y + pxY),
@@ -2358,6 +2367,26 @@ private fun roundedClipPath(
             cornerRadius = cornerRadius,
         )
     )
+}
+
+/**
+ * Reusable variant that resets and fills the given [path] instead of allocating a new one.
+ * Use inside tight per-cell draw loops to avoid GC pressure.
+ */
+private fun fillRoundedClipPath(
+    path: Path,
+    topLeft: Offset,
+    size: Size,
+    cornerRadius: CornerRadius,
+): Path {
+    path.reset()
+    path.addRoundRect(
+        RoundRect(
+            rect = Rect(topLeft, size),
+            cornerRadius = cornerRadius,
+        )
+    )
+    return path
 }
 
 private fun DrawScope.drawFlamePattern(
@@ -3278,7 +3307,7 @@ private fun DrawScope.drawTornadoPattern(
 
     // Swirling tornado effect
     val tornadoPath = Path()
-    val segments = 40
+    val segments = 20
     val rotations = 3f
     for (i in 0..segments) {
         val t = i.toFloat() / segments
@@ -3796,7 +3825,7 @@ private fun DrawScope.drawNeonGlowPattern(
     // Inner Wiring
     clipPath(roundedClipPath(topLeft, size, cornerRadius)) {
         // Multiple Neon Tubes
-        neonGlowTubeSpecs().forEach { spec ->
+        CachedNeonGlowTubeSpecs.forEach { spec ->
             val insetFactor = spec.insetFactor
             val tubeSize = Size(
                 (size.width * (1f - insetFactor * 2)).coerceAtLeast(0f),
@@ -3835,7 +3864,9 @@ internal data class NeonGlowTubeSpec(
     val cornerScale: Float,
 )
 
-internal fun neonGlowTubeSpecs(): List<NeonGlowTubeSpec> = listOf(
+internal fun neonGlowTubeSpecs(): List<NeonGlowTubeSpec> = CachedNeonGlowTubeSpecs
+
+private val CachedNeonGlowTubeSpecs: List<NeonGlowTubeSpec> = listOf(
     NeonGlowTubeSpec(
         insetFactor = 0.09f,
         strokeWidthDp = 4.0f,
@@ -3937,20 +3968,10 @@ private fun DrawScope.drawHolographicPattern(
     val phase = pulse * PI.toFloat() * 2f
 
     clipPath(roundedClipPath(topLeft, size, cornerRadius)) {
-        val colors = listOf(
-            tintColor(toneColor, 0.7f),
-            tintColor(toneColor, 0.35f),
-            toneColor,
-            shadeColor(toneColor, 0.35f),
-            shadeColor(toneColor, 0.7f),
-            shadeColor(toneColor, 0.35f),
-            toneColor,
-            tintColor(toneColor, 0.35f)
-        )
-
-        val shiftedColors = colors.indices.map { i ->
-            val offsetIndex = (i + (pulse * colors.size).toInt()) % colors.size
-            colors[offsetIndex].copy(alpha = 0.75f * alpha)
+        val colorShift = (pulse * 8).toInt() % 8
+        val shiftedColors = HolographicColorFactors.indices.map { i ->
+            val (tintShade, factor) = HolographicColorFactors[(i + colorShift) % 8]
+            (if (tintShade) tintColor(toneColor, factor) else shadeColor(toneColor, factor)).copy(alpha = 0.75f * alpha)
         }
 
         drawRect(
@@ -3996,9 +4017,13 @@ private fun DrawScope.drawGlitchTechPattern(
     cornerRadius: CornerRadius,
     pulse: Float,
 ) {
-    val rand = kotlin.random.Random((pulse * 20).toInt())
-    val isGlitching = rand.nextFloat() > 0.85f
-    val glitchOffset = if (isGlitching) Offset(rand.nextFloat() * 4f - 2f, rand.nextFloat() * 4f - 2f) else Offset.Zero
+    val glitchSeed = (pulse * 20).toInt()
+    val glitchHash = (glitchSeed * 31 + topLeft.x.toInt() * 7 + topLeft.y.toInt() * 13) and 0xFFFF
+    val isGlitching = (glitchHash % 20) > 16
+    val glitchOffset = if (isGlitching) Offset(
+        ((glitchHash * 17) and 0xFF) / 255f * 4f - 2f,
+        ((glitchHash * 23) and 0xFF) / 255f * 4f - 2f,
+    ) else Offset.Zero
 
     clipPath(roundedClipPath(topLeft, size, cornerRadius)) {
         drawRect(color = Color(0xFF1A1A1A).copy(alpha = alpha), topLeft = topLeft, size = size)
@@ -4006,7 +4031,7 @@ private fun DrawScope.drawGlitchTechPattern(
         repeat(5) { i ->
             val rectTop = topLeft.y + (i * size.height / 5f)
             val rectHeight = size.height / 5f
-            val rectWidth = size.width * (0.4f + 0.5f * rand.nextFloat())
+            val rectWidth = size.width * (0.4f + 0.5f * (((glitchHash * (i + 3) * 37) and 0xFFFF) / 65535f))
             drawRect(
                 color = toneColor.copy(alpha = 0.15f * alpha),
                 topLeft = Offset(topLeft.x, rectTop),
@@ -4033,11 +4058,11 @@ private fun DrawScope.drawGlitchTechPattern(
             size = size
         )
 
-        repeat(10) { i ->
+        repeat(5) { i ->
             drawLine(
                 color = Color.Black.copy(alpha = 0.2f * alpha),
-                start = Offset(topLeft.x, topLeft.y + (i * size.height / 10f)),
-                end = Offset(topLeft.x + size.width, topLeft.y + (i * size.height / 10f)),
+                start = Offset(topLeft.x, topLeft.y + (i * size.height / 5f)),
+                end = Offset(topLeft.x + size.width, topLeft.y + (i * size.height / 5f)),
                 strokeWidth = 1f
             )
         }
@@ -4056,9 +4081,9 @@ private fun DrawScope.drawAuraEnergyPattern(
     val minDim = minOf(size.width, size.height)
     val center = topLeft + Offset(size.width / 2f, size.height / 2f)
 
-    // Animated Aura particles/rays
-    repeat(16) { i ->
-        val angle = (i * (360f / 16f)) * (PI / 180f).toFloat() + (phase * 0.5f)
+    // Animated Aura particles/rays — reduced to 8 for performance
+    repeat(8) { i ->
+        val angle = (i * (360f / 8f)) * (PI / 180f).toFloat() + (phase * 0.5f)
         val rayLength = minDim * (0.7f + 0.35f * sin(phase * 2.5f + i))
         val end = center + Offset(cos(angle) * rayLength, sin(angle) * rayLength)
         
@@ -4125,30 +4150,25 @@ private fun DrawScope.drawCircuitBoardPattern(
         val pathColor = toneColor.copy(alpha = 0.6f * alpha)
         val dataColor = Color.White.copy(alpha = 0.8f * alpha)
         
-        // Static circuit paths
-        val paths = listOf(
-            listOf(Offset(0.1f, 0.1f), Offset(0.4f, 0.1f), Offset(0.5f, 0.2f), Offset(0.5f, 0.5f)),
-            listOf(Offset(0.9f, 0.9f), Offset(0.6f, 0.9f), Offset(0.5f, 0.8f), Offset(0.5f, 0.5f)),
-            listOf(Offset(0.1f, 0.9f), Offset(0.1f, 0.6f), Offset(0.2f, 0.5f), Offset(0.5f, 0.5f)),
-            listOf(Offset(0.9f, 0.1f), Offset(0.9f, 0.4f), Offset(0.8f, 0.5f), Offset(0.5f, 0.5f))
-        )
-        
-        paths.forEach { points ->
-            val p = Path().apply {
-                moveTo(topLeft.x + size.width * points[0].x, topLeft.y + size.height * points[0].y)
-                for (i in 1 until points.size) {
-                    lineTo(topLeft.x + size.width * points[i].x, topLeft.y + size.height * points[i].y)
-                }
+        // Static circuit paths — draw with lines instead of Path objects to avoid allocations
+        val circuitStrokeWidth = 1.5.dp.toPx()
+        val nodeRadius = 2.dp.toPx()
+        CircuitPathData.forEach { points ->
+            for (i in 0 until points.size - 1) {
+                drawLine(
+                    color = pathColor,
+                    start = Offset(topLeft.x + size.width * points[i].x, topLeft.y + size.height * points[i].y),
+                    end = Offset(topLeft.x + size.width * points[i + 1].x, topLeft.y + size.height * points[i + 1].y),
+                    strokeWidth = circuitStrokeWidth,
+                )
             }
-            drawPath(path = p, color = pathColor, style = Stroke(width = 1.5.dp.toPx()))
-            
-            // Nodes
-            drawCircle(color = pathColor, center = topLeft + Offset(size.width * points[0].x, size.height * points[0].y), radius = 2.dp.toPx())
+            // Node
+            drawCircle(color = pathColor, center = topLeft + Offset(size.width * points[0].x, size.height * points[0].y), radius = nodeRadius)
         }
         
         // Animated "data" pulses
         val dataProgress = (pulse * 2f) % 1f
-        paths.forEach { points ->
+        CircuitPathData.forEach { points ->
             val pointIndex = (dataProgress * (points.size - 1)).toInt()
             val segmentProgress = (dataProgress * (points.size - 1)) % 1f
             val start = points[pointIndex]
@@ -4170,206 +4190,6 @@ private fun DrawScope.drawCircuitBoardPattern(
     }
 }
 
-private fun DrawScope.drawElectricPattern(
-    topLeft: Offset,
-    size: Size,
-    toneColor: Color,
-    alpha: Float,
-    cornerRadius: CornerRadius,
-    pulse: Float,
-) {
-    val clipShape = roundedClipPath(topLeft, size, cornerRadius)
-    val minDim = minOf(size.width, size.height)
-    val phase = pulse.coerceIn(0f, 1f)
-    val driftA = sin(phase * PI.toFloat() * 2f)
-    val driftB = cos(phase * PI.toFloat() * 2f)
-    val auroraA = Color(0xFF79F2FF)
-    val auroraB = Color(0xFF91FFB8)
-    val auroraC = Color(0xFFD6A8FF)
-    val ribbonWidth = minDim * 0.22f
-
-    clipPath(clipShape) {
-        drawRoundRect(
-            brush = Brush.verticalGradient(
-                colors = listOf(
-                    shadeColor(toneColor, 0.34f).copy(alpha = alpha),
-                    toneColor.copy(alpha = alpha),
-                    tintColor(toneColor, 0.06f).copy(alpha = alpha),
-                ),
-                startY = topLeft.y,
-                endY = topLeft.y + size.height,
-            ),
-            topLeft = topLeft,
-            size = size,
-            cornerRadius = cornerRadius,
-        )
-        val ribbonA = Path().apply {
-            moveTo(topLeft.x - ribbonWidth * 0.2f, topLeft.y + size.height * 0.18f)
-            cubicTo(
-                topLeft.x + size.width * 0.18f,
-                topLeft.y + size.height * (0.02f + driftA * 0.05f),
-                topLeft.x + size.width * 0.48f,
-                topLeft.y + size.height * (0.38f - driftB * 0.06f),
-                topLeft.x + size.width * 0.78f,
-                topLeft.y + size.height * (0.12f + driftA * 0.04f),
-            )
-            lineTo(topLeft.x + size.width * 0.78f, topLeft.y + size.height * 0.12f + ribbonWidth)
-            cubicTo(
-                topLeft.x + size.width * 0.50f,
-                topLeft.y + size.height * (0.46f + driftB * 0.03f),
-                topLeft.x + size.width * 0.22f,
-                topLeft.y + size.height * (0.18f + driftA * 0.05f),
-                topLeft.x - ribbonWidth * 0.2f,
-                topLeft.y + size.height * 0.18f + ribbonWidth,
-            )
-            close()
-        }
-        val ribbonB = Path().apply {
-            moveTo(topLeft.x + size.width * 0.16f, topLeft.y + size.height * 0.72f)
-            cubicTo(
-                topLeft.x + size.width * 0.30f,
-                topLeft.y + size.height * (0.52f - driftB * 0.05f),
-                topLeft.x + size.width * 0.62f,
-                topLeft.y + size.height * (0.96f + driftA * 0.03f),
-                topLeft.x + size.width * 0.90f,
-                topLeft.y + size.height * 0.64f,
-            )
-            lineTo(topLeft.x + size.width * 0.90f, topLeft.y + size.height * 0.64f + ribbonWidth * 0.8f)
-            cubicTo(
-                topLeft.x + size.width * 0.60f,
-                topLeft.y + size.height * (1.02f - driftA * 0.03f),
-                topLeft.x + size.width * 0.30f,
-                topLeft.y + size.height * (0.62f + driftB * 0.04f),
-                topLeft.x + size.width * 0.16f,
-                topLeft.y + size.height * 0.72f + ribbonWidth * 0.8f,
-            )
-            close()
-        }
-        drawPath(
-            path = ribbonA,
-            brush = Brush.linearGradient(
-                colors = listOf(
-                    auroraA.copy(alpha = 0.10f * alpha),
-                    auroraC.copy(alpha = 0.32f * alpha),
-                    auroraA.copy(alpha = 0.08f * alpha),
-                ),
-                start = topLeft,
-                end = topLeft + Offset(size.width, size.height),
-            ),
-        )
-        drawPath(
-            path = ribbonB,
-            brush = Brush.linearGradient(
-                colors = listOf(
-                    auroraB.copy(alpha = 0.08f * alpha),
-                    auroraA.copy(alpha = 0.26f * alpha),
-                    auroraB.copy(alpha = 0.10f * alpha),
-                ),
-                start = topLeft + Offset(0f, size.height),
-                end = topLeft + Offset(size.width, 0f),
-            ),
-        )
-        drawCircle(
-            brush = Brush.radialGradient(
-                colors = listOf(
-                    Color.White.copy(alpha = 0.26f * alpha),
-                    Color.Transparent,
-                ),
-                center = topLeft + Offset(size.width * 0.52f, size.height * (0.46f + driftA * 0.03f)),
-                radius = minDim * 0.38f,
-            ),
-            center = topLeft + Offset(size.width * 0.52f, size.height * (0.46f + driftA * 0.03f)),
-            radius = minDim * 0.38f,
-        )
-    }
-
-    drawRoundRect(
-        color = auroraA.copy(alpha = 0.34f * alpha),
-        topLeft = topLeft,
-        size = size,
-        cornerRadius = cornerRadius,
-        style = Stroke(width = (minDim * 0.022f).coerceAtLeast(1.0f)),
-    )
-}
-
-private fun DrawScope.drawLavaPattern(
-    topLeft: Offset,
-    size: Size,
-    toneColor: Color,
-    alpha: Float,
-    cornerRadius: CornerRadius,
-    pulse: Float,
-) {
-    val clipShape = roundedClipPath(topLeft, size, cornerRadius)
-    val minDim = minOf(size.width, size.height)
-    val glassTop = tintColor(toneColor, 0.22f)
-    val glassMid = toneColor
-    val glassEdge = shadeColor(toneColor, 0.34f)
-    val facetLight = Color.White.copy(alpha = 0.32f * alpha)
-
-    clipPath(clipShape) {
-        drawRoundRect(
-            brush = Brush.verticalGradient(
-                colors = listOf(
-                    glassTop.copy(alpha = alpha),
-                    glassMid.copy(alpha = alpha),
-                    glassEdge.copy(alpha = alpha),
-                ),
-                startY = topLeft.y,
-                endY = topLeft.y + size.height,
-            ),
-            topLeft = topLeft,
-            size = size,
-            cornerRadius = cornerRadius,
-        )
-
-        val facets = listOf(
-            listOf(Offset(0.10f, 0.18f), Offset(0.42f, 0.08f), Offset(0.54f, 0.34f), Offset(0.18f, 0.44f)),
-            listOf(Offset(0.46f, 0.08f), Offset(0.88f, 0.18f), Offset(0.76f, 0.46f), Offset(0.54f, 0.34f)),
-            listOf(Offset(0.18f, 0.48f), Offset(0.54f, 0.38f), Offset(0.42f, 0.88f), Offset(0.08f, 0.76f)),
-            listOf(Offset(0.58f, 0.38f), Offset(0.78f, 0.48f), Offset(0.92f, 0.80f), Offset(0.46f, 0.90f)),
-        )
-        facets.forEachIndexed { index, points ->
-            val path = Path().apply {
-                moveTo(topLeft.x + size.width * points.first().x, topLeft.y + size.height * points.first().y)
-                points.drop(1).forEach { point ->
-                    lineTo(topLeft.x + size.width * point.x, topLeft.y + size.height * point.y)
-                }
-                close()
-            }
-            drawPath(
-                path = path,
-                brush = Brush.linearGradient(
-                    colors = listOf(
-                        if (index % 2 == 0) facetLight else Color.White.copy(alpha = 0.14f * alpha),
-                        Color.Transparent,
-                    ),
-                    start = topLeft,
-                    end = topLeft + Offset(size.width, size.height),
-                ),
-            )
-            drawPath(
-                path = path,
-                color = Color.White.copy(alpha = 0.18f * alpha),
-                style = Stroke(width = (minDim * 0.014f).coerceAtLeast(0.9f)),
-            )
-        }
-
-        drawRoundRect(
-            brush = Brush.linearGradient(
-                colors = listOf(
-                    Color.White.copy(alpha = 0.20f * alpha),
-                    Color.Transparent,
-                ),
-                start = topLeft + Offset(size.width * 0.14f, size.height * 0.10f),
-                end = topLeft + Offset(size.width * 0.58f, size.height * 0.58f),
-            ),
-            topLeft = topLeft + Offset(size.width * 0.10f, size.height * 0.10f),
-            size = Size(size.width * 0.42f, size.height * 0.16f),
-            cornerRadius = CornerRadius(cornerRadius.x * 0.44f, cornerRadius.y * 0.44f),
-        )
-    }
-}
 
 private fun DrawScope.drawLightBurstPattern(
     topLeft: Offset,
@@ -4513,3 +4333,5 @@ internal fun boardCellCornerRadiusPx(
 ): Float = (cellSizePx * 0.16f * style.cornerScale()).coerceAtLeast(0f)
 
 internal fun boardFrameCornerRadiusDp(style: BlockVisualStyle): Dp = style.frameCornerRadius()
+
+

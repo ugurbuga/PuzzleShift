@@ -53,7 +53,7 @@
     <string name="block_style_brick">Baksteen</string>
     <string name="block_style_stone_texture">Steentextuur</string>
     <string name="block_style_honeycomb_texture">Honingraat</string>
-    <string name="block_style_light_burst">Lichtflits</string>
+        <string name="block_style_light_burst">Lichtflits</string>
     <string name="block_style_liquid_marble">Vloeibaar marmer</string>
     <string name="block_style_holographic">Holografisch</string>
     <string name="block_style_glitch_tech">Glitch-technologie</string>
@@ -61,11 +61,11 @@
     <string name="block_style_circuit_board">Printplaat</string>
     <string name="block_style_spider_web">Spinnenweb</string>
     <string name="block_style_cosmic">Kosmisch</string>
-<string name="block_style_flame">Vlam</string>
+    <string name="block_style_flame">Vlam</string>
     <string name="block_style_gears">Tandwielen</string>
     <string name="block_style_pixel">Pixelstijl</string>
     <string name="block_style_cyberpunk">Cyberstijl</string>
-<string name="board_block_style_always_flat">Altijd vlak</string>
+    <string name="board_block_style_always_flat">Altijd vlak</string>
     <string name="board_block_style_match_selected">Volg geselecteerde blokstijl</string>
     <string name="rewarded_tokens_button_bullet">• Bekijk een advertentie en verdien %1$d tokens</string>
     <string name="rewarded_tokens_button">Bekijk een advertentie en verdien %1$d tokens</string>

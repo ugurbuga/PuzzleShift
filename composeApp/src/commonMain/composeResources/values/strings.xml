@@ -58,13 +58,13 @@
     <string name="block_style_gears">Gears</string>
     <string name="block_style_pixel">Pixel</string>
     <string name="block_style_cyberpunk">Cyberpunk</string>
-<string name="settings_sound">Sound</string>
+    <string name="settings_sound">Sound</string>
     <string name="settings_sound_on">On</string>
     <string name="settings_sound_off">Off</string>
     <string name="settings_board_block_style">Board block style</string>
     <string name="board_block_style_always_flat">Always flat</string>
     <string name="board_block_style_match_selected">Match selected style</string>
-<string name="block_style_light_burst">Light Burst</string>
+    <string name="block_style_light_burst">Light Burst</string>
     <string name="block_style_matte_soft">Matte Soft</string>
     <string name="block_style_stone_texture">Stone Texture</string>
     <string name="rewarded_tokens_button_bullet">• Watch an ad and earn %1$d tokens</string>

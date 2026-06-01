@@ -87,6 +87,7 @@ import com.ugurbuga.blockgames.game.model.GridPoint
 import com.ugurbuga.blockgames.game.model.PlacementPreview
 import com.ugurbuga.blockgames.game.model.gameText
 import com.ugurbuga.blockgames.localization.LocalAppSettings
+import com.ugurbuga.blockgames.localization.LocalBlockStylePulse
 import com.ugurbuga.blockgames.settings.AppSettings
 import com.ugurbuga.blockgames.settings.BlockSortOnboardingScene
 import com.ugurbuga.blockgames.settings.BlockSortOnboardingStage
@@ -1383,17 +1384,7 @@ internal fun resolveMovableStackCells(
 @Composable
 private fun rememberBlockSortInteractionPulse(enabled: Boolean): Float {
     if (!enabled) return 0f
-    val infiniteTransition = rememberInfiniteTransition(label = BlockSortStylePulseTransitionLabel)
-    val stylePulse by infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 1f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 2600, easing = FastOutSlowInEasing),
-            repeatMode = RepeatMode.Reverse,
-        ),
-        label = BlockSortStylePulseAnimationLabel,
-    )
-    return stylePulse
+    return LocalBlockStylePulse.current
 }
 
 @Composable

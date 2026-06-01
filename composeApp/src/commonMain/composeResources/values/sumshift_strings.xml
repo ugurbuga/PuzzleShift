@@ -19,6 +19,9 @@
     <string name="interactive_onboarding_sumshift_column_hint">Tap the 2 in the second row. This move completes the column target.</string>
     <string name="interactive_onboarding_sumshift_finish_hint">Tap the 4 in the third row. Practice ends and the real game starts.</string>
 
+    <!-- Ad reward -->
+    <string name="game_message_ad_reward_sumshift">Hint revealed! Keep solving the targets.</string>
+
     <!-- Accessibility -->
     <string name="sumshift_hint_action">Get hint</string>
     <string name="sumshift_mistake_badge_content_description">Remaining mistakes: %1$d of 1</string>

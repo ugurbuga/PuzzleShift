@@ -8,6 +8,7 @@ import com.ugurbuga.blockgames.game.model.BlockColorPalette
 import com.ugurbuga.blockgames.game.model.BlockVisualStyle
 import com.ugurbuga.blockgames.game.model.ChallengeProgress
 import com.ugurbuga.blockgames.game.model.GameplayStyle
+import com.ugurbuga.blockgames.game.model.toBlockColorPalette
 
 @Immutable
 data class AppSettings(
@@ -35,12 +36,5 @@ data class AppSettings(
         get() = styleChallengeProgress[selectedGameplayStyle ?: GameplayStyle.StackShift] ?: ChallengeProgress()
 
     val blockColorPalette: BlockColorPalette
-        get() = when (themeColorPalette) {
-            AppColorPalette.Classic -> BlockColorPalette.Classic
-            AppColorPalette.Aurora -> BlockColorPalette.Aurora
-            AppColorPalette.Sunset -> BlockColorPalette.Sunset
-            AppColorPalette.ModernNeon -> BlockColorPalette.Neon
-            AppColorPalette.SoftPastel -> BlockColorPalette.SoftPastel
-            AppColorPalette.MinimalMonochrome -> BlockColorPalette.Monochrome
-        }
+        get() = themeColorPalette.toBlockColorPalette()
 }

@@ -53,14 +53,18 @@ private class AdaptiveGameLogic(
     private val scoreCalculator: ScoreCalculator,
 ) : GameLogic {
 
-    private fun gameLogic(gameplayStyle: GameplayStyle): GameLogic = when (gameplayStyle) {
-        GameplayStyle.BlockWise -> BlockWiseGameLogic(random, scoreCalculator)
-        GameplayStyle.StackShift -> StackShiftGameLogic(random, scoreCalculator)
-        GameplayStyle.MergeShift -> MergeShiftGameLogic(random, scoreCalculator)
-        GameplayStyle.BoomBlocks -> BoomBlocksGameLogic(random, scoreCalculator)
-        GameplayStyle.BlockSort -> BlockSortGameLogic(random, scoreCalculator)
-        GameplayStyle.DigitShift -> com.ugurbuga.blockgames.game.logic.DigitShiftGameLogic(random, scoreCalculator)
-        GameplayStyle.SumShift -> SumShiftGameLogic(random, scoreCalculator)
+    private val cache = mutableMapOf<GameplayStyle, GameLogic>()
+
+    private fun gameLogic(gameplayStyle: GameplayStyle): GameLogic = cache.getOrPut(gameplayStyle) {
+        when (gameplayStyle) {
+            GameplayStyle.BlockWise -> BlockWiseGameLogic(random, scoreCalculator)
+            GameplayStyle.StackShift -> StackShiftGameLogic(random, scoreCalculator)
+            GameplayStyle.MergeShift -> MergeShiftGameLogic(random, scoreCalculator)
+            GameplayStyle.BoomBlocks -> BoomBlocksGameLogic(random, scoreCalculator)
+            GameplayStyle.BlockSort -> BlockSortGameLogic(random, scoreCalculator)
+            GameplayStyle.DigitShift -> DigitShiftGameLogic(random, scoreCalculator)
+            GameplayStyle.SumShift -> SumShiftGameLogic(random, scoreCalculator)
+        }
     }
 
     override fun restoreGame(state: GameState) = gameLogic(state.gameplayStyle).restoreGame(state)

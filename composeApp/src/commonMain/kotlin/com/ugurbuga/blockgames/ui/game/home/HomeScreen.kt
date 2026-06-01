@@ -13,6 +13,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -93,6 +94,7 @@ import com.ugurbuga.blockgames.game.model.BlockVisualStyle
 import com.ugurbuga.blockgames.game.model.CellTone
 import com.ugurbuga.blockgames.game.model.DigitShiftLetterState
 import com.ugurbuga.blockgames.game.model.GameplayStyle
+import com.ugurbuga.blockgames.localization.LocalBlockStylePulse
 import com.ugurbuga.blockgames.localization.appNameStringResource
 import com.ugurbuga.blockgames.localization.appStringResource
 import com.ugurbuga.blockgames.platform.GlobalPlatformConfig
@@ -111,7 +113,7 @@ import com.ugurbuga.blockgames.ui.game.boardCellCornerRadiusPx
 import com.ugurbuga.blockgames.ui.game.boardCellInsetDp
 import com.ugurbuga.blockgames.ui.game.drawCellBody
 import com.ugurbuga.blockgames.ui.game.rememberBlockStylePulse
-import com.ugurbuga.blockgames.ui.game.specialBlockIconTint
+import com.ugurbuga.blockgames.ui.game.blockForegroundTint
 import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import com.ugurbuga.blockgames.ui.theme.BlockGamesUiColors
 import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
@@ -147,16 +149,7 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
-    val stylePulseTransition = rememberInfiniteTransition(label = "homeStylePulse")
-    val stylePulse by stylePulseTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 1f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 2200, easing = FastOutSlowInEasing),
-            repeatMode = RepeatMode.Reverse,
-        ),
-        label = "homeStylePulseValue",
-    )
+    val stylePulse = LocalBlockStylePulse.current
 
     LogScreen(telemetry, TelemetryScreenNames.Home)
 
@@ -180,128 +173,128 @@ fun HomeScreen(
                 .statusBarsPadding()
                 .padding(horizontal = 18.dp, vertical = 16.dp),
         ) {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(0.dp),
+            ) {
                 Column(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier.fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(0.dp),
+                    verticalArrangement = Arrangement.spacedBy(10.dp),
                 ) {
-                    Column(
+                    Text(
+                        text = appNameStringResource(),
+                        style = MaterialTheme.typography.headlineSmall,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontWeight = FontWeight.ExtraBold,
+                        textAlign = TextAlign.Center,
+                    )
+                    HomeTitleBanner(
+                        settings = settings,
+                        pulse = stylePulse,
                         modifier = Modifier.fillMaxWidth(),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.spacedBy(10.dp),
-                    ) {
-                        Text(
-                            text = appNameStringResource(),
-                            style = MaterialTheme.typography.headlineSmall,
-                            color = MaterialTheme.colorScheme.onSurface,
-                            fontWeight = FontWeight.ExtraBold,
-                            textAlign = TextAlign.Center,
-                        )
-                        HomeTitleBanner(
-                            settings = settings,
-                            pulse = stylePulse,
-                            modifier = Modifier.fillMaxWidth(),
-                        )
-                    }
+                    )
+                }
 
-                    Spacer(modifier = Modifier.weight(1f))
+                Spacer(modifier = Modifier.weight(1f))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(0.78f),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    HomeQuickActionButton(
+                        text = appStringResource(Res.string.home_classic_cta),
+                        icon = Icons.Filled.PlayArrow,
+                        tone = CellTone.Cyan,
+                        settings = settings,
+                        pulse = stylePulse,
+                        modifier = Modifier.weight(1f),
+                        onClick = onPlay,
+                        iconSize = 44.dp,
+                        textStyle = MaterialTheme.typography.labelLarge,
+                    )
+
+                    HomeQuickActionButton(
+                        text = appStringResource(Res.string.home_time_attack_cta),
+                        icon = Icons.Filled.Timer,
+                        tone = CellTone.Amber,
+                        settings = settings,
+                        pulse = stylePulse,
+                        modifier = Modifier.weight(1f),
+                        onClick = onPlayTimeAttack,
+                        iconSize = 44.dp,
+                        textStyle = MaterialTheme.typography.labelLarge,
+                    )
+                }
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 6.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(14.dp),
+                ) {
+                    HomeHighScoreCard(
+                        classicHighScore = classicHighScore,
+                        timeAttackHighScore = timeAttackHighScore,
+                        onClick = {
+                            if (isDebugBuild()) {
+                                notificationManager.sendTestNotification()
+                            }
+                        }
+                    )
 
                     Row(
-                        modifier = Modifier.fillMaxWidth(0.78f),
-                        horizontalArrangement = Arrangement.spacedBy(16.dp),
-                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(10.dp),
+                        verticalAlignment = Alignment.Bottom,
                     ) {
                         HomeQuickActionButton(
-                            text = appStringResource(Res.string.home_classic_cta),
-                            icon = Icons.Filled.PlayArrow,
-                            tone = CellTone.Cyan,
+                            text = appStringResource(Res.string.settings_challenges),
+                            icon = Icons.Default.EmojiEvents,
+                            tone = CellTone.Emerald,
                             settings = settings,
                             pulse = stylePulse,
                             modifier = Modifier.weight(1f),
-                            onClick = onPlay,
-                            iconSize = 44.dp,
-                            textStyle = MaterialTheme.typography.labelLarge,
+                            onClick = onOpenChallenges,
                         )
-
                         HomeQuickActionButton(
-                            text = appStringResource(Res.string.home_time_attack_cta),
-                            icon = Icons.Filled.Timer,
-                            tone = CellTone.Amber,
+                            text = appStringResource(Res.string.settings_tutorial),
+                            icon = Icons.AutoMirrored.Filled.MenuBook,
+                            tone = CellTone.Gold,
                             settings = settings,
                             pulse = stylePulse,
                             modifier = Modifier.weight(1f),
-                            onClick = onPlayTimeAttack,
-                            iconSize = 44.dp,
-                            textStyle = MaterialTheme.typography.labelLarge,
+                            onClick = onOpenTutorial,
                         )
-                    }
-
-                    Spacer(modifier = Modifier.weight(1f))
-
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(bottom = 6.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.spacedBy(14.dp),
-                    ) {
-                        HomeHighScoreCard(
-                            classicHighScore = classicHighScore,
-                            timeAttackHighScore = timeAttackHighScore,
-                            onClick = {
-                                if (isDebugBuild()) {
-                                    notificationManager.sendTestNotification()
-                                }
-                            }
+                        HomeQuickActionButton(
+                            text = stringResource(Res.string.selection_switch_game),
+                            icon = Icons.Default.SwapHoriz,
+                            tone = CellTone.Blue,
+                            settings = settings,
+                            pulse = stylePulse,
+                            modifier = Modifier.weight(1f),
+                            onClick = onSwitchGame,
                         )
-
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.spacedBy(10.dp),
-                            verticalAlignment = Alignment.Bottom,
-                        ) {
-                            HomeQuickActionButton(
-                                text = appStringResource(Res.string.settings_challenges),
-                                icon = Icons.Default.EmojiEvents,
-                                tone = CellTone.Emerald,
-                                settings = settings,
-                                pulse = stylePulse,
-                                modifier = Modifier.weight(1f),
-                                onClick = onOpenChallenges,
-                            )
-                            HomeQuickActionButton(
-                                text = appStringResource(Res.string.settings_tutorial),
-                                icon = Icons.AutoMirrored.Filled.MenuBook,
-                                tone = CellTone.Gold,
-                                settings = settings,
-                                pulse = stylePulse,
-                                modifier = Modifier.weight(1f),
-                                onClick = onOpenTutorial,
-                            )
-                            HomeQuickActionButton(
-                                text = stringResource(Res.string.selection_switch_game),
-                                icon = Icons.Default.SwapHoriz,
-                                tone = CellTone.Blue,
-                                settings = settings,
-                                pulse = stylePulse,
-                                modifier = Modifier.weight(1f),
-                                onClick = onSwitchGame,
-                            )
-                            HomeQuickActionButton(
-                                text = appStringResource(Res.string.settings_theme),
-                                icon = Icons.Filled.Palette,
-                                tone = CellTone.Violet,
-                                settings = settings,
-                                pulse = stylePulse,
-                                modifier = Modifier.weight(1f),
-                                onClick = onOpenTheme,
-                            )
-                        }
+                        HomeQuickActionButton(
+                            text = appStringResource(Res.string.settings_theme),
+                            icon = Icons.Filled.Palette,
+                            tone = CellTone.Violet,
+                            settings = settings,
+                            pulse = stylePulse,
+                            modifier = Modifier.weight(1f),
+                            onClick = onOpenTheme,
+                        )
                     }
                 }
             }
         }
     }
+}
 
 @Composable
 private fun HomeTitleBanner(
@@ -333,7 +326,10 @@ private fun SumShiftHomeTitleBanner(
         initialValue = 0f,
         targetValue = 1f,
         animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = SumShiftHomeBannerSequenceDurationMillis, easing = LinearEasing),
+            animation = tween(
+                durationMillis = SumShiftHomeBannerSequenceDurationMillis,
+                easing = LinearEasing
+            ),
             repeatMode = RepeatMode.Restart,
         ),
         label = "sumShiftBannerSequenceClock",
@@ -381,8 +377,10 @@ private fun SumShiftHomeTitleBanner(
         ) {
             val laneGap = 8.dp
             val gridGap = 7.dp
-            val widthBasedCell = (maxWidth - laneGap - (gridGap * (SumShiftHomeBannerColumns - 1))) / (SumShiftHomeBannerColumns + 1)
-            val heightBasedCell = (maxHeight - laneGap - (gridGap * (SumShiftHomeBannerRows - 1))) / (SumShiftHomeBannerRows + 1)
+            val widthBasedCell =
+                (maxWidth - laneGap - (gridGap * (SumShiftHomeBannerColumns - 1))) / (SumShiftHomeBannerColumns + 1)
+            val heightBasedCell =
+                (maxHeight - laneGap - (gridGap * (SumShiftHomeBannerRows - 1))) / (SumShiftHomeBannerRows + 1)
             val cellSize = minOf(widthBasedCell, heightBasedCell).coerceAtLeast(18.dp)
             val targetSize = cellSize
 
@@ -424,9 +422,12 @@ private fun SumShiftHomeTitleBanner(
                         repeat(SumShiftHomeBannerRows) { rowIndex ->
                             Row(horizontalArrangement = Arrangement.spacedBy(gridGap)) {
                                 repeat(SumShiftHomeBannerColumns) { columnIndex ->
-                                    val cellIndex = sumShiftHomeBannerCellIndex(rowIndex, columnIndex)
-                                    val rowCompleted = rowSums[rowIndex] == board.rowTargets[rowIndex]
-                                    val columnCompleted = columnSums[columnIndex] == board.columnTargets[columnIndex]
+                                    val cellIndex =
+                                        sumShiftHomeBannerCellIndex(rowIndex, columnIndex)
+                                    val rowCompleted =
+                                        rowSums[rowIndex] == board.rowTargets[rowIndex]
+                                    val columnCompleted =
+                                        columnSums[columnIndex] == board.columnTargets[columnIndex]
                                     SumShiftHomeBannerNumberCell(
                                         value = board.valueAt(rowIndex, columnIndex),
                                         selected = cellIndex in bannerState.selectedCells,
@@ -478,20 +479,51 @@ private fun sumShiftHomeBannerBoard(): SumShiftHomeBannerBoard = SumShiftHomeBan
     rowTargets = listOf(12, 15),
     columnTargets = listOf(4, 6, 5, 4, 8),
     actions = listOf(
-        SumShiftHomeBannerAction(sumShiftHomeBannerCellIndex(0, 0), SumShiftHomeBannerActionMode.Select),
-        SumShiftHomeBannerAction(sumShiftHomeBannerCellIndex(0, 1), SumShiftHomeBannerActionMode.Disable),
-        SumShiftHomeBannerAction(sumShiftHomeBannerCellIndex(1, 1), SumShiftHomeBannerActionMode.Select),
-        SumShiftHomeBannerAction(sumShiftHomeBannerCellIndex(1, 2), SumShiftHomeBannerActionMode.Disable),
-        SumShiftHomeBannerAction(sumShiftHomeBannerCellIndex(0, 2), SumShiftHomeBannerActionMode.Select),
-        SumShiftHomeBannerAction(sumShiftHomeBannerCellIndex(0, 3), SumShiftHomeBannerActionMode.Disable),
-        SumShiftHomeBannerAction(sumShiftHomeBannerCellIndex(1, 3), SumShiftHomeBannerActionMode.Select),
-        SumShiftHomeBannerAction(sumShiftHomeBannerCellIndex(1, 0), SumShiftHomeBannerActionMode.Disable),
-        SumShiftHomeBannerAction(sumShiftHomeBannerCellIndex(0, 4), SumShiftHomeBannerActionMode.Select),
-        SumShiftHomeBannerAction(sumShiftHomeBannerCellIndex(1, 4), SumShiftHomeBannerActionMode.Select),
+        SumShiftHomeBannerAction(
+            sumShiftHomeBannerCellIndex(0, 0),
+            SumShiftHomeBannerActionMode.Select
+        ),
+        SumShiftHomeBannerAction(
+            sumShiftHomeBannerCellIndex(0, 1),
+            SumShiftHomeBannerActionMode.Disable
+        ),
+        SumShiftHomeBannerAction(
+            sumShiftHomeBannerCellIndex(1, 1),
+            SumShiftHomeBannerActionMode.Select
+        ),
+        SumShiftHomeBannerAction(
+            sumShiftHomeBannerCellIndex(1, 2),
+            SumShiftHomeBannerActionMode.Disable
+        ),
+        SumShiftHomeBannerAction(
+            sumShiftHomeBannerCellIndex(0, 2),
+            SumShiftHomeBannerActionMode.Select
+        ),
+        SumShiftHomeBannerAction(
+            sumShiftHomeBannerCellIndex(0, 3),
+            SumShiftHomeBannerActionMode.Disable
+        ),
+        SumShiftHomeBannerAction(
+            sumShiftHomeBannerCellIndex(1, 3),
+            SumShiftHomeBannerActionMode.Select
+        ),
+        SumShiftHomeBannerAction(
+            sumShiftHomeBannerCellIndex(1, 0),
+            SumShiftHomeBannerActionMode.Disable
+        ),
+        SumShiftHomeBannerAction(
+            sumShiftHomeBannerCellIndex(0, 4),
+            SumShiftHomeBannerActionMode.Select
+        ),
+        SumShiftHomeBannerAction(
+            sumShiftHomeBannerCellIndex(1, 4),
+            SumShiftHomeBannerActionMode.Select
+        ),
     ),
 )
 
-private fun sumShiftHomeBannerCellIndex(row: Int, column: Int): Int = (row * SumShiftHomeBannerColumns) + column
+private fun sumShiftHomeBannerCellIndex(row: Int, column: Int): Int =
+    (row * SumShiftHomeBannerColumns) + column
 
 private fun SumShiftHomeBannerBoard.valueAt(row: Int, column: Int): Int =
     values[sumShiftHomeBannerCellIndex(row, column)]
@@ -571,6 +603,11 @@ private fun SumShiftHomeBannerTargetCell(
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
     val accent = if (completed) uiColors.success else MaterialTheme.colorScheme.primary
+    val tintColor = blockForegroundTint(
+        style = settings.blockVisualStyle,
+        isDarkTheme = isBlockGamesDarkTheme(settings),
+        palette = settings.blockColorPalette,
+    )
     val backgroundColor by animateColorAsState(
         targetValue = if (completed) {
             accent.copy(alpha = 0.18f)
@@ -619,7 +656,7 @@ private fun SumShiftHomeBannerTargetCell(
                     fontWeight = FontWeight.Bold,
                     fontSize = if (size <= 28.dp) 12.sp else 14.sp,
                 ),
-                color = MaterialTheme.colorScheme.onSurface,
+                color = tintColor,
                 textAlign = TextAlign.Center,
             )
             Text(
@@ -628,7 +665,7 @@ private fun SumShiftHomeBannerTargetCell(
                     fontWeight = FontWeight.SemiBold,
                     fontSize = if (size <= 28.dp) 7.sp else 8.sp,
                 ),
-                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.82f),
+                color = tintColor.copy(alpha = 0.82f),
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .padding(bottom = if (size <= 28.dp) 1.dp else 2.dp),
@@ -653,6 +690,11 @@ private fun SumShiftHomeBannerNumberCell(
     val uiColors = BlockGamesThemeTokens.uiColors
     val colorScheme = MaterialTheme.colorScheme
     val shape = RoundedCornerShape(boardCellCornerRadiusDp(size, settings.blockVisualStyle))
+    val tintColor = blockForegroundTint(
+        style = settings.blockVisualStyle,
+        isDarkTheme = isBlockGamesDarkTheme(settings),
+        palette = settings.blockColorPalette,
+    )
     val baseColor by animateColorAsState(
         targetValue = when {
             disabled -> uiColors.panelMuted.copy(alpha = 0.82f)
@@ -667,7 +709,10 @@ private fun SumShiftHomeBannerNumberCell(
     val borderColor by animateColorAsState(
         targetValue = when {
             disabled -> uiColors.panelStroke.copy(alpha = 0.48f)
-            focused && focusedMode == SumShiftHomeBannerActionMode.Disable -> uiColors.danger.copy(alpha = 0.90f)
+            focused && focusedMode == SumShiftHomeBannerActionMode.Disable -> uiColors.danger.copy(
+                alpha = 0.90f
+            )
+
             focused -> Color.White.copy(alpha = 0.92f)
             selected && completed -> colorScheme.primary.copy(alpha = 0.94f)
             selected -> colorScheme.primary.copy(alpha = 0.82f)
@@ -726,7 +771,7 @@ private fun SumShiftHomeBannerNumberCell(
             if (disabled) {
                 Canvas(modifier = Modifier.matchParentSize()) {
                     drawLine(
-                        color = Color.Black.copy(alpha = 0.22f),
+                        color = tintColor.copy(alpha = 0.82f),
                         start = Offset(x = this.size.width * 0.18f, y = this.size.height * 0.22f),
                         end = Offset(x = this.size.width * 0.82f, y = this.size.height * 0.78f),
                         strokeWidth = this.size.minDimension * 0.06f,
@@ -744,7 +789,7 @@ private fun SumShiftHomeBannerNumberCell(
                         else -> 15.sp
                     },
                 ),
-                color = textColor,
+                color = tintColor,
                 textAlign = TextAlign.Center,
                 textDecoration = if (disabled) TextDecoration.LineThrough else null,
             )
@@ -760,7 +805,11 @@ private fun SumShiftHomeBannerNumberCell(
                     tint = if (focusedMode == SumShiftHomeBannerActionMode.Disable) {
                         uiColors.danger.copy(alpha = 0.94f)
                     } else {
-                        Color.White.copy(alpha = 0.90f)
+                        if (isSystemInDarkTheme()) {
+                            Color.White.copy(alpha = 0.90f)
+                        } else {
+                            Color.Black.copy(alpha = 0.90f)
+                        }
                     },
                     modifier = Modifier
                         .align(Alignment.TopEnd)
@@ -784,7 +833,10 @@ private fun DigitShiftHomeTitleBanner(
         initialValue = 0f,
         targetValue = 1f,
         animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = DigitShiftHomeBannerSequenceDurationMillis, easing = LinearEasing),
+            animation = tween(
+                durationMillis = DigitShiftHomeBannerSequenceDurationMillis,
+                easing = LinearEasing
+            ),
             repeatMode = RepeatMode.Restart,
         ),
         label = "digitShiftBannerSequenceClock",
@@ -816,7 +868,8 @@ private fun DigitShiftHomeTitleBanner(
             val cellGap = 6.dp
             val cellsWidth = maxWidth - (cellGap * (HomeTitleBannerColumns - 1))
             val widthBasedCell = cellsWidth / HomeTitleBannerColumns
-            val cellsHeight = (maxHeight - (cellGap * (DigitShiftHomeBannerRows - 1))) / DigitShiftHomeBannerRows
+            val cellsHeight =
+                (maxHeight - (cellGap * (DigitShiftHomeBannerRows - 1))) / DigitShiftHomeBannerRows
             val cellSize = minOf(widthBasedCell, cellsHeight).coerceAtLeast(16.dp)
 
             Column(
@@ -1067,13 +1120,21 @@ private fun digitShiftHomeBannerPaletteFor(
     val colorScheme = MaterialTheme.colorScheme
     return when (state) {
         DigitShiftLetterState.Correct -> DigitShiftFeedbackPalette(
-            container = androidx.compose.ui.graphics.lerp(uiColors.success, uiColors.actionSuccess, 0.28f).copy(alpha = 0.95f),
+            container = androidx.compose.ui.graphics.lerp(
+                uiColors.success,
+                uiColors.actionSuccess,
+                0.28f
+            ).copy(alpha = 0.95f),
             border = androidx.compose.ui.graphics.lerp(uiColors.success, Color.White, 0.18f),
             content = Color.White,
         )
 
         DigitShiftLetterState.Present -> DigitShiftFeedbackPalette(
-            container = androidx.compose.ui.graphics.lerp(uiColors.warning, uiColors.actionWarning, 0.18f).copy(alpha = 0.95f),
+            container = androidx.compose.ui.graphics.lerp(
+                uiColors.warning,
+                uiColors.actionWarning,
+                0.18f
+            ).copy(alpha = 0.95f),
             border = androidx.compose.ui.graphics.lerp(uiColors.warning, Color.White, 0.14f),
             content = Color.White,
         )
@@ -1086,7 +1147,7 @@ private fun digitShiftHomeBannerPaletteFor(
 
         DigitShiftLetterState.Unknown,
         null,
-        -> DigitShiftFeedbackPalette(
+            -> DigitShiftFeedbackPalette(
             container = if (state == null) {
                 uiColors.metricCard.copy(alpha = 0.82f)
             } else {
@@ -1136,23 +1197,24 @@ private fun BlockSortHomeTitleBanner(
             completedMoves = activeMoveIndex,
         )
     }
-    val displayedColumns = remember(topWord, bottomWord, baseColumns, activeMove, localPhase, completedMoves) {
-        when {
-            localPhase in 0.60f..0.92f -> baseColumns.mapIndexed { columnIndex, columnCells ->
-                if (columnIndex == activeMove.sourceColumn) {
-                    columnCells.toMutableList().apply { this[activeMove.sourceRow] = null }
-                } else {
-                    columnCells
+    val displayedColumns =
+        remember(topWord, bottomWord, baseColumns, activeMove, localPhase, completedMoves) {
+            when {
+                localPhase in 0.60f..0.92f -> baseColumns.mapIndexed { columnIndex, columnCells ->
+                    if (columnIndex == activeMove.sourceColumn) {
+                        columnCells.toMutableList().apply { this[activeMove.sourceRow] = null }
+                    } else {
+                        columnCells
+                    }
                 }
-            }
 
-            else -> blockSortHomeBannerColumns(
-                topWord = topWord,
-                bottomWord = bottomWord,
-                completedMoves = completedMoves,
-            )
+                else -> blockSortHomeBannerColumns(
+                    topWord = topWord,
+                    bottomWord = bottomWord,
+                    completedMoves = completedMoves,
+                )
+            }
         }
-    }
     val sourceHighlight = when {
         localPhase < 0.18f -> sourceTapProgress
         localPhase < 0.42f -> 1f - handTravelProgress
@@ -1191,8 +1253,10 @@ private fun BlockSortHomeTitleBanner(
             val layout = remember(maxWidth, maxHeight) {
                 calculateBlockSortHomeBannerLayout(maxWidth = maxWidth, maxHeight = maxHeight)
             }
-            val sourceCellTopLeft = layout.cellTopLeft(column = activeMove.sourceColumn, row = activeMove.sourceRow)
-            val targetCellTopLeft = layout.cellTopLeft(column = activeMove.targetColumn, row = activeMove.targetRow)
+            val sourceCellTopLeft =
+                layout.cellTopLeft(column = activeMove.sourceColumn, row = activeMove.sourceRow)
+            val targetCellTopLeft =
+                layout.cellTopLeft(column = activeMove.targetColumn, row = activeMove.targetRow)
             val movingCellX = lerpDp(sourceCellTopLeft.x, targetCellTopLeft.x, pieceMoveProgress)
             val movingCellY = lerpDp(sourceCellTopLeft.y, targetCellTopLeft.y, pieceMoveProgress)
             val handAlpha = if (localPhase < 0.60f) 1f else 0f
@@ -1202,6 +1266,7 @@ private fun BlockSortHomeTitleBanner(
                     x = lerpDp(sourceCellTopLeft.x, targetCellTopLeft.x, handTravelProgress),
                     y = lerpDp(sourceCellTopLeft.y, targetCellTopLeft.y, handTravelProgress),
                 )
+
                 else -> targetCellTopLeft
             }
             val tapCompression = maxOf(sourceTapProgress, targetTapProgress)
@@ -1296,7 +1361,8 @@ private fun BlockSortHomeTitleBannerColumn(
     val sourceStrength = sourceHighlight.coerceIn(0f, 1f)
     val targetStrength = targetHighlight.coerceIn(0f, 1f)
     val highlightStrength = maxOf(sourceStrength, targetStrength)
-    val highlightColor = if (sourceStrength >= targetStrength) uiColors.launchGlow else uiColors.guideAccent
+    val highlightColor =
+        if (sourceStrength >= targetStrength) uiColors.launchGlow else uiColors.guideAccent
     Card(
         modifier = modifier,
         shape = RoundedCornerShape(GameUiShapeTokens.surfaceCorner),
@@ -1372,15 +1438,17 @@ private fun calculateBlockSortHomeBannerLayout(
     val horizontalPadding = 12.dp
     val verticalPadding = 0.dp
     val widthBasedSlot = (
-        maxWidth - horizontalPadding - (columnGap * (BlockSortHomeBannerColumns - 1)) - (6.dp * 2 * BlockSortHomeBannerColumns)
-    ) / BlockSortHomeBannerColumns
+            maxWidth - horizontalPadding - (columnGap * (BlockSortHomeBannerColumns - 1)) - (6.dp * 2 * BlockSortHomeBannerColumns)
+            ) / BlockSortHomeBannerColumns
     val heightBasedSlot = (
-        maxHeight - verticalPadding - (cellGap * (BlockSortHomeBannerRows - 1)) - (8.dp * 2)
-    ) / BlockSortHomeBannerRows
+            maxHeight - verticalPadding - (cellGap * (BlockSortHomeBannerRows - 1)) - (8.dp * 2)
+            ) / BlockSortHomeBannerRows
     val slotSize = minOf(widthBasedSlot, heightBasedSlot).coerceAtLeast(12.dp)
     val columnWidth = slotSize + (6.dp * 2)
-    val columnHeight = (slotSize * BlockSortHomeBannerRows) + (cellGap * (BlockSortHomeBannerRows - 1)) + (8.dp * 2)
-    val boardWidth = (columnWidth * BlockSortHomeBannerColumns) + (columnGap * (BlockSortHomeBannerColumns - 1))
+    val columnHeight =
+        (slotSize * BlockSortHomeBannerRows) + (cellGap * (BlockSortHomeBannerRows - 1)) + (8.dp * 2)
+    val boardWidth =
+        (columnWidth * BlockSortHomeBannerColumns) + (columnGap * (BlockSortHomeBannerColumns - 1))
     return BlockSortHomeBannerLayout(
         slotSize = slotSize,
         cellGap = cellGap,
@@ -1440,9 +1508,27 @@ internal fun blockSortHomeBannerColumns(
 }
 
 internal fun blockSortHomeBannerMoves(): List<BlockSortHomeBannerMove> = listOf(
-    BlockSortHomeBannerMove(sourceColumn = 0, sourceRow = 0, targetColumn = 1, targetRow = 0, tone = CellTone.Gold),
-    BlockSortHomeBannerMove(sourceColumn = 2, sourceRow = 0, targetColumn = 3, targetRow = 0, tone = CellTone.Violet),
-    BlockSortHomeBannerMove(sourceColumn = 4, sourceRow = 0, targetColumn = 0, targetRow = 0, tone = CellTone.Blue),
+    BlockSortHomeBannerMove(
+        sourceColumn = 0,
+        sourceRow = 0,
+        targetColumn = 1,
+        targetRow = 0,
+        tone = CellTone.Gold
+    ),
+    BlockSortHomeBannerMove(
+        sourceColumn = 2,
+        sourceRow = 0,
+        targetColumn = 3,
+        targetRow = 0,
+        tone = CellTone.Violet
+    ),
+    BlockSortHomeBannerMove(
+        sourceColumn = 4,
+        sourceRow = 0,
+        targetColumn = 0,
+        targetRow = 0,
+        tone = CellTone.Blue
+    ),
 )
 
 internal data class BlockSortHomeBannerMove(
@@ -1577,10 +1663,12 @@ private fun BoomBlocksHomeTitleBanner(
                                     3 -> tones[(2 + 4) % tones.size] // Swapped with Col 2
                                     else -> tones[(c + 4) % tones.size]
                                 }
+
                                 2 -> when (c) {
                                     0 -> tones[(0 + 4) % tones.size] // Swapped with Row 1, Col 0
                                     else -> tones[(c + 2) % tones.size]
                                 }
+
                                 else -> tones[0]
                             }
 
@@ -1592,25 +1680,57 @@ private fun BoomBlocksHomeTitleBanner(
 
                             val (cellAlpha, cellOffsetY) = when {
                                 isTL -> {
-                                    val alpha = if (p1 < 0.60f) 1f else if (p1 < 0.80f) 1f - subExplode(p1) else subSettle(p1)
-                                    val y = if (p1 >= 0.80f) lerpDp(-boardCellHeight * 2, 0.dp, subSettle(p1)) else 0.dp
+                                    val alpha =
+                                        if (p1 < 0.60f) 1f else if (p1 < 0.80f) 1f - subExplode(p1) else subSettle(
+                                            p1
+                                        )
+                                    val y = if (p1 >= 0.80f) lerpDp(
+                                        -boardCellHeight * 2,
+                                        0.dp,
+                                        subSettle(p1)
+                                    ) else 0.dp
                                     alpha to y
                                 }
+
                                 isBR -> {
-                                    val alpha = if (p2 < 0.60f) 1f else if (p2 < 0.80f) 1f - subExplode(p2) else subSettle(p2)
-                                    val y = if (p2 >= 0.80f) lerpDp(boardCellHeight * 3, 0.dp, subSettle(p2)) else 0.dp
+                                    val alpha =
+                                        if (p2 < 0.60f) 1f else if (p2 < 0.80f) 1f - subExplode(p2) else subSettle(
+                                            p2
+                                        )
+                                    val y = if (p2 >= 0.80f) lerpDp(
+                                        boardCellHeight * 3,
+                                        0.dp,
+                                        subSettle(p2)
+                                    ) else 0.dp
                                     alpha to y
                                 }
+
                                 isTR -> {
-                                    val alpha = if (p3 < 0.60f) 1f else if (p3 < 0.80f) 1f - subExplode(p3) else subSettle(p3)
-                                    val y = if (p3 >= 0.80f) lerpDp(-boardCellHeight * 2, 0.dp, subSettle(p3)) else 0.dp
+                                    val alpha =
+                                        if (p3 < 0.60f) 1f else if (p3 < 0.80f) 1f - subExplode(p3) else subSettle(
+                                            p3
+                                        )
+                                    val y = if (p3 >= 0.80f) lerpDp(
+                                        -boardCellHeight * 2,
+                                        0.dp,
+                                        subSettle(p3)
+                                    ) else 0.dp
                                     alpha to y
                                 }
+
                                 isBL -> {
-                                    val alpha = if (p4 < 0.60f) 1f else if (p4 < 0.80f) 1f - subExplode(p4) else subSettle(p4)
-                                    val y = if (p4 >= 0.80f) lerpDp(boardCellHeight * 3, 0.dp, subSettle(p4)) else 0.dp
+                                    val alpha =
+                                        if (p4 < 0.60f) 1f else if (p4 < 0.80f) 1f - subExplode(p4) else subSettle(
+                                            p4
+                                        )
+                                    val y = if (p4 >= 0.80f) lerpDp(
+                                        boardCellHeight * 3,
+                                        0.dp,
+                                        subSettle(p4)
+                                    ) else 0.dp
                                     alpha to y
                                 }
+
                                 else -> 1f to 0.dp
                             }
 
@@ -1672,6 +1792,7 @@ private fun BoomBlocksHomeTitleBanner(
                     val pVal = if (p1 in 0.48f..0.60f) tap else 0f
                     listOf(x, y, alpha, pVal)
                 }
+
                 sequencePhase < 0.50f -> {
                     val x = lerpDp(cellWidth * 1.5f, cellWidth * 4.5f, subMove(p2))
                     val y = lerpDp(boardCellHeight * 0.5f, boardCellHeight * 3.5f, subMove(p2))
@@ -1680,6 +1801,7 @@ private fun BoomBlocksHomeTitleBanner(
                     val pVal = if (p2 in 0.48f..0.60f) tap else 0f
                     listOf(x, y, alpha, pVal)
                 }
+
                 sequencePhase < 0.75f -> {
                     val x = lerpDp(cellWidth * 4.5f, cellWidth * 4.5f, subMove(p3))
                     val y = lerpDp(boardCellHeight * 3.5f, boardCellHeight * 0.5f, subMove(p3))
@@ -1688,6 +1810,7 @@ private fun BoomBlocksHomeTitleBanner(
                     val pVal = if (p3 in 0.48f..0.60f) tap else 0f
                     listOf(x, y, alpha, pVal)
                 }
+
                 else -> {
                     val x = lerpDp(cellWidth * 4.5f, cellWidth * 1.5f, subMove(p4))
                     val y = lerpDp(boardCellHeight * 0.5f, boardCellHeight * 3.5f, subMove(p4))
@@ -1968,8 +2091,10 @@ private fun BlockWiseHomeTitleBanner(
         startColumn = 2
     )
 
-    val topRowAlpha = if (sequencePhase in 0.66f..0.74f) 0f else if (sequencePhase in 0.74f..0.82f) blockWordTravel else 1f
-    val bottomRowAlpha = if (sequencePhase in 0.32f..0.88f) 0f else if (sequencePhase in 0.88f..0.96f) wiseWordTravel else 1f
+    val topRowAlpha =
+        if (sequencePhase in 0.66f..0.74f) 0f else if (sequencePhase in 0.74f..0.82f) blockWordTravel else 1f
+    val bottomRowAlpha =
+        if (sequencePhase in 0.32f..0.88f) 0f else if (sequencePhase in 0.88f..0.96f) wiseWordTravel else 1f
 
     val blockWiseBottomGapCells = remember {
         listOf(
@@ -1995,7 +2120,8 @@ private fun BlockWiseHomeTitleBanner(
         val dockDoubleStartX = (maxWidth - (dockCellSize * 2f)) / 2f
         val dockSingleStartX = (maxWidth - dockCellSize) / 2f
         val dockWordStartX = (maxWidth - (dockCellSize * 5f)) / 2f
-        val dockBlockwiseBottomWordStartX = (maxWidth - (dockCellSize * HomeTitleBannerColumns)) / 2f
+        val dockBlockwiseBottomWordStartX =
+            (maxWidth - (dockCellSize * HomeTitleBannerColumns)) / 2f
 
         if (sequencePhase < 0.20f) {
             HomeTitleAnimatedPiece(
@@ -2097,22 +2223,37 @@ private fun BlockWiseHomeTitleBanner(
             val handColor = if (isDark) Color.White else Color.Black.copy(alpha = 0.85f)
             val (handX, handY) = when {
                 sequencePhase < 0.20f -> {
-                    val x = lerpDp(dockDoubleStartX, bottomGapTargetX, lowerLaunch) + homeTitleOccupiedCenterOffset(blockWiseBottomGapCells, dockCellSize)
+                    val x = lerpDp(
+                        dockDoubleStartX,
+                        bottomGapTargetX,
+                        lowerLaunch
+                    ) + homeTitleOccupiedCenterOffset(blockWiseBottomGapCells, dockCellSize)
                     val y = lerpDp(dockPieceY, boardCellHeight, lowerLaunch)
                     x to y
                 }
+
                 sequencePhase < 0.54f -> {
                     val x = lerpDp(dockSingleStartX, topGapTargetX, upperLaunch)
                     val y = lerpDp(dockPieceY, 0.dp, upperLaunch)
                     x to y
                 }
+
                 sequencePhase < 0.82f -> {
-                    val x = lerpDp(dockWordStartX, topTargetX, blockWordTravel) + homeTitleOccupiedCenterOffset(topRow, dockCellSize)
+                    val x = lerpDp(
+                        dockWordStartX,
+                        topTargetX,
+                        blockWordTravel
+                    ) + homeTitleOccupiedCenterOffset(topRow, dockCellSize)
                     val y = lerpDp(dockPieceY, 0.dp, blockWordTravel)
                     x to y
                 }
+
                 else -> {
-                    val x = lerpDp(dockBlockwiseBottomWordStartX, bottomTargetX, wiseWordTravel) + homeTitleOccupiedCenterOffset(bottomRow, dockCellSize)
+                    val x = lerpDp(
+                        dockBlockwiseBottomWordStartX,
+                        bottomTargetX,
+                        wiseWordTravel
+                    ) + homeTitleOccupiedCenterOffset(bottomRow, dockCellSize)
                     val y = lerpDp(dockPieceY, boardCellHeight, wiseWordTravel)
                     x to y
                 }
@@ -2219,7 +2360,8 @@ private fun MergeShiftHomeTitleBanner(
                 else -> pulse
             },
             alpha = 1f,
-            modifier = Modifier.size(dockCellSize).offset(x = dockCellSize * 2f, y = boardCellHeight)
+            modifier = Modifier.size(dockCellSize)
+                .offset(x = dockCellSize * 2f, y = boardCellHeight)
         )
 
         // Target B (Row 1, Col 3)
@@ -2241,7 +2383,8 @@ private fun MergeShiftHomeTitleBanner(
                 else -> pulse
             },
             alpha = 1f,
-            modifier = Modifier.size(dockCellSize).offset(x = dockCellSize * 3f, y = boardCellHeight)
+            modifier = Modifier.size(dockCellSize)
+                .offset(x = dockCellSize * 3f, y = boardCellHeight)
         )
 
         // Launching Pieces (all to bottom row)
@@ -2253,7 +2396,11 @@ private fun MergeShiftHomeTitleBanner(
                     if (sequencePhase > 0.10f) lerpDp(xpos, targetX, p1Align) else xpos
                 }
             } else targetX
-            val y = if (sequencePhase >= 0.15f) lerpDp(dockPieceY, boardCellHeight, p1Launch) else dockPieceY
+            val y = if (sequencePhase >= 0.15f) lerpDp(
+                dockPieceY,
+                boardCellHeight,
+                p1Launch
+            ) else dockPieceY
 
             HomeTitleAnimatedCell(
                 letter = "2",
@@ -2273,7 +2420,11 @@ private fun MergeShiftHomeTitleBanner(
                     if (sequencePhase > 0.35f) lerpDp(xpos, targetX, p2Align) else xpos
                 }
             } else targetX
-            val y = if (sequencePhase >= 0.40f) lerpDp(dockPieceY, boardCellHeight, p2Launch) else dockPieceY
+            val y = if (sequencePhase >= 0.40f) lerpDp(
+                dockPieceY,
+                boardCellHeight,
+                p2Launch
+            ) else dockPieceY
 
             HomeTitleAnimatedCell(
                 letter = "4",
@@ -2293,7 +2444,11 @@ private fun MergeShiftHomeTitleBanner(
                     if (sequencePhase > 0.60f) lerpDp(xpos, targetX, p3Align) else xpos
                 }
             } else targetX
-            val y = if (sequencePhase >= 0.65f) lerpDp(dockPieceY, boardCellHeight, p3Launch) else dockPieceY
+            val y = if (sequencePhase >= 0.65f) lerpDp(
+                dockPieceY,
+                boardCellHeight,
+                p3Launch
+            ) else dockPieceY
 
             HomeTitleAnimatedCell(
                 letter = "8",
@@ -2313,7 +2468,11 @@ private fun MergeShiftHomeTitleBanner(
                     if (sequencePhase > 0.85f) lerpDp(xpos, targetX, p4Align) else xpos
                 }
             } else targetX
-            val y = if (sequencePhase >= 0.90f) lerpDp(dockPieceY, boardCellHeight, p4Launch) else dockPieceY
+            val y = if (sequencePhase >= 0.90f) lerpDp(
+                dockPieceY,
+                boardCellHeight,
+                p4Launch
+            ) else dockPieceY
 
             HomeTitleAnimatedCell(
                 letter = "16",
@@ -2337,15 +2496,30 @@ private fun MergeShiftHomeTitleBanner(
             val isDark = isBlockGamesDarkTheme(settings)
             val handColor = if (isDark) Color.White else Color.Black.copy(alpha = 0.85f)
             val handX = when {
-                sequencePhase < 0.15f -> lerpDp(dockSingleStartX, dockSingleLeftX, p1Drift).let { xpos ->
+                sequencePhase < 0.15f -> lerpDp(
+                    dockSingleStartX,
+                    dockSingleLeftX,
+                    p1Drift
+                ).let { xpos ->
                     if (sequencePhase > 0.10f) lerpDp(xpos, dockCellSize * 2f, p1Align) else xpos
                 }
-                sequencePhase < 0.40f -> lerpDp(dockSingleStartX, dockSingleLeftX, p2Drift).let { xpos ->
+
+                sequencePhase < 0.40f -> lerpDp(
+                    dockSingleStartX,
+                    dockSingleLeftX,
+                    p2Drift
+                ).let { xpos ->
                     if (sequencePhase > 0.35f) lerpDp(xpos, dockCellSize * 2f, p2Align) else xpos
                 }
-                sequencePhase < 0.65f -> lerpDp(dockSingleStartX, dockSingleRightX, p3Drift).let { xpos ->
+
+                sequencePhase < 0.65f -> lerpDp(
+                    dockSingleStartX,
+                    dockSingleRightX,
+                    p3Drift
+                ).let { xpos ->
                     if (sequencePhase > 0.60f) lerpDp(xpos, dockCellSize * 3f, p3Align) else xpos
                 }
+
                 else -> lerpDp(dockSingleStartX, dockSingleRightX, p4Drift).let { xpos ->
                     if (sequencePhase > 0.85f) lerpDp(xpos, dockCellSize * 3f, p4Align) else xpos
                 }
@@ -2641,7 +2815,7 @@ private fun HomeTitleAnimatedCell(
         style = settings.blockVisualStyle,
         pulse = pulse,
     )
-    val letterTint = specialBlockIconTint(
+    val letterTint = blockForegroundTint(
         style = settings.blockVisualStyle,
         isDarkTheme = isBlockGamesDarkTheme(settings),
         palette = settings.blockColorPalette,
@@ -2903,7 +3077,10 @@ private fun HomeHighScoreMetric(
         ) {
             Text(
                 text = title,
-                style = MaterialTheme.typography.labelSmall.copy(fontSize = titleFontSize, lineHeight = titleFontSize),
+                style = MaterialTheme.typography.labelSmall.copy(
+                    fontSize = titleFontSize,
+                    lineHeight = titleFontSize
+                ),
                 color = uiColors.subtitle,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
@@ -2911,7 +3088,10 @@ private fun HomeHighScoreMetric(
             )
             Text(
                 text = value,
-                style = MaterialTheme.typography.titleMedium.copy(fontSize = valueFontSize, lineHeight = valueFontSize),
+                style = MaterialTheme.typography.titleMedium.copy(
+                    fontSize = valueFontSize,
+                    lineHeight = valueFontSize
+                ),
                 color = MaterialTheme.colorScheme.onSurface,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
@@ -2945,8 +3125,10 @@ private fun HomeQuickActionButton(
             iconSize,
             cellSize * if (iconSize >= 40.dp) 0.32f else 0.24f,
         ).coerceAtMost(60.dp)
-        val baseTextSize = if (textStyle.fontSize == TextUnit.Unspecified) 14.sp else textStyle.fontSize
-        val adaptiveTextSizeValue = maxOf(baseTextSize.value, cellSize.value * 0.11f).coerceAtMost(22f)
+        val baseTextSize =
+            if (textStyle.fontSize == TextUnit.Unspecified) 14.sp else textStyle.fontSize
+        val adaptiveTextSizeValue =
+            maxOf(baseTextSize.value, cellSize.value * 0.11f).coerceAtMost(22f)
         val adaptiveTextSize = adaptiveTextSizeValue.sp
         val adaptiveLineHeight = (adaptiveTextSizeValue * 1.08f).sp
         val adaptiveTextStyle = textStyle.copy(
@@ -2996,7 +3178,10 @@ private fun HomeQuickActionButton(
                         .fillMaxSize()
                         .padding(contentPadding),
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(contentGap, Alignment.CenterVertically),
+                    verticalArrangement = Arrangement.spacedBy(
+                        contentGap,
+                        Alignment.CenterVertically
+                    ),
                 ) {
                     Icon(
                         imageVector = icon,
@@ -3181,7 +3366,7 @@ fun HomeScreenSumShiftPreview() {
     GlobalPlatformConfig.gameplayStyle = GameplayStyle.SumShift
     val settings = AppSettings(
         themeMode = AppThemeMode.Light,
-        blockVisualStyle = BlockVisualStyle.NeonGlow
+        blockVisualStyle = BlockVisualStyle.DynamicLiquid
     )
     BlockGamesTheme(settings = settings) {
         HomeScreen(

@@ -2,10 +2,6 @@ package com.ugurbuga.blockgames.ui.game
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutSlowInEasing
-import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
@@ -38,7 +34,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -170,8 +165,10 @@ import com.ugurbuga.blockgames.game.model.SpecialBlockType
 import com.ugurbuga.blockgames.game.model.gameText
 import com.ugurbuga.blockgames.game.model.paletteColor
 import com.ugurbuga.blockgames.localization.LocalAppSettings
+import com.ugurbuga.blockgames.localization.LocalBlockStylePulse
 import com.ugurbuga.blockgames.localization.appNameResourceId
 import com.ugurbuga.blockgames.localization.formatAppString
+import com.ugurbuga.blockgames.localization.isAnimatedBlockStyle
 import com.ugurbuga.blockgames.settings.AppSettings
 import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import com.ugurbuga.blockgames.ui.theme.BlockGamesUiColors
@@ -1144,36 +1141,10 @@ internal fun rememberBlockStylePulse(
     style: BlockVisualStyle,
     pulse: Float = 0f,
 ): Float {
-    val needsPulse = style == BlockVisualStyle.DynamicLiquid ||
-            style == BlockVisualStyle.Tornado ||
-            style == BlockVisualStyle.Prism ||
-            style == BlockVisualStyle.SoundWave ||
-            style == BlockVisualStyle.Flame ||
-            style == BlockVisualStyle.Cosmic ||
-            style == BlockVisualStyle.Gears ||
-            style == BlockVisualStyle.Cyberpunk ||
-            style == BlockVisualStyle.NeonGlow ||
-            style == BlockVisualStyle.LiquidMarble ||
-            style == BlockVisualStyle.Holographic ||
-            style == BlockVisualStyle.GlitchTech ||
-            style == BlockVisualStyle.AuraEnergy ||
-            style == BlockVisualStyle.CircuitBoard
-
-    if (pulse != 0f || !needsPulse) {
+    if (pulse != 0f || !isAnimatedBlockStyle(style)) {
         return pulse
     }
-
-    val transition = rememberInfiniteTransition(label = "blockStyleButtonPulse")
-    val animatedPulse by transition.animateFloat(
-        initialValue = 0f,
-        targetValue = 1f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 3000, easing = FastOutSlowInEasing),
-            repeatMode = RepeatMode.Reverse,
-        ),
-        label = "blockStyleButtonPulseValue",
-    )
-    return animatedPulse
+    return LocalBlockStylePulse.current
 }
 
 internal data class ActionButtonColors(
