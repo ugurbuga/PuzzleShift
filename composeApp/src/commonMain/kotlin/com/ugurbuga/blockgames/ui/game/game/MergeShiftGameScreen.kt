@@ -75,6 +75,7 @@ import com.ugurbuga.blockgames.game.model.PlacementPreview
 import com.ugurbuga.blockgames.game.model.SpecialBlockType
 import com.ugurbuga.blockgames.game.model.toTopLeft
 import com.ugurbuga.blockgames.localization.LocalAppSettings
+import com.ugurbuga.blockgames.localization.LocalBlockStylePulse
 import com.ugurbuga.blockgames.platform.feedback.GameHaptics
 import com.ugurbuga.blockgames.platform.feedback.NoOpGameHaptics
 import com.ugurbuga.blockgames.platform.feedback.NoOpSoundEffectPlayer
@@ -191,17 +192,7 @@ fun MergeShiftGameScreen(
         }
     }
     
-    val stylePulseState = rememberInfiniteTransition(label = "stylePulse")
-        .animateFloat(
-            initialValue = 0f,
-            targetValue = 1f,
-            animationSpec = infiniteRepeatable(
-                animation = tween(durationMillis = 3200, easing = FastOutSlowInEasing),
-                repeatMode = RepeatMode.Reverse
-            ),
-            label = "stylePulse",
-        )
-    val stylePulse = stylePulseState.value
+    val stylePulse = LocalBlockStylePulse.current
 
     val interactiveOnboardingEnabled = interactiveOnboardingScene != null
     val interactiveOnboardingAcceptedColumns = interactiveOnboardingScene?.acceptedColumns.orEmpty()

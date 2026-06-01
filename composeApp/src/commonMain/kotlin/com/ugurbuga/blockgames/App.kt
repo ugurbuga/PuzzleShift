@@ -33,6 +33,7 @@ import blockgames.composeapp.generated.resources.game_message_ad_reward_blockwis
 import blockgames.composeapp.generated.resources.game_message_ad_reward_boomblocks
 import blockgames.composeapp.generated.resources.game_message_ad_reward_digitshift
 import blockgames.composeapp.generated.resources.game_message_ad_reward_mergeshift
+import blockgames.composeapp.generated.resources.game_message_ad_reward_sumshift
 import blockgames.composeapp.generated.resources.leave_session_confirm
 import blockgames.composeapp.generated.resources.leave_session_confirm_body
 import blockgames.composeapp.generated.resources.leave_session_confirm_title
@@ -42,6 +43,7 @@ import blockgames.composeapp.generated.resources.reward_piece_row_message
 import com.ugurbuga.blockgames.ads.AppFooterAdSlot
 import com.ugurbuga.blockgames.ads.rememberPlatformGameAdController
 import com.ugurbuga.blockgames.game.logic.digitShiftAttemptsForLength
+import com.ugurbuga.blockgames.game.logic.isValidSumShiftConfig
 import com.ugurbuga.blockgames.game.model.DailyChallenge
 import com.ugurbuga.blockgames.game.model.GameConfig
 import com.ugurbuga.blockgames.game.model.GameMode
@@ -49,7 +51,6 @@ import com.ugurbuga.blockgames.game.model.GameState
 import com.ugurbuga.blockgames.game.model.GameStatus
 import com.ugurbuga.blockgames.game.model.GameplayStyle
 import com.ugurbuga.blockgames.game.model.SpecialBlockType
-import com.ugurbuga.blockgames.game.logic.isValidSumShiftConfig
 import com.ugurbuga.blockgames.localization.AppEnvironment
 import com.ugurbuga.blockgames.localization.appStringResource
 import com.ugurbuga.blockgames.localization.currentDeviceLocaleTag
@@ -83,8 +84,8 @@ import com.ugurbuga.blockgames.settings.logLanguageBootstrapDecision
 import com.ugurbuga.blockgames.settings.markInAppReviewRequested
 import com.ugurbuga.blockgames.settings.markInteractiveOnboardingShown
 import com.ugurbuga.blockgames.settings.markTutorialSeen
-import com.ugurbuga.blockgames.settings.recordGameplayDuration
 import com.ugurbuga.blockgames.settings.recordAppOpened
+import com.ugurbuga.blockgames.settings.recordGameplayDuration
 import com.ugurbuga.blockgames.settings.sanitized
 import com.ugurbuga.blockgames.settings.sessionSlot
 import com.ugurbuga.blockgames.settings.sessionSlotFor
@@ -255,7 +256,7 @@ internal fun rewardedDockFeedbackSpec(
         )
 
         GameplayStyle.SumShift -> RewardFeedbackSpec(
-            messageRes = Res.string.game_message_ad_reward_digitshift,
+            messageRes = Res.string.game_message_ad_reward_sumshift,
             icon = Icons.Filled.Refresh,
         )
     }
@@ -687,6 +688,7 @@ fun BlockGamesAppHost(
     }
 
 
+    @Suppress("UNUSED_PARAMETER")
     fun completeInteractiveOnboarding(finalState: GameState, returnHome: Boolean) {
         persistActiveSession.value = true
         val gameplayStyle = GlobalPlatformConfig.gameplayStyle
@@ -698,7 +700,6 @@ fun BlockGamesAppHost(
         } else {
             val requestedMode = pendingRequestedGameMode ?: GameMode.Classic
             pendingRequestedGameMode = null
-            val gameplayStyle = GlobalPlatformConfig.gameplayStyle
             telemetry.logUserAction(
                 if (requestedMode == GameMode.TimeAttack) {
                     TelemetryActionNames.StartTimeAttackFromHome

@@ -1,11 +1,5 @@
 package com.ugurbuga.blockgames.ui.game.properties
 
-import androidx.compose.animation.core.FastOutSlowInEasing
-import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -55,6 +49,7 @@ import com.ugurbuga.blockgames.BlockGamesTheme
 import com.ugurbuga.blockgames.game.model.CellTone
 import com.ugurbuga.blockgames.game.model.SpecialBlockType
 import com.ugurbuga.blockgames.localization.LocalAppSettings
+import com.ugurbuga.blockgames.localization.LocalBlockStylePulse
 import com.ugurbuga.blockgames.settings.AppSettings
 import com.ugurbuga.blockgames.telemetry.AppTelemetry
 import com.ugurbuga.blockgames.telemetry.LogScreen
@@ -79,16 +74,7 @@ fun BlockPropertiesScreen(
     var selected by remember { mutableStateOf(SpecialBlockType.None) }
     val uiColors = BlockGamesThemeTokens.uiColors
     
-    val transition = rememberInfiniteTransition(label = "blockPropsPulse")
-    val stylePulse by transition.animateFloat(
-        initialValue = 0f,
-        targetValue = 1f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 2200, easing = FastOutSlowInEasing),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "stylePulse",
-    )
+    val stylePulse = LocalBlockStylePulse.current
 
     Surface(
         modifier = modifier.fillMaxSize(),

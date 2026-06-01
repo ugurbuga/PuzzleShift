@@ -58,13 +58,13 @@
     <string name="block_style_circuit_board">Circuito Stampato</string>
     <string name="block_style_spider_web">Ragnatela</string>
     <string name="block_style_cosmic">Cosmico</string>
-    <string name="block_style_flame">Fiamma</string>
+        <string name="block_style_flame">Fiamma</string>
     <string name="block_style_gears">Ingranaggi</string>
     <string name="block_style_pixel">Pixelato</string>
     <string name="block_style_cyberpunk">Cyberpunk</string>
-<string name="board_block_style_always_flat">Sempre piatto</string>
+    <string name="board_block_style_always_flat">Sempre piatto</string>
     <string name="board_block_style_match_selected">Usa lo stile blocchi selezionato</string>
-<string name="block_style_light_burst">Esplosione luminosa</string>
+    <string name="block_style_light_burst">Esplosione luminosa</string>
     <string name="block_style_matte_soft">Opaco morbido</string>
     <string name="block_style_stone_texture">Texture pietra</string>
     <string name="rewarded_tokens_button_bullet">• Guarda un annuncio e ottieni %1$d token</string>

@@ -1,8 +1,9 @@
 package com.ugurbuga.blockgames.platform
 
 import com.ugurbuga.blockgames.game.model.GameplayStyle
+import kotlin.concurrent.Volatile
 
 object GlobalPlatformConfig {
-    var isDebug: Boolean = false
-    var gameplayStyle: GameplayStyle = GameplayStyle.StackShift
+    @Volatile var isDebug: Boolean = false
+    @Volatile var gameplayStyle: GameplayStyle = GameplayStyle.StackShift
 }

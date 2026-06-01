@@ -53,7 +53,7 @@
     <string name="block_style_brick">브릭</string>
     <string name="block_style_stone_texture">돌 질감</string>
     <string name="block_style_honeycomb_texture">허니콤</string>
-    <string name="block_style_light_burst">빛 폭발</string>
+        <string name="block_style_light_burst">빛 폭발</string>
     <string name="block_style_liquid_marble">리퀴드 마블</string>
     <string name="block_style_holographic">홀로그래픽</string>
     <string name="block_style_glitch_tech">글리치 테크</string>
@@ -61,11 +61,11 @@
     <string name="block_style_circuit_board">회로 기판</string>
     <string name="block_style_spider_web">거미줄</string>
     <string name="block_style_cosmic">코스믹</string>
-<string name="block_style_flame">플레임</string>
+    <string name="block_style_flame">플레임</string>
     <string name="block_style_gears">기어</string>
     <string name="block_style_pixel">픽셀</string>
     <string name="block_style_cyberpunk">사이버펑크</string>
-<string name="board_block_style_always_flat">항상 플랫</string>
+    <string name="board_block_style_always_flat">항상 플랫</string>
     <string name="board_block_style_match_selected">선택한 블록 스타일과 동일하게</string>
     <string name="rewarded_tokens_button_bullet">• 광고를 보고 %1$d 토큰 받기</string>
     <string name="rewarded_tokens_button">광고를 보고 %1$d 토큰 받기</string>

@@ -57,6 +57,7 @@ import com.ugurbuga.blockgames.game.model.GridPoint
 import com.ugurbuga.blockgames.game.model.SpecialBlockType
 import com.ugurbuga.blockgames.game.model.paletteColor
 import com.ugurbuga.blockgames.localization.LocalAppSettings
+import com.ugurbuga.blockgames.localization.LocalBlockStylePulse
 import com.ugurbuga.blockgames.platform.currentEpochMillis
 import com.ugurbuga.blockgames.settings.AppSettings
 import com.ugurbuga.blockgames.settings.BoomBlocksOnboardingScene
@@ -170,15 +171,7 @@ fun BoomBlocksGameScreen(
         label = "hintPhase",
     )
 
-    val stylePulse by infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 1f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 3200, easing = FastOutSlowInEasing),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "stylePulse",
-    )
+    val stylePulse = LocalBlockStylePulse.current
     val boardTopSpacing = if (interactiveOnboardingScene != null) 176.dp else 24.dp
 
     Box(

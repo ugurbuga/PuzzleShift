@@ -59,7 +59,7 @@
     <string name="unlock_dialog_watch_ad">Посмотреть рекламу и получить токены</string>
     <string name="token_label">Токен</string>
     <string name="settings_color_palette">Цветовая палитра</string>
-<string name="block_style_flame">Пламя</string>
+    <string name="block_style_flame">Пламя</string>
     <string name="block_style_gears">Шестерёнки</string>
     <string name="block_style_pixel">Пиксель</string>
     <string name="block_style_cyberpunk">Киберпанк</string>
@@ -67,7 +67,7 @@
     <string name="block_style_glitch_tech">Глитч-технологии</string>
     <string name="block_style_aura_energy">Энергия ауры</string>
     <string name="block_style_circuit_board">Печатная плата</string>
-<string name="unlock_dialog_title">Открыть %1$s?</string>
+    <string name="unlock_dialog_title">Открыть %1$s?</string>
     <string name="unlock_dialog_insufficient_title">%1$s заблокировано</string>
     <string name="unlock_dialog_message">%1$s стоит %2$d токенов. Текущий баланс: %3$d.</string>
     <string name="unlock_dialog_not_enough">Чтобы открыть этот элемент, нужно %1$d токенов. Ваш текущий баланс — %2$d.</string>

@@ -99,6 +99,8 @@ import com.ugurbuga.blockgames.game.model.GridPoint
 import com.ugurbuga.blockgames.game.model.Piece
 import com.ugurbuga.blockgames.game.model.PlacementPreview
 import com.ugurbuga.blockgames.localization.LocalAppSettings
+import com.ugurbuga.blockgames.localization.LocalBlockStylePulse
+import com.ugurbuga.blockgames.localization.LocalBlockStylePulse
 import com.ugurbuga.blockgames.settings.AppSettings
 import com.ugurbuga.blockgames.settings.BlockSortOnboardingStage
 import com.ugurbuga.blockgames.settings.BlockSortOnboardingStateFactory
@@ -220,16 +222,7 @@ fun AppSelectionScreen(
         WindowInsets.navigationBars.getBottom(this).toDp()
     } + 20.dp
 
-    val transition = rememberInfiniteTransition(label = "selectionStylePulse")
-    val stylePulse by transition.animateFloat(
-        initialValue = 0f,
-        targetValue = 1f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 3200, easing = FastOutSlowInEasing),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "stylePulse",
-    )
+    val stylePulse = LocalBlockStylePulse.current
 
     Surface(
         modifier = modifier.fillMaxSize(),

@@ -149,6 +149,7 @@ import com.ugurbuga.blockgames.game.model.BlockVisualStyle
 import com.ugurbuga.blockgames.game.model.CellTone
 import com.ugurbuga.blockgames.game.model.normalizeBlockVisualStyle
 import com.ugurbuga.blockgames.game.model.paletteColor
+import com.ugurbuga.blockgames.localization.LocalBlockStylePulse
 import com.ugurbuga.blockgames.settings.AppSettings
 import com.ugurbuga.blockgames.settings.DailyChallengeTokenReward
 import com.ugurbuga.blockgames.settings.RewardedTokenAdReward
@@ -260,15 +261,7 @@ fun AppSettingsScreen(
     }
 
     val transition = rememberInfiniteTransition(label = "settingsStylePulse")
-    val stylePulse = transition.animateFloat(
-        initialValue = 0f,
-        targetValue = 1f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 3200, easing = FastOutSlowInEasing),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "stylePulse",
-    )
+    val sharedPulse = LocalBlockStylePulse.current
     val previewToneStep = transition.animateFloat(
         initialValue = 0f,
         targetValue = CellTone.entries.size.toFloat(),
@@ -289,7 +282,7 @@ fun AppSettingsScreen(
         color = MaterialTheme.colorScheme.background,
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
-                    // Layer 1: Base (Current)
+            // Layer 1: Base (Current)
             BlockGamesTheme(settings = settings) {
                 SettingsMainContent(
                     settings = settings,
@@ -297,8 +290,8 @@ fun AppSettingsScreen(
                     scrollStates = scrollStates,
                     tokenCardExpanded = tokenCardExpanded.value,
                     onTokenCardExpandedChange = { tokenCardExpanded.value = it },
-                    stylePulse = stylePulse.value,
-                    previewToneStep = previewToneStep.value,
+                    stylePulseProvider = { sharedPulse },
+                    previewToneStepProvider = { previewToneStep.value },
                     onBack = onBack,
                     onRewardedTokensRequested = onRewardedTokensRequested,
                     onSettingsChange = onSettingsChange,
@@ -331,12 +324,17 @@ fun AppSettingsScreen(
                             scrollStates = scrollStates,
                             tokenCardExpanded = tokenCardExpanded.value,
                             onTokenCardExpandedChange = { tokenCardExpanded.value = it },
-                            stylePulse = stylePulse.value,
-                            previewToneStep = previewToneStep.value,
+                            stylePulseProvider = { sharedPulse },
+                            previewToneStepProvider = { previewToneStep.value },
                             onBack = onBack,
                             onRewardedTokensRequested = onRewardedTokensRequested,
                             onSettingsChange = onSettingsChange,
-                            onThemeChangeRequest = { next, offset -> performThemeChange(next, offset) },
+                            onThemeChangeRequest = { next, offset ->
+                                performThemeChange(
+                                    next,
+                                    offset
+                                )
+                            },
                             onUnlockRequest = { pendingUnlockRequest = it },
                             onOpenSelection = onOpenSelection,
                             adController = adController,
@@ -374,8 +372,8 @@ private fun SettingsMainContent(
     scrollStates: List<androidx.compose.foundation.ScrollState>,
     tokenCardExpanded: Boolean,
     onTokenCardExpandedChange: (Boolean) -> Unit,
-    stylePulse: Float,
-    previewToneStep: Float,
+    stylePulseProvider: () -> Float,
+    previewToneStepProvider: () -> Float,
     onBack: () -> Unit,
     onRewardedTokensRequested: () -> Unit,
     onSettingsChange: (AppSettings) -> Unit,
@@ -390,11 +388,17 @@ private fun SettingsMainContent(
     val darkTheme = isBlockGamesDarkTheme(settings)
     val scope = rememberCoroutineScope()
 
-    val pulseProvider: () -> Float = { stylePulse }
+    val isBlockStyleTabActive = pagerState.currentPage == 1
+
+    val pulseProvider: () -> Float = if (isBlockStyleTabActive) {
+        stylePulseProvider
+    } else {
+        { 0f }
+    }
     val previewColorProvider: () -> Color = {
         interpolatedPreviewColor(
             palette = settings.blockColorPalette,
-            progress = previewToneStep,
+            progress = previewToneStepProvider(),
             isDark = darkTheme,
         )
     }
@@ -433,7 +437,7 @@ private fun SettingsMainContent(
                     contentDescription = stringResource(Res.string.settings_theme),
                     onClick = onBack,
                     size = 44.dp,
-                    pulse = stylePulse,
+                    pulse = stylePulseProvider(),
                 )
                 Text(
                     text = stringResource(Res.string.settings_theme),
@@ -452,6 +456,7 @@ private fun SettingsMainContent(
                 adController = adController,
                 expanded = tokenCardExpanded,
                 onExpandedChange = onTokenCardExpandedChange,
+                stylePulseProvider = stylePulseProvider,
                 modifier = Modifier.padding(horizontal = 16.dp).padding(bottom = 12.dp)
             )
 
@@ -682,7 +687,8 @@ private fun SettingsTabSwitcher(
                 .fillMaxWidth(1f / 3f)
                 .fillMaxHeight()
                 .graphicsLayer {
-                    translationX = (pagerState.currentPage + pagerState.currentPageOffsetFraction) * size.width
+                    translationX =
+                        (pagerState.currentPage + pagerState.currentPageOffsetFraction) * size.width
                 }
                 .background(color = uiColors.actionPrimary, shape = shape)
         )
@@ -690,7 +696,8 @@ private fun SettingsTabSwitcher(
         Row(modifier = Modifier.fillMaxSize()) {
             tabs.forEach { (titleRes, icon, index) ->
                 val isSelected = pagerState.currentPage == index
-                val contentColor = if (isSelected) uiColors.actionIcon else uiColors.subtitle.copy(alpha = 0.5f)
+                val contentColor =
+                    if (isSelected) uiColors.actionIcon else uiColors.subtitle.copy(alpha = 0.5f)
 
                 Box(
                     modifier = Modifier
@@ -856,7 +863,9 @@ private fun GridSelectionItem(
                 )
                 .border(
                     width = if (selected) 2.dp else 1.dp,
-                    color = if (selected) uiColors.actionPrimary else uiColors.panelStroke.copy(alpha = 0.15f),
+                    color = if (selected) uiColors.actionPrimary else uiColors.panelStroke.copy(
+                        alpha = 0.15f
+                    ),
                     shape = shape
                 )
                 .padding(8.dp),
@@ -919,6 +928,7 @@ private fun TokenBalanceCard(
     onRewardedTokensRequested: () -> Unit,
     expanded: Boolean,
     onExpandedChange: (Boolean) -> Unit,
+    stylePulseProvider: () -> Float,
     adController: GameAdController? = null,
     modifier: Modifier = Modifier,
 ) {
@@ -951,7 +961,10 @@ private fun TokenBalanceCard(
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 Text(
-                    text = stringResource(Res.string.settings_tokens_balance, settings.tokenBalance),
+                    text = stringResource(
+                        Res.string.settings_tokens_balance,
+                        settings.tokenBalance
+                    ),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.primary,
@@ -979,6 +992,7 @@ private fun TokenBalanceCard(
                         enabled = !adLoading,
                         size = 44.dp,
                         showAdIcon = true,
+                        pulse = stylePulseProvider(),
                     )
                 }
 
@@ -1321,21 +1335,22 @@ private fun PreviewThemeTab() {
 private fun PreviewBlockStyleTab() {
     val settings = AppSettings(blockVisualStyle = BlockVisualStyle.Cyberpunk, tokenBalance = 500)
     BlockGamesTheme(settings = settings) {
-    AppSettingsScreen(
-        settings = settings,
-        onSettingsChange = {},
-        onRewardedTokensRequested = {},
-        onBack = {},
-        onOpenSelection = {},
-        initialTabIndex = 1
-    )
-}
+        AppSettingsScreen(
+            settings = settings,
+            onSettingsChange = {},
+            onRewardedTokensRequested = {},
+            onBack = {},
+            onOpenSelection = {},
+            initialTabIndex = 1
+        )
+    }
 }
 
 @Preview
 @Composable
 private fun PreviewLanguageTab() {
-    val settings = AppSettings(language = AppLanguage.French, blockVisualStyle = BlockVisualStyle.Crystal)
+    val settings =
+        AppSettings(language = AppLanguage.French, blockVisualStyle = BlockVisualStyle.Crystal)
     AppSettingsScreen(
         settings = settings,
         onSettingsChange = {},

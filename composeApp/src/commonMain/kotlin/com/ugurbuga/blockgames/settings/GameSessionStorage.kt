@@ -297,6 +297,10 @@ internal object GameSessionCodec {
         if (parts.size != expectedCells + 2) return null
 
         var board = BoardMatrix.empty(columns = columns, rows = rows)
+        // Group cells by tone+special+value so we can batch-fill them,
+        // avoiding O(n²) array copies from calling fill() per cell.
+        data class CellKey(val tone: CellTone, val special: SpecialBlockType, val cellValue: Int)
+        val grouped = mutableMapOf<CellKey, MutableList<GridPoint>>()
         var index = 2
         for (row in 0 until rows) {
             for (column in 0 until columns) {
@@ -307,8 +311,12 @@ internal object GameSessionCodec {
                 val tone = CellTone.entries.getOrNull(cellParts[0].toIntOrNull() ?: return null) ?: return null
                 val special = SpecialBlockType.entries.getOrNull(cellParts[1].toIntOrNull() ?: return null) ?: return null
                 val cellValue = cellParts.getOrNull(2)?.toIntOrNull() ?: 0
-                board = board.fill(listOf(GridPoint(column = column, row = row)), tone = tone, special = special, value = cellValue)
+                grouped.getOrPut(CellKey(tone, special, cellValue)) { mutableListOf() }
+                    .add(GridPoint(column = column, row = row))
             }
+        }
+        for ((key, points) in grouped) {
+            board = board.fill(points, tone = key.tone, special = key.special, value = key.cellValue)
         }
         return board
     }
