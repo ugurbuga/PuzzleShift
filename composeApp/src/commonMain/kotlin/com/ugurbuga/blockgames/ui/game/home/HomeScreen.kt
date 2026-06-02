@@ -107,13 +107,13 @@ import com.ugurbuga.blockgames.telemetry.LogScreen
 import com.ugurbuga.blockgames.telemetry.NoOpAppTelemetry
 import com.ugurbuga.blockgames.telemetry.TelemetryScreenNames
 import com.ugurbuga.blockgames.ui.game.BlockCellPreview
+import com.ugurbuga.blockgames.ui.game.blockForegroundTint
 import com.ugurbuga.blockgames.ui.game.blockStyleIconTint
 import com.ugurbuga.blockgames.ui.game.boardCellCornerRadiusDp
 import com.ugurbuga.blockgames.ui.game.boardCellCornerRadiusPx
 import com.ugurbuga.blockgames.ui.game.boardCellInsetDp
 import com.ugurbuga.blockgames.ui.game.drawCellBody
 import com.ugurbuga.blockgames.ui.game.rememberBlockStylePulse
-import com.ugurbuga.blockgames.ui.game.blockForegroundTint
 import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import com.ugurbuga.blockgames.ui.theme.BlockGamesUiColors
 import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
@@ -128,7 +128,8 @@ private const val BlockSortHomeBannerRows = 4
 private const val SumShiftHomeBannerColumns = 5
 private const val SumShiftHomeBannerRows = 2
 private const val SumShiftHomeBannerSequenceDurationMillis = 9_200
-private const val DigitShiftHomeBannerRows = 3
+private const val DigitShiftHomeBannerColumns = 5
+private const val DigitShiftHomeBannerRows = 5
 private const val DigitShiftHomeBannerSequenceDurationMillis = 12_600
 private const val DigitShiftHomeBannerFlipAnimationMillis = 360
 
@@ -308,7 +309,7 @@ private fun HomeTitleBanner(
         GameplayStyle.MergeShift -> MergeShiftHomeTitleBanner(settings, pulse, modifier)
         GameplayStyle.BoomBlocks -> BoomBlocksHomeTitleBanner(settings, pulse, modifier)
         GameplayStyle.BlockSort -> BlockSortHomeTitleBanner(settings, pulse, modifier)
-        GameplayStyle.DigitShift -> DigitShiftHomeTitleBanner(pulse, modifier)
+        GameplayStyle.DigitShift -> DigitShiftHomeTitleBanner(settings, pulse, modifier)
         GameplayStyle.SumShift -> SumShiftHomeTitleBanner(settings, pulse, modifier)
     }
 }
@@ -648,7 +649,7 @@ private fun SumShiftHomeBannerTargetCell(
                 size = size,
                 modifier = Modifier.matchParentSize(),
                 alpha = 0.98f,
-                pulse = if (completed) 0.20f + (pulse * 0.32f) else 0f,
+                pulse = pulse,
             )
             Text(
                 text = targetValue.toString(),
@@ -760,24 +761,8 @@ private fun SumShiftHomeBannerNumberCell(
                 size = size,
                 modifier = Modifier.matchParentSize(),
                 alpha = if (disabled) 0.82f else 0.98f,
-                pulse = when {
-                    focused && focusedMode == SumShiftHomeBannerActionMode.Disable -> 0.18f + (pulse * 0.34f)
-                    focused -> 0.28f + (pulse * 0.55f)
-                    selected -> 0.12f + (pulse * 0.26f)
-                    else -> 0f
-                },
+                pulse = pulse,
             )
-
-            if (disabled) {
-                Canvas(modifier = Modifier.matchParentSize()) {
-                    drawLine(
-                        color = tintColor.copy(alpha = 0.82f),
-                        start = Offset(x = this.size.width * 0.18f, y = this.size.height * 0.22f),
-                        end = Offset(x = this.size.width * 0.82f, y = this.size.height * 0.78f),
-                        strokeWidth = this.size.minDimension * 0.06f,
-                    )
-                }
-            }
 
             Text(
                 text = value.toString(),
@@ -789,7 +774,11 @@ private fun SumShiftHomeBannerNumberCell(
                         else -> 15.sp
                     },
                 ),
-                color = tintColor,
+                color = when {
+                    disabled -> tintColor.copy(alpha = 0.58f)
+                    selected -> tintColor
+                    else -> tintColor.copy(alpha = 0.92f)
+                },
                 textAlign = TextAlign.Center,
                 textDecoration = if (disabled) TextDecoration.LineThrough else null,
             )
@@ -823,6 +812,7 @@ private fun SumShiftHomeBannerNumberCell(
 
 @Composable
 private fun DigitShiftHomeTitleBanner(
+    settings: AppSettings,
     pulse: Float,
     modifier: Modifier = Modifier,
 ) {
@@ -882,6 +872,8 @@ private fun DigitShiftHomeTitleBanner(
                         rowState = rowState,
                         cellSize = cellSize,
                         cellGap = cellGap,
+                        settings = settings,
+                        pulse = pulse,
                         modifier = Modifier.fillMaxWidth(),
                     )
                 }
@@ -1013,6 +1005,8 @@ private fun DigitShiftHomeBannerGuessRow(
     rowState: DigitShiftHomeBannerRowState,
     cellSize: Dp,
     cellGap: Dp,
+    settings: AppSettings,
+    pulse: Float,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -1025,6 +1019,9 @@ private fun DigitShiftHomeBannerGuessRow(
                 token = rowState.tokens.getOrElse(index) { "" },
                 state = rowState.states.getOrNull(index),
                 focused = rowState.focusedIndex == index,
+                settings = settings,
+                size = cellSize,
+                pulse = pulse,
                 modifier = Modifier.size(cellSize),
             )
         }
@@ -1036,6 +1033,9 @@ private fun DigitShiftHomeBannerCell(
     token: String,
     state: DigitShiftLetterState?,
     focused: Boolean,
+    settings: AppSettings,
+    size: Dp,
+    pulse: Float,
     modifier: Modifier = Modifier,
 ) {
     val palette = digitShiftHomeBannerPaletteFor(state)
@@ -1048,11 +1048,6 @@ private fun DigitShiftHomeBannerCell(
         targetValue = palette.border,
         animationSpec = tween(durationMillis = DigitShiftHomeBannerFlipAnimationMillis),
         label = "digitShiftHomeCellBorder",
-    )
-    val animatedContentColor by animateColorAsState(
-        targetValue = palette.content,
-        animationSpec = tween(durationMillis = DigitShiftHomeBannerFlipAnimationMillis),
-        label = "digitShiftHomeCellContent",
     )
     var faceUp by remember(token, state) {
         mutableStateOf(token.isBlank() || state == null || state == DigitShiftLetterState.Unknown)
@@ -1077,6 +1072,12 @@ private fun DigitShiftHomeBannerCell(
         label = "digitShiftHomeCellFocusScale",
     )
     val density = LocalDensity.current
+    val isDark = isBlockGamesDarkTheme(settings)
+    val tintColor = blockForegroundTint(
+        style = settings.blockVisualStyle,
+        isDarkTheme = isDark,
+        palette = settings.blockColorPalette,
+    ).copy(alpha = if (state == null || state == DigitShiftLetterState.Unknown) 0.86f else 1f)
 
     Card(
         modifier = modifier
@@ -1088,8 +1089,8 @@ private fun DigitShiftHomeBannerCell(
                 transformOrigin = TransformOrigin(0.5f, 1f)
                 cameraDistance = with(density) { 12.dp.toPx() }
             },
-        shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(containerColor = animatedBackground),
+        shape = RoundedCornerShape(boardCellCornerRadiusDp(size, settings.blockVisualStyle)),
+        colors = CardDefaults.cardColors(containerColor = Color.Transparent),
         border = BorderStroke(
             width = if (focused) 1.6.dp else 1.dp,
             color = if (focused) Color.White.copy(alpha = 0.42f) else animatedBorder,
@@ -1100,11 +1101,19 @@ private fun DigitShiftHomeBannerCell(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center,
         ) {
+            BlockCellPreview(
+                baseColor = animatedBackground,
+                style = settings.blockVisualStyle,
+                size = size,
+                modifier = Modifier.matchParentSize(),
+                alpha = 1f,
+                pulse = pulse,
+            )
             Text(
                 text = token,
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Black,
-                color = animatedContentColor,
+                color = tintColor,
                 textAlign = TextAlign.Center,
                 maxLines = 1,
             )

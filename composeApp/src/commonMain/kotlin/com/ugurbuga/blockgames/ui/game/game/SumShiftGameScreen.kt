@@ -91,6 +91,7 @@ import com.ugurbuga.blockgames.game.model.GameStatus
 import com.ugurbuga.blockgames.game.model.GameplayStyle
 import com.ugurbuga.blockgames.game.model.GridPoint
 import com.ugurbuga.blockgames.localization.LocalAppSettings
+import com.ugurbuga.blockgames.localization.LocalBlockStylePulse
 import com.ugurbuga.blockgames.settings.AppSettings
 import com.ugurbuga.blockgames.settings.SumShiftOnboardingScene
 import com.ugurbuga.blockgames.settings.SumShiftOnboardingStage
@@ -101,11 +102,13 @@ import com.ugurbuga.blockgames.ui.game.InteractiveOnboardingCompletionDialog
 import com.ugurbuga.blockgames.ui.game.MinimalTopBar
 import com.ugurbuga.blockgames.ui.game.RestartConfirmDialog
 import com.ugurbuga.blockgames.ui.game.TopBarActionBlockButton
+import com.ugurbuga.blockgames.ui.game.blockForegroundTint
 import com.ugurbuga.blockgames.ui.game.boardCellCornerRadiusDp
 import com.ugurbuga.blockgames.ui.game.rememberBlockStylePulse
 import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
 import com.ugurbuga.blockgames.ui.theme.appBackgroundBrush
+import com.ugurbuga.blockgames.ui.theme.isBlockGamesDarkTheme
 import org.jetbrains.compose.resources.stringResource
 
 private enum class SumShiftCellInteractionMode {
@@ -148,6 +151,7 @@ internal fun SumShiftGameScreen(
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
     val blockStyle = LocalAppSettings.current.blockVisualStyle
+    val stylePulse = LocalBlockStylePulse.current
     var showRestartDialog by remember { mutableStateOf(false) }
     var interactionMode by remember { mutableStateOf(SumShiftCellInteractionMode.Select) }
     var displayedBoardState by remember { mutableStateOf(gameState) }
@@ -156,7 +160,7 @@ internal fun SumShiftGameScreen(
     var wrongTapPoint by remember { mutableStateOf<GridPoint?>(null) }
     val outgoingClearProgress = remember { Animatable(1f) }
     val incomingRevealProgress = remember { Animatable(1f) }
-    val controlsStylePulse = rememberBlockStylePulse(style = blockStyle)
+    val controlsStylePulse = rememberBlockStylePulse(style = blockStyle, pulse = stylePulse)
 
     LaunchedEffect(gameState) {
         if (gameState.sumShiftPreparingBoard && displayedBoardState.board == gameState.board) {
@@ -373,6 +377,7 @@ internal fun SumShiftGameScreen(
                     }
                 },
                 controlsEnabled = boardInteractionEnabled,
+                stylePulse = stylePulse,
             )
 
             androidx.compose.animation.AnimatedVisibility(
@@ -469,8 +474,8 @@ private fun rememberSumShiftAnimatedPulse(
     multiplier: Float = 1f,
     minimum: Float = 0f,
 ): Float {
-    if (!shouldAnimate) return 0f
     val animatedPulse = rememberBlockStylePulse(style = style)
+    if (!shouldAnimate) return minimum.coerceIn(0f, 1f).takeIf { it > 0f } ?: animatedPulse
     return (animatedPulse * multiplier).coerceAtLeast(minimum).coerceIn(0f, 1f)
 }
 
@@ -779,6 +784,7 @@ internal fun SumShiftBoardCard(
     guidedCells: Set<GridPoint> = emptySet(),
     wrongTapPoint: GridPoint? = null,
     onTapCell: (GridPoint) -> Unit = {},
+    stylePulse: Float = 0f,
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
     val boardPanelShape = RoundedCornerShape(GameUiShapeTokens.surfaceCorner)
@@ -831,6 +837,7 @@ internal fun SumShiftBoardCard(
                         sumShiftRevealAlphaFromBottom(rowIndex + 1, rows + 1, incomingRevealProgress)
                     },
                     onTapCell = onTapCell,
+                    stylePulse = stylePulse,
                 )
 
                 outgoingGameState?.let { previousGameState ->
@@ -849,6 +856,7 @@ internal fun SumShiftBoardCard(
                         rowAlphaProvider = { rowIndex ->
                             sumShiftClearAlpha(rowIndex + 1, rows + 1, outgoingClearProgress)
                         },
+                        stylePulse = stylePulse,
                     )
                 }
             }
@@ -872,6 +880,7 @@ private fun SumShiftPuzzleBoard(
     rowAlphaProvider: (Int) -> Float = { 1f },
     modifier: Modifier = Modifier,
     onTapCell: (GridPoint) -> Unit = {},
+    stylePulse: Float = 0f,
 ) {
     val columns = gameState.config.columns.coerceAtLeast(1)
     val rows = gameState.config.rows.coerceAtLeast(1)
@@ -897,6 +906,7 @@ private fun SumShiftPuzzleBoard(
                     ),
                     completed = gameState.isSumShiftColumnCompleted(columnIndex),
                     size = targetSize,
+                    stylePulse = stylePulse,
                 )
             }
         }
@@ -916,6 +926,7 @@ private fun SumShiftPuzzleBoard(
                         completed = gameState.isSumShiftRowCompleted(rowIndex),
                         size = targetSize,
                         modifier = Modifier.alpha(rowAlpha),
+                        stylePulse = stylePulse,
                     )
                 }
             }
@@ -947,6 +958,7 @@ private fun SumShiftPuzzleBoard(
                                     manualDisabled = point in manualDisabledCells,
                                 ),
                                 onClick = { onTapCell(point) },
+                                stylePulse = stylePulse,
                             )
                         }
                     }
@@ -955,6 +967,7 @@ private fun SumShiftPuzzleBoard(
         }
     }
 }
+
 
 @Composable
 private fun SumShiftOnboardingHintCard(
@@ -997,12 +1010,18 @@ private fun SumShiftTargetCell(
     completed: Boolean,
     size: Dp,
     modifier: Modifier = Modifier,
+    stylePulse: Float = 0f,
 ) {
     val settings = LocalAppSettings.current
     val uiColors = BlockGamesThemeTokens.uiColors
     val accent = if (completed) uiColors.success else MaterialTheme.colorScheme.primary
     val blockStyle = settings.blockVisualStyle
     val shape = RoundedCornerShape(GameUiShapeTokens.chipCorner)
+    val tintColor = blockForegroundTint(
+        style = blockStyle,
+        isDarkTheme = isBlockGamesDarkTheme(settings),
+        palette = settings.blockColorPalette,
+    )
     val targetBaseColor by animateColorAsState(
         targetValue = if (completed) {
             accent.copy(alpha = 0.20f)
@@ -1026,6 +1045,7 @@ private fun SumShiftTargetCell(
         style = blockStyle,
         shouldAnimate = completed,
         multiplier = 0.45f,
+        minimum = stylePulse,
     )
     Surface(
         modifier = modifier
@@ -1062,7 +1082,7 @@ private fun SumShiftTargetCell(
                         else -> 18.sp
                     },
                 ),
-                color = MaterialTheme.colorScheme.onSurface,
+                color = tintColor,
                 modifier = Modifier.align(Alignment.Center),
             )
             Text(
@@ -1078,7 +1098,7 @@ private fun SumShiftTargetCell(
                         else -> 9.sp
                     },
                 ),
-                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.82f),
+                color = tintColor.copy(alpha = 0.82f),
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .padding(bottom = if (size <= 30.dp) 1.dp else 2.dp),
@@ -1099,6 +1119,7 @@ private fun SumShiftNumberCell(
     size: Dp,
     enabled: Boolean,
     onClick: () -> Unit,
+    stylePulse: Float = 0f,
 ) {
     val settings = LocalAppSettings.current
     val uiColors = BlockGamesThemeTokens.uiColors
@@ -1107,6 +1128,12 @@ private fun SumShiftNumberCell(
     val shape = RoundedCornerShape(boardCellCornerRadiusDp(size, blockStyle))
     val interactionSource = remember { MutableInteractionSource() }
     val pressed by interactionSource.collectIsPressedAsState()
+    val isDark = isBlockGamesDarkTheme(settings)
+    val tintColor = blockForegroundTint(
+        style = blockStyle,
+        isDarkTheme = isDark,
+        palette = settings.blockColorPalette,
+    )
     val baseBlockColor = when {
         wrongTapped -> uiColors.danger.copy(alpha = 0.92f)
         disabled -> lerp(uiColors.panelMuted, Color.Black, 0.40f).copy(alpha = 0.98f)
@@ -1129,10 +1156,10 @@ private fun SumShiftNumberCell(
         else -> uiColors.boardEmptyCellBorder
     }
     val textColor = when {
-        wrongTapped -> Color.White
-        disabled -> MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.78f)
-        selected -> colorScheme.onPrimaryContainer
-        else -> MaterialTheme.colorScheme.onSurface
+        wrongTapped -> tintColor
+        disabled -> tintColor.copy(alpha = 0.52f)
+        selected -> tintColor
+        else -> tintColor.copy(alpha = 0.94f)
     }
     val emphasized = selected || guided || wrongTapped
     val visuallyActive = emphasized || pressed
@@ -1153,8 +1180,9 @@ private fun SumShiftNumberCell(
             selected || guided || completed -> 0.95f
             else -> 0f
         },
-        minimum = if (selected || guided || completed) 0.12f else 0f,
+        minimum = if (selected || guided || completed) 0.12f else stylePulse,
     )
+
     val animatedContainerColor = animateColorAsState(
         targetValue = overlayColor,
         animationSpec = spring(stiffness = 900f, dampingRatio = 0.92f),
