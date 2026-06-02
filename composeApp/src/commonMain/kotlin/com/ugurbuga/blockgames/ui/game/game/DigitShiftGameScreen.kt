@@ -50,6 +50,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import blockgames.composeapp.generated.resources.Res
@@ -73,15 +74,21 @@ import com.ugurbuga.blockgames.game.model.DigitShiftLetterState
 import com.ugurbuga.blockgames.game.model.GameState
 import com.ugurbuga.blockgames.game.model.GameStatus
 import com.ugurbuga.blockgames.game.model.GameTextKey
+import com.ugurbuga.blockgames.localization.LocalAppSettings
+import com.ugurbuga.blockgames.localization.LocalBlockStylePulse
 import com.ugurbuga.blockgames.settings.DigitShiftOnboardingScene
 import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStage
+import com.ugurbuga.blockgames.ui.game.BlockCellPreview
 import com.ugurbuga.blockgames.ui.game.GameOverDialog
 import com.ugurbuga.blockgames.ui.game.InteractiveOnboardingCompletionDialog
 import com.ugurbuga.blockgames.ui.game.MinimalTopBar
 import com.ugurbuga.blockgames.ui.game.RestartConfirmDialog
+import com.ugurbuga.blockgames.ui.game.blockForegroundTint
+import com.ugurbuga.blockgames.ui.game.boardCellCornerRadiusDp
 import com.ugurbuga.blockgames.ui.game.resolveGameText
 import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
+import com.ugurbuga.blockgames.ui.theme.isBlockGamesDarkTheme
 import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.stringResource
 
@@ -121,6 +128,7 @@ internal fun DigitShiftGameScreen(
     onInteractiveOnboardingReturnHome: () -> Unit = {},
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
+    val stylePulse = LocalBlockStylePulse.current
     val pack = remember(gameState.digitShiftLocaleTag) { DigitShiftLexicon.packFor(gameState.digitShiftLocaleTag) }
     val latestGuess = gameState.digitShiftGuesses.lastOrNull()
     val latestGuessFingerprint = remember(latestGuess) { latestGuess?.fingerprint() }
@@ -272,6 +280,7 @@ internal fun DigitShiftGameScreen(
             modifier = Modifier
                 .weight(1f)
                 .fillMaxWidth(),
+            stylePulse = stylePulse,
         )
 
         DigitShiftKeyboard(
@@ -291,6 +300,7 @@ internal fun DigitShiftBoard(
     animatedGuessIndex: Int? = null,
     revealedCellCount: Int = Int.MAX_VALUE,
     modifier: Modifier = Modifier,
+    stylePulse: Float = 0f,
 ) {
     Card(
         modifier = modifier,
@@ -342,7 +352,9 @@ internal fun DigitShiftBoard(
                             DigitShiftCell(
                                 token = rowGuess?.tokens?.getOrNull(columnIndex) ?: currentRow.getOrNull(columnIndex).orEmpty(),
                                 state = state,
+                                size = cellSize,
                                 modifier = Modifier.size(cellSize),
+                                pulse = stylePulse,
                             )
                         }
                     }
@@ -356,8 +368,11 @@ internal fun DigitShiftBoard(
 private fun DigitShiftCell(
     token: String,
     state: DigitShiftLetterState?,
+    size: Dp,
     modifier: Modifier = Modifier,
+    pulse: Float = 0f,
 ) {
+    val settings = LocalAppSettings.current
     val palette = digitShiftPaletteFor(state)
     val animatedBackground by animateColorAsState(
         targetValue = palette.container,
@@ -368,11 +383,6 @@ private fun DigitShiftCell(
         targetValue = palette.border,
         animationSpec = tween(durationMillis = DigitShiftFlipAnimationMillis),
         label = "digitShiftCellBorder",
-    )
-    val animatedContentColor by animateColorAsState(
-        targetValue = palette.content,
-        animationSpec = tween(durationMillis = DigitShiftFlipAnimationMillis),
-        label = "digitShiftCellContent",
     )
     var flipped by remember(token, state) { mutableStateOf(state == null || token.isBlank()) }
     LaunchedEffect(token, state) {
@@ -390,6 +400,13 @@ private fun DigitShiftCell(
         label = "digitShiftCellFlip",
     )
     val density = LocalDensity.current
+    val isDark = isBlockGamesDarkTheme(settings)
+    val tintColor = blockForegroundTint(
+        style = settings.blockVisualStyle,
+        isDarkTheme = isDark,
+        palette = settings.blockColorPalette,
+    ).copy(alpha = if (state == null || state == DigitShiftLetterState.Unknown) 0.88f else 1f)
+
     Card(
         modifier = modifier
             .aspectRatio(1f)
@@ -401,8 +418,8 @@ private fun DigitShiftCell(
                 transformOrigin = TransformOrigin(0.5f, 1f)
                 cameraDistance = with(density) { 12.dp.toPx() }
             },
-        shape = RoundedCornerShape(14.dp),
-        colors = CardDefaults.cardColors(containerColor = animatedBackground),
+        shape = RoundedCornerShape(boardCellCornerRadiusDp(size, settings.blockVisualStyle)),
+        colors = CardDefaults.cardColors(containerColor = Color.Transparent),
         border = BorderStroke(1.dp, animatedBorder),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
     ) {
@@ -410,17 +427,32 @@ private fun DigitShiftCell(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center,
         ) {
+            BlockCellPreview(
+                baseColor = animatedBackground,
+                style = settings.blockVisualStyle,
+                size = size,
+                modifier = Modifier.matchParentSize(),
+                alpha = 1f,
+                pulse = pulse,
+            )
+            val fontSize = when {
+                size <= 34.dp -> 12.sp
+                size <= 44.dp -> 16.sp
+                token.length > 1 -> 14.sp
+                else -> 24.sp
+            }
             Text(
                 text = token,
-                style = if (token.length > 1) MaterialTheme.typography.titleSmall else MaterialTheme.typography.headlineSmall,
+                style = MaterialTheme.typography.headlineSmall.copy(fontSize = fontSize),
                 fontWeight = FontWeight.Black,
-                color = animatedContentColor,
+                color = tintColor,
                 textAlign = TextAlign.Center,
                 maxLines = 1,
             )
         }
     }
 }
+
 
 @Composable
 internal fun DigitShiftKeyboard(
@@ -516,6 +548,7 @@ private fun RowScope.DigitShiftKeyboardButton(
     icon: androidx.compose.ui.graphics.vector.ImageVector? = null,
     showLabel: Boolean = true,
 ) {
+    val settings = LocalAppSettings.current
     val palette = digitShiftPaletteFor(
         state = state,
         enabled = enabled,
@@ -531,12 +564,13 @@ private fun RowScope.DigitShiftKeyboardButton(
         tween(DigitShiftFlipAnimationMillis),
         label = "digitShiftKeyBorder",
     )
-    val animatedContent by animateColorAsState(
-        palette.content,
-        tween(DigitShiftFlipAnimationMillis),
-        label = "digitShiftKeyContent",
-    )
-    val shape = RoundedCornerShape(12.dp)
+    val shape = RoundedCornerShape(boardCellCornerRadiusDp(DigitShiftKeyboardKeyHeightDp.dp, settings.blockVisualStyle))
+    val isDark = isBlockGamesDarkTheme(settings)
+    val tintColor = blockForegroundTint(
+        style = settings.blockVisualStyle,
+        isDarkTheme = isDark,
+        palette = settings.blockColorPalette,
+    ).copy(alpha = if (state == DigitShiftLetterState.Unknown) 0.92f else 1f)
 
     Card(
         modifier = modifier
@@ -545,16 +579,22 @@ private fun RowScope.DigitShiftKeyboardButton(
             .clickable(enabled = enabled, onClick = onClick)
             .graphicsLayer { alpha = if (enabled) 1f else 0.72f },
         shape = shape,
-        colors = CardDefaults.cardColors(containerColor = animatedBackground),
+        colors = CardDefaults.cardColors(containerColor = Color.Transparent),
         border = BorderStroke(1.dp, animatedBorder),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
     ) {
         BoxWithConstraints(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = if (showLabel) 2.dp else 0.dp),
+                .fillMaxSize(),
             contentAlignment = Alignment.Center,
         ) {
+            BlockCellPreview(
+                baseColor = animatedBackground,
+                style = settings.blockVisualStyle,
+                size = DigitShiftKeyboardKeyHeightDp.dp,
+                modifier = Modifier.matchParentSize(),
+                alpha = 1f,
+            )
             val compactTextStyle = when {
                 maxWidth < 18.dp -> MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp)
                 maxWidth < 22.dp -> MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp)
@@ -564,7 +604,7 @@ private fun RowScope.DigitShiftKeyboardButton(
             }
 
             Row(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.fillMaxSize().padding(horizontal = if (showLabel) 2.dp else 0.dp),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
@@ -572,13 +612,13 @@ private fun RowScope.DigitShiftKeyboardButton(
                     Icon(
                         imageVector = icon,
                         contentDescription = label,
-                        tint = animatedContent,
+                        tint = tintColor,
                         modifier = Modifier.size(20.dp),
                     )
                 } else {
                     Text(
                         text = label,
-                        color = animatedContent,
+                        color = tintColor,
                         style = compactTextStyle,
                         fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Center,

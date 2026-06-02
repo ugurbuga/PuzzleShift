@@ -3,10 +3,6 @@ package com.ugurbuga.blockgames.ui.game.selection
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutSlowInEasing
-import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
@@ -99,7 +95,6 @@ import com.ugurbuga.blockgames.game.model.GridPoint
 import com.ugurbuga.blockgames.game.model.Piece
 import com.ugurbuga.blockgames.game.model.PlacementPreview
 import com.ugurbuga.blockgames.localization.LocalAppSettings
-import com.ugurbuga.blockgames.localization.LocalBlockStylePulse
 import com.ugurbuga.blockgames.localization.LocalBlockStylePulse
 import com.ugurbuga.blockgames.settings.AppSettings
 import com.ugurbuga.blockgames.settings.BlockSortOnboardingStage
@@ -200,6 +195,7 @@ fun AppSelectionScreen(
     telemetry: AppTelemetry,
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
+    initialExpandedStyle: GameplayStyle? = initialExpandedSelectionStyle(currentStyle),
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
     LogScreen(telemetry, TelemetryScreenNames.Selection)
@@ -216,7 +212,7 @@ fun AppSelectionScreen(
     }
 
     val listState = rememberLazyListState()
-    val expandedStyleState = remember(currentStyle) { mutableStateOf(initialExpandedSelectionStyle(currentStyle)) }
+    val expandedStyleState = remember(currentStyle, initialExpandedStyle) { mutableStateOf(initialExpandedStyle) }
     val density = LocalDensity.current
     val footerClearance = AppFooterBannerHeight + with(density) {
         WindowInsets.navigationBars.getBottom(this).toDp()
@@ -376,9 +372,8 @@ private fun SelectionItem(
                     ) {
                         Text(
                             text = title,
-                            style = MaterialTheme.typography.titleLarge,
+                            style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
                             color = MaterialTheme.colorScheme.onSurface,
-                            fontWeight = FontWeight.Bold
                         )
                         if (isActive) {
                             Surface(
@@ -788,12 +783,14 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
                     modifier = Modifier
                         .offset(x = boardOffsetX)
                         .size(actualBoardWidth, actualBoardHeight),
+                    stylePulse = stylePulse,
                 )
             } else if (style == GameplayStyle.SumShift) {
                 SumShiftBoardCard(
                     gameState = gameState,
                     modifier = Modifier.fillMaxSize(),
                     controlsEnabled = false,
+                    stylePulse = stylePulse,
                 )
             } else {
                 BoardGrid(
@@ -887,7 +884,7 @@ private fun com.ugurbuga.blockgames.ui.theme.BlockGamesUiColors.selectionAccentF
 }
 
 internal fun initialExpandedSelectionStyle(currentStyle: GameplayStyle?): GameplayStyle? =
-    if (currentStyle == null) GameplayStyle.StackShift else null
+    currentStyle ?: GameplayStyle.StackShift
 
 private fun buildBlockSortDemoScenario(): List<BlockSortDemoStep> {
     val logic = com.ugurbuga.blockgames.game.logic.GameLogic.create(random = Random(0))
@@ -1432,10 +1429,23 @@ private fun findConnectedGroup(board: BoardMatrix, start: GridPoint): Set<GridPo
 
 @Preview
 @Composable
-fun AppSelectionScreenPreview() {
+fun AppSelectionDigitShiftExpandedPreview() {
     BlockGamesTheme(settings = AppSettings()) {
         AppSelectionScreen(
-            currentStyle = null,
+            currentStyle = GameplayStyle.DigitShift,
+            onGameplayStyleSelected = {},
+            telemetry = NoOpAppTelemetry,
+            onBack = {},
+        )
+    }
+}
+
+@Preview
+@Composable
+fun AppSelectionSumShiftExpandedPreview() {
+    BlockGamesTheme(settings = AppSettings()) {
+        AppSelectionScreen(
+            currentStyle = GameplayStyle.SumShift,
             onGameplayStyleSelected = {},
             telemetry = NoOpAppTelemetry,
             onBack = {},
