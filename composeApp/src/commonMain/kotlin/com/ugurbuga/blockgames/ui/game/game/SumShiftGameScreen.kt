@@ -1381,25 +1381,6 @@ internal fun GameState.isSumShiftPlayableWith(
     return rowPlayable && columnPlayable
 }
 
-internal fun GameState.autoSelectableSumShiftCells(): Set<GridPoint> = buildSet {
-    sumShiftRowTargets.indices.forEach { rowIndex ->
-        val enabledPoints = (0 until config.columns).map { columnIndex -> GridPoint(columnIndex, rowIndex) }
-            .filter { it !in sumShiftManualDisabledCells }
-        val enabledSum = enabledPoints.sumOf { point -> board.cellAt(point.column, point.row)?.value ?: 0 }
-        if (enabledSum == sumShiftRowTargets[rowIndex]) {
-            addAll(enabledPoints)
-        }
-    }
-    sumShiftColumnTargets.indices.forEach { columnIndex ->
-        val enabledPoints = (0 until config.rows).map { rowIndex -> GridPoint(columnIndex, rowIndex) }
-            .filter { it !in sumShiftManualDisabledCells }
-        val enabledSum = enabledPoints.sumOf { point -> board.cellAt(point.column, point.row)?.value ?: 0 }
-        if (enabledSum == sumShiftColumnTargets[columnIndex]) {
-            addAll(enabledPoints)
-        }
-    }
-}
-
 private fun Set<GridPoint>.toggle(point: GridPoint): Set<GridPoint> =
     if (point in this) this - point else this + point
 

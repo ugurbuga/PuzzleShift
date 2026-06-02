@@ -158,7 +158,6 @@ private data class BlockWiseDemoScenario(
 
 private data class StackShiftDemoStep(
     val beforeState: GameState,
-    val targetColumn: Int,
     val preview: PlacementPreview,
     val softLockedState: GameState,
     val committedState: GameState,
@@ -177,8 +176,6 @@ private data class BoomBlocksDemoScenario(
 private data class BlockSortDemoStep(
     val beforeState: GameState,
     val sourceColumn: Int,
-    val targetColumn: Int,
-    val preview: PlacementPreview,
     val nextState: GameState,
 )
 
@@ -627,9 +624,8 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
                 }
 
                 GameplayStyle.BlockSort -> {
-                    val scenarioSteps = blockSortScenario
-                    if (scenarioSteps.isNotEmpty()) {
-                        scenarioSteps.take(SelectionDemoActionCount).forEachIndexed { stepIndex, step ->
+                    if (blockSortScenario.isNotEmpty()) {
+                        blockSortScenario.take(SelectionDemoActionCount).forEachIndexed { stepIndex, step ->
                             if (stepIndex == 0 || gameState != step.beforeState) {
                                 gameState = step.beforeState
                             }
@@ -747,7 +743,8 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
         val actualBoardHeight = cellSize * rows
 
         Box(modifier = Modifier.fillMaxSize()) {
-            if (style == GameplayStyle.BoomBlocks) {
+        when (style) {
+            GameplayStyle.BoomBlocks -> {
                 BoomBlocksGameGrid(
                     gameState = gameState,
                     modifier = Modifier
@@ -757,7 +754,9 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
                     hintPhase = 0f,
                     stylePulse = stylePulse,
                 )
-            } else if (style == GameplayStyle.BlockSort) {
+            }
+
+            GameplayStyle.BlockSort -> {
                 BlockSortBoard(
                     gameState = gameState,
                     selectedSourceColumn = blockSortSelectedSource,
@@ -777,7 +776,9 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
                         .offset(x = boardOffsetX)
                         .size(actualBoardWidth, actualBoardHeight),
                 )
-            } else if (style == GameplayStyle.DigitShift) {
+            }
+
+            GameplayStyle.DigitShift -> {
                 DigitShiftBoard(
                     gameState = gameState,
                     modifier = Modifier
@@ -785,14 +786,18 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
                         .size(actualBoardWidth, actualBoardHeight),
                     stylePulse = stylePulse,
                 )
-            } else if (style == GameplayStyle.SumShift) {
+            }
+
+            GameplayStyle.SumShift -> {
                 SumShiftBoardCard(
                     gameState = gameState,
                     modifier = Modifier.fillMaxSize(),
                     controlsEnabled = false,
                     stylePulse = stylePulse,
                 )
-            } else {
+            }
+
+            else -> {
                 BoardGrid(
                     modifier = Modifier
                         .offset(x = boardOffsetX)
@@ -815,6 +820,7 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
                     cellSize = cellSize * SelectionDemoTrayPieceScale,
                 )
             }
+        }
 
             // Animated piece overlay
             activeDemoPiece?.takeUnless { style == GameplayStyle.StackShift && gameState.softLock != null }?.let { piece ->
@@ -883,7 +889,7 @@ private fun com.ugurbuga.blockgames.ui.theme.BlockGamesUiColors.selectionAccentF
     GameplayStyle.SumShift -> selectionStackShift
 }
 
-internal fun initialExpandedSelectionStyle(currentStyle: GameplayStyle?): GameplayStyle? =
+internal fun initialExpandedSelectionStyle(currentStyle: GameplayStyle?): GameplayStyle =
     currentStyle ?: GameplayStyle.StackShift
 
 private fun buildBlockSortDemoScenario(): List<BlockSortDemoStep> {
@@ -894,11 +900,6 @@ private fun buildBlockSortDemoScenario(): List<BlockSortDemoStep> {
         BlockSortOnboardingStateFactory.scene(BlockSortOnboardingStage.FinishColumn),
     ).mapNotNull { scene ->
         val targetColumn = scene.acceptedTargetColumns.firstOrNull() ?: return@mapNotNull null
-        val preview = logic.previewPlacement(
-            scene.gameState,
-            scene.guideSourceColumn.toLong(),
-            GridPoint(targetColumn, 0),
-        ) ?: return@mapNotNull null
         val nextState = logic.placePiece(
             scene.gameState,
             scene.guideSourceColumn.toLong(),
@@ -907,8 +908,6 @@ private fun buildBlockSortDemoScenario(): List<BlockSortDemoStep> {
         BlockSortDemoStep(
             beforeState = scene.gameState,
             sourceColumn = scene.guideSourceColumn,
-            targetColumn = targetColumn,
-            preview = preview,
             nextState = nextState,
         )
     }
@@ -919,10 +918,10 @@ private fun DemoTrayPieces(
     pieces: List<Piece>,
     maxVisiblePieces: Int,
     activePieceId: Long?,
-    boardOffsetX: androidx.compose.ui.unit.Dp,
-    boardWidth: androidx.compose.ui.unit.Dp,
-    boardHeight: androidx.compose.ui.unit.Dp,
-    cellSize: androidx.compose.ui.unit.Dp,
+    boardOffsetX: Dp,
+    boardWidth: Dp,
+    boardHeight: Dp,
+    cellSize: Dp,
 ) {
     pieces.take(maxVisiblePieces).forEachIndexed { index, piece ->
         val slotCenter = SelectionDemoTraySlotCenters[index]
@@ -1275,7 +1274,6 @@ private fun buildStackShiftDemoScenario(): StackShiftDemoScenario {
 
             steps += StackShiftDemoStep(
                 beforeState = state,
-                targetColumn = selected.targetColumn,
                 preview = selected.preview,
                 softLockedState = selected.softLockedState,
                 committedState = selected.committedState,
@@ -1307,7 +1305,6 @@ private fun buildStackShiftDemoScenario(): StackShiftDemoScenario {
         val committed = fallbackLogic.commitSoftLock(softLocked.state)
         fallbackSteps += StackShiftDemoStep(
             beforeState = fallbackState,
-            targetColumn = targetColumn,
             preview = preview,
             softLockedState = softLocked.state,
             committedState = committed.state,
