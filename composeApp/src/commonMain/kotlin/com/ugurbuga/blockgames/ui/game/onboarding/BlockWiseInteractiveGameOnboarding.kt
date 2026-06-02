@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
@@ -51,42 +50,6 @@ data class BlockWiseInteractiveGameOnboardingUi(
 
 private val onboardingLogic = GameLogic.create()
 
-
-@Composable
-fun BlockWiseInteractiveGameOnboardingOverlay(
-    ui: BlockWiseInteractiveGameOnboardingUi,
-    boardRect: Rect,
-    trayRect: Rect,
-    cellSizePx: Float,
-    modifier: Modifier = Modifier,
-) {
-    val targetRect = remember(ui.scene, boardRect, trayRect, cellSizePx) {
-        blockWiseOnboardingTargetRect(
-            scene = ui.scene,
-            boardRect = boardRect,
-            trayRect = trayRect,
-            cellSizePx = cellSizePx,
-        )
-    }
-    val visualState = rememberBlockWiseInteractiveOnboardingVisualState(ui = ui)
-
-    Box(modifier = modifier.fillMaxSize()) {
-        InteractiveOnboardingTargetHighlight(
-            targetRect = targetRect,
-            guideColor = visualState.guideColor,
-            isSuccessState = visualState.isSuccessState,
-            isAwaitingPlacementCommit = ui.isAwaitingPlacementCommit,
-        )
-
-        BlockWiseInteractiveOnboardingInfoCard(
-            ui = ui,
-            visualState = visualState,
-            modifier = Modifier
-                .align(Alignment.TopCenter)
-                .fillMaxWidth(),
-        )
-    }
-}
 
 @Composable
 internal fun BlockWiseOnboardingTargetOverlay(

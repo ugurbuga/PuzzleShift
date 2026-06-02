@@ -19,7 +19,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -138,7 +137,6 @@ import com.ugurbuga.blockgames.ui.game.MinimalTopBar
 import com.ugurbuga.blockgames.ui.game.PieceBlocks
 import com.ugurbuga.blockgames.ui.game.RestartConfirmDialog
 import com.ugurbuga.blockgames.ui.game.TopBarActionBlockButton
-import com.ugurbuga.blockgames.ui.game.TopBarMetricLaunchSpacing
 import com.ugurbuga.blockgames.ui.game.boardCellCornerRadiusDp
 import com.ugurbuga.blockgames.ui.game.boardCellCornerRadiusPx
 import com.ugurbuga.blockgames.ui.game.boardFrameCornerRadiusDp
@@ -165,7 +163,6 @@ private const val LaunchAnimationMillis = 140L
 private const val EntryAnimationMillis = 70L
 private const val LaunchOverlayDisplayDelayMillis = 250L
 private const val NextPieceScale = 0.45f
-private const val LaunchPreviewAlpha = 1f
 private const val QueuePreviewAlpha = 0.58f
 
 private const val MetricHighlightPulseScale = 1.08f
@@ -182,8 +179,6 @@ private const val GameOverBoardRowClearDurationMillis = 92
 private const val ScreenShakeStepDurationMillis = 42
 private const val ScreenShakeFinalStepDurationMillis = 48
 private const val InteractiveOnboardingStageAdvanceDelayMillis = 720L
-private const val InteractiveOnboardingClearAnimationDurationMillis = 620
-private const val InteractiveOnboardingBoardShiftDurationMillis = 360
 
 private data class GameLayoutSpec(
     val cellSize: Dp,
@@ -1347,79 +1342,6 @@ private fun ActivePieceOverlay(
                     )
             )
         }
-    }
-}
-
-@Composable
-private fun MetricLaunchRow(
-    highScoreTitle: String,
-    highScoreValue: String,
-    scoreTitle: String,
-    scoreValue: String,
-    highScoreHighlightStrengthProvider: () -> Float,
-    highScoreHighlightScaleProvider: () -> Float,
-    scoreHighlightStrengthProvider: () -> Float,
-    scoreHighlightScaleProvider: () -> Float,
-    launchContent: @Composable () -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    Row(
-        modifier = modifier.fillMaxWidth().height(IntrinsicSize.Max),
-        horizontalArrangement = Arrangement.spacedBy(TopBarMetricLaunchSpacing),
-    ) {
-        EqualWidthMetricColumn(
-            highScoreTitle = highScoreTitle,
-            highScoreValue = highScoreValue,
-            scoreTitle = scoreTitle,
-            scoreValue = scoreValue,
-            highScoreHighlightStrengthProvider = highScoreHighlightStrengthProvider,
-            highScoreHighlightScaleProvider = highScoreHighlightScaleProvider,
-            scoreHighlightStrengthProvider = scoreHighlightStrengthProvider,
-            scoreHighlightScaleProvider = scoreHighlightScaleProvider,
-            modifier = Modifier.width(IntrinsicSize.Max),
-        )
-
-        Box(
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxHeight(),
-        ) {
-            launchContent()
-        }
-    }
-}
-
-@Composable
-private fun EqualWidthMetricColumn(
-    highScoreTitle: String,
-    highScoreValue: String,
-    scoreTitle: String,
-    scoreValue: String,
-    highScoreHighlightStrengthProvider: () -> Float,
-    highScoreHighlightScaleProvider: () -> Float,
-    scoreHighlightStrengthProvider: () -> Float,
-    scoreHighlightScaleProvider: () -> Float,
-    modifier: Modifier = Modifier,
-) {
-    val uiColors = BlockGamesThemeTokens.uiColors
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(6.dp),
-    ) {
-        CompactMetricChip(
-            title = highScoreTitle,
-            value = highScoreValue,
-            highlightStrengthProvider = highScoreHighlightStrengthProvider,
-            scaleProvider = highScoreHighlightScaleProvider,
-            modifier = Modifier.fillMaxWidth().weight(1f),
-        )
-        CompactMetricChip(
-            title = scoreTitle,
-            value = scoreValue,
-            highlightStrengthProvider = scoreHighlightStrengthProvider,
-            scaleProvider = scoreHighlightScaleProvider,
-            modifier = Modifier.fillMaxWidth().weight(1f),
-        )
     }
 }
 

@@ -114,45 +114,6 @@ internal data class InteractiveOnboardingVisualState(
 )
 
 @Composable
-fun InteractiveGameOnboardingOverlay(
-    ui: GameInteractiveOnboardingUi,
-    boardRect: Rect,
-    trayRect: Rect,
-    spawnRect: Rect = Rect.Zero,
-    cellSizePx: Float,
-    modifier: Modifier = Modifier,
-) {
-    val targetRect = remember(ui.scene, boardRect, trayRect, spawnRect, cellSizePx) {
-        onboardingTargetRect(
-            scene = ui.scene,
-            boardRect = boardRect,
-            trayRect = trayRect,
-            spawnRect = spawnRect,
-            cellSizePx = cellSizePx,
-        )
-    }
-    val visualState = rememberInteractiveOnboardingVisualState(ui = ui)
-
-    Box(modifier = modifier.fillMaxSize()) {
-        InteractiveOnboardingTargetHighlight(
-            targetRect = targetRect,
-            guideColor = visualState.guideColor,
-            isSuccessState = visualState.isSuccessState,
-            isAwaitingPlacementCommit = ui.isAwaitingPlacementCommit,
-        )
-
-        InteractiveOnboardingInfoCard(
-            currentStep = ui.currentStep,
-            totalSteps = ui.totalSteps,
-            visualState = visualState,
-            modifier = Modifier
-                .align(Alignment.TopCenter)
-                .fillMaxWidth(),
-        )
-    }
-}
-
-@Composable
 internal fun InteractiveOnboardingTargetOverlay(
     ui: GameInteractiveOnboardingUi,
     boardRect: Rect,
@@ -690,19 +651,30 @@ private fun InteractiveGameOnboardingOverlayPreviewHost(
                 ) {}
             }
 
-            InteractiveGameOnboardingOverlay(
-                ui = GameInteractiveOnboardingUi(
-                    scene = scene,
-                    currentStep = onboardingStages.indexOf(stage) + 1,
-                    totalSteps = onboardingStages.size,
-                    hasDraggedAwayFromSpawn = hasDraggedAwayFromSpawn,
-                    isTargetAligned = isTargetAligned,
-                    isAwaitingPlacementCommit = isAwaitingPlacementCommit,
-                ),
+            val onboardingUi = GameInteractiveOnboardingUi(
+                scene = scene,
+                currentStep = onboardingStages.indexOf(stage) + 1,
+                totalSteps = onboardingStages.size,
+                hasDraggedAwayFromSpawn = hasDraggedAwayFromSpawn,
+                isTargetAligned = isTargetAligned,
+                isAwaitingPlacementCommit = isAwaitingPlacementCommit,
+            )
+
+            InteractiveOnboardingTargetOverlay(
+                ui = onboardingUi,
                 boardRect = boardRect,
                 trayRect = trayRect,
                 spawnRect = spawnRect,
                 cellSizePx = previewCellSizePx,
+            )
+
+            InteractiveOnboardingInfoCard(
+                currentStep = onboardingUi.currentStep,
+                totalSteps = onboardingUi.totalSteps,
+                visualState = rememberInteractiveOnboardingVisualState(onboardingUi),
+                modifier = Modifier
+                    .align(Alignment.TopCenter)
+                    .fillMaxWidth(),
             )
         }
     }
