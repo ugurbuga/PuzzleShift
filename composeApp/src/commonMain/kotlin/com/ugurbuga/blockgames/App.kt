@@ -504,7 +504,7 @@ fun BlockGamesAppHost(
             )
         )
     }
-    var showLeaveSessionDialog by remember { mutableStateOf(false) }
+    var showLeaveSessionDialog by remember { mutableStateOf(value = false) }
     val persistActiveSession = remember { mutableStateOf(true) }
     var pendingSessionState by remember { mutableStateOf<GameState?>(null) }
     var pendingRequestedGameMode by remember { mutableStateOf<GameMode?>(null) }
@@ -586,7 +586,7 @@ fun BlockGamesAppHost(
     val canNavigateBack = routeStack.size > 1
     fun navigateTo(route: AppRoute) {
         if (routeStack.lastOrNull() == route) return
-        routeStack = routeStack + route
+        routeStack += route
     }
 
     fun replaceTop(route: AppRoute) {

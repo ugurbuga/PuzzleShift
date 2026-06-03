@@ -31,7 +31,6 @@ import blockgames.composeapp.generated.resources.app_language_spanish
 import blockgames.composeapp.generated.resources.app_language_turkish
 import com.ugurbuga.blockgames.platform.GlobalPlatformConfig
 import org.jetbrains.compose.resources.StringResource
-import kotlin.math.max
 
 enum class AppLanguage(
     val localeTag: String,
@@ -572,10 +571,7 @@ data class Piece(
 data class ComboState(
     val chain: Int = 0,
     val best: Int = 0,
-) {
-    val multiplier: Int
-        get() = max(1, chain)
-}
+)
 
 @Immutable
 data class ColumnPressure(
@@ -675,14 +671,6 @@ class BoardMatrix private constructor(
     fun topOccupiedRow(column: Int): Int? {
         if (column !in 0 until columns) return null
         for (row in 0 until rows) {
-            if (cells[indexOf(column, row)] != EMPTY_CELL) return row
-        }
-        return null
-    }
-
-    fun bottomOccupiedRow(column: Int): Int? {
-        if (column !in 0 until columns) return null
-        for (row in (rows - 1) downTo 0) {
             if (cells[indexOf(column, row)] != EMPTY_CELL) return row
         }
         return null
@@ -909,9 +897,6 @@ class BoardMatrix private constructor(
         return BoardMatrix(columns = columns, rows = rows, cells = next)
     }
 
-    @Deprecated("Use applyGravityUp()", ReplaceWith("applyGravityUp()"))
-    fun applyGravity(): BoardMatrix = applyGravityUp()
-
     private fun indexOf(column: Int, row: Int): Int = row * columns + column
 
     override fun equals(other: Any?): Boolean {
@@ -1028,9 +1013,6 @@ data class GameState(
     val sumShiftMistakesUsed: Int = 0,
     val sumShiftPreparingBoard: Boolean = false,
 ) {
-    val nextPiece: Piece?
-        get() = nextQueue.firstOrNull()
-
     val trayPieces: List<Piece>
         get() = buildList {
             activePiece?.let(::add)
@@ -1042,9 +1024,6 @@ data class GameState(
 
     val criticalColumns: Set<Int>
         get() = columnPressure.filter { it.level == PressureLevel.Critical || it.level == PressureLevel.Overflow }.map(ColumnPressure::column).toSet()
-
-    val isTimeAttack: Boolean
-        get() = gameMode == GameMode.TimeAttack
 
     val digitShiftAttemptsRemaining: Int
         get() = (config.rows - digitShiftGuesses.size).coerceAtLeast(0)

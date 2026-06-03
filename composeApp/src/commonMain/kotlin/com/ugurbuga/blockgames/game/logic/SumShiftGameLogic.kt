@@ -143,18 +143,6 @@ internal class SumShiftGameLogic(
 
     private fun isSolved(state: GameState): Boolean = isSolvedSumShiftState(state)
 
-    private fun rowSum(state: GameState, rowIndex: Int): Int =
-        (0 until state.config.columns).sumOf { column ->
-            val point = GridPoint(column, rowIndex)
-            if (point in state.sumShiftSelectedCells) state.board.cellAt(column, rowIndex)?.value ?: 0 else 0
-        }
-
-    private fun columnSum(state: GameState, columnIndex: Int): Int =
-        (0 until state.config.rows).sumOf { row ->
-            val point = GridPoint(columnIndex, row)
-            if (point in state.sumShiftSelectedCells) state.board.cellAt(columnIndex, row)?.value ?: 0 else 0
-        }
-
     private fun invalidMove(state: GameState): GameMoveResult =
         GameMoveResult(state = state, events = setOf(GameEvent.InvalidDrop))
 }
@@ -177,7 +165,6 @@ internal fun finalizeSolvedSumShiftState(state: GameState): GameMoveResult {
     val updatedChallenge = updateSumShiftChallenge(
         challenge = state.activeChallenge,
         score = nextScore,
-        solvedBoards = nextSolvedBoards,
     )
     val challengeCompleted = state.activeChallenge?.isCompleted != true && updatedChallenge?.isCompleted == true
     val awardedTimeMillis = if (state.gameMode == GameMode.TimeAttack) {
@@ -210,7 +197,6 @@ internal fun finalizeSolvedSumShiftState(state: GameState): GameMoveResult {
 private fun updateSumShiftChallenge(
     challenge: DailyChallenge?,
     score: Int,
-    solvedBoards: Int,
 ): DailyChallenge? {
     challenge ?: return null
     return challenge.copy(
