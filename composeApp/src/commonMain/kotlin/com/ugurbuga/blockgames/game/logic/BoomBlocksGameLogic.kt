@@ -153,14 +153,9 @@ internal class BoomBlocksGameLogic(
                 tilesPlaced = 0,
                 linesCleared = 0,
                 currentStreak = 0,
-                specialBlocksTriggered = emptyList(),
                 areaTilesCleared = group.size,
                 isBoardCleared = finalBoard.isEmpty(),
-                isPerfectPlacement = false,
-                isHardPlacement = false,
-                moveDurationMillis = null,
                 boardFillRatio = 1f,
-                chainReactionCount = 0
             )
         )
         

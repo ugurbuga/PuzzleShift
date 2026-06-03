@@ -78,13 +78,6 @@ class GameViewModel(
         return store.previewImpactPoints(preview)
     }
 
-    fun placePiece(column: Int): InteractionFeedback = dispatch(GameIntent.PlacePiece(
-        pieceId = uiState.value.gameState.activePiece?.id ?: -1L,
-        origin = store.previewPlacement(column)?.landingAnchor ?: GridPoint(0, 0),
-    ))
-
-    fun placePiece(pieceId: Long, origin: GridPoint): InteractionFeedback = dispatch(GameIntent.PlacePiece(pieceId, origin))
-
     fun placePieceResult(column: Int): GameDispatchResult {
         val pieceId = uiState.value.gameState.activePiece?.id ?: return GameDispatchResult()
         val origin = store.previewPlacement(column)?.landingAnchor ?: return GameDispatchResult()
@@ -119,12 +112,6 @@ class GameViewModel(
     fun holdPiece(): InteractionFeedback = dispatch(GameIntent.HoldPiece)
 
     fun reviveFromReward(): InteractionFeedback = dispatch(GameIntent.ReviveFromReward)
-
-    fun appendWordToken(token: String): InteractionFeedback = dispatch(GameIntent.AppendWordToken(token))
-
-    fun deleteWordToken(): InteractionFeedback = dispatch(GameIntent.DeleteWordToken)
-
-    fun submitWordGuess(): InteractionFeedback = dispatch(GameIntent.SubmitWordGuess)
 
     fun advanceWordRound(): InteractionFeedback = dispatch(GameIntent.AdvanceWordRound)
 

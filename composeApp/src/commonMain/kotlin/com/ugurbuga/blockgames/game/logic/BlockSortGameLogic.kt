@@ -311,7 +311,7 @@ internal class BlockSortGameLogic(
     private fun roundCapacity(level: Int): Int = blockSortRoundCapacity(level)
 
     private fun roundColorCount(level: Int): Int {
-        return (roundColumns(level) - blockSortRoundEmptyColumns(level)).coerceAtLeast(3)
+        return (roundColumns(level) - blockSortRoundEmptyColumns()).coerceAtLeast(3)
     }
 
     private fun generateRoundBoard(level: Int): BoardMatrix {
@@ -381,7 +381,7 @@ internal class BlockSortGameLogic(
 
         return bestBoard ?: colors
             .map { tone -> MutableList(rows) { tone } }
-            .plus(List(blockSortRoundEmptyColumns(level)) { mutableListOf() })
+            .plus(List(blockSortRoundEmptyColumns()) { mutableListOf() })
             .toBoardMatrix(columns, rows)
     }
 
@@ -591,7 +591,7 @@ internal fun blockSortRoundColumns(level: Int): Int {
     return (baseColumns + difficultyOffset).coerceAtMost(9)
 }
 
-internal fun blockSortRoundEmptyColumns(level: Int): Int {
+internal fun blockSortRoundEmptyColumns(): Int {
     return 1
 }
 
