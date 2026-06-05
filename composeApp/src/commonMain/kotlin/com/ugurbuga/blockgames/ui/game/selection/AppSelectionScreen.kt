@@ -1426,6 +1426,71 @@ private fun findConnectedGroup(board: BoardMatrix, start: GridPoint): Set<GridPo
 
 @Preview
 @Composable
+fun AppSelectionStackShiftExpandedPreview() {
+    BlockGamesTheme(settings = AppSettings()) {
+        AppSelectionScreen(
+            currentStyle = GameplayStyle.StackShift,
+            onGameplayStyleSelected = {},
+            telemetry = NoOpAppTelemetry,
+            onBack = {},
+        )
+    }
+}
+
+@Preview
+@Composable
+fun AppSelectionBlockWiseExpandedPreview() {
+    BlockGamesTheme(settings = AppSettings()) {
+        AppSelectionScreen(
+            currentStyle = GameplayStyle.BlockWise,
+            onGameplayStyleSelected = {},
+            telemetry = NoOpAppTelemetry,
+            onBack = {},
+        )
+    }
+}
+
+@Preview
+@Composable
+fun AppSelectionBlockSortExpandedPreview() {
+    BlockGamesTheme(settings = AppSettings()) {
+        AppSelectionScreen(
+            currentStyle = GameplayStyle.BlockSort,
+            onGameplayStyleSelected = {},
+            telemetry = NoOpAppTelemetry,
+            onBack = {},
+        )
+    }
+}
+
+@Preview
+@Composable
+fun AppSelectionMergeShiftExpandedPreview() {
+    BlockGamesTheme(settings = AppSettings()) {
+        AppSelectionScreen(
+            currentStyle = GameplayStyle.MergeShift,
+            onGameplayStyleSelected = {},
+            telemetry = NoOpAppTelemetry,
+            onBack = {},
+        )
+    }
+}
+
+@Preview
+@Composable
+fun AppSelectionBoomBlocksExpandedPreview() {
+    BlockGamesTheme(settings = AppSettings()) {
+        AppSelectionScreen(
+            currentStyle = GameplayStyle.BoomBlocks,
+            onGameplayStyleSelected = {},
+            telemetry = NoOpAppTelemetry,
+            onBack = {},
+        )
+    }
+}
+
+@Preview
+@Composable
 fun AppSelectionDigitShiftExpandedPreview() {
     BlockGamesTheme(settings = AppSettings()) {
         AppSelectionScreen(
