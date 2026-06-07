@@ -207,10 +207,6 @@
     <string name="piece_size_format">%1$dx%2$d</string>
 
     <!-- BlockPropertiesScreen -->
-    <string name="block_properties_title">블록 정보</string>
-    <string name="block_properties_select_hint">블록 종류 선택</string>
-    <string name="block_properties_normal_title">일반 블록</string>
-    <string name="block_properties_normal_desc">기본으로 채워진 칸입니다. 특별한 효과는 없습니다.</string>
     <string name="block_properties_column_clearer_title">열 제거</string>
     <string name="block_properties_column_clearer_desc">해당 열의 모든 칸이 채워지면 열이 사라집니다.</string>
     <string name="block_properties_row_clearer_title">행 제거</string>
@@ -219,7 +215,6 @@
     <string name="block_properties_ghost_desc">트레이 피스를 들어맞는 빈 공간이라면 어디에든 직접 배치할 수 있습니다.</string>
     <string name="block_properties_heavy_title">특수 블록 없음</string>
     <string name="block_properties_heavy_desc">이 모드는 도형 선택, 라인 제거, 전체 트레이를 놓을 공간 확보에 집중합니다.</string>
-    <string name="block_properties_dot_desc">오른쪽 위의 작은 점은 이 블록에 특수 효과가 있음을 뜻합니다. 점과 테두리 색상으로 효과 종류를 알 수 있습니다.</string>
 
     <!-- GameTutorialScreen -->
     <string name="tutorial_subtitle">첫 플레이 전에 짧은 안내를 확인하세요.</string>

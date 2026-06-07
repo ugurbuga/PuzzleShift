@@ -207,10 +207,6 @@
     <string name="piece_size_format">%1$dx%2$d</string>
 
     <!-- BlockPropertiesScreen -->
-    <string name="block_properties_title">ブロック情報</string>
-    <string name="block_properties_select_hint">ブロックタイプを選択</string>
-    <string name="block_properties_normal_title">通常ブロック</string>
-    <string name="block_properties_normal_desc">標準的な埋まりマスです。特殊効果はありません。</string>
     <string name="block_properties_column_clearer_title">列消去</string>
     <string name="block_properties_column_clearer_desc">その列のすべてのマスが埋まると列が消えます。</string>
     <string name="block_properties_row_clearer_title">行消去</string>
@@ -219,7 +215,6 @@
     <string name="block_properties_ghost_desc">トレイのピースは、収まる空きエリアならどこにでも直接配置できます。</string>
     <string name="block_properties_heavy_title">特殊ブロックなし</string>
     <string name="block_properties_heavy_desc">このモードは形の選択、ライン消去、トレイ全体を置ける空間作りが中心です。</string>
-    <string name="block_properties_dot_desc">右上の小さな点は、このブロックに特殊効果があることを示します。点と枠線の色で効果の種類が分かります。</string>
 
     <!-- GameTutorialScreen -->
     <string name="tutorial_subtitle">最初のプレイ前に短いガイドを確認しましょう。</string>

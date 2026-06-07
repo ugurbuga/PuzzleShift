@@ -207,10 +207,6 @@
     <string name="piece_size_format">%1$dx%2$d</string>
 
     <!-- BlockPropertiesScreen -->
-    <string name="block_properties_title">Properti blok</string>
-    <string name="block_properties_select_hint">Pilih jenis blok</string>
-    <string name="block_properties_normal_title">Blok normal</string>
-    <string name="block_properties_normal_desc">Sel terisi standar. Tidak ada efek spesial.</string>
     <string name="block_properties_column_clearer_title">Pembersih kolom</string>
     <string name="block_properties_column_clearer_desc">Membersihkan kolom tempat ia jatuh. Sangat bagus untuk mengurangi tekanan.</string>
     <string name="block_properties_row_clearer_title">Pembersih baris</string>
@@ -219,7 +215,6 @@
     <string name="block_properties_ghost_desc">Dapat menembus blok lain. Berguna untuk celah sempit.</string>
     <string name="block_properties_heavy_title">Berat</string>
     <string name="block_properties_heavy_desc">Berperilaku lebih agresif; efeknya setelah mendarat lebih kuat.</string>
-    <string name="block_properties_dot_desc">Titik kecil di kanan atas menunjukkan bahwa blok ini memiliki efek spesial. Warna titik dan bingkai menunjukkan jenis efeknya.</string>
 
     <!-- GameTutorialScreen -->
     <string name="tutorial_subtitle">Panduan singkat sebelum permainan pertamamu.</string>
