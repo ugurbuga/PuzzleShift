@@ -207,10 +207,6 @@
     <string name="piece_size_format">%1$dx%2$d</string>
 
     <!-- BlockPropertiesScreen -->
-    <string name="block_properties_title">خصائص الكتلة</string>
-    <string name="block_properties_select_hint">اختر نوع كتلة</string>
-    <string name="block_properties_normal_title">كتلة عادية</string>
-    <string name="block_properties_normal_desc">خلية ممتلئة قياسية. لا تأثير خاص لها.</string>
     <string name="block_properties_column_clearer_title">منظف العمود</string>
     <string name="block_properties_column_clearer_desc">يمسح العمود الذي يسقط فيه. ممتاز لتخفيف الضغط.</string>
     <string name="block_properties_row_clearer_title">منظف الصف</string>
@@ -219,7 +215,6 @@
     <string name="block_properties_ghost_desc">يمكنه المرور عبر الكتل الأخرى. مفيد للفجوات الضيقة.</string>
     <string name="block_properties_heavy_title">ثقيل</string>
     <string name="block_properties_heavy_desc">يتصرف بشكل أكثر عدوانية؛ وتأثيره بعد الهبوط أقوى.</string>
-    <string name="block_properties_dot_desc">تشير النقطة الصغيرة في الزاوية العلوية اليمنى إلى أن هذه الكتلة لديها تأثير خاص. يوضح لون النقطة والإطار نوع التأثير.</string>
 
     <!-- GameTutorialScreen -->
     <string name="tutorial_subtitle">دليل سريع قبل أول جولة لك.</string>

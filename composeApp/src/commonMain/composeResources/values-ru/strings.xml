@@ -207,10 +207,6 @@
     <string name="piece_size_format">%1$dx%2$d</string>
 
     <!-- BlockPropertiesScreen -->
-    <string name="block_properties_title">Свойства блока</string>
-    <string name="block_properties_select_hint">Выберите тип блока</string>
-    <string name="block_properties_normal_title">Обычный блок</string>
-    <string name="block_properties_normal_desc">Стандартная заполненная клетка. Без специального эффекта.</string>
     <string name="block_properties_column_clearer_title">Очистка колонки</string>
     <string name="block_properties_column_clearer_desc">Очищает колонку, в которую падает. Отлично снижает давление.</string>
     <string name="block_properties_row_clearer_title">Очистка строки</string>
@@ -219,7 +215,6 @@
     <string name="block_properties_ghost_desc">Может проходить сквозь другие блоки. Полезно для узких промежутков.</string>
     <string name="block_properties_heavy_title">Тяжёлый</string>
     <string name="block_properties_heavy_desc">Ведёт себя агрессивнее; после приземления эффект сильнее.</string>
-    <string name="block_properties_dot_desc">Маленькая точка в правом верхнем углу показывает, что у этого блока есть специальный эффект. Цвет точки и рамки указывает тип эффекта.</string>
 
     <!-- GameTutorialScreen -->
     <string name="tutorial_subtitle">Короткое руководство перед первым запуском.</string>

@@ -1,9 +1,6 @@
 package com.ugurbuga.blockgames.ui.game.properties
 
 import blockgames.composeapp.generated.resources.Res
-import blockgames.composeapp.generated.resources.block_properties_ghost_desc
-import blockgames.composeapp.generated.resources.block_properties_heavy_title
-import blockgames.composeapp.generated.resources.block_properties_normal_title
 import blockgames.composeapp.generated.resources.piece_properties_none
 import blockgames.composeapp.generated.resources.special_column_clearer
 import blockgames.composeapp.generated.resources.special_ghost
@@ -23,18 +20,6 @@ class PropertiesScreensCommonTest {
         assertEquals(Res.string.special_row_clearer, resolveSpecialLabelRes(SpecialBlockType.RowClearer))
         assertEquals(Res.string.special_ghost, resolveSpecialLabelRes(SpecialBlockType.Ghost))
         assertEquals(Res.string.special_heavy, resolveSpecialLabelRes(SpecialBlockType.Heavy))
-    }
-
-    @Test
-    fun blockPropertiesMappings_returnExpectedTitleDescriptionAndTone() {
-        assertEquals(Res.string.block_properties_normal_title, resolveBlockTitleRes(SpecialBlockType.None))
-        assertEquals(Res.string.block_properties_ghost_desc, resolveBlockDescRes(SpecialBlockType.Ghost))
-        assertEquals(Res.string.block_properties_heavy_title, resolveBlockTitleRes(SpecialBlockType.Heavy))
-        assertEquals(CellTone.Cyan, sampleToneFor(SpecialBlockType.None))
-        assertEquals(CellTone.Emerald, sampleToneFor(SpecialBlockType.ColumnClearer))
-        assertEquals(CellTone.Gold, sampleToneFor(SpecialBlockType.RowClearer))
-        assertEquals(CellTone.Violet, sampleToneFor(SpecialBlockType.Ghost))
-        assertEquals(CellTone.Coral, sampleToneFor(SpecialBlockType.Heavy))
     }
 }
 

@@ -207,10 +207,6 @@
     <string name="piece_size_format">%1$dx%2$d</string>
 
     <!-- BlockPropertiesScreen -->
-    <string name="block_properties_title">Blokeigenschappen</string>
-    <string name="block_properties_select_hint">Selecteer een bloktype</string>
-    <string name="block_properties_normal_title">Normaal blok</string>
-    <string name="block_properties_normal_desc">Standaard gevulde cel. Geen speciaal effect.</string>
     <string name="block_properties_column_clearer_title">Kolom wisser</string>
     <string name="block_properties_column_clearer_desc">Kolommen verdwijnen wanneer elke cel in die kolom gevuld is.</string>
     <string name="block_properties_row_clearer_title">Rij wisser</string>
@@ -219,7 +215,6 @@
     <string name="block_properties_ghost_desc">Je kunt elk vakstuk direct op elke lege plek zetten waar het past.</string>
     <string name="block_properties_heavy_title">Geen speciale blokken</string>
     <string name="block_properties_heavy_desc">Deze modus draait volledig om vormkeuze, lijnclears en ruimte vinden voor het hele vak.</string>
-    <string name="block_properties_dot_desc">De kleine stip rechtsboven laat zien dat dit blok een speciaal effect heeft. De kleur van stip en rand geeft het effecttype aan.</string>
 
     <!-- GameTutorialScreen -->
     <string name="tutorial_subtitle">Een korte uitleg vóór je eerste poging.</string>

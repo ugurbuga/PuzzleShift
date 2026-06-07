@@ -207,10 +207,6 @@
     <string name="piece_size_format">%1$dx%2$d</string>
 
     <!-- BlockPropertiesScreen -->
-    <string name="block_properties_title">方块属性</string>
-    <string name="block_properties_select_hint">选择一个方块类型</string>
-    <string name="block_properties_normal_title">普通方块</string>
-    <string name="block_properties_normal_desc">标准填充单元。无特殊效果。</string>
     <string name="block_properties_column_clearer_title">列清除器</string>
     <string name="block_properties_column_clearer_desc">清除落入列。非常适合降低压力。</string>
     <string name="block_properties_row_clearer_title">行清除器</string>
@@ -219,7 +215,6 @@
     <string name="block_properties_ghost_desc">可穿过其他方块。适合狭窄缝隙。</string>
     <string name="block_properties_heavy_title">重型</string>
     <string name="block_properties_heavy_desc">行为更激进；落地后的效果更强。</string>
-    <string name="block_properties_dot_desc">右上角的小点表示此方块拥有特殊效果。点和边框的颜色表示效果类型。</string>
 
     <!-- GameTutorialScreen -->
     <string name="tutorial_subtitle">开始第一局前的简短说明。</string>

@@ -207,10 +207,6 @@
     <string name="piece_size_format">%1$dx%2$d</string>
 
     <!-- BlockPropertiesScreen -->
-    <string name="block_properties_title">Propriedades do bloco</string>
-    <string name="block_properties_select_hint">Selecione um tipo de bloco</string>
-    <string name="block_properties_normal_title">Bloco normal</string>
-    <string name="block_properties_normal_desc">Célula preenchida padrão. Sem efeito especial.</string>
     <string name="block_properties_column_clearer_title">Limpador de coluna</string>
     <string name="block_properties_column_clearer_desc">Limpa a coluna em que cai. Ótimo para reduzir a pressão.</string>
     <string name="block_properties_row_clearer_title">Limpador de linha</string>
@@ -219,7 +215,6 @@
     <string name="block_properties_ghost_desc">Pode atravessar outros blocos. Útil para espaços apertados.</string>
     <string name="block_properties_heavy_title">Pesado</string>
     <string name="block_properties_heavy_desc">Comportamento mais agressivo; seu efeito após o pouso é mais forte.</string>
-    <string name="block_properties_dot_desc">O pequeno ponto no canto superior direito indica que este bloco tem um efeito especial. A cor do ponto e da borda indica o tipo de efeito.</string>
 
     <!-- GameTutorialScreen -->
     <string name="tutorial_subtitle">Um guia rápido antes da sua primeira partida.</string>

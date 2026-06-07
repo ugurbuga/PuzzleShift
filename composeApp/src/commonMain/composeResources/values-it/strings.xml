@@ -207,10 +207,6 @@
     <string name="piece_size_format">%1$dx%2$d</string>
 
     <!-- BlockPropertiesScreen -->
-    <string name="block_properties_title">Proprietà del blocco</string>
-    <string name="block_properties_select_hint">Seleziona un tipo di blocco</string>
-    <string name="block_properties_normal_title">Blocco normale</string>
-    <string name="block_properties_normal_desc">Cella standard piena. Nessun effetto speciale.</string>
     <string name="block_properties_column_clearer_title">Elimina colonna</string>
     <string name="block_properties_column_clearer_desc">Le colonne spariscono quando ogni cella di quella colonna è piena.</string>
     <string name="block_properties_row_clearer_title">Elimina riga</string>
@@ -219,7 +215,6 @@
     <string name="block_properties_ghost_desc">Puoi posizionare qualsiasi pezzo del vassoio direttamente su qualsiasi area vuota in cui entra.</string>
     <string name="block_properties_heavy_title">Nessun blocco speciale</string>
     <string name="block_properties_heavy_desc">Questa modalità ruota tutta attorno alla scelta delle forme, alle eliminazioni di linee e al trovare spazio per l'intero vassoio.</string>
-    <string name="block_properties_dot_desc">Il piccolo punto in alto a destra indica che questo blocco ha un effetto speciale. Il colore del punto e del bordo indica il tipo di effetto.</string>
 
     <!-- GameTutorialScreen -->
     <string name="tutorial_subtitle">Una rapida guida prima della tua prima partita.</string>

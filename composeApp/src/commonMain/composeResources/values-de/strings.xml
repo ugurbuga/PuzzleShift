@@ -207,10 +207,6 @@
     <string name="piece_size_format">%1$dx%2$d</string>
 
     <!-- BlockPropertiesScreen -->
-    <string name="block_properties_title">Blockeigenschaften</string>
-    <string name="block_properties_select_hint">Wähle einen Blocktyp aus</string>
-    <string name="block_properties_normal_title">Normaler Block</string>
-    <string name="block_properties_normal_desc">Standardmäßig gefüllte Zelle. Kein Spezialeffekt.</string>
     <string name="block_properties_column_clearer_title">Spaltenräumer</string>
     <string name="block_properties_column_clearer_desc">Löscht die Spalte, in der er landet. Ideal, um Druck zu senken.</string>
     <string name="block_properties_row_clearer_title">Reihenräumer</string>
@@ -219,7 +215,6 @@
     <string name="block_properties_ghost_desc">Kann durch andere Blöcke hindurchgehen. Nützlich für enge Lücken.</string>
     <string name="block_properties_heavy_title">Schwer</string>
     <string name="block_properties_heavy_desc">Verhält sich aggressiver; seine Wirkung nach dem Landen ist stärker.</string>
-    <string name="block_properties_dot_desc">Der kleine Punkt oben rechts zeigt an, dass dieser Block einen Spezialeffekt hat. Die Farbe von Punkt und Rahmen zeigt den Effekttyp an.</string>
 
     <!-- GameTutorialScreen -->
     <string name="tutorial_subtitle">Eine kurze Einführung vor deiner ersten Runde.</string>

@@ -207,10 +207,6 @@
     <string name="piece_size_format">%1$dx%2$d</string>
 
     <!-- BlockPropertiesScreen -->
-    <string name="block_properties_title">ब्लॉक गुण</string>
-    <string name="block_properties_select_hint">ब्लॉक प्रकार चुनें</string>
-    <string name="block_properties_normal_title">सामान्य ब्लॉक</string>
-    <string name="block_properties_normal_desc">मानक भरा हुआ सेल। कोई विशेष प्रभाव नहीं।</string>
     <string name="block_properties_column_clearer_title">कॉलम क्लियरर</string>
     <string name="block_properties_column_clearer_desc">जिस कॉलम में यह गिरता है उसे साफ़ करता है। दबाव कम करने के लिए बहुत अच्छा।</string>
     <string name="block_properties_row_clearer_title">पंक्ति क्लियरर</string>
@@ -219,7 +215,6 @@
     <string name="block_properties_ghost_desc">अन्य ब्लॉकों के बीच से गुजर सकता है। तंग जगहों के लिए उपयोगी।</string>
     <string name="block_properties_heavy_title">भारी</string>
     <string name="block_properties_heavy_desc">अधिक आक्रामक व्यवहार करता है; उतरने के बाद इसका प्रभाव अधिक मजबूत होता है।</string>
-    <string name="block_properties_dot_desc">ऊपरी-दाएँ कोने का छोटा बिंदु दिखाता है कि इस ब्लॉक में विशेष प्रभाव है। बिंदु और बॉर्डर का रंग प्रभाव के प्रकार को दर्शाता है।</string>
 
     <!-- GameTutorialScreen -->
     <string name="tutorial_subtitle">आपकी पहली रन से पहले एक छोटा मार्गदर्शन।</string>

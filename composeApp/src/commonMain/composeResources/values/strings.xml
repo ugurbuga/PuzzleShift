@@ -207,10 +207,6 @@
     <string name="piece_size_format">%1$dx%2$d</string>
 
     <!-- BlockPropertiesScreen -->
-    <string name="block_properties_title">Block Properties</string>
-    <string name="block_properties_select_hint">Select a block type</string>
-    <string name="block_properties_normal_title">Normal Block</string>
-    <string name="block_properties_normal_desc">Standard filled cell. No special effect.</string>
     <string name="block_properties_column_clearer_title">Column Clear</string>
     <string name="block_properties_column_clearer_desc">Columns disappear when every cell in that column is filled.</string>
     <string name="block_properties_row_clearer_title">Row Clear</string>
@@ -219,7 +215,6 @@
     <string name="block_properties_ghost_desc">You can place any tray piece directly onto any empty area where it fits.</string>
     <string name="block_properties_heavy_title">No Special Blocks</string>
     <string name="block_properties_heavy_desc">This mode is all about shape choice, line clears, and finding space for the full tray.</string>
-    <string name="block_properties_dot_desc">The small dot in the top-right shows that this block has a special effect. The dot and border color indicate the effect type.</string>
 
     <!-- GameTutorialScreen -->
     <string name="tutorial_subtitle">A quick walkthrough before your first run.</string>

@@ -207,10 +207,6 @@
     <string name="piece_size_format">%1$dx%2$d</string>
 
     <!-- BlockPropertiesScreen -->
-    <string name="block_properties_title">Blok Özellikleri</string>
-    <string name="block_properties_select_hint">Bir blok türü seç</string>
-    <string name="block_properties_normal_title">Normal Blok</string>
-    <string name="block_properties_normal_desc">Standart dolu hücre. Özel etki içermez.</string>
     <string name="block_properties_column_clearer_title">Sütun Temizliği</string>
     <string name="block_properties_column_clearer_desc">Bir sütundaki tüm hücreler dolduğunda o sütun temizlenir.</string>
     <string name="block_properties_row_clearer_title">Satır Temizliği</string>
@@ -219,7 +215,6 @@
     <string name="block_properties_ghost_desc">Havuzdaki herhangi bir parçayı sığdığı herhangi bir boş alana doğrudan bırakabilirsin.</string>
     <string name="block_properties_heavy_title">Ağır Blok</string>
     <string name="block_properties_heavy_desc">Bu özel blok, yerleştiği yerdeki diğer blokların temizlenmesini kolaylaştırır ve stratejik avantaj sağlar.</string>
-    <string name="block_properties_dot_desc">Sağ üstteki küçük nokta, bu bloğun özel bir etki taşıdığını gösterir. Nokta ve çerçeve rengi, etki türünü belirtir.</string>
 
     <!-- GameTutorialScreen -->
     <string name="tutorial_subtitle">İlk turundan önce kısa bir rehber.</string>
