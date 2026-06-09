@@ -195,16 +195,8 @@
     <string name="special_row_clearer">행</string>
     <string name="special_ghost">고스트</string>
     <string name="special_heavy">헤비</string>
-    <string name="piece_properties_title">피스 정보</string>
     <string name="piece_properties_active">현재 피스</string>
-    <string name="piece_properties_kind">종류</string>
-    <string name="piece_properties_size">크기</string>
-    <string name="piece_properties_special">특수 효과</string>
-    <string name="piece_properties_cells">칸</string>
-    <string name="piece_properties_unlock_level">해금 레벨</string>
     <string name="piece_properties_none">없음</string>
-    <string name="active_piece_summary">%1$s • %2$s • %3$s</string>
-    <string name="piece_size_format">%1$dx%2$d</string>
 
     <!-- BlockPropertiesScreen -->
     <string name="block_properties_column_clearer_title">열 제거</string>

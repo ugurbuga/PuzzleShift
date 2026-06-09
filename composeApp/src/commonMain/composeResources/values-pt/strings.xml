@@ -195,16 +195,8 @@
     <string name="special_row_clearer">LINHA</string>
     <string name="special_ghost">FANTASMA</string>
     <string name="special_heavy">PESADO</string>
-    <string name="piece_properties_title">Propriedades da peça</string>
     <string name="piece_properties_active">Peça ativa</string>
-    <string name="piece_properties_kind">Tipo</string>
-    <string name="piece_properties_size">Tamanho</string>
-    <string name="piece_properties_special">Especial</string>
-    <string name="piece_properties_cells">Célula</string>
-    <string name="piece_properties_unlock_level">Nível de desbloqueio</string>
     <string name="piece_properties_none">Nenhum</string>
-    <string name="active_piece_summary">%1$s • %2$s • %3$s</string>
-    <string name="piece_size_format">%1$dx%2$d</string>
 
     <!-- BlockPropertiesScreen -->
     <string name="block_properties_column_clearer_title">Limpador de coluna</string>

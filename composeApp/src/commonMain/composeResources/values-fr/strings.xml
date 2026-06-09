@@ -195,16 +195,8 @@
     <string name="special_row_clearer">LIGNE</string>
     <string name="special_ghost">FANTÔME</string>
     <string name="special_heavy">LOURD</string>
-    <string name="piece_properties_title">Propriétés de la pièce</string>
     <string name="piece_properties_active">Pièce active</string>
-    <string name="piece_properties_kind">Type</string>
-    <string name="piece_properties_size">Taille</string>
-    <string name="piece_properties_special">Spécial</string>
-    <string name="piece_properties_cells">Cellule</string>
-    <string name="piece_properties_unlock_level">Niveau de déblocage</string>
     <string name="piece_properties_none">Aucun</string>
-    <string name="active_piece_summary">%1$s • %2$s • %3$s</string>
-    <string name="piece_size_format">%1$dx%2$d</string>
 
     <!-- BlockPropertiesScreen -->
     <string name="block_properties_column_clearer_title">Nettoyeur de colonne</string>

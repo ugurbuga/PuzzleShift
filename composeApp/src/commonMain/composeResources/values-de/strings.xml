@@ -195,16 +195,8 @@
     <string name="special_row_clearer">REIHE</string>
     <string name="special_ghost">GEIST</string>
     <string name="special_heavy">SCHWER</string>
-    <string name="piece_properties_title">Teileigenschaften</string>
     <string name="piece_properties_active">Aktives Teil</string>
-    <string name="piece_properties_kind">Typ</string>
-    <string name="piece_properties_size">Größe</string>
-    <string name="piece_properties_special">Spezial</string>
-    <string name="piece_properties_cells">Zelle</string>
-    <string name="piece_properties_unlock_level">Freischaltstufe</string>
     <string name="piece_properties_none">Keine</string>
-    <string name="active_piece_summary">%1$s • %2$s • %3$s</string>
-    <string name="piece_size_format">%1$dx%2$d</string>
 
     <!-- BlockPropertiesScreen -->
     <string name="block_properties_column_clearer_title">Spaltenräumer</string>
