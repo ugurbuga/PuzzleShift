@@ -195,16 +195,8 @@
     <string name="special_row_clearer">صف</string>
     <string name="special_ghost">شبح</string>
     <string name="special_heavy">ثقيل</string>
-    <string name="piece_properties_title">خصائص القطعة</string>
     <string name="piece_properties_active">القطعة النشطة</string>
-    <string name="piece_properties_kind">النوع</string>
-    <string name="piece_properties_size">الحجم</string>
-    <string name="piece_properties_special">خاص</string>
-    <string name="piece_properties_cells">خلية</string>
-    <string name="piece_properties_unlock_level">مستوى الفتح</string>
     <string name="piece_properties_none">لا يوجد</string>
-    <string name="active_piece_summary">%1$s • %2$s • %3$s</string>
-    <string name="piece_size_format">%1$dx%2$d</string>
 
     <!-- BlockPropertiesScreen -->
     <string name="block_properties_column_clearer_title">منظف العمود</string>

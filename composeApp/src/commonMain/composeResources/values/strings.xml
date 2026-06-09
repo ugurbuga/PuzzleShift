@@ -195,16 +195,8 @@
     <string name="special_row_clearer">ROW</string>
     <string name="special_ghost">GHOST</string>
     <string name="special_heavy">HEAVY</string>
-    <string name="piece_properties_title">Piece Properties</string>
     <string name="piece_properties_active">Active Piece</string>
-    <string name="piece_properties_kind">Type</string>
-    <string name="piece_properties_size">Size</string>
-    <string name="piece_properties_special">Special</string>
-    <string name="piece_properties_cells">Cell</string>
-    <string name="piece_properties_unlock_level">Unlock Level</string>
     <string name="piece_properties_none">None</string>
-    <string name="active_piece_summary">%1$s • %2$s • %3$s</string>
-    <string name="piece_size_format">%1$dx%2$d</string>
 
     <!-- BlockPropertiesScreen -->
     <string name="block_properties_column_clearer_title">Column Clear</string>

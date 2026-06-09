@@ -195,16 +195,8 @@
     <string name="special_row_clearer">SATIR</string>
     <string name="special_ghost">HAYALET</string>
     <string name="special_heavy">AĞIR</string>
-    <string name="piece_properties_title">Parça Özellikleri</string>
     <string name="piece_properties_active">Aktif Parça</string>
-    <string name="piece_properties_kind">Tip</string>
-    <string name="piece_properties_size">Boyut</string>
-    <string name="piece_properties_special">Özel</string>
-    <string name="piece_properties_cells">Hücre</string>
-    <string name="piece_properties_unlock_level">Açılma Seviyesi</string>
     <string name="piece_properties_none">Yok</string>
-    <string name="active_piece_summary">%1$s • %2$s • %3$s</string>
-    <string name="piece_size_format">%1$dx%2$d</string>
 
     <!-- BlockPropertiesScreen -->
     <string name="block_properties_column_clearer_title">Sütun Temizliği</string>

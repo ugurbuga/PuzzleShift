@@ -195,16 +195,8 @@
     <string name="special_row_clearer">СТРОКА</string>
     <string name="special_ghost">ПРИЗРАК</string>
     <string name="special_heavy">ТЯЖЁЛЫЙ</string>
-    <string name="piece_properties_title">Свойства фигуры</string>
     <string name="piece_properties_active">Активная фигура</string>
-    <string name="piece_properties_kind">Тип</string>
-    <string name="piece_properties_size">Размер</string>
-    <string name="piece_properties_special">Спецэффект</string>
-    <string name="piece_properties_cells">Клетки</string>
-    <string name="piece_properties_unlock_level">Уровень открытия</string>
     <string name="piece_properties_none">Нет</string>
-    <string name="active_piece_summary">%1$s • %2$s • %3$s</string>
-    <string name="piece_size_format">%1$dx%2$d</string>
 
     <!-- BlockPropertiesScreen -->
     <string name="block_properties_column_clearer_title">Очистка колонки</string>

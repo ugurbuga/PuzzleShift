@@ -195,16 +195,8 @@
     <string name="special_row_clearer">BARIS</string>
     <string name="special_ghost">HANTU</string>
     <string name="special_heavy">BERAT</string>
-    <string name="piece_properties_title">Properti potongan</string>
     <string name="piece_properties_active">Potongan aktif</string>
-    <string name="piece_properties_kind">Jenis</string>
-    <string name="piece_properties_size">Ukuran</string>
-    <string name="piece_properties_special">Spesial</string>
-    <string name="piece_properties_cells">Sel</string>
-    <string name="piece_properties_unlock_level">Level pembuka</string>
     <string name="piece_properties_none">Tidak ada</string>
-    <string name="active_piece_summary">%1$s • %2$s • %3$s</string>
-    <string name="piece_size_format">%1$dx%2$d</string>
 
     <!-- BlockPropertiesScreen -->
     <string name="block_properties_column_clearer_title">Pembersih kolom</string>

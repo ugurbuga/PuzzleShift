@@ -195,16 +195,8 @@
     <string name="special_row_clearer">RIGA</string>
     <string name="special_ghost">FANTASMA</string>
     <string name="special_heavy">PESANTE</string>
-    <string name="piece_properties_title">Proprietà del pezzo</string>
     <string name="piece_properties_active">Pezzo attivo</string>
-    <string name="piece_properties_kind">Tipo</string>
-    <string name="piece_properties_size">Dimensione</string>
-    <string name="piece_properties_special">Speciale</string>
-    <string name="piece_properties_cells">Cella</string>
-    <string name="piece_properties_unlock_level">Livello di sblocco</string>
     <string name="piece_properties_none">Nessuno</string>
-    <string name="active_piece_summary">%1$s • %2$s • %3$s</string>
-    <string name="piece_size_format">%1$dx%2$d</string>
 
     <!-- BlockPropertiesScreen -->
     <string name="block_properties_column_clearer_title">Elimina colonna</string>
