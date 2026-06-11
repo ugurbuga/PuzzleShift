@@ -114,6 +114,12 @@
     <string name="queue_hold">Hold</string>
     <string name="pause_title">Paused</string>
     <string name="game_message_lines_cleared">%1$s lines cleared.</string>
+    <string name="queue_empty">—</string>
+    <string name="special_column_clearer">COLUMN</string>
+    <string name="special_row_clearer">ROW</string>
+    <string name="special_ghost">GHOST</string>
+    <string name="special_heavy">HEAVY</string>
+    <string name="piece_properties_none">None</string>
 
     <!-- NotificationWorker -->
     <string name="notification_reminders_channel_name">Reminders</string>
@@ -189,15 +195,6 @@
     <string name="stat_label_value_format">%1$s: %2$s</string>
     <string name="time_minutes_seconds_format">%1$d:%2$s</string>
 
-    <!-- PiecePropertiesScreen -->
-    <string name="queue_empty">—</string>
-    <string name="special_column_clearer">COLUMN</string>
-    <string name="special_row_clearer">ROW</string>
-    <string name="special_ghost">GHOST</string>
-    <string name="special_heavy">HEAVY</string>
-    <string name="piece_properties_active">Active Piece</string>
-    <string name="piece_properties_none">None</string>
-
     <!-- BlockPropertiesScreen -->
     <string name="block_properties_column_clearer_title">Column Clear</string>
     <string name="block_properties_column_clearer_desc">Columns disappear when every cell in that column is filled.</string>
@@ -218,6 +215,7 @@
     <string name="return_home">Return to Home</string>
     <string name="tutorial_ready_settings_hint">Open Settings to change the language, theme, colors, and block style before your next run.</string>
     <string name="interactive_onboarding_step_counter">Guide %1$d / %2$d</string>
+    <string name="piece_properties_active">Active Piece</string>
 
     <!-- AppSelectionScreen -->
     <string name="selection_title">Choose Your Game</string>

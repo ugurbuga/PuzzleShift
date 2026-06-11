@@ -114,6 +114,12 @@
     <string name="queue_hold">Vasthouden</string>
     <string name="pause_title">Gepauzeerd</string>
     <string name="game_message_lines_cleared">%1$s lijnen gewist.</string>
+    <string name="queue_empty">—</string>
+    <string name="special_column_clearer">KOLOM</string>
+    <string name="special_row_clearer">RIJ</string>
+    <string name="special_ghost">SPOOK</string>
+    <string name="special_heavy">ZWAAR</string>
+    <string name="piece_properties_none">Geen</string>
 
     <!-- NotificationWorker -->
     <string name="notification_reminders_channel_name">Herinneringen</string>
@@ -189,15 +195,6 @@
     <string name="stat_label_value_format">%1$s: %2$s</string>
     <string name="time_minutes_seconds_format">%1$d:%2$s</string>
 
-    <!-- PiecePropertiesScreen -->
-    <string name="queue_empty">—</string>
-    <string name="special_column_clearer">KOLOM</string>
-    <string name="special_row_clearer">RIJ</string>
-    <string name="special_ghost">SPOOK</string>
-    <string name="special_heavy">ZWAAR</string>
-    <string name="piece_properties_active">Actief stuk</string>
-    <string name="piece_properties_none">Geen</string>
-
     <!-- BlockPropertiesScreen -->
     <string name="block_properties_column_clearer_title">Kolom wisser</string>
     <string name="block_properties_column_clearer_desc">Kolommen verdwijnen wanneer elke cel in die kolom gevuld is.</string>
@@ -218,6 +215,7 @@
     <string name="return_home">Terug naar Home</string>
     <string name="tutorial_ready_settings_hint">Open Instellingen om taal, thema, kleuren en blokstijl te wijzigen vóór je volgende poging.</string>
     <string name="interactive_onboarding_step_counter">Gids %1$d / %2$d</string>
+    <string name="piece_properties_active">Actief stuk</string>
 
     <!-- AppSelectionScreen -->
     <string name="selection_title">Kies je spel</string>

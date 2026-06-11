@@ -114,6 +114,12 @@
     <string name="queue_hold">संग्रह</string>
     <string name="pause_title">रुका हुआ</string>
     <string name="game_message_lines_cleared">%1$s लाइनें साफ़ की गईं।</string>
+    <string name="queue_empty">—</string>
+    <string name="special_column_clearer">कॉलम</string>
+    <string name="special_row_clearer">पंक्ति</string>
+    <string name="special_ghost">घोस्ट</string>
+    <string name="special_heavy">भारी</string>
+    <string name="piece_properties_none">कोई नहीं</string>
 
     <!-- NotificationWorker -->
     <string name="notification_reminders_channel_name">अनुस्मारक</string>
@@ -189,15 +195,6 @@
     <string name="stat_label_value_format">%1$s: %2$s</string>
     <string name="time_minutes_seconds_format">%1$d:%2$s</string>
 
-    <!-- PiecePropertiesScreen -->
-    <string name="queue_empty">—</string>
-    <string name="special_column_clearer">कॉलम</string>
-    <string name="special_row_clearer">पंक्ति</string>
-    <string name="special_ghost">घोस्ट</string>
-    <string name="special_heavy">भारी</string>
-    <string name="piece_properties_active">सक्रिय पीस</string>
-    <string name="piece_properties_none">कोई नहीं</string>
-
     <!-- BlockPropertiesScreen -->
     <string name="block_properties_column_clearer_title">कॉलम क्लियरर</string>
     <string name="block_properties_column_clearer_desc">जिस कॉलम में यह गिरता है उसे साफ़ करता है। दबाव कम करने के लिए बहुत अच्छा।</string>
@@ -218,6 +215,7 @@
     <string name="tutorial_finish">गेम शुरू करें</string>
     <string name="tutorial_ready_settings_hint">अगली रन से पहले भाषा, थीम, रंग और ब्लॉक स्टाइल बदलने के लिए Settings खोलें।</string>
     <string name="interactive_onboarding_step_counter">गाइड %1$d / %2$d</string>
+    <string name="piece_properties_active">सक्रिय पीस</string>
 
     <!-- AppSelectionScreen -->
     <string name="selection_title">अपना खेल चुनें</string>

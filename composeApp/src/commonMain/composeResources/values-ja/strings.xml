@@ -114,6 +114,12 @@
     <string name="queue_hold">ホールド</string>
     <string name="pause_title">一時停止</string>
     <string name="game_message_lines_cleared">%1$s ライン消去。</string>
+    <string name="queue_empty">—</string>
+    <string name="special_column_clearer">列</string>
+    <string name="special_row_clearer">行</string>
+    <string name="special_ghost">ゴースト</string>
+    <string name="special_heavy">ヘビー</string>
+    <string name="piece_properties_none">なし</string>
 
     <!-- NotificationWorker -->
     <string name="notification_reminders_channel_name">リマインダー</string>
@@ -189,15 +195,6 @@
     <string name="stat_label_value_format">%1$s: %2$s</string>
     <string name="time_minutes_seconds_format">%1$d:%2$s</string>
 
-    <!-- PiecePropertiesScreen -->
-    <string name="queue_empty">—</string>
-    <string name="special_column_clearer">列</string>
-    <string name="special_row_clearer">行</string>
-    <string name="special_ghost">ゴースト</string>
-    <string name="special_heavy">ヘビー</string>
-    <string name="piece_properties_active">現在のピース</string>
-    <string name="piece_properties_none">なし</string>
-
     <!-- BlockPropertiesScreen -->
     <string name="block_properties_column_clearer_title">列消去</string>
     <string name="block_properties_column_clearer_desc">その列のすべてのマスが埋まると列が消えます。</string>
@@ -218,6 +215,7 @@
     <string name="return_home">ホームに戻る</string>
     <string name="tutorial_ready_settings_hint">次のプレイ前に設定を開いて言語、テーマ、色、ブロックスタイルを変更できます。</string>
     <string name="interactive_onboarding_step_counter">ガイド %1$d / %2$d</string>
+    <string name="piece_properties_active">現在のピース</string>
 
     <!-- AppSelectionScreen -->
     <string name="selection_title">ゲームを選択</string>

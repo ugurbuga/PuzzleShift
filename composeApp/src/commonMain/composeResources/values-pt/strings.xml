@@ -114,6 +114,12 @@
     <string name="queue_hold">Reserva</string>
     <string name="pause_title">Pausado</string>
     <string name="game_message_lines_cleared">%1$s linhas foram eliminadas.</string>
+    <string name="queue_empty">—</string>
+    <string name="special_column_clearer">COLUNA</string>
+    <string name="special_row_clearer">LINHA</string>
+    <string name="special_ghost">FANTASMA</string>
+    <string name="special_heavy">PESADO</string>
+    <string name="piece_properties_none">Nenhum</string>
 
     <!-- NotificationWorker -->
     <string name="notification_reminders_channel_name">Lembretes</string>
@@ -189,15 +195,6 @@
     <string name="stat_label_value_format">%1$s: %2$s</string>
     <string name="time_minutes_seconds_format">%1$d:%2$s</string>
 
-    <!-- PiecePropertiesScreen -->
-    <string name="queue_empty">—</string>
-    <string name="special_column_clearer">COLUNA</string>
-    <string name="special_row_clearer">LINHA</string>
-    <string name="special_ghost">FANTASMA</string>
-    <string name="special_heavy">PESADO</string>
-    <string name="piece_properties_active">Peça ativa</string>
-    <string name="piece_properties_none">Nenhum</string>
-
     <!-- BlockPropertiesScreen -->
     <string name="block_properties_column_clearer_title">Limpador de coluna</string>
     <string name="block_properties_column_clearer_desc">Limpa a coluna em que cai. Ótimo para reduzir a pressão.</string>
@@ -218,6 +215,7 @@
     <string name="tutorial_finish">Iniciar jogo</string>
     <string name="tutorial_ready_settings_hint">Abra Configurações para mudar idioma, tema, cores e estilo dos blocos antes da sua próxima partida.</string>
     <string name="interactive_onboarding_step_counter">Guia %1$d / %2$d</string>
+    <string name="piece_properties_active">Peça ativa</string>
 
     <!-- AppSelectionScreen -->
     <string name="selection_title">Escolha Seu Jogo</string>

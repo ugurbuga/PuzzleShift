@@ -114,6 +114,12 @@
     <string name="queue_hold">Simpan</string>
     <string name="pause_title">Dijeda</string>
     <string name="game_message_lines_cleared">%1$s baris dihapus.</string>
+    <string name="queue_empty">—</string>
+    <string name="special_column_clearer">KOLOM</string>
+    <string name="special_row_clearer">BARIS</string>
+    <string name="special_ghost">HANTU</string>
+    <string name="special_heavy">BERAT</string>
+    <string name="piece_properties_none">Tidak ada</string>
 
     <!-- NotificationWorker -->
     <string name="notification_reminders_channel_name">Pengingat</string>
@@ -189,15 +195,6 @@
     <string name="stat_label_value_format">%1$s: %2$s</string>
     <string name="time_minutes_seconds_format">%1$d:%2$s</string>
 
-    <!-- PiecePropertiesScreen -->
-    <string name="queue_empty">—</string>
-    <string name="special_column_clearer">KOLOM</string>
-    <string name="special_row_clearer">BARIS</string>
-    <string name="special_ghost">HANTU</string>
-    <string name="special_heavy">BERAT</string>
-    <string name="piece_properties_active">Potongan aktif</string>
-    <string name="piece_properties_none">Tidak ada</string>
-
     <!-- BlockPropertiesScreen -->
     <string name="block_properties_column_clearer_title">Pembersih kolom</string>
     <string name="block_properties_column_clearer_desc">Membersihkan kolom tempat ia jatuh. Sangat bagus untuk mengurangi tekanan.</string>
@@ -218,6 +215,7 @@
     <string name="tutorial_finish">Mulai permainan</string>
     <string name="tutorial_ready_settings_hint">Buka Pengaturan untuk mengubah bahasa, tema, warna, dan gaya blok sebelum permainan berikutnya.</string>
     <string name="interactive_onboarding_step_counter">Panduan %1$d / %2$d</string>
+    <string name="piece_properties_active">Potongan aktif</string>
 
     <!-- AppSelectionScreen -->
     <string name="selection_title">Pilih Game Kamu</string>

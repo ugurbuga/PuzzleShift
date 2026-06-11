@@ -114,6 +114,12 @@
     <string name="queue_hold">暂存</string>
     <string name="pause_title">已暂停</string>
     <string name="game_message_lines_cleared">已清除 %1$s 行。</string>
+    <string name="queue_empty">—</string>
+    <string name="special_column_clearer">列清除</string>
+    <string name="special_row_clearer">行清除</string>
+    <string name="special_ghost">幽灵</string>
+    <string name="special_heavy">重型</string>
+    <string name="piece_properties_none">无</string>
 
     <!-- NotificationWorker -->
     <string name="notification_reminders_channel_name">提醒</string>
@@ -189,15 +195,6 @@
     <string name="stat_label_value_format">%1$s：%2$s</string>
     <string name="time_minutes_seconds_format">%1$d:%2$s</string>
 
-    <!-- PiecePropertiesScreen -->
-    <string name="queue_empty">—</string>
-    <string name="special_column_clearer">列清除</string>
-    <string name="special_row_clearer">行清除</string>
-    <string name="special_ghost">幽灵</string>
-    <string name="special_heavy">重型</string>
-    <string name="piece_properties_active">当前方块</string>
-    <string name="piece_properties_none">无</string>
-
     <!-- BlockPropertiesScreen -->
     <string name="block_properties_column_clearer_title">列清除器</string>
     <string name="block_properties_column_clearer_desc">清除落入列。非常适合降低压力。</string>
@@ -218,6 +215,7 @@
     <string name="tutorial_finish">开始游戏</string>
     <string name="tutorial_ready_settings_hint">在下一局开始前，你可以打开设置来调整语言、主题、颜色和方块风格。</string>
     <string name="interactive_onboarding_step_counter">引导 %1$d / %2$d</string>
+    <string name="piece_properties_active">当前方块</string>
 
     <!-- AppSelectionScreen -->
     <string name="selection_title">选择游戏</string>

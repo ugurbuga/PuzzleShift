@@ -114,6 +114,12 @@
     <string name="queue_hold">Ablage</string>
     <string name="pause_title">Pausiert</string>
     <string name="game_message_lines_cleared">%1$s Linien wurden gelöscht.</string>
+    <string name="queue_empty">—</string>
+    <string name="special_column_clearer">SPALTE</string>
+    <string name="special_row_clearer">REIHE</string>
+    <string name="special_ghost">GEIST</string>
+    <string name="special_heavy">SCHWER</string>
+    <string name="piece_properties_none">Keine</string>
 
     <!-- NotificationWorker -->
     <string name="notification_reminders_channel_name">Erinnerungen</string>
@@ -189,15 +195,6 @@
     <string name="stat_label_value_format">%1$s: %2$s</string>
     <string name="time_minutes_seconds_format">%1$d:%2$s</string>
 
-    <!-- PiecePropertiesScreen -->
-    <string name="queue_empty">—</string>
-    <string name="special_column_clearer">SPALTE</string>
-    <string name="special_row_clearer">REIHE</string>
-    <string name="special_ghost">GEIST</string>
-    <string name="special_heavy">SCHWER</string>
-    <string name="piece_properties_active">Aktives Teil</string>
-    <string name="piece_properties_none">Keine</string>
-
     <!-- BlockPropertiesScreen -->
     <string name="block_properties_column_clearer_title">Spaltenräumer</string>
     <string name="block_properties_column_clearer_desc">Löscht die Spalte, in der er landet. Ideal, um Druck zu senken.</string>
@@ -218,6 +215,7 @@
     <string name="return_home">Zur Startseite</string>
     <string name="tutorial_ready_settings_hint">Öffne Einstellungen, um Sprache, Thema, Farben und Blockstil vor deiner nächsten Runde anzupassen.</string>
     <string name="interactive_onboarding_step_counter">Anleitung %1$d / %2$d</string>
+    <string name="piece_properties_active">Aktives Teil</string>
 
     <!-- AppSelectionScreen -->
     <string name="selection_title">Wähle Dein Spiel</string>
