@@ -114,6 +114,12 @@
     <string name="queue_hold">Удержание</string>
     <string name="pause_title">Пауза</string>
     <string name="game_message_lines_cleared">Очищено %1$s линий.</string>
+    <string name="queue_empty">—</string>
+    <string name="special_column_clearer">КОЛОНКА</string>
+    <string name="special_row_clearer">СТРОКА</string>
+    <string name="special_ghost">ПРИЗРАК</string>
+    <string name="special_heavy">ТЯЖЁЛЫЙ</string>
+    <string name="piece_properties_none">Нет</string>
 
     <!-- NotificationWorker -->
     <string name="notification_reminders_channel_name">Напоминания</string>
@@ -189,15 +195,6 @@
     <string name="stat_label_value_format">%1$s: %2$s</string>
     <string name="time_minutes_seconds_format">%1$d:%2$s</string>
 
-    <!-- PiecePropertiesScreen -->
-    <string name="queue_empty">—</string>
-    <string name="special_column_clearer">КОЛОНКА</string>
-    <string name="special_row_clearer">СТРОКА</string>
-    <string name="special_ghost">ПРИЗРАК</string>
-    <string name="special_heavy">ТЯЖЁЛЫЙ</string>
-    <string name="piece_properties_active">Активная фигура</string>
-    <string name="piece_properties_none">Нет</string>
-
     <!-- BlockPropertiesScreen -->
     <string name="block_properties_column_clearer_title">Очистка колонки</string>
     <string name="block_properties_column_clearer_desc">Очищает колонку, в которую падает. Отлично снижает давление.</string>
@@ -218,6 +215,7 @@
     <string name="return_home">Вернуться на главный экран</string>
     <string name="tutorial_ready_settings_hint">Откройте Настройки, чтобы изменить язык, тему, цвета и стиль блоков перед следующей игрой.</string>
     <string name="interactive_onboarding_step_counter">Шаг %1$d / %2$d</string>
+    <string name="piece_properties_active">Активная фигура</string>
 
     <!-- AppSelectionScreen -->
     <string name="selection_title">Выберите Игру</string>

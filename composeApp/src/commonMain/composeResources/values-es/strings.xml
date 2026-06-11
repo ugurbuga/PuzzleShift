@@ -114,6 +114,12 @@
     <string name="queue_hold">Reserva</string>
     <string name="pause_title">En pausa</string>
     <string name="game_message_lines_cleared">Se limpiaron %1$s líneas.</string>
+    <string name="queue_empty">—</string>
+    <string name="special_column_clearer">COLUMNA</string>
+    <string name="special_row_clearer">FILA</string>
+    <string name="special_ghost">FANTASMA</string>
+    <string name="special_heavy">PESADO</string>
+    <string name="piece_properties_none">Ninguno</string>
 
     <!-- NotificationWorker -->
     <string name="notification_reminders_channel_name">Recordatorios</string>
@@ -189,15 +195,6 @@
     <string name="stat_label_value_format">%1$s: %2$s</string>
     <string name="time_minutes_seconds_format">%1$d:%2$s</string>
 
-    <!-- PiecePropertiesScreen -->
-    <string name="queue_empty">—</string>
-    <string name="special_column_clearer">COLUMNA</string>
-    <string name="special_row_clearer">FILA</string>
-    <string name="special_ghost">FANTASMA</string>
-    <string name="special_heavy">PESADO</string>
-    <string name="piece_properties_active">Pieza activa</string>
-    <string name="piece_properties_none">Ninguno</string>
-
     <!-- BlockPropertiesScreen -->
     <string name="block_properties_column_clearer_title">Limpiador de columna</string>
     <string name="block_properties_column_clearer_desc">Limpia la columna en la que cae. Ideal para bajar la presión.</string>
@@ -218,6 +215,7 @@
     <string name="return_home">Volver al inicio</string>
     <string name="tutorial_ready_settings_hint">Abre Ajustes para cambiar el idioma, el tema, los colores y el estilo de los bloques antes de tu próxima partida.</string>
     <string name="interactive_onboarding_step_counter">Guía %1$d / %2$d</string>
+    <string name="piece_properties_active">Pieza activa</string>
 
     <!-- AppSelectionScreen -->
     <string name="selection_title">Elige Tu Juego</string>

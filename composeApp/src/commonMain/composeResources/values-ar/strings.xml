@@ -114,6 +114,12 @@
     <string name="queue_hold">احتفاظ</string>
     <string name="pause_title">متوقف مؤقتًا</string>
     <string name="game_message_lines_cleared">تم مسح %1$s من الخطوط.</string>
+    <string name="queue_empty">—</string>
+    <string name="special_column_clearer">عمود</string>
+    <string name="special_row_clearer">صف</string>
+    <string name="special_ghost">شبح</string>
+    <string name="special_heavy">ثقيل</string>
+    <string name="piece_properties_none">لا يوجد</string>
 
     <!-- NotificationWorker -->
     <string name="notification_reminders_channel_name">تذكيرات</string>
@@ -189,15 +195,6 @@
     <string name="stat_label_value_format">%1$s: %2$s</string>
     <string name="time_minutes_seconds_format">%1$d:%2$s</string>
 
-    <!-- PiecePropertiesScreen -->
-    <string name="queue_empty">—</string>
-    <string name="special_column_clearer">عمود</string>
-    <string name="special_row_clearer">صف</string>
-    <string name="special_ghost">شبح</string>
-    <string name="special_heavy">ثقيل</string>
-    <string name="piece_properties_active">القطعة النشطة</string>
-    <string name="piece_properties_none">لا يوجد</string>
-
     <!-- BlockPropertiesScreen -->
     <string name="block_properties_column_clearer_title">منظف العمود</string>
     <string name="block_properties_column_clearer_desc">يمسح العمود الذي يسقط فيه. ممتاز لتخفيف الضغط.</string>
@@ -218,6 +215,7 @@
     <string name="tutorial_finish">ابدأ اللعبة</string>
     <string name="tutorial_ready_settings_hint">افتح الإعدادات لتغيير اللغة والمظهر والألوان ونمط الكتل قبل جولتك التالية.</string>
     <string name="interactive_onboarding_step_counter">الدليل %1$d / %2$d</string>
+    <string name="piece_properties_active">القطعة النشطة</string>
 
     <!-- AppSelectionScreen -->
     <string name="selection_title">اختر لعبتك</string>

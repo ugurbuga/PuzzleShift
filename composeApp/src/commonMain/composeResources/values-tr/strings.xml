@@ -114,6 +114,12 @@
     <string name="queue_hold">Beklet</string>
     <string name="pause_title">Duraklatıldı</string>
     <string name="game_message_lines_cleared">%1$s çizgi temizlendi.</string>
+    <string name="queue_empty">—</string>
+    <string name="special_column_clearer">SÜTUN</string>
+    <string name="special_row_clearer">SATIR</string>
+    <string name="special_ghost">HAYALET</string>
+    <string name="special_heavy">AĞIR</string>
+    <string name="piece_properties_none">Yok</string>
 
     <!-- NotificationWorker -->
     <string name="notification_reminders_channel_name">Hatırlatıcılar</string>
@@ -189,15 +195,6 @@
     <string name="stat_label_value_format">%1$s: %2$s</string>
     <string name="time_minutes_seconds_format">%1$d:%2$s</string>
 
-    <!-- PiecePropertiesScreen -->
-    <string name="queue_empty">—</string>
-    <string name="special_column_clearer">SÜTUN</string>
-    <string name="special_row_clearer">SATIR</string>
-    <string name="special_ghost">HAYALET</string>
-    <string name="special_heavy">AĞIR</string>
-    <string name="piece_properties_active">Aktif Parça</string>
-    <string name="piece_properties_none">Yok</string>
-
     <!-- BlockPropertiesScreen -->
     <string name="block_properties_column_clearer_title">Sütun Temizliği</string>
     <string name="block_properties_column_clearer_desc">Bir sütundaki tüm hücreler dolduğunda o sütun temizlenir.</string>
@@ -218,6 +215,7 @@
     <string name="return_home">Ana sayfaya dön</string>
     <string name="tutorial_ready_settings_hint">Bir sonraki turdan önce dil, tema, renkler ve blok stilini değiştirmek için Ayarlar ekranını aç.</string>
     <string name="interactive_onboarding_step_counter">Adım %1$d / %2$d</string>
+    <string name="piece_properties_active">Aktif Parça</string>
 
     <!-- AppSelectionScreen -->
     <string name="selection_title">Oyununu Seç</string>

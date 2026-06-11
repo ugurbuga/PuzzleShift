@@ -114,6 +114,12 @@
     <string name="queue_hold">Réserve</string>
     <string name="pause_title">En pause</string>
     <string name="game_message_lines_cleared">%1$s lignes ont été effacées.</string>
+    <string name="queue_empty">—</string>
+    <string name="special_column_clearer">COLONNE</string>
+    <string name="special_row_clearer">LIGNE</string>
+    <string name="special_ghost">FANTÔME</string>
+    <string name="special_heavy">LOURD</string>
+    <string name="piece_properties_none">Aucun</string>
 
     <!-- NotificationWorker -->
     <string name="notification_reminders_channel_name">Rappels</string>
@@ -189,15 +195,6 @@
     <string name="stat_label_value_format">%1$s : %2$s</string>
     <string name="time_minutes_seconds_format">%1$d:%2$s</string>
 
-    <!-- PiecePropertiesScreen -->
-    <string name="queue_empty">—</string>
-    <string name="special_column_clearer">COLONNE</string>
-    <string name="special_row_clearer">LIGNE</string>
-    <string name="special_ghost">FANTÔME</string>
-    <string name="special_heavy">LOURD</string>
-    <string name="piece_properties_active">Pièce active</string>
-    <string name="piece_properties_none">Aucun</string>
-
     <!-- BlockPropertiesScreen -->
     <string name="block_properties_column_clearer_title">Nettoyeur de colonne</string>
     <string name="block_properties_column_clearer_desc">Nettoie la colonne où il atterrit. Idéal pour réduire la pression.</string>
@@ -218,6 +215,7 @@
     <string name="return_home">Retour à l’accueil</string>
     <string name="tutorial_ready_settings_hint">Ouvrez Réglages pour modifier la langue, le thème, les couleurs et le style des blocs avant votre prochaine partie.</string>
     <string name="interactive_onboarding_step_counter">Guide %1$d / %2$d</string>
+    <string name="piece_properties_active">Pièce active</string>
 
     <!-- AppSelectionScreen -->
     <string name="selection_title">Choisissez Votre Jeu</string>
