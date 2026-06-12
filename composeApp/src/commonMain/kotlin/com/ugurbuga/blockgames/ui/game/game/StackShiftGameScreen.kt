@@ -129,7 +129,6 @@ import com.ugurbuga.blockgames.telemetry.AppTelemetry
 import com.ugurbuga.blockgames.telemetry.NoOpAppTelemetry
 import com.ugurbuga.blockgames.telemetry.TelemetryActionNames
 import com.ugurbuga.blockgames.ui.game.BoardGrid
-import com.ugurbuga.blockgames.ui.game.CompactMetricChip
 import com.ugurbuga.blockgames.ui.game.GameOverDialog
 import com.ugurbuga.blockgames.ui.game.GameOverDialogRevealDurationMillis
 import com.ugurbuga.blockgames.ui.game.InteractiveOnboardingCompletionDialog
@@ -178,7 +177,6 @@ private const val GameOverBoardRowCoverAlpha = 0.92f
 private const val GameOverBoardRowClearDurationMillis = 92
 private const val ScreenShakeStepDurationMillis = 42
 private const val ScreenShakeFinalStepDurationMillis = 48
-private const val InteractiveOnboardingStageAdvanceDelayMillis = 720L
 
 private data class GameLayoutSpec(
     val cellSize: Dp,
