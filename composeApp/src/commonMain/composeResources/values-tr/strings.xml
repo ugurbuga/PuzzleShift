@@ -65,8 +65,6 @@
     <string name="board_block_style_always_flat">Her zaman düz</string>
     <string name="board_block_style_match_selected">Seçili blok stiliyle eşleşsin</string>
     <string name="block_style_light_burst">Işık Patlaması</string>
-    <string name="block_style_matte_soft">Yumuşak Mat</string>
-    <string name="block_style_stone_texture">Taş Dokusu</string>
     <string name="rewarded_tokens_button_bullet">• Reklam izle ve %1$d jeton kazan</string>
     <string name="rewarded_tokens_button">Reklam izle ve %1$d jeton kazan</string>
     <string name="unlock_dialog_title">%1$s açılsın mı?</string>

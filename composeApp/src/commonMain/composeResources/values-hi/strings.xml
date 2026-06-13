@@ -65,8 +65,6 @@
     <string name="settings_tutorial_replay">अभ्यास</string>
     <string name="settings_color_palette">रंग पैलेट</string>
     <string name="block_style_light_burst">प्रकाश विस्फोट</string>
-    <string name="block_style_matte_soft">नरम मैट</string>
-    <string name="block_style_stone_texture">पत्थर बनावट</string>
     <string name="rewarded_tokens_button_bullet">• विज्ञापन देखें और %1$d टोकन पाएं</string>
     <string name="rewarded_tokens_button">विज्ञापन देखें और %1$d टोकन पाएं</string>
     <string name="unlock_dialog_title">क्या %1$s अनलॉक करें?</string>

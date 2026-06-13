@@ -65,8 +65,6 @@
     <string name="settings_tutorial_replay">Exercice</string>
     <string name="settings_color_palette">Palette de couleurs</string>
     <string name="block_style_light_burst">Éclat lumineux</string>
-    <string name="block_style_matte_soft">Mat doux</string>
-    <string name="block_style_stone_texture">Texture pierre</string>
     <string name="rewarded_tokens_button_bullet">• Regarde une pub et gagne %1$d jetons</string>
     <string name="rewarded_tokens_button">Regarde une pub et gagne %1$d jetons</string>
     <string name="unlock_dialog_title">Débloquer %1$s ?</string>

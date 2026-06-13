@@ -65,8 +65,6 @@
     <string name="settings_tutorial_replay">Latihan</string>
     <string name="settings_color_palette">Palet Warna</string>
     <string name="block_style_light_burst">Ledakan Cahaya</string>
-    <string name="block_style_matte_soft">Matte Lembut</string>
-    <string name="block_style_stone_texture">Tekstur Batu</string>
     <string name="rewarded_tokens_button_bullet">• Tonton iklan dan dapatkan %1$d token</string>
     <string name="rewarded_tokens_button">Tonton iklan dan dapatkan %1$d token</string>
     <string name="unlock_dialog_title">Buka kunci %1$s?</string>

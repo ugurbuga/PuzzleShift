@@ -47,11 +47,9 @@
     <string name="block_style_prism">Prisma</string>
     <string name="block_style_crystal">Kristal</string>
     <string name="block_style_dynamic_liquid">Dynamische vloeistof</string>
-    <string name="block_style_matte_soft">Zacht mat</string>
     <string name="block_style_neon_glow">Neongloed</string>
     <string name="block_style_tornado">Wervelwind</string>
     <string name="block_style_brick">Baksteen</string>
-    <string name="block_style_stone_texture">Steentextuur</string>
     <string name="block_style_honeycomb_texture">Honingraat</string>
         <string name="block_style_light_burst">Lichtflits</string>
     <string name="block_style_liquid_marble">Vloeibaar marmer</string>

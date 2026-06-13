@@ -65,8 +65,6 @@
     <string name="board_block_style_always_flat">Always flat</string>
     <string name="board_block_style_match_selected">Match selected style</string>
     <string name="block_style_light_burst">Light Burst</string>
-    <string name="block_style_matte_soft">Matte Soft</string>
-    <string name="block_style_stone_texture">Stone Texture</string>
     <string name="rewarded_tokens_button_bullet">• Watch an ad and earn %1$d tokens</string>
     <string name="rewarded_tokens_button">Watch an ad and earn %1$d tokens</string>
     <string name="unlock_dialog_title">Unlock %1$s?</string>
