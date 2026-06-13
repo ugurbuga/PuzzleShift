@@ -47,11 +47,9 @@
     <string name="block_style_prism">프리즘</string>
     <string name="block_style_crystal">크리스털</string>
     <string name="block_style_dynamic_liquid">다이내믹 리퀴드</string>
-    <string name="block_style_matte_soft">부드러운 매트</string>
     <string name="block_style_neon_glow">네온 글로우</string>
     <string name="block_style_tornado">토네이도</string>
     <string name="block_style_brick">브릭</string>
-    <string name="block_style_stone_texture">돌 질감</string>
     <string name="block_style_honeycomb_texture">허니콤</string>
         <string name="block_style_light_burst">빛 폭발</string>
     <string name="block_style_liquid_marble">리퀴드 마블</string>

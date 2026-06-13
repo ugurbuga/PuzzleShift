@@ -65,8 +65,6 @@
     <string name="settings_tutorial_body">افتح البرنامج التعليمي أو التدريب الموجّه في أي وقت لمراجعة الوضع الحر ومسح الصفوف والأعمدة وآلية الحاوية ذات القطع الثلاث.</string>
     <string name="settings_tutorial_replay">تدريب</string>
     <string name="block_style_light_burst">وميض ضوئي</string>
-    <string name="block_style_matte_soft">مطفي ناعم</string>
-    <string name="block_style_stone_texture">ملمس حجري</string>
     <string name="rewarded_tokens_button_bullet">• شاهد إعلانًا واحصل على %1$d رمز</string>
     <string name="rewarded_tokens_button">شاهد إعلانًا واحصل على %1$d رمز</string>
     <string name="unlock_dialog_title">هل تريد فتح %1$s؟</string>

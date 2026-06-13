@@ -65,8 +65,6 @@
     <string name="settings_tutorial_replay">Práctica</string>
     <string name="settings_color_palette">Paleta de colores</string>
     <string name="block_style_light_burst">Destello de luz</string>
-    <string name="block_style_matte_soft">Mate suave</string>
-    <string name="block_style_stone_texture">Textura de piedra</string>
     <string name="rewarded_tokens_button_bullet">• Mira un anuncio y gana %1$d tokens</string>
     <string name="rewarded_tokens_button">Mira un anuncio y gana %1$d tokens</string>
     <string name="unlock_dialog_title">¿Desbloquear %1$s?</string>

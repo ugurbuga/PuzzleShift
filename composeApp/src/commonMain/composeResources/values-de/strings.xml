@@ -65,8 +65,6 @@
     <string name="settings_tutorial_replay">Übung</string>
     <string name="settings_color_palette">Farbpalette</string>
     <string name="block_style_light_burst">Lichtblitz</string>
-    <string name="block_style_matte_soft">Sanft Matt</string>
-    <string name="block_style_stone_texture">Steintextur</string>
     <string name="rewarded_tokens_button_bullet">• Sieh dir Werbung an und erhalte %1$d Token</string>
     <string name="rewarded_tokens_button">Sieh dir Werbung an und erhalte %1$d Token</string>
     <string name="unlock_dialog_title">%1$s freischalten?</string>

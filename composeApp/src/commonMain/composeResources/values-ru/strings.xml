@@ -37,13 +37,11 @@
     <string name="block_style_prism">Призма</string>
     <string name="block_style_crystal">Кристалл</string>
     <string name="block_style_dynamic_liquid">Динамическая жидкость</string>
-    <string name="block_style_matte_soft">Мягкий матовый</string>
     <string name="block_style_neon_glow">Неоновое свечение</string>
     <string name="block_style_tornado">Ветер</string>
     <string name="block_style_brick">Кирпич</string>
     <string name="block_style_spider_web">Паутина</string>
     <string name="block_style_cosmic">Космический</string>
-    <string name="block_style_stone_texture">Каменная текстура</string>
     <string name="block_style_honeycomb_texture">Honeycomb Texture</string>
     <string name="block_style_light_burst">Вспышка света</string>
     <string name="block_style_liquid_marble">Жидкий мрамор</string>

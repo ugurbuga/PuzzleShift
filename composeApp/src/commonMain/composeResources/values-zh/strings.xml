@@ -65,8 +65,6 @@
     <string name="settings_tutorial_replay">练习</string>
     <string name="settings_color_palette">颜色面板</string>
     <string name="block_style_light_burst">光爆</string>
-    <string name="block_style_matte_soft">柔雾哑光</string>
-    <string name="block_style_stone_texture">石材纹理</string>
     <string name="rewarded_tokens_button_bullet">• 观看广告并获得 %1$d 代币</string>
     <string name="rewarded_tokens_button">观看广告并获得 %1$d 代币</string>
     <string name="unlock_dialog_title">解锁 %1$s？</string>

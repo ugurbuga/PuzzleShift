@@ -65,8 +65,6 @@
     <string name="board_block_style_always_flat">Sempre piatto</string>
     <string name="board_block_style_match_selected">Usa lo stile blocchi selezionato</string>
     <string name="block_style_light_burst">Esplosione luminosa</string>
-    <string name="block_style_matte_soft">Opaco morbido</string>
-    <string name="block_style_stone_texture">Texture pietra</string>
     <string name="rewarded_tokens_button_bullet">• Guarda un annuncio e ottieni %1$d token</string>
     <string name="rewarded_tokens_button">Guarda un annuncio e ottieni %1$d token</string>
     <string name="unlock_dialog_title">Sbloccare %1$s?</string>
