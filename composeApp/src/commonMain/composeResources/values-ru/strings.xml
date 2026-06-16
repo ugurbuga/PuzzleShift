@@ -8,7 +8,6 @@
     <string name="settings_sound_on">Вкл.</string>
     <string name="settings_sound_off">Выкл.</string>
     <string name="settings_theme">Тема</string>
-    <string name="settings_theme_palette">Цвет темы</string>
     <string name="settings_block_palette">Цвет блоков</string>
     <string name="settings_block_style">Стиль блоков</string>
     <string name="settings_board_block_style">Стиль поля</string>

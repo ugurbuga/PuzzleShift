@@ -8,7 +8,6 @@
     <string name="settings_sound_on">オン</string>
     <string name="settings_sound_off">オフ</string>
     <string name="settings_theme">テーマ</string>
-    <string name="settings_theme_palette">テーマカラーパレット</string>
     <string name="settings_color_palette">カラーパレット</string>
     <string name="settings_block_palette">ブロックカラーパレット</string>
     <string name="settings_block_style">ブロックスタイル</string>

@@ -8,7 +8,6 @@
     <string name="settings_sound_on">تشغيل</string>
     <string name="settings_sound_off">إيقاف</string>
     <string name="settings_theme">المظهر</string>
-    <string name="settings_theme_palette">لوحة ألوان المظهر</string>
     <string name="settings_color_palette">لوحة الألوان</string>
     <string name="settings_block_palette">لوحة ألوان الكتل</string>
     <string name="settings_block_style">نمط الكتل</string>

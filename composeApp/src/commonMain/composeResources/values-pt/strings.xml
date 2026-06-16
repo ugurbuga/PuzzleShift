@@ -8,7 +8,6 @@
     <string name="settings_sound_on">Ligado</string>
     <string name="settings_sound_off">Desligado</string>
     <string name="settings_theme">Tema</string>
-    <string name="settings_theme_palette">Paleta de cores do tema</string>
     <string name="settings_block_palette">Paleta de cores dos blocos</string>
     <string name="settings_block_style">Estilo dos blocos</string>
     <string name="settings_tokens_title">Fichas</string>
