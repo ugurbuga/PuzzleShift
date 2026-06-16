@@ -8,7 +8,6 @@
     <string name="settings_sound_on">Açık</string>
     <string name="settings_sound_off">Kapalı</string>
     <string name="settings_theme">Tema</string>
-    <string name="settings_theme_palette">Tema Renkleri</string>
     <string name="settings_color_palette">Renk Paleti</string>
     <string name="settings_block_palette">Blok Renkleri</string>
     <string name="settings_block_style">Blok Şekilleri</string>

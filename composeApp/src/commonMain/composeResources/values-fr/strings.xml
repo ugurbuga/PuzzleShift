@@ -8,7 +8,6 @@
     <string name="settings_sound_on">Activé</string>
     <string name="settings_sound_off">Désactivé</string>
     <string name="settings_theme">Thème</string>
-    <string name="settings_theme_palette">Palette du thème</string>
     <string name="settings_block_palette">Palette des blocs</string>
     <string name="settings_block_style">Style des blocs</string>
     <string name="settings_tokens_title">Jetons</string>
