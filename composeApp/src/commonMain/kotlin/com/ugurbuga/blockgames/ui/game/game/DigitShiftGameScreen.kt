@@ -50,6 +50,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -66,18 +67,24 @@ import blockgames.composeapp.generated.resources.restart_confirm
 import blockgames.composeapp.generated.resources.restart_confirm_body
 import blockgames.composeapp.generated.resources.restart_confirm_title
 import blockgames.composeapp.generated.resources.time_remaining
+import com.ugurbuga.blockgames.BlockGamesTheme
 import com.ugurbuga.blockgames.ads.GameAdController
 import com.ugurbuga.blockgames.ads.NoOpGameAdController
 import com.ugurbuga.blockgames.game.logic.DigitShiftLexicon
+import com.ugurbuga.blockgames.game.model.BoardMatrix
 import com.ugurbuga.blockgames.game.model.DigitShiftGuess
 import com.ugurbuga.blockgames.game.model.DigitShiftLetterState
+import com.ugurbuga.blockgames.game.model.GameConfig
 import com.ugurbuga.blockgames.game.model.GameState
 import com.ugurbuga.blockgames.game.model.GameStatus
 import com.ugurbuga.blockgames.game.model.GameTextKey
+import com.ugurbuga.blockgames.game.model.GameplayStyle
 import com.ugurbuga.blockgames.localization.LocalAppSettings
 import com.ugurbuga.blockgames.localization.LocalBlockStylePulse
+import com.ugurbuga.blockgames.settings.AppSettings
 import com.ugurbuga.blockgames.settings.DigitShiftOnboardingScene
 import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStage
+import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.ui.game.BlockCellPreview
 import com.ugurbuga.blockgames.ui.game.GameOverDialog
 import com.ugurbuga.blockgames.ui.game.InteractiveOnboardingCompletionDialog
@@ -795,6 +802,100 @@ private fun DigitShiftOnboardingHintCard(
                 overflow = TextOverflow.Ellipsis,
             )
         }
+    }
+}
+
+private fun previewDigitShiftState(): GameState {
+    val config = GameConfig(columns = 5, rows = 6, difficultyIntervalSeconds = 9_999, linesPerLevel = 9_999)
+    return GameState(
+        config = config,
+        gameplayStyle = GameplayStyle.DigitShift,
+        board = BoardMatrix.empty(config.columns, config.rows),
+        activePiece = null,
+        nextQueue = emptyList(),
+        score = 860,
+        linesCleared = 0,
+        level = 1,
+        difficultyStage = 0,
+        secondsUntilDifficultyIncrease = 9_999,
+        status = GameStatus.Running,
+        digitShiftLocaleTag = "en",
+        digitShiftSolution = listOf("1", "2", "3", "4", "5"),
+        digitShiftGuesses = listOf(
+            DigitShiftGuess(
+                tokens = listOf("1", "0", "9", "8", "7"),
+                states = listOf(
+                    DigitShiftLetterState.Correct,
+                    DigitShiftLetterState.Absent,
+                    DigitShiftLetterState.Absent,
+                    DigitShiftLetterState.Absent,
+                    DigitShiftLetterState.Absent
+                )
+            ),
+            DigitShiftGuess(
+                tokens = listOf("1", "3", "2", "5", "4"),
+                states = listOf(
+                    DigitShiftLetterState.Correct,
+                    DigitShiftLetterState.Present,
+                    DigitShiftLetterState.Present,
+                    DigitShiftLetterState.Present,
+                    DigitShiftLetterState.Present
+                )
+            )
+        ),
+        digitShiftCurrentGuess = listOf("1", "2", "3"),
+        digitShiftKeyboardHints = mapOf(
+            "1" to DigitShiftLetterState.Correct,
+            "2" to DigitShiftLetterState.Present,
+            "3" to DigitShiftLetterState.Present,
+            "4" to DigitShiftLetterState.Unknown,
+            "5" to DigitShiftLetterState.Present,
+            "0" to DigitShiftLetterState.Absent,
+            "9" to DigitShiftLetterState.Absent,
+            "8" to DigitShiftLetterState.Absent,
+            "7" to DigitShiftLetterState.Absent,
+        )
+    )
+}
+
+@Preview(name = "DigitShift Game", widthDp = 412, heightDp = 915)
+@Composable
+private fun DigitShiftGameScreenPreview() {
+    BlockGamesTheme(settings = AppSettings()) {
+        DigitShiftGameScreen(
+            gameState = previewDigitShiftState(),
+            highestScore = 1240,
+            showNewHighScoreMessage = false,
+            onAppendToken = {},
+            onDeleteToken = {},
+            onSubmitGuess = {},
+            onAdvanceRound = {},
+            onRestart = {},
+            onRewardedRevive = {},
+            onBack = {},
+        )
+    }
+}
+
+@Preview(name = "DigitShift Onboarding", widthDp = 412, heightDp = 915)
+@Composable
+private fun DigitShiftGameScreenOnboardingPreview() {
+    BlockGamesTheme(settings = AppSettings()) {
+        DigitShiftGameScreen(
+            gameState = previewDigitShiftState(),
+            highestScore = 1240,
+            showNewHighScoreMessage = false,
+            interactiveOnboardingScene = DigitShiftOnboardingStateFactory.scene(DigitShiftOnboardingStage.ReadHints),
+            interactiveOnboardingCurrentStep = 2,
+            interactiveOnboardingTotalSteps = 3,
+            onAppendToken = {},
+            onDeleteToken = {},
+            onSubmitGuess = {},
+            onAdvanceRound = {},
+            onRestart = {},
+            onRewardedRevive = {},
+            onBack = {},
+        )
     }
 }
 
