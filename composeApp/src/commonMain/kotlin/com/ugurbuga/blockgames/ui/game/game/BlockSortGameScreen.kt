@@ -4,10 +4,6 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.FastOutSlowInEasing
-import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -1464,7 +1460,7 @@ private fun BlockSortOnboardingScene.hintText() = when (stage) {
     BlockSortOnboardingStage.FinishColumn -> stringResource(Res.string.interactive_onboarding_blocksort_finish_hint)
 }
 
-@Preview
+@Preview(name = "BlockSort Game", widthDp = 412, heightDp = 915)
 @Composable
 private fun BlockSortGameScreenPreview() {
     BlockGamesTheme(
@@ -1489,6 +1485,27 @@ private fun BlockSortGameScreenPreview() {
             onRestart = {},
             onBack = {},
             highestScore = 4200,
+        )
+    }
+}
+
+@Preview(name = "BlockSort Onboarding", widthDp = 412, heightDp = 915)
+@Composable
+private fun BlockSortGameScreenOnboardingPreview() {
+    BlockGamesTheme(settings = AppSettings()) {
+        val scene = com.ugurbuga.blockgames.settings.BlockSortOnboardingStateFactory.scene(
+            com.ugurbuga.blockgames.settings.BlockSortOnboardingStage.MatchColor
+        )
+        BlockSortGameScreen(
+            gameState = scene.gameState,
+            onRequestPreview = { _, _ -> null },
+            onMove = { _, _ -> false },
+            onRestart = {},
+            onBack = {},
+            highestScore = 0,
+            interactiveOnboardingScene = scene,
+            interactiveOnboardingCurrentStep = 2,
+            interactiveOnboardingTotalSteps = 3,
         )
     }
 }
