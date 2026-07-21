@@ -71,6 +71,7 @@ import com.ugurbuga.blockgames.BlockGamesTheme
 import com.ugurbuga.blockgames.ads.GameAdController
 import com.ugurbuga.blockgames.ads.NoOpGameAdController
 import com.ugurbuga.blockgames.game.logic.DigitShiftLexicon
+import com.ugurbuga.blockgames.game.model.AppThemeMode
 import com.ugurbuga.blockgames.game.model.BoardMatrix
 import com.ugurbuga.blockgames.game.model.DigitShiftGuess
 import com.ugurbuga.blockgames.game.model.DigitShiftLetterState
@@ -861,7 +862,26 @@ private fun previewDigitShiftState(): GameState {
 @Preview(name = "DigitShift Game", widthDp = 412, heightDp = 915)
 @Composable
 private fun DigitShiftGameScreenPreview() {
-    BlockGamesTheme(settings = AppSettings()) {
+    BlockGamesTheme(settings = AppSettings(themeMode = AppThemeMode.Light)) {
+        DigitShiftGameScreen(
+            gameState = previewDigitShiftState(),
+            highestScore = 1240,
+            showNewHighScoreMessage = false,
+            onAppendToken = {},
+            onDeleteToken = {},
+            onSubmitGuess = {},
+            onAdvanceRound = {},
+            onRestart = {},
+            onRewardedRevive = {},
+            onBack = {},
+        )
+    }
+}
+
+@Preview(name = "DigitShift Game Dark", widthDp = 412, heightDp = 915)
+@Composable
+private fun DigitShiftGameScreenDarkPreview() {
+    BlockGamesTheme(settings = AppSettings(themeMode = AppThemeMode.Dark)) {
         DigitShiftGameScreen(
             gameState = previewDigitShiftState(),
             highestScore = 1240,
@@ -888,6 +908,25 @@ private fun DigitShiftGameScreenOnboardingPreview() {
             interactiveOnboardingScene = DigitShiftOnboardingStateFactory.scene(DigitShiftOnboardingStage.ReadHints),
             interactiveOnboardingCurrentStep = 2,
             interactiveOnboardingTotalSteps = 3,
+            onAppendToken = {},
+            onDeleteToken = {},
+            onSubmitGuess = {},
+            onAdvanceRound = {},
+            onRestart = {},
+            onRewardedRevive = {},
+            onBack = {},
+        )
+    }
+}
+
+@Preview(name = "DigitShift GameOver", widthDp = 412, heightDp = 915)
+@Composable
+private fun DigitShiftGameOverPreview() {
+    BlockGamesTheme(settings = AppSettings()) {
+        DigitShiftGameScreen(
+            gameState = previewDigitShiftState().copy(status = GameStatus.GameOver),
+            highestScore = 2000,
+            showNewHighScoreMessage = true,
             onAppendToken = {},
             onDeleteToken = {},
             onSubmitGuess = {},
