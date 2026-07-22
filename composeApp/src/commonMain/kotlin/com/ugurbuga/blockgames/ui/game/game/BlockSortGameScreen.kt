@@ -101,8 +101,6 @@ import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
 import com.ugurbuga.blockgames.ui.theme.appBackgroundBrush
 import org.jetbrains.compose.resources.stringResource
 
-private const val BlockSortStylePulseTransitionLabel = "blockSortInteractionPulse"
-private const val BlockSortStylePulseAnimationLabel = "interactionPulse"
 private const val BlockSortGameOverRowClearDurationMillis = 92
 internal const val BlockSortMoveAnimationDurationMillis = 2720
 internal const val BlockSortFinalMoveAnimationDurationMillis = 720
