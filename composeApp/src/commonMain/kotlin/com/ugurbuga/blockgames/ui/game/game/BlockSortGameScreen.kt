@@ -1508,6 +1508,60 @@ private fun BlockSortGameScreenOnboardingPreview() {
     }
 }
 
+@Preview(name = "BlockSort Game Dark", widthDp = 412, heightDp = 915)
+@Composable
+private fun BlockSortGameScreenDarkPreview() {
+    BlockGamesTheme(settings = AppSettings(themeMode = com.ugurbuga.blockgames.game.model.AppThemeMode.Dark)) {
+        BlockSortGameScreen(
+            gameState = GameState(
+                config = GameConfig.default(GameplayStyle.BlockSort),
+                gameplayStyle = GameplayStyle.BlockSort,
+                board = previewBoard(),
+                activePiece = null,
+                nextQueue = emptyList(),
+                score = 1200,
+                linesCleared = 5,
+                level = 2,
+                difficultyStage = 0,
+                secondsUntilDifficultyIncrease = 9_999,
+                status = GameStatus.Running,
+            ),
+            onRequestPreview = { _, _ -> null },
+            onMove = { _, _ -> false },
+            onRestart = {},
+            onBack = {},
+            highestScore = 4200,
+        )
+    }
+}
+
+@Preview(name = "BlockSort GameOver", widthDp = 412, heightDp = 915)
+@Composable
+private fun BlockSortGameScreenGameOverPreview() {
+    BlockGamesTheme(settings = AppSettings()) {
+        BlockSortGameScreen(
+            gameState = GameState(
+                config = GameConfig.default(GameplayStyle.BlockSort),
+                gameplayStyle = GameplayStyle.BlockSort,
+                board = previewBoard(),
+                activePiece = null,
+                nextQueue = emptyList(),
+                score = 1200,
+                linesCleared = 5,
+                level = 2,
+                difficultyStage = 0,
+                secondsUntilDifficultyIncrease = 9_999,
+                status = GameStatus.GameOver,
+            ),
+            onRequestPreview = { _, _ -> null },
+            onMove = { _, _ -> false },
+            onRestart = {},
+            onBack = {},
+            highestScore = 4200,
+        )
+    }
+}
+
 private fun previewBoard() = listOf(
     listOf(CellTone.Gold, CellTone.Cyan),
     listOf(CellTone.Gold, CellTone.Gold),
