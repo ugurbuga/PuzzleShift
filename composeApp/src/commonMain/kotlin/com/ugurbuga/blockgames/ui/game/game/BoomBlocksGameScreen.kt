@@ -51,8 +51,10 @@ import com.ugurbuga.blockgames.ads.GameAdController
 import com.ugurbuga.blockgames.ads.NoOpGameAdController
 import com.ugurbuga.blockgames.game.model.BoardMatrix
 import com.ugurbuga.blockgames.game.model.CellTone
+import com.ugurbuga.blockgames.game.model.GameConfig
 import com.ugurbuga.blockgames.game.model.GameState
 import com.ugurbuga.blockgames.game.model.GameStatus
+import com.ugurbuga.blockgames.game.model.GameplayStyle
 import com.ugurbuga.blockgames.game.model.GridPoint
 import com.ugurbuga.blockgames.game.model.SpecialBlockType
 import com.ugurbuga.blockgames.game.model.paletteColor
@@ -804,3 +806,60 @@ private fun BoomBlocksOnboardingStrategicPreview() {
     }
 }
 
+@Preview(name = "BoomBlocks Game", widthDp = 412, heightDp = 915)
+@Composable
+private fun BoomBlocksGameScreenPreview() {
+    BlockGamesTheme(settings = AppSettings()) {
+        BoomBlocksGameScreen(
+            gameState = previewBoomBlocksState(),
+            onTapCell = {},
+            onRestart = {},
+            onRewardedRevive = {},
+            onBack = {},
+            highestScore = 2450,
+        )
+    }
+}
+
+@Preview(name = "BoomBlocks Game Dark", widthDp = 412, heightDp = 915)
+@Composable
+private fun BoomBlocksGameScreenDarkPreview() {
+    BlockGamesTheme(settings = AppSettings(themeMode = com.ugurbuga.blockgames.game.model.AppThemeMode.Dark)) {
+        BoomBlocksGameScreen(
+            gameState = previewBoomBlocksState(),
+            onTapCell = {},
+            onRestart = {},
+            onRewardedRevive = {},
+            onBack = {},
+            highestScore = 2450,
+        )
+    }
+}
+
+private fun previewBoomBlocksState(): GameState {
+    val config = GameConfig(columns = 8, rows = 12, difficultyIntervalSeconds = 9_999, linesPerLevel = 9_999)
+    var board = BoardMatrix.empty(config.columns, config.rows)
+    val tones = CellTone.entries.take(5)
+    for (row in 6 until config.rows) {
+        for (col in 0 until config.columns) {
+            board = board.fill(
+                points = listOf(GridPoint(col, row)),
+                tone = tones[(col + row * 3) % tones.size],
+                value = 0
+            )
+        }
+    }
+    return GameState(
+        config = config,
+        gameplayStyle = GameplayStyle.BoomBlocks,
+        board = board,
+        activePiece = null,
+        nextQueue = emptyList(),
+        score = 1240,
+        linesCleared = 12,
+        level = 3,
+        difficultyStage = 1,
+        secondsUntilDifficultyIncrease = 9_999,
+        status = GameStatus.Running,
+    )
+}
