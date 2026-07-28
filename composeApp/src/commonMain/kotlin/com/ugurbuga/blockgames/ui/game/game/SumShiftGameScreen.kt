@@ -1644,3 +1644,17 @@ private fun SumShiftGameScreenTallPreview() {
     }
 }
 
+@Preview(name = "SumShift GameOver", widthDp = 412, heightDp = 915)
+@Composable
+private fun SumShiftGameOverPreview() {
+    BlockGamesTheme(settings = AppSettings()) {
+        SumShiftGameScreen(
+            gameState = previewSumShiftState(rows = 6).copy(status = GameStatus.GameOver),
+            onTapCell = {},
+            onRestart = {},
+            onBack = {},
+            highestScore = 2000,
+        )
+    }
+}
+
