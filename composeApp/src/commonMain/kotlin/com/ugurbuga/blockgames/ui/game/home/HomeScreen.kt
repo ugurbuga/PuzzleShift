@@ -3394,3 +3394,24 @@ fun HomeScreenSumShiftPreview() {
         )
     }
 }
+@Preview(name = "HomeScreen StackShift Dark", widthDp = 412, heightDp = 915)
+@Composable
+private fun HomeScreenStackShiftDarkPreview() {
+    val settings = AppSettings(themeMode = AppThemeMode.Dark)
+    BlockGamesTheme(settings = settings) {
+        HomeScreen(
+            settings = settings,
+            classicHighScore = 4200,
+            timeAttackHighScore = 2400,
+            telemetry = NoOpAppTelemetry,
+            onPlay = {},
+            onPlayTimeAttack = {},
+            onOpenTutorial = {},
+            onOpenTheme = {},
+            onOpenLanguage = {},
+            onOpenChallenges = {},
+            onSwitchGame = {},
+            notificationManager = rememberNotificationManager(),
+        )
+    }
+}
