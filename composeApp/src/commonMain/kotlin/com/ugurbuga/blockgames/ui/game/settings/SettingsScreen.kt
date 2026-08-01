@@ -1360,3 +1360,47 @@ private fun PreviewLanguageTab() {
         initialTabIndex = 2
     )
 }
+@Preview(name = "Settings Screen", widthDp = 412, heightDp = 915)
+@Composable
+private fun SettingsScreenPreview() {
+    val settings = AppSettings(
+        tokenBalance = 1250,
+        themeMode = AppThemeMode.Dark,
+        blockVisualStyle = BlockVisualStyle.CircuitBoard,
+        themeColorPalette = AppColorPalette.Sunset
+    )
+    BlockGamesTheme(settings = settings) {
+        AppSettingsScreen(
+            settings = settings,
+            onSettingsChange = {},
+            onRewardedTokensRequested = {},
+            onBack = {},
+            onOpenSelection = {},
+            adController = NoOpGameAdController,
+            initialTabIndex = 0
+        )
+    }
+}
+
+@Preview(name = "Settings Screen Light", widthDp = 412, heightDp = 915)
+@Composable
+private fun SettingsScreenLightPreview() {
+    val settings = AppSettings(
+        tokenBalance = 500,
+        themeMode = AppThemeMode.Light,
+        blockVisualStyle = BlockVisualStyle.Bubble,
+        themeColorPalette = AppColorPalette.SoftPastel
+    )
+    BlockGamesTheme(settings = settings) {
+        AppSettingsScreen(
+            settings = settings,
+            onSettingsChange = {},
+            onRewardedTokensRequested = {},
+            onBack = {},
+            onOpenSelection = {},
+            adController = NoOpGameAdController,
+            initialTabIndex = 0
+        )
+    }
+}
+
