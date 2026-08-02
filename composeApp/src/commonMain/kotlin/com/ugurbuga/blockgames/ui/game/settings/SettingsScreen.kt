@@ -1404,3 +1404,25 @@ private fun SettingsScreenLightPreview() {
     }
 }
 
+@Preview(name = "Settings Block Style Tab", widthDp = 412, heightDp = 915)
+@Composable
+private fun SettingsBlockStyleTabPreview() {
+    val settings = AppSettings(
+        tokenBalance = 2000,
+        themeMode = AppThemeMode.Dark,
+        blockVisualStyle = BlockVisualStyle.Cyberpunk,
+        themeColorPalette = AppColorPalette.ModernNeon
+    )
+    BlockGamesTheme(settings = settings) {
+        AppSettingsScreen(
+            settings = settings,
+            onSettingsChange = {},
+            onRewardedTokensRequested = {},
+            onBack = {},
+            onOpenSelection = {},
+            adController = NoOpGameAdController,
+            initialTabIndex = 1
+        )
+    }
+}
+
