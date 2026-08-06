@@ -1426,3 +1426,22 @@ private fun SettingsBlockStyleTabPreview() {
     }
 }
 
+@Preview(name = "Settings Language Tab", widthDp = 412, heightDp = 915)
+@Composable
+private fun SettingsLanguageTabPreview() {
+    val settings = AppSettings(
+        language = AppLanguage.Turkish,
+        themeMode = AppThemeMode.System
+    )
+    BlockGamesTheme(settings = settings) {
+        AppSettingsScreen(
+            settings = settings,
+            onSettingsChange = {},
+            onRewardedTokensRequested = {},
+            onBack = {},
+            onOpenSelection = {},
+            adController = NoOpGameAdController,
+            initialTabIndex = 2
+        )
+    }
+}
