@@ -929,6 +929,25 @@ private fun BlockWiseGameScreenPreview() {
     }
 }
 
+@Preview(name = "Game - Dark", widthDp = 412, heightDp = 915)
+@Composable
+private fun BlockWiseGameScreenDarkPreview() {
+    BlockGamesTheme(settings = AppSettings(themeMode = com.ugurbuga.blockgames.game.model.AppThemeMode.Dark)) {
+        BlockWiseGameScreen(
+            gameState = BlockWiseOnboardingStateFactory.initialState(),
+            onRequestPreview = { _, _ -> null },
+            onResolvePreviewImpact = { emptySet() },
+            onPlacePiece = { _, _ -> },
+            onReplaceActivePiece = {},
+            onRestart = {},
+            onRewardedRevive = {},
+            onBack = {},
+            highestScore = 1000,
+            showNewHighScoreMessage = false,
+        )
+    }
+}
+
 @Preview(name = "Onboarding - 1 - Drag", widthDp = 412, heightDp = 915)
 @Composable
 private fun BlockWiseOnboardingDragPreview() {
