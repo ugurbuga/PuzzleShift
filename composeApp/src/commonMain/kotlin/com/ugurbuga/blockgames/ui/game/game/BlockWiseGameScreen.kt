@@ -948,6 +948,25 @@ private fun BlockWiseGameScreenDarkPreview() {
     }
 }
 
+@Preview(name = "Game - GameOver", widthDp = 412, heightDp = 915)
+@Composable
+private fun BlockWiseGameOverPreview() {
+    BlockGamesTheme(settings = AppSettings()) {
+        BlockWiseGameScreen(
+            gameState = BlockWiseOnboardingStateFactory.initialState().copy(status = com.ugurbuga.blockgames.game.model.GameStatus.GameOver),
+            onRequestPreview = { _, _ -> null },
+            onResolvePreviewImpact = { emptySet() },
+            onPlacePiece = { _, _ -> },
+            onReplaceActivePiece = {},
+            onRestart = {},
+            onRewardedRevive = {},
+            onBack = {},
+            highestScore = 1000,
+            showNewHighScoreMessage = false,
+        )
+    }
+}
+
 @Preview(name = "Onboarding - 1 - Drag", widthDp = 412, heightDp = 915)
 @Composable
 private fun BlockWiseOnboardingDragPreview() {
