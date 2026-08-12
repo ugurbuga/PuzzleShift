@@ -726,6 +726,24 @@ private fun MergeShiftGameScreenPreview() {
     }
 }
 
+@Preview(name = "MergeShift - Game Dark")
+@Composable
+private fun MergeShiftGameScreenDarkPreview() {
+    BlockGamesTheme(settings = AppSettings(themeMode = com.ugurbuga.blockgames.game.model.AppThemeMode.Dark)) {
+        MergeShiftGameScreen(
+            gameState = MergeShiftOnboardingStateFactory.initialState(),
+            onRequestPreview = { null },
+            onPlacePiece = { GameDispatchResult() },
+            onRestart = { InteractionFeedback.None },
+            onRewardedRevive = { InteractionFeedback.None },
+            onTick = {},
+            soundPlayer = NoOpSoundEffectPlayer,
+            haptics = NoOpGameHaptics,
+            highestScore = 1000,
+        )
+    }
+}
+
 @Preview(name = "MergeShift Onboarding - Launch")
 @Composable
 private fun MergeShiftOnboardingLaunchPreview() {
