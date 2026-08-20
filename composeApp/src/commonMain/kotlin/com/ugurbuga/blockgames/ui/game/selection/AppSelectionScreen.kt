@@ -1424,6 +1424,20 @@ private fun findConnectedGroup(board: BoardMatrix, start: GridPoint): Set<GridPo
     return group
 }
 
+@Preview(name = "AppSelection - List", widthDp = 412, heightDp = 915)
+@Composable
+fun AppSelectionListPreview() {
+    BlockGamesTheme(settings = AppSettings()) {
+        AppSelectionScreen(
+            currentStyle = null,
+            onGameplayStyleSelected = {},
+            telemetry = NoOpAppTelemetry,
+            onBack = {},
+            initialExpandedStyle = null
+        )
+    }
+}
+
 @Preview
 @Composable
 fun AppSelectionStackShiftExpandedPreview() {
