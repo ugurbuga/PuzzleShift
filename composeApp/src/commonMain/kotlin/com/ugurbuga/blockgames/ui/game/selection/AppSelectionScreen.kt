@@ -1438,6 +1438,20 @@ fun AppSelectionListPreview() {
     }
 }
 
+@Preview(name = "AppSelection - List Dark", widthDp = 412, heightDp = 915)
+@Composable
+fun AppSelectionListDarkPreview() {
+    BlockGamesTheme(settings = AppSettings(themeMode = com.ugurbuga.blockgames.game.model.AppThemeMode.Dark)) {
+        AppSelectionScreen(
+            currentStyle = null,
+            onGameplayStyleSelected = {},
+            telemetry = NoOpAppTelemetry,
+            onBack = {},
+            initialExpandedStyle = null
+        )
+    }
+}
+
 @Preview
 @Composable
 fun AppSelectionStackShiftExpandedPreview() {
