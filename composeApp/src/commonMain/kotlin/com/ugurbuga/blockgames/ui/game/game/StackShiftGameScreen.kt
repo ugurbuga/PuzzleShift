@@ -1822,6 +1822,35 @@ private fun GameScreenDarkPreview() {
 }
 
 
+@Preview(name = "GameScreen - Onboarding - Launch", widthDp = 412, heightDp = 915)
+@Composable
+private fun GameScreenOnboardingLaunchPreview() {
+    val settings = AppSettings(themeMode = AppThemeMode.Dark)
+    val scene = StackShiftGameOnboardingStateFactory.scene(
+        StackShiftOnboardingStage.DragAndLaunch
+    )
+    BlockGamesTheme(settings = settings) {
+        GameScreen(
+            gameState = scene.gameState,
+            onRequestPreview = { null },
+            onResolvePreviewImpact = { emptySet() },
+            onPlacePiece = { GameDispatchResult() },
+            onHoldPiece = { InteractionFeedback.None },
+            onReplaceActivePiece = { InteractionFeedback.None },
+            onRestart = { InteractionFeedback.None },
+            onRewardedRevive = { InteractionFeedback.None },
+            onOpenSettings = {},
+            onOpenTutorial = {},
+            soundPlayer = NoOpSoundEffectPlayer,
+            haptics = NoOpGameHaptics,
+            highestScore = 0,
+            interactiveOnboardingScene = scene,
+            interactiveOnboardingCurrentStep = 1,
+            interactiveOnboardingTotalSteps = 6,
+        )
+    }
+}
+
 private fun previewGameState(
     status: GameStatus = GameStatus.Running,
     boardPoints: List<Pair<GridPoint, CellTone>>? = null,
