@@ -123,6 +123,7 @@ import com.ugurbuga.blockgames.platform.feedback.SoundEffectPlayer
 import com.ugurbuga.blockgames.presentation.game.GameDispatchResult
 import com.ugurbuga.blockgames.presentation.game.InteractionFeedback
 import com.ugurbuga.blockgames.settings.AppSettings
+import com.ugurbuga.blockgames.settings.StackShiftGameOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.StackShiftOnboardingScene
 import com.ugurbuga.blockgames.settings.StackShiftOnboardingStage
 import com.ugurbuga.blockgames.telemetry.AppTelemetry
@@ -1850,6 +1851,36 @@ private fun GameScreenOnboardingLaunchPreview() {
         )
     }
 }
+
+@Preview(name = "GameScreen - Onboarding - Special", widthDp = 412, heightDp = 915)
+@Composable
+private fun GameScreenOnboardingSpecialPreview() {
+    val settings = AppSettings(themeMode = AppThemeMode.Dark)
+    val scene = StackShiftGameOnboardingStateFactory.scene(
+        StackShiftOnboardingStage.ColumnClearer
+    )
+    BlockGamesTheme(settings = settings) {
+        GameScreen(
+            gameState = scene.gameState,
+            onRequestPreview = { null },
+            onResolvePreviewImpact = { emptySet() },
+            onPlacePiece = { GameDispatchResult() },
+            onHoldPiece = { InteractionFeedback.None },
+            onReplaceActivePiece = { InteractionFeedback.None },
+            onRestart = { InteractionFeedback.None },
+            onRewardedRevive = { InteractionFeedback.None },
+            onOpenSettings = {},
+            onOpenTutorial = {},
+            soundPlayer = NoOpSoundEffectPlayer,
+            haptics = NoOpGameHaptics,
+            highestScore = 0,
+            interactiveOnboardingScene = scene,
+            interactiveOnboardingCurrentStep = 3,
+            interactiveOnboardingTotalSteps = 6,
+        )
+    }
+}
+
 
 private fun previewGameState(
     status: GameStatus = GameStatus.Running,
