@@ -2,6 +2,7 @@ package com.ugurbuga.blockgames.ui.game.game
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
@@ -19,6 +20,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -52,8 +54,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -114,6 +119,77 @@ import org.jetbrains.compose.resources.stringResource
 private enum class SumShiftCellInteractionMode {
     Select,
     Disable,
+}
+
+internal data class SumShiftBoardSums(
+    val rowCurrentSums: IntArray,
+    val columnCurrentSums: IntArray,
+    val rowSelectableSums: IntArray,
+    val columnSelectableSums: IntArray,
+    val completedRows: BooleanArray,
+    val completedColumns: BooleanArray,
+) {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other == null || this::class != other::class) return false
+        other as SumShiftBoardSums
+        return rowCurrentSums.contentEquals(other.rowCurrentSums) &&
+            columnCurrentSums.contentEquals(other.columnCurrentSums) &&
+            rowSelectableSums.contentEquals(other.rowSelectableSums) &&
+            columnSelectableSums.contentEquals(other.columnSelectableSums) &&
+            completedRows.contentEquals(other.completedRows) &&
+            completedColumns.contentEquals(other.completedColumns)
+    }
+
+    override fun hashCode(): Int {
+        var result = rowCurrentSums.contentHashCode()
+        result = 31 * result + columnCurrentSums.contentHashCode()
+        result = 31 * result + rowSelectableSums.contentHashCode()
+        result = 31 * result + columnSelectableSums.contentHashCode()
+        result = 31 * result + completedRows.contentHashCode()
+        result = 31 * result + completedColumns.contentHashCode()
+        return result
+    }
+}
+
+internal fun GameState.calculateBoardSums(
+    disabledCells: Set<GridPoint>,
+): SumShiftBoardSums {
+    val rowCurrent = IntArray(config.rows)
+    val colCurrent = IntArray(config.columns)
+    val rowSelectable = IntArray(config.rows)
+    val colSelectable = IntArray(config.columns)
+
+    repeat(config.rows) { r ->
+        repeat(config.columns) { c ->
+            val p = GridPoint(c, r)
+            val valAt = board.cellAt(c, r)?.value ?: 0
+            if (p in sumShiftSelectedCells) {
+                rowCurrent[r] += valAt
+                colCurrent[c] += valAt
+            }
+            if (p !in disabledCells) {
+                rowSelectable[r] += valAt
+                colSelectable[c] += valAt
+            }
+        }
+    }
+
+    val compRows = BooleanArray(config.rows) { r ->
+        sumShiftRowTargets.getOrNull(r)?.let { it == rowCurrent[r] } ?: false
+    }
+    val compCols = BooleanArray(config.columns) { c ->
+        sumShiftColumnTargets.getOrNull(c)?.let { it == colCurrent[c] } ?: false
+    }
+
+    return SumShiftBoardSums(
+        rowCurrentSums = rowCurrent,
+        columnCurrentSums = colCurrent,
+        rowSelectableSums = rowSelectable,
+        columnSelectableSums = colSelectable,
+        completedRows = compRows,
+        completedColumns = compCols,
+    )
 }
 
 private fun sumShiftNumericTextStyle(
@@ -218,7 +294,15 @@ internal fun SumShiftGameScreen(
     } else {
         interactionMode
     }
-    val hasRewardedHint = remember(gameState) { gameState.findSumShiftHintPoint() != null }
+    var hasRewardedHint by remember { mutableStateOf(false) }
+    LaunchedEffect(gameState) {
+        if (gameState.gameplayStyle != GameplayStyle.SumShift || gameState.status != GameStatus.Running || gameState.isSumShiftSolvedBoard()) {
+            hasRewardedHint = false
+        } else {
+            // Run expensive search off-thread or at least deferred
+            hasRewardedHint = gameState.findSumShiftHintPoint() != null
+        }
+    }
     val isPreparingBoard = gameState.sumShiftPreparingBoard
     val isSolvedBoard = gameState.isSumShiftSolvedBoard()
     val shouldShowFullPreparationCard =
@@ -233,6 +317,10 @@ internal fun SumShiftGameScreen(
         isPreparingBoard = isPreparingBoard,
         shouldShowFullPreparationCard = shouldShowFullPreparationCard,
     )
+
+    val boardSums = remember(gameState.board, gameState.sumShiftSelectedCells, disabledCells) {
+        gameState.calculateBoardSums(disabledCells)
+    }
 
 
     if (showRestartDialog) {
@@ -333,6 +421,7 @@ internal fun SumShiftGameScreen(
                 manualDisabledCells = gameState.sumShiftManualDisabledCells,
                 guidedCells = guidedCells,
                 wrongTapPoint = wrongTapPoint,
+                boardSums = boardSums,
                 onTapCell = cellTap@ { point ->
                     when (effectiveInteractionMode) {
                         SumShiftCellInteractionMode.Select -> {
@@ -343,7 +432,7 @@ internal fun SumShiftGameScreen(
                             }
                             if (point !in disabledCells) {
                                 val nextSelected = gameState.sumShiftSelectedCells.toggle(point)
-                                if (gameState.isSumShiftPlayableWith(nextSelected, gameState.sumShiftManualDisabledCells)) {
+                                if (gameState.isSumShiftPlayableWith(nextSelected, gameState.sumShiftManualDisabledCells, affectedPoint = point)) {
                                     onTapCell(point)
                                 } else {
                                     wrongTapPoint = point
@@ -364,7 +453,7 @@ internal fun SumShiftGameScreen(
                             } else {
                                 gameState.sumShiftSelectedCells
                             }
-                            if (gameState.isSumShiftPlayableWith(nextSelected, nextManualDisabledCells)) {
+                            if (gameState.isSumShiftPlayableWith(nextSelected, nextManualDisabledCells, affectedPoint = point)) {
                                 if (shouldDisable && point in gameState.sumShiftSelectedCells) {
                                     onTapCell(point)
                                 }
@@ -449,7 +538,7 @@ private fun SumShiftSummaryCard(
             )
             SumShiftInfoChip(
                 label = stringResource(Res.string.sumshift_summary_mistakes_label),
-                value = "${(1 - gameState.sumShiftMistakesUsed).coerceAtLeast(0)}",
+                value = (1 - gameState.sumShiftMistakesUsed).coerceAtLeast(0).toString(),
                 modifier = Modifier.weight(1f),
             )
             SumShiftInfoChip(
@@ -692,6 +781,7 @@ private fun SumShiftInteractionModeSwitch(
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
     val shape = RoundedCornerShape(GameUiShapeTokens.buttonCorner)
+    val indicatorShape = RoundedCornerShape(GameUiShapeTokens.chipCorner)
 
     Surface(
         modifier = modifier
@@ -703,28 +793,65 @@ private fun SumShiftInteractionModeSwitch(
         shadowElevation = 0.dp,
         border = BorderStroke(1.dp, uiColors.panelStroke.copy(alpha = 0.74f)),
     ) {
-        Row(
+        Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(4.dp),
-            horizontalArrangement = Arrangement.spacedBy(4.dp),
+                .padding(4.dp)
         ) {
-            SumShiftInteractionModeOption(
-                icon = Icons.Filled.TouchApp,
-                selected = selectedMode == SumShiftCellInteractionMode.Select,
-                enabled = enabled,
-                tone = CellTone.Cyan,
-                onClick = { onModeChange(SumShiftCellInteractionMode.Select) },
-                modifier = Modifier.weight(1f),
+            val highlightColor = when (selectedMode) {
+                SumShiftCellInteractionMode.Disable -> uiColors.actionWarning
+                else -> uiColors.actionPrimary
+            }
+
+            val animatedColorState = animateColorAsState(
+                targetValue = highlightColor.copy(alpha = 0.92f),
+                animationSpec = tween(300)
             )
-            SumShiftInteractionModeOption(
-                icon = Icons.Filled.Close,
-                selected = selectedMode == SumShiftCellInteractionMode.Disable,
-                enabled = enabled,
-                tone = CellTone.Gold,
-                onClick = { onModeChange(SumShiftCellInteractionMode.Disable) },
-                modifier = Modifier.weight(1f),
+
+            val indicatorOffsetState = animateFloatAsState(
+                targetValue = if (selectedMode == SumShiftCellInteractionMode.Select) 0f else 1f,
+                animationSpec = spring(stiffness = Spring.StiffnessMediumLow)
             )
+
+            // Animated indicator
+            Box(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth(0.5f)
+                    .graphicsLayer {
+                        val spacing = 4.dp.toPx()
+                        val indicatorWidth = (this.size.width - spacing / 2f)
+                        this.translationX = indicatorOffsetState.value * (indicatorWidth + spacing)
+                    }
+                    .padding(end = 2.dp)
+                    .drawBehind {
+                        val radius = indicatorShape.topStart.toPx(size, this)
+                        drawRoundRect(
+                            color = animatedColorState.value,
+                            cornerRadius = CornerRadius(radius, radius)
+                        )
+                    }
+            )
+
+            Row(
+                modifier = Modifier.fillMaxSize(),
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+            ) {
+                SumShiftInteractionModeOption(
+                    icon = Icons.Filled.TouchApp,
+                    selected = selectedMode == SumShiftCellInteractionMode.Select,
+                    enabled = enabled,
+                    onClick = { onModeChange(SumShiftCellInteractionMode.Select) },
+                    modifier = Modifier.weight(1f),
+                )
+                SumShiftInteractionModeOption(
+                    icon = Icons.Filled.Close,
+                    selected = selectedMode == SumShiftCellInteractionMode.Disable,
+                    enabled = enabled,
+                    onClick = { onModeChange(SumShiftCellInteractionMode.Disable) },
+                    modifier = Modifier.weight(1f),
+                )
+            }
         }
     }
 }
@@ -734,38 +861,32 @@ private fun SumShiftInteractionModeOption(
     icon: androidx.compose.ui.graphics.vector.ImageVector,
     selected: Boolean,
     enabled: Boolean,
-    tone: CellTone,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
-    val highlight = when (tone) {
-        CellTone.Gold, CellTone.Amber -> uiColors.actionWarning
-        CellTone.Emerald, CellTone.Lime -> uiColors.actionSuccess
-        CellTone.Coral, CellTone.Rose -> uiColors.actionDanger
-        else -> uiColors.actionPrimary
-    }
     val shape = RoundedCornerShape(GameUiShapeTokens.chipCorner)
+
+    val iconTintState = animateColorAsState(
+        targetValue = when {
+            selected -> uiColors.actionIcon
+            enabled -> MaterialTheme.colorScheme.onSurfaceVariant
+            else -> uiColors.actionIconDisabled
+        },
+        animationSpec = tween(300)
+    )
 
     Box(
         modifier = modifier
             .fillMaxSize()
             .clip(shape)
-            .background(
-                color = if (selected) highlight.copy(alpha = 0.92f) else Color.Transparent,
-                shape = shape,
-            )
             .clickable(enabled = enabled, onClick = onClick),
         contentAlignment = Alignment.Center,
     ) {
         Icon(
             imageVector = icon,
             contentDescription = null,
-            tint = when {
-                selected -> uiColors.actionIcon
-                enabled -> MaterialTheme.colorScheme.onSurfaceVariant
-                else -> uiColors.actionIconDisabled
-            },
+            tint = iconTintState.value,
             modifier = Modifier.size(20.dp),
         )
     }
@@ -779,15 +900,25 @@ internal fun SumShiftBoardCard(
     outgoingGameState: GameState? = null,
     outgoingClearProgress: Float = 1f,
     incomingRevealProgress: Float = 1f,
-    disabledCells: Set<GridPoint> = emptySet(),
-    manualDisabledCells: Set<GridPoint> = emptySet(),
+    disabledCells: Set<GridPoint>? = null,
+    manualDisabledCells: Set<GridPoint>? = null,
     guidedCells: Set<GridPoint> = emptySet(),
     wrongTapPoint: GridPoint? = null,
+    boardSums: SumShiftBoardSums? = null,
     onTapCell: (GridPoint) -> Unit = {},
     stylePulse: Float = 0f,
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
     val boardPanelShape = RoundedCornerShape(GameUiShapeTokens.surfaceCorner)
+
+    val systemDisabledCells = remember(gameState) { gameState.systemDisabledSumShiftCells() }
+    val effectiveManualDisabledCells = manualDisabledCells ?: gameState.sumShiftManualDisabledCells
+    val effectiveDisabledCells = remember(disabledCells, effectiveManualDisabledCells, systemDisabledCells) {
+        disabledCells ?: (effectiveManualDisabledCells + systemDisabledCells)
+    }
+    val effectiveBoardSums = boardSums ?: remember(gameState, effectiveDisabledCells) {
+        gameState.calculateBoardSums(effectiveDisabledCells)
+    }
 
     Card(
         modifier = modifier
@@ -828,14 +959,15 @@ internal fun SumShiftBoardCard(
                     gridGap = gridGap,
                     laneGap = laneGap,
                     controlsEnabled = controlsEnabled,
-                    disabledCells = disabledCells,
-                    manualDisabledCells = manualDisabledCells,
+                    disabledCells = effectiveDisabledCells,
+                    manualDisabledCells = effectiveManualDisabledCells,
                     guidedCells = guidedCells,
                     wrongTapPoint = wrongTapPoint,
                     topTargetAlpha = sumShiftRevealAlphaFromBottom(0, rows + 1, incomingRevealProgress),
                     rowAlphaProvider = { rowIndex ->
                         sumShiftRevealAlphaFromBottom(rowIndex + 1, rows + 1, incomingRevealProgress)
                     },
+                    boardSums = effectiveBoardSums,
                     onTapCell = onTapCell,
                     stylePulse = stylePulse,
                 )
@@ -856,6 +988,7 @@ internal fun SumShiftBoardCard(
                         rowAlphaProvider = { rowIndex ->
                             sumShiftClearAlpha(rowIndex + 1, rows + 1, outgoingClearProgress)
                         },
+                        boardSums = effectiveBoardSums,
                         stylePulse = stylePulse,
                     )
                 }
@@ -879,6 +1012,7 @@ private fun SumShiftPuzzleBoard(
     topTargetAlpha: Float = 1f,
     rowAlphaProvider: (Int) -> Float = { 1f },
     modifier: Modifier = Modifier,
+    boardSums: SumShiftBoardSums,
     onTapCell: (GridPoint) -> Unit = {},
     stylePulse: Float = 0f,
 ) {
@@ -900,11 +1034,8 @@ private fun SumShiftPuzzleBoard(
             repeat(columns) { columnIndex ->
                 SumShiftTargetCell(
                     value = gameState.sumShiftColumnTargets.getOrElse(columnIndex) { 0 },
-                    currentValue = gameState.selectableSumShiftColumnSum(
-                        columnIndex = columnIndex,
-                        disabledCells = disabledCells,
-                    ),
-                    completed = gameState.isSumShiftColumnCompleted(columnIndex),
+                    currentValue = boardSums.columnSelectableSums.getOrElse(columnIndex) { 0 },
+                    completed = boardSums.completedColumns.getOrElse(columnIndex) { false },
                     size = targetSize,
                     stylePulse = stylePulse,
                 )
@@ -919,11 +1050,8 @@ private fun SumShiftPuzzleBoard(
                     val rowAlpha = rowAlphaProvider(rowIndex)
                     SumShiftTargetCell(
                         value = gameState.sumShiftRowTargets.getOrElse(rowIndex) { 0 },
-                        currentValue = gameState.selectableSumShiftRowSum(
-                            rowIndex = rowIndex,
-                            disabledCells = disabledCells,
-                        ),
-                        completed = gameState.isSumShiftRowCompleted(rowIndex),
+                        currentValue = boardSums.rowSelectableSums.getOrElse(rowIndex) { 0 },
+                        completed = boardSums.completedRows.getOrElse(rowIndex) { false },
                         size = targetSize,
                         modifier = Modifier.alpha(rowAlpha),
                         stylePulse = stylePulse,
@@ -943,13 +1071,15 @@ private fun SumShiftPuzzleBoard(
                         repeat(columns) { columnIndex ->
                             val point = GridPoint(column = columnIndex, row = rowIndex)
                             val boardCell = gameState.board.cellAt(columnIndex, rowIndex)
+                            val rowCompleted = boardSums.completedRows.getOrElse(rowIndex) { false }
+                            val colCompleted = boardSums.completedColumns.getOrElse(columnIndex) { false }
                             SumShiftNumberCell(
                                 value = boardCell?.value ?: 0,
                                 selected = point in gameState.sumShiftSelectedCells,
                                 disabled = point in disabledCells,
                                 manualDisabled = point in manualDisabledCells,
                                 guided = point in guidedCells,
-                                completed = gameState.isSumShiftRowCompleted(rowIndex) || gameState.isSumShiftColumnCompleted(columnIndex),
+                                completed = rowCompleted || colCompleted,
                                 wrongTapped = point == wrongTapPoint,
                                 size = cellSize,
                                 enabled = sumShiftCellIsEnabled(
@@ -1017,9 +1147,10 @@ private fun SumShiftTargetCell(
     val accent = if (completed) uiColors.success else MaterialTheme.colorScheme.primary
     val blockStyle = settings.blockVisualStyle
     val shape = RoundedCornerShape(GameUiShapeTokens.chipCorner)
+    val isDark = isBlockGamesDarkTheme(settings)
     val tintColor = blockForegroundTint(
         style = blockStyle,
-        isDarkTheme = isBlockGamesDarkTheme(settings),
+        isDarkTheme = isDark,
         palette = settings.blockColorPalette,
     )
     val targetBaseColor by animateColorAsState(
@@ -1047,6 +1178,16 @@ private fun SumShiftTargetCell(
         multiplier = 0.45f,
         minimum = stylePulse,
     )
+    val targetTextColor by animateColorAsState(
+        targetValue = when {
+            isDark -> tintColor
+            completed -> Color.White
+            else -> Color.Black
+        },
+        animationSpec = tween(400),
+        label = "sumShiftTargetTextColor"
+    )
+
     Surface(
         modifier = modifier
             .size(size)
@@ -1082,7 +1223,7 @@ private fun SumShiftTargetCell(
                         else -> 18.sp
                     },
                 ),
-                color = tintColor,
+                color = targetTextColor,
                 modifier = Modifier.align(Alignment.Center),
             )
             Text(
@@ -1098,7 +1239,7 @@ private fun SumShiftTargetCell(
                         else -> 9.sp
                     },
                 ),
-                color = tintColor.copy(alpha = 0.82f),
+                color = targetTextColor.copy(alpha = 0.82f),
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .padding(bottom = if (size <= 30.dp) 1.dp else 2.dp),
@@ -1155,11 +1296,16 @@ private fun SumShiftNumberCell(
         selected -> colorScheme.primary.copy(alpha = 0.86f)
         else -> uiColors.boardEmptyCellBorder
     }
+    val adaptiveTintColor = when {
+        isDark -> tintColor
+        wrongTapped || (selected && completed) -> Color.White
+        else -> Color.Black
+    }
     val textColor = when {
-        wrongTapped -> tintColor
-        disabled -> tintColor.copy(alpha = 0.52f)
-        selected -> tintColor
-        else -> tintColor.copy(alpha = 0.94f)
+        wrongTapped -> adaptiveTintColor
+        disabled -> adaptiveTintColor.copy(alpha = 0.52f)
+        selected -> adaptiveTintColor
+        else -> adaptiveTintColor.copy(alpha = 0.94f)
     }
     val emphasized = selected || guided || wrongTapped
     val visuallyActive = emphasized || pressed
@@ -1317,25 +1463,33 @@ private fun sumShiftRevealAlphaFromBottom(rowIndex: Int, rowCount: Int, progress
 
 internal fun GameState.systemDisabledSumShiftCells(
     selectedCells: Set<GridPoint> = sumShiftSelectedCells,
-): Set<GridPoint> = buildSet {
-    sumShiftRowTargets.indices.forEach { rowIndex ->
-        if (sumShiftRowTargets.getOrNull(rowIndex) != selectedSumShiftRowSum(rowIndex, selectedCells)) return@forEach
-        repeat(config.columns) { columnIndex ->
-            val point = GridPoint(columnIndex, rowIndex)
-            if (point !in selectedCells) {
-                add(point)
+): Set<GridPoint> {
+    val results = mutableSetOf<GridPoint>()
+    val cols = config.columns
+    val rows = config.rows
+    
+    for (r in 0 until rows) {
+        if (sumShiftRowTargets[r] == selectedSumShiftRowSum(r, selectedCells)) {
+            for (c in 0 until cols) {
+                val point = GridPoint(c, r)
+                if (point !in selectedCells) {
+                    results.add(point)
+                }
             }
         }
     }
-    sumShiftColumnTargets.indices.forEach { columnIndex ->
-        if (sumShiftColumnTargets.getOrNull(columnIndex) != selectedSumShiftColumnSum(columnIndex, selectedCells)) return@forEach
-        repeat(config.rows) { rowIndex ->
-            val point = GridPoint(columnIndex, rowIndex)
-            if (point !in selectedCells) {
-                add(point)
+    
+    for (c in 0 until cols) {
+        if (sumShiftColumnTargets[c] == selectedSumShiftColumnSum(c, selectedCells)) {
+            for (r in 0 until rows) {
+                val point = GridPoint(c, r)
+                if (point !in selectedCells) {
+                    results.add(point)
+                }
             }
         }
     }
+    return results
 }
 
 internal fun sumShiftCellIsEnabled(
@@ -1355,30 +1509,65 @@ internal fun SumShiftOnboardingScene.allowsGuidedTap(
 internal fun GameState.isSumShiftPlayableWith(
     selectedCells: Set<GridPoint>,
     manualDisabledCells: Set<GridPoint>,
+    affectedPoint: GridPoint? = null,
 ): Boolean {
-    val rowPlayable = sumShiftRowTargets.indices.all { rowIndex ->
-        val selectedSum = (0 until config.columns).sumOf { columnIndex ->
-            val point = GridPoint(columnIndex, rowIndex)
-            if (point in selectedCells) board.cellAt(columnIndex, rowIndex)?.value ?: 0 else 0
+    val cols = config.columns
+    val rows = config.rows
+
+    if (affectedPoint != null) {
+        val r = affectedPoint.row
+        val c = affectedPoint.column
+
+        var rowSelected = 0
+        var rowEnabled = 0
+        for (col in 0 until cols) {
+            val v = board.cellAt(col, r)?.value ?: 0
+            if (v == 0) continue
+            val p = GridPoint(col, r)
+            if (p in selectedCells) rowSelected += v
+            if (p !in manualDisabledCells) rowEnabled += v
         }
-        val enabledSum = (0 until config.columns).sumOf { columnIndex ->
-            val point = GridPoint(columnIndex, rowIndex)
-            if (point !in manualDisabledCells) board.cellAt(columnIndex, rowIndex)?.value ?: 0 else 0
+        if (sumShiftRowTargets[r] !in rowSelected..rowEnabled) return false
+
+        var colSelected = 0
+        var colEnabled = 0
+        for (row in 0 until rows) {
+            val v = board.cellAt(c, row)?.value ?: 0
+            if (v == 0) continue
+            val p = GridPoint(c, row)
+            if (p in selectedCells) colSelected += v
+            if (p !in manualDisabledCells) colEnabled += v
         }
-        selectedSum <= sumShiftRowTargets[rowIndex] && enabledSum >= sumShiftRowTargets[rowIndex]
+        return sumShiftColumnTargets[c] in colSelected..colEnabled
     }
-    val columnPlayable = sumShiftColumnTargets.indices.all { columnIndex ->
-        val selectedSum = (0 until config.rows).sumOf { rowIndex ->
-            val point = GridPoint(columnIndex, rowIndex)
-            if (point in selectedCells) board.cellAt(columnIndex, rowIndex)?.value ?: 0 else 0
+
+    for (r in 0 until rows) {
+        var rowSelected = 0
+        var rowEnabled = 0
+        for (col in 0 until cols) {
+            val v = board.cellAt(col, r)?.value ?: 0
+            if (v == 0) continue
+            val p = GridPoint(col, r)
+            if (p in selectedCells) rowSelected += v
+            if (p !in manualDisabledCells) rowEnabled += v
         }
-        val enabledSum = (0 until config.rows).sumOf { rowIndex ->
-            val point = GridPoint(columnIndex, rowIndex)
-            if (point !in manualDisabledCells) board.cellAt(columnIndex, rowIndex)?.value ?: 0 else 0
-        }
-        selectedSum <= sumShiftColumnTargets[columnIndex] && enabledSum >= sumShiftColumnTargets[columnIndex]
+        if (sumShiftRowTargets[r] !in rowSelected..rowEnabled) return false
     }
-    return rowPlayable && columnPlayable
+
+    for (c in 0 until cols) {
+        var colSelected = 0
+        var colEnabled = 0
+        for (row in 0 until rows) {
+            val v = board.cellAt(c, row)?.value ?: 0
+            if (v == 0) continue
+            val p = GridPoint(c, row)
+            if (p in selectedCells) colSelected += v
+            if (p !in manualDisabledCells) colEnabled += v
+        }
+        if (colSelected > sumShiftColumnTargets[c] || colEnabled < sumShiftColumnTargets[c]) return false
+    }
+
+    return true
 }
 
 private fun Set<GridPoint>.toggle(point: GridPoint): Set<GridPoint> =
@@ -1465,100 +1654,117 @@ private fun GameState.solveSumShiftHintPoint(
     manualDisabledCells: Set<GridPoint>,
 ): GridPoint? {
     val disabledCells = manualDisabledCells + systemDisabledSumShiftCells(selectedCells = lockedSelectedCells)
-    val fixedSelectedCells = lockedSelectedCells.filterTo(linkedSetOf()) { it !in manualDisabledCells }
-    val rowSelected = IntArray(config.rows) { rowIndex -> selectedSumShiftRowSum(rowIndex, fixedSelectedCells) }
-    val columnSelected = IntArray(config.columns) { columnIndex -> selectedSumShiftColumnSum(columnIndex, fixedSelectedCells) }
-    val rowRemaining = IntArray(config.rows)
-    val columnRemaining = IntArray(config.columns)
-    val candidates = buildList {
-        repeat(config.rows) { rowIndex ->
-            repeat(config.columns) { columnIndex ->
-                val point = GridPoint(columnIndex, rowIndex)
-                if (point in fixedSelectedCells || point in disabledCells) return@repeat
-                val value = board.cellAt(columnIndex, rowIndex)?.value ?: 0
-                rowRemaining[rowIndex] += value
-                columnRemaining[columnIndex] += value
-                add(point)
+    val fixedSelectedCells = lockedSelectedCells.filterTo(mutableSetOf()) { it !in manualDisabledCells }
+    
+    val rows = config.rows
+    val cols = config.columns
+    val rowTargetsArr = sumShiftRowTargets.toIntArray()
+    val colTargetsArr = sumShiftColumnTargets.toIntArray()
+    
+    val rowSelected = IntArray(rows)
+    val colSelected = IntArray(cols)
+    
+    val cellValues = IntArray(rows * cols)
+    val isFixed = BooleanArray(rows * cols)
+    val isDisabled = BooleanArray(rows * cols)
+    
+    for (r in 0 until rows) {
+        for (c in 0 until cols) {
+            val p = GridPoint(c, r)
+            val idx = r * cols + c
+            val v = board.cellAt(c, r)?.value ?: 0
+            cellValues[idx] = v
+            if (p in fixedSelectedCells) {
+                isFixed[idx] = true
+                rowSelected[r] += v
+                colSelected[c] += v
+            }
+            if (p in disabledCells) {
+                isDisabled[idx] = true
             }
         }
-    }.sortedBy { point ->
-        val rowSlack = (sumShiftRowTargets[point.row] - rowSelected[point.row]).coerceAtLeast(0)
-        val columnSlack = (sumShiftColumnTargets[point.column] - columnSelected[point.column]).coerceAtLeast(0)
-        minOf(rowSlack, columnSlack)
     }
 
-    if (!sumShiftConstraintsRemainFeasible(rowSelected, rowRemaining, sumShiftRowTargets) ||
-        !sumShiftConstraintsRemainFeasible(columnSelected, columnRemaining, sumShiftColumnTargets)
-    ) {
-        return null
+    val candidatesIdx = mutableListOf<Int>()
+    val rowRemaining = IntArray(rows)
+    val colRemaining = IntArray(cols)
+    
+    for (r in 0 until rows) {
+        for (c in 0 until cols) {
+            val idx = r * cols + c
+            if (!isFixed[idx] && !isDisabled[idx]) {
+                candidatesIdx.add(idx)
+                rowRemaining[r] += cellValues[idx]
+                colRemaining[c] += cellValues[idx]
+            }
+        }
+    }
+    
+    candidatesIdx.sortBy { idx ->
+        val r = idx / cols
+        val c = idx % cols
+        val rowSlack = (rowTargetsArr[r] - rowSelected[r]).coerceAtLeast(0)
+        val colSlack = (colTargetsArr[c] - colSelected[c]).coerceAtLeast(0)
+        minOf(rowSlack, colSlack)
     }
 
-    val solution = fixedSelectedCells.toMutableSet()
+    val candidatesArray = candidatesIdx.toIntArray()
+    val isSolution = BooleanArray(rows * cols)
+    for (i in isFixed.indices) isSolution[i] = isFixed[i]
 
     fun search(index: Int): Boolean {
-        if (index >= candidates.size) {
-            return rowSelected.indices.all { rowSelected[it] == sumShiftRowTargets[it] } &&
-                columnSelected.indices.all { columnSelected[it] == sumShiftColumnTargets[it] }
-        }
-
-        val point = candidates[index]
-        val value = board.cellAt(point.column, point.row)?.value ?: 0
-        rowRemaining[point.row] -= value
-        columnRemaining[point.column] -= value
-
-        val canInclude =
-            rowSelected[point.row] + value <= sumShiftRowTargets[point.row] &&
-                columnSelected[point.column] + value <= sumShiftColumnTargets[point.column]
-
-        if (canInclude) {
-            rowSelected[point.row] += value
-            columnSelected[point.column] += value
-            if (sumShiftConstraintIsFeasible(point.row, rowSelected, rowRemaining, sumShiftRowTargets) &&
-                sumShiftConstraintIsFeasible(point.column, columnSelected, columnRemaining, sumShiftColumnTargets)
-            ) {
-                solution += point
-                if (search(index + 1)) {
-                    return true
-                }
-                solution -= point
-            }
-            rowSelected[point.row] -= value
-            columnSelected[point.column] -= value
-        }
-
-        if (sumShiftConstraintIsFeasible(point.row, rowSelected, rowRemaining, sumShiftRowTargets) &&
-            sumShiftConstraintIsFeasible(point.column, columnSelected, columnRemaining, sumShiftColumnTargets) &&
-            search(index + 1)
-        ) {
+        if (index >= candidatesArray.size) {
+            for (r in 0 until rows) if (rowSelected[r] != rowTargetsArr[r]) return false
+            for (c in 0 until cols) if (colSelected[c] != colTargetsArr[c]) return false
             return true
         }
 
-        rowRemaining[point.row] += value
-        columnRemaining[point.column] += value
+        val idx = candidatesArray[index]
+        val r = idx / cols
+        val c = idx % cols
+        val value = cellValues[idx]
+        
+        rowRemaining[r] -= value
+        colRemaining[c] -= value
+
+        if (rowSelected[r] + value <= rowTargetsArr[r] && colSelected[c] + value <= colTargetsArr[c]) {
+            rowSelected[r] += value
+            colSelected[c] += value
+            if (rowSelected[r] + rowRemaining[r] >= rowTargetsArr[r] && 
+                colSelected[c] + colRemaining[c] >= colTargetsArr[c]
+            ) {
+                isSolution[idx] = true
+                if (search(index + 1)) return true
+                isSolution[idx] = false
+            }
+            rowSelected[r] -= value
+            colSelected[c] -= value
+        }
+
+        if (rowSelected[r] + rowRemaining[r] >= rowTargetsArr[r] && 
+            colSelected[c] + colRemaining[c] >= colTargetsArr[c]
+        ) {
+            if (search(index + 1)) return true
+        }
+
+        rowRemaining[r] += value
+        colRemaining[c] += value
         return false
     }
 
     if (!search(0)) return null
-    return solution.firstOrNull { it !in sumShiftSelectedCells && it !in disabledCells }
+    
+    for (idx in candidatesArray) {
+        if (isSolution[idx]) {
+            val r = idx / cols
+            val c = idx % cols
+            val p = GridPoint(c, r)
+            if (p !in sumShiftSelectedCells) return p
+        }
+    }
+    return null
 }
 
-private fun sumShiftConstraintsRemainFeasible(
-    selected: IntArray,
-    remaining: IntArray,
-    targets: List<Int>,
-): Boolean = selected.indices.all { index ->
-    sumShiftConstraintIsFeasible(index, selected, remaining, targets)
-}
-
-private fun sumShiftConstraintIsFeasible(
-    index: Int,
-    selected: IntArray,
-    remaining: IntArray,
-    targets: List<Int>,
-): Boolean {
-    val target = targets.getOrElse(index) { 0 }
-    return selected[index] <= target && selected[index] + remaining[index] >= target
-}
 
 private fun previewSumShiftState(rows: Int = 6): GameState {
     val values = listOf(
