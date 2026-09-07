@@ -604,9 +604,10 @@ private fun SumShiftHomeBannerTargetCell(
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
     val accent = if (completed) uiColors.success else MaterialTheme.colorScheme.primary
+    val isDark = isBlockGamesDarkTheme(settings)
     val tintColor = blockForegroundTint(
         style = settings.blockVisualStyle,
-        isDarkTheme = isBlockGamesDarkTheme(settings),
+        isDarkTheme = isDark,
         palette = settings.blockColorPalette,
     )
     val backgroundColor by animateColorAsState(
@@ -627,6 +628,15 @@ private fun SumShiftHomeBannerTargetCell(
         targetValue = if (completed) 1.03f else 1f,
         animationSpec = tween(durationMillis = 220),
         label = "sumShiftHomeTargetScale",
+    )
+    val targetTextColor by animateColorAsState(
+        targetValue = when {
+            isDark -> tintColor
+            completed -> Color.White
+            else -> Color.Black
+        },
+        animationSpec = tween(220),
+        label = "sumShiftHomeTargetTextColor"
     )
 
     Surface(
@@ -657,7 +667,7 @@ private fun SumShiftHomeBannerTargetCell(
                     fontWeight = FontWeight.Bold,
                     fontSize = if (size <= 28.dp) 12.sp else 14.sp,
                 ),
-                color = tintColor,
+                color = targetTextColor,
                 textAlign = TextAlign.Center,
             )
             Text(
@@ -666,7 +676,7 @@ private fun SumShiftHomeBannerTargetCell(
                     fontWeight = FontWeight.SemiBold,
                     fontSize = if (size <= 28.dp) 7.sp else 8.sp,
                 ),
-                color = tintColor.copy(alpha = 0.82f),
+                color = targetTextColor.copy(alpha = 0.82f),
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .padding(bottom = if (size <= 28.dp) 1.dp else 2.dp),
@@ -691,11 +701,17 @@ private fun SumShiftHomeBannerNumberCell(
     val uiColors = BlockGamesThemeTokens.uiColors
     val colorScheme = MaterialTheme.colorScheme
     val shape = RoundedCornerShape(boardCellCornerRadiusDp(size, settings.blockVisualStyle))
+    val isDark = isBlockGamesDarkTheme(settings)
     val tintColor = blockForegroundTint(
         style = settings.blockVisualStyle,
-        isDarkTheme = isBlockGamesDarkTheme(settings),
+        isDarkTheme = isDark,
         palette = settings.blockColorPalette,
     )
+    val adaptiveTintColor = when {
+        isDark -> tintColor
+        (selected && completed) -> Color.White
+        else -> Color.Black
+    }
     val baseColor by animateColorAsState(
         targetValue = when {
             disabled -> uiColors.panelMuted.copy(alpha = 0.82f)
@@ -724,9 +740,9 @@ private fun SumShiftHomeBannerNumberCell(
     )
     val textColor by animateColorAsState(
         targetValue = when {
-            disabled -> MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.72f)
-            selected -> colorScheme.onPrimaryContainer
-            else -> MaterialTheme.colorScheme.onSurface
+            disabled -> adaptiveTintColor.copy(alpha = 0.58f)
+            selected -> adaptiveTintColor
+            else -> adaptiveTintColor.copy(alpha = 0.92f)
         },
         animationSpec = tween(durationMillis = 180),
         label = "sumShiftHomeCellText",
@@ -774,11 +790,7 @@ private fun SumShiftHomeBannerNumberCell(
                         else -> 15.sp
                     },
                 ),
-                color = when {
-                    disabled -> tintColor.copy(alpha = 0.58f)
-                    selected -> tintColor
-                    else -> tintColor.copy(alpha = 0.92f)
-                },
+                color = textColor,
                 textAlign = TextAlign.Center,
                 textDecoration = if (disabled) TextDecoration.LineThrough else null,
             )

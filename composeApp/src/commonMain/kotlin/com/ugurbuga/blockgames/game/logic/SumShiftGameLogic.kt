@@ -26,11 +26,11 @@ internal class SumShiftGameLogic(
     override fun restoreGame(state: GameState): GameState {
         val config = normalizeConfig(state.config)
         if (
-            state.gameplayStyle != GameplayStyle.SumShift ||
-            state.board.columns != config.columns ||
-            state.board.rows != config.rows ||
-            state.sumShiftRowTargets.size != config.rows ||
-            state.sumShiftColumnTargets.size != config.columns
+            (state.gameplayStyle != GameplayStyle.SumShift) ||
+            (state.board.columns != config.columns) ||
+            (state.board.rows != config.rows) ||
+            (state.sumShiftRowTargets.size != config.rows) ||
+            (state.sumShiftColumnTargets.size != config.columns)
         ) {
             return newGame(config = config, challenge = state.activeChallenge, mode = state.gameMode)
         }
@@ -323,7 +323,7 @@ private fun generateSumShiftPuzzle(
         if (!isUsefulSumShiftMask(mask, rows, columns)) return@repeat
 
         val puzzle = buildSumShiftPuzzle(values = values, solution = mask)
-        val score = scoreSumShiftPuzzle(mask = mask, puzzle = puzzle)
+        val score = scoreSumShiftPuzzle(mask = mask, rows = rows, columns = columns, puzzle = puzzle)
         if (score > bestScore) {
             bestScore = score
             bestPuzzle = puzzle
@@ -341,7 +341,7 @@ internal fun isValidSumShiftConfig(config: GameConfig): Boolean {
 
 internal fun normalizeSumShiftConfig(config: GameConfig): GameConfig {
     val nearest = SumShiftSupportedConfigs.minWithOrNull(
-        compareBy<GameConfig>(
+        compareBy(
             { abs(it.columns - config.columns) },
             { abs(it.rows - config.rows) },
             { abs((it.columns * it.rows) - (config.columns * config.rows)) },
@@ -368,8 +368,10 @@ internal fun resolveSumShiftAutoSelectedCells(
         val nextAutoSelected = buildSet {
             state.sumShiftRowTargets.indices.forEach { rowIndex ->
                 val enabledPoints = (0 until state.config.columns)
+                    .asSequence()
                     .map { columnIndex -> GridPoint(columnIndex, rowIndex) }
                     .filter { it !in disabledCells }
+                    .toList()
                 val enabledSum = enabledPoints.sumOf { point ->
                     state.board.cellAt(point.column, point.row)?.value ?: 0
                 }
@@ -445,11 +447,11 @@ private fun generateSumShiftValues(
     rows: Int,
     columns: Int,
     random: Random,
-): List<List<Int>> {
-    val rowBiases = List(rows) { random.nextInt(0, 3) }
-    val columnBiases = List(columns) { random.nextInt(0, 3) }
-    return List(rows) { row ->
-        List(columns) { column ->
+): Array<IntArray> {
+    val rowBiases = IntArray(rows) { random.nextInt(0, 3) }
+    val columnBiases = IntArray(columns) { random.nextInt(0, 3) }
+    return Array(rows) { row ->
+        IntArray(columns) { column ->
             val raw = random.nextInt(1, 10) + rowBiases[row] + columnBiases[column]
             ((raw - 1) % 9) + 1
         }
@@ -462,78 +464,81 @@ private fun generateMaskCandidate(
     targetDensity: Double,
     style: SumShiftPatternStyle,
     random: Random,
-): List<List<Boolean>> {
+): BooleanArray {
     val targetSelectedCount = ((rows * columns) * targetDensity).toInt().coerceIn(rows + 1, (rows * columns) - columns)
-    val mask = MutableList(rows) { MutableList(columns) { false } }
+    val mask = BooleanArray(rows * columns)
 
     when (style) {
-        SumShiftPatternStyle.RandomWalk -> fillRandomWalkMask(mask, targetSelectedCount, random)
-        SumShiftPatternStyle.Bands -> fillBandMask(mask, targetSelectedCount, random)
-        SumShiftPatternStyle.Clusters -> fillClusterMask(mask, targetSelectedCount, random)
-        SumShiftPatternStyle.Waves -> fillWaveMask(mask, targetSelectedCount, random)
-        SumShiftPatternStyle.Scatter -> fillScatterMask(mask, targetSelectedCount, random)
+        SumShiftPatternStyle.RandomWalk -> fillRandomWalkMask(mask, rows, columns, targetSelectedCount, random)
+        SumShiftPatternStyle.Bands -> fillBandMask(mask, rows, columns, targetSelectedCount, random)
+        SumShiftPatternStyle.Clusters -> fillClusterMask(mask, rows, columns, random)
+        SumShiftPatternStyle.Waves -> fillWaveMask(mask, rows, columns, random)
+        SumShiftPatternStyle.Scatter -> fillScatterMask(mask, rows, columns, targetSelectedCount, random)
     }
 
-    repairMaskCoverage(mask, random)
-    repairMaskHoles(mask, random)
-    trimMaskToTarget(mask, targetSelectedCount, random)
-    repairMaskCoverage(mask, random)
-    repairMaskHoles(mask, random)
-    return mask.map { it.toList() }
+    repairMaskCoverage(mask, rows, columns, random)
+    repairMaskHoles(mask, rows, columns, random)
+    trimMaskToTarget(mask, rows, columns, targetSelectedCount, random)
+    repairMaskCoverage(mask, rows, columns, random)
+    repairMaskHoles(mask, rows, columns, random)
+    return mask
 }
 
 private fun fillRandomWalkMask(
-    mask: MutableList<MutableList<Boolean>>,
+    mask: BooleanArray,
+    rows: Int,
+    columns: Int,
     targetSelectedCount: Int,
     random: Random,
 ) {
-    val rows = mask.size
-    val columns = mask.firstOrNull()?.size ?: return
     var row = random.nextInt(rows)
     var column = random.nextInt(columns)
+    var currentCount = 0
     repeat(targetSelectedCount * 5) {
-        mask[row][column] = true
-        if (selectedCount(mask) >= targetSelectedCount) return
-        val neighbors = buildList {
-            if (row > 0) add(row - 1 to column)
-            if (row < rows - 1) add(row + 1 to column)
-            if (column > 0) add(row to column - 1)
-            if (column < columns - 1) add(row to column + 1)
+        val idx = row * columns + column
+        if (!mask[idx]) {
+            mask[idx] = true
+            currentCount++
         }
-        val (nextRow, nextColumn) = if (random.nextFloat() < 0.18f) {
-            random.nextInt(rows) to random.nextInt(columns)
-        } else {
-            neighbors.random(random)
+        if (currentCount >= targetSelectedCount) return
+        
+        when (random.nextInt(4)) {
+            0 -> if (row > 0) row--
+            1 -> if (row < rows - 1) row++
+            2 -> if (column > 0) column--
+            3 -> if (column < columns - 1) column++
         }
-        row = nextRow
-        column = nextColumn
+        if (random.nextFloat() < 0.12f) {
+            row = random.nextInt(rows)
+            column = random.nextInt(columns)
+        }
     }
 }
 
 private fun fillBandMask(
-    mask: MutableList<MutableList<Boolean>>,
+    mask: BooleanArray,
+    rows: Int,
+    columns: Int,
     targetSelectedCount: Int,
     random: Random,
 ) {
-    val rows = mask.size
-    val columns = mask.firstOrNull()?.size ?: return
     repeat(rows) { row ->
         val segmentCount = if (random.nextFloat() < 0.34f) 2 else 1
         repeat(segmentCount) {
             val start = random.nextInt(columns)
             val length = random.nextInt(1, (columns / 2).coerceAtLeast(2) + 1)
             for (column in start until (start + length).coerceAtMost(columns)) {
-                mask[row][column] = true
+                mask[row * columns + column] = true
             }
         }
     }
-    if (selectedCount(mask) < targetSelectedCount) {
+    if (mask.count { it } < targetSelectedCount) {
         repeat(columns) { column ->
             if (random.nextBoolean()) {
                 val start = random.nextInt(rows)
                 val length = random.nextInt(1, (rows / 3).coerceAtLeast(2) + 1)
                 for (row in start until (start + length).coerceAtMost(rows)) {
-                    mask[row][column] = true
+                    mask[row * columns + column] = true
                 }
             }
         }
@@ -541,19 +546,21 @@ private fun fillBandMask(
 }
 
 private fun fillClusterMask(
-    mask: MutableList<MutableList<Boolean>>,
-    targetSelectedCount: Int,
+    mask: BooleanArray,
+    rows: Int,
+    columns: Int,
     random: Random,
 ) {
-    val rows = mask.size
-    val columns = mask.firstOrNull()?.size ?: return
-    val centers = List(random.nextInt(2, 5)) {
-        GridPoint(column = random.nextInt(columns), row = random.nextInt(rows))
-    }
+    val centersCount = random.nextInt(2, 5)
+    val centersR = IntArray(centersCount) { random.nextInt(rows) }
+    val centersC = IntArray(centersCount) { random.nextInt(columns) }
+
     for (row in 0 until rows) {
         for (column in 0 until columns) {
-            val minDistance = centers.minOf { center ->
-                kotlin.math.abs(center.column - column) + kotlin.math.abs(center.row - row)
+            var minDistance = Int.MAX_VALUE
+            for (i in 0 until centersCount) {
+                val d = abs(centersR[i] - row) + abs(centersC[i] - column)
+                if (d < minDistance) minDistance = d
             }
             val chance = when (minDistance) {
                 0 -> 0.92f
@@ -562,22 +569,18 @@ private fun fillClusterMask(
                 else -> 0.16f
             }
             if (random.nextFloat() < chance) {
-                mask[row][column] = true
+                mask[row * columns + column] = true
             }
         }
-    }
-    if (selectedCount(mask) < targetSelectedCount / 2) {
-        fillScatterMask(mask, targetSelectedCount, random)
     }
 }
 
 private fun fillWaveMask(
-    mask: MutableList<MutableList<Boolean>>,
-    targetSelectedCount: Int,
+    mask: BooleanArray,
+    rows: Int,
+    columns: Int,
     random: Random,
 ) {
-    val rows = mask.size
-    val columns = mask.firstOrNull()?.size ?: return
     val period = random.nextInt(2, 5)
     val rowWeight = random.nextInt(1, 4)
     val columnWeight = random.nextInt(1, 4)
@@ -586,152 +589,207 @@ private fun fillWaveMask(
         for (column in 0 until columns) {
             val isWaveCell = ((row * rowWeight) + (column * columnWeight) + offset) % period == 0
             if (isWaveCell || random.nextFloat() < 0.12f) {
-                mask[row][column] = true
+                mask[row * columns + column] = true
             }
         }
-    }
-    if (selectedCount(mask) < targetSelectedCount / 2) {
-        fillRandomWalkMask(mask, targetSelectedCount, random)
     }
 }
 
 private fun fillScatterMask(
-    mask: MutableList<MutableList<Boolean>>,
+    mask: BooleanArray,
+    rows: Int,
+    columns: Int,
     targetSelectedCount: Int,
     random: Random,
 ) {
-    val rows = mask.size
-    val columns = mask.firstOrNull()?.size ?: return
     val density = targetSelectedCount.toFloat() / (rows * columns).toFloat()
     for (row in 0 until rows) {
         for (column in 0 until columns) {
-            val neighborBonus = countSelectedNeighbors(mask, row, column) * 0.08f
+            val neighbors = countSelectedNeighbors(mask, rows, columns, row, column)
+            val neighborBonus = neighbors * 0.08f
             if (random.nextFloat() < density + neighborBonus) {
-                mask[row][column] = true
+                mask[row * columns + column] = true
             }
         }
     }
 }
 
 private fun repairMaskCoverage(
-    mask: MutableList<MutableList<Boolean>>,
+    mask: BooleanArray,
+    rows: Int,
+    columns: Int,
     random: Random,
 ) {
-    val rows = mask.size
-    val columns = mask.firstOrNull()?.size ?: return
     repeat(rows) { row ->
-        if (mask[row].none { it }) {
-            mask[row][random.nextInt(columns)] = true
-        }
+        var hasAny = false
+        for (col in 0 until columns) if (mask[row * columns + col]) { hasAny = true; break }
+        if (!hasAny) mask[row * columns + random.nextInt(columns)] = true
     }
     repeat(columns) { column ->
-        if ((0 until rows).none { row -> mask[row][column] }) {
-            mask[random.nextInt(rows)][column] = true
-        }
+        var hasAny = false
+        for (row in 0 until rows) if (mask[row * columns + column]) { hasAny = true; break }
+        if (!hasAny) mask[random.nextInt(rows) * columns + column] = true
     }
 }
 
 private fun repairMaskHoles(
-    mask: MutableList<MutableList<Boolean>>,
+    mask: BooleanArray,
+    rows: Int,
+    columns: Int,
     random: Random,
 ) {
-    val rows = mask.size
-    val columns = mask.firstOrNull()?.size ?: return
     repeat(rows) { row ->
-        if (mask[row].all { it }) {
-            val removableColumns = (0 until columns).filter { column ->
-                (0 until rows).count { currentRow -> mask[currentRow][column] } > 1
+        var allSelected = true
+        for (col in 0 until columns) if (!mask[row * columns + col]) { allSelected = false; break }
+        if (allSelected) {
+            val candidates = mutableListOf<Int>()
+            for (col in 0 until columns) {
+                var colCount = 0
+                for (r in 0 until rows) if (mask[r * columns + col]) colCount++
+                if (colCount > 1) candidates.add(col)
             }
-            val columnToClear = removableColumns.randomOrNull(random) ?: random.nextInt(columns)
-            mask[row][columnToClear] = false
+            val colToClear = if (candidates.isNotEmpty()) candidates.random(random) else random.nextInt(columns)
+            mask[row * columns + colToClear] = false
         }
     }
     repeat(columns) { column ->
-        if ((0 until rows).all { row -> mask[row][column] }) {
-            val removableRows = (0 until rows).filter { row -> mask[row].count { it } > 1 }
-            val rowToClear = removableRows.randomOrNull(random) ?: random.nextInt(rows)
-            mask[rowToClear][column] = false
+        var allSelected = true
+        for (row in 0 until rows) if (!mask[row * columns + column]) { allSelected = false; break }
+        if (allSelected) {
+            val candidates = mutableListOf<Int>()
+            for (row in 0 until rows) {
+                var rowCount = 0
+                for (c in 0 until columns) if (mask[row * columns + c]) rowCount++
+                if (rowCount > 1) candidates.add(row)
+            }
+            val rowToClear = if (candidates.isNotEmpty()) candidates.random(random) else random.nextInt(rows)
+            mask[rowToClear * columns + column] = false
         }
     }
 }
 
 private fun trimMaskToTarget(
-    mask: MutableList<MutableList<Boolean>>,
+    mask: BooleanArray,
+    rows: Int,
+    columns: Int,
     targetSelectedCount: Int,
     random: Random,
 ) {
-    val rows = mask.size
-    val columns = mask.firstOrNull()?.size ?: return
-    while (selectedCount(mask) > targetSelectedCount) {
-        val removablePoints = buildList {
-            for (row in 0 until rows) {
-                for (column in 0 until columns) {
-                    if (!mask[row][column]) continue
-                    if (mask[row].count { it } <= 1) continue
-                    if ((0 until rows).count { currentRow -> mask[currentRow][column] } <= 1) continue
-                    add(GridPoint(column = column, row = row))
-                }
-            }
-        }
-        val point = removablePoints.randomOrNull(random) ?: break
-        mask[point.row][point.column] = false
+    var currentCount = mask.count { it }
+    val points = mutableListOf<Int>()
+    for (i in mask.indices) if (mask[i]) points.add(i)
+    points.shuffle(random)
+
+    for (idx in points) {
+        if (currentCount <= targetSelectedCount) break
+        val r = idx / columns
+        val c = idx % columns
+        
+        var rowCount = 0
+        for (col in 0 until columns) if (mask[r * columns + col]) rowCount++
+        if (rowCount <= 1) continue
+        
+        var colCount = 0
+        for (row in 0 until rows) if (mask[row * columns + c]) colCount++
+        if (colCount <= 1) continue
+        
+        mask[idx] = false
+        currentCount--
     }
 }
 
 private fun isUsefulSumShiftMask(
-    mask: List<List<Boolean>>,
+    mask: BooleanArray,
     rows: Int,
     columns: Int,
 ): Boolean {
-    if (mask.any { row -> row.none { it } || row.all { it } }) return false
-    if ((0 until columns).any { column ->
-            (0 until rows).none { row -> mask[row][column] } || (0 until rows).all { row -> mask[row][column] }
-        }) {
-        return false
+    repeat(rows) { r ->
+        var hasAny = false
+        var all = true
+        for (c in 0 until columns) {
+            if (mask[r * columns + c]) hasAny = true else all = false
+        }
+        if (!hasAny || all) return false
+    }
+    repeat(columns) { c ->
+        var hasAny = false
+        var all = true
+        for (r in 0 until rows) {
+            if (mask[r * columns + c]) hasAny = true else all = false
+        }
+        if (!hasAny || all) return false
     }
     return true
 }
 
 private fun buildSumShiftPuzzle(
-    values: List<List<Int>>,
-    solution: List<List<Boolean>>,
+    values: Array<IntArray>,
+    solution: BooleanArray,
 ): SumShiftPuzzle {
     val rows = values.size
-    val columns = values.firstOrNull()?.size ?: 0
-    val rowTargets = List(rows) { row ->
-        values[row].mapIndexed { column, value -> if (solution[row][column]) value else 0 }.sum()
+    val columns = values[0].size
+    val rowTargets = IntArray(rows)
+    val columnTargets = IntArray(columns)
+    
+    for (r in 0 until rows) {
+        for (c in 0 until columns) {
+            if (solution[r * columns + c]) {
+                val v = values[r][c]
+                rowTargets[r] += v
+                columnTargets[c] += v
+            }
+        }
     }
-    val columnTargets = List(columns) { column ->
-        values.indices.sumOf { row -> if (solution[row][column]) values[row][column] else 0 }
-    }
+    
     var board = BoardMatrix.empty(columns = columns, rows = rows)
-    repeat(rows) { row ->
-        repeat(columns) { column ->
+    repeat(rows) { r ->
+        repeat(columns) { c ->
             board = board.fill(
-                points = listOf(GridPoint(column, row)),
-                tone = sumShiftToneAt(column = column, row = row),
-                value = values[row][column],
+                points = listOf(GridPoint(c, r)),
+                tone = sumShiftToneAt(column = c, row = r),
+                value = values[r][c],
             )
         }
     }
-    return SumShiftPuzzle(board = board, rowTargets = rowTargets, columnTargets = columnTargets)
+    return SumShiftPuzzle(board = board, rowTargets = rowTargets.toList(), columnTargets = columnTargets.toList())
 }
 
 private fun scoreSumShiftPuzzle(
-    mask: List<List<Boolean>>,
+    mask: BooleanArray,
+    rows: Int,
+    columns: Int,
     puzzle: SumShiftPuzzle,
 ): Int {
-    val rowCounts = mask.map { row -> row.count { it } }
-    val columnCounts = puzzle.columnTargets.indices.map { column -> mask.indices.count { row -> mask[row][column] } }
+    val rowCounts = IntArray(rows)
+    val colCounts = IntArray(columns)
+    for (r in 0 until rows) {
+        for (c in 0 until columns) {
+            if (mask[r * columns + c]) {
+                rowCounts[r]++
+                colCounts[c]++
+            }
+        }
+    }
+    
     val rowSpread = (puzzle.rowTargets.maxOrNull() ?: 0) - (puzzle.rowTargets.minOrNull() ?: 0)
     val columnSpread = (puzzle.columnTargets.maxOrNull() ?: 0) - (puzzle.columnTargets.minOrNull() ?: 0)
+    
     return (puzzle.rowTargets.distinct().size * 14) +
         (puzzle.columnTargets.distinct().size * 16) +
         (rowCounts.distinct().size * 9) +
-        (columnCounts.distinct().size * 11) +
+        (colCounts.distinct().size * 11) +
         rowSpread +
         columnSpread +
-        (selectedCount(mask) * 2)
+        (mask.count { it } * 2)
+}
+
+private fun countSelectedNeighbors(mask: BooleanArray, rows: Int, columns: Int, row: Int, col: Int): Int {
+    var count = 0
+    if (row > 0 && mask[(row - 1) * columns + col]) count++
+    if (row < rows - 1 && mask[(row + 1) * columns + col]) count++
+    if (col > 0 && mask[row * columns + (col - 1)]) count++
+    if (col < columns - 1 && mask[row * columns + (col + 1)]) count++
+    return count
 }
 
 private fun fallbackSumShiftPuzzle(
@@ -739,33 +797,12 @@ private fun fallbackSumShiftPuzzle(
     columns: Int,
     random: Random,
 ): SumShiftPuzzle {
-    val values = List(rows) { List(columns) { random.nextInt(1, 10) } }
-    val solution = List(rows) { row ->
-        List(columns) { column ->
-            column == (row + random.nextInt(columns)) % columns || random.nextFloat() < 0.22f
-        }
+    val values = Array(rows) { IntArray(columns) { random.nextInt(1, 10) } }
+    val solution = BooleanArray(rows * columns)
+    repeat(rows) { r ->
+        solution[r * columns + random.nextInt(columns)] = true
     }
-    return buildSumShiftPuzzle(values = values, solution = solution)
-}
-
-private fun selectedCount(mask: List<List<Boolean>>): Int = mask.sumOf { row -> row.count { it } }
-
-private fun countSelectedNeighbors(
-    mask: List<List<Boolean>>,
-    row: Int,
-    column: Int,
-): Int {
-    var count = 0
-    for (rowOffset in -1..1) {
-        for (columnOffset in -1..1) {
-            if (rowOffset == 0 && columnOffset == 0) continue
-            val nextRow = row + rowOffset
-            val nextColumn = column + columnOffset
-            if (nextRow !in mask.indices || nextColumn !in mask.first().indices) continue
-            if (mask[nextRow][nextColumn]) count += 1
-        }
-    }
-    return count
+    return buildSumShiftPuzzle(values, solution)
 }
 
 private fun sumShiftToneAt(column: Int, row: Int): CellTone = listOf(
