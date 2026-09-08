@@ -141,6 +141,7 @@ import blockgames.composeapp.generated.resources.restart_confirm_title
 import blockgames.composeapp.generated.resources.return_home
 import blockgames.composeapp.generated.resources.score
 import blockgames.composeapp.generated.resources.settings_challenges
+import blockgames.composeapp.generated.resources.special_collector
 import blockgames.composeapp.generated.resources.special_column_clearer
 import blockgames.composeapp.generated.resources.special_ghost
 import blockgames.composeapp.generated.resources.special_heavy
@@ -1010,6 +1011,7 @@ internal fun SpecialBlockType.shortLabel(): GameText {
         SpecialBlockType.RowClearer -> gameText(GameTextKey.SpecialRowClearer)
         SpecialBlockType.Ghost -> gameText(GameTextKey.SpecialGhost)
         SpecialBlockType.Heavy -> gameText(GameTextKey.SpecialHeavy)
+        SpecialBlockType.Collector -> gameText(GameTextKey.SpecialCollector)
         SpecialBlockType.None -> gameText(GameTextKey.PiecePropertiesNone)
     }
 }
@@ -1084,6 +1086,7 @@ internal fun GameTextKey.stringResourceId(): StringResource {
         GameTextKey.SpecialRowClearer -> Res.string.special_row_clearer
         GameTextKey.SpecialGhost -> Res.string.special_ghost
         GameTextKey.SpecialHeavy -> Res.string.special_heavy
+        GameTextKey.SpecialCollector -> Res.string.special_collector
         GameTextKey.PiecePropertiesNone -> Res.string.piece_properties_none
         GameTextKey.FeedbackAdRewardBlockWise -> Res.string.feedback_ad_reward_blockwise
         GameTextKey.FeedbackAdRewardMergeShift -> Res.string.feedback_ad_reward_mergeshift

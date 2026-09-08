@@ -561,8 +561,12 @@ internal class MergeShiftGameLogic(
     }
 
     private fun advanceQueue(state: GameState): Triple<Piece, List<Piece>, Long> {
-        val nextActive = state.nextQueue.first()
-        val (newPiece, nextId) = createPiece(state.nextPieceId)
+        var currentNextId = state.nextPieceId
+        val nextActive = state.nextQueue.firstOrNull() ?: createPiece(currentNextId).let { (p, id) ->
+            currentNextId = id
+            p
+        }
+        val (newPiece, nextId) = createPiece(currentNextId)
         val nextQueue = state.nextQueue.drop(1) + newPiece
         return Triple(nextActive, nextQueue, nextId)
     }

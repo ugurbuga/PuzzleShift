@@ -9,6 +9,7 @@ import com.ugurbuga.blockgames.game.model.ComboState
 import com.ugurbuga.blockgames.game.model.DailyChallenge
 import com.ugurbuga.blockgames.game.model.DigitShiftGuess
 import com.ugurbuga.blockgames.game.model.DigitShiftLetterState
+import com.ugurbuga.blockgames.game.model.FluffyBlockCollector
 import com.ugurbuga.blockgames.game.model.GameConfig
 import com.ugurbuga.blockgames.game.model.GameMode
 import com.ugurbuga.blockgames.game.model.GameState
@@ -104,7 +105,7 @@ expect object GameSessionStorage {
 }
 
 internal object GameSessionCodec {
-    private const val Version = 12
+    private const val Version = 14
     private const val SectionSeparator = '|'
     private const val FieldSeparator = ','
     private const val ListSeparator = ';'
@@ -117,6 +118,7 @@ internal object GameSessionCodec {
     private const val DigitShiftGuessPartSeparator = '*'
     private const val DigitShiftHintSeparator = '&'
     private const val DigitShiftHintPartSeparator = '%'
+    private const val FluffyBlockCollectorSeparator = '@'
 
     fun encode(state: GameState): String = listOf(
         Version.toString(),
@@ -141,13 +143,15 @@ internal object GameSessionCodec {
         encodeChallenge(state.activeChallenge),
         encodeDigitShiftState(state),
         encodeSumShiftState(state),
+        encodeFluffyBlockState(state),
     ).joinToString(separator = SectionSeparator.toString())
 
     fun decode(value: String): GameState? {
-        val parts = value.split(SectionSeparator, limit = 22)
+        val parts = value.split(SectionSeparator, limit = 23)
         val version = parts.firstOrNull()?.toIntOrNull() ?: return null
         if (version !in 2..Version) return null
         val expectedPartCount = when {
+            version >= 12 -> 23
             version >= 10 -> 22
             version >= 8 -> 21
             version >= 3 -> 20
@@ -185,6 +189,7 @@ internal object GameSessionCodec {
         val activeChallenge = if (version >= 3) decodeChallenge(parts[19]) else null
         val digitShiftState = if (version >= 8) decodeDigitShiftState(parts[20]) ?: return null else DigitShiftState()
         val sumShiftState = if (version >= 10) decodeSumShiftState(parts[21], version) ?: return null else SumShiftState()
+        val fluffyBlockState = if (version >= 12) decodeFluffyBlockState(parts[22]) ?: return null else FluffyBlockState()
 
         return GameState(
             config = config,
@@ -238,6 +243,7 @@ internal object GameSessionCodec {
             sumShiftManualDisabledCells = sumShiftState.manualDisabledCells,
             sumShiftMistakesUsed = sumShiftState.mistakesUsed,
             sumShiftPreparingBoard = sumShiftState.preparingBoard,
+            fluffyBlockCollectors = fluffyBlockState.collectors,
         )
     }
 
@@ -247,7 +253,6 @@ internal object GameSessionCodec {
         addAll(state.nextQueue.map(Piece::id))
         state.softLock?.let { add(it.pieceId) }
         
-        // Include board cell values for modes like BoomBlocks/MergeShift
         for (row in 0 until state.board.rows) {
             for (col in 0 until state.board.columns) {
                 state.board.cellAt(col, row)?.let { add(it.value.toLong()) }
@@ -297,8 +302,6 @@ internal object GameSessionCodec {
         if (parts.size != expectedCells + 2) return null
 
         var board = BoardMatrix.empty(columns = columns, rows = rows)
-        // Group cells by tone+special+value so we can batch-fill them,
-        // avoiding O(n²) array copies from calling fill() per cell.
         data class CellKey(val tone: CellTone, val special: SpecialBlockType, val cellValue: Int)
         val grouped = mutableMapOf<CellKey, MutableList<GridPoint>>()
         var index = 2
@@ -576,15 +579,6 @@ internal object GameSessionCodec {
         val feedbackToken: Long,
     )
 
-    private data class ActivityState(
-        val recentlyClearedColumns: Set<Int> = emptySet(),
-        val rewardedReviveUsed: Boolean = false,
-        val gameplayStyle: GameplayStyle = GameplayStyle.StackShift,
-        val nextPieceId: Long = 1L,
-        val blockSortBonusEmptyColumnUsed: Boolean = false,
-        val blockSortScoredMoveSignatures: Set<String> = emptySet(),
-    )
-
     private fun encodeVisualState(state: GameState): String = listOf(
         state.clearAnimationToken,
         state.screenShakeToken,
@@ -604,6 +598,15 @@ internal object GameSessionCodec {
             feedbackToken = parts[4].toLongOrNull() ?: return null,
         )
     }
+
+    private data class ActivityState(
+        val recentlyClearedColumns: Set<Int> = emptySet(),
+        val rewardedReviveUsed: Boolean = false,
+        val gameplayStyle: GameplayStyle = GameplayStyle.StackShift,
+        val nextPieceId: Long = 1L,
+        val blockSortBonusEmptyColumnUsed: Boolean = false,
+        val blockSortScoredMoveSignatures: Set<String> = emptySet(),
+    )
 
     private fun encodeActivityState(state: GameState): String = listOf(
         encodeIntSet(state.recentlyClearedColumns),
@@ -669,9 +672,7 @@ internal object GameSessionCodec {
         ).joinToString(separator = FieldSeparator.toString())
     }
 
-    private fun decodeChallenge(
-        value: String,
-    ): DailyChallenge? {
+    private fun decodeChallenge(value: String): DailyChallenge? {
         val gameplayStyle = GlobalPlatformConfig.gameplayStyle
         if (value == EmptyToken || value.isBlank()) return null
         val parts = value.split(FieldSeparator, limit = 4)
@@ -698,9 +699,7 @@ internal object GameSessionCodec {
         )
     }
 
-    private fun decodeChallengeTaskType(
-        token: String,
-    ): ChallengeTaskType? {
+    private fun decodeChallengeTaskType(token: String): ChallengeTaskType? {
         val gameplayStyle = GlobalPlatformConfig.gameplayStyle
         return ChallengeTaskType.fromStableId(token)
             ?: token.toIntOrNull()?.let { ChallengeTaskType.fromLegacyOrdinal(gameplayStyle, it) }
@@ -868,13 +867,48 @@ internal object GameSessionCodec {
 
     private fun decodePoints(value: String): List<GridPoint>? {
         if (value == EmptyToken || value.isBlank()) return emptyList()
-        return value.split(ListSeparator).mapNotNull { token ->
+        return value.split(ListSeparator).map { token ->
             val parts = token.split(PointSeparator)
             if (parts.size != 2) return null
-            GridPoint(
-                column = parts[0].toIntOrNull() ?: return null,
-                row = parts[1].toIntOrNull() ?: return null,
+            GridPoint(column = parts[0].toIntOrNull() ?: return null, row = parts[1].toIntOrNull() ?: return null)
+        }
+    }
+
+    private fun encodeFluffyBlockState(state: GameState): String =
+        if (state.fluffyBlockCollectors.isEmpty()) EmptyToken
+        else state.fluffyBlockCollectors.joinToString(separator = FluffyBlockCollectorSeparator.toString()) { collector ->
+            listOf(
+                collector.id.toString(),
+                collector.tone.ordinal.toString(),
+                collector.kind.ordinal.toString(),
+                collector.anchor.column.toString(),
+                collector.anchor.row.toString(),
+                collector.collectedCount.toString(),
+                collector.remainingCapacity.toString()
+            ).joinToString(separator = PointSeparator.toString())
+        }
+
+    private data class FluffyBlockState(
+        val collectors: List<FluffyBlockCollector> = emptyList()
+    )
+
+    private fun decodeFluffyBlockState(value: String): FluffyBlockState? {
+        if (value == EmptyToken || value.isBlank()) return FluffyBlockState()
+        val collectors = value.split(FluffyBlockCollectorSeparator).map { token ->
+            val parts = token.split(PointSeparator)
+            if (parts.size != 7 && parts.size != 6) return null
+            FluffyBlockCollector(
+                id = parts[0].toLongOrNull() ?: return null,
+                tone = CellTone.entries.getOrNull(parts[1].toIntOrNull() ?: return null) ?: return null,
+                kind = PieceKind.entries.getOrNull(parts[2].toIntOrNull() ?: return null) ?: return null,
+                anchor = GridPoint(
+                    column = parts[3].toIntOrNull() ?: return null,
+                    row = parts[4].toIntOrNull() ?: return null
+                ),
+                collectedCount = parts[5].toIntOrNull() ?: return null,
+                remainingCapacity = if (parts.size == 7) parts[6].toIntOrNull() ?: 0 else 0
             )
         }
+        return FluffyBlockState(collectors)
     }
 }

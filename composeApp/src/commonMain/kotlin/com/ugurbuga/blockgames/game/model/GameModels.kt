@@ -260,6 +260,7 @@ data class GameConfig(
             GameplayStyle.BlockSort -> GameConfig(columns = 6, rows = 4, difficultyIntervalSeconds = 9_999, linesPerLevel = 9_999)
             GameplayStyle.DigitShift -> GameConfig(columns = 5, rows = 6, difficultyIntervalSeconds = 9_999, linesPerLevel = 9_999)
             GameplayStyle.SumShift -> GameConfig(columns = 5, rows = 6, difficultyIntervalSeconds = 9_999, linesPerLevel = 9_999)
+            GameplayStyle.FluffyBlock -> GameConfig(columns = 6, rows = 10)
         }
     }
 }
@@ -277,11 +278,13 @@ enum class GameplayStyle {
     BlockSort,
     DigitShift,
     SumShift,
+    FluffyBlock,
 }
 
 fun GameplayStyle.storageKey(): String = when (this) {
     GameplayStyle.BlockSort -> "blocksort"
     GameplayStyle.DigitShift -> "digitshift"
+    GameplayStyle.FluffyBlock -> "fluffyblock"
     else -> name.lowercase()
 }
 
@@ -310,6 +313,7 @@ enum class SpecialBlockType {
     RowClearer,
     Ghost,
     Heavy,
+    Collector,
 }
 
 enum class PressureLevel {
@@ -390,6 +394,7 @@ enum class GameTextKey {
     SpecialRowClearer,
     SpecialGhost,
     SpecialHeavy,
+    SpecialCollector,
     PiecePropertiesNone,
     GameMessageAdRewardBlockWise,
     GameMessageAdRewardMergeShift,
@@ -953,6 +958,18 @@ data class PlacementPreview(
 )
 
 @Immutable
+data class FluffyBlockCollector(
+    val id: Long,
+    val tone: CellTone,
+    val kind: PieceKind,
+    val anchor: GridPoint,
+    val collectedCount: Int = 0,
+    val remainingCapacity: Int = 0,
+) {
+    val cells: List<GridPoint> get() = kind.template.map { it + anchor }
+}
+
+@Immutable
 data class GameState(
     val config: GameConfig,
     val gameMode: GameMode = GameMode.Classic,
@@ -1012,6 +1029,7 @@ data class GameState(
     val sumShiftManualDisabledCells: Set<GridPoint> = emptySet(),
     val sumShiftMistakesUsed: Int = 0,
     val sumShiftPreparingBoard: Boolean = false,
+    val fluffyBlockCollectors: List<FluffyBlockCollector> = emptyList(),
 ) {
     val trayPieces: List<Piece>
         get() = buildList {
@@ -1294,5 +1312,6 @@ fun boardSpecialIcon(type: SpecialBlockType): ImageVector = when (type) {
     SpecialBlockType.RowClearer -> Icons.Filled.SwapHoriz
     SpecialBlockType.Ghost -> Icons.Filled.Layers
     SpecialBlockType.Heavy -> Icons.Filled.Hub
+    SpecialBlockType.Collector -> Icons.Filled.Hub
     SpecialBlockType.None -> Icons.AutoMirrored.Filled.HelpOutline
 }

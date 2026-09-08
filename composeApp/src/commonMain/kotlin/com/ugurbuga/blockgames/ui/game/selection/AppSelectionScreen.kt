@@ -71,6 +71,7 @@ import blockgames.composeapp.generated.resources.app_title_blocksort
 import blockgames.composeapp.generated.resources.app_title_blockwise
 import blockgames.composeapp.generated.resources.app_title_boomblocks
 import blockgames.composeapp.generated.resources.app_title_digitshift
+import blockgames.composeapp.generated.resources.app_title_fluffyblock
 import blockgames.composeapp.generated.resources.app_title_mergeshift
 import blockgames.composeapp.generated.resources.app_title_stackshift
 import blockgames.composeapp.generated.resources.app_title_sumshift
@@ -80,6 +81,7 @@ import blockgames.composeapp.generated.resources.selection_blocksort_desc
 import blockgames.composeapp.generated.resources.selection_blockwise_desc
 import blockgames.composeapp.generated.resources.selection_boomblocks_desc
 import blockgames.composeapp.generated.resources.selection_digitshift_desc
+import blockgames.composeapp.generated.resources.selection_fluffyblock_desc
 import blockgames.composeapp.generated.resources.selection_mergeshift_desc
 import blockgames.composeapp.generated.resources.selection_stackshift_desc
 import blockgames.composeapp.generated.resources.selection_sumshift_desc
@@ -96,6 +98,7 @@ import com.ugurbuga.blockgames.game.model.Piece
 import com.ugurbuga.blockgames.game.model.PlacementPreview
 import com.ugurbuga.blockgames.localization.LocalAppSettings
 import com.ugurbuga.blockgames.localization.LocalBlockStylePulse
+import com.ugurbuga.blockgames.platform.GlobalPlatformConfig
 import com.ugurbuga.blockgames.settings.AppSettings
 import com.ugurbuga.blockgames.settings.BlockSortOnboardingStage
 import com.ugurbuga.blockgames.settings.BlockSortOnboardingStateFactory
@@ -105,6 +108,7 @@ import com.ugurbuga.blockgames.settings.BoomBlocksOnboardingStage
 import com.ugurbuga.blockgames.settings.BoomBlocksOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStage
 import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStateFactory
+import com.ugurbuga.blockgames.settings.FluffyBlockOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.MergeShiftOnboardingStage
 import com.ugurbuga.blockgames.settings.MergeShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.StackShiftGameOnboardingStateFactory
@@ -197,15 +201,18 @@ fun AppSelectionScreen(
     val uiColors = BlockGamesThemeTokens.uiColors
     LogScreen(telemetry, TelemetryScreenNames.Selection)
     val items = remember {
-        listOf(
-            SelectionGameSpec(GameplayStyle.StackShift, Res.string.app_title_stackshift, Res.string.selection_stackshift_desc),
-            SelectionGameSpec(GameplayStyle.BlockWise, Res.string.app_title_blockwise, Res.string.selection_blockwise_desc),
-            SelectionGameSpec(GameplayStyle.BlockSort, Res.string.app_title_blocksort, Res.string.selection_blocksort_desc),
-            SelectionGameSpec(GameplayStyle.MergeShift, Res.string.app_title_mergeshift, Res.string.selection_mergeshift_desc),
-            SelectionGameSpec(GameplayStyle.BoomBlocks, Res.string.app_title_boomblocks, Res.string.selection_boomblocks_desc),
-            SelectionGameSpec(GameplayStyle.DigitShift, Res.string.app_title_digitshift, Res.string.selection_digitshift_desc),
-            SelectionGameSpec(GameplayStyle.SumShift, Res.string.app_title_sumshift, Res.string.selection_sumshift_desc),
-        )
+        buildList {
+            add(SelectionGameSpec(GameplayStyle.StackShift, Res.string.app_title_stackshift, Res.string.selection_stackshift_desc))
+            add(SelectionGameSpec(GameplayStyle.BlockWise, Res.string.app_title_blockwise, Res.string.selection_blockwise_desc))
+            add(SelectionGameSpec(GameplayStyle.BlockSort, Res.string.app_title_blocksort, Res.string.selection_blocksort_desc))
+            add(SelectionGameSpec(GameplayStyle.MergeShift, Res.string.app_title_mergeshift, Res.string.selection_mergeshift_desc))
+            add(SelectionGameSpec(GameplayStyle.BoomBlocks, Res.string.app_title_boomblocks, Res.string.selection_boomblocks_desc))
+            add(SelectionGameSpec(GameplayStyle.DigitShift, Res.string.app_title_digitshift, Res.string.selection_digitshift_desc))
+            add(SelectionGameSpec(GameplayStyle.SumShift, Res.string.app_title_sumshift, Res.string.selection_sumshift_desc))
+            if (GlobalPlatformConfig.isDebug) {
+                add(SelectionGameSpec(GameplayStyle.FluffyBlock, Res.string.app_title_fluffyblock, Res.string.selection_fluffyblock_desc))
+            }
+        }
     }
 
     val listState = rememberLazyListState()
@@ -482,6 +489,7 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
                 ?: DigitShiftOnboardingStateFactory.scene(DigitShiftOnboardingStage.FirstGuess).gameState
             GameplayStyle.SumShift -> sumShiftScenes.firstOrNull()?.gameState
                 ?: SumShiftOnboardingStateFactory.scene(SumShiftOnboardingStage.MatchRow).gameState
+            GameplayStyle.FluffyBlock -> FluffyBlockOnboardingStateFactory.initialState()
         }
     }
     val boomBlocksScenario = remember(style) {
@@ -599,7 +607,7 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
                             val (target, preview) = findPreferredGridPlacement(
                                 state = gameState,
                                 pieceId = piece.id,
-                                previewProvider = logic::previewPlacement,
+                                previewProvider = { s, id, pt -> logic.previewPlacement(s, id, pt) },
                             ) ?: return@repeat
                             activeDemoPiece = piece
                             activePreview = preview
@@ -645,7 +653,7 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
                         val (targetCol, preview) = findPreferredColumnPlacement(
                             state = gameState,
                             preferredColumns = mergeShiftPreferredColumnsForStep(stepIndex),
-                            previewProvider = logic::previewPlacement,
+                            previewProvider = { s, c -> logic.previewPlacement(s, c) },
                         ) ?: return@repeat
                         activeDemoPiece = piece
                         activePreview = preview
@@ -716,6 +724,40 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
                             gameState = scene.gameState
                             delay(1500)
                         }
+                    }
+                }
+
+                GameplayStyle.FluffyBlock -> {
+                    val demoRandom = Random(42)
+                    repeat(SelectionDemoActionCount) {
+                        val currentConfig = gameState.config
+                        val piece = gameState.activePiece ?: return@repeat
+                        val start = gameState.onboardingGuidePoint ?: GridPoint(3, 7)
+                        
+                        // Simple target selection for demo: find any block of same tone
+                        var target = GridPoint(demoRandom.nextInt(currentConfig.columns), demoRandom.nextInt(currentConfig.rows))
+                        for (r in 0 until currentConfig.rows) {
+                            for (c in 0 until currentConfig.columns) {
+                                if (gameState.board.cellAt(c, r)?.tone == piece.tone) {
+                                    target = GridPoint(c, r)
+                                    break
+                                }
+                            }
+                        }
+
+                        activeDemoPiece = piece
+                        animatedX.snapTo(start.column.toFloat() / currentConfig.columns.toFloat())
+                        animatedY.snapTo(start.row.toFloat() / currentConfig.rows.toFloat())
+                        delay(400)
+
+                        launch { animatedX.animateTo(target.column.toFloat() / currentConfig.columns.toFloat(), tween(800)) }
+                        launch { animatedY.animateTo(target.row.toFloat() / currentConfig.rows.toFloat(), tween(800)) }
+                        delay(900)
+
+                        val result = logic.placePiece(gameState, 0L, target)
+                        gameState = result.state
+                        activeDemoPiece = null
+                        delay(1200)
                     }
                 }
             }
@@ -797,7 +839,24 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
                 )
             }
 
-            else -> {
+            GameplayStyle.FluffyBlock -> {
+                BoardGrid(
+                    modifier = Modifier
+                        .offset(x = boardOffsetX)
+                        .size(actualBoardWidth, actualBoardHeight),
+                    gameState = gameState,
+                    preview = activePreview,
+                    impactedPreviewCells = impactedPreviewCells,
+                    activeColumn = activePreview?.selectedColumn,
+                    activePiece = activeDemoPiece,
+                    isDragging = activeDemoPiece != null,
+                    stylePulse = stylePulse,
+                )
+            }
+
+            GameplayStyle.StackShift,
+            GameplayStyle.BlockWise,
+            GameplayStyle.MergeShift -> {
                 BoardGrid(
                     modifier = Modifier
                         .offset(x = boardOffsetX)
@@ -877,6 +936,7 @@ internal fun GameplayStyle.selectionTone(): CellTone = when (this) {
     GameplayStyle.BoomBlocks -> CellTone.Coral
     GameplayStyle.DigitShift -> CellTone.Gold
     GameplayStyle.SumShift -> CellTone.Blue
+    GameplayStyle.FluffyBlock -> CellTone.Rose
 }
 
 private fun com.ugurbuga.blockgames.ui.theme.BlockGamesUiColors.selectionAccentFor(style: GameplayStyle): Color = when (style) {
@@ -887,10 +947,11 @@ private fun com.ugurbuga.blockgames.ui.theme.BlockGamesUiColors.selectionAccentF
     GameplayStyle.BoomBlocks -> danger
     GameplayStyle.DigitShift -> warning
     GameplayStyle.SumShift -> selectionStackShift
+    GameplayStyle.FluffyBlock -> success
 }
 
-internal fun initialExpandedSelectionStyle(currentStyle: GameplayStyle?): GameplayStyle =
-    currentStyle ?: GameplayStyle.StackShift
+internal fun initialExpandedSelectionStyle(currentStyle: GameplayStyle?): GameplayStyle? =
+    if (currentStyle == null) GameplayStyle.StackShift else null
 
 private fun buildBlockSortDemoScenario(): List<BlockSortDemoStep> {
     val logic = com.ugurbuga.blockgames.game.logic.GameLogic.create(random = Random(0))
