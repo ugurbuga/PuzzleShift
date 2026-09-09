@@ -311,6 +311,7 @@ private fun HomeTitleBanner(
         GameplayStyle.BlockSort -> BlockSortHomeTitleBanner(settings, pulse, modifier)
         GameplayStyle.DigitShift -> DigitShiftHomeTitleBanner(settings, pulse, modifier)
         GameplayStyle.SumShift -> SumShiftHomeTitleBanner(settings, pulse, modifier)
+        GameplayStyle.FluffyBlock -> StackShiftHomeTitleBanner(settings, pulse, modifier)
     }
 }
 

@@ -31,8 +31,12 @@ class AppSelectionScreenCommonTest {
     fun selectionTone_mapsEachGameplayStyleToItsAccentTone() {
         assertEquals(CellTone.Cyan, GameplayStyle.StackShift.selectionTone())
         assertEquals(CellTone.Amber, GameplayStyle.BlockWise.selectionTone())
+        assertEquals(CellTone.Emerald, GameplayStyle.BlockSort.selectionTone())
         assertEquals(CellTone.Violet, GameplayStyle.MergeShift.selectionTone())
         assertEquals(CellTone.Coral, GameplayStyle.BoomBlocks.selectionTone())
+        assertEquals(CellTone.Gold, GameplayStyle.DigitShift.selectionTone())
+        assertEquals(CellTone.Blue, GameplayStyle.SumShift.selectionTone())
+        assertEquals(CellTone.Rose, GameplayStyle.FluffyBlock.selectionTone())
     }
 
     @Test
@@ -55,14 +59,13 @@ class AppSelectionScreenCommonTest {
         val placement = findPreferredColumnPlacement(
             state = state,
             preferredColumns = listOf(2),
-            previewProvider = { _, column ->
-                when (column) {
-                    0 -> previewAt(column)
-                    2 -> null
-                    else -> null
-                }
-            },
-        )
+        ) { _, column ->
+            when (column) {
+                0 -> previewAt(column)
+                2 -> null
+                else -> null
+            }
+        }
 
         assertNotNull(placement)
         assertEquals(0, placement.first)

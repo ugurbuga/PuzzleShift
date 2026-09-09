@@ -64,6 +64,7 @@ private class AdaptiveGameLogic(
             GameplayStyle.BlockSort -> BlockSortGameLogic(random, scoreCalculator)
             GameplayStyle.DigitShift -> DigitShiftGameLogic(random, scoreCalculator)
             GameplayStyle.SumShift -> SumShiftGameLogic(random, scoreCalculator)
+            GameplayStyle.FluffyBlock -> FluffyBlockGameLogic(random, scoreCalculator)
         }
     }
 

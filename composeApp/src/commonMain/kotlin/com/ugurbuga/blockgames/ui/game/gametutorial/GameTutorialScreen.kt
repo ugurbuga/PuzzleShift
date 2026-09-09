@@ -576,7 +576,8 @@ private fun tutorialSpecialScene(
                 tone = CellTone.Coral,
             )
 
-        SpecialBlockType.None -> BoardMatrix.empty(
+        SpecialBlockType.None,
+        SpecialBlockType.Collector -> BoardMatrix.empty(
             columns = TutorialCompactColumns,
             rows = TutorialCompactRows
         )
@@ -666,6 +667,13 @@ fun GameTutorialScreen(
                 TutorialPage.SumShiftTargets,
                 TutorialPage.SumShiftStrategy,
                 TutorialPage.SumShiftReady,
+            )
+
+            GameplayStyle.FluffyBlock -> listOf(
+                TutorialPage.BoomBlocksIntro,
+                TutorialPage.BoomBlocksGravity,
+                TutorialPage.StackShiftSystems,
+                TutorialPage.BoomBlocksReady,
             )
         }
     }

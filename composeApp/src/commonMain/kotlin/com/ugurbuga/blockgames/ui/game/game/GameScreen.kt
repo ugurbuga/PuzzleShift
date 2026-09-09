@@ -662,6 +662,31 @@ fun BlockGamesGameApp(
             },
         )
 
+        GameplayStyle.FluffyBlock -> FluffyBlockGameScreen(
+            modifier = modifier,
+            gameState = displayGameState,
+            onRequestPreview = { id, origin -> viewModel.previewPlacement(id, origin) },
+            onMoveCollector = { id, origin ->
+                telemetry.logUserAction("move_collector_fluffyblock")
+                val result = viewModel.placePieceResult(id, origin)
+                dispatchFeedback(result.feedback, soundPlayer, haptics)
+            },
+            onRestart = {
+                telemetry.logUserAction(TelemetryActionNames.RestartGame)
+                viewModel.restart(
+                    config = restartConfigForStyle(uiState.gameState, GameplayStyle.FluffyBlock),
+                )
+            },
+            onRewardedRevive = {
+                telemetry.logUserAction("rewarded_revive")
+                viewModel.reviveFromReward()
+            },
+            onBack = onBack,
+            highestScore = highestScore,
+            showNewHighScoreMessage = newHighScoreReached,
+            adController = adController
+        )
+
         GameplayStyle.StackShift -> StackShiftGameScreen(
             modifier = modifier,
             gameState = displayGameState,

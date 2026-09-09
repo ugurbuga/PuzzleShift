@@ -116,6 +116,7 @@
     <string name="special_row_clearer">ROW</string>
     <string name="special_ghost">GHOST</string>
     <string name="special_heavy">HEAVY</string>
+    <string name="special_collector">COLLECTOR</string>
     <string name="piece_properties_none">None</string>
 
     <!-- NotificationWorker -->

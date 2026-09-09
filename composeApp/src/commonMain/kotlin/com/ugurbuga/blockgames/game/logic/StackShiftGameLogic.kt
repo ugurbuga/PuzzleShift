@@ -794,6 +794,7 @@ internal class StackShiftGameLogic(
         val resolvedBoard = when (piece.special) {
             SpecialBlockType.None,
             SpecialBlockType.Ghost,
+            SpecialBlockType.Collector,
             -> placedBoard
             SpecialBlockType.ColumnClearer -> placedBoard.clearColumns(clearedColumns)
             SpecialBlockType.RowClearer -> placedBoard.clearRows(clearedRows)
@@ -874,6 +875,7 @@ internal class StackShiftGameLogic(
             SpecialBlockType.None,
             SpecialBlockType.Ghost,
             SpecialBlockType.Heavy,
+            SpecialBlockType.Collector,
             -> emptySet()
             SpecialBlockType.ColumnClearer -> board.occupiedPointsInColumns(preview.coveredColumns.toSet())
                 .filterNot(protectedPoints::contains)
@@ -936,6 +938,7 @@ internal class StackShiftGameLogic(
                 .filter { it in 0 until board.columns }
                 .toSet(),
         )
+        SpecialBlockType.Collector -> TriggeredEffect()
     }
 
     private fun collectTriggeredSpecialsForEffect(

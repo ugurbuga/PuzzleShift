@@ -51,8 +51,8 @@ class BlockSortGameLogicTest {
     }
 
     @Test
-    fun roundEmptyColumns_reduceInLaterRounds() {
-        assertEquals(List(8) { 1 }, (1..8).map(::blockSortRoundEmptyColumns))
+    fun roundEmptyColumns_alwaysOne() {
+        assertEquals(List(8) { 1 }, (1..8).map { blockSortRoundEmptyColumns() })
     }
 
     @Test
@@ -259,7 +259,7 @@ class BlockSortGameLogicTest {
         assertTrue(occupiedColumns.isNotEmpty())
 
         occupiedColumns.forEach { column ->
-            val tones = buildSet<CellTone> {
+            val tones = buildSet {
                 for (row in 0 until state.config.rows) {
                     state.board.toneAt(column, row)?.let(::add)
                 }

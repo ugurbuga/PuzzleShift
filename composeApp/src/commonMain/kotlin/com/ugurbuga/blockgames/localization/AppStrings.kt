@@ -32,6 +32,7 @@ fun appNameResourceId(): StringResource {
         GameplayStyle.BlockSort -> Res.string.app_title_blocksort
         GameplayStyle.DigitShift -> Res.string.app_title_digitshift
         GameplayStyle.SumShift -> Res.string.app_title_sumshift
+        GameplayStyle.FluffyBlock -> Res.string.app_title_stackshift // Placeholder, will be replaced in formatAppString
         else -> Res.string.app_title_stackshift
     }
 }
@@ -59,6 +60,9 @@ fun formatAppString(raw: String): String {
         }
         GameplayStyle.SumShift -> {
             raw.replace(stackShiftTitle, stringResource(Res.string.app_title_sumshift))
+        }
+        GameplayStyle.FluffyBlock -> {
+            raw.replace(stackShiftTitle, "Fluffy Block")
         }
         else -> raw
     }

@@ -33,6 +33,7 @@ import blockgames.composeapp.generated.resources.game_message_ad_reward_blockwis
 import blockgames.composeapp.generated.resources.game_message_ad_reward_boomblocks
 import blockgames.composeapp.generated.resources.game_message_ad_reward_digitshift
 import blockgames.composeapp.generated.resources.game_message_ad_reward_mergeshift
+import blockgames.composeapp.generated.resources.game_message_ad_reward_stackshift
 import blockgames.composeapp.generated.resources.game_message_ad_reward_sumshift
 import blockgames.composeapp.generated.resources.leave_session_confirm
 import blockgames.composeapp.generated.resources.leave_session_confirm_body
@@ -66,6 +67,7 @@ import com.ugurbuga.blockgames.settings.BlockSortOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.BlockWiseOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.BoomBlocksOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.DigitShiftOnboardingStateFactory
+import com.ugurbuga.blockgames.settings.FluffyBlockOnboardingStateFactory
 import com.ugurbuga.blockgames.settings.GameSessionSlot
 import com.ugurbuga.blockgames.settings.GameSessionStorage
 import com.ugurbuga.blockgames.settings.HighScoreStorage
@@ -154,6 +156,7 @@ internal fun isUsableSavedSession(
         GameplayStyle.BlockSort -> state.board.occupiedCount > 0
         GameplayStyle.DigitShift -> state.digitShiftSolution.isNotEmpty()
         GameplayStyle.SumShift -> state.sumShiftRowTargets.isNotEmpty() && state.sumShiftColumnTargets.isNotEmpty()
+        GameplayStyle.FluffyBlock -> state.activePiece != null
     }
 }
 
@@ -257,6 +260,11 @@ internal fun rewardedDockFeedbackSpec(
 
         GameplayStyle.SumShift -> RewardFeedbackSpec(
             messageRes = Res.string.game_message_ad_reward_sumshift,
+            icon = Icons.Filled.Refresh,
+        )
+
+        GameplayStyle.FluffyBlock -> RewardFeedbackSpec(
+            messageRes = Res.string.game_message_ad_reward_stackshift,
             icon = Icons.Filled.Refresh,
         )
     }
@@ -653,6 +661,7 @@ fun BlockGamesAppHost(
             GameplayStyle.BlockSort -> BlockSortOnboardingStateFactory.initialState()
             GameplayStyle.DigitShift -> DigitShiftOnboardingStateFactory.initialState()
             GameplayStyle.SumShift -> SumShiftOnboardingStateFactory.initialState()
+            GameplayStyle.FluffyBlock -> FluffyBlockOnboardingStateFactory.initialState()
             else -> StackShiftGameOnboardingStateFactory.initialState()
         }
         gameViewModel = createGameViewModel(initialState)

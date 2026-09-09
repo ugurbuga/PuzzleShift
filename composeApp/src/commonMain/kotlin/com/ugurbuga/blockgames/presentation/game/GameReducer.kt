@@ -29,7 +29,8 @@ internal class GameReducer(
                 GameplayStyle.BoomBlocks,
                 GameplayStyle.BlockSort,
                 GameplayStyle.DigitShift,
-                GameplayStyle.SumShift -> emptyList()
+                GameplayStyle.SumShift,
+                GameplayStyle.FluffyBlock -> emptyList()
                 GameplayStyle.StackShift,
                 GameplayStyle.MergeShift -> result.state.softLock?.let { softLock ->
                     listOf(
