@@ -5,6 +5,7 @@ import blockgames.composeapp.generated.resources.Res
 import blockgames.composeapp.generated.resources.app_title_blockwise
 import blockgames.composeapp.generated.resources.app_title_blocksort
 import blockgames.composeapp.generated.resources.app_title_boomblocks
+import blockgames.composeapp.generated.resources.app_title_fluffyblock
 import blockgames.composeapp.generated.resources.app_title_mergeshift
 import blockgames.composeapp.generated.resources.app_title_stackshift
 import blockgames.composeapp.generated.resources.app_title_digitshift
@@ -32,7 +33,7 @@ fun appNameResourceId(): StringResource {
         GameplayStyle.BlockSort -> Res.string.app_title_blocksort
         GameplayStyle.DigitShift -> Res.string.app_title_digitshift
         GameplayStyle.SumShift -> Res.string.app_title_sumshift
-        GameplayStyle.FluffyBlock -> Res.string.app_title_stackshift // Placeholder, will be replaced in formatAppString
+        GameplayStyle.FluffyBlock -> Res.string.app_title_fluffyblock
         else -> Res.string.app_title_stackshift
     }
 }
@@ -62,7 +63,7 @@ fun formatAppString(raw: String): String {
             raw.replace(stackShiftTitle, stringResource(Res.string.app_title_sumshift))
         }
         GameplayStyle.FluffyBlock -> {
-            raw.replace(stackShiftTitle, "Fluffy Block")
+            raw.replace(stackShiftTitle, stringResource(Res.string.app_title_fluffyblock))
         }
         else -> raw
     }
