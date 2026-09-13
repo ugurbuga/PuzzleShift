@@ -8,7 +8,7 @@
     <string name="app_title_blocksort" translatable="false">BlockSort</string>
     <string name="app_title_digitshift" translatable="false">DigitShift</string>
     <string name="app_title_sumshift" translatable="false">SumShift</string>
-    <string name="app_title_fluffyblock" translatable="false">FluffyBlock</string>
+    <string name="app_title_fluffyblock" translatable="false">Fluffy Block</string>
 
     <string name="app_title_banner_stackshift_top" translatable="false">STACK</string>
     <string name="app_title_banner_stackshift_bottom" translatable="false">SHIFT</string>

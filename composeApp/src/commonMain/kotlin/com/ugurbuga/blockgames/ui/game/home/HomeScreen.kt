@@ -79,6 +79,8 @@ import blockgames.composeapp.generated.resources.app_title_banner_blockwise_bott
 import blockgames.composeapp.generated.resources.app_title_banner_blockwise_top
 import blockgames.composeapp.generated.resources.app_title_banner_boomblocks_bottom
 import blockgames.composeapp.generated.resources.app_title_banner_boomblocks_top
+import blockgames.composeapp.generated.resources.app_title_banner_fluffyblock_bottom
+import blockgames.composeapp.generated.resources.app_title_banner_fluffyblock_top
 import blockgames.composeapp.generated.resources.app_title_banner_stackshift_bottom
 import blockgames.composeapp.generated.resources.app_title_banner_stackshift_top
 import blockgames.composeapp.generated.resources.high_score
@@ -117,6 +119,7 @@ import com.ugurbuga.blockgames.ui.game.rememberBlockStylePulse
 import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import com.ugurbuga.blockgames.ui.theme.BlockGamesUiColors
 import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
+import com.ugurbuga.blockgames.ui.theme.appBackgroundBrush
 import com.ugurbuga.blockgames.ui.theme.isBlockGamesDarkTheme
 import org.jetbrains.compose.resources.stringResource
 import kotlin.math.abs
@@ -163,14 +166,7 @@ fun HomeScreen(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(
-                    Brush.verticalGradient(
-                        colors = listOf(
-                            uiColors.screenGradientTop,
-                            uiColors.screenGradientBottom,
-                        ),
-                    ),
-                )
+                .background(appBackgroundBrush(uiColors))
                 .statusBarsPadding()
                 .padding(horizontal = 18.dp, vertical = 16.dp),
         ) {
@@ -311,7 +307,7 @@ private fun HomeTitleBanner(
         GameplayStyle.BlockSort -> BlockSortHomeTitleBanner(settings, pulse, modifier)
         GameplayStyle.DigitShift -> DigitShiftHomeTitleBanner(settings, pulse, modifier)
         GameplayStyle.SumShift -> SumShiftHomeTitleBanner(settings, pulse, modifier)
-        GameplayStyle.FluffyBlock -> StackShiftHomeTitleBanner(settings, pulse, modifier)
+        GameplayStyle.FluffyBlock -> FluffyBlockHomeTitleBanner(settings, pulse, modifier)
     }
 }
 
@@ -2286,6 +2282,156 @@ private fun BlockWiseHomeTitleBanner(
                 size = dockCellSize,
                 alpha = handAlpha,
                 color = handColor,
+            )
+        }
+    }
+}
+
+@Composable
+private fun FluffyBlockHomeTitleBanner(
+    settings: AppSettings,
+    pulse: Float,
+    modifier: Modifier = Modifier,
+) {
+    val uiColors = BlockGamesThemeTokens.uiColors
+    val bannerMotionTransition = rememberInfiniteTransition(label = "fluffyBlockBannerMotion")
+    val sequenceClock by bannerMotionTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = 15_200, easing = FastOutSlowInEasing),
+            repeatMode = RepeatMode.Restart,
+        ),
+        label = "fluffyBlockBannerSequenceClock",
+    )
+    val sequencePhase = normalizedPhase(sequenceClock)
+
+    val lowerDrift = segmentProgress(sequencePhase, 0.00f, 0.10f)
+    val lowerAlign = segmentProgress(sequencePhase, 0.10f, 0.15f)
+    val lowerLaunch = segmentProgress(sequencePhase, 0.15f, 0.20f)
+    val lowerExplode = segmentProgress(sequencePhase, 0.25f, 0.32f)
+
+    val upperDrift = segmentProgress(sequencePhase, 0.34f, 0.44f)
+    val upperAlign = segmentProgress(sequencePhase, 0.44f, 0.49f)
+    val upperLaunch = segmentProgress(sequencePhase, 0.49f, 0.54f)
+    val upperExplode = segmentProgress(sequencePhase, 0.59f, 0.66f)
+
+    val fluffyAlign = segmentProgress(sequencePhase, 0.68f, 0.74f)
+    val fluffyLaunch = segmentProgress(sequencePhase, 0.74f, 0.82f)
+
+    val blockAlign = segmentProgress(sequencePhase, 0.82f, 0.88f)
+    val blockLaunch = segmentProgress(sequencePhase, 0.88f, 0.96f)
+
+    val topRow = rememberHomeTitleRow(
+        word = stringResource(Res.string.app_title_banner_fluffyblock_top),
+        startColumn = 0
+    )
+    val bottomRow = rememberHomeTitleRow(
+        word = stringResource(Res.string.app_title_banner_fluffyblock_bottom),
+        startColumn = 1
+    )
+
+    val topRowAlpha = titleTopRowAlpha(
+        phase = sequencePhase,
+        upperExplode = upperExplode,
+        stackLaunch = fluffyLaunch,
+    )
+    val bottomRowAlpha = titleBottomRowAlpha(
+        phase = sequencePhase,
+        lowerExplode = lowerExplode,
+        shiftLaunch = blockLaunch,
+    )
+
+    HomeTitleBannerLayout(
+        modifier = modifier,
+        settings = settings,
+        pulse = pulse,
+        uiColors = uiColors,
+        topRow = topRow,
+        bottomRow = bottomRow,
+        sequencePhase = sequencePhase,
+        topRowAlpha = topRowAlpha,
+        bottomRowAlpha = bottomRowAlpha,
+        lowerExplode = lowerExplode,
+        upperExplode = upperExplode,
+        bottomTargetX = 1.dp
+    ) { dockCellSize, dockPieceY, boardCellHeight, dockSingleStartX, dockSingleLeftX, dockSingleRightX, dockWordStartX, topTargetX, topGapTargetX, bottomTargetX, bottomGapTargetX ->
+
+        if (sequencePhase < 0.15f) {
+            HomeTitleAnimatedPiece(
+                cells = listOf(HomeTitleCell(tone = CellTone.Gold)),
+                settings = settings,
+                pulse = pulse,
+                cellSize = dockCellSize,
+                modifier = Modifier.offset(
+                    x = lerpDp(dockSingleStartX, dockSingleLeftX, lowerDrift).let { x ->
+                        if (sequencePhase > 0.10f) lerpDp(x, bottomGapTargetX, lowerAlign) else x
+                    },
+                    y = dockPieceY,
+                ),
+            )
+        } else if (sequencePhase < 0.25f) {
+            HomeTitleAnimatedPiece(
+                cells = listOf(HomeTitleCell(tone = CellTone.Gold)),
+                settings = settings,
+                pulse = pulse,
+                cellSize = dockCellSize,
+                modifier = Modifier.offset(
+                    x = bottomGapTargetX,
+                    y = lerpDp(dockPieceY, dockPieceY - boardCellHeight * 3f, lowerLaunch),
+                ),
+            )
+        }
+
+        if (sequencePhase < 0.49f) {
+            HomeTitleAnimatedPiece(
+                cells = listOf(HomeTitleCell(tone = CellTone.Cyan)),
+                settings = settings,
+                pulse = pulse,
+                cellSize = dockCellSize,
+                modifier = Modifier.offset(
+                    x = lerpDp(dockSingleStartX, dockSingleRightX, upperDrift).let { x ->
+                        if (sequencePhase > 0.44f) lerpDp(x, topTargetX, upperAlign) else x
+                    },
+                    y = dockPieceY,
+                ),
+            )
+        } else if (sequencePhase < 0.59f) {
+            HomeTitleAnimatedPiece(
+                cells = listOf(HomeTitleCell(tone = CellTone.Cyan)),
+                settings = settings,
+                pulse = pulse,
+                cellSize = dockCellSize,
+                modifier = Modifier.offset(
+                    x = topTargetX,
+                    y = lerpDp(dockPieceY, dockPieceY - boardCellHeight * 5f, upperLaunch),
+                ),
+            )
+        }
+
+        if (sequencePhase in 0.68f..0.82f) {
+            HomeTitleAnimatedPiece(
+                cells = topRow.filterNotNull(),
+                settings = settings,
+                pulse = pulse,
+                cellSize = dockCellSize,
+                modifier = Modifier.offset(
+                    x = lerpDp(dockWordStartX, topTargetX, fluffyAlign),
+                    y = lerpDp(dockPieceY, dockPieceY - boardCellHeight * 5f, fluffyLaunch),
+                ),
+            )
+        }
+
+        if (sequencePhase in 0.82f..0.96f) {
+            HomeTitleAnimatedPiece(
+                cells = bottomRow.filterNotNull(),
+                settings = settings,
+                pulse = pulse,
+                cellSize = dockCellSize,
+                modifier = Modifier.offset(
+                    x = lerpDp(dockWordStartX, bottomTargetX, blockAlign),
+                    y = lerpDp(dockPieceY, dockPieceY - boardCellHeight * 3f, blockLaunch),
+                ),
             )
         }
     }
