@@ -3553,6 +3553,32 @@ fun HomeScreenSumShiftPreview() {
         )
     }
 }
+
+@Preview(name = "FluffyBlock", showBackground = true)
+@Composable
+fun HomeScreenFluffyBlockPreview() {
+    GlobalPlatformConfig.gameplayStyle = GameplayStyle.FluffyBlock
+    val settings = AppSettings(
+        themeMode = AppThemeMode.Light,
+        blockVisualStyle = BlockVisualStyle.Bubble
+    )
+    BlockGamesTheme(settings = settings) {
+        HomeScreen(
+            settings = settings,
+            classicHighScore = 1250,
+            timeAttackHighScore = 860,
+            telemetry = NoOpAppTelemetry,
+            onPlay = {},
+            onPlayTimeAttack = {},
+            onOpenTutorial = {},
+            onOpenTheme = {},
+            onOpenLanguage = {},
+            onOpenChallenges = {},
+            onSwitchGame = {},
+            notificationManager = rememberNotificationManager(),
+        )
+    }
+}
 @Preview(name = "HomeScreen StackShift Dark", widthDp = 412, heightDp = 915)
 @Composable
 private fun HomeScreenStackShiftDarkPreview() {
