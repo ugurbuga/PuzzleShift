@@ -2916,7 +2916,7 @@ private fun rememberHomeTitleRow(
         if (letterIndex in word.indices) {
             HomeTitleCell(
                 letter = word[letterIndex].toString(),
-                tone = tones[letterIndex],
+                tone = tones[letterIndex % tones.size],
             )
         } else {
             null
