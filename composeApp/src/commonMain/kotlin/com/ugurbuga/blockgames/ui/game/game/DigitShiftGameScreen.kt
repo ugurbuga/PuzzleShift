@@ -197,6 +197,27 @@ internal fun DigitShiftGameScreen(
         }
     }
 
+    val wrappedOnAppendToken: (String) -> Unit = { token ->
+        if (interactiveOnboardingScene != null) {
+            val suggested = interactiveOnboardingScene.suggestedGuess.getOrNull(gameState.digitShiftCurrentGuess.size)
+            if (token == suggested) {
+                onAppendToken(token)
+            }
+        } else {
+            onAppendToken(token)
+        }
+    }
+
+    val wrappedOnSubmitGuess: () -> Unit = {
+        if (interactiveOnboardingScene != null) {
+            if (gameState.digitShiftCurrentGuess == interactiveOnboardingScene.suggestedGuess) {
+                onSubmitGuess()
+            }
+        } else {
+            onSubmitGuess()
+        }
+    }
+
     val inputEnabled = gameState.status == GameStatus.Running && !gameState.digitShiftAwaitingNextRound && animatingGuessIndex == null
 
     if (showRestartDialog) {
@@ -295,9 +316,9 @@ internal fun DigitShiftGameScreen(
             keyboardRows = pack.keyboardRows(gameState.config.columns),
             keyboardHints = displayedKeyboardHints,
             enabled = inputEnabled,
-            onAppendToken = onAppendToken,
+            onAppendToken = wrappedOnAppendToken,
             onDeleteToken = onDeleteToken,
-            onSubmitGuess = onSubmitGuess,
+            onSubmitGuess = wrappedOnSubmitGuess,
         )
     }
 }
