@@ -80,6 +80,7 @@ import com.ugurbuga.blockgames.game.model.GameState
 import com.ugurbuga.blockgames.game.model.GameStatus
 import com.ugurbuga.blockgames.game.model.GameTextKey
 import com.ugurbuga.blockgames.game.model.GameplayStyle
+import com.ugurbuga.blockgames.game.model.gameText
 import com.ugurbuga.blockgames.localization.LocalAppSettings
 import com.ugurbuga.blockgames.localization.LocalBlockStylePulse
 import com.ugurbuga.blockgames.settings.AppSettings
@@ -958,4 +959,84 @@ private fun DigitShiftGameOverPreview() {
         )
     }
 }
+
+@Preview(name = "DigitShift Solved", widthDp = 412, heightDp = 915)
+@Composable
+private fun DigitShiftGameScreenSolvedPreview() {
+    val solvedState = previewDigitShiftState().copy(
+        digitShiftGuesses = listOf(
+            DigitShiftGuess(
+                tokens = listOf("1", "0", "9", "8", "7"),
+                states = listOf(
+                    DigitShiftLetterState.Correct,
+                    DigitShiftLetterState.Absent,
+                    DigitShiftLetterState.Absent,
+                    DigitShiftLetterState.Absent,
+                    DigitShiftLetterState.Absent
+                )
+            ),
+            DigitShiftGuess(
+                tokens = listOf("1", "2", "3", "4", "5"),
+                states = listOf(
+                    DigitShiftLetterState.Correct,
+                    DigitShiftLetterState.Correct,
+                    DigitShiftLetterState.Correct,
+                    DigitShiftLetterState.Correct,
+                    DigitShiftLetterState.Correct
+                )
+            )
+        ),
+        digitShiftCurrentGuess = emptyList(),
+        digitShiftAwaitingNextRound = true,
+        message = gameText(GameTextKey.GameMessageDigitShiftSolved)
+    )
+    BlockGamesTheme(settings = AppSettings()) {
+        DigitShiftGameScreen(
+            gameState = solvedState,
+            highestScore = 1240,
+            showNewHighScoreMessage = false,
+            onAppendToken = {},
+            onDeleteToken = {},
+            onSubmitGuess = {},
+            onAdvanceRound = {},
+            onRestart = {},
+            onRewardedRevive = {},
+            onBack = {},
+        )
+    }
+}
+
+@Preview(name = "DigitShift Board")
+@Composable
+private fun DigitShiftBoardPreview() {
+    BlockGamesTheme(settings = AppSettings()) {
+        DigitShiftBoard(
+            gameState = previewDigitShiftState(),
+            modifier = Modifier.padding(16.dp),
+        )
+    }
+}
+
+@Preview(name = "DigitShift Keyboard")
+@Composable
+private fun DigitShiftKeyboardPreview() {
+    val pack = DigitShiftLexicon.packFor("en")
+    BlockGamesTheme(settings = AppSettings()) {
+        DigitShiftKeyboard(
+            keyboardRows = pack.keyboardRows(5),
+            keyboardHints = mapOf(
+                "1" to DigitShiftLetterState.Correct,
+                "2" to DigitShiftLetterState.Present,
+                "3" to DigitShiftLetterState.Absent,
+                "4" to DigitShiftLetterState.Unknown,
+            ),
+            enabled = true,
+            onAppendToken = {},
+            onDeleteToken = {},
+            onSubmitGuess = {},
+            modifier = Modifier.padding(16.dp),
+        )
+    }
+}
+
 
