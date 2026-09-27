@@ -1039,4 +1039,27 @@ private fun DigitShiftKeyboardPreview() {
     }
 }
 
+@Preview(name = "DigitShift Message Card")
+@Composable
+private fun DigitShiftMessageCardPreview() {
+    BlockGamesTheme(settings = AppSettings()) {
+        DigitShiftMessageCard(
+            message = "Enter a 5-digit number to guess",
+        )
+    }
+}
+
+@Preview(name = "DigitShift Onboarding Card")
+@Composable
+private fun DigitShiftOnboardingHintCardPreview() {
+    BlockGamesTheme(settings = AppSettings()) {
+        DigitShiftOnboardingHintCard(
+            scene = DigitShiftOnboardingStateFactory.scene(DigitShiftOnboardingStage.FirstGuess),
+            currentStep = 1,
+            totalSteps = 3,
+        )
+    }
+}
+
+
 
