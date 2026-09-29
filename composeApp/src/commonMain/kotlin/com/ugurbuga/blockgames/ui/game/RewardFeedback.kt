@@ -17,6 +17,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CardGiftcard
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -29,7 +31,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.ugurbuga.blockgames.BlockGamesTheme
+import com.ugurbuga.blockgames.settings.AppSettings
 import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
 import kotlinx.coroutines.delay
@@ -105,3 +110,17 @@ fun RewardFeedbackCard(
         }
     }
 }
+
+@Preview(name = "Reward Feedback Card")
+@Composable
+private fun RewardFeedbackCardPreview() {
+    BlockGamesTheme(settings = AppSettings()) {
+        RewardFeedbackCard(
+            message = "Ödül Kazanıldı!",
+            icon = Icons.Filled.CardGiftcard,
+            visible = true,
+            onDismiss = {},
+        )
+    }
+}
+
