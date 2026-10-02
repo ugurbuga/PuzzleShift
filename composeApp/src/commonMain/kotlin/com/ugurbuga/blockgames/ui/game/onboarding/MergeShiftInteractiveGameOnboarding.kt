@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
+import androidx.compose.ui.tooling.preview.Preview
 import blockgames.composeapp.generated.resources.Res
 import blockgames.composeapp.generated.resources.interactive_onboarding_aim_hint
 import blockgames.composeapp.generated.resources.interactive_onboarding_mergeshift_launch_body
@@ -19,8 +20,11 @@ import blockgames.composeapp.generated.resources.interactive_onboarding_mergeshi
 import blockgames.composeapp.generated.resources.interactive_onboarding_mergeshift_merge_vertical_title
 import blockgames.composeapp.generated.resources.interactive_onboarding_target_locked
 import blockgames.composeapp.generated.resources.interactive_onboarding_waiting
+import com.ugurbuga.blockgames.BlockGamesTheme
+import com.ugurbuga.blockgames.settings.AppSettings
 import com.ugurbuga.blockgames.settings.MergeShiftOnboardingScene
 import com.ugurbuga.blockgames.settings.MergeShiftOnboardingStage
+import com.ugurbuga.blockgames.settings.MergeShiftOnboardingStateFactory
 import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import org.jetbrains.compose.resources.stringResource
 
@@ -145,3 +149,26 @@ internal fun MergeShiftOnboardingTargetOverlay(
         modifier = modifier,
     )
 }
+
+@Preview(name = "MergeShift Onboarding Info Card")
+@Composable
+private fun MergeShiftOnboardingInfoCardPreview() {
+    val scene = MergeShiftOnboardingStateFactory.scene(MergeShiftOnboardingStage.Launch)
+    val ui = MergeShiftInteractiveGameOnboardingUi(
+        scene = scene,
+        currentStep = 1,
+        totalSteps = 4,
+        isTargetAligned = false,
+        isAwaitingPlacementCommit = false,
+    )
+    val visualState = rememberMergeShiftInteractiveOnboardingVisualState(ui = ui)
+    BlockGamesTheme(settings = AppSettings()) {
+        InteractiveOnboardingInfoCard(
+            currentStep = ui.currentStep,
+            totalSteps = ui.totalSteps,
+            visualState = visualState,
+        )
+    }
+}
+
+
