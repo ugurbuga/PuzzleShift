@@ -836,6 +836,22 @@ private fun BoomBlocksGameScreenDarkPreview() {
     }
 }
 
+@Preview(name = "BoomBlocks GameOver", widthDp = 412, heightDp = 915)
+@Composable
+private fun BoomBlocksGameOverPreview() {
+    BlockGamesTheme(settings = AppSettings()) {
+        BoomBlocksGameScreen(
+            gameState = previewBoomBlocksState().copy(status = GameStatus.GameOver),
+            onTapCell = {},
+            onRestart = {},
+            onRewardedRevive = {},
+            onBack = {},
+            highestScore = 2450,
+        )
+    }
+}
+
+
 private fun previewBoomBlocksState(): GameState {
     val config = GameConfig(columns = 8, rows = 12, difficultyIntervalSeconds = 9_999, linesPerLevel = 9_999)
     var board = BoardMatrix.empty(config.columns, config.rows)
