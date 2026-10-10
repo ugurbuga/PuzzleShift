@@ -87,6 +87,7 @@ import blockgames.composeapp.generated.resources.tutorial_step_counter
 import com.ugurbuga.blockgames.BlockGamesTheme
 import com.ugurbuga.blockgames.ads.GameAdController
 import com.ugurbuga.blockgames.ads.NoOpGameAdController
+import com.ugurbuga.blockgames.game.model.AppThemeMode
 import com.ugurbuga.blockgames.game.model.BlockVisualStyle
 import com.ugurbuga.blockgames.game.model.BoardMatrix
 import com.ugurbuga.blockgames.game.model.CellTone
@@ -1863,4 +1864,19 @@ private fun SumShiftGameOverPreview() {
         )
     }
 }
+
+@Preview(name = "SumShift Game Dark", widthDp = 412, heightDp = 915)
+@Composable
+private fun SumShiftGameScreenDarkPreview() {
+    BlockGamesTheme(settings = AppSettings(themeMode = AppThemeMode.Dark)) {
+        SumShiftGameScreen(
+            gameState = previewSumShiftState(rows = 6),
+            onTapCell = {},
+            onRestart = {},
+            onBack = {},
+            highestScore = 1240,
+        )
+    }
+}
+
 
