@@ -57,3 +57,7 @@ keystore/MergeShift.jks
 
 # Shared downloadable artifacts
 artifacts/
+.artifact/
+.artifacts/
+*.artifact.md
+
