@@ -280,7 +280,7 @@ internal fun SumShiftGameScreen(
 
     LaunchedEffect(wrongTapPoint) {
         wrongTapPoint ?: return@LaunchedEffect
-        delay(280.milliseconds)
+        delay(280L)
         wrongTapPoint = null
     }
 
