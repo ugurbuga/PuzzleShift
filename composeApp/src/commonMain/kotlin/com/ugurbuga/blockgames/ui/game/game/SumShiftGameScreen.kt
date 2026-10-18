@@ -115,6 +115,7 @@ import com.ugurbuga.blockgames.ui.theme.BlockGamesThemeTokens
 import com.ugurbuga.blockgames.ui.theme.GameUiShapeTokens
 import com.ugurbuga.blockgames.ui.theme.appBackgroundBrush
 import com.ugurbuga.blockgames.ui.theme.isBlockGamesDarkTheme
+import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.stringResource
 
 private enum class SumShiftCellInteractionMode {
@@ -279,7 +280,7 @@ internal fun SumShiftGameScreen(
 
     LaunchedEffect(wrongTapPoint) {
         wrongTapPoint ?: return@LaunchedEffect
-        kotlinx.coroutines.delay(280L)
+        delay(280L)
         wrongTapPoint = null
     }
 
