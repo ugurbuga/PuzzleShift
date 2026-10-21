@@ -58,17 +58,22 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.ugurbuga.blockgames.BlockGamesTheme
+import com.ugurbuga.blockgames.game.model.AppThemeMode
 import com.ugurbuga.blockgames.game.model.BlockColorPalette
 import com.ugurbuga.blockgames.game.model.BlockVisualStyle
 import com.ugurbuga.blockgames.game.model.BoardCell
 import com.ugurbuga.blockgames.game.model.BoardMatrix
 import com.ugurbuga.blockgames.game.model.CellTone
+import com.ugurbuga.blockgames.game.model.GameConfig
 import com.ugurbuga.blockgames.game.model.GameState
 import com.ugurbuga.blockgames.game.model.GameStatus
 import com.ugurbuga.blockgames.game.model.GameplayStyle
 import com.ugurbuga.blockgames.game.model.GridPoint
 import com.ugurbuga.blockgames.game.model.Piece
+import com.ugurbuga.blockgames.game.model.PieceKind
 import com.ugurbuga.blockgames.game.model.PlacementPreview
+import com.ugurbuga.blockgames.settings.AppSettings
 import com.ugurbuga.blockgames.game.model.PressureLevel
 import com.ugurbuga.blockgames.game.model.SpecialBlockType
 import com.ugurbuga.blockgames.game.model.boardSpecialIcon
@@ -2670,6 +2675,50 @@ internal fun BlockCellPreviewPreview() {
         pulse = 0f,
     )
 }
+
+@Preview(name = "BoardGrid - Cyberpunk Dark", widthDp = 412, heightDp = 600)
+@Composable
+private fun BoardGridCyberpunkDarkPreview() {
+    val config = GameConfig(columns = 10, rows = 16)
+    var board = BoardMatrix.empty(10, 16)
+    board = board
+        .fill(listOf(GridPoint(0, 0), GridPoint(1, 0), GridPoint(2, 0), GridPoint(0, 1)), CellTone.Cyan)
+        .fill(listOf(GridPoint(5, 0), GridPoint(5, 1), GridPoint(6, 0)), CellTone.Gold)
+        .fill(listOf(GridPoint(8, 0), GridPoint(9, 0), GridPoint(8, 1), GridPoint(9, 1)), CellTone.Emerald)
+    val gameState = GameState(
+        config = config,
+        board = board,
+        activePiece = Piece(
+            id = 1,
+            kind = PieceKind.T,
+            tone = CellTone.Violet,
+            cells = listOf(GridPoint(0, 0), GridPoint(1, 0), GridPoint(2, 0), GridPoint(1, 1)),
+            width = 3,
+            height = 2,
+        ),
+        nextQueue = emptyList(),
+        score = 2400,
+        linesCleared = 10,
+        level = 1,
+        difficultyStage = 0,
+        secondsUntilDifficultyIncrease = 9999,
+        gameplayStyle = GameplayStyle.StackShift,
+    )
+    BlockGamesTheme(settings = AppSettings(themeMode = AppThemeMode.Dark, blockVisualStyle = BlockVisualStyle.Cyberpunk)) {
+        Box(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+            BoardGrid(
+                gameState = gameState,
+                preview = null,
+                impactedPreviewCells = emptySet(),
+                activeColumn = 4,
+                activePiece = gameState.activePiece,
+                isDragging = false,
+            )
+        }
+    }
+}
+
+
 
 private fun DrawScope.drawGear(
     center: Offset,
