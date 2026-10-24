@@ -2676,6 +2676,48 @@ internal fun BlockCellPreviewPreview() {
     )
 }
 
+@Preview(name = "BoardGrid - StackShift Light", widthDp = 412, heightDp = 600)
+@Composable
+private fun BoardGridStackShiftLightPreview() {
+    val config = GameConfig(columns = 10, rows = 16)
+    var board = BoardMatrix.empty(10, 16)
+    board = board
+        .fill(listOf(GridPoint(0, 0), GridPoint(1, 0), GridPoint(2, 0), GridPoint(0, 1)), CellTone.Cyan)
+        .fill(listOf(GridPoint(5, 0), GridPoint(5, 1), GridPoint(6, 0)), CellTone.Gold)
+        .fill(listOf(GridPoint(8, 0), GridPoint(9, 0), GridPoint(8, 1), GridPoint(9, 1)), CellTone.Emerald)
+    val gameState = GameState(
+        config = config,
+        board = board,
+        activePiece = Piece(
+            id = 1,
+            kind = PieceKind.T,
+            tone = CellTone.Violet,
+            cells = listOf(GridPoint(0, 0), GridPoint(1, 0), GridPoint(2, 0), GridPoint(1, 1)),
+            width = 3,
+            height = 2,
+        ),
+        nextQueue = emptyList(),
+        score = 2400,
+        linesCleared = 10,
+        level = 1,
+        difficultyStage = 0,
+        secondsUntilDifficultyIncrease = 9999,
+        gameplayStyle = GameplayStyle.StackShift,
+    )
+    BlockGamesTheme(settings = AppSettings(themeMode = AppThemeMode.Light)) {
+        Box(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+            BoardGrid(
+                gameState = gameState,
+                preview = null,
+                impactedPreviewCells = emptySet(),
+                activeColumn = 4,
+                activePiece = gameState.activePiece,
+                isDragging = false,
+            )
+        }
+    }
+}
+
 @Preview(name = "BoardGrid - Cyberpunk Dark", widthDp = 412, heightDp = 600)
 @Composable
 private fun BoardGridCyberpunkDarkPreview() {
