@@ -2,10 +2,6 @@ package com.ugurbuga.blockgames.ui.game.game
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutSlowInEasing
-import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -68,6 +64,7 @@ import com.ugurbuga.blockgames.BlockGamesTheme
 import com.ugurbuga.blockgames.ads.GameAdController
 import com.ugurbuga.blockgames.ads.NoOpGameAdController
 import com.ugurbuga.blockgames.game.logic.GameEvent
+import com.ugurbuga.blockgames.game.model.AppThemeMode
 import com.ugurbuga.blockgames.game.model.GameState
 import com.ugurbuga.blockgames.game.model.GameStatus
 import com.ugurbuga.blockgames.game.model.GridPoint
@@ -729,7 +726,7 @@ private fun MergeShiftGameScreenPreview() {
 @Preview(name = "MergeShift - Game Dark")
 @Composable
 private fun MergeShiftGameScreenDarkPreview() {
-    BlockGamesTheme(settings = AppSettings(themeMode = com.ugurbuga.blockgames.game.model.AppThemeMode.Dark)) {
+    BlockGamesTheme(settings = AppSettings(themeMode = AppThemeMode.Dark)) {
         MergeShiftGameScreen(
             gameState = MergeShiftOnboardingStateFactory.initialState(),
             onRequestPreview = { null },
@@ -749,7 +746,7 @@ private fun MergeShiftGameScreenDarkPreview() {
 private fun MergeShiftGameOverPreview() {
     BlockGamesTheme(settings = AppSettings()) {
         MergeShiftGameScreen(
-            gameState = MergeShiftOnboardingStateFactory.initialState().copy(status = com.ugurbuga.blockgames.game.model.GameStatus.GameOver),
+            gameState = MergeShiftOnboardingStateFactory.initialState().copy(status = GameStatus.GameOver),
             onRequestPreview = { null },
             onPlacePiece = { GameDispatchResult() },
             onRestart = { InteractionFeedback.None },
