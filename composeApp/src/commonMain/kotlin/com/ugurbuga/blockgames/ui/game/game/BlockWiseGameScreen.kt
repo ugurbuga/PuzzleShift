@@ -65,6 +65,7 @@ import blockgames.composeapp.generated.resources.time_remaining
 import com.ugurbuga.blockgames.BlockGamesTheme
 import com.ugurbuga.blockgames.ads.GameAdController
 import com.ugurbuga.blockgames.ads.NoOpGameAdController
+import com.ugurbuga.blockgames.game.model.AppThemeMode
 import com.ugurbuga.blockgames.game.model.CellTone
 import com.ugurbuga.blockgames.game.model.DailyChallenge
 import com.ugurbuga.blockgames.game.model.GameConfig
@@ -932,7 +933,7 @@ private fun BlockWiseGameScreenPreview() {
 @Preview(name = "Game - Dark", widthDp = 412, heightDp = 915)
 @Composable
 private fun BlockWiseGameScreenDarkPreview() {
-    BlockGamesTheme(settings = AppSettings(themeMode = com.ugurbuga.blockgames.game.model.AppThemeMode.Dark)) {
+    BlockGamesTheme(settings = AppSettings(themeMode = AppThemeMode.Dark)) {
         BlockWiseGameScreen(
             gameState = BlockWiseOnboardingStateFactory.initialState(),
             onRequestPreview = { _, _ -> null },
@@ -953,7 +954,7 @@ private fun BlockWiseGameScreenDarkPreview() {
 private fun BlockWiseGameOverPreview() {
     BlockGamesTheme(settings = AppSettings()) {
         BlockWiseGameScreen(
-            gameState = BlockWiseOnboardingStateFactory.initialState().copy(status = com.ugurbuga.blockgames.game.model.GameStatus.GameOver),
+            gameState = BlockWiseOnboardingStateFactory.initialState().copy(status = GameStatus.GameOver),
             onRequestPreview = { _, _ -> null },
             onResolvePreviewImpact = { emptySet() },
             onPlacePiece = { _, _ -> },

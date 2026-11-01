@@ -88,6 +88,7 @@ import blockgames.composeapp.generated.resources.selection_sumshift_desc
 import blockgames.composeapp.generated.resources.selection_title
 import com.ugurbuga.blockgames.BlockGamesTheme
 import com.ugurbuga.blockgames.ads.AppFooterBannerHeight
+import com.ugurbuga.blockgames.game.model.AppThemeMode
 import com.ugurbuga.blockgames.game.model.BoardMatrix
 import com.ugurbuga.blockgames.game.model.CellTone
 import com.ugurbuga.blockgames.game.model.GameConfig
@@ -1502,7 +1503,7 @@ fun AppSelectionListPreview() {
 @Preview(name = "AppSelection - List Dark", widthDp = 412, heightDp = 915)
 @Composable
 fun AppSelectionListDarkPreview() {
-    BlockGamesTheme(settings = AppSettings(themeMode = com.ugurbuga.blockgames.game.model.AppThemeMode.Dark)) {
+    BlockGamesTheme(settings = AppSettings(themeMode = AppThemeMode.Dark)) {
         AppSelectionScreen(
             currentStyle = null,
             onGameplayStyleSelected = {},
