@@ -60,6 +60,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
@@ -69,9 +70,11 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.delay
 import blockgames.composeapp.generated.resources.Res
 import blockgames.composeapp.generated.resources.app_title_banner_blocksort_bottom
 import blockgames.composeapp.generated.resources.app_title_banner_blocksort_top
@@ -1067,7 +1070,7 @@ private fun DigitShiftHomeBannerCell(
             return@LaunchedEffect
         }
         faceUp = false
-        kotlinx.coroutines.delay(18L)
+        delay(18L)
         faceUp = true
     }
     val flipProgress by animateFloatAsState(
@@ -1138,22 +1141,22 @@ private fun digitShiftHomeBannerPaletteFor(
     val colorScheme = MaterialTheme.colorScheme
     return when (state) {
         DigitShiftLetterState.Correct -> DigitShiftFeedbackPalette(
-            container = androidx.compose.ui.graphics.lerp(
+            container = lerp(
                 uiColors.success,
                 uiColors.actionSuccess,
                 0.28f
             ).copy(alpha = 0.95f),
-            border = androidx.compose.ui.graphics.lerp(uiColors.success, Color.White, 0.18f),
+            border = lerp(uiColors.success, Color.White, 0.18f),
             content = Color.White,
         )
 
         DigitShiftLetterState.Present -> DigitShiftFeedbackPalette(
-            container = androidx.compose.ui.graphics.lerp(
+            container = lerp(
                 uiColors.warning,
                 uiColors.actionWarning,
                 0.18f
             ).copy(alpha = 0.95f),
-            border = androidx.compose.ui.graphics.lerp(uiColors.warning, Color.White, 0.14f),
+            border = lerp(uiColors.warning, Color.White, 0.14f),
             content = Color.White,
         )
 
@@ -1280,7 +1283,7 @@ private fun BlockSortHomeTitleBanner(
             val handAlpha = if (localPhase < 0.60f) 1f else 0f
             val handPosition = when {
                 localPhase < 0.18f -> sourceCellTopLeft
-                localPhase < 0.42f -> androidx.compose.ui.unit.DpOffset(
+                localPhase < 0.42f -> DpOffset(
                     x = lerpDp(sourceCellTopLeft.x, targetCellTopLeft.x, handTravelProgress),
                     y = lerpDp(sourceCellTopLeft.y, targetCellTopLeft.y, handTravelProgress),
                 )
@@ -1385,7 +1388,7 @@ private fun BlockSortHomeTitleBannerColumn(
         modifier = modifier,
         shape = RoundedCornerShape(GameUiShapeTokens.surfaceCorner),
         colors = CardDefaults.cardColors(
-            containerColor = androidx.compose.ui.graphics.lerp(
+            containerColor = lerp(
                 uiColors.gameSurface.copy(alpha = 0.84f),
                 highlightColor.copy(alpha = 0.18f),
                 highlightStrength * 0.42f,
@@ -1393,7 +1396,7 @@ private fun BlockSortHomeTitleBannerColumn(
         ),
         border = BorderStroke(
             width = if (highlightStrength > 0.01f) 1.5.dp else 1.dp,
-            color = androidx.compose.ui.graphics.lerp(
+            color = lerp(
                 uiColors.panelStroke.copy(alpha = 0.72f),
                 highlightColor.copy(alpha = 0.82f),
                 highlightStrength,
@@ -1439,8 +1442,8 @@ private data class BlockSortHomeBannerLayout(
     val boardWidth: Dp,
     val boardHeight: Dp,
 ) {
-    fun cellTopLeft(column: Int, row: Int): androidx.compose.ui.unit.DpOffset {
-        return androidx.compose.ui.unit.DpOffset(
+    fun cellTopLeft(column: Int, row: Int): DpOffset {
+        return DpOffset(
             x = ((columnWidth + columnGap) * column) + 6.dp,
             y = 8.dp + ((slotSize + cellGap) * row),
         )

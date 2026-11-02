@@ -15,10 +15,12 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -29,6 +31,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -82,6 +86,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -368,8 +373,8 @@ fun AppSettingsScreen(
 @Composable
 private fun SettingsMainContent(
     settings: AppSettings,
-    pagerState: androidx.compose.foundation.pager.PagerState,
-    scrollStates: List<androidx.compose.foundation.ScrollState>,
+    pagerState: PagerState,
+    scrollStates: List<ScrollState>,
     tokenCardExpanded: Boolean,
     onTokenCardExpandedChange: (Boolean) -> Unit,
     stylePulseProvider: () -> Float,
@@ -495,10 +500,10 @@ private fun SettingsMainContent(
                     Spacer(modifier = Modifier.height(32.dp))
                 }
             } else {
-                androidx.compose.foundation.pager.HorizontalPager(
+                HorizontalPager(
                     state = pagerState,
                     modifier = Modifier.fillMaxWidth().weight(1f),
-                    contentPadding = androidx.compose.foundation.layout.PaddingValues(horizontal = 16.dp),
+                    contentPadding = PaddingValues(horizontal = 16.dp),
                     pageSpacing = 16.dp,
                     verticalAlignment = Alignment.Top,
                 ) { pageIndex ->
@@ -661,7 +666,7 @@ fun Modifier.circularReveal(
 
 @Composable
 private fun SettingsTabSwitcher(
-    pagerState: androidx.compose.foundation.pager.PagerState,
+    pagerState: PagerState,
     onTabSelected: (Int) -> Unit,
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
@@ -788,8 +793,8 @@ private fun <T> SelectionGrid(
     options: List<SettingsOption<T>>,
     onSelected: (T) -> Unit,
     onLockedSelected: (SettingsOption<T>) -> Unit = {},
-    onOptionPositioned: (T, androidx.compose.ui.geometry.Offset) -> Unit = { _, _ -> },
-    onOptionClickWithOffset: (T, androidx.compose.ui.geometry.Offset) -> Unit = { _, _ -> },
+    onOptionPositioned: (T, Offset) -> Unit = { _, _ -> },
+    onOptionClickWithOffset: (T, Offset) -> Unit = { _, _ -> },
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
         val chunks = options.chunked(columns)
@@ -797,14 +802,14 @@ private fun <T> SelectionGrid(
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 rowOptions.forEach { option ->
                     val isSelected = option.value == selectedValue
-                    var itemCenter by remember { mutableStateOf(androidx.compose.ui.geometry.Offset.Zero) }
+                    var itemCenter by remember { mutableStateOf(Offset.Zero) }
 
                     Box(
                         modifier = Modifier
                             .weight(1f)
                             .onGloballyPositioned { coords ->
                                 val position = coords.positionInWindow()
-                                itemCenter = androidx.compose.ui.geometry.Offset(
+                                itemCenter = Offset(
                                     x = position.x + coords.size.width / 2f,
                                     y = position.y + coords.size.height / 2f
                                 )
@@ -1270,7 +1275,7 @@ private fun ThemePalettePreview(palette: AppColorPalette, darkTheme: Boolean) {
 }
 
 @Composable
-private fun BoxPreview(colors: List<Color>, size: androidx.compose.ui.unit.Dp = 12.dp) {
+private fun BoxPreview(colors: List<Color>, size: Dp = 12.dp) {
     Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
         val rows = colors.chunked(2)
         rows.forEach { rowColors ->

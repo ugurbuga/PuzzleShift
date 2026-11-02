@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AutoAwesome
+import androidx.compose.foundation.Canvas
 import androidx.compose.material.icons.outlined.Videocam
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -34,10 +35,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.clipRect
+import androidx.compose.ui.graphics.vector.ImageVector
+import kotlinx.coroutines.delay
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.boundsInRoot
 import androidx.compose.ui.layout.onGloballyPositioned
@@ -49,6 +53,7 @@ import blockgames.composeapp.generated.resources.time_remaining
 import com.ugurbuga.blockgames.BlockGamesTheme
 import com.ugurbuga.blockgames.ads.GameAdController
 import com.ugurbuga.blockgames.ads.NoOpGameAdController
+import com.ugurbuga.blockgames.game.model.AppThemeMode
 import com.ugurbuga.blockgames.game.model.BoardMatrix
 import com.ugurbuga.blockgames.game.model.CellTone
 import com.ugurbuga.blockgames.game.model.GameConfig
@@ -114,8 +119,8 @@ fun BoomBlocksGameScreen(
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
     var cellSize by remember { mutableStateOf(0f) }
-    var boardRectInRoot by remember { mutableStateOf(androidx.compose.ui.geometry.Rect.Zero) }
-    var hostRectInRoot by remember { mutableStateOf(androidx.compose.ui.geometry.Rect.Zero) }
+    var boardRectInRoot by remember { mutableStateOf(Rect.Zero) }
+    var hostRectInRoot by remember { mutableStateOf(Rect.Zero) }
     val gameOverBoardClearProgress = remember { Animatable(0f) }
     val gameOverDialogRevealProgress = remember { Animatable(0f) }
     var showGameOverDialog by remember { mutableStateOf(false) }
@@ -124,7 +129,7 @@ fun BoomBlocksGameScreen(
     var currentTime by remember { mutableStateOf(currentEpochMillis()) }
     LaunchedEffect(gameState.status) {
         while (gameState.status == GameStatus.Running) {
-            kotlinx.coroutines.delay(150)
+            delay(150)
             currentTime = currentEpochMillis()
         }
     }
@@ -295,10 +300,10 @@ fun BoomBlocksGameScreen(
 
             if (interactiveOnboardingScene != null) {
                 val boardRect = remember(boardRectInRoot, hostRectInRoot) {
-                    if (boardRectInRoot == androidx.compose.ui.geometry.Rect.Zero || hostRectInRoot == androidx.compose.ui.geometry.Rect.Zero) {
-                        androidx.compose.ui.geometry.Rect.Zero
+                    if (boardRectInRoot == Rect.Zero || hostRectInRoot == Rect.Zero) {
+                        Rect.Zero
                     } else {
-                        androidx.compose.ui.geometry.Rect(
+                        Rect(
                             left = boardRectInRoot.left - hostRectInRoot.left,
                             top = boardRectInRoot.top - hostRectInRoot.top,
                             right = boardRectInRoot.right - hostRectInRoot.left,
@@ -363,7 +368,7 @@ fun BoomBlocksGameScreen(
 @Composable
 private fun SpecialActionAdButton(
     tone: CellTone,
-    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    icon: ImageVector,
     adController: GameAdController,
     onActivated: () -> Unit,
     stylePulse: Float = 0f,
@@ -541,7 +546,7 @@ internal fun GameGrid(
         animationProgress.snapTo(0f)
 
         if (gameState.recentlyExplodedPoints.isNotEmpty()) {
-            kotlinx.coroutines.delay(BOOM_BLOCKS_FALL_DELAY_MILLIS)
+            delay(BOOM_BLOCKS_FALL_DELAY_MILLIS)
         }
 
         animationProgress.animateTo(
@@ -591,7 +596,7 @@ internal fun GameGrid(
         gameState.onboardingGuidePoint?.let { findConnectedGroup(board, it) } ?: emptySet()
     }
 
-    androidx.compose.foundation.Canvas(modifier = modifier) {
+    Canvas(modifier = modifier) {
         val cellWidth = size.width / board.columns
         val cellHeight = size.height / board.rows
 
@@ -824,7 +829,7 @@ private fun BoomBlocksGameScreenPreview() {
 @Preview(name = "BoomBlocks Game Dark", widthDp = 412, heightDp = 915)
 @Composable
 private fun BoomBlocksGameScreenDarkPreview() {
-    BlockGamesTheme(settings = AppSettings(themeMode = com.ugurbuga.blockgames.game.model.AppThemeMode.Dark)) {
+    BlockGamesTheme(settings = AppSettings(themeMode = AppThemeMode.Dark)) {
         BoomBlocksGameScreen(
             gameState = previewBoomBlocksState(),
             onTapCell = {},

@@ -45,6 +45,7 @@ import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.boundsInRoot
 import androidx.compose.ui.layout.onGloballyPositioned
@@ -65,6 +66,7 @@ import com.ugurbuga.blockgames.ads.GameAdController
 import com.ugurbuga.blockgames.ads.NoOpGameAdController
 import com.ugurbuga.blockgames.game.logic.GameEvent
 import com.ugurbuga.blockgames.game.model.AppThemeMode
+import com.ugurbuga.blockgames.game.model.CellTone
 import com.ugurbuga.blockgames.game.model.GameState
 import com.ugurbuga.blockgames.game.model.GameStatus
 import com.ugurbuga.blockgames.game.model.GridPoint
@@ -659,7 +661,7 @@ private fun MergeShiftBottomDock(
 
                     if (showRewardedAction) {
                         SpecialActionAdButton(
-                            tone = com.ugurbuga.blockgames.game.model.CellTone.Gold,
+                            tone = CellTone.Gold,
                             icon = Icons.Filled.Refresh,
                             adController = adController,
                             onActivated = { onReplaceActivePiece(SpecialBlockType.None) },
@@ -674,8 +676,8 @@ private fun MergeShiftBottomDock(
 
 @Composable
 private fun SpecialActionAdButton(
-    tone: com.ugurbuga.blockgames.game.model.CellTone,
-    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    tone: CellTone,
+    icon: ImageVector,
     adController: GameAdController,
     onActivated: () -> Unit,
     stylePulse: Float = 0f,

@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.ugurbuga.blockgames.game.model.BoardMatrix
 import blockgames.composeapp.generated.resources.Res
 import blockgames.composeapp.generated.resources.interactive_onboarding_boomblocks_basic_body
 import blockgames.composeapp.generated.resources.interactive_onboarding_boomblocks_basic_title
@@ -181,7 +182,7 @@ private fun boomBlocksOnboardingTargetRect(
 }
 
 private fun findConnectedGroup(
-    board: com.ugurbuga.blockgames.game.model.BoardMatrix,
+    board: BoardMatrix,
     start: GridPoint
 ): Set<GridPoint> {
     val tone = board.toneAt(start.column, start.row) ?: return emptySet()

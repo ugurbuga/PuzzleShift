@@ -1,6 +1,7 @@
 package com.ugurbuga.blockgames.settings
 
 import androidx.compose.runtime.Immutable
+import com.ugurbuga.blockgames.game.logic.DigitShiftGameLogic
 import com.ugurbuga.blockgames.game.logic.DigitShiftLanguagePack
 import com.ugurbuga.blockgames.game.logic.DigitShiftLexicon
 import com.ugurbuga.blockgames.game.logic.digitShiftAttemptsForLength
@@ -39,7 +40,7 @@ object DigitShiftOnboardingStateFactory {
     fun initialState(): GameState = scene(stages.first()).gameState
 
     fun cleanGameState(): GameState =
-        com.ugurbuga.blockgames.game.logic.DigitShiftGameLogic().newGame(
+        DigitShiftGameLogic().newGame(
             config = GameConfig.default(GameplayStyle.DigitShift),
         )
 

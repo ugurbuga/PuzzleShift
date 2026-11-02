@@ -5,6 +5,7 @@ import com.ugurbuga.blockgames.game.model.AppLanguage
 import com.ugurbuga.blockgames.game.model.AppThemeMode
 import com.ugurbuga.blockgames.game.model.BlockColorPalette
 import com.ugurbuga.blockgames.game.model.BlockVisualStyle
+import com.ugurbuga.blockgames.game.model.ChallengeProgress
 import com.ugurbuga.blockgames.game.model.GameplayStyle
 import com.ugurbuga.blockgames.game.model.blockVisualStyleFromPersistedOrdinal
 import com.ugurbuga.blockgames.game.model.blockVisualStyleFromPersistedValue
@@ -87,7 +88,7 @@ actual object AppSettingsStorage {
     private const val Separator = ','
     private val SupportedFieldCounts = 7..22
 
-    private fun decodeStyleChallengeProgress(encoded: String?): Map<GameplayStyle, com.ugurbuga.blockgames.game.model.ChallengeProgress> {
+    private fun decodeStyleChallengeProgress(encoded: String?): Map<GameplayStyle, ChallengeProgress> {
         val legacy = decodeChallengeProgress(encoded)
         return if (legacy.completedDays.isEmpty()) {
             emptyMap()
@@ -96,8 +97,8 @@ actual object AppSettingsStorage {
         }
     }
 
-    private fun encodeStyleChallengeProgress(progressByStyle: Map<GameplayStyle, com.ugurbuga.blockgames.game.model.ChallengeProgress>): String {
-        return encodeChallengeProgress(progressByStyle[GameplayStyle.StackShift] ?: com.ugurbuga.blockgames.game.model.ChallengeProgress())
+    private fun encodeStyleChallengeProgress(progressByStyle: Map<GameplayStyle, ChallengeProgress>): String {
+        return encodeChallengeProgress(progressByStyle[GameplayStyle.StackShift] ?: ChallengeProgress())
     }
 }
 

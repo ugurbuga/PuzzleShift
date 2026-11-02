@@ -9,6 +9,7 @@ import com.ugurbuga.blockgames.game.logic.SumShiftGameLogic
 import com.ugurbuga.blockgames.game.model.BoardMatrix
 import com.ugurbuga.blockgames.game.model.CellTone
 import com.ugurbuga.blockgames.game.model.GameConfig
+import com.ugurbuga.blockgames.game.model.GameMode
 import com.ugurbuga.blockgames.game.model.GameState
 import com.ugurbuga.blockgames.game.model.GameStatus
 import com.ugurbuga.blockgames.game.model.GameplayStyle
@@ -56,7 +57,7 @@ object SumShiftOnboardingStateFactory {
     fun cleanGameState(): GameState = SumShiftGameLogic().newGame(
         config = GameConfig.default(GameplayStyle.SumShift),
         challenge = null,
-        mode = com.ugurbuga.blockgames.game.model.GameMode.Classic,
+        mode = GameMode.Classic,
     )
 
     fun scene(stage: SumShiftOnboardingStage): SumShiftOnboardingScene = sceneCache.getValue(stage)

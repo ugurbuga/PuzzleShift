@@ -2,6 +2,7 @@ package com.ugurbuga.blockgames.settings
 
 import android.content.Context
 import com.ugurbuga.blockgames.game.model.GameState
+import com.ugurbuga.blockgames.platform.GlobalPlatformConfig
 
 actual object GameSessionStorage {
     private const val Namespace = "com.ugurbuga.blockgames.game_session"
@@ -46,7 +47,7 @@ actual object GameSessionStorage {
     }
 
     actual fun cleanup(allowedDateIds: List<String>) {
-        val style = com.ugurbuga.blockgames.platform.GlobalPlatformConfig.gameplayStyle.name.lowercase()
+        val style = GlobalPlatformConfig.gameplayStyle.name.lowercase()
         val allowedKeys = allowedDateIds.map { "gameState_daily_challenge_${style}_$it" }.toSet()
         val prefix = "gameState_daily_challenge_${style}_"
         val toRemove = prefs.all.keys
@@ -60,7 +61,7 @@ actual object GameSessionStorage {
     }
 
     actual fun getSavedDailyChallengeDays(yearMonth: String): Set<Int> {
-        val style = com.ugurbuga.blockgames.platform.GlobalPlatformConfig.gameplayStyle.name.lowercase()
+        val style = GlobalPlatformConfig.gameplayStyle.name.lowercase()
         val prefix = "gameState_daily_challenge_${style}_$yearMonth-"
         return prefs.all.keys
             .filter { it.startsWith(prefix) }

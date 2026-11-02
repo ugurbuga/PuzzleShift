@@ -18,6 +18,7 @@ import com.ugurbuga.blockgames.ads.GameAdController
 import com.ugurbuga.blockgames.ads.NoOpGameAdController
 import com.ugurbuga.blockgames.game.logic.GameEvent
 import com.ugurbuga.blockgames.game.model.GameConfig
+import com.ugurbuga.blockgames.game.model.GameMode
 import com.ugurbuga.blockgames.game.model.GameState
 import com.ugurbuga.blockgames.game.model.GameStatus
 import com.ugurbuga.blockgames.game.model.GameplayStyle
@@ -124,7 +125,7 @@ fun BlockGamesGameApp(
     ) {
         if (
             uiState.gameState.gameplayStyle == GameplayStyle.BlockSort &&
-            uiState.gameState.gameMode == com.ugurbuga.blockgames.game.model.GameMode.TimeAttack &&
+            uiState.gameState.gameMode == GameMode.TimeAttack &&
             uiState.gameState.status == GameStatus.Running &&
             uiState.gameState.level > previousBlockSortLevel
         ) {
@@ -144,7 +145,7 @@ fun BlockGamesGameApp(
         while (uiState.gameState.status == GameStatus.Running) {
             val pauseRemainingMillis = if (
                 uiState.gameState.gameplayStyle == GameplayStyle.BlockSort &&
-                uiState.gameState.gameMode == com.ugurbuga.blockgames.game.model.GameMode.TimeAttack
+                uiState.gameState.gameMode == GameMode.TimeAttack
             ) {
                 (blockSortTimePauseUntilEpochMillis - currentEpochMillis()).coerceAtLeast(0L)
             } else {

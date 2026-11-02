@@ -136,6 +136,7 @@ import com.ugurbuga.blockgames.game.model.ChallengeTask
 import com.ugurbuga.blockgames.game.model.ChallengeTaskType
 import com.ugurbuga.blockgames.game.model.DailyChallenge
 import com.ugurbuga.blockgames.game.model.GameplayStyle
+import com.ugurbuga.blockgames.platform.GlobalPlatformConfig
 import com.ugurbuga.blockgames.game.model.color
 import com.ugurbuga.blockgames.game.model.paletteColor
 import com.ugurbuga.blockgames.localization.LocalAppSettings
@@ -190,7 +191,7 @@ fun DailyChallengeScreen(
             val savedState = GameSessionStorage.load(
                 GameSessionSlot.DailyChallenge(
                     dateId = dateId,
-                    style = com.ugurbuga.blockgames.platform.GlobalPlatformConfig.gameplayStyle
+                    style = GlobalPlatformConfig.gameplayStyle
                 )
             )
             savedState?.activeChallenge ?: ChallengeGenerator.generate(
@@ -713,7 +714,7 @@ fun ChallengeTaskItem(
 @Composable
 fun taskDescription(task: ChallengeTask): String {
     val gameplayStyle = LocalAppSettings.current.selectedGameplayStyle
-        ?: com.ugurbuga.blockgames.platform.GlobalPlatformConfig.gameplayStyle
+        ?: GlobalPlatformConfig.gameplayStyle
 
     val res = when (task.type) {
         ChallengeTaskType.ClearBlocks -> Res.string.challenge_task_clear_blocks
