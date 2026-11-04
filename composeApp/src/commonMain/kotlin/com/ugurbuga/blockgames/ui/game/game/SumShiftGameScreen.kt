@@ -1,5 +1,6 @@
 package com.ugurbuga.blockgames.ui.game.game
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.Spring
@@ -17,6 +18,7 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -56,6 +58,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
@@ -472,27 +475,12 @@ internal fun SumShiftGameScreen(
                 stylePulse = stylePulse,
             )
 
-            androidx.compose.animation.AnimatedVisibility(
+            SumShiftCompletionToast(
                 visible = showCompletionToast,
                 modifier = Modifier
                     .align(Alignment.TopCenter)
                     .padding(top = 18.dp),
-                enter = fadeIn(animationSpec = tween(durationMillis = 220)) +
-                    slideInVertically(
-                        animationSpec = tween(durationMillis = 260),
-                        initialOffsetY = { -it / 2 },
-                    ),
-                exit = fadeOut(animationSpec = tween(durationMillis = 180)) +
-                    slideOutVertically(
-                        animationSpec = tween(durationMillis = 220),
-                        targetOffsetY = { -it / 3 },
-                    ),
-            ) {
-                FloatingFeedbackBubble(
-                    text = stringResource(Res.string.sumshift_completion_feedback),
-                    isBonus = true,
-                )
-            }
+            )
         }
 
         if (interactiveOnboardingScene == null) {
@@ -507,6 +495,32 @@ internal fun SumShiftGameScreen(
                 hintEnabled = hasRewardedHint,
             )
         }
+    }
+}
+
+@Composable
+private fun BoxScope.SumShiftCompletionToast(
+    visible: Boolean,
+    modifier: Modifier = Modifier,
+) {
+    AnimatedVisibility(
+        visible = visible,
+        modifier = modifier,
+        enter = fadeIn(animationSpec = tween(durationMillis = 220)) +
+            slideInVertically(
+                animationSpec = tween(durationMillis = 260),
+                initialOffsetY = { -it / 2 },
+            ),
+        exit = fadeOut(animationSpec = tween(durationMillis = 180)) +
+            slideOutVertically(
+                animationSpec = tween(durationMillis = 220),
+                targetOffsetY = { -it / 3 },
+            ),
+    ) {
+        FloatingFeedbackBubble(
+            text = stringResource(Res.string.sumshift_completion_feedback),
+            isBonus = true,
+        )
     }
 }
 
@@ -698,7 +712,7 @@ private fun SumShiftMistakeBadge(
 
 @Composable
 private fun SumShiftToolButton(
-    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    icon: ImageVector,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     tone: CellTone,
@@ -861,7 +875,7 @@ private fun SumShiftInteractionModeSwitch(
 
 @Composable
 private fun SumShiftInteractionModeOption(
-    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    icon: ImageVector,
     selected: Boolean,
     enabled: Boolean,
     onClick: () -> Unit,

@@ -138,7 +138,7 @@ class GameViewModel(
             gameMode = mode,
             gameplayStyle = GameplayStyle.SumShift,
             activeChallenge = challenge,
-            status = com.ugurbuga.blockgames.game.model.GameStatus.Running,
+            status = GameStatus.Running,
             sumShiftSelectedCells = emptySet(),
             sumShiftPreparingBoard = true,
         )

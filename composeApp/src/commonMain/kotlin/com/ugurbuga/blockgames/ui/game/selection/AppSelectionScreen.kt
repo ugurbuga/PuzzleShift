@@ -88,15 +88,21 @@ import blockgames.composeapp.generated.resources.selection_sumshift_desc
 import blockgames.composeapp.generated.resources.selection_title
 import com.ugurbuga.blockgames.BlockGamesTheme
 import com.ugurbuga.blockgames.ads.AppFooterBannerHeight
+import com.ugurbuga.blockgames.game.logic.BoomBlocksGameLogic
+import com.ugurbuga.blockgames.game.logic.GameEvent
+import com.ugurbuga.blockgames.game.logic.GameLogic
 import com.ugurbuga.blockgames.game.model.AppThemeMode
 import com.ugurbuga.blockgames.game.model.BoardMatrix
 import com.ugurbuga.blockgames.game.model.CellTone
 import com.ugurbuga.blockgames.game.model.GameConfig
 import com.ugurbuga.blockgames.game.model.GameState
+import com.ugurbuga.blockgames.game.model.GameStatus
 import com.ugurbuga.blockgames.game.model.GameplayStyle
 import com.ugurbuga.blockgames.game.model.GridPoint
 import com.ugurbuga.blockgames.game.model.Piece
 import com.ugurbuga.blockgames.game.model.PlacementPreview
+import com.ugurbuga.blockgames.game.model.SpecialBlockType
+import com.ugurbuga.blockgames.ui.theme.BlockGamesUiColors
 import com.ugurbuga.blockgames.localization.LocalAppSettings
 import com.ugurbuga.blockgames.localization.LocalBlockStylePulse
 import com.ugurbuga.blockgames.platform.GlobalPlatformConfig
@@ -472,7 +478,7 @@ private fun GameDemoView(style: GameplayStyle, stylePulse: Float) {
         } else emptyList()
     }
     val logic = remember(style, stackShiftScenario?.seed) {
-        com.ugurbuga.blockgames.game.logic.GameLogic.create(
+        GameLogic.create(
             random = Random(stackShiftScenario?.seed ?: (style.ordinal + 17)),
         )
     }
@@ -940,7 +946,7 @@ internal fun GameplayStyle.selectionTone(): CellTone = when (this) {
     GameplayStyle.FluffyBlock -> CellTone.Rose
 }
 
-private fun com.ugurbuga.blockgames.ui.theme.BlockGamesUiColors.selectionAccentFor(style: GameplayStyle): Color = when (style) {
+private fun BlockGamesUiColors.selectionAccentFor(style: GameplayStyle): Color = when (style) {
     GameplayStyle.StackShift -> selectionStackShift
     GameplayStyle.BlockWise -> warning
     GameplayStyle.BlockSort -> success
@@ -955,7 +961,7 @@ internal fun initialExpandedSelectionStyle(currentStyle: GameplayStyle?): Gamepl
     if (currentStyle == null) GameplayStyle.StackShift else null
 
 private fun buildBlockSortDemoScenario(): List<BlockSortDemoStep> {
-    val logic = com.ugurbuga.blockgames.game.logic.GameLogic.create(random = Random(0))
+    val logic = GameLogic.create(random = Random(0))
     return listOf(
         BlockSortOnboardingStateFactory.scene(BlockSortOnboardingStage.PickSource),
         BlockSortOnboardingStateFactory.scene(BlockSortOnboardingStage.MatchColor),
@@ -1141,7 +1147,7 @@ private fun buildBoomBlocksDemoScenario(): BoomBlocksDemoScenario {
     )
 
     for (seed in 0..256) {
-        val logic = com.ugurbuga.blockgames.game.logic.BoomBlocksGameLogic(random = Random(seed))
+        val logic = BoomBlocksGameLogic(random = Random(seed))
         val initialState = logic.newGame(config = config)
         var currentState = initialState
         val steps = mutableListOf<BoomBlocksDemoStep>()
@@ -1167,7 +1173,7 @@ private fun buildBoomBlocksDemoScenario(): BoomBlocksDemoScenario {
     val fallbackState = BoomBlocksOnboardingStateFactory
         .scene(BoomBlocksOnboardingStage.StrategicClears)
         .gameState
-    val fallbackLogic = com.ugurbuga.blockgames.game.logic.BoomBlocksGameLogic(random = Random(0))
+    val fallbackLogic = BoomBlocksGameLogic(random = Random(0))
     var currentState = fallbackState
     val fallbackSteps = mutableListOf<BoomBlocksDemoStep>()
 
@@ -1212,7 +1218,7 @@ private fun buildBlockWiseDemoScenario(): BlockWiseDemoScenario {
         )
 
     for (seed in 0..768) {
-        val logic = com.ugurbuga.blockgames.game.logic.GameLogic.create(random = Random(seed))
+        val logic = GameLogic.create(random = Random(seed))
         var state = denseBaseState
         val steps = mutableListOf<BlockWiseDemoStep>()
         var sawRowClear = false
@@ -1259,10 +1265,10 @@ private fun buildBlockWiseDemoScenario(): BlockWiseDemoScenario {
         val scene = BlockWiseOnboardingStateFactory.scene(stage)
         val guidePoint = scene.guidePoint ?: return@mapNotNull null
         val piece = scene.gameState.trayPieces.firstOrNull() ?: return@mapNotNull null
-        val preview = com.ugurbuga.blockgames.game.logic.GameLogic.create(random = Random(stage.ordinal + 1))
+        val preview = GameLogic.create(random = Random(stage.ordinal + 1))
             .previewPlacement(scene.gameState, piece.id, guidePoint)
             ?: return@mapNotNull null
-        val nextState = com.ugurbuga.blockgames.game.logic.GameLogic.create(random = Random(stage.ordinal + 1))
+        val nextState = GameLogic.create(random = Random(stage.ordinal + 1))
             .placePiece(scene.gameState, piece.id, guidePoint)
             .state
         BlockWiseDemoStep(
@@ -1301,7 +1307,7 @@ private fun buildStackShiftDemoScenario(): StackShiftDemoScenario {
     )
 
     for (seed in 0..1024) {
-        val logic = com.ugurbuga.blockgames.game.logic.GameLogic.create(random = Random(seed))
+        val logic = GameLogic.create(random = Random(seed))
         var state = initialState
         val steps = mutableListOf<StackShiftDemoStep>()
 
@@ -1313,7 +1319,7 @@ private fun buildStackShiftDemoScenario(): StackShiftDemoScenario {
                 .mapNotNull { (targetColumn, preview) ->
                     val softLocked = logic.placePiece(state, targetColumn)
                     val committed = logic.commitSoftLock(softLocked.state)
-                    if (committed.state.status != com.ugurbuga.blockgames.game.model.GameStatus.Running && stepIndex < SelectionDemoActionCount - 1) {
+                    if (committed.state.status != GameStatus.Running && stepIndex < SelectionDemoActionCount - 1) {
                         null
                     } else {
                         StackShiftScenarioCandidate(
@@ -1345,7 +1351,7 @@ private fun buildStackShiftDemoScenario(): StackShiftDemoScenario {
 
         val secondStep = steps.getOrNull(1)
         val secondStepIsElevatedRowClearer = secondStep != null &&
-            secondStep.beforeState.activePiece?.special == com.ugurbuga.blockgames.game.model.SpecialBlockType.RowClearer &&
+            secondStep.beforeState.activePiece?.special == SpecialBlockType.RowClearer &&
             secondStep.committedState.clearAnimationToken > secondStep.beforeState.clearAnimationToken &&
             secondStep.preview.landingAnchor.row < (steps.firstOrNull()?.preview?.landingAnchor?.row ?: Int.MAX_VALUE)
 
@@ -1357,7 +1363,7 @@ private fun buildStackShiftDemoScenario(): StackShiftDemoScenario {
         }
     }
 
-    val fallbackLogic = com.ugurbuga.blockgames.game.logic.GameLogic.create(random = Random(0))
+    val fallbackLogic = GameLogic.create(random = Random(0))
     var fallbackState = initialState
     val fallbackSteps = mutableListOf<StackShiftDemoStep>()
     val fallbackColumns = listOf(4, 5, 3, 6, 2, 7)
@@ -1385,7 +1391,7 @@ private data class StackShiftScenarioCandidate(
     val preview: PlacementPreview,
     val softLockedState: GameState,
     val committedState: GameState,
-    val commitEvents: Set<com.ugurbuga.blockgames.game.logic.GameEvent>,
+    val commitEvents: Set<GameEvent>,
 )
 
 private fun scoreBlockWiseDemoCandidate(
@@ -1423,7 +1429,7 @@ private fun scoreStackShiftDemoCandidate(
     val landing = candidate.preview.landingAnchor
     val centerBias = 48 - (kotlin.math.abs(candidate.targetColumn - 4.5f) * 10f).toInt()
     val clearScore = (candidate.committedState.recentlyClearedRows.size * 180) + (candidate.committedState.recentlyClearedColumns.size * 120)
-    val specialScore = if (candidate.commitEvents.contains(com.ugurbuga.blockgames.game.logic.GameEvent.SpecialTriggered)) 120 else 0
+    val specialScore = if (candidate.commitEvents.contains(GameEvent.SpecialTriggered)) 120 else 0
     val animationScore = if (candidate.committedState.clearAnimationToken > candidate.beforeSoftLockToken()) 80 else 0
 
     if (stepIndex == 0) {
@@ -1433,7 +1439,7 @@ private fun scoreStackShiftDemoCandidate(
     if (stepIndex == 1) {
         val previousRow = previousStep?.preview?.landingAnchor?.row ?: Int.MAX_VALUE
         val elevatedScore = if (landing.row < previousRow) 360 else -240
-        val rowClearerScore = if (candidate.softLockedState.activePiece?.special == com.ugurbuga.blockgames.game.model.SpecialBlockType.RowClearer) 240 else -300
+        val rowClearerScore = if (candidate.softLockedState.activePiece?.special == SpecialBlockType.RowClearer) 240 else -300
         val visibleClearScore = if (candidate.committedState.clearAnimationToken > candidate.softLockedState.clearAnimationToken) 260 else -220
         return centerBias + clearScore + specialScore + elevatedScore + rowClearerScore + visibleClearScore
     }

@@ -49,9 +49,12 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.lerp
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import blockgames.composeapp.generated.resources.Res
 import blockgames.composeapp.generated.resources.blocksort_no_moves_hint
@@ -72,7 +75,11 @@ import blockgames.composeapp.generated.resources.time_remaining
 import com.ugurbuga.blockgames.BlockGamesTheme
 import com.ugurbuga.blockgames.ads.GameAdController
 import com.ugurbuga.blockgames.ads.NoOpGameAdController
+import com.ugurbuga.blockgames.game.model.AppThemeMode
+import com.ugurbuga.blockgames.game.model.BlockColorPalette
+import com.ugurbuga.blockgames.game.model.BlockVisualStyle
 import com.ugurbuga.blockgames.game.model.BoardCell
+import com.ugurbuga.blockgames.game.model.BoardMatrix
 import com.ugurbuga.blockgames.game.model.CellTone
 import com.ugurbuga.blockgames.game.model.GameConfig
 import com.ugurbuga.blockgames.game.model.GameState
@@ -81,12 +88,14 @@ import com.ugurbuga.blockgames.game.model.GameTextKey
 import com.ugurbuga.blockgames.game.model.GameplayStyle
 import com.ugurbuga.blockgames.game.model.GridPoint
 import com.ugurbuga.blockgames.game.model.PlacementPreview
+import com.ugurbuga.blockgames.game.model.SpecialBlockType
 import com.ugurbuga.blockgames.game.model.gameText
 import com.ugurbuga.blockgames.localization.LocalAppSettings
 import com.ugurbuga.blockgames.localization.LocalBlockStylePulse
 import com.ugurbuga.blockgames.settings.AppSettings
 import com.ugurbuga.blockgames.settings.BlockSortOnboardingScene
 import com.ugurbuga.blockgames.settings.BlockSortOnboardingStage
+import com.ugurbuga.blockgames.settings.BlockSortOnboardingStateFactory
 import com.ugurbuga.blockgames.ui.game.BlockCellPreview
 import com.ugurbuga.blockgames.ui.game.GameOverDialog
 import com.ugurbuga.blockgames.ui.game.GameOverDialogRevealDurationMillis
@@ -403,9 +412,9 @@ internal fun BlockSortBoard(
     interactiveOnboardingScene: BlockSortOnboardingScene?,
     onRequestPreview: (Int, Int) -> PlacementPreview?,
     onColumnTapped: (Int) -> Unit,
-    palette: com.ugurbuga.blockgames.game.model.BlockColorPalette,
+    palette: BlockColorPalette,
     boardStylePulse: Float,
-    boardStyle: com.ugurbuga.blockgames.game.model.BlockVisualStyle,
+    boardStyle: BlockVisualStyle,
     gameOverClearProgress: Float = 0f,
     modifier: Modifier = Modifier,
 ) {
@@ -413,8 +422,8 @@ internal fun BlockSortBoard(
     val density = LocalDensity.current
     var previousBoard by remember { mutableStateOf(gameState.board) }
     var previousLevel by remember { mutableIntStateOf(gameState.level) }
-    var levelTransitionPreviousBoard by remember { mutableStateOf<com.ugurbuga.blockgames.game.model.BoardMatrix?>(null) }
-    var levelTransitionSourceBoard by remember { mutableStateOf<com.ugurbuga.blockgames.game.model.BoardMatrix?>(null) }
+    var levelTransitionPreviousBoard by remember { mutableStateOf<BoardMatrix?>(null) }
+    var levelTransitionSourceBoard by remember { mutableStateOf<BoardMatrix?>(null) }
     var levelTransitionAnimatedCells by remember { mutableStateOf<List<BlockSortAnimatedCell>>(emptyList()) }
     var levelTransitionHiddenTargets by remember { mutableStateOf<Set<GridPoint>>(emptySet()) }
     var animatedCells by remember { mutableStateOf<List<BlockSortAnimatedCell>>(emptyList()) }
@@ -749,11 +758,11 @@ internal fun BlockSortBoard(
 
 @Composable
 private fun BlockSortBoardColumnsLayer(
-    board: com.ugurbuga.blockgames.game.model.BoardMatrix,
+    board: BoardMatrix,
     rowCount: Int,
     layout: BlockSortBoardLayout,
-    palette: com.ugurbuga.blockgames.game.model.BlockColorPalette,
-    boardStyle: com.ugurbuga.blockgames.game.model.BlockVisualStyle,
+    palette: BlockColorPalette,
+    boardStyle: BlockVisualStyle,
     boardStylePulse: Float,
     selectedSourceColumn: Int?,
     guideSourceColumn: Int?,
@@ -770,7 +779,7 @@ private fun BlockSortBoardColumnsLayer(
     columnFrameProgress: Float,
     layerAlpha: Float,
     layerScale: Float,
-    layerTranslationY: androidx.compose.ui.unit.Dp,
+    layerTranslationY: Dp,
     onColumnTapped: (Int) -> Unit,
 ) {
     Column(
@@ -825,13 +834,13 @@ private fun BlockSortBoardColumnsLayer(
 
 @Composable
 private fun BlockSortColumn(
-    board: com.ugurbuga.blockgames.game.model.BoardMatrix,
+    board: BoardMatrix,
     rowCount: Int,
     column: Int,
-    cellSize: androidx.compose.ui.unit.Dp,
-    cellGap: androidx.compose.ui.unit.Dp,
-    palette: com.ugurbuga.blockgames.game.model.BlockColorPalette,
-    boardStyle: com.ugurbuga.blockgames.game.model.BlockVisualStyle,
+    cellSize: Dp,
+    cellGap: Dp,
+    palette: BlockColorPalette,
+    boardStyle: BlockVisualStyle,
     stylePulse: Float,
     isSelected: Boolean,
     isCompleted: Boolean,
@@ -982,7 +991,7 @@ private fun BlockSortColumn(
 private fun BlockSortStatPill(
     label: String,
     value: String,
-    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    icon: ImageVector,
     modifier: Modifier = Modifier,
 ) {
     val uiColors = BlockGamesThemeTokens.uiColors
@@ -1118,7 +1127,7 @@ private fun BlockSortExtraColumnAdButton(
     )
 }
 
-private fun isCompletedColumn(board: com.ugurbuga.blockgames.game.model.BoardMatrix, rowCount: Int, column: Int): Boolean {
+private fun isCompletedColumn(board: BoardMatrix, rowCount: Int, column: Int): Boolean {
     if (board.filledCellCount(column) != rowCount) return false
     val tone = board.topOccupiedRow(column)?.let { board.toneAt(column, it) } ?: return false
     for (row in 0 until rowCount) {
@@ -1131,41 +1140,41 @@ private data class BlockSortAnimatedCell(
     val from: GridPoint,
     val to: GridPoint,
     val tone: CellTone,
-    val special: com.ugurbuga.blockgames.game.model.SpecialBlockType,
+    val special: SpecialBlockType,
 )
 
 private data class BlockSortBoardLayout(
     val columnRows: List<List<Int>>,
-    val cellSize: androidx.compose.ui.unit.Dp,
-    val cellGap: androidx.compose.ui.unit.Dp,
-    val columnGap: androidx.compose.ui.unit.Dp,
-    val boardRowGap: androidx.compose.ui.unit.Dp,
-    val columnWidth: androidx.compose.ui.unit.Dp,
-    val columnHeight: androidx.compose.ui.unit.Dp,
-    val boardWidth: androidx.compose.ui.unit.Dp,
-    val boardHeight: androidx.compose.ui.unit.Dp,
+    val cellSize: Dp,
+    val cellGap: Dp,
+    val columnGap: Dp,
+    val boardRowGap: Dp,
+    val columnWidth: Dp,
+    val columnHeight: Dp,
+    val boardWidth: Dp,
+    val boardHeight: Dp,
 ) {
-    fun cellTopLeft(point: GridPoint): androidx.compose.ui.unit.DpOffset {
+    fun cellTopLeft(point: GridPoint): DpOffset {
         val columnOrigin = columnTopLeft(point.column)
-        return androidx.compose.ui.unit.DpOffset(
+        return DpOffset(
             x = columnOrigin.x + BlockSortColumnHorizontalPadding,
             y = columnOrigin.y + BlockSortColumnVerticalPadding + ((cellSize + cellGap) * point.row),
         )
     }
 
-    private fun columnTopLeft(column: Int): androidx.compose.ui.unit.DpOffset {
+    private fun columnTopLeft(column: Int): DpOffset {
         columnRows.forEachIndexed { rowIndex, rowColumns ->
             val columnIndex = rowColumns.indexOf(column)
             if (columnIndex >= 0) {
                 val rowWidth = (columnWidth * rowColumns.size) + (columnGap * (rowColumns.size - 1).coerceAtLeast(0))
                 val startX = (boardWidth - rowWidth) / 2
-                return androidx.compose.ui.unit.DpOffset(
+                return DpOffset(
                     x = startX + ((columnWidth + columnGap) * columnIndex),
                     y = (columnHeight + boardRowGap) * rowIndex,
                 )
             }
         }
-        return androidx.compose.ui.unit.DpOffset.Zero
+        return DpOffset.Zero
     }
 }
 
@@ -1179,8 +1188,8 @@ internal fun blockSortColumnGroups(columnCount: Int): List<List<Int>> {
 }
 
 private fun calculateBlockSortBoardLayout(
-    maxWidth: androidx.compose.ui.unit.Dp,
-    maxHeight: androidx.compose.ui.unit.Dp,
+    maxWidth: Dp,
+    maxHeight: Dp,
     columnCount: Int,
     rowCount: Int,
 ): BlockSortBoardLayout {
@@ -1219,8 +1228,8 @@ private fun calculateBlockSortBoardLayout(
 }
 
 private fun resolveAnimatedMoveCells(
-    previousBoard: com.ugurbuga.blockgames.game.model.BoardMatrix,
-    currentBoard: com.ugurbuga.blockgames.game.model.BoardMatrix,
+    previousBoard: BoardMatrix,
+    currentBoard: BoardMatrix,
     allowedCellValues: Set<Int>,
     maxMovedCells: Int,
 ): List<BlockSortAnimatedCell> {
@@ -1251,7 +1260,7 @@ private fun resolveAnimatedMoveCells(
 }
 
 private fun boardCellEntries(
-    board: com.ugurbuga.blockgames.game.model.BoardMatrix,
+    board: BoardMatrix,
     allowedCellValues: Set<Int>,
 ): Map<Int, Pair<GridPoint, BoardCell>> = buildMap {
     for (column in 0 until board.columns) {
@@ -1361,7 +1370,7 @@ internal fun rowRevealAlphaFromBottom(row: Int, rowCount: Int, revealProgress: F
 }
 
 internal fun resolveMovableStackCells(
-    board: com.ugurbuga.blockgames.game.model.BoardMatrix,
+    board: BoardMatrix,
     selectedSourceColumn: Int?,
 ): Set<GridPoint> {
     val sourceColumn = selectedSourceColumn ?: return emptySet()
@@ -1491,8 +1500,8 @@ private fun BlockSortGameScreenPreview() {
 @Composable
 private fun BlockSortGameScreenOnboardingPreview() {
     BlockGamesTheme(settings = AppSettings()) {
-        val scene = com.ugurbuga.blockgames.settings.BlockSortOnboardingStateFactory.scene(
-            com.ugurbuga.blockgames.settings.BlockSortOnboardingStage.MatchColor
+        val scene = BlockSortOnboardingStateFactory.scene(
+            BlockSortOnboardingStage.MatchColor
         )
         BlockSortGameScreen(
             gameState = scene.gameState,
@@ -1511,7 +1520,7 @@ private fun BlockSortGameScreenOnboardingPreview() {
 @Preview(name = "BlockSort Game Dark", widthDp = 412, heightDp = 915)
 @Composable
 private fun BlockSortGameScreenDarkPreview() {
-    BlockGamesTheme(settings = AppSettings(themeMode = com.ugurbuga.blockgames.game.model.AppThemeMode.Dark)) {
+    BlockGamesTheme(settings = AppSettings(themeMode = AppThemeMode.Dark)) {
         BlockSortGameScreen(
             gameState = GameState(
                 config = GameConfig.default(GameplayStyle.BlockSort),
@@ -1570,7 +1579,7 @@ private fun previewBoard() = listOf(
     listOf(CellTone.Violet, CellTone.Violet),
     emptyList(),
 ).let { columns ->
-    var board = com.ugurbuga.blockgames.game.model.BoardMatrix.empty(columns = columns.size, rows = 4)
+    var board = BoardMatrix.empty(columns = columns.size, rows = 4)
     columns.forEachIndexed { column, stack ->
         stack.forEachIndexed { index, tone ->
             board = board.fill(listOf(GridPoint(column, 3 - index)), tone = tone, value = (column * 10) + index)

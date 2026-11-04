@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.viewinterop.AndroidView
+import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
@@ -114,7 +115,7 @@ private class AndroidGameAdController(
                     onFinished()
                     loadInterstitial()
                 }
-                override fun onAdFailedToShowFullScreenContent(adError: com.google.android.gms.ads.AdError) {
+                override fun onAdFailedToShowFullScreenContent(adError: AdError) {
                     onFinished()
                     loadInterstitial()
                 }
@@ -149,7 +150,7 @@ private class AndroidGameAdController(
                     onResult(rewardEarned)
                     loadRewardedRevive()
                 }
-                override fun onAdFailedToShowFullScreenContent(adError: com.google.android.gms.ads.AdError) {
+                override fun onAdFailedToShowFullScreenContent(adError: AdError) {
                     onResult(false)
                     loadRewardedRevive()
                 }
@@ -186,7 +187,7 @@ private class AndroidGameAdController(
                     onResult(rewardEarned)
                     loadRewardedSpecial()
                 }
-                override fun onAdFailedToShowFullScreenContent(adError: com.google.android.gms.ads.AdError) {
+                override fun onAdFailedToShowFullScreenContent(adError: AdError) {
                     onResult(false)
                     loadRewardedSpecial()
                 }

@@ -3,6 +3,7 @@ package com.ugurbuga.blockgames.settings
 import com.ugurbuga.blockgames.game.logic.GameLogic
 import com.ugurbuga.blockgames.game.logic.ScoreCalculator
 import com.ugurbuga.blockgames.game.logic.DigitShiftGameLogic
+import com.ugurbuga.blockgames.game.logic.SumShiftGameLogic
 import com.ugurbuga.blockgames.game.model.ChallengeTask
 import com.ugurbuga.blockgames.game.model.ChallengeTaskType
 import com.ugurbuga.blockgames.game.model.DailyChallenge
@@ -160,7 +161,7 @@ class GameSessionCodecTest {
 
     @Test
     fun encodeDecode_preservesSumShiftSessionDetails() {
-        val state = com.ugurbuga.blockgames.game.logic.SumShiftGameLogic(random = Random(5), scoreCalculator = ScoreCalculator()).newGame(
+        val state = SumShiftGameLogic(random = Random(5), scoreCalculator = ScoreCalculator()).newGame(
             config = GameConfig(columns = 5, rows = 6, difficultyIntervalSeconds = 9_999, linesPerLevel = 9_999),
             challenge = null,
             mode = GameMode.TimeAttack,

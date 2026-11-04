@@ -1,5 +1,6 @@
 package com.ugurbuga.blockgames.game.logic
 
+import com.ugurbuga.blockgames.game.model.BoardMatrix
 import com.ugurbuga.blockgames.game.model.ChallengeTaskType
 import com.ugurbuga.blockgames.game.model.DailyChallenge
 import com.ugurbuga.blockgames.game.model.DigitShiftGuess
@@ -8,6 +9,7 @@ import com.ugurbuga.blockgames.game.model.GameConfig
 import com.ugurbuga.blockgames.game.model.GameMode
 import com.ugurbuga.blockgames.game.model.GameState
 import com.ugurbuga.blockgames.game.model.GameStatus
+import com.ugurbuga.blockgames.game.model.GameText
 import com.ugurbuga.blockgames.game.model.GameTextKey
 import com.ugurbuga.blockgames.game.model.GameplayStyle
 import com.ugurbuga.blockgames.game.model.GridPoint
@@ -63,7 +65,7 @@ class DigitShiftGameLogic(
         val restoredState = state.copy(
             config = config,
             gameplayStyle = GameplayStyle.DigitShift,
-            board = com.ugurbuga.blockgames.game.model.BoardMatrix.empty(columns = config.columns, rows = config.rows),
+            board = BoardMatrix.empty(columns = config.columns, rows = config.rows),
             activePiece = null,
             nextQueue = emptyList(),
             holdPiece = null,
@@ -107,7 +109,7 @@ class DigitShiftGameLogic(
                 config = GameConfig.default(GameplayStyle.DigitShift),
                 gameMode = mode,
                 gameplayStyle = GameplayStyle.DigitShift,
-                board = com.ugurbuga.blockgames.game.model.BoardMatrix.empty(
+                board = BoardMatrix.empty(
                     columns = DigitShiftDefaultWordLength,
                     rows = DigitShiftDefaultMaxAttempts,
                 ),
@@ -301,7 +303,7 @@ class DigitShiftGameLogic(
     private fun startRound(
         state: GameState,
         roundIndex: Int,
-        message: com.ugurbuga.blockgames.game.model.GameText,
+        message: GameText,
     ): GameState {
         val pack = languagePackFor(state.digitShiftLocaleTag)
         val solution = solutionForRound(
@@ -313,7 +315,7 @@ class DigitShiftGameLogic(
         val config = wordConfig(solution.size)
         return state.copy(
             config = config,
-            board = com.ugurbuga.blockgames.game.model.BoardMatrix.empty(columns = config.columns, rows = config.rows),
+            board = BoardMatrix.empty(columns = config.columns, rows = config.rows),
             digitShiftLocaleTag = pack.language.localeTag,
             digitShiftSolution = solution,
             digitShiftGuesses = emptyList(),
